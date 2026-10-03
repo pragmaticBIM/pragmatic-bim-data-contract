@@ -687,6 +687,10 @@ class SpaceNameType(str, Enum):
     """
     Shared laundry for several dwellings, distinct from the laundry inside one dwelling.
     """
+    Drying_Room = "rn_01_20_11"
+    """
+    Room for drying laundry, distinct from the wash room.
+    """
     Apartment_Unit = "rn_01_30_03"
     """
     Generic residential unit space when not subdivided further.
@@ -999,6 +1003,10 @@ class SpaceNameType(str, Enum):
     """
     Small room for cleaning supplies and equipment.
     """
+    Stroller_Room = "rn_10_10_06"
+    """
+    Store for strollers and mobility aids off the lobby, off the escape route.
+    """
     Archive_Room = "rn_10_20_01"
     """
     Room for document and record archives.
@@ -1026,6 +1034,10 @@ class SpaceNameType(str, Enum):
     Sample_Storage = "rn_10_20_07"
     """
     Storage for laboratory or material samples.
+    """
+    Parcel_Room = "rn_10_20_08"
+    """
+    Parcel locker room, distinct from the mail room and from personal lockers.
     """
     Balcony = "rn_11_10_01"
     """

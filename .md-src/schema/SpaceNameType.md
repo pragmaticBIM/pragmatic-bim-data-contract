@@ -39,6 +39,7 @@ URI: [pbs:SpaceNameType](https://schema.pragmaticbim.ch/SpaceNameType)
 | rn_01_20_08 | https://example.org/abstract/building-space-name-classification/RN_RES_CEL | Assigned cellar storage compartment for a dwelling. | Title: Cellar Compartment<br>|
 | rn_01_20_09 | https://example.org/abstract/building-space-name-classification/RN_RES_ETR | Residential entrance transition space within a dwelling context. | Title: Entrance Hall<br>|
 | rn_01_20_10 | https://example.org/abstract/building-space-name-classification/RN_RES_CLA | Shared laundry for several dwellings, distinct from the laundry inside one dwelling. | Title: Communal Laundry<br>|
+| rn_01_20_11 | https://example.org/abstract/building-space-name-classification/RN_RES_DRY | Room for drying laundry, distinct from the wash room. | Title: Drying Room<br>|
 | rn_01_30_03 | https://example.org/abstract/building-space-name-classification/RN_RES_APT | Generic residential unit space when not subdivided further. | Title: Apartment Unit<br>|
 | rn_02_10_01 | https://example.org/abstract/building-space-name-classification/RN_WRK_OFF | Enclosed office for individual or shared desk work. | Title: Office<br>|
 | rn_02_10_02 | https://example.org/abstract/building-space-name-classification/RN_WRK_OPN | Open office landscape without full-height partitions. | Title: Open-Plan Office<br>|
@@ -117,6 +118,7 @@ URI: [pbs:SpaceNameType](https://schema.pragmaticbim.ch/SpaceNameType)
 | rn_10_10_03 | https://example.org/abstract/building-space-name-classification/RN_STO_EQP | Storage for tools and equipment. | Title: Equipment Storage<br>|
 | rn_10_10_04 | https://example.org/abstract/building-space-name-classification/RN_STO_ULD | Temporary storage at delivery point. | Title: Unloading Storage<br>|
 | rn_10_10_05 | https://example.org/abstract/building-space-name-classification/RN_STO_JAN | Small room for cleaning supplies and equipment. | Title: Janitor Closet<br>|
+| rn_10_10_06 | https://example.org/abstract/building-space-name-classification/RN_STO_STR | Store for strollers and mobility aids off the lobby, off the escape route. | Title: Stroller Room<br>|
 | rn_10_20_01 | https://example.org/abstract/building-space-name-classification/RN_STO_ARC | Room for document and record archives. | Title: Archive Room<br>|
 | rn_10_20_02 | https://example.org/abstract/building-space-name-classification/RN_STO_MAL | Room for incoming and outgoing mail. | Title: Mail Room<br>|
 | rn_10_20_03 | https://example.org/abstract/building-space-name-classification/RN_STO_COL | Refrigerated storage room. | Title: Cold Storage<br>|
@@ -124,6 +126,7 @@ URI: [pbs:SpaceNameType](https://schema.pragmaticbim.ch/SpaceNameType)
 | rn_10_20_05 | https://example.org/abstract/building-space-name-classification/RN_STO_CHM | Storage for chemicals. | Title: Chemical Storage<br>|
 | rn_10_20_06 | https://example.org/abstract/building-space-name-classification/RN_STO_HAZ | Storage for hazardous materials. | Title: Hazardous Material Storage<br>|
 | rn_10_20_07 | https://example.org/abstract/building-space-name-classification/RN_STO_SMP | Storage for laboratory or material samples. | Title: Sample Storage<br>|
+| rn_10_20_08 | https://example.org/abstract/building-space-name-classification/RN_STO_PCL | Parcel locker room, distinct from the mail room and from personal lockers. | Title: Parcel Room<br>|
 | rn_11_10_01 | https://example.org/abstract/building-space-name-classification/RN_OUT_BLN | Exterior projecting platform accessed from inside. | Title: Balcony<br>|
 | rn_11_10_02 | https://example.org/abstract/building-space-name-classification/RN_OUT_TRR | Exterior paved or decked platform. | Title: Terrace<br>|
 | rn_11_10_03 | https://example.org/abstract/building-space-name-classification/RN_OUT_PAT | Enclosed or semi-enclosed outdoor sitting area. | Title: Patio<br>|
@@ -346,6 +349,15 @@ permissible_values:
         source: de
         description: Gemeinschaftswaschküche
     title: Communal Laundry
+  rn_01_20_11:
+    text: rn_01_20_11
+    description: Room for drying laundry, distinct from the wash room.
+    meaning: https://example.org/abstract/building-space-name-classification/RN_RES_DRY
+    alt_descriptions:
+      de:
+        source: de
+        description: Trocknungsraum
+    title: Drying Room
   rn_01_30_03:
     text: rn_01_30_03
     description: Generic residential unit space when not subdivided further.
@@ -1049,6 +1061,16 @@ permissible_values:
         source: de
         description: Hauswarteschrank
     title: Janitor Closet
+  rn_10_10_06:
+    text: rn_10_10_06
+    description: Store for strollers and mobility aids off the lobby, off the escape
+      route.
+    meaning: https://example.org/abstract/building-space-name-classification/RN_STO_STR
+    alt_descriptions:
+      de:
+        source: de
+        description: Kinderwagenraum
+    title: Stroller Room
   rn_10_20_01:
     text: rn_10_20_01
     description: Room for document and record archives.
@@ -1112,6 +1134,16 @@ permissible_values:
         source: de
         description: Probenlager
     title: Sample Storage
+  rn_10_20_08:
+    text: rn_10_20_08
+    description: Parcel locker room, distinct from the mail room and from personal
+      lockers.
+    meaning: https://example.org/abstract/building-space-name-classification/RN_STO_PCL
+    alt_descriptions:
+      de:
+        source: de
+        description: Paketraum
+    title: Parcel Room
   rn_11_10_01:
     text: rn_11_10_01
     description: Exterior projecting platform accessed from inside.
