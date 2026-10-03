@@ -12,7 +12,7 @@ Source: [`building-space-name-classification.skos.ttl`](sources/room-name.ttl)
 
 ## Hierarchy
 
-Hierarchy diagram omitted (182 concepts; Mermaid render limit is 80 nodes). See the Concepts table below or the source TTL.
+Hierarchy diagram omitted (190 concepts; Mermaid render limit is 80 nodes). See the Concepts table below or the source TTL.
 
 ## Concepts
 
@@ -333,6 +333,16 @@ Hierarchy diagram omitted (182 concepts; Mermaid render limit is 80 nodes). See 
 <td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
 <td class="pbs-lang-col" data-lang="en" data-field="label">Break Room</td>
 <td class="pbs-lang-col" data-lang="en" data-field="definition">Informal staff rest and refreshment space.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>RN-02-20-04</td>
+<td>RN-02-20</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Gemeinschaftsbüro</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Gemeinsam genutzter Arbeitsraum für Bewohnende ausserhalb der Wohnung.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Community Office</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Shared office for residents working outside their dwelling.</td>
 <td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
 </tr>
 <tr>
@@ -1276,6 +1286,16 @@ Hierarchy diagram omitted (182 concepts; Mermaid render limit is 80 nodes). See 
 <td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
 </tr>
 <tr>
+<td>RN-09-30-03</td>
+<td>RN-09-30</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Abfallschacht</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Vertikaler Schacht für den Transport von Siedlungsabfall zu einer zentralen Sammelstelle.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Waste Chute</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Vertical chute for transferring household waste to a central collection point.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
 <td>RN-10</td>
 <td></td>
 <td class="pbs-lang-col" data-lang="de" data-field="label">Lager</td>
@@ -1353,6 +1373,16 @@ Hierarchy diagram omitted (182 concepts; Mermaid render limit is 80 nodes). See 
 <td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
 <td class="pbs-lang-col" data-lang="en" data-field="label">Stroller Room</td>
 <td class="pbs-lang-col" data-lang="en" data-field="definition">Store for strollers and mobility aids off the lobby, off the escape route.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>RN-10-10-07</td>
+<td>RN-10-10</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Gartenhaus</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Geschlossener Abstellraum im Aussenbereich für Gartengeräte und Haushaltsgüter.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Garden Shed</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Enclosed outdoor storage room for garden tools and household goods.</td>
 <td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
 </tr>
 <tr>
@@ -1663,6 +1693,56 @@ Hierarchy diagram omitted (182 concepts; Mermaid render limit is 80 nodes). See 
 <td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
 <td class="pbs-lang-col" data-lang="en" data-field="label">Street</td>
 <td class="pbs-lang-col" data-lang="en" data-field="definition">Outdoor vehicular circulation route as space, including access roads, driveways, and service roads.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>RN-11-50</td>
+<td>RN-11</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Abfallsammlung Aussen</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Aussenflächen für das Sammeln und Bereitstellen von Siedlungsabfall.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Exterior waste collection</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Outdoor areas for collecting and presenting household waste.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>RN-11-50-01</td>
+<td>RN-11-50</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Abfallsammelplatz Aussen</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Aussenfläche für das Sammeln und Bereitstellen von Siedlungsabfall in Säcken.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Exterior Waste Collection Area</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Outdoor area for collecting and presenting bagged household waste.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>RN-11-50-02</td>
+<td>RN-11-50</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Unterflurcontainer</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Aussenfläche für einen unterirdischen Sammelcontainer für Siedlungsabfall.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Underground Waste Container</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Outdoor space allocated to an underground household-waste collection container.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>RN-11-60</td>
+<td>RN-11</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Zustellanlagen Aussen</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Aussenflächen für Briefkasten- und Paketfachanlagen.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Exterior delivery facilities</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Outdoor areas allocated to mailboxes and parcel lockers.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>RN-11-60-01</td>
+<td>RN-11-60</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Briefkasten- und Paketfachanlage Aussen</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Aussenfläche für Briefkästen und Paketfächer.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Exterior Mailbox and Parcel Locker Area</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Outdoor area allocated to mailboxes and parcel lockers.</td>
 <td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
 </tr>
 <tr>
