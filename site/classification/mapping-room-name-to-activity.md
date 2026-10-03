@@ -101,6 +101,7 @@ External target labels are not shipped in this repository; only codes and IRIs a
 | `rn:RN-RES-CLA` | `mapsToActivity` | `abs:M-RES` |
 | `rn:RN-RES-CLO` | `mapsToActivity` | `abs:M-RES` |
 | `rn:RN-RES-DIN` | `mapsToActivity` | `abs:M-RES` |
+| `rn:RN-RES-DRY` | `mapsToActivity` | `abs:M-RES` |
 | `rn:RN-RES-ENT` | `mapsToActivity` | `abs:M-RES` |
 | `rn:RN-RES-ETR` | `mapsToActivity` | `abs:M-RES` |
 | `rn:RN-RES-GNG` | `mapsToActivity` | `abs:M-RES` |
@@ -120,7 +121,9 @@ External target labels are not shipped in this repository; only codes and IRIs a
 | `rn:RN-STO-JAN` | `mapsToActivity` | `abs:S-STO-GEN` |
 | `rn:RN-STO-LAB` | `mapsToActivity` | `abs:S-STO-GEN` |
 | `rn:RN-STO-MAL` | `mapsToActivity` | `abs:S-STO-GEN` |
+| `rn:RN-STO-PCL` | `mapsToActivity` | `abs:S-STO-GEN` |
 | `rn:RN-STO-SMP` | `mapsToActivity` | `abs:S-STO-GEN` |
+| `rn:RN-STO-STR` | `mapsToActivity` | `abs:S-STO-GEN` |
 | `rn:RN-STO-SUP` | `mapsToActivity` | `abs:S-STO-GEN` |
 | `rn:RN-STO-ULD` | `mapsToActivity` | `abs:S-STO-GEN` |
 | `rn:RN-TEC-BOI` | `mapsToActivity` | `abs:S-TEC` |

@@ -1035,6 +1035,14 @@ enums:
           de:
             source: de
             description: Gemeinschaftswaschküche
+      rn_01_20_11:
+        description: "Room for drying laundry, distinct from the wash room."
+        meaning: https://example.org/abstract/building-space-name-classification/RN_RES_DRY
+        title: Drying Room
+        alt_descriptions:
+          de:
+            source: de
+            description: Trocknungsraum
       rn_01_30_03:
         description: "Generic residential unit space when not subdivided further."
         meaning: https://example.org/abstract/building-space-name-classification/RN_RES_APT
@@ -1659,6 +1667,14 @@ enums:
           de:
             source: de
             description: Hauswarteschrank
+      rn_10_10_06:
+        description: "Store for strollers and mobility aids off the lobby, off the escape route."
+        meaning: https://example.org/abstract/building-space-name-classification/RN_STO_STR
+        title: Stroller Room
+        alt_descriptions:
+          de:
+            source: de
+            description: Kinderwagenraum
       rn_10_20_01:
         description: "Room for document and record archives."
         meaning: https://example.org/abstract/building-space-name-classification/RN_STO_ARC
@@ -1715,6 +1731,14 @@ enums:
           de:
             source: de
             description: Probenlager
+      rn_10_20_08:
+        description: "Parcel locker room, distinct from the mail room and from personal lockers."
+        meaning: https://example.org/abstract/building-space-name-classification/RN_STO_PCL
+        title: Parcel Room
+        alt_descriptions:
+          de:
+            source: de
+            description: Paketraum
       rn_11_10_01:
         description: "Exterior projecting platform accessed from inside."
         meaning: https://example.org/abstract/building-space-name-classification/RN_OUT_BLN

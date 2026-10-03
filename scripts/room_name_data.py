@@ -91,8 +91,8 @@ GROUPS: list[RoomNameGroup] = [
     RoomNameGroup("RN_RES_LIV_GRP", "RN-01-10", "RN_RES", "Living and sleeping", "Wohnen und Schlafen",
                   "Rooms for daily living, sleeping, and dining.", "Räume für Wohnen, Schlafen und Essen."),
     RoomNameGroup("RN_RES_SVC_GRP", "RN-01-20", "RN_RES", "Residential services", "Wohnliche Dienste",
-                  "Kitchen, bathroom, laundry, utility, hallway, entry, storage, cellar, and entrance spaces within dwellings.",
-                  "Küche, Bad, Wäsche, Hauswirtschaft, Gang, Wohnungseingang, Abstellraum, Kellerabteil und Entree in Wohneinheiten."),
+                  "Kitchen, bathroom, laundry, drying, utility, hallway, entry, storage, cellar, and entrance spaces within dwellings.",
+                  "Küche, Bad, Wäsche, Trocknung, Hauswirtschaft, Gang, Wohnungseingang, Abstellraum, Kellerabteil und Entree in Wohneinheiten."),
     RoomNameGroup("RN_RES_UNT_GRP", "RN-01-30", "RN_RES", "Dwelling unit level", "Wohneinheitsebene",
                   "Whole-unit spaces when not subdivided further.", "Gesamtwohnflächen ohne weitere Unterteilung."),
     # Work
@@ -156,10 +156,11 @@ GROUPS: list[RoomNameGroup] = [
                   "Meter rooms and waste handling spaces.", "Zählerräume und Abfallräume."),
     # Storage
     RoomNameGroup("RN_STO_GEN_GRP", "RN-10-10", "RN_STO", "General storage types", "Allgemeine Lagertypen",
-                  "General, supply, equipment, and janitor storage.", "Allgemeine, Material-, Geräte- und Hauswartlager."),
+                  "General, supply, equipment, janitor, and stroller storage.",
+                  "Allgemeine, Material-, Geräte-, Hauswart- und Kinderwagenlager."),
     RoomNameGroup("RN_STO_SPC_GRP", "RN-10-20", "RN_STO", "Specialized storage", "Speziallager",
-                  "Archives, mail rooms, cold storage, and laboratory, chemical, hazardous, and sample storage.",
-                  "Archive, Posträume, Kühllager sowie Labor-, Chemikalien-, Gefahrstoff- und Probenlager."),
+                  "Archives, mail rooms, parcel rooms, cold storage, and laboratory, chemical, hazardous, and sample storage.",
+                  "Archive, Post- und Paketräume, Kühllager sowie Labor-, Chemikalien-, Gefahrstoff- und Probenlager."),
     # Outdoor
     RoomNameGroup("RN_OUT_PLT_GRP", "RN-11-10", "RN_OUT", "Exterior platforms", "Aussenplattformen",
                   "Balconies, loggias, escape balconies, terraces, roof terraces, maintenance roofs, technical plant pads, green roofs, and patios.",
@@ -239,6 +240,10 @@ CONCEPTS: list[RoomNameConcept] = [
     RoomNameConcept("RN_RES_CLA", "RN-01-20-10", "Communal Laundry", "Gemeinschaftswaschküche",
                     "Shared laundry for several dwellings, distinct from the laundry inside one dwelling.",
                     "Gemeinsame Waschküche mehrerer Wohneinheiten, im Unterschied zur Waschküche innerhalb einer Wohnung.",
+                    "RN_RES", "RN_RES_SVC_GRP", ["M-RES"]),
+    RoomNameConcept("RN_RES_DRY", "RN-01-20-11", "Drying Room", "Trocknungsraum",
+                    "Room for drying laundry, distinct from the wash room.",
+                    "Raum zum Trocknen der Wäsche, im Unterschied zum Waschraum.",
                     "RN_RES", "RN_RES_SVC_GRP", ["M-RES"]),
     # Residential — unit level (RN-01-30)
     RoomNameConcept("RN_RES_APT", "RN-01-30-03", "Apartment Unit", "Wohneinheit",
@@ -503,6 +508,10 @@ CONCEPTS: list[RoomNameConcept] = [
     RoomNameConcept("RN_STO_JAN", "RN-10-10-05", "Janitor Closet", "Hauswarteschrank",
                     "Small room for cleaning supplies and equipment.", "Kleiner Raum für Reinigungsmaterial.",
                     "RN_STO", "RN_STO_GEN_GRP", ["S-STO-GEN"]),
+    RoomNameConcept("RN_STO_STR", "RN-10-10-06", "Stroller Room", "Kinderwagenraum",
+                    "Store for strollers and mobility aids off the lobby, off the escape route.",
+                    "Abstellraum für Kinderwagen und Mobilitätshilfen an der Eingangshalle, ausserhalb des Fluchtwegs.",
+                    "RN_STO", "RN_STO_GEN_GRP", ["S-STO-GEN"]),
     # Storage — specialized (RN-10-20)
     RoomNameConcept("RN_STO_ARC", "RN-10-20-01", "Archive Room", "Archivraum",
                     "Room for document and record archives.", "Raum für Dokumenten- und Aktenarchive.",
@@ -526,6 +535,10 @@ CONCEPTS: list[RoomNameConcept] = [
     RoomNameConcept("RN_STO_SMP", "RN-10-20-07", "Sample Storage", "Probenlager",
                     "Storage for laboratory or material samples.",
                     "Lager für Labor- oder Materialproben.",
+                    "RN_STO", "RN_STO_SPC_GRP", ["S-STO-GEN"]),
+    RoomNameConcept("RN_STO_PCL", "RN-10-20-08", "Parcel Room", "Paketraum",
+                    "Parcel locker room, distinct from the mail room and from personal lockers.",
+                    "Raum für Paketfächer, im Unterschied zum Postraum und zu persönlichen Schliessfächern.",
                     "RN_STO", "RN_STO_SPC_GRP", ["S-STO-GEN"]),
     # Outdoor — platforms (RN-11-10)
     RoomNameConcept("RN_OUT_BLN", "RN-11-10-01", "Balcony", "Balkon",

@@ -12,7 +12,7 @@ Source: [`building-space-name-classification.skos.ttl`](sources/room-name.ttl)
 
 ## Hierarchy
 
-Hierarchy diagram omitted (179 concepts; Mermaid render limit is 80 nodes). See the Concepts table below or the source TTL.
+Hierarchy diagram omitted (182 concepts; Mermaid render limit is 80 nodes). See the Concepts table below or the source TTL.
 
 ## Concepts
 
@@ -119,10 +119,10 @@ Hierarchy diagram omitted (179 concepts; Mermaid render limit is 80 nodes). See 
 <td>RN-01-20</td>
 <td>RN-01</td>
 <td class="pbs-lang-col" data-lang="de" data-field="label">Wohnliche Dienste</td>
-<td class="pbs-lang-col" data-lang="de" data-field="definition">Küche, Bad, Wäsche, Hauswirtschaft, Gang, Wohnungseingang, Abstellraum, Kellerabteil und Entree in Wohneinheiten.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Küche, Bad, Wäsche, Trocknung, Hauswirtschaft, Gang, Wohnungseingang, Abstellraum, Kellerabteil und Entree in Wohneinheiten.</td>
 <td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
 <td class="pbs-lang-col" data-lang="en" data-field="label">Residential services</td>
-<td class="pbs-lang-col" data-lang="en" data-field="definition">Kitchen, bathroom, laundry, utility, hallway, entry, storage, cellar, and entrance spaces within dwellings.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Kitchen, bathroom, laundry, drying, utility, hallway, entry, storage, cellar, and entrance spaces within dwellings.</td>
 <td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
 </tr>
 <tr>
@@ -223,6 +223,16 @@ Hierarchy diagram omitted (179 concepts; Mermaid render limit is 80 nodes). See 
 <td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
 <td class="pbs-lang-col" data-lang="en" data-field="label">Communal Laundry</td>
 <td class="pbs-lang-col" data-lang="en" data-field="definition">Shared laundry for several dwellings, distinct from the laundry inside one dwelling.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>RN-01-20-11</td>
+<td>RN-01-20</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Trocknungsraum</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Raum zum Trocknen der Wäsche, im Unterschied zum Waschraum.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Drying Room</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Room for drying laundry, distinct from the wash room.</td>
 <td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
 </tr>
 <tr>
@@ -1279,10 +1289,10 @@ Hierarchy diagram omitted (179 concepts; Mermaid render limit is 80 nodes). See 
 <td>RN-10-10</td>
 <td>RN-10</td>
 <td class="pbs-lang-col" data-lang="de" data-field="label">Allgemeine Lagertypen</td>
-<td class="pbs-lang-col" data-lang="de" data-field="definition">Allgemeine, Material-, Geräte- und Hauswartlager.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Allgemeine, Material-, Geräte-, Hauswart- und Kinderwagenlager.</td>
 <td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
 <td class="pbs-lang-col" data-lang="en" data-field="label">General storage types</td>
-<td class="pbs-lang-col" data-lang="en" data-field="definition">General, supply, equipment, and janitor storage.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">General, supply, equipment, janitor, and stroller storage.</td>
 <td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
 </tr>
 <tr>
@@ -1336,13 +1346,23 @@ Hierarchy diagram omitted (179 concepts; Mermaid render limit is 80 nodes). See 
 <td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
 </tr>
 <tr>
+<td>RN-10-10-06</td>
+<td>RN-10-10</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Kinderwagenraum</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Abstellraum für Kinderwagen und Mobilitätshilfen an der Eingangshalle, ausserhalb des Fluchtwegs.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Stroller Room</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Store for strollers and mobility aids off the lobby, off the escape route.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
 <td>RN-10-20</td>
 <td>RN-10</td>
 <td class="pbs-lang-col" data-lang="de" data-field="label">Speziallager</td>
-<td class="pbs-lang-col" data-lang="de" data-field="definition">Archive, Posträume, Kühllager sowie Labor-, Chemikalien-, Gefahrstoff- und Probenlager.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Archive, Post- und Paketräume, Kühllager sowie Labor-, Chemikalien-, Gefahrstoff- und Probenlager.</td>
 <td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
 <td class="pbs-lang-col" data-lang="en" data-field="label">Specialized storage</td>
-<td class="pbs-lang-col" data-lang="en" data-field="definition">Archives, mail rooms, cold storage, and laboratory, chemical, hazardous, and sample storage.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Archives, mail rooms, parcel rooms, cold storage, and laboratory, chemical, hazardous, and sample storage.</td>
 <td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
 </tr>
 <tr>
@@ -1413,6 +1433,16 @@ Hierarchy diagram omitted (179 concepts; Mermaid render limit is 80 nodes). See 
 <td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
 <td class="pbs-lang-col" data-lang="en" data-field="label">Sample Storage</td>
 <td class="pbs-lang-col" data-lang="en" data-field="definition">Storage for laboratory or material samples.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>RN-10-20-08</td>
+<td>RN-10-20</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Paketraum</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Raum für Paketfächer, im Unterschied zum Postraum und zu persönlichen Schliessfächern.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Parcel Room</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Parcel locker room, distinct from the mail room and from personal lockers.</td>
 <td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
 </tr>
 <tr>

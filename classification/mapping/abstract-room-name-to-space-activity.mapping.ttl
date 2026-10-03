@@ -26,6 +26,7 @@ rn:RN_RES_CLO ex:mapsToActivity abs:M_RES .
 rn:RN_RES_CEL ex:mapsToActivity abs:M_RES .
 rn:RN_RES_ETR ex:mapsToActivity abs:M_RES .
 rn:RN_RES_CLA ex:mapsToActivity abs:M_RES .
+rn:RN_RES_DRY ex:mapsToActivity abs:M_RES .
 rn:RN_RES_APT ex:mapsToActivity abs:M_RES .
 rn:RN_WRK_OFF ex:mapsToActivity abs:M_WRK_KNW .
 rn:RN_WRK_OPN ex:mapsToActivity abs:M_WRK_KNW .
@@ -104,6 +105,7 @@ rn:RN_STO_SUP ex:mapsToActivity abs:S_STO_GEN .
 rn:RN_STO_EQP ex:mapsToActivity abs:S_STO_GEN .
 rn:RN_STO_ULD ex:mapsToActivity abs:S_STO_GEN .
 rn:RN_STO_JAN ex:mapsToActivity abs:S_STO_GEN .
+rn:RN_STO_STR ex:mapsToActivity abs:S_STO_GEN .
 rn:RN_STO_ARC ex:mapsToActivity abs:S_STO_GEN .
 rn:RN_STO_MAL ex:mapsToActivity abs:S_STO_GEN .
 rn:RN_STO_COL ex:mapsToActivity abs:S_STO_GEN .
@@ -111,6 +113,7 @@ rn:RN_STO_LAB ex:mapsToActivity abs:S_STO_GEN .
 rn:RN_STO_CHM ex:mapsToActivity abs:S_STO_GEN .
 rn:RN_STO_HAZ ex:mapsToActivity abs:S_STO_GEN .
 rn:RN_STO_SMP ex:mapsToActivity abs:S_STO_GEN .
+rn:RN_STO_PCL ex:mapsToActivity abs:S_STO_GEN .
 rn:RN_OUT_BLN ex:mapsToActivity abs:O .
 rn:RN_OUT_TRR ex:mapsToActivity abs:O .
 rn:RN_OUT_PAT ex:mapsToActivity abs:O .
