@@ -46,6 +46,7 @@ URI: [pbs:SpaceNameType](https://schema.pragmaticbim.ch/SpaceNameType)
 | rn_02_20_01 | https://example.org/abstract/building-space-name-classification/RN_WRK_MTG | Room for small group meetings. | Title: Meeting Room<br>|
 | rn_02_20_02 | https://example.org/abstract/building-space-name-classification/RN_WRK_CNF | Room for formal meetings and presentations. | Title: Conference Room<br>|
 | rn_02_20_03 | https://example.org/abstract/building-space-name-classification/RN_WRK_BRK | Informal staff rest and refreshment space. | Title: Break Room<br>|
+| rn_02_20_04 | https://example.org/abstract/building-space-name-classification/RN_WRK_COM | Shared office for residents working outside their dwelling. | Title: Community Office<br>|
 | rn_02_30_01 | https://example.org/abstract/building-space-name-classification/RN_WRK_REC | Visitor reception and waiting area. | Title: Reception<br>|
 | rn_03_10_01 | https://example.org/abstract/building-space-name-classification/RN_CIR_COR | Horizontal circulation passage, including narrow aisles between rows or functions. | Title: Corridor<br>|
 | rn_03_10_02 | https://example.org/abstract/building-space-name-classification/RN_CIR_LOB | Main entrance lobby or reception hall. | Title: Lobby<br>|
@@ -113,12 +114,14 @@ URI: [pbs:SpaceNameType](https://schema.pragmaticbim.ch/SpaceNameType)
 | rn_09_20_05 | https://example.org/abstract/building-space-name-classification/RN_TEC_COM | Room for telecom and low-voltage systems. | Title: Communications Room<br>|
 | rn_09_30_01 | https://example.org/abstract/building-space-name-classification/RN_TEC_MMR | Room for utility metering equipment. | Title: Meter Room<br>|
 | rn_09_30_02 | https://example.org/abstract/building-space-name-classification/RN_TEC_WST | Room for waste collection and handling. | Title: Waste Room<br>|
+| rn_09_30_03 | https://example.org/abstract/building-space-name-classification/RN_TEC_WSH | Vertical chute for transferring household waste to a central collection point. | Title: Waste Chute<br>|
 | rn_10_10_01 | https://example.org/abstract/building-space-name-classification/RN_STO_GEN | Room for general material storage. | Title: General Storage<br>|
 | rn_10_10_02 | https://example.org/abstract/building-space-name-classification/RN_STO_SUP | Room for consumable supplies. | Title: Supply Room<br>|
 | rn_10_10_03 | https://example.org/abstract/building-space-name-classification/RN_STO_EQP | Storage for tools and equipment. | Title: Equipment Storage<br>|
 | rn_10_10_04 | https://example.org/abstract/building-space-name-classification/RN_STO_ULD | Temporary storage at delivery point. | Title: Unloading Storage<br>|
 | rn_10_10_05 | https://example.org/abstract/building-space-name-classification/RN_STO_JAN | Small room for cleaning supplies and equipment. | Title: Janitor Closet<br>|
 | rn_10_10_06 | https://example.org/abstract/building-space-name-classification/RN_STO_STR | Store for strollers and mobility aids off the lobby, off the escape route. | Title: Stroller Room<br>|
+| rn_10_10_07 | https://example.org/abstract/building-space-name-classification/RN_STO_GSH | Enclosed outdoor storage room for garden tools and household goods. | Title: Garden Shed<br>|
 | rn_10_20_01 | https://example.org/abstract/building-space-name-classification/RN_STO_ARC | Room for document and record archives. | Title: Archive Room<br>|
 | rn_10_20_02 | https://example.org/abstract/building-space-name-classification/RN_STO_MAL | Room for incoming and outgoing mail. | Title: Mail Room<br>|
 | rn_10_20_03 | https://example.org/abstract/building-space-name-classification/RN_STO_COL | Refrigerated storage room. | Title: Cold Storage<br>|
@@ -144,6 +147,9 @@ URI: [pbs:SpaceNameType](https://schema.pragmaticbim.ch/SpaceNameType)
 | rn_11_30_02 | https://example.org/abstract/building-space-name-classification/RN_OUT_PRT | Covered exterior entrance structure. | Title: Portico<br>|
 | rn_11_40_01 | https://example.org/abstract/building-space-name-classification/RN_OUT_STR | Open or external stair for outdoor vertical circulation. | Title: Exterior Stair<br>|
 | rn_11_40_02 | https://example.org/abstract/building-space-name-classification/RN_OUT_RD | Outdoor vehicular circulation route as space, including access roads, driveways, and service roads. | Title: Street<br>|
+| rn_11_50_01 | https://example.org/abstract/building-space-name-classification/RN_OUT_WCP | Outdoor area for collecting and presenting bagged household waste. | Title: Exterior Waste Collection Area<br>|
+| rn_11_50_02 | https://example.org/abstract/building-space-name-classification/RN_OUT_UWC | Outdoor space allocated to an underground household-waste collection container. | Title: Underground Waste Container<br>|
+| rn_11_60_01 | https://example.org/abstract/building-space-name-classification/RN_OUT_MPL | Outdoor area allocated to mailboxes and parcel lockers. | Title: Exterior Mailbox and Parcel Locker Area<br>|
 | rn_12_10_01 | https://example.org/abstract/building-space-name-classification/RN_VOI_SHA | Vertical service or circulation shaft. | Title: Shaft<br>|
 | rn_12_10_02 | https://example.org/abstract/building-space-name-classification/RN_VOI_RIS | Vertical building services riser. | Title: Riser<br>|
 | rn_12_20_01 | https://example.org/abstract/building-space-name-classification/RN_VOI_PLN | Ceiling or floor service void. | Title: Plenum<br>|
@@ -412,6 +418,15 @@ permissible_values:
         source: de
         description: Pausenraum
     title: Break Room
+  rn_02_20_04:
+    text: rn_02_20_04
+    description: Shared office for residents working outside their dwelling.
+    meaning: https://example.org/abstract/building-space-name-classification/RN_WRK_COM
+    alt_descriptions:
+      de:
+        source: de
+        description: Gemeinschaftsbüro
+    title: Community Office
   rn_02_30_01:
     text: rn_02_30_01
     description: Visitor reception and waiting area.
@@ -1016,6 +1031,16 @@ permissible_values:
         source: de
         description: Abfallraum
     title: Waste Room
+  rn_09_30_03:
+    text: rn_09_30_03
+    description: Vertical chute for transferring household waste to a central collection
+      point.
+    meaning: https://example.org/abstract/building-space-name-classification/RN_TEC_WSH
+    alt_descriptions:
+      de:
+        source: de
+        description: Abfallschacht
+    title: Waste Chute
   rn_10_10_01:
     text: rn_10_10_01
     description: Room for general material storage.
@@ -1071,6 +1096,15 @@ permissible_values:
         source: de
         description: Kinderwagenraum
     title: Stroller Room
+  rn_10_10_07:
+    text: rn_10_10_07
+    description: Enclosed outdoor storage room for garden tools and household goods.
+    meaning: https://example.org/abstract/building-space-name-classification/RN_STO_GSH
+    alt_descriptions:
+      de:
+        source: de
+        description: Gartenhaus
+    title: Garden Shed
   rn_10_20_01:
     text: rn_10_20_01
     description: Room for document and record archives.
@@ -1302,6 +1336,34 @@ permissible_values:
         source: de
         description: Strasse
     title: Street
+  rn_11_50_01:
+    text: rn_11_50_01
+    description: Outdoor area for collecting and presenting bagged household waste.
+    meaning: https://example.org/abstract/building-space-name-classification/RN_OUT_WCP
+    alt_descriptions:
+      de:
+        source: de
+        description: Abfallsammelplatz Aussen
+    title: Exterior Waste Collection Area
+  rn_11_50_02:
+    text: rn_11_50_02
+    description: Outdoor space allocated to an underground household-waste collection
+      container.
+    meaning: https://example.org/abstract/building-space-name-classification/RN_OUT_UWC
+    alt_descriptions:
+      de:
+        source: de
+        description: Unterflurcontainer
+    title: Underground Waste Container
+  rn_11_60_01:
+    text: rn_11_60_01
+    description: Outdoor area allocated to mailboxes and parcel lockers.
+    meaning: https://example.org/abstract/building-space-name-classification/RN_OUT_MPL
+    alt_descriptions:
+      de:
+        source: de
+        description: Briefkasten- und Paketfachanlage Aussen
+    title: Exterior Mailbox and Parcel Locker Area
   rn_12_10_01:
     text: rn_12_10_01
     description: Vertical service or circulation shaft.

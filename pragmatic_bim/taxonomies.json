@@ -5528,8 +5528,8 @@
       "RN-01-20": {
         "broader": "RN-01",
         "definition": {
-          "de": "K\u00fcche, Bad, W\u00e4sche, Hauswirtschaft, Gang, Wohnungseingang, Abstellraum, Kellerabteil und Entree in Wohneinheiten.",
-          "en": "Kitchen, bathroom, laundry, utility, hallway, entry, storage, cellar, and entrance spaces within dwellings."
+          "de": "K\u00fcche, Bad, W\u00e4sche, Trocknung, Hauswirtschaft, Gang, Wohnungseingang, Abstellraum, Kellerabteil und Entree in Wohneinheiten.",
+          "en": "Kitchen, bathroom, laundry, drying, utility, hallway, entry, storage, cellar, and entrance spaces within dwellings."
         },
         "labels": {
           "de": "Wohnliche Dienste",
@@ -5646,6 +5646,17 @@
           "en": "Communal Laundry"
         }
       },
+      "RN-01-20-11": {
+        "broader": "RN-01-20",
+        "definition": {
+          "de": "Raum zum Trocknen der W\u00e4sche, im Unterschied zum Waschraum.",
+          "en": "Room for drying laundry, distinct from the wash room."
+        },
+        "labels": {
+          "de": "Trocknungsraum",
+          "en": "Drying Room"
+        }
+      },
       "RN-01-30": {
         "broader": "RN-01",
         "definition": {
@@ -5754,6 +5765,17 @@
         "labels": {
           "de": "Pausenraum",
           "en": "Break Room"
+        }
+      },
+      "RN-02-20-04": {
+        "broader": "RN-02-20",
+        "definition": {
+          "de": "Gemeinsam genutzter Arbeitsraum f\u00fcr Bewohnende ausserhalb der Wohnung.",
+          "en": "Shared office for residents working outside their dwelling."
+        },
+        "labels": {
+          "de": "Gemeinschaftsb\u00fcro",
+          "en": "Community Office"
         }
       },
       "RN-02-30": {
@@ -6790,6 +6812,17 @@
           "en": "Waste Room"
         }
       },
+      "RN-09-30-03": {
+        "broader": "RN-09-30",
+        "definition": {
+          "de": "Vertikaler Schacht f\u00fcr den Transport von Siedlungsabfall zu einer zentralen Sammelstelle.",
+          "en": "Vertical chute for transferring household waste to a central collection point."
+        },
+        "labels": {
+          "de": "Abfallschacht",
+          "en": "Waste Chute"
+        }
+      },
       "RN-10": {
         "broader": null,
         "definition": {
@@ -6804,8 +6837,8 @@
       "RN-10-10": {
         "broader": "RN-10",
         "definition": {
-          "de": "Allgemeine, Material-, Ger\u00e4te- und Hauswartlager.",
-          "en": "General, supply, equipment, and janitor storage."
+          "de": "Allgemeine, Material-, Ger\u00e4te-, Hauswart- und Kinderwagenlager.",
+          "en": "General, supply, equipment, janitor, and stroller storage."
         },
         "labels": {
           "de": "Allgemeine Lagertypen",
@@ -6867,11 +6900,33 @@
           "en": "Janitor Closet"
         }
       },
+      "RN-10-10-06": {
+        "broader": "RN-10-10",
+        "definition": {
+          "de": "Abstellraum f\u00fcr Kinderwagen und Mobilit\u00e4tshilfen an der Eingangshalle, ausserhalb des Fluchtwegs.",
+          "en": "Store for strollers and mobility aids off the lobby, off the escape route."
+        },
+        "labels": {
+          "de": "Kinderwagenraum",
+          "en": "Stroller Room"
+        }
+      },
+      "RN-10-10-07": {
+        "broader": "RN-10-10",
+        "definition": {
+          "de": "Geschlossener Abstellraum im Aussenbereich f\u00fcr Gartenger\u00e4te und Haushaltsg\u00fcter.",
+          "en": "Enclosed outdoor storage room for garden tools and household goods."
+        },
+        "labels": {
+          "de": "Gartenhaus",
+          "en": "Garden Shed"
+        }
+      },
       "RN-10-20": {
         "broader": "RN-10",
         "definition": {
-          "de": "Archive, Postr\u00e4ume, K\u00fchllager sowie Labor-, Chemikalien-, Gefahrstoff- und Probenlager.",
-          "en": "Archives, mail rooms, cold storage, and laboratory, chemical, hazardous, and sample storage."
+          "de": "Archive, Post- und Paketr\u00e4ume, K\u00fchllager sowie Labor-, Chemikalien-, Gefahrstoff- und Probenlager.",
+          "en": "Archives, mail rooms, parcel rooms, cold storage, and laboratory, chemical, hazardous, and sample storage."
         },
         "labels": {
           "de": "Speziallager",
@@ -6953,6 +7008,17 @@
         "labels": {
           "de": "Probenlager",
           "en": "Sample Storage"
+        }
+      },
+      "RN-10-20-08": {
+        "broader": "RN-10-20",
+        "definition": {
+          "de": "Raum f\u00fcr Paketf\u00e4cher, im Unterschied zum Postraum und zu pers\u00f6nlichen Schliessf\u00e4chern.",
+          "en": "Parcel locker room, distinct from the mail room and from personal lockers."
+        },
+        "labels": {
+          "de": "Paketraum",
+          "en": "Parcel Room"
         }
       },
       "RN-11": {
@@ -7195,6 +7261,61 @@
         "labels": {
           "de": "Strasse",
           "en": "Street"
+        }
+      },
+      "RN-11-50": {
+        "broader": "RN-11",
+        "definition": {
+          "de": "Aussenfl\u00e4chen f\u00fcr das Sammeln und Bereitstellen von Siedlungsabfall.",
+          "en": "Outdoor areas for collecting and presenting household waste."
+        },
+        "labels": {
+          "de": "Abfallsammlung Aussen",
+          "en": "Exterior waste collection"
+        }
+      },
+      "RN-11-50-01": {
+        "broader": "RN-11-50",
+        "definition": {
+          "de": "Aussenfl\u00e4che f\u00fcr das Sammeln und Bereitstellen von Siedlungsabfall in S\u00e4cken.",
+          "en": "Outdoor area for collecting and presenting bagged household waste."
+        },
+        "labels": {
+          "de": "Abfallsammelplatz Aussen",
+          "en": "Exterior Waste Collection Area"
+        }
+      },
+      "RN-11-50-02": {
+        "broader": "RN-11-50",
+        "definition": {
+          "de": "Aussenfl\u00e4che f\u00fcr einen unterirdischen Sammelcontainer f\u00fcr Siedlungsabfall.",
+          "en": "Outdoor space allocated to an underground household-waste collection container."
+        },
+        "labels": {
+          "de": "Unterflurcontainer",
+          "en": "Underground Waste Container"
+        }
+      },
+      "RN-11-60": {
+        "broader": "RN-11",
+        "definition": {
+          "de": "Aussenfl\u00e4chen f\u00fcr Briefkasten- und Paketfachanlagen.",
+          "en": "Outdoor areas allocated to mailboxes and parcel lockers."
+        },
+        "labels": {
+          "de": "Zustellanlagen Aussen",
+          "en": "Exterior delivery facilities"
+        }
+      },
+      "RN-11-60-01": {
+        "broader": "RN-11-60",
+        "definition": {
+          "de": "Aussenfl\u00e4che f\u00fcr Briefk\u00e4sten und Paketf\u00e4cher.",
+          "en": "Outdoor area allocated to mailboxes and parcel lockers."
+        },
+        "labels": {
+          "de": "Briefkasten- und Paketfachanlage Aussen",
+          "en": "Exterior Mailbox and Parcel Locker Area"
         }
       },
       "RN-12": {

@@ -1091,6 +1091,14 @@ enums:
           de:
             source: de
             description: Pausenraum
+      rn_02_20_04:
+        description: "Shared office for residents working outside their dwelling."
+        meaning: https://example.org/abstract/building-space-name-classification/RN_WRK_COM
+        title: Community Office
+        alt_descriptions:
+          de:
+            source: de
+            description: Gemeinschaftsbüro
       rn_02_30_01:
         description: "Visitor reception and waiting area."
         meaning: https://example.org/abstract/building-space-name-classification/RN_WRK_REC
@@ -1627,6 +1635,14 @@ enums:
           de:
             source: de
             description: Abfallraum
+      rn_09_30_03:
+        description: "Vertical chute for transferring household waste to a central collection point."
+        meaning: https://example.org/abstract/building-space-name-classification/RN_TEC_WSH
+        title: Waste Chute
+        alt_descriptions:
+          de:
+            source: de
+            description: Abfallschacht
       rn_10_10_01:
         description: "Room for general material storage."
         meaning: https://example.org/abstract/building-space-name-classification/RN_STO_GEN
@@ -1675,6 +1691,14 @@ enums:
           de:
             source: de
             description: Kinderwagenraum
+      rn_10_10_07:
+        description: "Enclosed outdoor storage room for garden tools and household goods."
+        meaning: https://example.org/abstract/building-space-name-classification/RN_STO_GSH
+        title: Garden Shed
+        alt_descriptions:
+          de:
+            source: de
+            description: Gartenhaus
       rn_10_20_01:
         description: "Room for document and record archives."
         meaning: https://example.org/abstract/building-space-name-classification/RN_STO_ARC
@@ -1875,6 +1899,30 @@ enums:
           de:
             source: de
             description: Strasse
+      rn_11_50_01:
+        description: "Outdoor area for collecting and presenting bagged household waste."
+        meaning: https://example.org/abstract/building-space-name-classification/RN_OUT_WCP
+        title: Exterior Waste Collection Area
+        alt_descriptions:
+          de:
+            source: de
+            description: Abfallsammelplatz Aussen
+      rn_11_50_02:
+        description: "Outdoor space allocated to an underground household-waste collection container."
+        meaning: https://example.org/abstract/building-space-name-classification/RN_OUT_UWC
+        title: Underground Waste Container
+        alt_descriptions:
+          de:
+            source: de
+            description: Unterflurcontainer
+      rn_11_60_01:
+        description: "Outdoor area allocated to mailboxes and parcel lockers."
+        meaning: https://example.org/abstract/building-space-name-classification/RN_OUT_MPL
+        title: Exterior Mailbox and Parcel Locker Area
+        alt_descriptions:
+          de:
+            source: de
+            description: Briefkasten- und Paketfachanlage Aussen
       rn_12_10_01:
         description: "Vertical service or circulation shaft."
         meaning: https://example.org/abstract/building-space-name-classification/RN_VOI_SHA

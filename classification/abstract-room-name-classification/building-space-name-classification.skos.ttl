@@ -143,7 +143,7 @@
   skos:prefLabel "Aussen"@de ;
   skos:definition "Normalized room names for exterior spaces modeled as IfcSpace."@en ;
   skos:definition "Normalisierte Raumbezeichnungen für als IfcSpace modellierte Aussenräume."@de ;
-  skos:narrower :RN_OUT_PLT_GRP, :RN_OUT_LND_GRP, :RN_OUT_COV_GRP, :RN_OUT_CIR_GRP ;
+  skos:narrower :RN_OUT_PLT_GRP, :RN_OUT_LND_GRP, :RN_OUT_COV_GRP, :RN_OUT_CIR_GRP, :RN_OUT_WST_GRP, :RN_OUT_DLV_GRP ;
   dcterms:subject "IfcSpace" ;
   dcterms:identifier "RN-11" .
 
@@ -227,7 +227,7 @@
   skos:definition "Meeting and informal collaboration spaces."@en ;
   skos:definition "Besprechungs- und informelle Teamräume."@de ;
   skos:broader :RN_WRK ;
-  skos:narrower :RN_WRK_MTG, :RN_WRK_CNF, :RN_WRK_BRK ;
+  skos:narrower :RN_WRK_MTG, :RN_WRK_CNF, :RN_WRK_BRK, :RN_WRK_COM ;
   dcterms:subject "IfcSpace" ;
   dcterms:identifier "RN-02-20" .
 
@@ -467,7 +467,7 @@
   skos:definition "Meter rooms and waste handling spaces."@en ;
   skos:definition "Zählerräume und Abfallräume."@de ;
   skos:broader :RN_TEC ;
-  skos:narrower :RN_TEC_MMR, :RN_TEC_WST ;
+  skos:narrower :RN_TEC_MMR, :RN_TEC_WST, :RN_TEC_WSH ;
   dcterms:subject "IfcSpace" ;
   dcterms:identifier "RN-09-30" .
 
@@ -479,7 +479,7 @@
   skos:definition "General, supply, equipment, janitor, and stroller storage."@en ;
   skos:definition "Allgemeine, Material-, Geräte-, Hauswart- und Kinderwagenlager."@de ;
   skos:broader :RN_STO ;
-  skos:narrower :RN_STO_GEN, :RN_STO_SUP, :RN_STO_EQP, :RN_STO_ULD, :RN_STO_JAN, :RN_STO_STR ;
+  skos:narrower :RN_STO_GEN, :RN_STO_SUP, :RN_STO_EQP, :RN_STO_ULD, :RN_STO_JAN, :RN_STO_STR, :RN_STO_GSH ;
   dcterms:subject "IfcSpace" ;
   dcterms:identifier "RN-10-10" .
 
@@ -542,6 +542,30 @@
   skos:narrower :RN_OUT_STR, :RN_OUT_RD ;
   dcterms:subject "IfcSpace" ;
   dcterms:identifier "RN-11-40" .
+
+:RN_OUT_WST_GRP a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:notation "RN-11-50" ;
+  skos:prefLabel "Exterior waste collection"@en ;
+  skos:prefLabel "Abfallsammlung Aussen"@de ;
+  skos:definition "Outdoor areas for collecting and presenting household waste."@en ;
+  skos:definition "Aussenflächen für das Sammeln und Bereitstellen von Siedlungsabfall."@de ;
+  skos:broader :RN_OUT ;
+  skos:narrower :RN_OUT_WCP, :RN_OUT_UWC ;
+  dcterms:subject "IfcSpace" ;
+  dcterms:identifier "RN-11-50" .
+
+:RN_OUT_DLV_GRP a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:notation "RN-11-60" ;
+  skos:prefLabel "Exterior delivery facilities"@en ;
+  skos:prefLabel "Zustellanlagen Aussen"@de ;
+  skos:definition "Outdoor areas allocated to mailboxes and parcel lockers."@en ;
+  skos:definition "Aussenflächen für Briefkasten- und Paketfachanlagen."@de ;
+  skos:broader :RN_OUT ;
+  skos:narrower :RN_OUT_MPL ;
+  dcterms:subject "IfcSpace" ;
+  dcterms:identifier "RN-11-60" .
 
 :RN_VOI_VRT_GRP a skos:Concept ;
   skos:inScheme :scheme ;
@@ -844,6 +868,17 @@
   skos:broader :RN_WRK_COL_GRP ;
   dcterms:subject "IfcSpace" ;
   dcterms:identifier "RN-02-20-03" .
+
+:RN_WRK_COM a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:notation "RN-02-20-04" ;
+  skos:prefLabel "Community Office"@en ;
+  skos:prefLabel "Gemeinschaftsbüro"@de ;
+  skos:definition "Shared office for residents working outside their dwelling."@en ;
+  skos:definition "Gemeinsam genutzter Arbeitsraum für Bewohnende ausserhalb der Wohnung."@de ;
+  skos:broader :RN_WRK_COL_GRP ;
+  dcterms:subject "IfcSpace" ;
+  dcterms:identifier "RN-02-20-04" .
 
 :RN_WRK_REC a skos:Concept ;
   skos:inScheme :scheme ;
@@ -1585,6 +1620,17 @@
   dcterms:subject "IfcSpace" ;
   dcterms:identifier "RN-09-30-02" .
 
+:RN_TEC_WSH a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:notation "RN-09-30-03" ;
+  skos:prefLabel "Waste Chute"@en ;
+  skos:prefLabel "Abfallschacht"@de ;
+  skos:definition "Vertical chute for transferring household waste to a central collection point."@en ;
+  skos:definition "Vertikaler Schacht für den Transport von Siedlungsabfall zu einer zentralen Sammelstelle."@de ;
+  skos:broader :RN_TEC_UTL_GRP ;
+  dcterms:subject "IfcSpace" ;
+  dcterms:identifier "RN-09-30-03" .
+
 :RN_STO_GEN a skos:Concept ;
   skos:inScheme :scheme ;
   skos:notation "RN-10-10-01" ;
@@ -1650,6 +1696,17 @@
   skos:broader :RN_STO_GEN_GRP ;
   dcterms:subject "IfcSpace" ;
   dcterms:identifier "RN-10-10-06" .
+
+:RN_STO_GSH a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:notation "RN-10-10-07" ;
+  skos:prefLabel "Garden Shed"@en ;
+  skos:prefLabel "Gartenhaus"@de ;
+  skos:definition "Enclosed outdoor storage room for garden tools and household goods."@en ;
+  skos:definition "Geschlossener Abstellraum im Aussenbereich für Gartengeräte und Haushaltsgüter."@de ;
+  skos:broader :RN_STO_GEN_GRP ;
+  dcterms:subject "IfcSpace" ;
+  dcterms:identifier "RN-10-10-07" .
 
 :RN_STO_ARC a skos:Concept ;
   skos:inScheme :scheme ;
@@ -1940,6 +1997,41 @@
   skos:broader :RN_OUT_CIR_GRP ;
   dcterms:subject "IfcSpace" ;
   dcterms:identifier "RN-11-40-02" .
+
+:RN_OUT_WCP a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:notation "RN-11-50-01" ;
+  skos:prefLabel "Exterior Waste Collection Area"@en ;
+  skos:prefLabel "Abfallsammelplatz Aussen"@de ;
+  skos:altLabel "Waste Bag Collection Point"@en ;
+  skos:altLabel "Bebbi-Sagg-Sammelplatz"@de ;
+  skos:definition "Outdoor area for collecting and presenting bagged household waste."@en ;
+  skos:definition "Aussenfläche für das Sammeln und Bereitstellen von Siedlungsabfall in Säcken."@de ;
+  skos:broader :RN_OUT_WST_GRP ;
+  dcterms:subject "IfcSpace" ;
+  dcterms:identifier "RN-11-50-01" .
+
+:RN_OUT_UWC a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:notation "RN-11-50-02" ;
+  skos:prefLabel "Underground Waste Container"@en ;
+  skos:prefLabel "Unterflurcontainer"@de ;
+  skos:definition "Outdoor space allocated to an underground household-waste collection container."@en ;
+  skos:definition "Aussenfläche für einen unterirdischen Sammelcontainer für Siedlungsabfall."@de ;
+  skos:broader :RN_OUT_WST_GRP ;
+  dcterms:subject "IfcSpace" ;
+  dcterms:identifier "RN-11-50-02" .
+
+:RN_OUT_MPL a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:notation "RN-11-60-01" ;
+  skos:prefLabel "Exterior Mailbox and Parcel Locker Area"@en ;
+  skos:prefLabel "Briefkasten- und Paketfachanlage Aussen"@de ;
+  skos:definition "Outdoor area allocated to mailboxes and parcel lockers."@en ;
+  skos:definition "Aussenfläche für Briefkästen und Paketfächer."@de ;
+  skos:broader :RN_OUT_DLV_GRP ;
+  dcterms:subject "IfcSpace" ;
+  dcterms:identifier "RN-11-60-01" .
 
 :RN_VOI_SHA a skos:Concept ;
   skos:inScheme :scheme ;

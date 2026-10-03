@@ -75,6 +75,7 @@ External target labels are not shipped in this repository; only codes and IRIs a
 | `rn:RN-OUT-GDN` | `mapsToActivity` | `abs:O-GRN-GDN` |
 | `rn:RN-OUT-GRN` | `mapsToActivity` | `abs:O-GRN-GDN` |
 | `rn:RN-OUT-LOG` | `mapsToActivity` | `abs:O` |
+| `rn:RN-OUT-MPL` | `mapsToActivity` | `abs:O-TEC` |
 | `rn:RN-OUT-PAT` | `mapsToActivity` | `abs:O` |
 | `rn:RN-OUT-PLY` | `mapsToActivity` | `abs:O-GRN-REC` |
 | `rn:RN-OUT-PRT` | `mapsToActivity` | `abs:O-CIR-PED` |
@@ -86,6 +87,8 @@ External target labels are not shipped in this repository; only codes and IRIs a
 | `rn:RN-OUT-STR` | `mapsToActivity` | `abs:O-CIR-PED` |
 | `rn:RN-OUT-TEQ` | `mapsToActivity` | `abs:O-TEC` |
 | `rn:RN-OUT-TRR` | `mapsToActivity` | `abs:O` |
+| `rn:RN-OUT-UWC` | `mapsToActivity` | `abs:O-TEC` |
+| `rn:RN-OUT-WCP` | `mapsToActivity` | `abs:O-TEC` |
 | `rn:RN-PRK-EXT-BIK` | `mapsToActivity` | `abs:S-PRK-EXT` |
 | `rn:RN-PRK-EXT-CAR` | `mapsToActivity` | `abs:S-PRK-EXT` |
 | `rn:RN-PRK-EXT-MTO` | `mapsToActivity` | `abs:S-PRK-EXT` |
@@ -117,6 +120,7 @@ External target labels are not shipped in this repository; only codes and IRIs a
 | `rn:RN-STO-COL` | `mapsToActivity` | `abs:S-STO-GEN` |
 | `rn:RN-STO-EQP` | `mapsToActivity` | `abs:S-STO-GEN` |
 | `rn:RN-STO-GEN` | `mapsToActivity` | `abs:S-STO-GEN` |
+| `rn:RN-STO-GSH` | `mapsToActivity` | `abs:S-STO-GEN` |
 | `rn:RN-STO-HAZ` | `mapsToActivity` | `abs:S-STO-GEN` |
 | `rn:RN-STO-JAN` | `mapsToActivity` | `abs:S-STO-GEN` |
 | `rn:RN-STO-LAB` | `mapsToActivity` | `abs:S-STO-GEN` |
@@ -137,6 +141,7 @@ External target labels are not shipped in this repository; only codes and IRIs a
 | `rn:RN-TEC-SPR` | `mapsToActivity` | `abs:S-TEC` |
 | `rn:RN-TEC-SRV` | `mapsToActivity` | `abs:S-TEC` |
 | `rn:RN-TEC-TRA` | `mapsToActivity` | `abs:S-TEC` |
+| `rn:RN-TEC-WSH` | `mapsToActivity` | `abs:S-TEC` |
 | `rn:RN-TEC-WST` | `mapsToActivity` | `abs:S-TEC` |
 | `rn:RN-VOI-MCH` | `mapsToActivity` | `abs:S-VOI-PLN` |
 | `rn:RN-VOI-PLN` | `mapsToActivity` | `abs:S-VOI-PLN` |
@@ -144,6 +149,7 @@ External target labels are not shipped in this repository; only codes and IRIs a
 | `rn:RN-VOI-SHA` | `mapsToActivity` | `abs:S-TEC` |
 | `rn:RN-WRK-BRK` | `mapsToActivity` | `abs:M-WRK-KNW` |
 | `rn:RN-WRK-CNF` | `mapsToActivity` | `abs:M-WRK-KNW` |
+| `rn:RN-WRK-COM` | `mapsToActivity` | `abs:M-WRK-KNW` |
 | `rn:RN-WRK-MTG` | `mapsToActivity` | `abs:M-WRK-KNW` |
 | `rn:RN-WRK-OFF` | `mapsToActivity` | `abs:M-WRK-KNW` |
 | `rn:RN-WRK-OPN` | `mapsToActivity` | `abs:M-WRK-KNW` |

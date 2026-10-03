@@ -715,6 +715,10 @@ class SpaceNameType(str, Enum):
     """
     Informal staff rest and refreshment space.
     """
+    Community_Office = "rn_02_20_04"
+    """
+    Shared office for residents working outside their dwelling.
+    """
     Reception = "rn_02_30_01"
     """
     Visitor reception and waiting area.
@@ -983,6 +987,10 @@ class SpaceNameType(str, Enum):
     """
     Room for waste collection and handling.
     """
+    Waste_Chute = "rn_09_30_03"
+    """
+    Vertical chute for transferring household waste to a central collection point.
+    """
     General_Storage = "rn_10_10_01"
     """
     Room for general material storage.
@@ -1006,6 +1014,10 @@ class SpaceNameType(str, Enum):
     Stroller_Room = "rn_10_10_06"
     """
     Store for strollers and mobility aids off the lobby, off the escape route.
+    """
+    Garden_Shed = "rn_10_10_07"
+    """
+    Enclosed outdoor storage room for garden tools and household goods.
     """
     Archive_Room = "rn_10_20_01"
     """
@@ -1106,6 +1118,18 @@ class SpaceNameType(str, Enum):
     Street = "rn_11_40_02"
     """
     Outdoor vehicular circulation route as space, including access roads, driveways, and service roads.
+    """
+    Exterior_Waste_Collection_Area = "rn_11_50_01"
+    """
+    Outdoor area for collecting and presenting bagged household waste.
+    """
+    Underground_Waste_Container = "rn_11_50_02"
+    """
+    Outdoor space allocated to an underground household-waste collection container.
+    """
+    Exterior_Mailbox_and_Parcel_Locker_Area = "rn_11_60_01"
+    """
+    Outdoor area allocated to mailboxes and parcel lockers.
     """
     Shaft = "rn_12_10_01"
     """
