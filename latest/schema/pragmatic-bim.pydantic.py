@@ -643,6 +643,10 @@ class SpaceNameType(str, Enum):
     """
     Room for overnight guests.
     """
+    Winter_Garden = "rn_01_10_06"
+    """
+    Closed glazed living room, distinct from open outdoor platforms such as balcony, terrace, and patio.
+    """
     Kitchen = "rn_01_20_01"
     """
     Room for food preparation.
@@ -653,7 +657,7 @@ class SpaceNameType(str, Enum):
     """
     Laundry_Room = "rn_01_20_03"
     """
-    Room for washing and drying clothes.
+    Laundry room inside a single dwelling.
     """
     Utility_Room = "rn_01_20_04"
     """
@@ -678,6 +682,10 @@ class SpaceNameType(str, Enum):
     Entrance_Hall = "rn_01_20_09"
     """
     Residential entrance transition space within a dwelling context.
+    """
+    Communal_Laundry = "rn_01_20_10"
+    """
+    Shared laundry for several dwellings, distinct from the laundry inside one dwelling.
     """
     Apartment_Unit = "rn_01_30_03"
     """
@@ -1050,6 +1058,10 @@ class SpaceNameType(str, Enum):
     Green_Roof = "rn_11_10_08"
     """
     Vegetated flat-roof area modeled as outdoor space.
+    """
+    Loggia = "rn_11_10_09"
+    """
+    Recessed open outdoor room inside the building volume, distinct from a projecting balcony.
     """
     Garden_Area = "rn_11_20_01"
     """
@@ -4001,7 +4013,7 @@ class TimeLink(ConfiguredBaseModel):
          'from_schema': 'https://schema.pragmaticbim.ch/entity/virtual'})
 
     target_item: str = Field(default=..., description="""The successor TimeRecord.""", json_schema_extra = { "linkml_meta": {'domain_of': ['TimeLink']} })
-    dependency_type: Optional[DependencyType] = Field(default=DependencyType.FS, description="""FS | SS | FF | SF""", json_schema_extra = { "linkml_meta": {'domain_of': ['TimeLink'], 'ifabsent': 'FS'} })
+    dependency_type: Optional[DependencyType] = Field(default=DependencyType.Finish_to_Start, description="""FS | SS | FF | SF""", json_schema_extra = { "linkml_meta": {'domain_of': ['TimeLink'], 'ifabsent': 'FS'} })
     lag_days: Optional[int] = Field(default=0, json_schema_extra = { "linkml_meta": {'domain_of': ['TimeLink'], 'ifabsent': '0'} })
 
 

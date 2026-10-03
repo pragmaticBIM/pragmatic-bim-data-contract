@@ -28,15 +28,17 @@ URI: [pbs:SpaceNameType](https://schema.pragmaticbim.ch/SpaceNameType)
 | rn_01_10_03 | https://example.org/abstract/building-space-name-classification/RN_RES_DIN | Room for eating meals. | Title: Dining Room<br>|
 | rn_01_10_04 | https://example.org/abstract/building-space-name-classification/RN_RES_STU | Residential room for study or home office work. | Title: Home Study<br>|
 | rn_01_10_05 | https://example.org/abstract/building-space-name-classification/RN_RES_GST | Room for overnight guests. | Title: Guest Room<br>|
+| rn_01_10_06 | https://example.org/abstract/building-space-name-classification/RN_RES_WNG | Closed glazed living room, distinct from open outdoor platforms such as balcony, terrace, and patio. | Title: Winter Garden<br>|
 | rn_01_20_01 | https://example.org/abstract/building-space-name-classification/RN_RES_KIT | Room for food preparation. | Title: Kitchen<br>|
 | rn_01_20_02 | https://example.org/abstract/building-space-name-classification/RN_RES_BTH | Room with bath, shower, or personal hygiene fixtures. | Title: Bathroom<br>|
-| rn_01_20_03 | https://example.org/abstract/building-space-name-classification/RN_RES_LAU | Room for washing and drying clothes. | Title: Laundry Room<br>|
+| rn_01_20_03 | https://example.org/abstract/building-space-name-classification/RN_RES_LAU | Laundry room inside a single dwelling. | Title: Laundry Room<br>|
 | rn_01_20_04 | https://example.org/abstract/building-space-name-classification/RN_RES_UTL | Room for domestic utilities and equipment. | Title: Utility Room<br>|
 | rn_01_20_05 | https://example.org/abstract/building-space-name-classification/RN_RES_GNG | Circulation passage within a dwelling unit. | Title: Hallway<br>|
 | rn_01_20_06 | https://example.org/abstract/building-space-name-classification/RN_RES_ENT | Entry space within a dwelling unit. | Title: Residential Entry<br>|
 | rn_01_20_07 | https://example.org/abstract/building-space-name-classification/RN_RES_CLO | Small storage within a dwelling unit. | Title: Residential Closet<br>|
 | rn_01_20_08 | https://example.org/abstract/building-space-name-classification/RN_RES_CEL | Assigned cellar storage compartment for a dwelling. | Title: Cellar Compartment<br>|
 | rn_01_20_09 | https://example.org/abstract/building-space-name-classification/RN_RES_ETR | Residential entrance transition space within a dwelling context. | Title: Entrance Hall<br>|
+| rn_01_20_10 | https://example.org/abstract/building-space-name-classification/RN_RES_CLA | Shared laundry for several dwellings, distinct from the laundry inside one dwelling. | Title: Communal Laundry<br>|
 | rn_01_30_03 | https://example.org/abstract/building-space-name-classification/RN_RES_APT | Generic residential unit space when not subdivided further. | Title: Apartment Unit<br>|
 | rn_02_10_01 | https://example.org/abstract/building-space-name-classification/RN_WRK_OFF | Enclosed office for individual or shared desk work. | Title: Office<br>|
 | rn_02_10_02 | https://example.org/abstract/building-space-name-classification/RN_WRK_OPN | Open office landscape without full-height partitions. | Title: Open-Plan Office<br>|
@@ -130,6 +132,7 @@ URI: [pbs:SpaceNameType](https://schema.pragmaticbim.ch/SpaceNameType)
 | rn_11_10_06 | https://example.org/abstract/building-space-name-classification/RN_OUT_RWM | Walkable flat-roof area accessible only for facility management and inspection. | Title: Maintenance Roof<br>|
 | rn_11_10_07 | https://example.org/abstract/building-space-name-classification/RN_OUT_TEQ | Flat-roof or outdoor pad reserved for building-services equipment and plant. | Title: Technical Plant Pad<br>|
 | rn_11_10_08 | https://example.org/abstract/building-space-name-classification/RN_OUT_GRN | Vegetated flat-roof area modeled as outdoor space. | Title: Green Roof<br>|
+| rn_11_10_09 | https://example.org/abstract/building-space-name-classification/RN_OUT_LOG | Recessed open outdoor room inside the building volume, distinct from a projecting balcony. | Title: Loggia<br>|
 | rn_11_20_01 | https://example.org/abstract/building-space-name-classification/RN_OUT_GDN | Landscaped outdoor area as space. | Title: Garden Area<br>|
 | rn_11_20_02 | https://example.org/abstract/building-space-name-classification/RN_OUT_PLY | Outdoor play area. | Title: Playground<br>|
 | rn_11_20_03 | https://example.org/abstract/building-space-name-classification/RN_OUT_SPL | Outdoor pool or water feature area. | Title: Pool Area<br>|
@@ -242,6 +245,16 @@ permissible_values:
         source: de
         description: Gästezimmer
     title: Guest Room
+  rn_01_10_06:
+    text: rn_01_10_06
+    description: Closed glazed living room, distinct from open outdoor platforms such
+      as balcony, terrace, and patio.
+    meaning: https://example.org/abstract/building-space-name-classification/RN_RES_WNG
+    alt_descriptions:
+      de:
+        source: de
+        description: Wintergarten
+    title: Winter Garden
   rn_01_20_01:
     text: rn_01_20_01
     description: Room for food preparation.
@@ -262,7 +275,7 @@ permissible_values:
     title: Bathroom
   rn_01_20_03:
     text: rn_01_20_03
-    description: Room for washing and drying clothes.
+    description: Laundry room inside a single dwelling.
     meaning: https://example.org/abstract/building-space-name-classification/RN_RES_LAU
     alt_descriptions:
       de:
@@ -323,6 +336,16 @@ permissible_values:
         source: de
         description: Entree
     title: Entrance Hall
+  rn_01_20_10:
+    text: rn_01_20_10
+    description: Shared laundry for several dwellings, distinct from the laundry inside
+      one dwelling.
+    meaning: https://example.org/abstract/building-space-name-classification/RN_RES_CLA
+    alt_descriptions:
+      de:
+        source: de
+        description: Gemeinschaftswaschküche
+    title: Communal Laundry
   rn_01_30_03:
     text: rn_01_30_03
     description: Generic residential unit space when not subdivided further.
@@ -1163,6 +1186,16 @@ permissible_values:
         source: de
         description: Gründach
     title: Green Roof
+  rn_11_10_09:
+    text: rn_11_10_09
+    description: Recessed open outdoor room inside the building volume, distinct from
+      a projecting balcony.
+    meaning: https://example.org/abstract/building-space-name-classification/RN_OUT_LOG
+    alt_descriptions:
+      de:
+        source: de
+        description: Loggia
+    title: Loggia
   rn_11_20_01:
     text: rn_11_20_01
     description: Landscaped outdoor area as space.
