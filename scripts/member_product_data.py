@@ -12,7 +12,7 @@ from dataclasses import dataclass
 ABSTRACT_BASE = "https://example.org/abstract/"
 ISSUED = "2026-09-16"
 LICENSE = "https://creativecommons.org/licenses/by/4.0/"
-SOURCE = "https://github.com/simondilhas/pragmatic-bim-data-contract"
+SOURCE = "https://github.com/pragmaticBIM/pragmatic-bim-data-contract"
 CREATOR = "abstract.foundation"
 
 

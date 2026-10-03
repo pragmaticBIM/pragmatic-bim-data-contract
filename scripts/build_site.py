@@ -6,12 +6,14 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import re
 import shutil
 import subprocess
 import sys
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
+PACKAGE_MODELS = REPO_ROOT / "pragmatic_bim" / "models.py"
 DEFAULT_SCHEMA_ROOT = REPO_ROOT / "contract" / "00_pragmatic_bim_data_contract.yaml"
 DEFAULT_SITE_DIR = REPO_ROOT / "site"
 DEFAULT_MD_SRC = DEFAULT_SITE_DIR / ".md-src"
@@ -46,7 +48,7 @@ VERSION_SELECTOR_JAVASCRIPT = (
     / "javascripts"
     / "version-selector.js"
 )
-GITHUB_REPO = "https://github.com/simondilhas/pragmatic-bim-data-contract"
+GITHUB_REPO = "https://github.com/pragmaticBIM/pragmatic-bim-data-contract"
 
 SITE_ROOT_PRESERVE = {
     ".md-src",
@@ -87,21 +89,50 @@ def resolve_repo_path(path: Path) -> Path:
     return path.resolve()
 
 
+def repair_enum_defaults(source: str) -> str:
+    """Rewrite ifabsent enum defaults that reference a permissible value instead of a member.
+
+    gen-pydantic names enum members after the permissible value title but emits
+    ifabsent defaults using the raw value text, so `ifabsent: FS` on a value
+    titled "Finish to Start" yields an invalid `DependencyType.FS` reference.
+    """
+    members: dict[str, dict[str, str]] = {}
+    for enum_match in re.finditer(r"^class (\w+)\(str, Enum\):(.*?)(?=^class |\Z)", source, re.S | re.M):
+        members[enum_match.group(1)] = {
+            value: name
+            for name, value in re.findall(r'^    (\w+) = "([^"]*)"', enum_match.group(2), re.M)
+        }
+
+    def rewrite(match: re.Match[str]) -> str:
+        by_value = members.get(match.group(1))
+        if by_value is None or match.group(2) in by_value.values():
+            return match.group(0)
+        member = by_value.get(match.group(2))
+        return f"default={match.group(1)}.{member}" if member else match.group(0)
+
+    return re.sub(r"default=(\w+)\.(\w+)", rewrite, source)
+
+
 def run_linkml_artifacts(schema_root: Path, out_dir: Path, *, prefix: str = "pragmatic-bim") -> None:
     schema_root = resolve_repo_path(schema_root)
     out_dir.mkdir(parents=True, exist_ok=True)
     csv_cmd = find_cmd("gen-csv", "csvgen")
     pydantic_cmd = find_cmd("gen-pydantic", "pydanticgen")
 
-    def write_cmd_output(filename: str, cmd: list[str]) -> None:
+    def write_cmd_output(filename: str, cmd: list[str], transform=None) -> str:
         result = subprocess.run(cmd, check=True, cwd=REPO_ROOT, capture_output=True, text=True)
-        (out_dir / filename).write_text(result.stdout, encoding="utf-8")
+        text = transform(result.stdout) if transform else result.stdout
+        (out_dir / filename).write_text(text, encoding="utf-8")
+        return text
 
     schema_arg = schema_root.relative_to(REPO_ROOT).as_posix()
     write_cmd_output(f"{prefix}.shacl.ttl", ["gen-shacl", schema_arg])
     write_cmd_output(f"{prefix}.schema.json", ["gen-json-schema", schema_arg])
     write_cmd_output(f"{prefix}.csv", [csv_cmd, schema_arg])
-    write_cmd_output(f"{prefix}.pydantic.py", [pydantic_cmd, schema_arg])
+    models = write_cmd_output(
+        f"{prefix}.pydantic.py", [pydantic_cmd, schema_arg], transform=repair_enum_defaults
+    )
+    PACKAGE_MODELS.write_text(models, encoding="utf-8")
 
 
 def resolve_release_version(site_dir: Path) -> str:
@@ -149,7 +180,7 @@ A pragmatic, graph-first LinkML data contract for BIM integration, querying, cos
 |---|---|
 | **Schema URI** | [schema.pragmaticbim.ch](https://schema.pragmaticbim.ch/) |
 | **Version** | [{version_label}]({version_href}) |
-| **Source** | [github.com/simondilhas/pragmatic-bim-data-contract]({GITHUB_REPO}) |
+| **Source** | [github.com/pragmaticBIM/pragmatic-bim-data-contract]({GITHUB_REPO}) |
 
 </div>
 

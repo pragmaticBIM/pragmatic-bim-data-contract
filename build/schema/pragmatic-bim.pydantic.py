@@ -659,13 +659,25 @@ class SpaceNameType(str, Enum):
     """
     Room for domestic utilities and equipment.
     """
-    Residential_Entry = "rn_01_30_01"
+    Hallway = "rn_01_20_05"
+    """
+    Circulation passage within a dwelling unit.
+    """
+    Residential_Entry = "rn_01_20_06"
     """
     Entry space within a dwelling unit.
     """
-    Residential_Closet = "rn_01_30_02"
+    Residential_Closet = "rn_01_20_07"
     """
     Small storage within a dwelling unit.
+    """
+    Cellar_Compartment = "rn_01_20_08"
+    """
+    Assigned cellar storage compartment for a dwelling.
+    """
+    Entrance_Hall = "rn_01_20_09"
+    """
+    Residential entrance transition space within a dwelling context.
     """
     Apartment_Unit = "rn_01_30_03"
     """
@@ -703,13 +715,13 @@ class SpaceNameType(str, Enum):
     """
     Main entrance lobby or reception hall.
     """
-    Entrance_Hall = "rn_03_10_03"
-    """
-    Building entrance transition space.
-    """
     Vestibule = "rn_03_10_04"
     """
     Transition space between exterior and interior.
+    """
+    Airlock = "rn_03_10_05"
+    """
+    Enclosed lock or airlock for controlled passage between zones.
     """
     Stairwell = "rn_03_20_01"
     """
@@ -991,6 +1003,22 @@ class SpaceNameType(str, Enum):
     """
     Refrigerated storage room.
     """
+    Laboratory_Storage = "rn_10_20_04"
+    """
+    Storage for laboratory materials and consumables.
+    """
+    Chemical_Storage = "rn_10_20_05"
+    """
+    Storage for chemicals.
+    """
+    Hazardous_Material_Storage = "rn_10_20_06"
+    """
+    Storage for hazardous materials.
+    """
+    Sample_Storage = "rn_10_20_07"
+    """
+    Storage for laboratory or material samples.
+    """
     Balcony = "rn_11_10_01"
     """
     Exterior projecting platform accessed from inside.
@@ -1002,6 +1030,26 @@ class SpaceNameType(str, Enum):
     Patio = "rn_11_10_03"
     """
     Enclosed or semi-enclosed outdoor sitting area.
+    """
+    Escape_Balcony = "rn_11_10_04"
+    """
+    Exterior balcony serving as an escape route.
+    """
+    Roof_Terrace = "rn_11_10_05"
+    """
+    Occupiable flat-roof area intended for outdoor use.
+    """
+    Maintenance_Roof = "rn_11_10_06"
+    """
+    Walkable flat-roof area accessible only for facility management and inspection.
+    """
+    Technical_Plant_Pad = "rn_11_10_07"
+    """
+    Flat-roof or outdoor pad reserved for building-services equipment and plant.
+    """
+    Green_Roof = "rn_11_10_08"
+    """
+    Vegetated flat-roof area modeled as outdoor space.
     """
     Garden_Area = "rn_11_20_01"
     """
@@ -1015,6 +1063,10 @@ class SpaceNameType(str, Enum):
     """
     Outdoor pool or water feature area.
     """
+    Retention_Area = "rn_11_20_04"
+    """
+    Multi-purpose area with temporary, planned water retention during heavy rainfall.
+    """
     Covered_Walkway = "rn_11_30_01"
     """
     Covered exterior pedestrian route.
@@ -1022,6 +1074,14 @@ class SpaceNameType(str, Enum):
     Portico = "rn_11_30_02"
     """
     Covered exterior entrance structure.
+    """
+    Exterior_Stair = "rn_11_40_01"
+    """
+    Open or external stair for outdoor vertical circulation.
+    """
+    Street = "rn_11_40_02"
+    """
+    Outdoor vehicular circulation route as space, including access roads, driveways, and service roads.
     """
     Shaft = "rn_12_10_01"
     """
@@ -1043,13 +1103,37 @@ class SpaceNameType(str, Enum):
     """
     Non-occupiable air volume in the model.
     """
-    Atrium_Void = "rn_12_30_01"
+    Interior_Car_Parking = "rn_13_10_01"
     """
-    Multistory open interior volume.
+    Interior parking space for passenger cars.
     """
-    Interior_Parking_Stall = "rn_12_30_03"
+    Interior_Truck_Parking = "rn_13_10_02"
     """
-    Individual parking space within a structure.
+    Interior parking space for trucks.
+    """
+    Interior_Bicycle_Parking = "rn_13_10_03"
+    """
+    Interior parking space for bicycles.
+    """
+    Interior_Motorcycle_Parking = "rn_13_10_04"
+    """
+    Interior parking space for motorcycles.
+    """
+    Exterior_Car_Parking = "rn_13_20_01"
+    """
+    Exterior parking space for passenger cars.
+    """
+    Exterior_Truck_Parking = "rn_13_20_02"
+    """
+    Exterior parking space for trucks.
+    """
+    Exterior_Bicycle_Parking = "rn_13_20_03"
+    """
+    Exterior parking space for bicycles.
+    """
+    Exterior_Motorcycle_Parking = "rn_13_20_04"
+    """
+    Exterior parking space for motorcycles.
     """
 
 
@@ -3917,7 +4001,7 @@ class TimeLink(ConfiguredBaseModel):
          'from_schema': 'https://schema.pragmaticbim.ch/entity/virtual'})
 
     target_item: str = Field(default=..., description="""The successor TimeRecord.""", json_schema_extra = { "linkml_meta": {'domain_of': ['TimeLink']} })
-    dependency_type: Optional[DependencyType] = Field(default=DependencyType.FS, description="""FS | SS | FF | SF""", json_schema_extra = { "linkml_meta": {'domain_of': ['TimeLink'], 'ifabsent': 'FS'} })
+    dependency_type: Optional[DependencyType] = Field(default=DependencyType.Finish_to_Start, description="""FS | SS | FF | SF""", json_schema_extra = { "linkml_meta": {'domain_of': ['TimeLink'], 'ifabsent': 'FS'} })
     lag_days: Optional[int] = Field(default=0, json_schema_extra = { "linkml_meta": {'domain_of': ['TimeLink'], 'ifabsent': '0'} })
 
 

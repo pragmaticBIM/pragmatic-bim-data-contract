@@ -1,7 +1,7 @@
 site_name: Pragmatic BIM Data Contract
 site_url: https://schema.pragmaticbim.ch/
-repo_url: https://github.com/simondilhas/pragmatic-bim-data-contract
-repo_name: simondilhas/pragmatic-bim-data-contract
+repo_url: https://github.com/pragmaticBIM/pragmatic-bim-data-contract
+repo_name: pragmaticBIM/pragmatic-bim-data-contract
 use_directory_urls: false
 
 extra_css:

@@ -15,7 +15,7 @@
   dcterms:issued "2026-09-16"^^xsd:date ;
   dcterms:modified "2026-09-16"^^xsd:date ;
   dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
-  dcterms:source <https://github.com/simondilhas/pragmatic-bim-data-contract> ;
+  dcterms:source <https://github.com/pragmaticBIM/pragmatic-bim-data-contract> ;
   dcterms:references map:elementplanElementsToProductsMapping ;
   skos:definition "Cost-relevant building elements of the pragmaticBIM Elementplan. Each concept carries the one IFC base quantity used for take-off (pbs:referenceQuantity in pbs:quantityPset) and the unit that quantity is billed in (pbs:priceUnit), so an element resolves to a single unambiguous quantity basis for costing."@en ;
   skos:definition "Kostenrelevante Bauteile des pragmaticBIM Elementplans. Jedes Konzept trägt die eine für die Mengenermittlung verwendete IFC-Basismenge (pbs:referenceQuantity in pbs:quantityPset) sowie die zugehörige Verrechnungseinheit (pbs:priceUnit), damit ein Bauteil auf eine eindeutige Mengenbasis für die Kostenermittlung auflöst."@de ;

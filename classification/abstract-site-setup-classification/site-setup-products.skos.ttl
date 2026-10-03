@@ -10,7 +10,7 @@
   dcterms:creator "abstract" ;
   dcterms:issued "2026-09-18" ;
   dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
-  dcterms:source <https://github.com/simondilhas/pragmatic-bim-data-contract> ;
+  dcterms:source <https://github.com/pragmaticBIM/pragmatic-bim-data-contract> ;
   skos:definition "Product-type classification for temporary construction-site facilities: plant, enclosures, logistics surfaces, accommodation, and site services. Assign one top concept per object. Distinct from permanent building products."@en ;
   skos:definition "Produkttyp-Klassifikation fuer temporaere Baustelleneinrichtung: Geraete, Abschrankungen, Logistikflaechen, Aufenthalt und Baustellenanschluesse. Ein topConcept pro Objekt. Unterscheidet sich von dauerhaften Gebaeudeprodukten."@de ;
   skos:scopeNote "Assign one topConcept per site-facility element. Neighbouring concepts stay separate: the crane machine, its swing envelope, its set-up pad, and its foundation are four concepts, not layers of one product."@en ;

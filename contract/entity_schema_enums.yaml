@@ -947,6 +947,14 @@ enums:
           de:
             source: de
             description: Gästezimmer
+      rn_01_10_06:
+        description: "Closed glazed living room, distinct from open outdoor platforms such as balcony, terrace, and patio."
+        meaning: https://example.org/abstract/building-space-name-classification/RN_RES_WNG
+        title: Winter Garden
+        alt_descriptions:
+          de:
+            source: de
+            description: Wintergarten
       rn_01_20_01:
         description: "Room for food preparation."
         meaning: https://example.org/abstract/building-space-name-classification/RN_RES_KIT
@@ -964,7 +972,7 @@ enums:
             source: de
             description: Badezimmer
       rn_01_20_03:
-        description: "Room for washing and drying clothes."
+        description: "Laundry room inside a single dwelling."
         meaning: https://example.org/abstract/building-space-name-classification/RN_RES_LAU
         title: Laundry Room
         alt_descriptions:
@@ -1019,6 +1027,14 @@ enums:
           de:
             source: de
             description: Entree
+      rn_01_20_10:
+        description: "Shared laundry for several dwellings, distinct from the laundry inside one dwelling."
+        meaning: https://example.org/abstract/building-space-name-classification/RN_RES_CLA
+        title: Communal Laundry
+        alt_descriptions:
+          de:
+            source: de
+            description: Gemeinschaftswaschküche
       rn_01_30_03:
         description: "Generic residential unit space when not subdivided further."
         meaning: https://example.org/abstract/building-space-name-classification/RN_RES_APT
@@ -1763,6 +1779,14 @@ enums:
           de:
             source: de
             description: Gründach
+      rn_11_10_09:
+        description: "Recessed open outdoor room inside the building volume, distinct from a projecting balcony."
+        meaning: https://example.org/abstract/building-space-name-classification/RN_OUT_LOG
+        title: Loggia
+        alt_descriptions:
+          de:
+            source: de
+            description: Loggia
       rn_11_20_01:
         description: "Landscaped outdoor area as space."
         meaning: https://example.org/abstract/building-space-name-classification/RN_OUT_GDN

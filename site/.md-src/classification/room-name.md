@@ -12,349 +12,7 @@ Source: [`building-space-name-classification.skos.ttl`](sources/room-name.ttl)
 
 ## Hierarchy
 
-```mermaid
-classDiagram
-direction TB
-class n_RN_01["RN-01: Residential"]
-class n_RN_01_10["RN-01-10: Living and sleeping"]
-class n_RN_01_10_01["RN-01-10-01: Bedroom"]
-class n_RN_01_10_02["RN-01-10-02: Living Room"]
-class n_RN_01_10_03["RN-01-10-03: Dining Room"]
-class n_RN_01_10_04["RN-01-10-04: Home Study"]
-class n_RN_01_10_05["RN-01-10-05: Guest Room"]
-class n_RN_01_20["RN-01-20: Residential services"]
-class n_RN_01_20_01["RN-01-20-01: Kitchen"]
-class n_RN_01_20_02["RN-01-20-02: Bathroom"]
-class n_RN_01_20_03["RN-01-20-03: Laundry Room"]
-class n_RN_01_20_04["RN-01-20-04: Utility Room"]
-class n_RN_01_20_05["RN-01-20-05: Hallway"]
-class n_RN_01_20_06["RN-01-20-06: Residential Entry"]
-class n_RN_01_20_07["RN-01-20-07: Residential Closet"]
-class n_RN_01_20_08["RN-01-20-08: Cellar Compartment"]
-class n_RN_01_20_09["RN-01-20-09: Entrance Hall"]
-class n_RN_01_30["RN-01-30: Dwelling unit level"]
-class n_RN_01_30_03["RN-01-30-03: Apartment Unit"]
-class n_RN_02["RN-02: Work"]
-class n_RN_02_10["RN-02-10: Individual work"]
-class n_RN_02_10_01["RN-02-10-01: Office"]
-class n_RN_02_10_02["RN-02-10-02: Open-Plan Office"]
-class n_RN_02_20["RN-02-20: Collaboration"]
-class n_RN_02_20_01["RN-02-20-01: Meeting Room"]
-class n_RN_02_20_02["RN-02-20-02: Conference Room"]
-class n_RN_02_20_03["RN-02-20-03: Break Room"]
-class n_RN_02_30["RN-02-30: Reception area"]
-class n_RN_02_30_01["RN-02-30-01: Reception"]
-class n_RN_03["RN-03: Circulation"]
-class n_RN_03_10["RN-03-10: Horizontal circulation"]
-class n_RN_03_10_01["RN-03-10-01: Corridor"]
-class n_RN_03_10_02["RN-03-10-02: Lobby"]
-class n_RN_03_10_04["RN-03-10-04: Vestibule"]
-class n_RN_03_10_05["RN-03-10-05: Airlock"]
-class n_RN_03_20["RN-03-20: Vertical circulation"]
-class n_RN_03_20_01["RN-03-20-01: Stairwell"]
-class n_RN_03_20_02["RN-03-20-02: Elevator Lobby"]
-class n_RN_03_20_03["RN-03-20-03: Ramp"]
-class n_RN_04["RN-04: Hygiene"]
-class n_RN_04_10["RN-04-10: Toilets"]
-class n_RN_04_10_01["RN-04-10-01: Male Toilet"]
-class n_RN_04_10_02["RN-04-10-02: Female Toilet"]
-class n_RN_04_10_03["RN-04-10-03: Accessible Toilet"]
-class n_RN_04_10_04["RN-04-10-04: Unisex Toilet"]
-class n_RN_04_20["RN-04-20: Wash and change"]
-class n_RN_04_20_01["RN-04-20-01: Shower Room"]
-class n_RN_04_20_02["RN-04-20-02: Changing Room"]
-class n_RN_04_20_03["RN-04-20-03: Locker Room"]
-class n_RN_05["RN-05: Healthcare"]
-class n_RN_05_10["RN-05-10: Inpatient care"]
-class n_RN_05_10_01["RN-05-10-01: Patient Room"]
-class n_RN_05_10_02["RN-05-10-02: Recovery Room"]
-class n_RN_05_20["RN-05-20: Clinical treatment"]
-class n_RN_05_20_01["RN-05-20-01: Treatment Room"]
-class n_RN_05_20_02["RN-05-20-02: Operating Room"]
-class n_RN_05_20_03["RN-05-20-03: Procedure Room"]
-class n_RN_05_20_04["RN-05-20-04: Examination Room"]
-class n_RN_05_30["RN-05-30: Diagnostics and support"]
-class n_RN_05_30_01["RN-05-30-01: Imaging Room"]
-class n_RN_05_30_02["RN-05-30-02: Medical Laboratory"]
-class n_RN_05_30_03["RN-05-30-03: Waiting Room"]
-class n_RN_05_30_04["RN-05-30-04: Nurses Station"]
-class n_RN_06["RN-06: Education"]
-class n_RN_06_10["RN-06-10: Instruction"]
-class n_RN_06_10_01["RN-06-10-01: Classroom"]
-class n_RN_06_10_02["RN-06-10-02: Lecture Hall"]
-class n_RN_06_10_03["RN-06-10-03: Seminar Room"]
-class n_RN_06_10_04["RN-06-10-04: Computer Lab"]
-class n_RN_06_20["RN-06-20: Self-directed learning"]
-class n_RN_06_20_01["RN-06-20-01: Library Room"]
-class n_RN_06_20_02["RN-06-20-02: Study Room"]
-class n_RN_06_20_03["RN-06-20-03: Training Workshop"]
-class n_RN_06_30["RN-06-30: Assembly and special subjects"]
-class n_RN_06_30_01["RN-06-30-01: Auditorium"]
-class n_RN_06_30_02["RN-06-30-02: Art Studio"]
-class n_RN_06_30_03["RN-06-30-03: Science Lab"]
-class n_RN_07["RN-07: Commercial"]
-class n_RN_07_10["RN-07-10: Dining and beverage"]
-class n_RN_07_10_01["RN-07-10-01: Cafeteria"]
-class n_RN_07_10_02["RN-07-10-02: Restaurant"]
-class n_RN_07_10_03["RN-07-10-03: Bar"]
-class n_RN_07_10_04["RN-07-10-04: Food Court"]
-class n_RN_07_20["RN-07-20: Retail and exhibition"]
-class n_RN_07_20_01["RN-07-20-01: Retail Space"]
-class n_RN_07_20_02["RN-07-20-02: Sales Floor"]
-class n_RN_07_20_03["RN-07-20-03: Kiosk"]
-class n_RN_07_20_04["RN-07-20-04: Customer Service Area"]
-class n_RN_07_20_05["RN-07-20-05: Exhibition Space"]
-class n_RN_07_30["RN-07-30: Hospitality"]
-class n_RN_07_30_01["RN-07-30-01: Hotel Room"]
-class n_RN_08["RN-08: Industrial"]
-class n_RN_08_10["RN-08-10: Production"]
-class n_RN_08_10_01["RN-08-10-01: Workshop"]
-class n_RN_08_10_02["RN-08-10-02: Production Hall"]
-class n_RN_08_10_03["RN-08-10-03: Assembly Area"]
-class n_RN_08_10_04["RN-08-10-04: Packaging Area"]
-class n_RN_08_10_05["RN-08-10-05: Clean Room"]
-class n_RN_08_20["RN-08-20: Logistics"]
-class n_RN_08_20_01["RN-08-20-01: Warehouse"]
-class n_RN_08_20_02["RN-08-20-02: Loading Dock"]
-class n_RN_08_20_03["RN-08-20-03: Quality Control Room"]
-class n_RN_08_20_04["RN-08-20-04: Maintenance Bay"]
-class n_RN_08_30["RN-08-30: Special industrial"]
-class n_RN_08_30_01["RN-08-30-01: Covered Yard"]
-class n_RN_09["RN-09: Technical"]
-class n_RN_09_10["RN-09-10: HVAC and plumbing plant"]
-class n_RN_09_10_01["RN-09-10-01: HVAC Plant Room"]
-class n_RN_09_10_02["RN-09-10-02: Pump Room"]
-class n_RN_09_10_03["RN-09-10-03: Boiler Room"]
-class n_RN_09_10_04["RN-09-10-04: Chiller Room"]
-class n_RN_09_10_05["RN-09-10-05: Sprinkler Room"]
-class n_RN_09_20["RN-09-20: Electrical and IT plant"]
-class n_RN_09_20_01["RN-09-20-01: Electrical Room"]
-class n_RN_09_20_02["RN-09-20-02: Server Room"]
-class n_RN_09_20_03["RN-09-20-03: Generator Room"]
-class n_RN_09_20_04["RN-09-20-04: Transformer Room"]
-class n_RN_09_20_05["RN-09-20-05: Communications Room"]
-class n_RN_09_30["RN-09-30: Metering and waste"]
-class n_RN_09_30_01["RN-09-30-01: Meter Room"]
-class n_RN_09_30_02["RN-09-30-02: Waste Room"]
-class n_RN_10["RN-10: Storage"]
-class n_RN_10_10["RN-10-10: General storage types"]
-class n_RN_10_10_01["RN-10-10-01: General Storage"]
-class n_RN_10_10_02["RN-10-10-02: Supply Room"]
-class n_RN_10_10_03["RN-10-10-03: Equipment Storage"]
-class n_RN_10_10_04["RN-10-10-04: Unloading Storage"]
-class n_RN_10_10_05["RN-10-10-05: Janitor Closet"]
-class n_RN_10_20["RN-10-20: Specialized storage"]
-class n_RN_10_20_01["RN-10-20-01: Archive Room"]
-class n_RN_10_20_02["RN-10-20-02: Mail Room"]
-class n_RN_10_20_03["RN-10-20-03: Cold Storage"]
-class n_RN_10_20_04["RN-10-20-04: Laboratory Storage"]
-class n_RN_10_20_05["RN-10-20-05: Chemical Storage"]
-class n_RN_10_20_06["RN-10-20-06: Hazardous Material Storage"]
-class n_RN_10_20_07["RN-10-20-07: Sample Storage"]
-class n_RN_11["RN-11: Outdoor"]
-class n_RN_11_10["RN-11-10: Exterior platforms"]
-class n_RN_11_10_01["RN-11-10-01: Balcony"]
-class n_RN_11_10_02["RN-11-10-02: Terrace"]
-class n_RN_11_10_03["RN-11-10-03: Patio"]
-class n_RN_11_10_04["RN-11-10-04: Escape Balcony"]
-class n_RN_11_10_05["RN-11-10-05: Roof Terrace"]
-class n_RN_11_10_06["RN-11-10-06: Maintenance Roof"]
-class n_RN_11_10_07["RN-11-10-07: Technical Plant Pad"]
-class n_RN_11_10_08["RN-11-10-08: Green Roof"]
-class n_RN_11_20["RN-11-20: Landscape and recreation"]
-class n_RN_11_20_01["RN-11-20-01: Garden Area"]
-class n_RN_11_20_02["RN-11-20-02: Playground"]
-class n_RN_11_20_03["RN-11-20-03: Pool Area"]
-class n_RN_11_20_04["RN-11-20-04: Retention Area"]
-class n_RN_11_30["RN-11-30: Covered exterior routes"]
-class n_RN_11_30_01["RN-11-30-01: Covered Walkway"]
-class n_RN_11_30_02["RN-11-30-02: Portico"]
-class n_RN_11_40["RN-11-40: Exterior circulation"]
-class n_RN_11_40_01["RN-11-40-01: Exterior Stair"]
-class n_RN_11_40_02["RN-11-40-02: Street"]
-class n_RN_12["RN-12: Void"]
-class n_RN_12_10["RN-12-10: Vertical voids"]
-class n_RN_12_10_01["RN-12-10-01: Shaft"]
-class n_RN_12_10_02["RN-12-10-02: Riser"]
-class n_RN_12_20["RN-12-20: Plenums and air volumes"]
-class n_RN_12_20_01["RN-12-20-01: Plenum"]
-class n_RN_12_20_02["RN-12-20-02: Mechanical Void"]
-class n_RN_12_20_03["RN-12-20-03: Air Space"]
-class n_RN_13["RN-13: Parking"]
-class n_RN_13_10["RN-13-10: Interior parking"]
-class n_RN_13_10_01["RN-13-10-01: Interior Car Parking"]
-class n_RN_13_10_02["RN-13-10-02: Interior Truck Parking"]
-class n_RN_13_10_03["RN-13-10-03: Interior Bicycle Parking"]
-class n_RN_13_10_04["RN-13-10-04: Interior Motorcycle Parking"]
-class n_RN_13_20["RN-13-20: Exterior parking"]
-class n_RN_13_20_01["RN-13-20-01: Exterior Car Parking"]
-class n_RN_13_20_02["RN-13-20-02: Exterior Truck Parking"]
-class n_RN_13_20_03["RN-13-20-03: Exterior Bicycle Parking"]
-class n_RN_13_20_04["RN-13-20-04: Exterior Motorcycle Parking"]
-n_RN_01 <|-- n_RN_01_10
-n_RN_01 <|-- n_RN_01_20
-n_RN_01 <|-- n_RN_01_30
-n_RN_01_10 <|-- n_RN_01_10_01
-n_RN_01_10 <|-- n_RN_01_10_02
-n_RN_01_10 <|-- n_RN_01_10_03
-n_RN_01_10 <|-- n_RN_01_10_04
-n_RN_01_10 <|-- n_RN_01_10_05
-n_RN_01_20 <|-- n_RN_01_20_01
-n_RN_01_20 <|-- n_RN_01_20_02
-n_RN_01_20 <|-- n_RN_01_20_03
-n_RN_01_20 <|-- n_RN_01_20_04
-n_RN_01_20 <|-- n_RN_01_20_05
-n_RN_01_20 <|-- n_RN_01_20_06
-n_RN_01_20 <|-- n_RN_01_20_07
-n_RN_01_20 <|-- n_RN_01_20_08
-n_RN_01_20 <|-- n_RN_01_20_09
-n_RN_01_30 <|-- n_RN_01_30_03
-n_RN_02 <|-- n_RN_02_10
-n_RN_02 <|-- n_RN_02_20
-n_RN_02 <|-- n_RN_02_30
-n_RN_02_10 <|-- n_RN_02_10_01
-n_RN_02_10 <|-- n_RN_02_10_02
-n_RN_02_20 <|-- n_RN_02_20_01
-n_RN_02_20 <|-- n_RN_02_20_02
-n_RN_02_20 <|-- n_RN_02_20_03
-n_RN_02_30 <|-- n_RN_02_30_01
-n_RN_03 <|-- n_RN_03_10
-n_RN_03 <|-- n_RN_03_20
-n_RN_03_10 <|-- n_RN_03_10_01
-n_RN_03_10 <|-- n_RN_03_10_02
-n_RN_03_10 <|-- n_RN_03_10_04
-n_RN_03_10 <|-- n_RN_03_10_05
-n_RN_03_20 <|-- n_RN_03_20_01
-n_RN_03_20 <|-- n_RN_03_20_02
-n_RN_03_20 <|-- n_RN_03_20_03
-n_RN_04 <|-- n_RN_04_10
-n_RN_04 <|-- n_RN_04_20
-n_RN_04_10 <|-- n_RN_04_10_01
-n_RN_04_10 <|-- n_RN_04_10_02
-n_RN_04_10 <|-- n_RN_04_10_03
-n_RN_04_10 <|-- n_RN_04_10_04
-n_RN_04_20 <|-- n_RN_04_20_01
-n_RN_04_20 <|-- n_RN_04_20_02
-n_RN_04_20 <|-- n_RN_04_20_03
-n_RN_05 <|-- n_RN_05_10
-n_RN_05 <|-- n_RN_05_20
-n_RN_05 <|-- n_RN_05_30
-n_RN_05_10 <|-- n_RN_05_10_01
-n_RN_05_10 <|-- n_RN_05_10_02
-n_RN_05_20 <|-- n_RN_05_20_01
-n_RN_05_20 <|-- n_RN_05_20_02
-n_RN_05_20 <|-- n_RN_05_20_03
-n_RN_05_20 <|-- n_RN_05_20_04
-n_RN_05_30 <|-- n_RN_05_30_01
-n_RN_05_30 <|-- n_RN_05_30_02
-n_RN_05_30 <|-- n_RN_05_30_03
-n_RN_05_30 <|-- n_RN_05_30_04
-n_RN_06 <|-- n_RN_06_10
-n_RN_06 <|-- n_RN_06_20
-n_RN_06 <|-- n_RN_06_30
-n_RN_06_10 <|-- n_RN_06_10_01
-n_RN_06_10 <|-- n_RN_06_10_02
-n_RN_06_10 <|-- n_RN_06_10_03
-n_RN_06_10 <|-- n_RN_06_10_04
-n_RN_06_20 <|-- n_RN_06_20_01
-n_RN_06_20 <|-- n_RN_06_20_02
-n_RN_06_20 <|-- n_RN_06_20_03
-n_RN_06_30 <|-- n_RN_06_30_01
-n_RN_06_30 <|-- n_RN_06_30_02
-n_RN_06_30 <|-- n_RN_06_30_03
-n_RN_07 <|-- n_RN_07_10
-n_RN_07 <|-- n_RN_07_20
-n_RN_07 <|-- n_RN_07_30
-n_RN_07_10 <|-- n_RN_07_10_01
-n_RN_07_10 <|-- n_RN_07_10_02
-n_RN_07_10 <|-- n_RN_07_10_03
-n_RN_07_10 <|-- n_RN_07_10_04
-n_RN_07_20 <|-- n_RN_07_20_01
-n_RN_07_20 <|-- n_RN_07_20_02
-n_RN_07_20 <|-- n_RN_07_20_03
-n_RN_07_20 <|-- n_RN_07_20_04
-n_RN_07_20 <|-- n_RN_07_20_05
-n_RN_07_30 <|-- n_RN_07_30_01
-n_RN_08 <|-- n_RN_08_10
-n_RN_08 <|-- n_RN_08_20
-n_RN_08 <|-- n_RN_08_30
-n_RN_08_10 <|-- n_RN_08_10_01
-n_RN_08_10 <|-- n_RN_08_10_02
-n_RN_08_10 <|-- n_RN_08_10_03
-n_RN_08_10 <|-- n_RN_08_10_04
-n_RN_08_10 <|-- n_RN_08_10_05
-n_RN_08_20 <|-- n_RN_08_20_01
-n_RN_08_20 <|-- n_RN_08_20_02
-n_RN_08_20 <|-- n_RN_08_20_03
-n_RN_08_20 <|-- n_RN_08_20_04
-n_RN_08_30 <|-- n_RN_08_30_01
-n_RN_09 <|-- n_RN_09_10
-n_RN_09 <|-- n_RN_09_20
-n_RN_09 <|-- n_RN_09_30
-n_RN_09_10 <|-- n_RN_09_10_01
-n_RN_09_10 <|-- n_RN_09_10_02
-n_RN_09_10 <|-- n_RN_09_10_03
-n_RN_09_10 <|-- n_RN_09_10_04
-n_RN_09_10 <|-- n_RN_09_10_05
-n_RN_09_20 <|-- n_RN_09_20_01
-n_RN_09_20 <|-- n_RN_09_20_02
-n_RN_09_20 <|-- n_RN_09_20_03
-n_RN_09_20 <|-- n_RN_09_20_04
-n_RN_09_20 <|-- n_RN_09_20_05
-n_RN_09_30 <|-- n_RN_09_30_01
-n_RN_09_30 <|-- n_RN_09_30_02
-n_RN_10 <|-- n_RN_10_10
-n_RN_10 <|-- n_RN_10_20
-n_RN_10_10 <|-- n_RN_10_10_01
-n_RN_10_10 <|-- n_RN_10_10_02
-n_RN_10_10 <|-- n_RN_10_10_03
-n_RN_10_10 <|-- n_RN_10_10_04
-n_RN_10_10 <|-- n_RN_10_10_05
-n_RN_10_20 <|-- n_RN_10_20_01
-n_RN_10_20 <|-- n_RN_10_20_02
-n_RN_10_20 <|-- n_RN_10_20_03
-n_RN_10_20 <|-- n_RN_10_20_04
-n_RN_10_20 <|-- n_RN_10_20_05
-n_RN_10_20 <|-- n_RN_10_20_06
-n_RN_10_20 <|-- n_RN_10_20_07
-n_RN_11 <|-- n_RN_11_10
-n_RN_11 <|-- n_RN_11_20
-n_RN_11 <|-- n_RN_11_30
-n_RN_11 <|-- n_RN_11_40
-n_RN_11_10 <|-- n_RN_11_10_01
-n_RN_11_10 <|-- n_RN_11_10_02
-n_RN_11_10 <|-- n_RN_11_10_03
-n_RN_11_10 <|-- n_RN_11_10_04
-n_RN_11_10 <|-- n_RN_11_10_05
-n_RN_11_10 <|-- n_RN_11_10_06
-n_RN_11_10 <|-- n_RN_11_10_07
-n_RN_11_10 <|-- n_RN_11_10_08
-n_RN_11_20 <|-- n_RN_11_20_01
-n_RN_11_20 <|-- n_RN_11_20_02
-n_RN_11_20 <|-- n_RN_11_20_03
-n_RN_11_20 <|-- n_RN_11_20_04
-n_RN_11_30 <|-- n_RN_11_30_01
-n_RN_11_30 <|-- n_RN_11_30_02
-n_RN_11_40 <|-- n_RN_11_40_01
-n_RN_11_40 <|-- n_RN_11_40_02
-n_RN_12 <|-- n_RN_12_10
-n_RN_12 <|-- n_RN_12_20
-n_RN_12_10 <|-- n_RN_12_10_01
-n_RN_12_10 <|-- n_RN_12_10_02
-n_RN_12_20 <|-- n_RN_12_20_01
-n_RN_12_20 <|-- n_RN_12_20_02
-n_RN_12_20 <|-- n_RN_12_20_03
-n_RN_13 <|-- n_RN_13_10
-n_RN_13 <|-- n_RN_13_20
-n_RN_13_10 <|-- n_RN_13_10_01
-n_RN_13_10 <|-- n_RN_13_10_02
-n_RN_13_10 <|-- n_RN_13_10_03
-n_RN_13_10 <|-- n_RN_13_10_04
-n_RN_13_20 <|-- n_RN_13_20_01
-n_RN_13_20 <|-- n_RN_13_20_02
-n_RN_13_20 <|-- n_RN_13_20_03
-n_RN_13_20 <|-- n_RN_13_20_04
-```
+Hierarchy diagram omitted (179 concepts; Mermaid render limit is 80 nodes). See the Concepts table below or the source TTL.
 
 ## Concepts
 
@@ -448,6 +106,16 @@ n_RN_13_20 <|-- n_RN_13_20_04
 <td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
 </tr>
 <tr>
+<td>RN-01-10-06</td>
+<td>RN-01-10</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Wintergarten</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Geschlossener verglaster Wohnraum, im Unterschied zu offenen Aussenplattformen wie Balkon, Terrasse und Innenhof.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Winter Garden</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Closed glazed living room, distinct from open outdoor platforms such as balcony, terrace, and patio.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
 <td>RN-01-20</td>
 <td>RN-01</td>
 <td class="pbs-lang-col" data-lang="de" data-field="label">Wohnliche Dienste</td>
@@ -481,10 +149,10 @@ n_RN_13_20 <|-- n_RN_13_20_04
 <td>RN-01-20-03</td>
 <td>RN-01-20</td>
 <td class="pbs-lang-col" data-lang="de" data-field="label">Waschküche</td>
-<td class="pbs-lang-col" data-lang="de" data-field="definition">Raum für Wäschepflege.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Waschküche innerhalb einer Wohneinheit.</td>
 <td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
 <td class="pbs-lang-col" data-lang="en" data-field="label">Laundry Room</td>
-<td class="pbs-lang-col" data-lang="en" data-field="definition">Room for washing and drying clothes.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Laundry room inside a single dwelling.</td>
 <td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
 </tr>
 <tr>
@@ -545,6 +213,16 @@ n_RN_13_20 <|-- n_RN_13_20_04
 <td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
 <td class="pbs-lang-col" data-lang="en" data-field="label">Entrance Hall</td>
 <td class="pbs-lang-col" data-lang="en" data-field="definition">Residential entrance transition space within a dwelling context.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>RN-01-20-10</td>
+<td>RN-01-20</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Gemeinschaftswaschküche</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Gemeinsame Waschküche mehrerer Wohneinheiten, im Unterschied zur Waschküche innerhalb einer Wohnung.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Communal Laundry</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Shared laundry for several dwellings, distinct from the laundry inside one dwelling.</td>
 <td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
 </tr>
 <tr>
@@ -1751,10 +1429,10 @@ n_RN_13_20 <|-- n_RN_13_20_04
 <td>RN-11-10</td>
 <td>RN-11</td>
 <td class="pbs-lang-col" data-lang="de" data-field="label">Aussenplattformen</td>
-<td class="pbs-lang-col" data-lang="de" data-field="definition">Balkone, Fluchtbalkone, Terrassen, Dachterrassen, Wartungsdächer, Technikaufstellflächen, Gründächer und Innenhöfe.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Balkone, Loggien, Fluchtbalkone, Terrassen, Dachterrassen, Wartungsdächer, Technikaufstellflächen, Gründächer und Innenhöfe.</td>
 <td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
 <td class="pbs-lang-col" data-lang="en" data-field="label">Exterior platforms</td>
-<td class="pbs-lang-col" data-lang="en" data-field="definition">Balconies, escape balconies, terraces, roof terraces, maintenance roofs, technical plant pads, green roofs, and patios.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Balconies, loggias, escape balconies, terraces, roof terraces, maintenance roofs, technical plant pads, green roofs, and patios.</td>
 <td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
 </tr>
 <tr>
@@ -1835,6 +1513,16 @@ n_RN_13_20 <|-- n_RN_13_20_04
 <td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
 <td class="pbs-lang-col" data-lang="en" data-field="label">Green Roof</td>
 <td class="pbs-lang-col" data-lang="en" data-field="definition">Vegetated flat-roof area modeled as outdoor space.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>RN-11-10-09</td>
+<td>RN-11-10</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Loggia</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Zurückgesetzter offener Aussenraum im Gebäudevolumen, im Unterschied zum auskragenden Balkon.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Loggia</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Recessed open outdoor room inside the building volume, distinct from a projecting balcony.</td>
 <td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
 </tr>
 <tr>

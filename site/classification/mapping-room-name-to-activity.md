@@ -74,6 +74,7 @@ External target labels are not shipped in this repository; only codes and IRIs a
 | `rn:RN-OUT-EBL` | `mapsToActivity` | `abs:O-CIR-PED` |
 | `rn:RN-OUT-GDN` | `mapsToActivity` | `abs:O-GRN-GDN` |
 | `rn:RN-OUT-GRN` | `mapsToActivity` | `abs:O-GRN-GDN` |
+| `rn:RN-OUT-LOG` | `mapsToActivity` | `abs:O` |
 | `rn:RN-OUT-PAT` | `mapsToActivity` | `abs:O` |
 | `rn:RN-OUT-PLY` | `mapsToActivity` | `abs:O-GRN-REC` |
 | `rn:RN-OUT-PRT` | `mapsToActivity` | `abs:O-CIR-PED` |
@@ -97,6 +98,7 @@ External target labels are not shipped in this repository; only codes and IRIs a
 | `rn:RN-RES-BED` | `mapsToActivity` | `abs:M-RES` |
 | `rn:RN-RES-BTH` | `mapsToActivity` | `abs:M-RES` |
 | `rn:RN-RES-CEL` | `mapsToActivity` | `abs:M-RES` |
+| `rn:RN-RES-CLA` | `mapsToActivity` | `abs:M-RES` |
 | `rn:RN-RES-CLO` | `mapsToActivity` | `abs:M-RES` |
 | `rn:RN-RES-DIN` | `mapsToActivity` | `abs:M-RES` |
 | `rn:RN-RES-ENT` | `mapsToActivity` | `abs:M-RES` |
@@ -108,6 +110,7 @@ External target labels are not shipped in this repository; only codes and IRIs a
 | `rn:RN-RES-LIV` | `mapsToActivity` | `abs:M-RES` |
 | `rn:RN-RES-STU` | `mapsToActivity` | `abs:M-RES` |
 | `rn:RN-RES-UTL` | `mapsToActivity` | `abs:M-RES` |
+| `rn:RN-RES-WNG` | `mapsToActivity` | `abs:M-RES` |
 | `rn:RN-STO-ARC` | `mapsToActivity` | `abs:S-STO-GEN` |
 | `rn:RN-STO-CHM` | `mapsToActivity` | `abs:S-STO-GEN` |
 | `rn:RN-STO-COL` | `mapsToActivity` | `abs:S-STO-GEN` |

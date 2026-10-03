@@ -10,7 +10,7 @@
   dcterms:creator "abstract" ;
   dcterms:issued "2026-07-02" ;
   dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
-  dcterms:source <https://github.com/simondilhas/pragmatic-bim-data-contract> ;
+  dcterms:source <https://github.com/pragmaticBIM/pragmatic-bim-data-contract> ;
   skos:definition "Product-type classification for MEP generating or converting units (producer/converter role; aligns with SystemType.unit). For catalog, specification, and cost workflows on Equipment and grouped IfcSystem plant."@en ;
   skos:definition "Produkttyp-Klassifikation fuer TGA-Erzeuger- oder Wandlereinheiten (Erzeuger-/Wandlerrolle; entspricht SystemType.unit). Fuer Katalog-, Spezifikations- und Kostenworkflows auf Equipment und gruppierten IfcSystem-Anlagen."@de ;
   skos:scopeNote "Default PBS entity is Equipment. When the IFC model groups plant as IfcSystem, pair with System.system_type = unit. Discipline token in notation must be compatible with parent system ConnectionFunctionalType via mapping bridge."@en ;

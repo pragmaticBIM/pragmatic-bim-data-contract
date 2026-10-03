@@ -7,8 +7,8 @@ A pragmatic, graph-first LinkML data contract for BIM integration, querying, cos
 | | |
 |---|---|
 | **Schema URI** | [schema.pragmaticbim.ch](https://schema.pragmaticbim.ch/) |
-| **Version** | [v1.0.4](https://github.com/simondilhas/pragmatic-bim-data-contract/releases/tag/v1.0.4) |
-| **Source** | [github.com/simondilhas/pragmatic-bim-data-contract](https://github.com/simondilhas/pragmatic-bim-data-contract) |
+| **Version** | [v1.0.5](https://github.com/pragmaticBIM/pragmatic-bim-data-contract/releases/tag/v1.0.5) |
+| **Source** | [github.com/pragmaticBIM/pragmatic-bim-data-contract](https://github.com/pragmaticBIM/pragmatic-bim-data-contract) |
 
 </div>
 
@@ -154,13 +154,13 @@ This contract is maintained by the Pragmatic BIM team. It is not governed by a f
 
 | | |
 |---|---|
-| **Maintainer** | Pragmatic BIM maintainers ([GitHub](https://github.com/simondilhas/pragmatic-bim-data-contract)) |
-| **Change process** | [GitHub issues](https://github.com/simondilhas/pragmatic-bim-data-contract/issues) for proposals; focused pull requests for changes |
+| **Maintainer** | Pragmatic BIM maintainers ([GitHub](https://github.com/pragmaticBIM/pragmatic-bim-data-contract)) |
+| **Change process** | [GitHub issues](https://github.com/pragmaticBIM/pragmatic-bim-data-contract/issues) for proposals; focused pull requests for changes |
 | **Release cadence** | Semantic version tags (`v*`) publish schema releases to [schema.pragmaticbim.ch](https://schema.pragmaticbim.ch/) |
 
 **How to participate**
 
-- **Proposals:** Open a [GitHub issue](https://github.com/simondilhas/pragmatic-bim-data-contract/issues) — bugs, gaps, new entities, classification requests.
+- **Proposals:** Open a [GitHub issue](https://github.com/pragmaticBIM/pragmatic-bim-data-contract/issues) — bugs, gaps, new entities, classification requests.
 - **Contributions:** Pull requests welcome; keep changes focused and include documentation updates.
 - **Classifications:** Abstract vocabularies live in [pragmatic-bim-public-rules](https://github.com/simondilhas/pragmatic-bim-public-rules); project-specific schemes live in this repository.
 

@@ -11,7 +11,7 @@ met:scheme a skos:ConceptScheme ;
   dcterms:creator "abstract" ;
   dcterms:issued "2026-06-29" ;
   dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
-  dcterms:source <https://github.com/simondilhas/pragmatic-bim-data-contract> ;
+  dcterms:source <https://github.com/pragmaticBIM/pragmatic-bim-data-contract> ;
   skos:definition "Semantic definitions for building-level area, volume, and count metrics. Scope variants (above/below ground) are narrower concepts; calculation logic lives in application pipelines."@en ;
   skos:hasTopConcept
     met:total_gross_floor_area,

@@ -25,6 +25,7 @@ External target labels are not shipped in this repository; only codes and IRIs a
 | `aof:AOF-01-01` | `relatedMatch` | `rn:RN-OUT-RWM` |
 | `aof:AOF-01-01` | `relatedMatch` | `rn:RN-OUT-TEQ` |
 | `aof:AOF-01-02` | `relatedMatch` | `rn:RN-OUT-BLN` |
+| `aof:AOF-01-02` | `relatedMatch` | `rn:RN-OUT-LOG` |
 | `aof:AOF-01-02` | `relatedMatch` | `rn:RN-OUT-PAT` |
 | `aof:AOF-01-02` | `relatedMatch` | `rn:RN-OUT-RD` |
 | `aof:AOF-01-02` | `relatedMatch` | `rn:RN-OUT-RTR` |

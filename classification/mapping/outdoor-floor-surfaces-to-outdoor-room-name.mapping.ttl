@@ -9,7 +9,7 @@ map:outdoorFloorSurfacesToOutdoorRoomNameMapping a dcterms:Dataset ;
   dcterms:title "Mapping Aussenbodenbeläge zu Aussenraumnamen"@de ;
   dcterms:references aof:scheme, rn:scheme ;
   dcterms:issued "2026-09-22" ;
-  dcterms:modified "2026-09-22" ;
+  dcterms:modified "2026-10-03" ;
   dcterms:description "Compatibility links from outdoor floor surface products (AOF) to outdoor room names (RN-OUT-*). Uses skos:relatedMatch: a surface product suggests typical outdoor space types where it is commonly applied. Space use remains assigned via room name; surface finish remains assigned via AOF. Not bijective — PBS rules disambiguate. Vegetated green-roof spaces (RN-OUT-GRN) are not linked here; see roof covering products mapping."@en ;
   dcterms:description "Kompatibilitaetsverknuepfungen von Aussenbodenbelagsprodukten (AOF) zu Aussenraumnamen (RN-OUT-*). skos:relatedMatch: ein Belagsprodukt nennt typische Aussenraumtypen, in denen es ueblich ist. Raumnutzung bleibt ueber Raumnamen, Belag ueber AOF. Nicht bijektiv — Disambiguierung in PBS-Regeln. Begruente Gruendach-Raeume (RN-OUT-GRN) sind hier nicht verknuepft; siehe Dachbekleidungsprodukt-Mapping."@de .
 
@@ -19,7 +19,7 @@ aof:AOF-01 skos:relatedMatch rn:RN_OUT_RD, rn:RN_OUT_TRR, rn:RN_OUT_PAT, rn:RN_O
 
 aof:AOF-01-01 skos:relatedMatch rn:RN_OUT_RD, rn:RN_OUT_RWM, rn:RN_OUT_TEQ .
 
-aof:AOF-01-02 skos:relatedMatch rn:RN_OUT_RD, rn:RN_OUT_TRR, rn:RN_OUT_PAT, rn:RN_OUT_RTR, rn:RN_OUT_BLN, rn:RN_OUT_RWM, rn:RN_OUT_TEQ .
+aof:AOF-01-02 skos:relatedMatch rn:RN_OUT_RD, rn:RN_OUT_TRR, rn:RN_OUT_PAT, rn:RN_OUT_RTR, rn:RN_OUT_BLN, rn:RN_OUT_LOG, rn:RN_OUT_RWM, rn:RN_OUT_TEQ .
 
 # --- Partially permeable (AOF-02) ---
 

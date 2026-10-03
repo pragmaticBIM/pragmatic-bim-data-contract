@@ -179,7 +179,7 @@
   skos:definition "Rooms for daily living, sleeping, and dining."@en ;
   skos:definition "Räume für Wohnen, Schlafen und Essen."@de ;
   skos:broader :RN_RES ;
-  skos:narrower :RN_RES_BED, :RN_RES_LIV, :RN_RES_DIN, :RN_RES_STU, :RN_RES_GST ;
+  skos:narrower :RN_RES_BED, :RN_RES_LIV, :RN_RES_DIN, :RN_RES_STU, :RN_RES_GST, :RN_RES_WNG ;
   dcterms:subject "IfcSpace" ;
   dcterms:identifier "RN-01-10" .
 
@@ -191,7 +191,7 @@
   skos:definition "Kitchen, bathroom, laundry, utility, hallway, entry, storage, cellar, and entrance spaces within dwellings."@en ;
   skos:definition "Küche, Bad, Wäsche, Hauswirtschaft, Gang, Wohnungseingang, Abstellraum, Kellerabteil und Entree in Wohneinheiten."@de ;
   skos:broader :RN_RES ;
-  skos:narrower :RN_RES_KIT, :RN_RES_BTH, :RN_RES_LAU, :RN_RES_UTL, :RN_RES_GNG, :RN_RES_ENT, :RN_RES_CLO, :RN_RES_CEL, :RN_RES_ETR ;
+  skos:narrower :RN_RES_KIT, :RN_RES_BTH, :RN_RES_LAU, :RN_RES_UTL, :RN_RES_GNG, :RN_RES_ENT, :RN_RES_CLO, :RN_RES_CEL, :RN_RES_ETR, :RN_RES_CLA ;
   dcterms:subject "IfcSpace" ;
   dcterms:identifier "RN-01-20" .
 
@@ -500,10 +500,10 @@
   skos:notation "RN-11-10" ;
   skos:prefLabel "Exterior platforms"@en ;
   skos:prefLabel "Aussenplattformen"@de ;
-  skos:definition "Balconies, escape balconies, terraces, roof terraces, maintenance roofs, technical plant pads, green roofs, and patios."@en ;
-  skos:definition "Balkone, Fluchtbalkone, Terrassen, Dachterrassen, Wartungsdächer, Technikaufstellflächen, Gründächer und Innenhöfe."@de ;
+  skos:definition "Balconies, loggias, escape balconies, terraces, roof terraces, maintenance roofs, technical plant pads, green roofs, and patios."@en ;
+  skos:definition "Balkone, Loggien, Fluchtbalkone, Terrassen, Dachterrassen, Wartungsdächer, Technikaufstellflächen, Gründächer und Innenhöfe."@de ;
   skos:broader :RN_OUT ;
-  skos:narrower :RN_OUT_BLN, :RN_OUT_TRR, :RN_OUT_PAT, :RN_OUT_EBL, :RN_OUT_RTR, :RN_OUT_RWM, :RN_OUT_TEQ, :RN_OUT_GRN ;
+  skos:narrower :RN_OUT_BLN, :RN_OUT_TRR, :RN_OUT_PAT, :RN_OUT_EBL, :RN_OUT_RTR, :RN_OUT_RWM, :RN_OUT_TEQ, :RN_OUT_GRN, :RN_OUT_LOG ;
   dcterms:subject "IfcSpace" ;
   dcterms:identifier "RN-11-10" .
 
@@ -646,6 +646,18 @@
   dcterms:subject "IfcSpace" ;
   dcterms:identifier "RN-01-10-05" .
 
+:RN_RES_WNG a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:notation "RN-01-10-06" ;
+  skos:prefLabel "Winter Garden"@en ;
+  skos:prefLabel "Wintergarten"@de ;
+  skos:altLabel "Conservatory"@en ;
+  skos:definition "Closed glazed living room, distinct from open outdoor platforms such as balcony, terrace, and patio."@en ;
+  skos:definition "Geschlossener verglaster Wohnraum, im Unterschied zu offenen Aussenplattformen wie Balkon, Terrasse und Innenhof."@de ;
+  skos:broader :RN_RES_LIV_GRP ;
+  dcterms:subject "IfcSpace" ;
+  dcterms:identifier "RN-01-10-06" .
+
 :RN_RES_KIT a skos:Concept ;
   skos:inScheme :scheme ;
   skos:notation "RN-01-20-01" ;
@@ -673,8 +685,8 @@
   skos:notation "RN-01-20-03" ;
   skos:prefLabel "Laundry Room"@en ;
   skos:prefLabel "Waschküche"@de ;
-  skos:definition "Room for washing and drying clothes."@en ;
-  skos:definition "Raum für Wäschepflege."@de ;
+  skos:definition "Laundry room inside a single dwelling."@en ;
+  skos:definition "Waschküche innerhalb einer Wohneinheit."@de ;
   skos:broader :RN_RES_SVC_GRP ;
   dcterms:subject "IfcSpace" ;
   dcterms:identifier "RN-01-20-03" .
@@ -744,6 +756,17 @@
   skos:broader :RN_RES_SVC_GRP ;
   dcterms:subject "IfcSpace" ;
   dcterms:identifier "RN-01-20-09" .
+
+:RN_RES_CLA a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:notation "RN-01-20-10" ;
+  skos:prefLabel "Communal Laundry"@en ;
+  skos:prefLabel "Gemeinschaftswaschküche"@de ;
+  skos:definition "Shared laundry for several dwellings, distinct from the laundry inside one dwelling."@en ;
+  skos:definition "Gemeinsame Waschküche mehrerer Wohneinheiten, im Unterschied zur Waschküche innerhalb einer Wohnung."@de ;
+  skos:broader :RN_RES_SVC_GRP ;
+  dcterms:subject "IfcSpace" ;
+  dcterms:identifier "RN-01-20-10" .
 
 :RN_RES_APT a skos:Concept ;
   skos:inScheme :scheme ;
@@ -1778,6 +1801,17 @@
   skos:broader :RN_OUT_PLT_GRP ;
   dcterms:subject "IfcSpace" ;
   dcterms:identifier "RN-11-10-08" .
+
+:RN_OUT_LOG a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:notation "RN-11-10-09" ;
+  skos:prefLabel "Loggia"@en ;
+  skos:prefLabel "Loggia"@de ;
+  skos:definition "Recessed open outdoor room inside the building volume, distinct from a projecting balcony."@en ;
+  skos:definition "Zurückgesetzter offener Aussenraum im Gebäudevolumen, im Unterschied zum auskragenden Balkon."@de ;
+  skos:broader :RN_OUT_PLT_GRP ;
+  dcterms:subject "IfcSpace" ;
+  dcterms:identifier "RN-11-10-09" .
 
 :RN_OUT_GDN a skos:Concept ;
   skos:inScheme :scheme ;

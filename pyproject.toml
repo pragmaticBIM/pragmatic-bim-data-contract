@@ -1,0 +1,23 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "pragmatic-bim"
+version = "1.0.6"
+description = "Pydantic models and SKOS taxonomy lookups for the pragmatic BIM data contract"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { file = "LICENSE" }
+authors = [{ name = "Simon Dilhas" }]
+dependencies = ["pydantic>=2.0"]
+
+[project.urls]
+Homepage = "https://schema.pragmaticbim.ch"
+Source = "https://github.com/pragmaticBIM/pragmatic-bim-data-contract"
+
+[tool.hatch.build.targets.wheel]
+packages = ["pragmatic_bim"]
+
+[tool.hatch.build.targets.sdist]
+include = ["pragmatic_bim", "contract", "classification", "scripts", "README.md", "LICENSE"]

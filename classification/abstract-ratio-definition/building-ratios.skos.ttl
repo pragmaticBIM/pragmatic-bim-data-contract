@@ -12,7 +12,7 @@ rat:scheme a skos:ConceptScheme ;
   dcterms:creator "abstract" ;
   dcterms:issued "2026-06-29" ;
   dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
-  dcterms:source <https://github.com/simondilhas/pragmatic-bim-data-contract> ;
+  dcterms:source <https://github.com/pragmaticBIM/pragmatic-bim-data-contract> ;
   skos:definition "Dimensionless building KPIs defined as quotients of abstract building metrics. Scope is inherited from operand metrics at calculation time."@en ;
   skos:hasTopConcept
     rat:ratio_building_volume_to_gross_floor_area,

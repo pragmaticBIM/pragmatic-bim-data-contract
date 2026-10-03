@@ -10,7 +10,7 @@
   dcterms:creator "abstract" ;
   dcterms:issued "2026-07-01" ;
   dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
-  dcterms:source <https://github.com/simondilhas/pragmatic-bim-data-contract> ;
+  dcterms:source <https://github.com/pragmaticBIM/pragmatic-bim-data-contract> ;
   skos:definition "Product-type classification for substructure and foundation systems below or at the building footprint. For catalog, specification, and cost workflows; pair with separator slab role L-BAS for raft and base slabs, slab separator products for structural build-up, and abstract material classification for dominant substance."@en ;
   skos:definition "Produkttyp-Klassifikation fuer Unterbau- und Fundamentsysteme unter oder auf der Gebaeudegrundflaeche. Fuer Katalog-, Spezifikations- und Kostenworkflows; mit Trenndeckenrolle L-BAS fuer Bodenplatten, Trenndeckenprodukten fuer tragenden Aufbau und abstrakter Materialklassifikation fuer dominante Substanz kombinieren."@de ;
   skos:scopeNote "Default PBS mapping: SeparatorSlab with L-BAS for raft and base-slab foundations; IfcFooting for strip and pad footings; IfcPile for pile systems. Distinct from storey floor slabs (L-FLR) and roof slabs (L-ROF)."@en ;

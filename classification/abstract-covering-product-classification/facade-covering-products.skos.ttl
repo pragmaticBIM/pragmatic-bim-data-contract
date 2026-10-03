@@ -17,7 +17,7 @@
   dcterms:issued "2026-06-30"^^xsd:date ;
   dcterms:modified "2026-06-30"^^xsd:date ;
   dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
-  dcterms:source <https://github.com/simondilhas/pragmatic-bim-data-contract> ;
+  dcterms:source <https://github.com/pragmaticBIM/pragmatic-bim-data-contract> ;
   dcterms:references map:abstractFacadeCoveringProductsToKbobEcobilansMapping, kbobbm:scheme ;
   skos:scopeNote "Embodied carbon: resolve product notation via the referenced KBOB ecobilans mapping bridge (skos:closeMatch on layer narrowers where present; skos:relatedMatch on parent composites). Links KBOB Baumaterialien row notations only; obtain indicator values from the official KBOB ecobilans dataset."@en ;
   skos:scopeNote "Graue Emissionen: Produktnotation ueber referenzierte KBOB-Oekobilanz-Mapping-Bruecke aufloesen (skos:closeMatch auf Schicht-narrower; skos:relatedMatch auf Eltern-Verbundprodukte). Verknuepft nur KBOB-Baumaterialien-Zeilennotationen; Kennwerte aus offiziellem KBOB-Oekobilanzdatensatz beziehen."@de ;

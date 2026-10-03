@@ -379,6 +379,10 @@ def sort_concepts_hierarchically(concepts: list[ConceptDoc]) -> list[ConceptDoc]
     return ordered
 
 
+# Mermaid classDiagram layout becomes unusable beyond this; omit from published docs.
+MAX_MERMAID_HIERARCHY_NODES = 80
+
+
 def build_mermaid_hierarchy(vocab: VocabularyDoc) -> str:
     """Build a Mermaid class diagram from broader/narrower relations."""
     by_notation = vocab.concept_by_notation()
@@ -439,6 +443,18 @@ def build_mermaid_hierarchy(vocab: VocabularyDoc) -> str:
             lines.append(f"{node_id(parent)} <|-- {node_id(child)}")
     lines.append("```")
     return "\n".join(lines)
+
+
+def mermaid_diagram_node_count(mermaid: str) -> int:
+    return sum(1 for line in mermaid.splitlines() if line.startswith("class "))
+
+
+def hierarchy_omit_note(node_count: int) -> str:
+    """Explain why a large hierarchy has no Mermaid diagram on the page."""
+    return (
+        f"Hierarchy diagram omitted ({node_count} concepts; Mermaid render limit is "
+        f"{MAX_MERMAID_HIERARCHY_NODES} nodes). See the Concepts table below or the source TTL."
+    )
 
 
 def escape_html(text: str) -> str:
@@ -542,7 +558,12 @@ def render_vocabulary_markdown(vocab: VocabularyDoc) -> str:
     if has_hierarchy(vocab):
         mermaid = build_mermaid_hierarchy(vocab)
         if mermaid:
-            lines.extend(["## Hierarchy", "", mermaid, ""])
+            node_count = mermaid_diagram_node_count(mermaid)
+            lines.extend(["## Hierarchy", ""])
+            if node_count > MAX_MERMAID_HIERARCHY_NODES:
+                lines.extend([hierarchy_omit_note(node_count), ""])
+            else:
+                lines.extend([mermaid, ""])
 
     lines.extend(["## Concepts", "", render_concepts_table_html(vocab), ""])
     return "\n".join(lines)

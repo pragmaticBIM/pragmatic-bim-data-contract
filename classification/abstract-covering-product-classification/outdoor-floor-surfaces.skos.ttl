@@ -11,7 +11,7 @@
   dcterms:creator "abstract" ;
   dcterms:issued "2026-09-22" ;
   dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
-  dcterms:source <https://github.com/simondilhas/pragmatic-bim-data-contract> ;
+  dcterms:source <https://github.com/pragmaticBIM/pragmatic-bim-data-contract> ;
   dcterms:references map:outdoorFloorSurfacesToOutdoorRoomNameMapping ;
   skos:definition "Hierarchical classification of outdoor horizontal wearing courses by permeability. Tags the surface finish material, not the space use. Space or landscape function (garden, retention, pond) is classified separately via building space name (RN-*). Distinct from indoor floor covering products (FCP)."@en ;
   skos:definition "Hierarchische Klassifikation horizontaler Aussen-Nutzschichten nach Durchlässigkeit. Kennzeichnet den Oberflächenbelag, nicht die Raumnutzung. Raum- oder Landschaftsfunktion (Garten, Retention, Teich) wird separat über den Gebäuderaumnamen (RN-*) klassifiziert. Unterscheidet sich von Innen-Bodenbelagsprodukten (FCP)."@de ;

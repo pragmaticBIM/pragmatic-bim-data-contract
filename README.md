@@ -1,7 +1,7 @@
 
 # Pragmatic BIM Data Contract
 
-**Docs:** [schema.pragmaticbim.ch](https://schema.pragmaticbim.ch/) · **Source:** [github.com/simondilhas/pragmatic-bim-data-contract](https://github.com/simondilhas/pragmatic-bim-data-contract) · **Releases:** [GitHub releases](https://github.com/simondilhas/pragmatic-bim-data-contract/releases)
+**Docs:** [schema.pragmaticbim.ch](https://schema.pragmaticbim.ch/) · **Source:** [github.com/pragmaticBIM/pragmatic-bim-data-contract](https://github.com/pragmaticBIM/pragmatic-bim-data-contract) · **Releases:** [GitHub releases](https://github.com/pragmaticBIM/pragmatic-bim-data-contract/releases)
 
 ## Why this exists
 
@@ -178,7 +178,7 @@ pragmatic-bim-data-contract/
 
 ## Getting started
 
-1. Browse the [hosted documentation](https://schema.pragmaticbim.ch/) — schema reference, IFC mapping, classifications, and [source repository](https://github.com/simondilhas/pragmatic-bim-data-contract) link.
+1. Browse the [hosted documentation](https://schema.pragmaticbim.ch/) — schema reference, IFC mapping, classifications, and [source repository](https://github.com/pragmaticBIM/pragmatic-bim-data-contract) link.
 2. Read [`contract/README.md`](contract/README.md) — schema modules, IFC mapping, hosted URIs, local docs build.
 3. Read [`classification/README.md`](classification/README.md) — vocabularies and mapping bridges.
 
@@ -188,13 +188,13 @@ This contract is maintained by the abstract ltd team. It is not governed by a fo
 
 | | |
 |---|---|
-| **Maintainer** | Pragmatic BIM maintainers ([GitHub](https://github.com/simondilhas/pragmatic-bim-data-contract)) |
-| **Change process** | [GitHub issues](https://github.com/simondilhas/pragmatic-bim-data-contract/issues) for proposals; focused pull requests for changes |
+| **Maintainer** | Pragmatic BIM maintainers ([GitHub](https://github.com/pragmaticBIM/pragmatic-bim-data-contract)) |
+| **Change process** | [GitHub issues](https://github.com/pragmaticBIM/pragmatic-bim-data-contract/issues) for proposals; focused pull requests for changes |
 | **Release cadence** | Semantic version tags (`v*`) publish schema releases to [schema.pragmaticbim.ch](https://schema.pragmaticbim.ch/) |
 
 **How to participate**
 
-- **Proposals:** Open a [GitHub issue](https://github.com/simondilhas/pragmatic-bim-data-contract/issues) — bugs, gaps, new entities, classification requests.
+- **Proposals:** Open a [GitHub issue](https://github.com/pragmaticBIM/pragmatic-bim-data-contract/issues) — bugs, gaps, new entities, classification requests.
 - **Contributions:** Pull requests welcome; keep changes focused and include documentation updates.
 - **Classifications:** Abstract vocabularies live in [pragmatic-bim-public-rules](https://github.com/simondilhas/pragmatic-bim-public-rules); project-specific schemes live in this repository.
 

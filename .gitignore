@@ -1,5 +1,6 @@
 .env
 classification/out/
-
+__pycache__/
+*.pyc
 
 temp/
