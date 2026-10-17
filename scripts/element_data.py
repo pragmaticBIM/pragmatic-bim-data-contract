@@ -6,7 +6,7 @@ price unit that quantity is billed in, and the product scheme whose concepts dif
 the element for pricing.
 
 Element codes, labels, IFC classes, and quantity sets follow the
-elementplan_pragmaticbim_swiss_data_add_ons repository, which is authoritative.
+pragmaticBIM-reference repository, which is authoritative.
 Consumed by scripts/generate_element_vocabulary.py and
 scripts/validate_element_classification.py.
 """
