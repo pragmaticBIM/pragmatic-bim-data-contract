@@ -785,7 +785,7 @@
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CostRecord.html">CostRecord</a></td>
-<td>Cost record for estimation, catalog pricing, and calculation. Use cost_record_role to distinguish catalog cost/price (on Product) from project estimate/actual lines. Populate component_cost_items to act as an assembly (aggregated unit price).</td>
+<td>Cost record for estimation, catalog pricing, and calculation. Use cost_record_role to distinguish catalog cost/price (on Product) from project estimate/actual lines. Populate component_cost_items to act as an assembly (aggregated unit price). Either amount (lump sum) or unit_cost (rate per cost quantity) must be present. The cost stage (early_estimate, approved_budget, contract_amendment, expectation) is a Classification entry with classification_scheme cost-stages; a record with cost_record_role estimate carries at most one cost-stages classification. Cost-stage mappings (SKOS closeMatch unless noted): early_estimate (Kostenschätzung) to sia-phases 31, DIN 276 Kostenschätzung, RIBA Stage 2 / NRM1 cost plan 1; approved_budget (Kostenvoranschlag) to sia-phases 32, DIN 276 Kostenberechnung, RIBA Stage 3 / NRM1 cost plan 2; contract_amendment (Nachtrag) relatedMatch sia-phases 51-53, VOB/B § 2 Nachtrag, RIBA Stage 5 variation; expectation (Kostenerwartung) relatedMatch sia-phases 52-53, DIN 276 Kostenprognose, RIBA Stage 5 anticipated final cost. Details: https://github.com/pragmaticBIM/pragmatic-bim-data-contract/blob/main/contract/README.md#cost-stages</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="Material.html">Material</a></td>
@@ -821,7 +821,7 @@
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CostRequirement.html">CostRequirement</a></td>
-<td>Cost or budget requirement (unit-cost cap, total budget limit, etc.).</td>
+<td>Cost or budget requirement (unit-cost cap, total budget limit, etc.). The cost stage the requirement applies to is a Classification entry with classification_scheme cost-stages; cost_category is deprecated.</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="MaterialRequirement.html">MaterialRequirement</a></td>
@@ -1003,6 +1003,10 @@
 <tr>
 <td><a href="affected_subject_type.html">affected_subject_type</a></td>
 <td>LinkML class name of the changed subject (for example Space, SeparatorWall, Artifact).</td>
+</tr>
+<tr>
+<td><a href="amount.html">amount</a></td>
+<td>Lump-sum amount for this cost record in currency. Use instead of unit_cost when the record has no quantity basis. A CostRecord requires amount or unit_cost.</td>
 </tr>
 <tr>
 <td><a href="applies_to_entities.html">applies_to_entities</a></td>
@@ -1190,7 +1194,7 @@
 </tr>
 <tr>
 <td><a href="cost_category.html">cost_category</a></td>
-<td>Cost category label kept intentionally open pending classification-backed modeling.</td>
+<td>Deprecated free-text cost category label. Still accepted for reading legacy records; express the cost stage as a cost-stages classification instead.</td>
 </tr>
 <tr>
 <td><a href="cost_quantity_type.html">cost_quantity_type</a></td>
@@ -1934,7 +1938,7 @@
 </tr>
 <tr>
 <td><a href="unit_cost.html">unit_cost</a></td>
-<td>Unit cost for this cost item.</td>
+<td>Unit cost for this cost item per cost quantity. A CostRecord requires amount or unit_cost.</td>
 </tr>
 <tr>
 <td><a href="usage_context.html">usage_context</a></td>

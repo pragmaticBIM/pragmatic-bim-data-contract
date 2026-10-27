@@ -155,7 +155,7 @@ Defined in `ifc_mapping.yaml` under `conventions.ifc_contract_link`.
 
 **Change records** (`PropertyChange`, `GeometryChange`, etc.) are not entities and have no `content_kind`. Adapters or validation pipelines create them directly in a separate change store. Use the concrete change class together with `change_type` where applicable.
 
-**CostRecordRole** (`cost`, `price`, `estimate`, `actual`) is application-created on `CostRecord` entities — not produced by IFC ingestion. Catalog `cost` and `price` records attach to `Product.catalog_cost_records`; project `estimate` and `actual` records use `applies_to_entities`.
+**CostRecordRole** (`cost`, `price`, `estimate`, `actual`) is application-created on `CostRecord` entities — not produced by IFC ingestion. Catalog `cost` and `price` records attach to `Product.catalog_cost_records`; project `estimate` and `actual` records use `applies_to_entities`. The cost stage is a `classifications` entry with scheme `cost-stages` (see [Cost stages](https://github.com/pragmaticBIM/pragmatic-bim-data-contract/blob/main/contract/README.md#cost-stages)).
 
 **Variant suffixes** disambiguate IFC `PredefinedType` or transport role without inventing new PBS classes:
 

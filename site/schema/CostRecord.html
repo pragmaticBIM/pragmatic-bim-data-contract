@@ -517,7 +517,7 @@
 
 
 <h1 id="class-costrecord">Class: CostRecord<a class="headerlink" href="#class-costrecord" title="Permanent link">&para;</a></h1>
-<p><em>Cost record for estimation, catalog pricing, and calculation. Use cost_record_role to distinguish catalog cost/price (on Product) from project estimate/actual lines. Populate component_cost_items to act as an assembly (aggregated unit price).</em></p>
+<p><em>Cost record for estimation, catalog pricing, and calculation. Use cost_record_role to distinguish catalog cost/price (on Product) from project estimate/actual lines. Populate component_cost_items to act as an assembly (aggregated unit price). Either amount (lump sum) or unit_cost (rate per cost quantity) must be present. The cost stage (early_estimate, approved_budget, contract_amendment, expectation) is a Classification entry with classification_scheme cost-stages; a record with cost_record_role estimate carries at most one cost-stages classification. Cost-stage mappings (SKOS closeMatch unless noted): early_estimate (Kostenschätzung) to sia-phases 31, DIN 276 Kostenschätzung, RIBA Stage 2 / NRM1 cost plan 1; approved_budget (Kostenvoranschlag) to sia-phases 32, DIN 276 Kostenberechnung, RIBA Stage 3 / NRM1 cost plan 2; contract_amendment (Nachtrag) relatedMatch sia-phases 51-53, VOB/B § 2 Nachtrag, RIBA Stage 5 variation; expectation (Kostenerwartung) relatedMatch sia-phases 52-53, DIN 276 Kostenprognose, RIBA Stage 5 anticipated final cost. Details: https://github.com/pragmaticBIM/pragmatic-bim-data-contract/blob/main/contract/README.md#cost-stages</em></p>
 <div>
 <p>URI: <a href="https://schema.pragmaticbim.ch/CostRecord">pbs:CostRecord</a></p>
 <div class="panzoom-box" data-key="alt" id="panzoom0" oncontextmenu="return false;">
@@ -613,13 +613,19 @@ Hold "Alt" / "Option" to enable pan &amp; zoom
 <tr>
 <td><a href="cost_category.html">cost_category</a></td>
 <td>0..1 <br/> <a href="String.html">String</a></td>
-<td>Cost category label kept intentionally open pending classification-backed modeling.</td>
+<td>Deprecated free-text cost category label. Still accepted for reading legacy records; express the cost stage as a cost-stages classification instead.</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="amount.html">amount</a></td>
+<td>0..1 <br/> <a href="Decimal.html">Decimal</a></td>
+<td>Lump-sum amount for this cost record in currency. Use instead of unit_cost when the record has no quantity basis. A CostRecord requires amount or unit_cost.</td>
 <td>direct</td>
 </tr>
 <tr>
 <td><a href="unit_cost.html">unit_cost</a></td>
-<td>1 <br/> <a href="Double.html">Double</a></td>
-<td>Unit cost for this cost item.</td>
+<td>0..1 <br/> <a href="Double.html">Double</a></td>
+<td>Unit cost for this cost item per cost quantity. A CostRecord requires amount or unit_cost.</td>
 <td>direct</td>
 </tr>
 <tr>
@@ -739,7 +745,7 @@ Hold "Alt" / "Option" to enable pan &amp; zoom
 <tr>
 <td><a href="classifications.html">classifications</a></td>
 <td>* <br/> <a href="Classification.html">Classification</a></td>
-<td>Classification entries from IFC and other schemes.</td>
+<td>Classification entries from IFC and other schemes. The cost stage uses classification_scheme cost-stages with classification_code early_estimate, approved_budget, contract_amendment, or expectation. At most one cost-stages entry when cost_record_role is estimate.</td>
 <td><a href="Entity.html">Entity</a></td>
 </tr>
 <tr>
@@ -792,6 +798,19 @@ Hold "Alt" / "Option" to enable pan &amp; zoom
 </tr>
 </tbody>
 </table>
+<details>
+<summary>Expressions &amp; Logic</summary>
+#### Any Of
+
+The class must satisfy at least one of:
+- AnonymousClassExpression({
+  'slot_conditions': {'amount': SlotDefinition({'name': 'amount', 'required': True})}
+})
+- AnonymousClassExpression({
+  'slot_conditions': {'unit_cost': SlotDefinition({'name': 'unit_cost', 'required': True})}
+})
+
+</details>
 <h2 id="usages">Usages<a class="headerlink" href="#usages" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -936,14 +955,25 @@ Hold "Alt" / "Option" to enable pan &amp; zoom
 <h3 id="direct">Direct<a class="headerlink" href="#direct" title="Permanent link">&para;</a></h3>
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CostRecord</span>
-<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Cost record for estimation, catalog pricing, and calculation. Use cost_record_role</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">to distinguish catalog cost/price (on Product) from project estimate/actual lines.</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">Populate component_cost_items to act as an assembly (aggregated unit price).</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'Cost</span><span class="nv"> </span><span class="s">record</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">estimation,</span><span class="nv"> </span><span class="s">catalog</span><span class="nv"> </span><span class="s">pricing,</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">calculation.</span><span class="nv"> </span><span class="s">Use</span><span class="nv"> </span><span class="s">cost_record_role</span>
+<span class="w">  </span><span class="s">to</span><span class="nv"> </span><span class="s">distinguish</span><span class="nv"> </span><span class="s">catalog</span><span class="nv"> </span><span class="s">cost/price</span><span class="nv"> </span><span class="s">(on</span><span class="nv"> </span><span class="s">Product)</span><span class="nv"> </span><span class="s">from</span><span class="nv"> </span><span class="s">project</span><span class="nv"> </span><span class="s">estimate/actual</span><span class="nv"> </span><span class="s">lines.</span>
+<span class="w">  </span><span class="s">Populate</span><span class="nv"> </span><span class="s">component_cost_items</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">act</span><span class="nv"> </span><span class="s">as</span><span class="nv"> </span><span class="s">an</span><span class="nv"> </span><span class="s">assembly</span><span class="nv"> </span><span class="s">(aggregated</span><span class="nv"> </span><span class="s">unit</span><span class="nv"> </span><span class="s">price).</span><span class="nv"> </span><span class="s">Either</span>
+<span class="w">  </span><span class="s">amount</span><span class="nv"> </span><span class="s">(lump</span><span class="nv"> </span><span class="s">sum)</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">unit_cost</span><span class="nv"> </span><span class="s">(rate</span><span class="nv"> </span><span class="s">per</span><span class="nv"> </span><span class="s">cost</span><span class="nv"> </span><span class="s">quantity)</span><span class="nv"> </span><span class="s">must</span><span class="nv"> </span><span class="s">be</span><span class="nv"> </span><span class="s">present.</span><span class="nv"> </span><span class="s">The</span><span class="nv"> </span><span class="s">cost</span>
+<span class="w">  </span><span class="s">stage</span><span class="nv"> </span><span class="s">(early_estimate,</span><span class="nv"> </span><span class="s">approved_budget,</span><span class="nv"> </span><span class="s">contract_amendment,</span><span class="nv"> </span><span class="s">expectation)</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">Classification</span>
+<span class="w">  </span><span class="s">entry</span><span class="nv"> </span><span class="s">with</span><span class="nv"> </span><span class="s">classification_scheme</span><span class="nv"> </span><span class="s">cost-stages;</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">record</span><span class="nv"> </span><span class="s">with</span><span class="nv"> </span><span class="s">cost_record_role</span><span class="nv"> </span><span class="s">estimate</span>
+<span class="w">  </span><span class="s">carries</span><span class="nv"> </span><span class="s">at</span><span class="nv"> </span><span class="s">most</span><span class="nv"> </span><span class="s">one</span><span class="nv"> </span><span class="s">cost-stages</span><span class="nv"> </span><span class="s">classification.</span><span class="nv"> </span><span class="s">Cost-stage</span><span class="nv"> </span><span class="s">mappings</span><span class="nv"> </span><span class="s">(SKOS</span><span class="nv"> </span><span class="s">closeMatch</span>
+<span class="w">  </span><span class="s">unless</span><span class="nv"> </span><span class="s">noted):</span><span class="nv"> </span><span class="s">early_estimate</span><span class="nv"> </span><span class="s">(Kostenschätzung)</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">sia-phases</span><span class="nv"> </span><span class="s">31,</span><span class="nv"> </span><span class="s">DIN</span><span class="nv"> </span><span class="s">276</span><span class="nv"> </span><span class="s">Kostenschätzung,</span>
+<span class="w">  </span><span class="s">RIBA</span><span class="nv"> </span><span class="s">Stage</span><span class="nv"> </span><span class="s">2</span><span class="nv"> </span><span class="s">/</span><span class="nv"> </span><span class="s">NRM1</span><span class="nv"> </span><span class="s">cost</span><span class="nv"> </span><span class="s">plan</span><span class="nv"> </span><span class="s">1;</span><span class="nv"> </span><span class="s">approved_budget</span><span class="nv"> </span><span class="s">(Kostenvoranschlag)</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">sia-phases</span>
+<span class="w">  </span><span class="s">32,</span><span class="nv"> </span><span class="s">DIN</span><span class="nv"> </span><span class="s">276</span><span class="nv"> </span><span class="s">Kostenberechnung,</span><span class="nv"> </span><span class="s">RIBA</span><span class="nv"> </span><span class="s">Stage</span><span class="nv"> </span><span class="s">3</span><span class="nv"> </span><span class="s">/</span><span class="nv"> </span><span class="s">NRM1</span><span class="nv"> </span><span class="s">cost</span><span class="nv"> </span><span class="s">plan</span><span class="nv"> </span><span class="s">2;</span><span class="nv"> </span><span class="s">contract_amendment</span>
+<span class="w">  </span><span class="s">(Nachtrag)</span><span class="nv"> </span><span class="s">relatedMatch</span><span class="nv"> </span><span class="s">sia-phases</span><span class="nv"> </span><span class="s">51-53,</span><span class="nv"> </span><span class="s">VOB/B</span><span class="nv"> </span><span class="s">§</span><span class="nv"> </span><span class="s">2</span><span class="nv"> </span><span class="s">Nachtrag,</span><span class="nv"> </span><span class="s">RIBA</span><span class="nv"> </span><span class="s">Stage</span><span class="nv"> </span><span class="s">5</span><span class="nv"> </span><span class="s">variation;</span>
+<span class="w">  </span><span class="s">expectation</span><span class="nv"> </span><span class="s">(Kostenerwartung)</span><span class="nv"> </span><span class="s">relatedMatch</span><span class="nv"> </span><span class="s">sia-phases</span><span class="nv"> </span><span class="s">52-53,</span><span class="nv"> </span><span class="s">DIN</span><span class="nv"> </span><span class="s">276</span><span class="nv"> </span><span class="s">Kostenprognose,</span>
+<span class="w">  </span><span class="s">RIBA</span><span class="nv"> </span><span class="s">Stage</span><span class="nv"> </span><span class="s">5</span><span class="nv"> </span><span class="s">anticipated</span><span class="nv"> </span><span class="s">final</span><span class="nv"> </span><span class="s">cost.</span><span class="nv"> </span><span class="s">Details:</span><span class="nv"> </span><span class="s">https://github.com/pragmaticBIM/pragmatic-bim-data-contract/blob/main/contract/README.md#cost-stages'</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://schema.pragmaticbim.ch</span>
 <span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">VirtualEntity</span>
 <span class="nt">slots</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cost_record_role</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cost_category</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">amount</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unit_cost</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">currency</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cost_quantity_type</span>
@@ -963,15 +993,40 @@ Hold "Alt" / "Option" to enable pan &amp; zoom
 <span class="w">  </span><span class="nt">priced_for_customer</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">priced_for_customer</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Company</span>
+<span class="w">  </span><span class="nt">classifications</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">classifications</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Classification entries from IFC and other schemes. The cost stage</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">uses classification_scheme cost-stages with classification_code early_estimate,</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">approved_budget, contract_amendment, or expectation. At most one cost-stages</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">entry when cost_record_role is estimate.</span>
 <span class="nt">class_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pbs:CostRecord</span>
+<span class="nt">any_of</span><span class="p">:</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">slot_conditions</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">amount</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">amount</span>
+<span class="w">      </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">slot_conditions</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">unit_cost</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unit_cost</span>
+<span class="w">      </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 </code></pre></div>
 </details>
 <h3 id="induced">Induced<a class="headerlink" href="#induced" title="Permanent link">&para;</a></h3>
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CostRecord</span>
-<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Cost record for estimation, catalog pricing, and calculation. Use cost_record_role</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">to distinguish catalog cost/price (on Product) from project estimate/actual lines.</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">Populate component_cost_items to act as an assembly (aggregated unit price).</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'Cost</span><span class="nv"> </span><span class="s">record</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">estimation,</span><span class="nv"> </span><span class="s">catalog</span><span class="nv"> </span><span class="s">pricing,</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">calculation.</span><span class="nv"> </span><span class="s">Use</span><span class="nv"> </span><span class="s">cost_record_role</span>
+<span class="w">  </span><span class="s">to</span><span class="nv"> </span><span class="s">distinguish</span><span class="nv"> </span><span class="s">catalog</span><span class="nv"> </span><span class="s">cost/price</span><span class="nv"> </span><span class="s">(on</span><span class="nv"> </span><span class="s">Product)</span><span class="nv"> </span><span class="s">from</span><span class="nv"> </span><span class="s">project</span><span class="nv"> </span><span class="s">estimate/actual</span><span class="nv"> </span><span class="s">lines.</span>
+<span class="w">  </span><span class="s">Populate</span><span class="nv"> </span><span class="s">component_cost_items</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">act</span><span class="nv"> </span><span class="s">as</span><span class="nv"> </span><span class="s">an</span><span class="nv"> </span><span class="s">assembly</span><span class="nv"> </span><span class="s">(aggregated</span><span class="nv"> </span><span class="s">unit</span><span class="nv"> </span><span class="s">price).</span><span class="nv"> </span><span class="s">Either</span>
+<span class="w">  </span><span class="s">amount</span><span class="nv"> </span><span class="s">(lump</span><span class="nv"> </span><span class="s">sum)</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">unit_cost</span><span class="nv"> </span><span class="s">(rate</span><span class="nv"> </span><span class="s">per</span><span class="nv"> </span><span class="s">cost</span><span class="nv"> </span><span class="s">quantity)</span><span class="nv"> </span><span class="s">must</span><span class="nv"> </span><span class="s">be</span><span class="nv"> </span><span class="s">present.</span><span class="nv"> </span><span class="s">The</span><span class="nv"> </span><span class="s">cost</span>
+<span class="w">  </span><span class="s">stage</span><span class="nv"> </span><span class="s">(early_estimate,</span><span class="nv"> </span><span class="s">approved_budget,</span><span class="nv"> </span><span class="s">contract_amendment,</span><span class="nv"> </span><span class="s">expectation)</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">Classification</span>
+<span class="w">  </span><span class="s">entry</span><span class="nv"> </span><span class="s">with</span><span class="nv"> </span><span class="s">classification_scheme</span><span class="nv"> </span><span class="s">cost-stages;</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">record</span><span class="nv"> </span><span class="s">with</span><span class="nv"> </span><span class="s">cost_record_role</span><span class="nv"> </span><span class="s">estimate</span>
+<span class="w">  </span><span class="s">carries</span><span class="nv"> </span><span class="s">at</span><span class="nv"> </span><span class="s">most</span><span class="nv"> </span><span class="s">one</span><span class="nv"> </span><span class="s">cost-stages</span><span class="nv"> </span><span class="s">classification.</span><span class="nv"> </span><span class="s">Cost-stage</span><span class="nv"> </span><span class="s">mappings</span><span class="nv"> </span><span class="s">(SKOS</span><span class="nv"> </span><span class="s">closeMatch</span>
+<span class="w">  </span><span class="s">unless</span><span class="nv"> </span><span class="s">noted):</span><span class="nv"> </span><span class="s">early_estimate</span><span class="nv"> </span><span class="s">(Kostenschätzung)</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">sia-phases</span><span class="nv"> </span><span class="s">31,</span><span class="nv"> </span><span class="s">DIN</span><span class="nv"> </span><span class="s">276</span><span class="nv"> </span><span class="s">Kostenschätzung,</span>
+<span class="w">  </span><span class="s">RIBA</span><span class="nv"> </span><span class="s">Stage</span><span class="nv"> </span><span class="s">2</span><span class="nv"> </span><span class="s">/</span><span class="nv"> </span><span class="s">NRM1</span><span class="nv"> </span><span class="s">cost</span><span class="nv"> </span><span class="s">plan</span><span class="nv"> </span><span class="s">1;</span><span class="nv"> </span><span class="s">approved_budget</span><span class="nv"> </span><span class="s">(Kostenvoranschlag)</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">sia-phases</span>
+<span class="w">  </span><span class="s">32,</span><span class="nv"> </span><span class="s">DIN</span><span class="nv"> </span><span class="s">276</span><span class="nv"> </span><span class="s">Kostenberechnung,</span><span class="nv"> </span><span class="s">RIBA</span><span class="nv"> </span><span class="s">Stage</span><span class="nv"> </span><span class="s">3</span><span class="nv"> </span><span class="s">/</span><span class="nv"> </span><span class="s">NRM1</span><span class="nv"> </span><span class="s">cost</span><span class="nv"> </span><span class="s">plan</span><span class="nv"> </span><span class="s">2;</span><span class="nv"> </span><span class="s">contract_amendment</span>
+<span class="w">  </span><span class="s">(Nachtrag)</span><span class="nv"> </span><span class="s">relatedMatch</span><span class="nv"> </span><span class="s">sia-phases</span><span class="nv"> </span><span class="s">51-53,</span><span class="nv"> </span><span class="s">VOB/B</span><span class="nv"> </span><span class="s">§</span><span class="nv"> </span><span class="s">2</span><span class="nv"> </span><span class="s">Nachtrag,</span><span class="nv"> </span><span class="s">RIBA</span><span class="nv"> </span><span class="s">Stage</span><span class="nv"> </span><span class="s">5</span><span class="nv"> </span><span class="s">variation;</span>
+<span class="w">  </span><span class="s">expectation</span><span class="nv"> </span><span class="s">(Kostenerwartung)</span><span class="nv"> </span><span class="s">relatedMatch</span><span class="nv"> </span><span class="s">sia-phases</span><span class="nv"> </span><span class="s">52-53,</span><span class="nv"> </span><span class="s">DIN</span><span class="nv"> </span><span class="s">276</span><span class="nv"> </span><span class="s">Kostenprognose,</span>
+<span class="w">  </span><span class="s">RIBA</span><span class="nv"> </span><span class="s">Stage</span><span class="nv"> </span><span class="s">5</span><span class="nv"> </span><span class="s">anticipated</span><span class="nv"> </span><span class="s">final</span><span class="nv"> </span><span class="s">cost.</span><span class="nv"> </span><span class="s">Details:</span><span class="nv"> </span><span class="s">https://github.com/pragmaticBIM/pragmatic-bim-data-contract/blob/main/contract/README.md#cost-stages'</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://schema.pragmaticbim.ch</span>
 <span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">VirtualEntity</span>
 <span class="nt">slot_usage</span><span class="p">:</span>
@@ -984,6 +1039,12 @@ Hold "Alt" / "Option" to enable pan &amp; zoom
 <span class="w">  </span><span class="nt">priced_for_customer</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">priced_for_customer</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Company</span>
+<span class="w">  </span><span class="nt">classifications</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">classifications</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Classification entries from IFC and other schemes. The cost stage</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">uses classification_scheme cost-stages with classification_code early_estimate,</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">approved_budget, contract_amendment, or expectation. At most one cost-stages</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">entry when cost_record_role is estimate.</span>
 <span class="nt">attributes</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">cost_record_role</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cost_record_role</span>
@@ -998,8 +1059,11 @@ Hold "Alt" / "Option" to enable pan &amp; zoom
 <span class="w">    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">  </span><span class="nt">cost_category</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cost_category</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Cost category label kept intentionally open pending classification-backed</span>
-<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">modeling.</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deprecated free-text cost category label. Still accepted for reading</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">legacy records; express the cost stage as a cost-stages classification instead.</span>
+<span class="w">    </span><span class="nt">deprecated</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deprecated in v1.1.0 and removed in the next minor release. Use a</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">Classification entry with classification_scheme cost-stages in classifications</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">instead.</span>
 <span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://schema.pragmaticbim.ch</span>
 <span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CostRecord</span>
@@ -1007,16 +1071,28 @@ Hold "Alt" / "Option" to enable pan &amp; zoom
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CostRequirement</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CostRecord</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
+<span class="w">  </span><span class="nt">amount</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">amount</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Lump-sum amount for this cost record in currency. Use instead of</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">unit_cost when the record has no quantity basis. A CostRecord requires amount</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">or unit_cost.</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://schema.pragmaticbim.ch</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CostRecord</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CostRecord</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">decimal</span>
+<span class="w">    </span><span class="nt">minimum_value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
 <span class="w">  </span><span class="nt">unit_cost</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unit_cost</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Unit cost for this cost item.</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Unit cost for this cost item per cost quantity. A CostRecord requires</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">amount or unit_cost.</span>
 <span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://schema.pragmaticbim.ch</span>
 <span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CostRecord</span>
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CostRecord</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">double</span>
-<span class="w">    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">    </span><span class="nt">minimum_value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
 <span class="w">  </span><span class="nt">currency</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">currency</span>
@@ -1228,7 +1304,10 @@ Hold "Alt" / "Option" to enable pan &amp; zoom
 <span class="w">    </span><span class="nt">pattern</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">^[0-3][0-9A-Za-z_$]{21}$</span>
 <span class="w">  </span><span class="nt">classifications</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">classifications</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Classification entries from IFC and other schemes.</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Classification entries from IFC and other schemes. The cost stage</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">uses classification_scheme cost-stages with classification_code early_estimate,</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">approved_budget, contract_amendment, or expectation. At most one cost-stages</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">entry when cost_record_role is estimate.</span>
 <span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://schema.pragmaticbim.ch</span>
 <span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CostRecord</span>
@@ -1240,11 +1319,11 @@ Hold "Alt" / "Option" to enable pan &amp; zoom
 <span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">  </span><span class="nt">geometry_representations</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">geometry_representations</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;Geometry</span><span class="nv"> </span><span class="s">references</span><span class="nv"> </span><span class="s">associated</span><span class="nv"> </span><span class="s">with</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">entity.</span><span class="nv"> </span><span class="s">A</span><span class="nv"> </span><span class="s">single</span><span class="nv"> </span><span class="s">element</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'Geometry</span><span class="nv"> </span><span class="s">references</span><span class="nv"> </span><span class="s">associated</span><span class="nv"> </span><span class="s">with</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">entity.</span><span class="nv"> </span><span class="s">A</span><span class="nv"> </span><span class="s">single</span><span class="nv"> </span><span class="s">element</span>
 <span class="w">      </span><span class="s">may</span><span class="nv"> </span><span class="s">link</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">multiple</span><span class="nv"> </span><span class="s">geometry</span><span class="nv"> </span><span class="s">representations</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">serve</span><span class="nv"> </span><span class="s">different</span><span class="nv"> </span><span class="s">intents</span><span class="nv"> </span><span class="s">(authoring,</span>
 <span class="w">      </span><span class="s">coordination,</span><span class="nv"> </span><span class="s">analysis,</span><span class="nv"> </span><span class="s">visualization)</span><span class="nv"> </span><span class="s">without</span><span class="nv"> </span><span class="s">duplicating</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">element</span><span class="nv"> </span><span class="s">itself.</span>
 
-<span class="w">      </span><span class="s">&#39;</span>
+<span class="w">      </span><span class="s">'</span>
 <span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://schema.pragmaticbim.ch</span>
 <span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CostRecord</span>
@@ -1278,10 +1357,10 @@ Hold "Alt" / "Option" to enable pan &amp; zoom
 <span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">  </span><span class="nt">performance_properties</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">performance_properties</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;Normalized,</span><span class="nv"> </span><span class="s">strongly</span><span class="nv"> </span><span class="s">typed</span><span class="nv"> </span><span class="s">domain</span><span class="nv"> </span><span class="s">properties</span><span class="nv"> </span><span class="s">(fire/acoustic/thermal/structural/</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'Normalized,</span><span class="nv"> </span><span class="s">strongly</span><span class="nv"> </span><span class="s">typed</span><span class="nv"> </span><span class="s">domain</span><span class="nv"> </span><span class="s">properties</span><span class="nv"> </span><span class="s">(fire/acoustic/thermal/structural/</span>
 <span class="w">      </span><span class="s">security/material)</span><span class="nv"> </span><span class="s">extracted</span><span class="nv"> </span><span class="s">from</span><span class="nv"> </span><span class="s">raw</span><span class="nv"> </span><span class="s">IFC</span><span class="nv"> </span><span class="s">PropertySet</span><span class="nv"> </span><span class="s">values.</span>
 
-<span class="w">      </span><span class="s">&#39;</span>
+<span class="w">      </span><span class="s">'</span>
 <span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://schema.pragmaticbim.ch</span>
 <span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CostRecord</span>
@@ -1328,6 +1407,15 @@ Hold "Alt" / "Option" to enable pan &amp; zoom
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Entity</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">StatusType</span>
 <span class="nt">class_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pbs:CostRecord</span>
+<span class="nt">any_of</span><span class="p">:</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">slot_conditions</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">amount</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">amount</span>
+<span class="w">      </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">slot_conditions</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">unit_cost</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unit_cost</span>
+<span class="w">      </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 </code></pre></div>
 </details>
 </div>

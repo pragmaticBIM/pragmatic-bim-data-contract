@@ -2923,12 +2923,15 @@ class ScheduleRequirement(Requirement):
 
 class CostRequirement(Requirement):
     """
-    Cost or budget requirement (unit-cost cap, total budget limit, etc.).
+    Cost or budget requirement (unit-cost cap, total budget limit, etc.). The cost stage the requirement applies to is a Classification entry with classification_scheme cost-stages; cost_category is deprecated.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'pbs:CostRequirement',
          'from_schema': 'https://schema.pragmaticbim.ch/entity/requirements'})
 
-    cost_category: Optional[str] = Field(default=None, description="""Cost category label kept intentionally open pending classification-backed modeling.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CostRequirement', 'CostRecord']} })
+    cost_category: Optional[str] = Field(default=None, description="""Deprecated free-text cost category label. Still accepted for reading legacy records; express the cost stage as a cost-stages classification instead.""", json_schema_extra = { "linkml_meta": {'deprecated': 'Deprecated in v1.1.0 and removed in the next minor release. '
+                       'Use a Classification entry with classification_scheme '
+                       'cost-stages in classifications instead.',
+         'domain_of': ['CostRequirement', 'CostRecord']} })
     target_operator: Optional[RequirementTargetOperator] = Field(default=None, description="""Comparison operator for the requirement target.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PerformanceRequirement', 'CostRequirement']} })
     target_value_number: Optional[float] = Field(default=None, description="""Numeric target value when applicable.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PerformanceRequirement', 'CostRequirement']} })
     currency: str = Field(default=..., description="""ISO 4217 currency code (for example EUR, USD).""", json_schema_extra = { "linkml_meta": {'domain_of': ['CostRequirement', 'CostRecord']} })
@@ -4108,11 +4111,29 @@ class TimeRecord(VirtualEntity):
 
 class CostRecord(VirtualEntity):
     """
-    Cost record for estimation, catalog pricing, and calculation. Use cost_record_role to distinguish catalog cost/price (on Product) from project estimate/actual lines. Populate component_cost_items to act as an assembly (aggregated unit price).
+    Cost record for estimation, catalog pricing, and calculation. Use cost_record_role to distinguish catalog cost/price (on Product) from project estimate/actual lines. Populate component_cost_items to act as an assembly (aggregated unit price). Either amount (lump sum) or unit_cost (rate per cost quantity) must be present. The cost stage (early_estimate, approved_budget, contract_amendment, expectation) is a Classification entry with classification_scheme cost-stages; a record with cost_record_role estimate carries at most one cost-stages classification. Cost-stage mappings (SKOS closeMatch unless noted): early_estimate (Kostenschätzung) to sia-phases 31, DIN 276 Kostenschätzung, RIBA Stage 2 / NRM1 cost plan 1; approved_budget (Kostenvoranschlag) to sia-phases 32, DIN 276 Kostenberechnung, RIBA Stage 3 / NRM1 cost plan 2; contract_amendment (Nachtrag) relatedMatch sia-phases 51-53, VOB/B § 2 Nachtrag, RIBA Stage 5 variation; expectation (Kostenerwartung) relatedMatch sia-phases 52-53, DIN 276 Kostenprognose, RIBA Stage 5 anticipated final cost. Details: https://github.com/pragmaticBIM/pragmatic-bim-data-contract/blob/main/contract/README.md#cost-stages
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'pbs:CostRecord',
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'any_of': [{'slot_conditions': {'amount': {'name': 'amount',
+                                                    'required': True}}},
+                    {'slot_conditions': {'unit_cost': {'name': 'unit_cost',
+                                                       'required': True}}}],
+         'class_uri': 'pbs:CostRecord',
          'from_schema': 'https://schema.pragmaticbim.ch/entity/virtual',
-         'slot_usage': {'cost_record_role': {'name': 'cost_record_role',
+         'slot_usage': {'classifications': {'description': 'Classification entries '
+                                                           'from IFC and other '
+                                                           'schemes. The cost stage '
+                                                           'uses classification_scheme '
+                                                           'cost-stages with '
+                                                           'classification_code '
+                                                           'early_estimate, '
+                                                           'approved_budget, '
+                                                           'contract_amendment, or '
+                                                           'expectation. At most one '
+                                                           'cost-stages entry when '
+                                                           'cost_record_role is '
+                                                           'estimate.',
+                                            'name': 'classifications'},
+                        'cost_record_role': {'name': 'cost_record_role',
                                              'required': True},
                         'priced_for_customer': {'name': 'priced_for_customer',
                                                 'range': 'Company'},
@@ -4120,8 +4141,12 @@ class CostRecord(VirtualEntity):
                                             'range': 'Product'}}})
 
     cost_record_role: CostRecordRole = Field(default=..., description="""Role of this cost record (catalog cost, catalog price, project estimate, or actual).""", json_schema_extra = { "linkml_meta": {'domain_of': ['CostRecord']} })
-    cost_category: Optional[str] = Field(default=None, description="""Cost category label kept intentionally open pending classification-backed modeling.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CostRequirement', 'CostRecord']} })
-    unit_cost: float = Field(default=..., description="""Unit cost for this cost item.""", ge=0, json_schema_extra = { "linkml_meta": {'domain_of': ['CostRecord']} })
+    cost_category: Optional[str] = Field(default=None, description="""Deprecated free-text cost category label. Still accepted for reading legacy records; express the cost stage as a cost-stages classification instead.""", json_schema_extra = { "linkml_meta": {'deprecated': 'Deprecated in v1.1.0 and removed in the next minor release. '
+                       'Use a Classification entry with classification_scheme '
+                       'cost-stages in classifications instead.',
+         'domain_of': ['CostRequirement', 'CostRecord']} })
+    amount: Optional[Decimal] = Field(default=None, description="""Lump-sum amount for this cost record in currency. Use instead of unit_cost when the record has no quantity basis. A CostRecord requires amount or unit_cost.""", ge=0, json_schema_extra = { "linkml_meta": {'domain_of': ['CostRecord']} })
+    unit_cost: Optional[float] = Field(default=None, description="""Unit cost for this cost item per cost quantity. A CostRecord requires amount or unit_cost.""", ge=0, json_schema_extra = { "linkml_meta": {'domain_of': ['CostRecord']} })
     currency: str = Field(default=..., description="""ISO 4217 currency code (for example EUR, USD).""", json_schema_extra = { "linkml_meta": {'domain_of': ['CostRequirement', 'CostRecord']} })
     cost_quantity_type: Optional[QuantityType] = Field(default=None, description="""Quantity type used as basis for this cost calculation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CostRequirement', 'CostRecord']} })
     cost_quantity_value: Optional[float] = Field(default=None, description="""Quantity magnitude used as basis for this cost calculation.""", ge=0, json_schema_extra = { "linkml_meta": {'domain_of': ['CostRecord']} })
@@ -4141,7 +4166,7 @@ class CostRecord(VirtualEntity):
     meaning_uri: Optional[str] = Field(default=None, description="""Optional semantic URI for linking the entity instance to an external ontology concept.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
     localized_descriptions: Optional[list[LocalizedText]] = Field(default=None, description="""Localized variants of description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
     ifc_global_id: Optional[str] = Field(default=None, description="""IFC GlobalId of the mapped entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Change']} })
-    classifications: Optional[list[Classification]] = Field(default=None, description="""Classification entries from IFC and other schemes.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Artifact']} })
+    classifications: Optional[list[Classification]] = Field(default=None, description="""Classification entries from IFC and other schemes. The cost stage uses classification_scheme cost-stages with classification_code early_estimate, approved_budget, contract_amendment, or expectation. At most one cost-stages entry when cost_record_role is estimate.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Artifact']} })
     geometry_representations: Optional[list[GeometryRepresentation]] = Field(default=None, description="""Geometry references associated with the entity. A single element may link to multiple geometry representations to serve different intents (authoring, coordination, analysis, visualization) without duplicating the element itself.
 """, json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
     quantity_values: Optional[list[QuantityValue]] = Field(default=None, description="""Quantities associated with the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })

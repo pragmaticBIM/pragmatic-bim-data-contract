@@ -6,7 +6,7 @@ search:
 # Class: CostRequirement 
 
 
-_Cost or budget requirement (unit-cost cap, total budget limit, etc.)._
+_Cost or budget requirement (unit-cost cap, total budget limit, etc.). The cost stage the requirement applies to is a Classification entry with classification_scheme cost-stages; cost_category is deprecated._
 
 
 
@@ -62,7 +62,7 @@ click RequirementTargetOperator href "./RequirementTargetOperator.html" _blank
 
 | Name | Cardinality and Range | Description | Inheritance |
 | ---  | --- | --- | --- |
-| [cost_category](cost_category.md) | 0..1 <br/> [String](String.md) | Cost category label kept intentionally open pending classification-backed modeling. | direct |
+| [cost_category](cost_category.md) | 0..1 <br/> [String](String.md) | Deprecated free-text cost category label. Still accepted for reading legacy records; express the cost stage as a cost-stages classification instead. | direct |
 | [target_operator](target_operator.md) | 0..1 <br/> [RequirementTargetOperator](RequirementTargetOperator.md) | Comparison operator for the requirement target. | direct |
 | [target_value_number](target_value_number.md) | 0..1 <br/> [Double](Double.md) | Numeric target value when applicable. | direct |
 | [currency](currency.md) | 1 <br/> [String](String.md) | ISO 4217 currency code (for example EUR, USD). | direct |
@@ -137,6 +137,8 @@ click RequirementTargetOperator href "./RequirementTargetOperator.html" _blank
 ```yaml
 name: CostRequirement
 description: Cost or budget requirement (unit-cost cap, total budget limit, etc.).
+  The cost stage the requirement applies to is a Classification entry with classification_scheme
+  cost-stages; cost_category is deprecated.
 from_schema: https://schema.pragmaticbim.ch
 is_a: Requirement
 slots:
@@ -156,13 +158,18 @@ class_uri: pbs:CostRequirement
 ```yaml
 name: CostRequirement
 description: Cost or budget requirement (unit-cost cap, total budget limit, etc.).
+  The cost stage the requirement applies to is a Classification entry with classification_scheme
+  cost-stages; cost_category is deprecated.
 from_schema: https://schema.pragmaticbim.ch
 is_a: Requirement
 attributes:
   cost_category:
     name: cost_category
-    description: Cost category label kept intentionally open pending classification-backed
-      modeling.
+    description: Deprecated free-text cost category label. Still accepted for reading
+      legacy records; express the cost stage as a cost-stages classification instead.
+    deprecated: Deprecated in v1.1.0 and removed in the next minor release. Use a
+      Classification entry with classification_scheme cost-stages in classifications
+      instead.
     from_schema: https://schema.pragmaticbim.ch
     rank: 1000
     owner: CostRequirement
