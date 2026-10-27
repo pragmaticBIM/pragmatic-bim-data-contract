@@ -46,22 +46,26 @@ class ContractRuleError(ValueError):
     """Raised when an instance violates one or more contract rules."""
 
     def __init__(self, model_name: str, issues: list[str]) -> None:
+        """Store the model name and a copy of its contract rule violations."""
         self.model_name = model_name
         self.issues = list(issues)
         super().__init__(f"{model_name} violates contract rules: " + "; ".join(self.issues))
 
 
 def _get(instance: Any, slot: str) -> Any:
+    """Read a dict key or object attribute, returning None when absent."""
     if isinstance(instance, dict):
         return instance.get(slot)
     return getattr(instance, slot, None)
 
 
 def _text(value: Any) -> Any:
+    """Unwrap Enum members to their values, leaving other values unchanged."""
     return value.value if isinstance(value, Enum) else value
 
 
 def _is_set(value: Any) -> bool:
+    """Return whether a value is neither None nor an empty string."""
     return value is not None and value != ""
 
 
@@ -75,6 +79,7 @@ def cost_stage_codes(instance: Any) -> list[str]:
 
 
 def cost_record_issues(instance: Any) -> list[str]:
+    """Return violations of cost presence and estimate stage cardinality rules."""
     issues: list[str] = []
     if not _is_set(_get(instance, "amount")) and not _is_set(_get(instance, "unit_cost")):
         issues.append("either amount or unit_cost is required")
@@ -93,6 +98,7 @@ RULES: dict[str, Callable[[Any], list[str]]] = {
 
 
 def _resolve_model_name(instance: Any, model_name: str | None) -> str | None:
+    """Use an explicit model name or find a known class in the instance's MRO."""
     if model_name is not None:
         return model_name
     if isinstance(instance, dict):
