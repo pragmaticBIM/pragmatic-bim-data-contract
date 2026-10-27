@@ -506,7 +506,7 @@
 
 
 <h1 id="class-costrequirement">Class: CostRequirement<a class="headerlink" href="#class-costrequirement" title="Permanent link">&para;</a></h1>
-<p><em>Cost or budget requirement (unit-cost cap, total budget limit, etc.).</em></p>
+<p><em>Cost or budget requirement (unit-cost cap, total budget limit, etc.). The cost stage the requirement applies to is a Classification entry with classification_scheme cost-stages; cost_category is deprecated.</em></p>
 <div>
 <p>URI: <a href="https://schema.pragmaticbim.ch/CostRequirement">pbs:CostRequirement</a></p>
 <div class="panzoom-box" data-key="alt" id="panzoom0" oncontextmenu="return false;">
@@ -591,7 +591,7 @@ Hold "Alt" / "Option" to enable pan &amp; zoom
 <tr>
 <td><a href="cost_category.html">cost_category</a></td>
 <td>0..1 <br/> <a href="String.html">String</a></td>
-<td>Cost category label kept intentionally open pending classification-backed modeling.</td>
+<td>Deprecated free-text cost category label. Still accepted for reading legacy records; express the cost stage as a cost-stages classification instead.</td>
 <td>direct</td>
 </tr>
 <tr>
@@ -764,6 +764,8 @@ Hold "Alt" / "Option" to enable pan &amp; zoom
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CostRequirement</span>
 <span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Cost or budget requirement (unit-cost cap, total budget limit, etc.).</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">The cost stage the requirement applies to is a Classification entry with classification_scheme</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">cost-stages; cost_category is deprecated.</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://schema.pragmaticbim.ch</span>
 <span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Requirement</span>
 <span class="nt">slots</span><span class="p">:</span>
@@ -779,13 +781,18 @@ Hold "Alt" / "Option" to enable pan &amp; zoom
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CostRequirement</span>
 <span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Cost or budget requirement (unit-cost cap, total budget limit, etc.).</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">The cost stage the requirement applies to is a Classification entry with classification_scheme</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">cost-stages; cost_category is deprecated.</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://schema.pragmaticbim.ch</span>
 <span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Requirement</span>
 <span class="nt">attributes</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">cost_category</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cost_category</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Cost category label kept intentionally open pending classification-backed</span>
-<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">modeling.</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deprecated free-text cost category label. Still accepted for reading</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">legacy records; express the cost stage as a cost-stages classification instead.</span>
+<span class="w">    </span><span class="nt">deprecated</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deprecated in v1.1.0 and removed in the next minor release. Use a</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">Classification entry with classification_scheme cost-stages in classifications</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">instead.</span>
 <span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://schema.pragmaticbim.ch</span>
 <span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CostRequirement</span>
@@ -945,11 +952,11 @@ Hold "Alt" / "Option" to enable pan &amp; zoom
 <span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">  </span><span class="nt">geometry_representations</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">geometry_representations</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;Geometry</span><span class="nv"> </span><span class="s">references</span><span class="nv"> </span><span class="s">associated</span><span class="nv"> </span><span class="s">with</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">entity.</span><span class="nv"> </span><span class="s">A</span><span class="nv"> </span><span class="s">single</span><span class="nv"> </span><span class="s">element</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'Geometry</span><span class="nv"> </span><span class="s">references</span><span class="nv"> </span><span class="s">associated</span><span class="nv"> </span><span class="s">with</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">entity.</span><span class="nv"> </span><span class="s">A</span><span class="nv"> </span><span class="s">single</span><span class="nv"> </span><span class="s">element</span>
 <span class="w">      </span><span class="s">may</span><span class="nv"> </span><span class="s">link</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">multiple</span><span class="nv"> </span><span class="s">geometry</span><span class="nv"> </span><span class="s">representations</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">serve</span><span class="nv"> </span><span class="s">different</span><span class="nv"> </span><span class="s">intents</span><span class="nv"> </span><span class="s">(authoring,</span>
 <span class="w">      </span><span class="s">coordination,</span><span class="nv"> </span><span class="s">analysis,</span><span class="nv"> </span><span class="s">visualization)</span><span class="nv"> </span><span class="s">without</span><span class="nv"> </span><span class="s">duplicating</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">element</span><span class="nv"> </span><span class="s">itself.</span>
 
-<span class="w">      </span><span class="s">&#39;</span>
+<span class="w">      </span><span class="s">'</span>
 <span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://schema.pragmaticbim.ch</span>
 <span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CostRequirement</span>
@@ -983,10 +990,10 @@ Hold "Alt" / "Option" to enable pan &amp; zoom
 <span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">  </span><span class="nt">performance_properties</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">performance_properties</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;Normalized,</span><span class="nv"> </span><span class="s">strongly</span><span class="nv"> </span><span class="s">typed</span><span class="nv"> </span><span class="s">domain</span><span class="nv"> </span><span class="s">properties</span><span class="nv"> </span><span class="s">(fire/acoustic/thermal/structural/</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'Normalized,</span><span class="nv"> </span><span class="s">strongly</span><span class="nv"> </span><span class="s">typed</span><span class="nv"> </span><span class="s">domain</span><span class="nv"> </span><span class="s">properties</span><span class="nv"> </span><span class="s">(fire/acoustic/thermal/structural/</span>
 <span class="w">      </span><span class="s">security/material)</span><span class="nv"> </span><span class="s">extracted</span><span class="nv"> </span><span class="s">from</span><span class="nv"> </span><span class="s">raw</span><span class="nv"> </span><span class="s">IFC</span><span class="nv"> </span><span class="s">PropertySet</span><span class="nv"> </span><span class="s">values.</span>
 
-<span class="w">      </span><span class="s">&#39;</span>
+<span class="w">      </span><span class="s">'</span>
 <span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://schema.pragmaticbim.ch</span>
 <span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CostRequirement</span>

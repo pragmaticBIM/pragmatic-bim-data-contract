@@ -61,8 +61,45 @@ Business scope hierarchy: `Program` (`content_kind: program`) groups `Project` r
 - Entity-to-entity relationships are modeled as ID references (`inlined: false`).
 - Value objects that belong inside a record are embedded (`inlined: true`).
 - Building metric and ratio results link to SKOS vocabularies via `QuantityValue.metric_scheme`, `metric_code`, and `metric_uri` (`AbstractBuildingMetric` or `AbstractBuildingRatio`). See [`classification/abstract-metric-definition/`](../classification/abstract-metric-definition/) and [`classification/abstract-ratio-definition/`](../classification/abstract-ratio-definition/).
-- `cost_category` and `material_category` are intentionally open text for now and can later be aligned with stronger classification systems.
+- `material_category` is intentionally open text for now and can later be aligned with stronger classification systems.
+- `cost_category` is deprecated since v1.1.0 on `CostRecord` and `CostRequirement` and is removed in the next minor release. The cost stage is a `classifications` entry with `classification_scheme: cost-stages` (see [Cost stages](#cost-stages)).
 - Units can be carried as plain strings for operational compatibility and optionally accompanied by unit URIs (for example QUDT) for stronger semantic alignment.
+
+## Cost stages
+
+A cost stage states which point of the cost-planning lifecycle a `CostRecord` (or `CostRequirement`) belongs to. It is a `Classification` entry in `classifications`:
+
+```yaml
+classifications:
+  - classification_scheme: cost-stages
+    classification_code: approved_budget
+```
+
+| `classification_code` | Label (en) | Label (de) | Meaning |
+|---|---|---|---|
+| `early_estimate` | Early estimate | Kostenschätzung (KS) | Estimate from preliminary design, before a budget is approved. |
+| `approved_budget` | Approved budget | Kostenvoranschlag (KV) | Estimate from the design project that the client approves as the budget. |
+| `contract_amendment` | Contract amendment | Nachtrag | Change to an awarded contract sum (addition or deduction). |
+| `expectation` | Expectation | Kostenerwartung | Current forecast of the final cost during realization. |
+
+### Rules
+
+- A `CostRecord` with `cost_record_role: estimate` carries at most one `cost-stages` classification.
+- A `CostRecord` carries `amount` (lump sum, decimal ≥ 0) or `unit_cost` (rate per cost quantity), or both. `amount` removes the need for `unit_cost` × 1 on lump sums.
+- JSON Schema enforces the `amount` / `unit_cost` rule (`anyOf`). The generated Pydantic models do not enforce cross-slot rules; apply `pragmatic_bim.rules.validate(instance)` after construction. It raises `ContractRuleError` on violations and emits `DeprecationWarning` when `cost_category` is populated.
+
+### Mappings
+
+Mapping types follow SKOS (`closeMatch`, `relatedMatch`). `sia-phases` codes are SIA 112 phase notations; accuracy bands are those of SIA 102.
+
+| `cost-stages` | `sia-phases` (SIA 112) | DIN 276:2018 | RIBA Plan of Work 2020 / NRM1 |
+|---|---|---|---|
+| `early_estimate` | closeMatch `31` Vorprojekt (Kostenschätzung ±15 %); relatedMatch `21` (Grobkostenschätzung ±25 %) | closeMatch Kostenschätzung (HOAI LPH 2) | closeMatch Stage 2 Concept Design, NRM1 formal cost plan 1 |
+| `approved_budget` | closeMatch `32` Bauprojekt (Kostenvoranschlag ±10 %) | closeMatch Kostenberechnung (HOAI LPH 3). The DIN 276 stage named Kostenvoranschlag is a later stage and is not equivalent to SIA KV. | closeMatch Stage 3 Spatial Coordination, NRM1 formal cost plan 2 |
+| `contract_amendment` | relatedMatch `51`–`53` Realisierung | no cost stage; relatedMatch Nachtrag (VOB/B § 2) | relatedMatch Stage 5 Manufacturing and Construction, variation |
+| `expectation` | relatedMatch `52` Ausführung, `53` Inbetriebnahme, Abschluss | relatedMatch Kostenprognose (cost control before Kostenfeststellung) | relatedMatch Stage 5, anticipated final cost |
+
+The SKOS vocabulary for `cost-stages` is maintained outside this repository.
 
 ## IFC mapping
 

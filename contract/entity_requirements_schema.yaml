@@ -97,7 +97,10 @@ classes:
   CostRequirement:
     is_a: Requirement
     class_uri: pbs:CostRequirement
-    description: Cost or budget requirement (unit-cost cap, total budget limit, etc.).
+    description: >-
+      Cost or budget requirement (unit-cost cap, total budget limit, etc.). The cost
+      stage the requirement applies to is a Classification entry with
+      classification_scheme cost-stages; cost_category is deprecated.
     slots:
     - cost_category
     - target_operator

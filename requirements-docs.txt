@@ -1,6 +1,7 @@
-linkml
+linkml>=1.11,<1.12
+linkml-runtime>=1.11,<1.12
 mkdocs
-mkdocs-material
+mkdocs-material==9.7.6
 mkdocs-panzoom-plugin
 openpyxl
 pyyaml

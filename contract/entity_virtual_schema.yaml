@@ -198,9 +198,22 @@ classes:
       Cost record for estimation, catalog pricing, and calculation. Use cost_record_role
       to distinguish catalog cost/price (on Product) from project estimate/actual lines.
       Populate component_cost_items to act as an assembly (aggregated unit price).
+      Either amount (lump sum) or unit_cost (rate per cost quantity) must be present.
+      The cost stage (early_estimate, approved_budget, contract_amendment, expectation)
+      is a Classification entry with classification_scheme cost-stages; a record with
+      cost_record_role estimate carries at most one cost-stages classification.
+      Cost-stage mappings (SKOS closeMatch unless noted): early_estimate (Kostenschätzung)
+      to sia-phases 31, DIN 276 Kostenschätzung, RIBA Stage 2 / NRM1 cost plan 1;
+      approved_budget (Kostenvoranschlag) to sia-phases 32, DIN 276 Kostenberechnung,
+      RIBA Stage 3 / NRM1 cost plan 2; contract_amendment (Nachtrag) relatedMatch
+      sia-phases 51-53, VOB/B § 2 Nachtrag, RIBA Stage 5 variation; expectation
+      (Kostenerwartung) relatedMatch sia-phases 52-53, DIN 276 Kostenprognose, RIBA
+      Stage 5 anticipated final cost. Details:
+      https://github.com/pragmaticBIM/pragmatic-bim-data-contract/blob/main/contract/README.md#cost-stages
     slots:
     - cost_record_role
     - cost_category
+    - amount
     - unit_cost
     - currency
     - cost_quantity_type
@@ -217,6 +230,19 @@ classes:
         range: Product
       priced_for_customer:
         range: Company
+      classifications:
+        description: >-
+          Classification entries from IFC and other schemes. The cost stage uses
+          classification_scheme cost-stages with classification_code early_estimate,
+          approved_budget, contract_amendment, or expectation. At most one cost-stages
+          entry when cost_record_role is estimate.
+    any_of:
+    - slot_conditions:
+        amount:
+          required: true
+    - slot_conditions:
+        unit_cost:
+          required: true
   Material:
     is_a: VirtualEntity
     class_uri: pbs:Material
@@ -354,7 +380,12 @@ slots:
     description: Material definitions associated with this entity.
   cost_category:
     range: string
-    description: Cost category label kept intentionally open pending classification-backed modeling.
+    deprecated: >-
+      Deprecated in v1.1.0 and removed in the next minor release. Use a Classification
+      entry with classification_scheme cost-stages in classifications instead.
+    description: >-
+      Deprecated free-text cost category label. Still accepted for reading legacy
+      records; express the cost stage as a cost-stages classification instead.
   cost_record_role:
     range: CostRecordRole
     required: true
@@ -363,11 +394,18 @@ slots:
     range: Company
     inlined: false
     description: Optional customer for a customer-specific catalog price when cost_record_role is price.
+  amount:
+    range: decimal
+    minimum_value: 0
+    description: >-
+      Lump-sum amount for this cost record in currency. Use instead of unit_cost
+      when the record has no quantity basis. A CostRecord requires amount or unit_cost.
   unit_cost:
     range: double
-    required: true
     minimum_value: 0
-    description: Unit cost for this cost item.
+    description: >-
+      Unit cost for this cost item per cost quantity. A CostRecord requires amount
+      or unit_cost.
   currency:
     range: string
     required: true

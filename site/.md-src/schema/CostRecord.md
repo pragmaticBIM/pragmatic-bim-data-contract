@@ -6,7 +6,7 @@ search:
 # Class: CostRecord 
 
 
-_Cost record for estimation, catalog pricing, and calculation. Use cost_record_role to distinguish catalog cost/price (on Product) from project estimate/actual lines. Populate component_cost_items to act as an assembly (aggregated unit price)._
+_Cost record for estimation, catalog pricing, and calculation. Use cost_record_role to distinguish catalog cost/price (on Product) from project estimate/actual lines. Populate component_cost_items to act as an assembly (aggregated unit price). Either amount (lump sum) or unit_cost (rate per cost quantity) must be present. The cost stage (early_estimate, approved_budget, contract_amendment, expectation) is a Classification entry with classification_scheme cost-stages; a record with cost_record_role estimate carries at most one cost-stages classification. Cost-stage mappings (SKOS closeMatch unless noted): early_estimate (Kostenschätzung) to sia-phases 31, DIN 276 Kostenschätzung, RIBA Stage 2 / NRM1 cost plan 1; approved_budget (Kostenvoranschlag) to sia-phases 32, DIN 276 Kostenberechnung, RIBA Stage 3 / NRM1 cost plan 2; contract_amendment (Nachtrag) relatedMatch sia-phases 51-53, VOB/B § 2 Nachtrag, RIBA Stage 5 variation; expectation (Kostenerwartung) relatedMatch sia-phases 52-53, DIN 276 Kostenprognose, RIBA Stage 5 anticipated final cost. Details: https://github.com/pragmaticBIM/pragmatic-bim-data-contract/blob/main/contract/README.md#cost-stages_
 
 
 
@@ -68,8 +68,9 @@ click TimeRecord href "./TimeRecord.html" _blank
 | Name | Cardinality and Range | Description | Inheritance |
 | ---  | --- | --- | --- |
 | [cost_record_role](cost_record_role.md) | 1 <br/> [CostRecordRole](CostRecordRole.md) | Role of this cost record (catalog cost, catalog price, project estimate, or actual). | direct |
-| [cost_category](cost_category.md) | 0..1 <br/> [String](String.md) | Cost category label kept intentionally open pending classification-backed modeling. | direct |
-| [unit_cost](unit_cost.md) | 1 <br/> [Double](Double.md) | Unit cost for this cost item. | direct |
+| [cost_category](cost_category.md) | 0..1 <br/> [String](String.md) | Deprecated free-text cost category label. Still accepted for reading legacy records; express the cost stage as a cost-stages classification instead. | direct |
+| [amount](amount.md) | 0..1 <br/> [Decimal](Decimal.md) | Lump-sum amount for this cost record in currency. Use instead of unit_cost when the record has no quantity basis. A CostRecord requires amount or unit_cost. | direct |
+| [unit_cost](unit_cost.md) | 0..1 <br/> [Double](Double.md) | Unit cost for this cost item per cost quantity. A CostRecord requires amount or unit_cost. | direct |
 | [currency](currency.md) | 1 <br/> [String](String.md) | ISO 4217 currency code (for example EUR, USD). | direct |
 | [cost_quantity_type](cost_quantity_type.md) | 0..1 <br/> [QuantityType](QuantityType.md) | Quantity type used as basis for this cost calculation. | direct |
 | [cost_quantity_value](cost_quantity_value.md) | 0..1 <br/> [Double](Double.md) | Quantity magnitude used as basis for this cost calculation. | direct |
@@ -89,7 +90,7 @@ click TimeRecord href "./TimeRecord.html" _blank
 | [meaning_uri](meaning_uri.md) | 0..1 <br/> [Uriorcurie](Uriorcurie.md) | Optional semantic URI for linking the entity instance to an external ontology concept. | [Entity](Entity.md) |
 | [localized_descriptions](localized_descriptions.md) | * <br/> [LocalizedText](LocalizedText.md) | Localized variants of description. | [Entity](Entity.md) |
 | [ifc_global_id](ifc_global_id.md) | 0..1 <br/> [String](String.md) | IFC GlobalId of the mapped entity. | [Entity](Entity.md) |
-| [classifications](classifications.md) | * <br/> [Classification](Classification.md) | Classification entries from IFC and other schemes. | [Entity](Entity.md) |
+| [classifications](classifications.md) | * <br/> [Classification](Classification.md) | Classification entries from IFC and other schemes. The cost stage uses classification_scheme cost-stages with classification_code early_estimate, approved_budget, contract_amendment, or expectation. At most one cost-stages entry when cost_record_role is estimate. | [Entity](Entity.md) |
 | [geometry_representations](geometry_representations.md) | * <br/> [GeometryRepresentation](GeometryRepresentation.md) | Geometry references associated with the entity. A single element may link to multiple geometry representations to serve different intents (authoring, coordination, analysis, visualization) without duplicating the element itself. | [Entity](Entity.md) |
 | [quantity_values](quantity_values.md) | * <br/> [QuantityValue](QuantityValue.md) | Quantities associated with the entity. | [Entity](Entity.md) |
 | [metadata](metadata.md) | * <br/> [MetadataEntry](MetadataEntry.md) | Generic metadata container for IFC attributes/properties and project-specific extensions. | [Entity](Entity.md) |
@@ -98,6 +99,20 @@ click TimeRecord href "./TimeRecord.html" _blank
 | [modified_at](modified_at.md) | 0..1 <br/> [Datetime](Datetime.md) | Last modification timestamp for this entity record. | [Entity](Entity.md) |
 | [revision](revision.md) | 0..1 <br/> [Integer](Integer.md) | Integer revision counter for change tracking. | [Entity](Entity.md) |
 | [status](status.md) | 0..1 <br/> [StatusType](StatusType.md) | Lifecycle or QA status. | [Entity](Entity.md) |
+
+<details>
+<summary>Expressions & Logic</summary>
+#### Any Of
+
+The class must satisfy at least one of:
+- AnonymousClassExpression({
+  'slot_conditions': {'amount': SlotDefinition({'name': 'amount', 'required': True})}
+})
+- AnonymousClassExpression({
+  'slot_conditions': {'unit_cost': SlotDefinition({'name': 'unit_cost', 'required': True})}
+})
+
+</details>
 
 
 
@@ -171,14 +186,25 @@ click TimeRecord href "./TimeRecord.html" _blank
 <details>
 ```yaml
 name: CostRecord
-description: Cost record for estimation, catalog pricing, and calculation. Use cost_record_role
+description: 'Cost record for estimation, catalog pricing, and calculation. Use cost_record_role
   to distinguish catalog cost/price (on Product) from project estimate/actual lines.
-  Populate component_cost_items to act as an assembly (aggregated unit price).
+  Populate component_cost_items to act as an assembly (aggregated unit price). Either
+  amount (lump sum) or unit_cost (rate per cost quantity) must be present. The cost
+  stage (early_estimate, approved_budget, contract_amendment, expectation) is a Classification
+  entry with classification_scheme cost-stages; a record with cost_record_role estimate
+  carries at most one cost-stages classification. Cost-stage mappings (SKOS closeMatch
+  unless noted): early_estimate (Kostenschätzung) to sia-phases 31, DIN 276 Kostenschätzung,
+  RIBA Stage 2 / NRM1 cost plan 1; approved_budget (Kostenvoranschlag) to sia-phases
+  32, DIN 276 Kostenberechnung, RIBA Stage 3 / NRM1 cost plan 2; contract_amendment
+  (Nachtrag) relatedMatch sia-phases 51-53, VOB/B § 2 Nachtrag, RIBA Stage 5 variation;
+  expectation (Kostenerwartung) relatedMatch sia-phases 52-53, DIN 276 Kostenprognose,
+  RIBA Stage 5 anticipated final cost. Details: https://github.com/pragmaticBIM/pragmatic-bim-data-contract/blob/main/contract/README.md#cost-stages'
 from_schema: https://schema.pragmaticbim.ch
 is_a: VirtualEntity
 slots:
 - cost_record_role
 - cost_category
+- amount
 - unit_cost
 - currency
 - cost_quantity_type
@@ -198,7 +224,22 @@ slot_usage:
   priced_for_customer:
     name: priced_for_customer
     range: Company
+  classifications:
+    name: classifications
+    description: Classification entries from IFC and other schemes. The cost stage
+      uses classification_scheme cost-stages with classification_code early_estimate,
+      approved_budget, contract_amendment, or expectation. At most one cost-stages
+      entry when cost_record_role is estimate.
 class_uri: pbs:CostRecord
+any_of:
+- slot_conditions:
+    amount:
+      name: amount
+      required: true
+- slot_conditions:
+    unit_cost:
+      name: unit_cost
+      required: true
 
 ```
 </details>
@@ -208,9 +249,19 @@ class_uri: pbs:CostRecord
 <details>
 ```yaml
 name: CostRecord
-description: Cost record for estimation, catalog pricing, and calculation. Use cost_record_role
+description: 'Cost record for estimation, catalog pricing, and calculation. Use cost_record_role
   to distinguish catalog cost/price (on Product) from project estimate/actual lines.
-  Populate component_cost_items to act as an assembly (aggregated unit price).
+  Populate component_cost_items to act as an assembly (aggregated unit price). Either
+  amount (lump sum) or unit_cost (rate per cost quantity) must be present. The cost
+  stage (early_estimate, approved_budget, contract_amendment, expectation) is a Classification
+  entry with classification_scheme cost-stages; a record with cost_record_role estimate
+  carries at most one cost-stages classification. Cost-stage mappings (SKOS closeMatch
+  unless noted): early_estimate (Kostenschätzung) to sia-phases 31, DIN 276 Kostenschätzung,
+  RIBA Stage 2 / NRM1 cost plan 1; approved_budget (Kostenvoranschlag) to sia-phases
+  32, DIN 276 Kostenberechnung, RIBA Stage 3 / NRM1 cost plan 2; contract_amendment
+  (Nachtrag) relatedMatch sia-phases 51-53, VOB/B § 2 Nachtrag, RIBA Stage 5 variation;
+  expectation (Kostenerwartung) relatedMatch sia-phases 52-53, DIN 276 Kostenprognose,
+  RIBA Stage 5 anticipated final cost. Details: https://github.com/pragmaticBIM/pragmatic-bim-data-contract/blob/main/contract/README.md#cost-stages'
 from_schema: https://schema.pragmaticbim.ch
 is_a: VirtualEntity
 slot_usage:
@@ -223,6 +274,12 @@ slot_usage:
   priced_for_customer:
     name: priced_for_customer
     range: Company
+  classifications:
+    name: classifications
+    description: Classification entries from IFC and other schemes. The cost stage
+      uses classification_scheme cost-stages with classification_code early_estimate,
+      approved_budget, contract_amendment, or expectation. At most one cost-stages
+      entry when cost_record_role is estimate.
 attributes:
   cost_record_role:
     name: cost_record_role
@@ -237,8 +294,11 @@ attributes:
     required: true
   cost_category:
     name: cost_category
-    description: Cost category label kept intentionally open pending classification-backed
-      modeling.
+    description: Deprecated free-text cost category label. Still accepted for reading
+      legacy records; express the cost stage as a cost-stages classification instead.
+    deprecated: Deprecated in v1.1.0 and removed in the next minor release. Use a
+      Classification entry with classification_scheme cost-stages in classifications
+      instead.
     from_schema: https://schema.pragmaticbim.ch
     rank: 1000
     owner: CostRecord
@@ -246,16 +306,28 @@ attributes:
     - CostRequirement
     - CostRecord
     range: string
+  amount:
+    name: amount
+    description: Lump-sum amount for this cost record in currency. Use instead of
+      unit_cost when the record has no quantity basis. A CostRecord requires amount
+      or unit_cost.
+    from_schema: https://schema.pragmaticbim.ch
+    rank: 1000
+    owner: CostRecord
+    domain_of:
+    - CostRecord
+    range: decimal
+    minimum_value: 0
   unit_cost:
     name: unit_cost
-    description: Unit cost for this cost item.
+    description: Unit cost for this cost item per cost quantity. A CostRecord requires
+      amount or unit_cost.
     from_schema: https://schema.pragmaticbim.ch
     rank: 1000
     owner: CostRecord
     domain_of:
     - CostRecord
     range: double
-    required: true
     minimum_value: 0
   currency:
     name: currency
@@ -467,7 +539,10 @@ attributes:
     pattern: ^[0-3][0-9A-Za-z_$]{21}$
   classifications:
     name: classifications
-    description: Classification entries from IFC and other schemes.
+    description: Classification entries from IFC and other schemes. The cost stage
+      uses classification_scheme cost-stages with classification_code early_estimate,
+      approved_budget, contract_amendment, or expectation. At most one cost-stages
+      entry when cost_record_role is estimate.
     from_schema: https://schema.pragmaticbim.ch
     rank: 1000
     owner: CostRecord
@@ -567,6 +642,15 @@ attributes:
     - Entity
     range: StatusType
 class_uri: pbs:CostRecord
+any_of:
+- slot_conditions:
+    amount:
+      name: amount
+      required: true
+- slot_conditions:
+    unit_cost:
+      name: unit_cost
+      required: true
 
 ```
 </details></div>
