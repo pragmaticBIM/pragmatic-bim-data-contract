@@ -6,7 +6,7 @@ search:
 # Slot: connects_spaces 
 
 
-_Spaces connected by this virtual connection._
+_Spaces connected by this connection (for example the two spaces on either side of a door)._
 
 
 
@@ -25,6 +25,7 @@ URI: [pbs:connects_spaces](https://schema.pragmaticbim.ch/connects_spaces)
 
 | Name | Description | Modifies Slot |
 | --- | --- | --- |
+| [ConnectionPhysical](ConnectionPhysical.md) | Physical connector providing functional connection between spaces (for example door, window, duct, pipe, cable). |  no  |
 | [ConnectionVirtual](ConnectionVirtual.md) | Logical or topological connection between spaces and/or physical elements. |  no  |
 
 
@@ -39,7 +40,7 @@ URI: [pbs:connects_spaces](https://schema.pragmaticbim.ch/connects_spaces)
 | Property | Value |
 | --- | --- |
 | Range | [Space](Space.md) |
-| Domain Of | [ConnectionVirtual](ConnectionVirtual.md) |
+| Domain Of | [ConnectionPhysical](ConnectionPhysical.md), [ConnectionVirtual](ConnectionVirtual.md) |
 
 ### Cardinality and Requirements
 
@@ -85,10 +86,12 @@ URI: [pbs:connects_spaces](https://schema.pragmaticbim.ch/connects_spaces)
 <details>
 ```yaml
 name: connects_spaces
-description: Spaces connected by this virtual connection.
+description: Spaces connected by this connection (for example the two spaces on either
+  side of a door).
 from_schema: https://schema.pragmaticbim.ch
 rank: 1000
 domain_of:
+- ConnectionPhysical
 - ConnectionVirtual
 range: Space
 multivalued: true

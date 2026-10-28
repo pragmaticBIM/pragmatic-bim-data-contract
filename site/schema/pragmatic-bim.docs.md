@@ -115,6 +115,7 @@ Name: pragmatic_bim_data_contract
 | [address_locality](address_locality.md) | Locality, city, or town. |
 | [address_region](address_region.md) | Region, state, canton, or province. |
 | [adjacency_kind](adjacency_kind.md) | Adjacency semantics when this spatial requirement involves another subject. |
+| [adjacent_elements](adjacent_elements.md) | Physical elements adjacent to the space through an IFC space boundary (walls, slabs, doors, windows, coverings). Space-side view of separates_spaces, connects_spaces, and bounded_by, serialized as bot:adjacentElement. |
 | [affected_geometry_role](affected_geometry_role.md) | Geometry role affected for GeometryChange records. |
 | [affected_requirement](affected_requirement.md) | Requirement entity affected by this change. |
 | [affected_subject](affected_subject.md) | Optional typed reference to the changed graph entity when the subject is in the project graph. |
@@ -153,7 +154,7 @@ Name: pragmatic_bim_data_contract
 | [connection_virtual_requirement_drivers](connection_virtual_requirement_drivers.md) | Main requirement drivers for this virtual connection. |
 | [connection_virtual_type](connection_virtual_type.md) | Classification of virtual connection semantics (for example structural_joint, adjacency, access). |
 | [connects_physical_elements](connects_physical_elements.md) | Physical elements connected by this virtual connection (for example wall-wall, wall-slab). |
-| [connects_spaces](connects_spaces.md) | Spaces connected by this virtual connection. |
+| [connects_spaces](connects_spaces.md) | Spaces connected by this connection (for example the two spaces on either side of a door). |
 | [consent_notes](consent_notes.md) | Optional notes about how or where consent was captured. |
 | [consent_records](consent_records.md) | Audit trail of lawful basis and consent for processing personal data. When lawful_basis is consent and state is active, at least one non-withdrawn record should be present. |
 | [contact_channel_type](contact_channel_type.md) | Communication channel type such as email, phone, website, linkedin, whatsapp, signal, slack, teams, or telegram. |

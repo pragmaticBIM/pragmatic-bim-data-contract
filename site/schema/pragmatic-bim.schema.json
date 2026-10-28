@@ -2078,6 +2078,16 @@
                     "$ref": "#/$defs/ConnectionPhysicalType",
                     "description": "IFC-derived physical connector form (for example door, window, duct, pipe, cable). Semantic role is expressed via connection_functional_types."
                 },
+                "connects_spaces": {
+                    "description": "Spaces connected by this connection (for example the two spaces on either side of a door).",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "content_kind": {
                     "const": "physical",
                     "description": "Entity type discriminator for adapter projection and querying. Must be a ContentKind value.",
@@ -2323,7 +2333,7 @@
                     ]
                 },
                 "connects_spaces": {
-                    "description": "Spaces connected by this virtual connection.",
+                    "description": "Spaces connected by this connection (for example the two spaces on either side of a door).",
                     "items": {
                         "type": "string"
                     },
@@ -9032,6 +9042,16 @@
                         "null"
                     ]
                 },
+                "separates_spaces": {
+                    "description": "Spaces separated by this separator element.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "separator_requirement_drivers": {
                     "description": "Performance requirement drivers for this separator. Multiple values are allowed because one separator may need to satisfy several requirements.\n",
                     "items": {
@@ -9227,6 +9247,16 @@
                 },
                 "separates_levels": {
                     "description": "Level context nodes separated by this slab separator.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "separates_spaces": {
+                    "description": "Spaces separated by this separator element.",
                     "items": {
                         "type": "string"
                     },
@@ -9660,6 +9690,16 @@
             "additionalProperties": false,
             "description": "Spatial container used for occupancy, circulation, service, or analysis.",
             "properties": {
+                "adjacent_elements": {
+                    "description": "Physical elements adjacent to the space through an IFC space boundary (walls, slabs, doors, windows, coverings). Space-side view of separates_spaces, connects_spaces, and bounded_by, serialized as bot:adjacentElement.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "applies_to_entities": {
                     "description": "Model entities this record applies to (requirements, cost items, schedule items, etc.).",
                     "items": {

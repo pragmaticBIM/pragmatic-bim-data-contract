@@ -19,12 +19,37 @@ conventions:
     attribute: GlobalId
   source_system:
     default: ifc
+    # Case-insensitive keywords matched against IfcApplication (ApplicationFullName,
+    # ApplicationIdentifier) and the STEP header originating_system / preprocessor_version.
+    detect:
+      revit: [revit]
+      archicad: [archicad, graphisoft]
+      vectorworks: [vectorworks]
+  # Projection of this mapping onto the contract's RDF vocabulary (ifc2rdf).
+  rdf_projection:
+    description: >
+      fields.* are adapter columns. Only fields listed under field_slots become contract
+      slots in RDF. Fields without a contract slot (code_or_number) are not emitted, so the
+      PropertySet values they read stay in metadata[]. Entities listed under
+      exclude_entities are not emitted because the contract requires a slot that the
+      mapping cannot fill from IFC.
+    field_slots:
+      name: name
+      storey: parent_level
+      classifications: classifications
+    exclude_entities:
+      IfcOpeningElement: >
+        connection_functional_types is required on ConnectionPhysical but has no IFC
+        default for openings (assigned per case).
   name_fallback_chain: &name_fallback_chain
     source: ifc_attribute_fallback
     fallbacks:
       - attribute: Name
       - attribute: LongName
       - attribute: ObjectType
+      # Entity.name is required; unnamed instances (for example IfcBuilding in some
+      # Revit exports) fall back to their GlobalId.
+      - attribute: GlobalId
   classifications_mapping: &classifications_mapping
     source: ifc_classification
     via_relation: IfcRelAssociatesClassification

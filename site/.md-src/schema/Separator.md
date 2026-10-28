@@ -43,6 +43,7 @@ click BuiltAssetContext href "./BuiltAssetContext.html" _blank
 click LevelContext href "./LevelContext.html" _blank
 click PerformanceProperty href "./PerformanceProperty.html" _blank
 click QuantityValue href "./QuantityValue.html" _blank
+click Space href "./Space.html" _blank
 click SeparatorRequirementDriver href "./SeparatorRequirementDriver.html" _blank
 click StatusType href "./StatusType.html" _blank
 ```
@@ -71,6 +72,7 @@ click StatusType href "./StatusType.html" _blank
 | Name | Cardinality and Range | Description | Inheritance |
 | ---  | --- | --- | --- |
 | [separator_requirement_drivers](separator_requirement_drivers.md) | * <br/> [SeparatorRequirementDriver](SeparatorRequirementDriver.md) | Performance requirement drivers for this separator. Multiple values are allowed because one separator may need to satisfy several requirements. | direct |
+| [separates_spaces](separates_spaces.md) | * <br/> [Space](Space.md) | Spaces separated by this separator element. | direct |
 | [parent_building](parent_building.md) | 0..1 <br/> [BuiltAssetContext](BuiltAssetContext.md) | Parent building context reference. | [PhysicalElement](PhysicalElement.md) |
 | [parent_level](parent_level.md) | 0..1 <br/> [LevelContext](LevelContext.md) | Parent level/storey context reference. | [PhysicalElement](PhysicalElement.md) |
 | [id](id.md) | 1 <br/> [String](String.md) | Unique local identifier. | [Entity](Entity.md) |
@@ -150,6 +152,7 @@ is_a: PhysicalElement
 abstract: true
 slots:
 - separator_requirement_drivers
+- separates_spaces
 class_uri: pbs:Separator
 
 ```
@@ -179,6 +182,16 @@ attributes:
     domain_of:
     - Separator
     range: SeparatorRequirementDriver
+    multivalued: true
+  separates_spaces:
+    name: separates_spaces
+    description: Spaces separated by this separator element.
+    from_schema: https://schema.pragmaticbim.ch
+    rank: 1000
+    owner: Separator
+    domain_of:
+    - Separator
+    range: Space
     multivalued: true
   parent_building:
     name: parent_building

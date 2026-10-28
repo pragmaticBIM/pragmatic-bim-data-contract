@@ -66,8 +66,8 @@ click StatusType href "./StatusType.html" _blank
 | Name | Cardinality and Range | Description | Inheritance |
 | ---  | --- | --- | --- |
 | [separator_wall_type](separator_wall_type.md) | 1 <br/> [SeparatorWallType](SeparatorWallType.md) | Classification of wall-based separator element. | direct |
-| [separates_spaces](separates_spaces.md) | * <br/> [Space](Space.md) | Spaces separated by this separator element. | direct |
 | [separator_requirement_drivers](separator_requirement_drivers.md) | * <br/> [SeparatorRequirementDriver](SeparatorRequirementDriver.md) | Performance requirement drivers for this separator. Multiple values are allowed because one separator may need to satisfy several requirements. | [Separator](Separator.md) |
+| [separates_spaces](separates_spaces.md) | * <br/> [Space](Space.md) | Spaces separated by this separator element. | [Separator](Separator.md) |
 | [parent_building](parent_building.md) | 0..1 <br/> [BuiltAssetContext](BuiltAssetContext.md) | Parent building context reference. | [PhysicalElement](PhysicalElement.md) |
 | [parent_level](parent_level.md) | 0..1 <br/> [LevelContext](LevelContext.md) | Parent level/storey context reference. | [PhysicalElement](PhysicalElement.md) |
 | [id](id.md) | 1 <br/> [String](String.md) | Unique local identifier. | [Entity](Entity.md) |
@@ -146,7 +146,6 @@ exact_mappings:
 is_a: Separator
 slots:
 - separator_wall_type
-- separates_spaces
 class_uri: pbs:SeparatorWall
 
 ```
@@ -173,16 +172,6 @@ attributes:
     - SeparatorWall
     range: SeparatorWallType
     required: true
-  separates_spaces:
-    name: separates_spaces
-    description: Spaces separated by this separator element.
-    from_schema: https://schema.pragmaticbim.ch
-    rank: 1000
-    owner: SeparatorWall
-    domain_of:
-    - SeparatorWall
-    range: Space
-    multivalued: true
   separator_requirement_drivers:
     name: separator_requirement_drivers
     description: 'Performance requirement drivers for this separator. Multiple values
@@ -195,6 +184,16 @@ attributes:
     domain_of:
     - Separator
     range: SeparatorRequirementDriver
+    multivalued: true
+  separates_spaces:
+    name: separates_spaces
+    description: Spaces separated by this separator element.
+    from_schema: https://schema.pragmaticbim.ch
+    rank: 1000
+    owner: SeparatorWall
+    domain_of:
+    - Separator
+    range: Space
     multivalued: true
   parent_building:
     name: parent_building

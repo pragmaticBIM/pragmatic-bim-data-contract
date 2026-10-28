@@ -80,6 +80,8 @@ classes:
   BuildingContext:
     is_a: BuiltAssetContext
     class_uri: pbs:BuildingContext
+    exact_mappings:
+    - bot:Building
     description: Spatial context node constrained to building semantics.
   CivilStructureContext:
     is_a: BuiltAssetContext
@@ -88,6 +90,8 @@ classes:
   LevelContext:
     is_a: SpatialContext
     class_uri: pbs:LevelContext
+    exact_mappings:
+    - bot:Storey
     description: Spatial context node constrained to level/storey semantics.
     slots:
     - elevation
@@ -113,6 +117,7 @@ classes:
     - parent_level
     - parent_zone
     - bounded_by
+    - adjacent_elements
     - contained_entities
     slot_usage:
       parent_building:
@@ -289,6 +294,14 @@ slots:
     range: PhysicalElement
     inverse: bounded_space
     description: Physical elements that bound a space.
+  adjacent_elements:
+    multivalued: true
+    range: PhysicalElement
+    slot_uri: bot:adjacentElement
+    description: >-
+      Physical elements adjacent to the space through an IFC space boundary (walls, slabs,
+      doors, windows, coverings). Space-side view of separates_spaces, connects_spaces, and
+      bounded_by, serialized as bot:adjacentElement.
   contained_entities:
     multivalued: true
     range: Entity
@@ -312,7 +325,7 @@ slots:
   connects_spaces:
     multivalued: true
     range: Space
-    description: Spaces connected by this virtual connection.
+    description: Spaces connected by this connection (for example the two spaces on either side of a door).
   time_records:
     multivalued: true
     range: TimeRecord
