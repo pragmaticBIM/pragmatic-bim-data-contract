@@ -15,6 +15,8 @@ from checks import (
     CONTRACT_WALLS,
     PBS,
     global_ids_of,
+    metadata,
+    performance_properties,
     rows,
     shacl_violations,
 )
@@ -73,6 +75,19 @@ def test_every_mapped_ifc_entity_is_one_node_with_global_id(sample):
         assert len(values) == 1, node
         assert str(node).endswith(str(values[0]))
     assert {str(v) for v in graph.objects(None, PBS.ifc_global_id)} == mapped
+
+
+def test_performance_properties_keep_raw_value_in_metadata(sample):
+    expected, _, graph, report = sample
+    counts = {}
+    for node in set(graph.subjects(PBS.performance_properties, None)):
+        entries = metadata(graph, node)
+        for key, record in performance_properties(graph, node).items():
+            counts[key] = counts.get(key, 0) + 1
+            assert record["mapping_version"] == report.mapping_version
+            source = f"{record['source_pset']}.{record['source_property']}"
+            assert entries[source] == record["source_value_raw"], (node, key)
+    assert counts == expected.performance
 
 
 def test_bot_query_returns_contract_walls(sample):

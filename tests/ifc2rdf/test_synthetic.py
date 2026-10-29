@@ -4,7 +4,17 @@ import subprocess
 import sys
 
 import rdflib
-from checks import BOT, BOT_ADJACENCY, CONTRACT_ADJACENCY, PBS, global_ids_of, rows, shacl_violations
+from checks import (
+    BOT,
+    BOT_ADJACENCY,
+    CONTRACT_ADJACENCY,
+    PBS,
+    global_ids_of,
+    metadata,
+    performance_properties,
+    rows,
+    shacl_violations,
+)
 from rdflib import RDF, Literal, URIRef
 from synthetic import GLOBAL_IDS
 
@@ -72,12 +82,61 @@ def test_bot_adjacency_matches_contract_relations(synthetic):
 
 def test_unpromoted_pset_values_stay_in_metadata(synthetic):
     graph, _ = synthetic
-    entries = {
-        str(graph.value(entry, PBS.metadata_key)): str(graph.value(entry, PBS.metadata_value))
-        for entry in graph.objects(iri("wall"), PBS.metadata)
-    }
+    entries = metadata(graph, iri("wall"))
     assert entries["Custom_Data.Note"] == "synthetic"
     assert entries["Pset_WallCommon.IsExternal"] == "false"
+
+
+def test_fire_rating_promoted_to_fire_property(synthetic):
+    graph, report = synthetic
+    fire = performance_properties(graph, iri("wall"))["fire_property_resistance_rating"]
+    assert fire["types"] == {PBS.FireProperty, PBS.PerformanceProperty}
+    assert fire["property_value_type"] == PBS.performance_property_value_type_string
+    assert fire["property_value_string"] == "EI90"
+    assert fire["source_pset"] == "Pset_WallCommon"
+    assert fire["source_property"] == "FireRating"
+    assert fire["source_value_raw"] == "EI 90"
+    assert fire["mapping_version"] == report.mapping_version
+    assert metadata(graph, iri("wall"))["Pset_WallCommon.FireRating"] == "EI 90"
+
+
+def test_fire_rating_suffix_kept_separately(synthetic):
+    graph, _ = synthetic
+    props = performance_properties(graph, iri("slab"))
+    assert props["fire_property_resistance_rating"]["property_value_string"] == "REI60"
+    reaction = props["fire_property_reaction_to_fire"]
+    assert reaction["property_value_string"] == "RF1"
+    assert reaction["source_value_raw"] == "REI 60-RF1"
+    assert metadata(graph, iri("slab"))["Pset_SlabCommon.FireRating"] == "REI 60-RF1"
+
+
+def test_numeric_and_boolean_performance_properties(synthetic):
+    graph, _ = synthetic
+    props = performance_properties(graph, iri("wall"))
+    acoustic = props["acoustic_property_rating_db"]
+    assert acoustic["types"] == {PBS.AcousticProperty, PBS.PerformanceProperty}
+    assert (acoustic["property_value_number"], acoustic["property_unit"]) == (52.0, "dB")
+    assert acoustic["source_value_raw"] == "Rw 52 dB"
+    thermal = props["thermal_property_thermal_transmittance"]
+    assert (thermal["property_value_number"], thermal["property_unit"]) == (0.25, "W/m2K")
+    assert thermal["property_unit_uri"] == URIRef("http://qudt.org/vocab/unit/W-PER-M2-K")
+    assert props["thermal_property_is_external"]["property_value_boolean"] is False
+    load_bearing = props["structural_property_load_bearing"]
+    assert load_bearing["types"] == {PBS.StructuralProperty, PBS.PerformanceProperty}
+    assert load_bearing["property_value_boolean"] is True
+
+
+def test_rejected_value_falls_through_to_tool_pset(synthetic, synthetic_ifc, shacl_graph):
+    graph, report = synthetic
+    assert "fire_property_resistance_rating" not in performance_properties(graph, iri("door"))
+    assert report.rejected_values["FireProperty.resistance_rating Pset_DoorCommon.FireRating='Fire Rating'"] == 1
+
+    revit, _ = convert(synthetic_ifc, base_uri=BASE, source_system="revit")
+    fire = performance_properties(revit, iri("door"))["fire_property_resistance_rating"]
+    assert fire["property_value_string"] == "EI30"
+    assert (fire["source_pset"], fire["source_value_raw"]) == ("PSet_Revit_Type_Other", "EI 30-C")
+    assert metadata(revit, iri("door"))["Pset_DoorCommon.FireRating"] == "Fire Rating"
+    assert shacl_violations(revit, shacl_graph) == []
 
 
 def test_storey_elevation_in_metres(synthetic):

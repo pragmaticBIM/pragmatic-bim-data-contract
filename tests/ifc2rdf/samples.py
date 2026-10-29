@@ -21,6 +21,8 @@ class Sample:
     source_system: str
     # Contract class -> node count expected from the IFC content.
     counts: dict[str, int] = field(default_factory=dict)
+    # Performance property key (local name) -> number of records expected from the IFC content.
+    performance: dict[str, int] = field(default_factory=dict)
 
 
 SAMPLES = [
@@ -38,6 +40,8 @@ SAMPLES = [
             "SeparatorSlab": 21,
             "ConnectionPhysical": 38,
         },
+        # FireRating holds the placeholders "Fire Rating" / "FireRating" (rejected).
+        performance={"structural_property_load_bearing": 85, "thermal_property_is_external": 126},
     ),
     Sample(
         id="archicad-fzk-haus",
@@ -52,6 +56,11 @@ SAMPLES = [
             "SeparatorWall": 13,
             "SeparatorSlab": 4,
             "ConnectionPhysical": 16,
+        },
+        performance={
+            "structural_property_load_bearing": 60,
+            "thermal_property_is_external": 86,
+            "thermal_property_thermal_transmittance": 33,
         },
     ),
     Sample(
@@ -76,6 +85,8 @@ SAMPLES = [
             "SeparatorSlab": 4,
             "ConnectionPhysical": 2,
         },
+        # Pset_ColumnCommon.FireRating holds Japanese grade labels (rejected).
+        performance={},
     ),
 ]
 

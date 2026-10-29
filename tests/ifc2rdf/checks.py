@@ -62,3 +62,26 @@ def global_ids_of(graph: rdflib.Graph, contract_class: str) -> set[str]:
 
 def rows(graph: rdflib.Graph, query: str) -> set[tuple]:
     return {tuple(row) for row in graph.query(query)}
+
+
+def performance_properties(graph: rdflib.Graph, node: rdflib.term.Node) -> dict[str, dict]:
+    """``{property_key local name: {slot: python value, "types": set}}`` for one entity."""
+    found = {}
+    for record in graph.objects(node, PBS.performance_properties):
+        key = str(graph.value(record, PBS.property_key)).removeprefix(str(PBS))
+        values = {
+            str(p).removeprefix(str(PBS)): o if isinstance(o, rdflib.URIRef) else o.toPython()
+            for p, o in graph.predicate_objects(record)
+            if p != RDF.type
+        }
+        values["types"] = set(graph.objects(record, RDF.type))
+        assert key not in found, key
+        found[key] = values
+    return found
+
+
+def metadata(graph: rdflib.Graph, node: rdflib.term.Node) -> dict[str, str]:
+    return {
+        str(graph.value(entry, PBS.metadata_key)): str(graph.value(entry, PBS.metadata_value))
+        for entry in graph.objects(node, PBS.metadata)
+    }
