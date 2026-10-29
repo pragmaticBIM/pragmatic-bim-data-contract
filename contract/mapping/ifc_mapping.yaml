@@ -8,7 +8,7 @@
 #
 # Regenerate merged output: python scripts/merge_ifc_mapping.py
 
-mapping_version: "1.3.0"
+mapping_version: "1.4.0"
 schema_uri: https://schema.pragmaticbim.ch/
 canonical_type_version: "v0.0.7"
 

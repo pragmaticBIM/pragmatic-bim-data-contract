@@ -34,6 +34,43 @@ fragments:
     storey: *storey_from_containment
     classifications: *classifications_mapping
 
+  # Rule-relevant PropertySet values promoted to typed PerformanceProperty records
+  # (Entity.performance_properties). Each record carries source_pset, source_property,
+  # source_value_raw, and mapping_version; the raw value also stays in metadata[].
+  performance_properties_building_element: &performance_properties_building_element
+    source: ifc_pset_performance
+    properties:
+      - property_class: FireProperty
+        property_key: resistance_rating
+        lookup:
+          source: ifc_pset_fallback
+          <<: *perf_fire_rating
+        normalize: *normalize_fire_rating
+      - property_class: AcousticProperty
+        property_key: rating_db
+        lookup:
+          source: ifc_pset_fallback
+          <<: *perf_acoustic_rating
+        normalize: *normalize_acoustic_rating_db
+      - property_class: ThermalProperty
+        property_key: thermal_transmittance
+        lookup:
+          source: ifc_pset_fallback
+          <<: *perf_thermal_transmittance
+        normalize: *normalize_thermal_transmittance
+      - property_class: ThermalProperty
+        property_key: is_external
+        lookup:
+          source: ifc_pset_fallback
+          <<: *perf_is_external
+        normalize: *normalize_boolean
+      - property_class: StructuralProperty
+        property_key: load_bearing
+        lookup:
+          source: ifc_pset_fallback
+          <<: *perf_load_bearing
+        normalize: *normalize_boolean
+
   attributes_entity_base: &attributes_entity_base
     ifc_global_id:
       source: ifc_attribute
