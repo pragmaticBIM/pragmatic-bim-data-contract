@@ -1345,6 +1345,10 @@ class ThermalPropertyKey(str, Enum):
     u_value = "u_value"
     r_value = "r_value"
     thermal_transmittance = "thermal_transmittance"
+    is_external = "is_external"
+    """
+    Element faces the outside of the building (IFC IsExternal); marks thermal envelope elements.
+    """
 
 
 class StructuralPropertyKey(str, Enum):
@@ -1844,7 +1848,7 @@ class PerformanceProperty(ConfiguredBaseModel):
          'class_uri': 'pbs:PerformanceProperty',
          'from_schema': 'https://schema.pragmaticbim.ch/entity/core'})
 
-    property_key: str = Field(default=..., description="""Canonical key inside the domain; constrained via subclass slot_usage to a domain-specific enum.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PerformanceProperty']} })
+    property_key: str = Field(default=..., description="""Canonical key inside the domain; constrained via subclass slot_usage to a domain-specific enum (serialized in RDF as the enum meaning IRI).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PerformanceProperty']} })
     property_value_type: PerformancePropertyValueType = Field(default=..., description="""Value type discriminator for normalized storage (for example string, number, boolean).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PerformanceProperty']} })
     property_value_string: Optional[str] = Field(default=None, description="""String value when property_value_type is string.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PerformanceProperty']} })
     property_value_number: Optional[float] = Field(default=None, description="""Numeric value when property_value_type is number.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PerformanceProperty']} })
@@ -2466,7 +2470,7 @@ class FireProperty(PerformanceProperty):
          'slot_usage': {'property_key': {'name': 'property_key',
                                          'range': 'FirePropertyKey'}}})
 
-    property_key: FirePropertyKey = Field(default=..., description="""Canonical key inside the domain; constrained via subclass slot_usage to a domain-specific enum.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PerformanceProperty']} })
+    property_key: FirePropertyKey = Field(default=..., description="""Canonical key inside the domain; constrained via subclass slot_usage to a domain-specific enum (serialized in RDF as the enum meaning IRI).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PerformanceProperty']} })
     property_value_type: PerformancePropertyValueType = Field(default=..., description="""Value type discriminator for normalized storage (for example string, number, boolean).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PerformanceProperty']} })
     property_value_string: Optional[str] = Field(default=None, description="""String value when property_value_type is string.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PerformanceProperty']} })
     property_value_number: Optional[float] = Field(default=None, description="""Numeric value when property_value_type is number.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PerformanceProperty']} })
@@ -2488,7 +2492,7 @@ class AcousticProperty(PerformanceProperty):
          'slot_usage': {'property_key': {'name': 'property_key',
                                          'range': 'AcousticPropertyKey'}}})
 
-    property_key: AcousticPropertyKey = Field(default=..., description="""Canonical key inside the domain; constrained via subclass slot_usage to a domain-specific enum.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PerformanceProperty']} })
+    property_key: AcousticPropertyKey = Field(default=..., description="""Canonical key inside the domain; constrained via subclass slot_usage to a domain-specific enum (serialized in RDF as the enum meaning IRI).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PerformanceProperty']} })
     property_value_type: PerformancePropertyValueType = Field(default=..., description="""Value type discriminator for normalized storage (for example string, number, boolean).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PerformanceProperty']} })
     property_value_string: Optional[str] = Field(default=None, description="""String value when property_value_type is string.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PerformanceProperty']} })
     property_value_number: Optional[float] = Field(default=None, description="""Numeric value when property_value_type is number.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PerformanceProperty']} })
@@ -2510,7 +2514,7 @@ class ThermalProperty(PerformanceProperty):
          'slot_usage': {'property_key': {'name': 'property_key',
                                          'range': 'ThermalPropertyKey'}}})
 
-    property_key: ThermalPropertyKey = Field(default=..., description="""Canonical key inside the domain; constrained via subclass slot_usage to a domain-specific enum.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PerformanceProperty']} })
+    property_key: ThermalPropertyKey = Field(default=..., description="""Canonical key inside the domain; constrained via subclass slot_usage to a domain-specific enum (serialized in RDF as the enum meaning IRI).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PerformanceProperty']} })
     property_value_type: PerformancePropertyValueType = Field(default=..., description="""Value type discriminator for normalized storage (for example string, number, boolean).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PerformanceProperty']} })
     property_value_string: Optional[str] = Field(default=None, description="""String value when property_value_type is string.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PerformanceProperty']} })
     property_value_number: Optional[float] = Field(default=None, description="""Numeric value when property_value_type is number.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PerformanceProperty']} })
@@ -2532,7 +2536,7 @@ class StructuralProperty(PerformanceProperty):
          'slot_usage': {'property_key': {'name': 'property_key',
                                          'range': 'StructuralPropertyKey'}}})
 
-    property_key: StructuralPropertyKey = Field(default=..., description="""Canonical key inside the domain; constrained via subclass slot_usage to a domain-specific enum.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PerformanceProperty']} })
+    property_key: StructuralPropertyKey = Field(default=..., description="""Canonical key inside the domain; constrained via subclass slot_usage to a domain-specific enum (serialized in RDF as the enum meaning IRI).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PerformanceProperty']} })
     property_value_type: PerformancePropertyValueType = Field(default=..., description="""Value type discriminator for normalized storage (for example string, number, boolean).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PerformanceProperty']} })
     property_value_string: Optional[str] = Field(default=None, description="""String value when property_value_type is string.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PerformanceProperty']} })
     property_value_number: Optional[float] = Field(default=None, description="""Numeric value when property_value_type is number.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PerformanceProperty']} })
@@ -2554,7 +2558,7 @@ class SecurityProperty(PerformanceProperty):
          'slot_usage': {'property_key': {'name': 'property_key',
                                          'range': 'SecurityPropertyKey'}}})
 
-    property_key: SecurityPropertyKey = Field(default=..., description="""Canonical key inside the domain; constrained via subclass slot_usage to a domain-specific enum.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PerformanceProperty']} })
+    property_key: SecurityPropertyKey = Field(default=..., description="""Canonical key inside the domain; constrained via subclass slot_usage to a domain-specific enum (serialized in RDF as the enum meaning IRI).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PerformanceProperty']} })
     property_value_type: PerformancePropertyValueType = Field(default=..., description="""Value type discriminator for normalized storage (for example string, number, boolean).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PerformanceProperty']} })
     property_value_string: Optional[str] = Field(default=None, description="""String value when property_value_type is string.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PerformanceProperty']} })
     property_value_number: Optional[float] = Field(default=None, description="""Numeric value when property_value_type is number.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PerformanceProperty']} })
@@ -2576,7 +2580,7 @@ class MaterialProperty(PerformanceProperty):
          'slot_usage': {'property_key': {'name': 'property_key',
                                          'range': 'MaterialPropertyKey'}}})
 
-    property_key: MaterialPropertyKey = Field(default=..., description="""Canonical key inside the domain; constrained via subclass slot_usage to a domain-specific enum.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PerformanceProperty']} })
+    property_key: MaterialPropertyKey = Field(default=..., description="""Canonical key inside the domain; constrained via subclass slot_usage to a domain-specific enum (serialized in RDF as the enum meaning IRI).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PerformanceProperty']} })
     property_value_type: PerformancePropertyValueType = Field(default=..., description="""Value type discriminator for normalized storage (for example string, number, boolean).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PerformanceProperty']} })
     property_value_string: Optional[str] = Field(default=None, description="""String value when property_value_type is string.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PerformanceProperty']} })
     property_value_number: Optional[float] = Field(default=None, description="""Numeric value when property_value_type is number.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PerformanceProperty']} })

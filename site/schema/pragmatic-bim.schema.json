@@ -13,7 +13,7 @@
                 },
                 "property_key": {
                     "$ref": "#/$defs/AcousticPropertyKey",
-                    "description": "Canonical key inside the domain; constrained via subclass slot_usage to a domain-specific enum."
+                    "description": "Canonical key inside the domain; constrained via subclass slot_usage to a domain-specific enum (serialized in RDF as the enum meaning IRI)."
                 },
                 "property_unit": {
                     "description": "Normalized unit where applicable (for example min, dB, W/m2K).",
@@ -4384,7 +4384,7 @@
                 },
                 "property_key": {
                     "$ref": "#/$defs/FirePropertyKey",
-                    "description": "Canonical key inside the domain; constrained via subclass slot_usage to a domain-specific enum."
+                    "description": "Canonical key inside the domain; constrained via subclass slot_usage to a domain-specific enum (serialized in RDF as the enum meaning IRI)."
                 },
                 "property_unit": {
                     "description": "Normalized unit where applicable (for example min, dB, W/m2K).",
@@ -5496,7 +5496,7 @@
                 },
                 "property_key": {
                     "$ref": "#/$defs/MaterialPropertyKey",
-                    "description": "Canonical key inside the domain; constrained via subclass slot_usage to a domain-specific enum."
+                    "description": "Canonical key inside the domain; constrained via subclass slot_usage to a domain-specific enum (serialized in RDF as the enum meaning IRI)."
                 },
                 "property_unit": {
                     "description": "Normalized unit where applicable (for example min, dB, W/m2K).",
@@ -6004,7 +6004,7 @@
                     ]
                 },
                 "property_key": {
-                    "description": "Canonical key inside the domain; constrained via subclass slot_usage to a domain-specific enum.",
+                    "description": "Canonical key inside the domain; constrained via subclass slot_usage to a domain-specific enum (serialized in RDF as the enum meaning IRI).",
                     "type": "string"
                 },
                 "property_unit": {
@@ -8805,7 +8805,7 @@
                 },
                 "property_key": {
                     "$ref": "#/$defs/SecurityPropertyKey",
-                    "description": "Canonical key inside the domain; constrained via subclass slot_usage to a domain-specific enum."
+                    "description": "Canonical key inside the domain; constrained via subclass slot_usage to a domain-specific enum (serialized in RDF as the enum meaning IRI)."
                 },
                 "property_unit": {
                     "description": "Normalized unit where applicable (for example min, dB, W/m2K).",
@@ -10594,7 +10594,7 @@
                 },
                 "property_key": {
                     "$ref": "#/$defs/StructuralPropertyKey",
-                    "description": "Canonical key inside the domain; constrained via subclass slot_usage to a domain-specific enum."
+                    "description": "Canonical key inside the domain; constrained via subclass slot_usage to a domain-specific enum (serialized in RDF as the enum meaning IRI)."
                 },
                 "property_unit": {
                     "description": "Normalized unit where applicable (for example min, dB, W/m2K).",
@@ -11154,7 +11154,7 @@
                 },
                 "property_key": {
                     "$ref": "#/$defs/ThermalPropertyKey",
-                    "description": "Canonical key inside the domain; constrained via subclass slot_usage to a domain-specific enum."
+                    "description": "Canonical key inside the domain; constrained via subclass slot_usage to a domain-specific enum (serialized in RDF as the enum meaning IRI)."
                 },
                 "property_unit": {
                     "description": "Normalized unit where applicable (for example min, dB, W/m2K).",
@@ -11229,7 +11229,8 @@
             "enum": [
                 "u_value",
                 "r_value",
-                "thermal_transmittance"
+                "thermal_transmittance",
+                "is_external"
             ],
             "title": "ThermalPropertyKey",
             "type": "string"

@@ -822,9 +822,10 @@ slots:
     range: string
     description: Metadata value serialized as text.
   property_key:
-    range: string
+    range: uriorcurie
     required: true
-    description: Canonical key inside the domain; constrained via subclass slot_usage to a domain-specific enum.
+    description: Canonical key inside the domain; constrained via subclass slot_usage to a domain-specific enum (serialized
+      in RDF as the enum meaning IRI).
   property_value_type:
     range: PerformancePropertyValueType
     required: true

@@ -2279,6 +2279,9 @@ enums:
         meaning: pbs:thermal_property_r_value
       thermal_transmittance:
         meaning: pbs:thermal_property_thermal_transmittance
+      is_external:
+        description: Element faces the outside of the building (IFC IsExternal); marks thermal envelope elements.
+        meaning: pbs:thermal_property_is_external
   StructuralPropertyKey:
     enum_uri: pbs:StructuralPropertyKey
     description: Canonical structural-related keys derived from IFC PropertySets.
