@@ -151,7 +151,9 @@ Without having to:
 pragmatic-bim-data-contract/
 ├── contract/           LinkML schema + IFC mapping (MIT)
 ├── classification/     SKOS vocabularies + mapping bridges (CC-BY-4.0)
+├── pragmatic_bim/      Python package: Pydantic models, taxonomy lookups, ifc2rdf
 ├── scripts/            Build, merge, and publish tooling
+├── tests/              pytest suite (ifc2rdf)
 └── site/               Generated schema docs and artifacts (do not edit)
 ```
 
@@ -159,6 +161,7 @@ pragmatic-bim-data-contract/
 |------|------|
 | [`contract/`](contract/README.md) | LinkML schema YAML at folder root; IFC mapping in `contract/mapping/`. MIT. |
 | [`classification/`](classification/README.md) | Abstract SKOS vocabularies, mapping bridges, and diagram-friendly reference views. CC-BY-4.0. |
+| `pragmatic_bim/` | Generated Pydantic models, SKOS taxonomy lookups, and the [`ifc2rdf`](#ifc--rdf-export) converter |
 | `scripts/` | Schema site build, IFC mapping merge, module page generation |
 | `site/` | Generated schema documentation and artifacts (do not edit by hand) |
 
@@ -181,6 +184,49 @@ pragmatic-bim-data-contract/
 1. Browse the [hosted documentation](https://schema.pragmaticbim.ch/) — schema reference, IFC mapping, classifications, and [source repository](https://github.com/pragmaticBIM/pragmatic-bim-data-contract) link.
 2. Read [`contract/README.md`](contract/README.md) — schema modules, IFC mapping, hosted URIs, local docs build.
 3. Read [`classification/README.md`](classification/README.md) — vocabularies and mapping bridges.
+
+## IFC → RDF export
+
+`ifc2rdf` converts an IFC model into Turtle that follows this contract. All mapping decisions come from [`contract/mapping/ifc_mapping.merged.yaml`](contract/mapping/ifc_mapping.merged.yaml); the converter only interprets that file and the LinkML schema.
+
+```bash
+pip install "pragmatic-bim[rdf]"        # or, in a checkout: pip install -e ".[rdf]"
+ifc2rdf model.ifc -o model.ttl [--contract-version vX.Y.Z] [--base-uri URI]
+```
+
+| Option | Default | Meaning |
+|--------|---------|---------|
+| `--base-uri` | `urn:pbs:ifc:{project}/` | Instance IRI prefix; the IFC `GlobalId` is appended. `{project}` is replaced by the `IfcProject` GlobalId. |
+| `--contract-version` | `canonical_type_version` of the mapping | Recorded as `pbs:contract_version` and `dcterms:conformsTo <https://schema.pragmaticbim.ch/{version}/>`. |
+| `--source-system` | detected from `IfcApplication` | Selects Revit / ArchiCAD / Vectorworks PropertySet overrides. |
+
+The output contains:
+
+- One node per mapped IFC entity (`Space`, `SeparatorWall`, `SeparatorSlab`, `ConnectionPhysical` for doors and windows, `LevelContext`, `BuildingContext`, …), typed with its contract class and ancestors, and carrying `pbs:ifc_global_id`.
+- Relations `separates_spaces`, `connects_spaces`, `bounded_by` (from `IfcRelSpaceBoundary`), `parent_level`, `parent_space`, `parent_building`.
+- PropertySet values that are not promoted to a slot as `pbs:metadata` entries with key `{Pset}.{Property}`.
+- A `dcat:Dataset` node at the base IRI with `pbs:contract_version`, `pbs:mapping_version`, and the sha256 of the IFC file.
+- [BOT](https://w3id.org/bot) alignment from the schema `exact_mappings`: `bot:Building`, `bot:Storey`, `bot:Space`, `bot:Element`, and `bot:adjacentElement` (slot `Space.adjacent_elements`).
+
+The output validates against [`site/schema/pragmatic-bim.shacl.ttl`](site/schema/pragmatic-bim.shacl.ttl) and is byte-identical across runs. A conversion report (node counts, excluded IFC classes, relations without a contract slot) is printed to stderr; `-q` suppresses it.
+
+Walls that separate a kitchen, through the contract relations or through BOT:
+
+```sparql
+PREFIX pbs: <https://schema.pragmaticbim.ch/>
+PREFIX bot: <https://w3id.org/bot#>
+PREFIX room: <https://example.org/abstract/building-space-name-classification/>
+
+SELECT DISTINCT ?wall ?name WHERE {
+  ?space a pbs:Space ; pbs:space_name_type room:RN_RES_KIT .
+  { ?wall a pbs:SeparatorWall ; pbs:separates_spaces ?space . }
+  UNION
+  { ?space bot:adjacentElement ?wall . ?wall a pbs:SeparatorWall . }
+  ?wall pbs:name ?name .
+}
+```
+
+Tests (`pip install -e ".[test]"`, then `pytest`) convert public Revit, ArchiCAD, and Vectorworks exports downloaded from pinned commits (see `tests/ifc2rdf/samples.py`).
 
 ## Governance
 

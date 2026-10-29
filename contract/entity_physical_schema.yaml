@@ -47,6 +47,7 @@ classes:
     description: Abstract base class for elements that separate spaces or zones.
     slots:
     - separator_requirement_drivers
+    - separates_spaces
   SeparatorWall:
     is_a: Separator
     class_uri: pbs:SeparatorWall
@@ -55,7 +56,6 @@ classes:
     description: Wall-based separating element.
     slots:
     - separator_wall_type
-    - separates_spaces
   SeparatorSlab:
     is_a: Separator
     class_uri: pbs:SeparatorSlab
@@ -81,6 +81,7 @@ classes:
     - transport_medium
     - frame_material
     - infill_material
+    - connects_spaces
     - connection_physical_requirement_drivers
   Boundary:
     is_a: PhysicalElement

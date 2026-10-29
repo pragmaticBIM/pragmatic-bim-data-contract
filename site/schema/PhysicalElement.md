@@ -104,6 +104,7 @@ click StatusType href "./StatusType.html" _blank
 | used by | used in | type | used |
 | ---  | --- | --- | --- |
 | [Space](Space.md) | [bounded_by](bounded_by.md) | range | [PhysicalElement](PhysicalElement.md) |
+| [Space](Space.md) | [adjacent_elements](adjacent_elements.md) | range | [PhysicalElement](PhysicalElement.md) |
 | [ConnectionVirtual](ConnectionVirtual.md) | [connects_physical_elements](connects_physical_elements.md) | range | [PhysicalElement](PhysicalElement.md) |
 
 

@@ -547,6 +547,7 @@ click LevelContext href "./LevelContext.html" _blank
 click PerformanceProperty href "./PerformanceProperty.html" _blank
 click QuantityValue href "./QuantityValue.html" _blank
 click LevelContext href "./LevelContext.html" _blank
+click Space href "./Space.html" _blank
 click SeparatorRequirementDriver href "./SeparatorRequirementDriver.html" _blank
 click SeparatorSlabType href "./SeparatorSlabType.html" _blank
 click StatusType href "./StatusType.html" _blank</code></pre> 
@@ -609,6 +610,12 @@ Hold "Alt" / "Option" to enable pan &amp; zoom
 <td><a href="separator_requirement_drivers.html">separator_requirement_drivers</a></td>
 <td>* <br/> <a href="SeparatorRequirementDriver.html">SeparatorRequirementDriver</a></td>
 <td>Performance requirement drivers for this separator. Multiple values are allowed because one separator may need to satisfy several requirements.</td>
+<td><a href="Separator.html">Separator</a></td>
+</tr>
+<tr>
+<td><a href="separates_spaces.html">separates_spaces</a></td>
+<td>* <br/> <a href="Space.html">Space</a></td>
+<td>Spaces separated by this separator element.</td>
 <td><a href="Separator.html">Separator</a></td>
 </tr>
 <tr>
@@ -809,16 +816,26 @@ Hold "Alt" / "Option" to enable pan &amp; zoom
 <span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">  </span><span class="nt">separator_requirement_drivers</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">separator_requirement_drivers</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;Performance</span><span class="nv"> </span><span class="s">requirement</span><span class="nv"> </span><span class="s">drivers</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">this</span><span class="nv"> </span><span class="s">separator.</span><span class="nv"> </span><span class="s">Multiple</span><span class="nv"> </span><span class="s">values</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'Performance</span><span class="nv"> </span><span class="s">requirement</span><span class="nv"> </span><span class="s">drivers</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">this</span><span class="nv"> </span><span class="s">separator.</span><span class="nv"> </span><span class="s">Multiple</span><span class="nv"> </span><span class="s">values</span>
 <span class="w">      </span><span class="s">are</span><span class="nv"> </span><span class="s">allowed</span><span class="nv"> </span><span class="s">because</span><span class="nv"> </span><span class="s">one</span><span class="nv"> </span><span class="s">separator</span><span class="nv"> </span><span class="s">may</span><span class="nv"> </span><span class="s">need</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">satisfy</span><span class="nv"> </span><span class="s">several</span><span class="nv"> </span><span class="s">requirements.</span>
 
-<span class="w">      </span><span class="s">&#39;</span>
+<span class="w">      </span><span class="s">'</span>
 <span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://schema.pragmaticbim.ch</span>
 <span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SeparatorSlab</span>
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Separator</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SeparatorRequirementDriver</span>
+<span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">separates_spaces</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">separates_spaces</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Spaces separated by this separator element.</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://schema.pragmaticbim.ch</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SeparatorSlab</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Separator</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Space</span>
 <span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">  </span><span class="nt">parent_building</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">parent_building</span>
@@ -943,11 +960,11 @@ Hold "Alt" / "Option" to enable pan &amp; zoom
 <span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">  </span><span class="nt">geometry_representations</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">geometry_representations</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;Geometry</span><span class="nv"> </span><span class="s">references</span><span class="nv"> </span><span class="s">associated</span><span class="nv"> </span><span class="s">with</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">entity.</span><span class="nv"> </span><span class="s">A</span><span class="nv"> </span><span class="s">single</span><span class="nv"> </span><span class="s">element</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'Geometry</span><span class="nv"> </span><span class="s">references</span><span class="nv"> </span><span class="s">associated</span><span class="nv"> </span><span class="s">with</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">entity.</span><span class="nv"> </span><span class="s">A</span><span class="nv"> </span><span class="s">single</span><span class="nv"> </span><span class="s">element</span>
 <span class="w">      </span><span class="s">may</span><span class="nv"> </span><span class="s">link</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">multiple</span><span class="nv"> </span><span class="s">geometry</span><span class="nv"> </span><span class="s">representations</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">serve</span><span class="nv"> </span><span class="s">different</span><span class="nv"> </span><span class="s">intents</span><span class="nv"> </span><span class="s">(authoring,</span>
 <span class="w">      </span><span class="s">coordination,</span><span class="nv"> </span><span class="s">analysis,</span><span class="nv"> </span><span class="s">visualization)</span><span class="nv"> </span><span class="s">without</span><span class="nv"> </span><span class="s">duplicating</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">element</span><span class="nv"> </span><span class="s">itself.</span>
 
-<span class="w">      </span><span class="s">&#39;</span>
+<span class="w">      </span><span class="s">'</span>
 <span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://schema.pragmaticbim.ch</span>
 <span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SeparatorSlab</span>
@@ -981,10 +998,10 @@ Hold "Alt" / "Option" to enable pan &amp; zoom
 <span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">  </span><span class="nt">performance_properties</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">performance_properties</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;Normalized,</span><span class="nv"> </span><span class="s">strongly</span><span class="nv"> </span><span class="s">typed</span><span class="nv"> </span><span class="s">domain</span><span class="nv"> </span><span class="s">properties</span><span class="nv"> </span><span class="s">(fire/acoustic/thermal/structural/</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'Normalized,</span><span class="nv"> </span><span class="s">strongly</span><span class="nv"> </span><span class="s">typed</span><span class="nv"> </span><span class="s">domain</span><span class="nv"> </span><span class="s">properties</span><span class="nv"> </span><span class="s">(fire/acoustic/thermal/structural/</span>
 <span class="w">      </span><span class="s">security/material)</span><span class="nv"> </span><span class="s">extracted</span><span class="nv"> </span><span class="s">from</span><span class="nv"> </span><span class="s">raw</span><span class="nv"> </span><span class="s">IFC</span><span class="nv"> </span><span class="s">PropertySet</span><span class="nv"> </span><span class="s">values.</span>
 
-<span class="w">      </span><span class="s">&#39;</span>
+<span class="w">      </span><span class="s">'</span>
 <span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://schema.pragmaticbim.ch</span>
 <span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SeparatorSlab</span>

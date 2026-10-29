@@ -227,6 +227,7 @@
     geometry: *geometry_body_footprint
     relations:
       - IfcRelContainedInSpatialStructure
+      - IfcRelSpaceBoundary
       - IfcRelFillsElement
       - IfcRelConnectsElements
       - IfcRelAssociatesClassification
@@ -255,6 +256,7 @@
     geometry: *geometry_body_footprint
     relations:
       - IfcRelContainedInSpatialStructure
+      - IfcRelSpaceBoundary
       - IfcRelFillsElement
       - IfcRelConnectsElements
       - IfcRelAssociatesClassification
@@ -405,6 +407,7 @@
     geometry: *geometry_footprint_body
     relations:
       - IfcRelContainedInSpatialStructure
+      - IfcRelAggregates
       - IfcRelSpaceBoundary
       - IfcRelAssignsToGroup
       - IfcRelAssociatesClassification
@@ -470,6 +473,8 @@
       elevation:
         source: ifc_attribute
         attribute: Elevation
+        # IfcLengthMeasure is in project length units; elevation_unit below is metres.
+        convert_length_to: m
       elevation_unit:
         source: constant
         value: m

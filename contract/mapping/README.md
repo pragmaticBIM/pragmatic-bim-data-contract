@@ -121,6 +121,17 @@ Defined in `ifc_mapping.yaml` under `conventions.ifc_contract_link`.
 | `target_content_id` | Target element GlobalId |
 | `relation_type` | PBS relationship slot name (e.g. `parent_level`, `separates_spaces`) |
 
+### RDF projection
+
+[`ifc2rdf`](../../README.md#ifc--rdf-export) writes the same mapping as an RDF graph instead of tables. `conventions.rdf_projection` declares the differences:
+
+| Key | Meaning |
+|-----|---------|
+| `field_slots` | Top-level `fields` emitted as schema slots (`name` → `name`, `storey` → `parent_level`, `classifications` → `classifications`). Other fields (for example `code_or_number`) are not emitted, so their PropertySet values stay in `metadata[]`. |
+| `exclude_entities` | IFC classes without an RDF node (`IfcOpeningElement`: `connection_functional_types` is required and has no IFC source). |
+
+Instance IRIs are `{base_uri}{GlobalId}`; relations become triples whose predicate is the slot URI.
+
 ### `content_geometries`
 
 | Column | Source |
@@ -172,7 +183,7 @@ The entrypoint [`ifc_mapping.yaml`](ifc_mapping.yaml) declares version metadata 
 Merged structure:
 
 ```yaml
-mapping_version: "1.2.0"
+mapping_version: "1.3.0"
 schema_uri: https://schema.pragmaticbim.ch/
 canonical_type_version: "v0.0.7"
 
@@ -273,7 +284,7 @@ Every **IFC entity attribute** on the instance is stored unless already promoted
 | Excluded (promoted) | Destination |
 |---------------------|-------------|
 | `GlobalId` | `source_id`, `attributes.ifc_global_id` |
-| `Name`, `LongName`, `ObjectType` | `content.name` |
+| `Name`, `LongName`, `ObjectType` | `content.name` (falls back to `GlobalId` because `Entity.name` is required) |
 | `Description` | `attributes.description` |
 | Attributes mapped to typed PBS slots | e.g. `PredefinedType` → `separator_slab_type` |
 
@@ -317,8 +328,10 @@ Global rules live under `relationships` in `ifc_mapping.yaml`. Each entity lists
 | `IfcRelAssignsToGroup` | `group_members` | Assigned to `IfcZone` / `IfcGroup` |
 | `IfcRelAssignsToSystem` | `parent_system` | Element → system |
 | same | `contained_entities` | System → member elements |
-| `IfcRelSpaceBoundary` | `separates_spaces` | Wall/slab → space |
+| `IfcRelSpaceBoundary` | `separates_spaces` | Wall/slab/curtain wall → space |
+| same | `connects_spaces` | Door/window → space |
 | same | `bounded_by` | Covering → space |
+| same | `adjacent_elements` (`space_relation_type`) | Space → every mapped boundary element; serialized as `bot:adjacentElement` |
 | `IfcRelConnectsElements` | `connects_physical_elements` | Structural joints, host connections |
 | `IfcRelConnectsPathElements` | `connects_physical_elements` | Duct/pipe run connectivity |
 | `IfcRelFillsElement` | `connects_physical_elements` | Door/window ↔ opening |

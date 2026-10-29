@@ -25,7 +25,9 @@ URI: [pbs:separates_spaces](https://schema.pragmaticbim.ch/separates_spaces)
 
 | Name | Description | Modifies Slot |
 | --- | --- | --- |
+| [Separator](Separator.md) | Abstract base class for elements that separate spaces or zones. |  no  |
 | [SeparatorWall](SeparatorWall.md) | Wall-based separating element. |  no  |
+| [SeparatorSlab](SeparatorSlab.md) | Slab-based separating element (for example floor/roof/base slab separators). |  no  |
 
 
 
@@ -39,7 +41,7 @@ URI: [pbs:separates_spaces](https://schema.pragmaticbim.ch/separates_spaces)
 | Property | Value |
 | --- | --- |
 | Range | [Space](Space.md) |
-| Domain Of | [SeparatorWall](SeparatorWall.md) |
+| Domain Of | [Separator](Separator.md) |
 
 ### Cardinality and Requirements
 
@@ -89,7 +91,7 @@ description: Spaces separated by this separator element.
 from_schema: https://schema.pragmaticbim.ch
 rank: 1000
 domain_of:
-- SeparatorWall
+- Separator
 range: Space
 multivalued: true
 

@@ -12,12 +12,26 @@ license = { file = "LICENSE" }
 authors = [{ name = "Simon Dilhas" }]
 dependencies = ["pydantic>=2.0"]
 
+[project.optional-dependencies]
+rdf = ["ifcopenshell>=0.8", "rdflib>=7", "pyyaml>=6"]
+test = ["pragmatic-bim[rdf]", "pytest>=8", "pyshacl>=0.26"]
+
+[project.scripts]
+ifc2rdf = "pragmatic_bim.ifc2rdf.cli:main"
+
 [project.urls]
 Homepage = "https://schema.pragmaticbim.ch"
 Source = "https://github.com/pragmaticBIM/pragmatic-bim-data-contract"
 
 [tool.hatch.build.targets.wheel]
 packages = ["pragmatic_bim"]
+
+[tool.hatch.build.targets.wheel.force-include]
+"contract" = "pragmatic_bim/_data/contract"
+"classification" = "pragmatic_bim/_data/classification"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
 
 [tool.hatch.build.targets.sdist]
 include = ["pragmatic_bim", "contract", "classification", "scripts", "README.md", "LICENSE"]

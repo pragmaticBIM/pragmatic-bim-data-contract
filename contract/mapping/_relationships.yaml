@@ -42,8 +42,13 @@ relationships:
     resolutions:
       - when_element_class: [IfcWall, IfcWallStandardCase, IfcSlab, IfcCurtainWall]
         relation_type: separates_spaces
+      - when_element_class: [IfcDoor, IfcWindow]
+        relation_type: connects_spaces
       - when_element_class: IfcCovering
         relation_type: bounded_by
+    # Every boundary whose element is a mapped physical element is also recorded on
+    # the space (Space.adjacent_elements, slot_uri bot:adjacentElement).
+    space_relation_type: adjacent_elements
 
   IfcRelConnectsElements:
     description: Physical connectivity between elements.

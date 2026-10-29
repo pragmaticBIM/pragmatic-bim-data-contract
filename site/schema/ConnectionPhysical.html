@@ -541,6 +541,7 @@ click Classification href "./Classification.html" _blank
 click ConnectionFunctionalType href "./ConnectionFunctionalType.html" _blank
 click ConnectionRequirementDriver href "./ConnectionRequirementDriver.html" _blank
 click ConnectionPhysicalType href "./ConnectionPhysicalType.html" _blank
+click Space href "./Space.html" _blank
 click Material href "./Material.html" _blank
 click GeometryRepresentation href "./GeometryRepresentation.html" _blank
 click Material href "./Material.html" _blank
@@ -621,6 +622,12 @@ Hold "Alt" / "Option" to enable pan &amp; zoom
 <td><a href="infill_material.html">infill_material</a></td>
 <td>0..1 <br/> <a href="Material.html">Material</a></td>
 <td>Material of the opening infill within the frame (for example glazing for windows, door leaf or panel for doors). Applies to opening-type connectors (door, window).</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="connects_spaces.html">connects_spaces</a></td>
+<td>* <br/> <a href="Space.html">Space</a></td>
+<td>Spaces connected by this connection (for example the two spaces on either side of a door).</td>
 <td>direct</td>
 </tr>
 <tr>
@@ -799,6 +806,7 @@ Hold "Alt" / "Option" to enable pan &amp; zoom
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">transport_medium</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">frame_material</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">infill_material</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">connects_spaces</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">connection_physical_requirement_drivers</span>
 <span class="nt">class_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pbs:ConnectionPhysical</span>
 </code></pre></div>
@@ -874,13 +882,25 @@ Hold "Alt" / "Option" to enable pan &amp; zoom
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ConnectionPhysical</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Material</span>
 <span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">  </span><span class="nt">connects_spaces</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">connects_spaces</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Spaces connected by this connection (for example the two spaces on</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">either side of a door).</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://schema.pragmaticbim.ch</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ConnectionPhysical</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ConnectionPhysical</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ConnectionVirtual</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Space</span>
+<span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">  </span><span class="nt">connection_physical_requirement_drivers</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">connection_physical_requirement_drivers</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;Performance</span><span class="nv"> </span><span class="s">requirement</span><span class="nv"> </span><span class="s">drivers</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">this</span><span class="nv"> </span><span class="s">physical</span><span class="nv"> </span><span class="s">connection</span><span class="nv"> </span><span class="s">element.</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'Performance</span><span class="nv"> </span><span class="s">requirement</span><span class="nv"> </span><span class="s">drivers</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">this</span><span class="nv"> </span><span class="s">physical</span><span class="nv"> </span><span class="s">connection</span><span class="nv"> </span><span class="s">element.</span>
 <span class="w">      </span><span class="s">Multiple</span><span class="nv"> </span><span class="s">values</span><span class="nv"> </span><span class="s">are</span><span class="nv"> </span><span class="s">allowed</span><span class="nv"> </span><span class="s">because</span><span class="nv"> </span><span class="s">one</span><span class="nv"> </span><span class="s">connection</span><span class="nv"> </span><span class="s">may</span><span class="nv"> </span><span class="s">need</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">satisfy</span><span class="nv"> </span><span class="s">several</span>
 <span class="w">      </span><span class="s">requirements.</span>
 
-<span class="w">      </span><span class="s">&#39;</span>
+<span class="w">      </span><span class="s">'</span>
 <span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://schema.pragmaticbim.ch</span>
 <span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ConnectionPhysical</span>
@@ -1011,11 +1031,11 @@ Hold "Alt" / "Option" to enable pan &amp; zoom
 <span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">  </span><span class="nt">geometry_representations</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">geometry_representations</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;Geometry</span><span class="nv"> </span><span class="s">references</span><span class="nv"> </span><span class="s">associated</span><span class="nv"> </span><span class="s">with</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">entity.</span><span class="nv"> </span><span class="s">A</span><span class="nv"> </span><span class="s">single</span><span class="nv"> </span><span class="s">element</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'Geometry</span><span class="nv"> </span><span class="s">references</span><span class="nv"> </span><span class="s">associated</span><span class="nv"> </span><span class="s">with</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">entity.</span><span class="nv"> </span><span class="s">A</span><span class="nv"> </span><span class="s">single</span><span class="nv"> </span><span class="s">element</span>
 <span class="w">      </span><span class="s">may</span><span class="nv"> </span><span class="s">link</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">multiple</span><span class="nv"> </span><span class="s">geometry</span><span class="nv"> </span><span class="s">representations</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">serve</span><span class="nv"> </span><span class="s">different</span><span class="nv"> </span><span class="s">intents</span><span class="nv"> </span><span class="s">(authoring,</span>
 <span class="w">      </span><span class="s">coordination,</span><span class="nv"> </span><span class="s">analysis,</span><span class="nv"> </span><span class="s">visualization)</span><span class="nv"> </span><span class="s">without</span><span class="nv"> </span><span class="s">duplicating</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">element</span><span class="nv"> </span><span class="s">itself.</span>
 
-<span class="w">      </span><span class="s">&#39;</span>
+<span class="w">      </span><span class="s">'</span>
 <span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://schema.pragmaticbim.ch</span>
 <span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ConnectionPhysical</span>
@@ -1049,10 +1069,10 @@ Hold "Alt" / "Option" to enable pan &amp; zoom
 <span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">  </span><span class="nt">performance_properties</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">performance_properties</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;Normalized,</span><span class="nv"> </span><span class="s">strongly</span><span class="nv"> </span><span class="s">typed</span><span class="nv"> </span><span class="s">domain</span><span class="nv"> </span><span class="s">properties</span><span class="nv"> </span><span class="s">(fire/acoustic/thermal/structural/</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'Normalized,</span><span class="nv"> </span><span class="s">strongly</span><span class="nv"> </span><span class="s">typed</span><span class="nv"> </span><span class="s">domain</span><span class="nv"> </span><span class="s">properties</span><span class="nv"> </span><span class="s">(fire/acoustic/thermal/structural/</span>
 <span class="w">      </span><span class="s">security/material)</span><span class="nv"> </span><span class="s">extracted</span><span class="nv"> </span><span class="s">from</span><span class="nv"> </span><span class="s">raw</span><span class="nv"> </span><span class="s">IFC</span><span class="nv"> </span><span class="s">PropertySet</span><span class="nv"> </span><span class="s">values.</span>
 
-<span class="w">      </span><span class="s">&#39;</span>
+<span class="w">      </span><span class="s">'</span>
 <span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://schema.pragmaticbim.ch</span>
 <span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ConnectionPhysical</span>

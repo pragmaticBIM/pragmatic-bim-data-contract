@@ -27,6 +27,7 @@ class Space
 click Space href "./Space.html" _blank
 VirtualEntity <|-- Space
 click VirtualEntity href "./VirtualEntity.html" _blank
+click PhysicalElement href "./PhysicalElement.html" _blank
 click Entity href "./Entity.html" _blank
 click PhysicalElement href "./PhysicalElement.html" _blank
 click Classification href "./Classification.html" _blank
@@ -78,6 +79,7 @@ click TimeRecord href "./TimeRecord.html" _blank
 | [parent_level](parent_level.md) | 0..1 <br/> [LevelContext](LevelContext.md) | Parent level/storey context reference. | direct |
 | [parent_zone](parent_zone.md) | 0..1 <br/> [ZoneContext](ZoneContext.md) | Parent zone context reference. | direct |
 | [bounded_by](bounded_by.md) | * <br/> [PhysicalElement](PhysicalElement.md) | Physical elements that bound a space. | direct |
+| [adjacent_elements](adjacent_elements.md) | * <br/> [PhysicalElement](PhysicalElement.md) | Physical elements adjacent to the space through an IFC space boundary (walls, slabs, doors, windows, coverings). Space-side view of separates_spaces, connects_spaces, and bounded_by, serialized as bot:adjacentElement. | direct |
 | [contained_entities](contained_entities.md) | * <br/> [Entity](Entity.md) | Generic containment for associated entities. | direct |
 | [cost_records](cost_records.md) | * <br/> [CostRecord](CostRecord.md) | Cost records associated with this entity. | [VirtualEntity](VirtualEntity.md) |
 | [time_records](time_records.md) | * <br/> [TimeRecord](TimeRecord.md) | Time records associated with this entity. | [VirtualEntity](VirtualEntity.md) |
@@ -109,7 +111,10 @@ click TimeRecord href "./TimeRecord.html" _blank
 
 | used by | used in | type | used |
 | ---  | --- | --- | --- |
+| [Separator](Separator.md) | [separates_spaces](separates_spaces.md) | range | [Space](Space.md) |
 | [SeparatorWall](SeparatorWall.md) | [separates_spaces](separates_spaces.md) | range | [Space](Space.md) |
+| [SeparatorSlab](SeparatorSlab.md) | [separates_spaces](separates_spaces.md) | range | [Space](Space.md) |
+| [ConnectionPhysical](ConnectionPhysical.md) | [connects_spaces](connects_spaces.md) | range | [Space](Space.md) |
 | [Boundary](Boundary.md) | [bounded_space](bounded_space.md) | range | [Space](Space.md) |
 | [Equipment](Equipment.md) | [parent_space](parent_space.md) | range | [Space](Space.md) |
 | [System](System.md) | [serves_spaces](serves_spaces.md) | range | [Space](Space.md) |
@@ -178,6 +183,7 @@ slots:
 - parent_level
 - parent_zone
 - bounded_by
+- adjacent_elements
 - contained_entities
 slot_usage:
   parent_building:
@@ -302,6 +308,19 @@ attributes:
     domain_of:
     - Space
     inverse: bounded_space
+    range: PhysicalElement
+    multivalued: true
+  adjacent_elements:
+    name: adjacent_elements
+    description: Physical elements adjacent to the space through an IFC space boundary
+      (walls, slabs, doors, windows, coverings). Space-side view of separates_spaces,
+      connects_spaces, and bounded_by, serialized as bot:adjacentElement.
+    from_schema: https://schema.pragmaticbim.ch
+    rank: 1000
+    slot_uri: bot:adjacentElement
+    owner: Space
+    domain_of:
+    - Space
     range: PhysicalElement
     multivalued: true
   contained_entities:
