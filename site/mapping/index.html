@@ -559,6 +559,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#source-system-fallbacks-after-the-standard-psets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Source system fallbacks (after the standard psets)
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -614,6 +625,56 @@
     <span class="md-ellipsis">
       
         Value serialization
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#performance-properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Performance properties
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Performance properties">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#promoted-properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Promoted properties
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#record-slots" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Record slots
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#normalization-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Normalization rules
       
     </span>
   </a>
@@ -1041,6 +1102,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#source-system-fallbacks-after-the-standard-psets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Source system fallbacks (after the standard psets)
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1096,6 +1168,56 @@
     <span class="md-ellipsis">
       
         Value serialization
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#performance-properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Performance properties
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Performance properties">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#promoted-properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Promoted properties
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#record-slots" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Record slots
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#normalization-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Normalization rules
       
     </span>
   </a>
@@ -1308,11 +1430,11 @@
 </tr>
 <tr>
 <td><a href="_conventions.yaml"><code>_conventions.yaml</code></a></td>
-<td>Global rules, metadata capture, field anchors</td>
+<td>Global rules, metadata capture, field anchors, value normalization rules</td>
 </tr>
 <tr>
 <td><a href="_pset_fallbacks.yaml"><code>_pset_fallbacks.yaml</code></a></td>
-<td>PropertySet lookup lists (default + Revit / ArchiCAD / Vectorworks)</td>
+<td>PropertySet lookup lists for <code>code_or_number</code> and performance properties (default + Revit / ArchiCAD / Vectorworks)</td>
 </tr>
 <tr>
 <td><a href="_relationships.yaml"><code>_relationships.yaml</code></a></td>
@@ -1378,6 +1500,14 @@ ifc_mapping.merged.yaml   ← single file for adapters
 <td><code>_pset_fallbacks.yaml</code></td>
 </tr>
 <tr>
+<td>New promoted performance property</td>
+<td><code>_pset_fallbacks.yaml</code> (lookup) + <code>_fragments.yaml</code> (<code>performance_properties_building_element</code>)</td>
+</tr>
+<tr>
+<td>Value normalization rule</td>
+<td><code>_conventions.yaml</code> (<code>normalize_*</code>)</td>
+</tr>
+<tr>
 <td>New IFC class (architectural)</td>
 <td><code>entities/architectural.yaml</code></td>
 </tr>
@@ -1407,6 +1537,7 @@ ifc_mapping.merged.yaml   ← single file for adapters
 <li>Projects schema slots onto adapter columns (<code>name</code>, <code>code_or_number</code>, <code>storey</code>, <code>attributes</code>).</li>
 <li>Declares IFC relationship → <code>content_relations.relation_type</code> mappings aligned with PBS schema slot names.</li>
 <li>Assigns geometry roles for the <code>content_geometries</code> table.</li>
+<li>Promotes rule-relevant PropertySet values to typed <code>performance_properties</code> with canonical keys and normalized values.</li>
 </ol>
 <p>Schema slots are defined in <a href="../"><code>contract/</code></a> (LinkML YAML at folder root). This mapping must not introduce fields absent from those modules.</p>
 <hr />
@@ -1455,7 +1586,7 @@ ifc_mapping.merged.yaml   ← single file for adapters
 </tr>
 <tr>
 <td><code>attributes</code></td>
-<td>JSONB of PBS schema slots for the entity class, including <code>ifc_global_id</code> and <code>metadata[]</code></td>
+<td>JSONB of PBS schema slots for the entity class, including <code>ifc_global_id</code>, <code>performance_properties[]</code>, and <code>metadata[]</code></td>
 </tr>
 </tbody>
 </table>
@@ -1528,7 +1659,7 @@ ifc_mapping.merged.yaml   ← single file for adapters
 </tr>
 </tbody>
 </table>
-<p>Instance IRIs are <code>{base_uri}{GlobalId}</code>; relations become triples whose predicate is the slot URI.</p>
+<p>Instance IRIs are <code>{base_uri}{GlobalId}</code>; relations become triples whose predicate is the slot URI. Inlined records (<code>classifications</code>, <code>metadata</code>, <code>performance_properties</code>) are blank nodes typed with their class and its ancestors (for example <code>pbs:FireProperty</code>, <code>pbs:PerformanceProperty</code>); enum slots such as <code>property_key</code> hold the enum <code>meaning</code> IRI (<code>pbs:fire_property_resistance_rating</code>).</p>
 <h3 id="content_geometries"><code>content_geometries</code><a class="headerlink" href="#content_geometries" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
@@ -1653,7 +1784,7 @@ ifc_mapping.merged.yaml   ← single file for adapters
 <h2 id="yaml-file-structure">YAML file structure<a class="headerlink" href="#yaml-file-structure" title="Permanent link">&para;</a></h2>
 <p>The entrypoint <a href="ifc_mapping.yaml"><code>ifc_mapping.yaml</code></a> declares version metadata and an <code>imports</code> list. Split modules compose the full mapping (see <strong>File layout and merge workflow</strong> above). Adapters typically load <a href="ifc_mapping.merged.yaml"><code>ifc_mapping.merged.yaml</code></a>.</p>
 <p>Merged structure:</p>
-<div class="highlight"><pre><span></span><code><span class="nt">mapping_version</span><span class="p">:</span><span class="w"> </span><span class="s">"1.3.0"</span>
+<div class="highlight"><pre><span></span><code><span class="nt">mapping_version</span><span class="p">:</span><span class="w"> </span><span class="s">"1.4.0"</span>
 <span class="nt">schema_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://schema.pragmaticbim.ch/</span>
 <span class="nt">canonical_type_version</span><span class="p">:</span><span class="w"> </span><span class="s">"v0.0.7"</span>
 
@@ -1725,6 +1856,10 @@ ifc_mapping.merged.yaml   ← single file for adapters
 <tr>
 <td><code>ifc_pset_fallback</code></td>
 <td>Try PropertySet/property pairs in order; first match wins</td>
+</tr>
+<tr>
+<td><code>ifc_pset_performance</code></td>
+<td>Promote PropertySet values to typed <code>performance_properties[]</code> records through a lookup and a normalization rule (see <strong>Performance properties</strong>)</td>
 </tr>
 <tr>
 <td><code>ifc_attribute_all</code></td>
@@ -1810,6 +1945,8 @@ ifc_mapping.merged.yaml   ← single file for adapters
 </table>
 <p>Shared defaults (<code>Pset_BuildingElementCommon.Reference</code>, etc.) are always appended after tool-specific entries in the entity <code>fallbacks</code> list.</p>
 <p><strong>When extending:</strong> add new entries at the <strong>top</strong> of the relevant override list for a source system. Do not reorder existing entries — downstream projects may depend on current precedence.</p>
+<h3 id="source-system-fallbacks-after-the-standard-psets">Source system fallbacks (after the standard psets)<a class="headerlink" href="#source-system-fallbacks-after-the-standard-psets" title="Permanent link">&para;</a></h3>
+<p>A lookup may also declare <code>source_system_fallbacks[source_system]</code>. These pairs are tried <strong>after</strong> <code>fallbacks</code>. The full order is <code>source_system_overrides</code> → <code>fallbacks</code> → <code>source_system_fallbacks</code>. Performance properties use this form: the standard <code>Pset_*Common</code> value is the declared IFC exchange, and exporters copy their own parameter into it. The Revit Duplex sample shows tool psets disagreeing with it (<code>PSet_Revit_Structural.Structural = false</code> where <code>Pset_SlabCommon.LoadBearing = true</code>).</p>
 <hr />
 <h2 id="classifications">Classifications<a class="headerlink" href="#classifications" title="Permanent link">&para;</a></h2>
 <p>All mapped entities include a <code>classifications</code> field mapping. The adapter populates the PBS <code>classifications[]</code> slot (inlined <code>Classification</code> objects) from <code>IfcRelAssociatesClassification</code>:</p>
@@ -1877,7 +2014,7 @@ ifc_mapping.merged.yaml   ← single file for adapters
 </table>
 <p><strong>Key format:</strong> <code>{IfcClass}.{AttributeName}</code> — e.g. <code>IfcWall.OverallHeight</code>, <code>IfcDoor.OverallHeight</code>.</p>
 <h3 id="2-propertysets">2. PropertySets<a class="headerlink" href="#2-propertysets" title="Permanent link">&para;</a></h3>
-<p>Every <strong>PropertySet property</strong> not used for <code>code_or_number</code> or typed attribute slots:</p>
+<p>Every <strong>PropertySet property</strong> not used for <code>code_or_number</code> or typed attribute slots. Values promoted to <code>performance_properties</code> stay in metadata as well (<code>keep_used_in: [attributes.performance_properties]</code>), so the raw value remains traceable next to the normalized record:</p>
 <p><strong>Key format:</strong> <code>{Pset}.{Property}</code> — e.g. <code>Pset_WallCommon.FireRating</code>.</p>
 <h3 id="value-serialization">Value serialization<a class="headerlink" href="#value-serialization" title="Permanent link">&para;</a></h3>
 <p><code>metadata_value</code> is stored as text (<code>MetadataEntry.metadata_value</code>). The adapter serializes IFC values (numbers, booleans, enums, object references) to strings. Object references may use GlobalId where resolvable.</p>
@@ -1885,10 +2022,293 @@ ifc_mapping.merged.yaml   ← single file for adapters
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nt">"ifc_global_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3l$8vj$nL1Pu4$G9QjXjC"</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">"separator_wall_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unit_boundary"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"performance_properties"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"property_class"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FireProperty"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"property_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"resistance_rating"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"property_value_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"property_value_string"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EI60"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"source_pset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pset_WallCommon"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"source_property"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FireRating"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"source_value_raw"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EI 60"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"mapping_version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.4.0"</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">],</span>
 <span class="w">  </span><span class="nt">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nt">"metadata_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IfcWall.OverallHeight"</span><span class="p">,</span><span class="w"> </span><span class="nt">"metadata_value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3.0"</span><span class="w"> </span><span class="p">},</span>
-<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nt">"metadata_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pset_WallCommon.FireRating"</span><span class="p">,</span><span class="w"> </span><span class="nt">"metadata_value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EI60"</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nt">"metadata_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pset_WallCommon.FireRating"</span><span class="p">,</span><span class="w"> </span><span class="nt">"metadata_value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EI 60"</span><span class="w"> </span><span class="p">}</span>
 <span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<hr />
+<h2 id="performance-properties">Performance properties<a class="headerlink" href="#performance-properties" title="Permanent link">&para;</a></h2>
+<p>Rule checks (SHACL, SPARQL) need one stable path and one normalized value per property. Rule-relevant PropertySet values are therefore promoted to typed <code>PerformanceProperty</code> records on <code>Entity.performance_properties</code> (<a href="../entity_performance_schema.yaml"><code>entity_performance_schema.yaml</code></a>). The canonical key comes from the domain enum (<code>FirePropertyKey</code>, <code>AcousticPropertyKey</code>, <code>ThermalPropertyKey</code>, <code>StructuralPropertyKey</code>).</p>
+<p>The fragment <code>performance_properties_building_element</code> (<a href="_fragments.yaml"><code>_fragments.yaml</code></a>) is attached to <code>IfcWall</code>, <code>IfcCurtainWall</code>, <code>IfcSlab</code>, <code>IfcRoof</code>, <code>IfcCovering</code>, <code>IfcDoor</code>, <code>IfcWindow</code>, <code>IfcColumn</code>, <code>IfcBeam</code>, <code>IfcStair</code>, and <code>IfcRamp</code>.</p>
+<h3 id="promoted-properties">Promoted properties<a class="headerlink" href="#promoted-properties" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>IFC source (<code>Pset_*Common</code>)</th>
+<th>Class</th>
+<th><code>property_key</code></th>
+<th>Value</th>
+<th>Normalization rule</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>FireRating</code></td>
+<td><code>FireProperty</code></td>
+<td><code>resistance_rating</code></td>
+<td>string</td>
+<td><code>normalize_fire_rating</code></td>
+</tr>
+<tr>
+<td><code>FireRating</code> suffix <code>-RF1</code> … <code>-RF4</code></td>
+<td><code>FireProperty</code></td>
+<td><code>reaction_to_fire</code></td>
+<td>string</td>
+<td><code>normalize_fire_rating</code> (<code>suffix_routes</code>)</td>
+</tr>
+<tr>
+<td><code>FireRating</code> suffix <code>-Sa</code>, <code>-Sm</code>, <code>-S200</code></td>
+<td><code>FireProperty</code></td>
+<td><code>smoke_rating</code></td>
+<td>string</td>
+<td><code>normalize_fire_rating</code> (<code>suffix_routes</code>)</td>
+</tr>
+<tr>
+<td><code>AcousticRating</code></td>
+<td><code>AcousticProperty</code></td>
+<td><code>rating_db</code></td>
+<td>number, <code>dB</code></td>
+<td><code>normalize_acoustic_rating_db</code></td>
+</tr>
+<tr>
+<td><code>ThermalTransmittance</code></td>
+<td><code>ThermalProperty</code></td>
+<td><code>thermal_transmittance</code></td>
+<td>number, <code>W/m2K</code></td>
+<td><code>normalize_thermal_transmittance</code></td>
+</tr>
+<tr>
+<td><code>IsExternal</code></td>
+<td><code>ThermalProperty</code></td>
+<td><code>is_external</code></td>
+<td>boolean</td>
+<td><code>normalize_boolean</code></td>
+</tr>
+<tr>
+<td><code>LoadBearing</code></td>
+<td><code>StructuralProperty</code></td>
+<td><code>load_bearing</code></td>
+<td>boolean</td>
+<td><code>normalize_boolean</code></td>
+</tr>
+</tbody>
+</table>
+<p><code>Pset_*Common</code> stands for the common pset of each mapped class (<code>Pset_WallCommon</code>, <code>Pset_SlabCommon</code>, <code>Pset_DoorCommon</code>, …). The lookup lists <code>perf_*</code> in <a href="_pset_fallbacks.yaml"><code>_pset_fallbacks.yaml</code></a> enumerate the pairs where IFC defines the property. An instance carries only the common pset of its own class.</p>
+<p>Tool-specific <code>source_system_fallbacks</code> (tried after <code>Pset_*Common</code>):</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th><code>revit</code></th>
+<th><code>archicad</code></th>
+<th><code>vectorworks</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>FireRating</code></td>
+<td><code>PSet_Revit_Type_Identity Data.Fire Rating</code>, <code>PSet_Revit_Type_Other.FireRating</code>, <code>PSet_Revit_Other.FireRating</code></td>
+<td><code>General Ratings.Fire Resistance Rating</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>AcousticRating</code></td>
+<td><code>PSet_Revit_Type_Other.AcousticRating</code>, <code>PSet_Revit_Other.AcousticRating</code></td>
+<td><code>General Ratings.Acoustic Rating</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>ThermalTransmittance</code></td>
+<td><code>PSet_Revit_Type_Analytical Properties.Heat Transfer Coefficient (U)</code></td>
+<td><code>General Ratings.Thermal Transmittance</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>IsExternal</code></td>
+<td>— (exporter writes <code>Function</code> to <code>Pset_*Common</code>)</td>
+<td>— (exporter writes Position to <code>Pset_*Common</code>)</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>LoadBearing</code></td>
+<td><code>PSet_Revit_Structural.Structural</code></td>
+<td>— (exporter writes Structural Function to <code>Pset_*Common</code>)</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p>Vectorworks maps ratings into <code>Pset_*Common</code> through the Data Manager; add project-specific custom psets to the <code>vectorworks</code> lists.</p>
+<h3 id="record-slots">Record slots<a class="headerlink" href="#record-slots" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>property_class</code></td>
+<td><code>PerformanceProperty</code> subclass from the mapping entry; JSONB discriminator only (RDF uses <code>rdf:type</code>)</td>
+</tr>
+<tr>
+<td><code>property_key</code></td>
+<td>Canonical key from the domain enum (RDF: enum <code>meaning</code> IRI, e.g. <code>pbs:fire_property_resistance_rating</code>)</td>
+</tr>
+<tr>
+<td><code>property_value_type</code></td>
+<td><code>string</code>, <code>number</code>, or <code>boolean</code> (from the rule's <code>value_type</code>)</td>
+</tr>
+<tr>
+<td><code>property_value_string</code> / <code>_number</code> / <code>_boolean</code></td>
+<td>Normalized value</td>
+</tr>
+<tr>
+<td><code>property_unit</code>, <code>property_unit_uri</code></td>
+<td>From the rule (<code>dB</code> / QUDT <code>DeciB</code>, <code>W/m2K</code> / QUDT <code>W-PER-M2-K</code>)</td>
+</tr>
+<tr>
+<td><code>source_pset</code>, <code>source_property</code></td>
+<td>PropertySet pair the value came from</td>
+</tr>
+<tr>
+<td><code>source_value_raw</code></td>
+<td>Raw value before normalization</td>
+</tr>
+<tr>
+<td><code>mapping_version</code></td>
+<td><code>mapping_version</code> of this mapping</td>
+</tr>
+</tbody>
+</table>
+<p>The raw value also stays in <code>metadata[]</code> under <code>{Pset}.{Property}</code>.</p>
+<h3 id="normalization-rules">Normalization rules<a class="headerlink" href="#normalization-rules" title="Permanent link">&para;</a></h3>
+<p>Rules are declared in <a href="_conventions.yaml"><code>_conventions.yaml</code></a> and applied in this order:</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Applies to</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>remove_whitespace</code></td>
+<td>string</td>
+<td>Remove all whitespace (<code>"EI 90"</code> → <code>"EI90"</code>)</td>
+</tr>
+<tr>
+<td><code>upper_case</code></td>
+<td>string</td>
+<td>Upper-case the value (<code>"ei90"</code> → <code>"EI90"</code>)</td>
+</tr>
+<tr>
+<td><code>suffix_separator</code></td>
+<td>string</td>
+<td>Split the value at the separator; the first part is the main value</td>
+</tr>
+<tr>
+<td><code>suffix_routes</code></td>
+<td>string</td>
+<td>Each suffix matching <code>pattern</code> becomes a separate record with the route's <code>property_key</code>. Suffixes without a route are dropped from the normalized value and remain in <code>source_value_raw</code></td>
+</tr>
+<tr>
+<td><code>accept_pattern</code></td>
+<td>string</td>
+<td>The main value must match (full match), otherwise the value is rejected</td>
+</tr>
+<tr>
+<td><code>number_pattern</code></td>
+<td>number</td>
+<td>Numeric IFC values are used as-is; text uses the first match (comma decimals accepted)</td>
+</tr>
+<tr>
+<td><code>accept_range</code></td>
+<td>number</td>
+<td>Bounds with operators <code>gt</code>, <code>gte</code>, <code>lt</code>, <code>lte</code></td>
+</tr>
+<tr>
+<td><code>true_values</code> / <code>false_values</code></td>
+<td>boolean</td>
+<td>Case-insensitive text matches; IFC booleans are used as-is; anything else (for example <code>UNKNOWN</code>) is rejected</td>
+</tr>
+<tr>
+<td><code>unit</code>, <code>unit_uri</code></td>
+<td>number</td>
+<td>Written to <code>property_unit</code> / <code>property_unit_uri</code></td>
+</tr>
+</tbody>
+</table>
+<p>A rejected value does not stop the lookup: the next pair in the list is tried, and the first value that normalizes wins. Rejected values remain in <code>metadata[]</code> only, and <code>ifc2rdf</code> lists them in its conversion report.</p>
+<p>Fire rating examples (<code>normalize_fire_rating</code>):</p>
+<table>
+<thead>
+<tr>
+<th>Raw value</th>
+<th><code>resistance_rating</code></th>
+<th>Separate record</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>EI 90</code>, <code>EI90</code>, <code>ei 90</code></td>
+<td><code>EI90</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>EI 90-RF1</code></td>
+<td><code>EI90</code></td>
+<td><code>reaction_to_fire</code> = <code>RF1</code></td>
+</tr>
+<tr>
+<td><code>EI 30-Sa</code></td>
+<td><code>EI30</code></td>
+<td><code>smoke_rating</code> = <code>SA</code></td>
+</tr>
+<tr>
+<td><code>EI 30-C</code></td>
+<td><code>EI30</code></td>
+<td>— (<code>-C</code> kept in <code>source_value_raw</code>)</td>
+</tr>
+<tr>
+<td><code>F90</code>, <code>T30</code> (DIN 4102)</td>
+<td><code>F90</code>, <code>T30</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>Fire Rating</code>, <code>FireRating</code> (Revit placeholders)</td>
+<td>rejected</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>耐火等級レベル1</code> (Japanese grade label)</td>
+<td>rejected</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p><code>accept_pattern</code> (<code>^[A-Z]{1,4}[0-9]{2,4}$</code>) admits EN 13501-2 and DIN 4102 class notations. National labels outside that pattern stay in <code>metadata[]</code>. EN 13501-2 classes with a performance index (<code>EI2 30</code>) lose the space between index and minutes (<code>EI230</code>).</p>
+<p>Acoustic and thermal examples: <code>Rw 52 dB</code> → <code>52</code> dB; <code>R'w = 45 (-1;-3)</code> → <code>45</code> dB; <code>AcousticRating</code> (Revit placeholder) is rejected, as is any value outside 10–100 dB. <code>ThermalTransmittance</code> values (<code>0.3</code>, <code>1.4</code>, …) are used as numbers within <code>0 &lt; U ≤ 10</code>. They are read in the project's thermal transmittance unit, which is W/(m²·K) unless the IFC file assigns another unit.</p>
+<p>Rule check example (walls with fire resistance <code>EI90</code>):</p>
+<div class="highlight"><pre><span></span><code><span class="k">PREFIX</span> <span class="nn">pbs</span><span class="p">:</span> <span class="nl">&lt;https://schema.pragmaticbim.ch/&gt;</span>
+<span class="k">SELECT</span> <span class="nv">?wall</span> <span class="k">WHERE</span> <span class="p">{</span>
+  <span class="nv">?wall</span> <span class="k">a</span> <span class="nn">pbs</span><span class="p">:</span><span class="nt">SeparatorWall</span> <span class="p">;</span> <span class="nn">pbs</span><span class="p">:</span><span class="nt">performance_properties</span> <span class="nv">?p</span> <span class="p">.</span>
+  <span class="nv">?p</span> <span class="nn">pbs</span><span class="p">:</span><span class="nt">property_key</span> <span class="nn">pbs</span><span class="p">:</span><span class="nt">fire_property_resistance_rating</span> <span class="p">;</span> <span class="nn">pbs</span><span class="p">:</span><span class="nt">property_value_string</span> <span class="s">"EI90"</span> <span class="p">.</span>
 <span class="p">}</span>
 </code></pre></div>
 <hr />
@@ -2037,6 +2457,7 @@ ifc_mapping.merged.yaml   ← single file for adapters
 <span class="nt">attributes</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">separator_wall_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unit_boundary</span>
 <span class="w">  </span><span class="nt">ifc_global_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GlobalId</span>
+<span class="w">  </span><span class="nt">performance_properties</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">FireRating → FireProperty.resistance_rating, … (see Performance properties)</span>
 <span class="nt">geometry</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">primary</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">body_3d</span>
 <span class="w">  </span><span class="nt">secondary</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">footprint_2d</span>
@@ -2283,6 +2704,10 @@ ifc_mapping.merged.yaml   ← single file for adapters
 <tr>
 <td><code>IfcRoof</code></td>
 <td>Mapped to <code>PhysicalElement</code> (assembly container; roof faces are <code>IfcSlab</code>/<code>IfcCovering</code> parts)</td>
+</tr>
+<tr>
+<td><code>IsExternal</code> has no envelope domain</td>
+<td><code>ThermalProperty</code> with key <code>is_external</code> (envelope membership drives thermal rules)</td>
 </tr>
 </tbody>
 </table>

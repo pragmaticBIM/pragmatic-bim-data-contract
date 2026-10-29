@@ -204,11 +204,12 @@ The output contains:
 
 - One node per mapped IFC entity (`Space`, `SeparatorWall`, `SeparatorSlab`, `ConnectionPhysical` for doors and windows, `LevelContext`, `BuildingContext`, …), typed with its contract class and ancestors, and carrying `pbs:ifc_global_id`.
 - Relations `separates_spaces`, `connects_spaces`, `bounded_by` (from `IfcRelSpaceBoundary`), `parent_level`, `parent_space`, `parent_building`.
-- PropertySet values that are not promoted to a slot as `pbs:metadata` entries with key `{Pset}.{Property}`.
+- Rule-relevant PropertySet values (`FireRating`, `AcousticRating`, `ThermalTransmittance`, `IsExternal`, `LoadBearing`) as typed `pbs:performance_properties` records (`pbs:FireProperty`, …) with a canonical `pbs:property_key` and a normalized value; see [Performance properties](contract/mapping/README.md#performance-properties).
+- PropertySet values that are not promoted to a slot, and the raw values of performance properties, as `pbs:metadata` entries with key `{Pset}.{Property}`.
 - A `dcat:Dataset` node at the base IRI with `pbs:contract_version`, `pbs:mapping_version`, and the sha256 of the IFC file.
 - [BOT](https://w3id.org/bot) alignment from the schema `exact_mappings`: `bot:Building`, `bot:Storey`, `bot:Space`, `bot:Element`, and `bot:adjacentElement` (slot `Space.adjacent_elements`).
 
-The output validates against [`site/schema/pragmatic-bim.shacl.ttl`](site/schema/pragmatic-bim.shacl.ttl) and is byte-identical across runs. A conversion report (node counts, excluded IFC classes, relations without a contract slot) is printed to stderr; `-q` suppresses it.
+The output validates against [`site/schema/pragmatic-bim.shacl.ttl`](site/schema/pragmatic-bim.shacl.ttl) and is byte-identical across runs. A conversion report (node counts, excluded IFC classes, relations without a contract slot, PropertySet values rejected by a normalization rule) is printed to stderr; `-q` suppresses it.
 
 Walls that separate a kitchen, through the contract relations or through BOT:
 

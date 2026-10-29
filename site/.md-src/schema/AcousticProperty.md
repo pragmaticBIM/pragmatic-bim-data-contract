@@ -51,7 +51,7 @@ click PerformancePropertyValueType href "./PerformancePropertyValueType.html" _b
 
 | Name | Cardinality and Range | Description | Inheritance |
 | ---  | --- | --- | --- |
-| [property_key](property_key.md) | 1 <br/> [AcousticPropertyKey](AcousticPropertyKey.md) | Canonical key inside the domain; constrained via subclass slot_usage to a domain-specific enum. | [PerformanceProperty](PerformanceProperty.md) |
+| [property_key](property_key.md) | 1 <br/> [AcousticPropertyKey](AcousticPropertyKey.md) | Canonical key inside the domain; constrained via subclass slot_usage to a domain-specific enum (serialized in RDF as the enum meaning IRI). | [PerformanceProperty](PerformanceProperty.md) |
 | [property_value_type](property_value_type.md) | 1 <br/> [PerformancePropertyValueType](PerformancePropertyValueType.md) | Value type discriminator for normalized storage (for example string, number, boolean). | [PerformanceProperty](PerformanceProperty.md) |
 | [property_value_string](property_value_string.md) | 0..1 <br/> [String](String.md) | String value when property_value_type is string. | [PerformanceProperty](PerformanceProperty.md) |
 | [property_value_number](property_value_number.md) | 0..1 <br/> [Double](Double.md) | Numeric value when property_value_type is number. | [PerformanceProperty](PerformanceProperty.md) |
@@ -140,7 +140,7 @@ attributes:
   property_key:
     name: property_key
     description: Canonical key inside the domain; constrained via subclass slot_usage
-      to a domain-specific enum.
+      to a domain-specific enum (serialized in RDF as the enum meaning IRI).
     from_schema: https://schema.pragmaticbim.ch
     rank: 1000
     owner: AcousticProperty

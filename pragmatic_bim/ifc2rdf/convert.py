@@ -23,6 +23,7 @@ from rdflib.namespace import DCAT, DCTERMS, XSD
 
 from pragmatic_bim.ifc2rdf.contract import BOT, ContractSchema
 from pragmatic_bim.ifc2rdf.mapping import EntityMapping, Mapping
+from pragmatic_bim.ifc2rdf.normalize import COMPARATORS, normalize
 from pragmatic_bim.ifc2rdf.resources import (
     classification_dir,
     default_mapping_path,
@@ -33,13 +34,6 @@ from pragmatic_bim.ifc2rdf.vocab import Vocabularies
 DEFAULT_BASE_URI = "urn:pbs:ifc:{project}/"
 SCHEMA_BASE = "https://schema.pragmaticbim.ch/"
 _IRI_PATTERN = re.compile(r"^[A-Za-z][A-Za-z0-9+.\-]*:[^\s<>\"{}|\\^`]+$")
-_COMPARATORS = {
-    "gte": lambda a, b: a >= b,
-    "gt": lambda a, b: a > b,
-    "lte": lambda a, b: a <= b,
-    "lt": lambda a, b: a < b,
-    "eq": lambda a, b: a == b,
-}
 # Hierarchical relationships always point from the contained object to its container.
 _SUBJECT_IS_CHILD = {"IfcRelContainedInSpatialStructure", "IfcRelAggregates"}
 
@@ -102,6 +96,8 @@ class ConversionReport:
     dropped: Counter = field(default_factory=Counter)
     missing_required: Counter = field(default_factory=Counter)
     unsupported_sources: Counter = field(default_factory=Counter)
+    rejected_values: Counter = field(default_factory=Counter)
+    """PropertySet values a ``normalize_*`` rule rejected (they stay in metadata only)."""
 
     def lines(self) -> list[str]:
         out = [
@@ -114,6 +110,7 @@ class ConversionReport:
             ("missing required", self.missing_required),
             ("dropped", self.dropped),
             ("unsupported mapping source", self.unsupported_sources),
+            ("rejected performance value", self.rejected_values),
         ):
             out += [f"  {label}: {key} ×{n}" for key, n in sorted(counter.items())]
         return out
@@ -173,13 +170,21 @@ class _Evaluator:
                 return value
         return None
 
-    def _src_ifc_pset_fallback(self, spec, slot, target):
-        overrides = (spec.get("source_system_overrides") or {}).get(self.conv.source_system) or []
-        for pair in list(overrides) + list(spec.get("fallbacks") or []):
+    def pset_candidates(self, spec: dict[str, Any]) -> Iterable[tuple[str, str, Any]]:
+        """Present ``(pset, property, value)`` in lookup order: overrides, fallbacks, tool fallbacks."""
+        system = self.conv.source_system
+        pairs = list((spec.get("source_system_overrides") or {}).get(system) or [])
+        pairs += list(spec.get("fallbacks") or [])
+        pairs += list((spec.get("source_system_fallbacks") or {}).get(system) or [])
+        for pair in pairs:
             value = (self.psets.get(pair["pset"]) or {}).get(pair["property"])
             if _present(value):
-                self.trace.append((pair["pset"], pair["property"]))
-                return value
+                yield pair["pset"], pair["property"], value
+
+    def _src_ifc_pset_fallback(self, spec, slot, target):
+        for pset, prop, value in self.pset_candidates(spec):
+            self.trace.append((pset, prop))
+            return value
         return None
 
     def _src_ifc_attribute_heuristic(self, spec, slot, target):
@@ -437,8 +442,12 @@ class Converter:
 
         self._set(node, "content_kind", block["content_kind"])
         attributes = block.get("attributes") or {}
+        performance_psets: set[tuple[str, str]] = set()
         for slot, spec in attributes.items():
             if slot == "metadata":
+                continue
+            if isinstance(spec, dict) and spec.get("source") == "ifc_pset_performance":
+                performance_psets |= self._performance_properties(node, ev, slot, spec)
                 continue
             promoted_attrs |= _spec_attributes(spec)
             ev.trace.clear()
@@ -453,7 +462,42 @@ class Converter:
 
         metadata_spec = attributes.get("metadata")
         if metadata_spec:
-            self._metadata(node, ev, metadata_spec, used_psets, promoted_attrs)
+            self._metadata(node, ev, metadata_spec, used_psets, promoted_attrs, performance_psets)
+
+    def _performance_properties(
+        self, node: Node, ev: _Evaluator, slot: str, spec: dict[str, Any]
+    ) -> set[tuple[str, str]]:
+        """Add normalized PerformanceProperty records; return the ``(pset, property)`` pairs used."""
+        used: set[tuple[str, str]] = set()
+        if slot not in self.schema.class_slots(node.contract_class):
+            self.report.dropped[f"{node.contract_class}.{slot} (slot not on class)"] += 1
+            return used
+        for prop in spec.get("properties") or []:
+            rule = prop.get("normalize") or {}
+            label = f"{prop['property_class']}.{prop['property_key']}"
+            for pset, name, raw in ev.pset_candidates(prop["lookup"]):
+                values = normalize(rule, raw)
+                if not values:
+                    self.report.rejected_values[f"{label} {pset}.{name}={raw!r}"] += 1
+                    continue
+                value_type = rule.get("value_type", "string")
+                for key, value in values:
+                    entry = {
+                        "property_key": key or prop["property_key"],
+                        "property_value_type": value_type,
+                        f"property_value_{value_type}": value,
+                        "source_pset": pset,
+                        "source_property": name,
+                        "source_value_raw": serialize_value(raw),
+                        "mapping_version": self.mapping.version,
+                    }
+                    if key is None:
+                        entry["property_unit"] = rule.get("unit")
+                        entry["property_unit_uri"] = rule.get("unit_uri")
+                    self._add_inlined(node, slot, prop["property_class"], entry)
+                used.add((pset, name))
+                break
+        return used
 
     def _classifications(self, node: Node, entries: Iterable[dict[str, Any]]) -> None:
         if "classifications" not in self.schema.class_slots(node.contract_class):
@@ -466,9 +510,14 @@ class Converter:
         for key in list(clean):
             if key not in self.schema.class_slots(class_name):
                 del clean[key]
-            elif self.schema.slot_range(class_name, key) in ("uriorcurie", "uri") and not _IRI_PATTERN.match(
-                str(clean[key])
-            ):
+            elif self.schema.is_enum(range_name := self.schema.slot_range(class_name, key)):
+                try:
+                    self.schema.enum_term(range_name, str(clean[key]))
+                except ValueError:
+                    reason = f"{class_name}.{key}={clean[key]!r} (not in {range_name})"
+                    self.report.dropped[f"{node.contract_class}.{slot} {reason}"] += 1
+                    return
+            elif range_name in ("uriorcurie", "uri") and not _IRI_PATTERN.match(str(clean[key])):
                 del clean[key]
             elif not isinstance(clean[key], (str, int, float, bool)):
                 serialized = serialize_value(clean[key])
@@ -484,7 +533,7 @@ class Converter:
         if (class_name, clean) not in bucket:
             bucket.append((class_name, clean))
 
-    def _metadata(self, node, ev, spec, used_psets, promoted_attrs) -> None:
+    def _metadata(self, node, ev, spec, used_psets, promoted_attrs, performance_psets) -> None:
         entries: dict[str, str] = {}
         for part in spec.get("parts") or []:
             key_format = (part.get("entry_format") or {}).get("metadata_key", "")
@@ -500,9 +549,12 @@ class Converter:
                     if text is not None:
                         entries[key_format.format(ifc_class=node.entity.is_a(), attribute=name)] = text
             elif part.get("source") == "ifc_pset_all":
+                skip = set(used_psets)
+                if "attributes.performance_properties" not in (part.get("keep_used_in") or []):
+                    skip |= performance_psets
                 for pset, properties in ev.psets.items():
                     for prop, value in properties.items():
-                        if prop == "id" or (pset, prop) in used_psets:
+                        if prop == "id" or (pset, prop) in skip:
                             continue
                         text = serialize_value(value)
                         if text is not None:
@@ -567,7 +619,7 @@ class Converter:
             if not isinstance(value, (int, float)):
                 continue
             rule = spec["rule"]
-            self._set(node, target_slot, _COMPARATORS[rule["operator"]](value, rule["threshold"]))
+            self._set(node, target_slot, COMPARATORS[rule["operator"]](value, rule["threshold"]))
             return
 
     # --- relationships --------------------------------------------------------
@@ -712,11 +764,16 @@ class Converter:
                 for index, (class_name, entry) in enumerate(ordered):
                     blank = BNode(f"{digest}{slot[:2]}{index:05d}")
                     graph.add((node.iri, schema.slot_uri(slot), blank))
-                    graph.add((blank, RDF.type, schema.class_uri(class_name)))
+                    for rdf_type in schema.rdf_types(class_name):
+                        graph.add((blank, RDF.type, rdf_type))
                     for key, value in sorted(entry.items()):
-                        graph.add(
-                            (blank, schema.slot_uri(key), schema.literal(schema.slot_range(class_name, key), value))
+                        range_name = schema.slot_range(class_name, key)
+                        term = (
+                            schema.enum_term(range_name, str(value))
+                            if schema.is_enum(range_name)
+                            else schema.literal(range_name, value)
                         )
+                        graph.add((blank, schema.slot_uri(key), term))
             present = set(node.values) | set(node.inlined)
             for slot in schema.required_slots(cls):
                 if slot not in present:

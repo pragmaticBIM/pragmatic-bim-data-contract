@@ -64,9 +64,26 @@ def build_model(path: Path) -> dict[str, str]:
     api.spatial.assign_container(f, relating_structure=kitchen, products=[air_terminal])
 
     pset = api.pset.add_pset(f, product=wall, name="Pset_WallCommon")
-    api.pset.edit_pset(f, pset=pset, properties={"IsExternal": False})
+    api.pset.edit_pset(
+        f,
+        pset=pset,
+        properties={
+            "IsExternal": False,
+            "LoadBearing": True,
+            "FireRating": "EI 90",
+            "AcousticRating": "Rw 52 dB",
+            "ThermalTransmittance": 0.25,
+        },
+    )
     custom = api.pset.add_pset(f, product=wall, name="Custom_Data")
     api.pset.edit_pset(f, pset=custom, properties={"Note": "synthetic"})
+    slab_common = api.pset.add_pset(f, product=slab, name="Pset_SlabCommon")
+    api.pset.edit_pset(f, pset=slab_common, properties={"FireRating": "REI 60-RF1"})
+    # Revit placeholder in the standard pset; the rating itself is in the Revit type pset.
+    door_common = api.pset.add_pset(f, product=door, name="Pset_DoorCommon")
+    api.pset.edit_pset(f, pset=door_common, properties={"FireRating": "Fire Rating"})
+    door_revit = api.pset.add_pset(f, product=door, name="PSet_Revit_Type_Other")
+    api.pset.edit_pset(f, pset=door_revit, properties={"FireRating": "EI 30-C"})
 
     boundaries = [(kitchen, wall), (living, wall), (kitchen, door), (living, door), (kitchen, slab)]
     for index, (space, element) in enumerate(boundaries):

@@ -274,7 +274,7 @@ Name: pragmatic_bim_data_contract
 | [program_code](program_code.md) | External or internal program identifier. |
 | [programme_ref](programme_ref.md) | URI or identifier for a programme or brief document. |
 | [project_code](project_code.md) | External or internal project identifier. |
-| [property_key](property_key.md) | Canonical key inside the domain; constrained via subclass slot_usage to a domain-specific enum. |
+| [property_key](property_key.md) | Canonical key inside the domain; constrained via subclass slot_usage to a domain-specific enum (serialized in RDF as the enum meaning IRI). |
 | [property_path](property_path.md) | Canonical path to the changed field. Examples: Pset_WallCommon.FireRating, IfcWall.Name, description, section.4.2.requirement_3, body:char_offset:1204-1389. |
 | [property_path_kind](property_path_kind.md) | Classification of the property path for downstream diff interpretation. |
 | [property_unit](property_unit.md) | Normalized unit where applicable (for example min, dB, W/m2K). |

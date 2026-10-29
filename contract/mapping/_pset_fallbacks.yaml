@@ -168,3 +168,101 @@ pset_fallbacks:
       revit: *code_revit
       archicad: *code_archicad
       vectorworks: *code_vectorworks
+
+  # --- Performance properties (attributes.performance_properties) ---
+  # One list per property covers every mapped building element: an instance carries only
+  # the Pset_*Common of its own class. Tool-specific entries are source_system_fallbacks,
+  # tried AFTER the standard psets: exporters copy the same tool parameter into
+  # Pset_*Common, and the Revit sample shows tool psets disagreeing with it
+  # (PSet_Revit_Structural.Structural = false where Pset_SlabCommon.LoadBearing = true).
+  # Vectorworks maps ratings into Pset_*Common through the Data Manager; custom psets are
+  # project-specific and go in the vectorworks list when needed.
+
+  perf_fire_rating: &perf_fire_rating
+    fallbacks:
+      - {pset: Pset_WallCommon, property: FireRating}
+      - {pset: Pset_CurtainWallCommon, property: FireRating}
+      - {pset: Pset_SlabCommon, property: FireRating}
+      - {pset: Pset_RoofCommon, property: FireRating}
+      - {pset: Pset_CoveringCommon, property: FireRating}
+      - {pset: Pset_DoorCommon, property: FireRating}
+      - {pset: Pset_WindowCommon, property: FireRating}
+      - {pset: Pset_ColumnCommon, property: FireRating}
+      - {pset: Pset_BeamCommon, property: FireRating}
+      - {pset: Pset_StairCommon, property: FireRating}
+      - {pset: Pset_RampCommon, property: FireRating}
+    source_system_fallbacks:
+      revit:
+        - {pset: PSet_Revit_Type_Identity Data, property: Fire Rating}
+        - {pset: PSet_Revit_Type_Other, property: FireRating}
+        - {pset: PSet_Revit_Other, property: FireRating}
+      archicad:
+        - {pset: General Ratings, property: Fire Resistance Rating}
+      vectorworks: []
+
+  perf_acoustic_rating: &perf_acoustic_rating
+    fallbacks:
+      - {pset: Pset_WallCommon, property: AcousticRating}
+      - {pset: Pset_CurtainWallCommon, property: AcousticRating}
+      - {pset: Pset_SlabCommon, property: AcousticRating}
+      - {pset: Pset_RoofCommon, property: AcousticRating}
+      - {pset: Pset_CoveringCommon, property: AcousticRating}
+      - {pset: Pset_DoorCommon, property: AcousticRating}
+      - {pset: Pset_WindowCommon, property: AcousticRating}
+    source_system_fallbacks:
+      revit:
+        - {pset: PSet_Revit_Type_Other, property: AcousticRating}
+        - {pset: PSet_Revit_Other, property: AcousticRating}
+      archicad:
+        - {pset: General Ratings, property: Acoustic Rating}
+      vectorworks: []
+
+  perf_thermal_transmittance: &perf_thermal_transmittance
+    fallbacks:
+      - {pset: Pset_WallCommon, property: ThermalTransmittance}
+      - {pset: Pset_CurtainWallCommon, property: ThermalTransmittance}
+      - {pset: Pset_SlabCommon, property: ThermalTransmittance}
+      - {pset: Pset_RoofCommon, property: ThermalTransmittance}
+      - {pset: Pset_CoveringCommon, property: ThermalTransmittance}
+      - {pset: Pset_DoorCommon, property: ThermalTransmittance}
+      - {pset: Pset_WindowCommon, property: ThermalTransmittance}
+      - {pset: Pset_ColumnCommon, property: ThermalTransmittance}
+      - {pset: Pset_BeamCommon, property: ThermalTransmittance}
+    source_system_fallbacks:
+      revit:
+        - {pset: PSet_Revit_Type_Analytical Properties, property: Heat Transfer Coefficient (U)}
+      archicad:
+        - {pset: General Ratings, property: Thermal Transmittance}
+      vectorworks: []
+
+  perf_is_external: &perf_is_external
+    fallbacks:
+      - {pset: Pset_WallCommon, property: IsExternal}
+      - {pset: Pset_CurtainWallCommon, property: IsExternal}
+      - {pset: Pset_SlabCommon, property: IsExternal}
+      - {pset: Pset_RoofCommon, property: IsExternal}
+      - {pset: Pset_CoveringCommon, property: IsExternal}
+      - {pset: Pset_DoorCommon, property: IsExternal}
+      - {pset: Pset_WindowCommon, property: IsExternal}
+      - {pset: Pset_ColumnCommon, property: IsExternal}
+      - {pset: Pset_BeamCommon, property: IsExternal}
+      - {pset: Pset_StairCommon, property: IsExternal}
+      - {pset: Pset_RampCommon, property: IsExternal}
+    # Revit (Function) and ArchiCAD (Position) write IsExternal into Pset_*Common.
+    source_system_fallbacks:
+      revit: []
+      archicad: []
+      vectorworks: []
+
+  perf_load_bearing: &perf_load_bearing
+    fallbacks:
+      - {pset: Pset_WallCommon, property: LoadBearing}
+      - {pset: Pset_SlabCommon, property: LoadBearing}
+      - {pset: Pset_ColumnCommon, property: LoadBearing}
+      - {pset: Pset_BeamCommon, property: LoadBearing}
+    # ArchiCAD writes Structural Function into Pset_*Common.LoadBearing.
+    source_system_fallbacks:
+      revit:
+        - {pset: PSet_Revit_Structural, property: Structural}
+      archicad: []
+      vectorworks: []
