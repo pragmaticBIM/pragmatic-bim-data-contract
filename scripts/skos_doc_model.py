@@ -467,6 +467,38 @@ def default_lang(langs: list[str]) -> str:
     return langs[0] if langs else "en"
 
 
+# Product classes are named here; their data sheet (name, tender text, notes)
+# lives in the pragmaticBIM Reference, one file per top concept.
+REFERENCE_PRODUCT_SHEET_BASE = "https://github.com/pragmaticBIM/pragmaticbim-reference/blob/main/products/"
+PRODUCT_SHEET_SLUGS = frozenset(
+    {
+        "wall-separator-product",
+        "slab-separator-product",
+        "door-connector-product",
+        "window-connector-product",
+        "floor-covering-product",
+        "wall-covering-product",
+        "ceiling-covering-product",
+        "facade-covering-product",
+        "roof-covering-product",
+        "foundation-product",
+        "column-product",
+        "beam-product",
+        "stair-product",
+        "railing-product",
+        "mep-terminal-product",
+        "mep-unit-product",
+        "site-facility-product",
+    }
+)
+
+
+def product_sheet_url(vocab: VocabularyDoc, concept: ConceptDoc) -> str | None:
+    if vocab.slug not in PRODUCT_SHEET_SLUGS or not concept.is_top_concept:
+        return None
+    return f"{REFERENCE_PRODUCT_SHEET_BASE}{concept.notation.lower()}.yaml"
+
+
 LANG_FIELDS = (
     ("label", "Label", lambda c: c.pref_label),
     ("definition", "Definition", lambda c: c.definition),
@@ -497,9 +529,13 @@ def render_concepts_table_html(vocab: VocabularyDoc) -> str:
         if field[0] != "description" or any(c.description.values for c in vocab.concepts)
     ]
 
+    sheets = vocab.slug in PRODUCT_SHEET_SLUGS
+
     lines.extend(["</div>", "<table>", "<thead>", "<tr>"])
     lines.append("<th>Notation</th>")
     lines.append("<th>Broader</th>")
+    if sheets:
+        lines.append("<th>Data sheet</th>")
     for lang in vocab.langs:
         for field_key, field_title, _ in fields:
             lines.append(
@@ -513,6 +549,10 @@ def render_concepts_table_html(vocab: VocabularyDoc) -> str:
         lines.append("<tr>")
         lines.append(f"<td>{escape_html(concept.notation)}</td>")
         lines.append(f"<td>{escape_html(broader)}</td>")
+        if sheets:
+            url = product_sheet_url(vocab, concept)
+            link = f'<a href="{escape_html(url)}">Reference</a>' if url else ""
+            lines.append(f"<td>{link}</td>")
         for lang in vocab.langs:
             for field_key, _, getter in fields:
                 value = getter(concept).get(lang)
