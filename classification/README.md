@@ -66,6 +66,10 @@ classification/
 | `pragmaticbim-elementplan-classification/` | Cost-relevant pragmaticBIM Elementplan elements, each with one reference quantity and price unit |
 | `mapping/` | Crosswalks from abstract concepts to external code lists (SIA, D0165, BKP, …) |
 
+## Product classes and data sheets
+
+The product vocabularies identify each product class: notation, label, a short `skos:definition` of what it is, hierarchy, IFC class, and the mapping bridges to KBOB, BKP and materials. They carry no tender text. The data sheet of each top concept (name in four languages, tender text, application notes) lives in the [pragmaticBIM Reference](https://github.com/pragmaticBIM/pragmaticbim-reference/tree/main/products), one file per notation, and the classification docs link to it.
+
 ## Mapping bridges
 
 | File | Links |
