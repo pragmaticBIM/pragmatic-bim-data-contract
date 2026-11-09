@@ -63,7 +63,7 @@ MANUAL_OVERRIDES: dict[str, str] = {
     "Film- und Hörsäle": "RN-LRN-LCT",
     "Allgemeine Unterrichts- und Übungsräume ohne festes Gestühl": "RN-LRN-CLS",
     "Besondere Unterrichts- und Übungsräume ohne festes Gestühl": "RN-LRN-SEM",
-    "Sporthalle": "RN-LRN-AUS",
+    "Sporthalle": "RN-07-50-01",
     "Kraft-/Fitnessraum": "RN-LRN-WRK",
     "Werkstätten": "RN-IND-WRK",
     "Werkhallen": "RN-IND-PRD",

@@ -1,0 +1,211 @@
+@prefix : <https://example.org/abstract/cost-project-type/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix map: <https://example.org/mapping/> .
+
+:scheme a skos:ConceptScheme ;
+  skos:prefLabel "Abstract cost project types"@en ;
+  skos:prefLabel "Abstrakte Kosten-Projektarten"@de ;
+  dcterms:title "Abstract cost project types"@en ;
+  dcterms:title "Abstrakte Kosten-Projektarten"@de ;
+  dcterms:identifier "AbstractCostProjectType" ;
+  dcterms:creator "pragmatic-bim-public-rules" ;
+  dcterms:issued "2026-11-04" ;
+  dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
+  dcterms:source <https://github.com/simondilhas/pragmatic-bim-public-rules> ;
+  dcterms:references map:abstractCostGroupsToIcmsMapping ;
+  skos:definition "Project or sub-project types used as the first dimension of a cost report. Buildings (CPT-01) and civil engineering works (CPT-02 to CPT-19) share the same cost groups; cost sub-groups state the project types they apply to. Numbering is aligned with ICMS Level 1 project codes so that a full ICMS code can be formed by prepending the project type number."@en ;
+  skos:definition "Projekt- oder Teilprojektarten als erste Dimension eines Kostenberichts. Gebäude (CPT-01) und Tiefbauwerke (CPT-02 bis CPT-19) teilen dieselben Kostengruppen; Kostenuntergruppen geben an, für welche Projektarten sie gelten. Die Nummerierung entspricht den ICMS-Projektcodes der Ebene 1, sodass ein vollständiger ICMS-Code durch Voranstellen der Projektartnummer gebildet werden kann."@de ;
+  skos:scopeNote "Own wording. ICMS is referenced by code only through the cost groups to ICMS mapping bridge; no ICMS text is reproduced."@en ;
+  skos:scopeNote "Eigene Formulierung. ICMS wird nur über Codes in der Mapping-Brücke Kostengruppen zu ICMS referenziert; es wird kein ICMS-Text wiedergegeben."@de ;
+  skos:hasTopConcept
+    :CPT-01,
+    :CPT-02,
+    :CPT-03,
+    :CPT-04,
+    :CPT-05,
+    :CPT-06,
+    :CPT-07,
+    :CPT-08,
+    :CPT-09,
+    :CPT-10,
+    :CPT-11,
+    :CPT-12,
+    :CPT-13,
+    :CPT-14,
+    :CPT-15,
+    :CPT-16,
+    :CPT-17,
+    :CPT-18,
+    :CPT-19 .
+
+:CPT-01 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:topConceptOf :scheme ;
+  skos:notation "CPT-01" ;
+  skos:prefLabel "Buildings"@en ;
+  skos:prefLabel "Gebäude"@de ;
+  skos:definition "Enclosed constructions providing shelter for occupants or contents, including their site works."@en ;
+  skos:definition "Umschlossene Bauwerke, die Personen oder Gütern Schutz bieten, einschliesslich Umgebungsarbeiten."@de .
+
+:CPT-02 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:topConceptOf :scheme ;
+  skos:notation "CPT-02" ;
+  skos:prefLabel "Roads and runways"@en ;
+  skos:prefLabel "Strassen und Pisten"@de ;
+  skos:definition "Road carriageways, highways, airfield runways, taxiways and aprons."@en ;
+  skos:definition "Strassen, Autobahnen sowie Start- und Landebahnen, Rollwege und Vorfelder von Flugplätzen."@de .
+
+:CPT-03 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:topConceptOf :scheme ;
+  skos:notation "CPT-03" ;
+  skos:prefLabel "Railways"@en ;
+  skos:prefLabel "Bahnanlagen"@de ;
+  skos:definition "Heavy rail, light rail, tram and metro lines including track, power supply and signalling."@en ;
+  skos:definition "Eisenbahn-, Stadtbahn-, Tram- und Metrolinien einschliesslich Fahrbahn, Bahnstromversorgung und Sicherungsanlagen."@de .
+
+:CPT-04 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:topConceptOf :scheme ;
+  skos:notation "CPT-04" ;
+  skos:prefLabel "Bridges"@en ;
+  skos:prefLabel "Brücken"@de ;
+  skos:definition "Structures carrying a traffic route or utility across an obstacle."@en ;
+  skos:definition "Bauwerke, die einen Verkehrsweg oder eine Leitung über ein Hindernis führen."@de .
+
+:CPT-05 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:topConceptOf :scheme ;
+  skos:notation "CPT-05" ;
+  skos:prefLabel "Tunnels"@en ;
+  skos:prefLabel "Tunnel"@de ;
+  skos:definition "Underground passages for traffic, utilities or water, bored, mined or cut-and-cover."@en ;
+  skos:definition "Unterirdische Bauwerke für Verkehr, Leitungen oder Wasser, im Vortrieb oder im Tagbau erstellt."@de .
+
+:CPT-06 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:topConceptOf :scheme ;
+  skos:notation "CPT-06" ;
+  skos:prefLabel "Wastewater treatment works"@en ;
+  skos:prefLabel "Abwasserreinigungsanlagen"@de ;
+  skos:definition "Plants that collect, treat and discharge sewage and industrial wastewater."@en ;
+  skos:definition "Anlagen zur Sammlung, Reinigung und Ableitung von kommunalem und industriellem Abwasser."@de .
+
+:CPT-07 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:topConceptOf :scheme ;
+  skos:notation "CPT-07" ;
+  skos:prefLabel "Water treatment works"@en ;
+  skos:prefLabel "Wasseraufbereitungsanlagen"@de ;
+  skos:definition "Plants that abstract, treat and store drinking or process water."@en ;
+  skos:definition "Anlagen zur Fassung, Aufbereitung und Speicherung von Trink- oder Brauchwasser."@de .
+
+:CPT-08 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:topConceptOf :scheme ;
+  skos:notation "CPT-08" ;
+  skos:prefLabel "Pipelines"@en ;
+  skos:prefLabel "Rohrleitungen"@de ;
+  skos:definition "Long-distance and distribution pipelines and cable routes for water, gas, oil, heat or energy."@en ;
+  skos:definition "Fern- und Verteilleitungen sowie Kabeltrassen für Wasser, Gas, Öl, Wärme oder Energie."@de .
+
+:CPT-09 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:topConceptOf :scheme ;
+  skos:notation "CPT-09" ;
+  skos:prefLabel "Wells and boreholes"@en ;
+  skos:prefLabel "Brunnen und Bohrungen"@de ;
+  skos:definition "Drilled or dug wells and boreholes for water, energy or resources."@en ;
+  skos:definition "Gebohrte oder gegrabene Brunnen und Bohrungen für Wasser, Energie oder Rohstoffe."@de .
+
+:CPT-10 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:topConceptOf :scheme ;
+  skos:notation "CPT-10" ;
+  skos:prefLabel "Power generation plants"@en ;
+  skos:prefLabel "Kraftwerke"@de ;
+  skos:definition "Plants that generate electricity or heat from any energy source."@en ;
+  skos:definition "Anlagen zur Erzeugung von Strom oder Wärme aus beliebigen Energieträgern."@de .
+
+:CPT-11 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:topConceptOf :scheme ;
+  skos:notation "CPT-11" ;
+  skos:prefLabel "Chemical plants"@en ;
+  skos:prefLabel "Chemieanlagen"@de ;
+  skos:definition "Process plants producing chemical substances."@en ;
+  skos:definition "Prozessanlagen zur Herstellung chemischer Stoffe."@de .
+
+:CPT-12 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:topConceptOf :scheme ;
+  skos:notation "CPT-12" ;
+  skos:prefLabel "Refineries"@en ;
+  skos:prefLabel "Raffinerien"@de ;
+  skos:definition "Process plants refining crude oil or other raw materials."@en ;
+  skos:definition "Prozessanlagen zur Raffination von Rohöl oder anderen Rohstoffen."@de .
+
+:CPT-13 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:topConceptOf :scheme ;
+  skos:notation "CPT-13" ;
+  skos:prefLabel "Dams and reservoirs"@en ;
+  skos:prefLabel "Talsperren und Speicherbecken"@de ;
+  skos:definition "Barriers and basins that impound or store water."@en ;
+  skos:definition "Sperrenbauwerke und Becken zum Aufstauen oder Speichern von Wasser."@de .
+
+:CPT-14 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:topConceptOf :scheme ;
+  skos:notation "CPT-14" ;
+  skos:prefLabel "Mines and quarries"@en ;
+  skos:prefLabel "Bergwerke und Steinbrüche"@de ;
+  skos:definition "Surface or underground extraction of minerals and rock."@en ;
+  skos:definition "Ober- oder untertägiger Abbau von Mineralien und Gestein."@de .
+
+:CPT-15 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:topConceptOf :scheme ;
+  skos:notation "CPT-15" ;
+  skos:prefLabel "Offshore works"@en ;
+  skos:prefLabel "Offshore-Bauwerke"@de ;
+  skos:definition "Structures in open sea such as platforms and wind farm foundations."@en ;
+  skos:definition "Bauwerke auf offener See wie Plattformen und Fundamente von Windparks."@de .
+
+:CPT-16 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:topConceptOf :scheme ;
+  skos:notation "CPT-16" ;
+  skos:prefLabel "Near-shore works"@en ;
+  skos:prefLabel "Küstennahe Bauwerke"@de ;
+  skos:definition "Coastal structures such as seawalls, breakwaters and outfalls."@en ;
+  skos:definition "Bauwerke im Küstenbereich wie Ufermauern, Wellenbrecher und Auslaufbauwerke."@de .
+
+:CPT-17 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:topConceptOf :scheme ;
+  skos:notation "CPT-17" ;
+  skos:prefLabel "Ports"@en ;
+  skos:prefLabel "Häfen"@de ;
+  skos:definition "Harbour facilities including quays, berths, terminals and their land side."@en ;
+  skos:definition "Hafenanlagen einschliesslich Kais, Liegeplätzen, Terminals und landseitiger Flächen."@de .
+
+:CPT-18 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:topConceptOf :scheme ;
+  skos:notation "CPT-18" ;
+  skos:prefLabel "Waterway works"@en ;
+  skos:prefLabel "Wasserbau an Gewässern"@de ;
+  skos:definition "Works on rivers, canals and lakes such as locks, weirs, bank protection and flood defence."@en ;
+  skos:definition "Bauwerke an Flüssen, Kanälen und Seen wie Schleusen, Wehre, Uferschutz und Hochwasserschutz."@de .
+
+:CPT-19 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:topConceptOf :scheme ;
+  skos:notation "CPT-19" ;
+  skos:prefLabel "Land formation and reclamation"@en ;
+  skos:prefLabel "Landgewinnung und Geländeaufbau"@de ;
+  skos:definition "Creation of new land by filling, dredging or consolidation."@en ;
+  skos:definition "Schaffung neuer Landflächen durch Aufschüttung, Baggerung oder Konsolidierung."@de .

@@ -97,7 +97,7 @@ External target labels are not shipped in this repository; only codes and IRIs a
 | `arma:raumliste-innen-sitzungszimmer` | `closeMatch` | `rn:RN-RES-BED` |
 | `arma:raumliste-innen-sonstige-nutzung-allgemein` | `closeMatch` | `rn:RN-WRK-OPN` |
 | `arma:raumliste-innen-spezielle-arbeitszone-mit-sanit-ren-einrichtungen` | `closeMatch` | `rn:RN-HYG-WC-MIX` |
-| `arma:raumliste-innen-sporthalle` | `closeMatch` | `rn:RN-LRN-AUS` |
+| `arma:raumliste-innen-sporthalle` | `closeMatch` | `rn:RN-COM-GYM` |
 | `arma:raumliste-innen-technologisches-labor` | `closeMatch` | `rn:RN-LRN-SCI` |
 | `arma:raumliste-innen-terrasse` | `closeMatch` | `rn:RN-OUT-TRR` |
 | `arma:raumliste-innen-toilette-t1` | `closeMatch` | `rn:RN-HYG-WC-MIX` |

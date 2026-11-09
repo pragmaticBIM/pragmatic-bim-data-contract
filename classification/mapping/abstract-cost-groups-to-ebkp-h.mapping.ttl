@@ -1,0 +1,278 @@
+@prefix cg: <https://example.org/abstract/cost-group/> .
+@prefix ebkph: <https://example.org/ch/ebkp-h/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix map: <https://example.org/mapping/> .
+
+map:abstractCostGroupsToEbkpHMapping a dcterms:Dataset ;
+  dcterms:title "Abstract cost groups to eBKP-H mapping"@en ;
+  dcterms:title "Mapping abstrakter Kostengruppen nach eBKP-H"@de ;
+  dcterms:references cg:scheme, ebkph:scheme ;
+  dcterms:issued "2026-11-04" ;
+  dcterms:description "Maps abstract cost groups to eBKP-H (SN 506 511, Hochbau) codes for buildings (CPT-01) and for the project-independent groups. Codes are referenced by notation only (main group letter, element group e.g. C01, element e.g. C01.01); eBKP-H is published by CRB and no CRB titles, definitions or reference quantities are reproduced. Licence holders resolve the codes against their own copy. Predicates: skos:exactMatch only for identical scope; skos:closeMatch for near-equivalent scope; skos:broadMatch where the eBKP-H code is broader; skos:narrowMatch where the eBKP-H codes are parts of the cost group; skos:relatedMatch marks an adjacent or partial line, not an equal alternative. Disambiguation: the mapping is deliberately not bijective. ICMS-shaped groups bundle by work type and life-cycle stage, eBKP-H by element, so one cost group can spread over several codes and vice versa. Renewal (CG-3) and maintenance (CG-5) works use the same eBKP-H codes as the corresponding construction (CG-2) groups. Operation (CG-4) and end of life (CG-6) have no eBKP-H equivalent. Unmapped sub-groups are spread across element rates in eBKP-H."@en ;
+  dcterms:description "Ordnet abstrakte Kostengruppen den Codes des eBKP-H (SN 506 511, Hochbau) für Gebäude (CPT-01) und für die projektunabhängigen Gruppen zu. Codes werden nur über die Notation referenziert (Hauptgruppe als Buchstabe, Elementgruppe z. B. C01, Element z. B. C01.01); eBKP-H wird von CRB herausgegeben, es werden keine CRB-Bezeichnungen, Definitionen oder Bezugsgrössen wiedergegeben. Lizenznehmende lösen die Codes mit ihrer eigenen Ausgabe auf. Prädikate: skos:exactMatch nur bei identischem Umfang; skos:closeMatch bei nahezu gleichem Umfang; skos:broadMatch, wenn der eBKP-H-Code umfassender ist; skos:narrowMatch, wenn die eBKP-H-Codes Teile der Kostengruppe sind; skos:relatedMatch bezeichnet eine benachbarte oder teilweise Position, keine gleichwertige Alternative. Disambiguierung: Das Mapping ist bewusst nicht eindeutig. Die ICMS-orientierten Gruppen gliedern nach Leistungsart und Lebenszyklusphase, eBKP-H nach Elementen; eine Kostengruppe kann sich daher auf mehrere Codes verteilen und umgekehrt. Erneuerung (CG-3) und Instandhaltung (CG-5) verwenden dieselben eBKP-H-Codes wie die entsprechenden Gruppen der Erstellung (CG-2). Betrieb (CG-4) und Lebensende (CG-6) haben keine eBKP-H-Entsprechung. Nicht zugeordnete Untergruppen sind in eBKP-H auf die Elementkosten verteilt."@de .
+
+# --- Groups (Level 3) ---
+
+cg:CG-1-01 skos:closeMatch ebkph:A01 ;
+  skos:relatedMatch ebkph:A02 .
+
+cg:CG-1-02 skos:relatedMatch ebkph:W03, ebkph:W06 .
+
+cg:CG-2-01 skos:narrowMatch ebkph:B01, ebkph:B05, ebkph:B06 .
+
+cg:CG-2-02 skos:narrowMatch ebkph:C01, ebkph:B07, ebkph:E01 .
+
+cg:CG-2-03 skos:narrowMatch ebkph:C02, ebkph:C03, ebkph:C04 .
+
+cg:CG-2-04 skos:narrowMatch ebkph:E02, ebkph:E03, ebkph:F, ebkph:G .
+
+cg:CG-2-05 skos:narrowMatch ebkph:D, ebkph:H .
+
+cg:CG-2-06 skos:relatedMatch ebkph:B04, ebkph:I01.02, ebkph:I05.06 .
+
+cg:CG-2-07 skos:closeMatch ebkph:I .
+
+cg:CG-2-08 skos:relatedMatch ebkph:B02, ebkph:B03, ebkph:B08 .
+
+cg:CG-2-09 skos:closeMatch ebkph:Y .
+
+cg:CG-2-10 skos:relatedMatch ebkph:Z .
+
+cg:CG-2-11 skos:relatedMatch ebkph:B04, ebkph:B09.03 .
+
+cg:CG-2-12 skos:narrowMatch ebkph:J, ebkph:H01 .
+
+cg:CG-2-13 skos:closeMatch ebkph:V ;
+  skos:relatedMatch ebkph:W01 .
+
+# --- Sub-groups (Level 4) ---
+
+cg:CG-1-01-010 skos:closeMatch ebkph:A01 .
+
+cg:CG-1-01-020 skos:closeMatch ebkph:A02.06 .
+
+cg:CG-1-01-030 skos:relatedMatch ebkph:A01.03 .
+
+cg:CG-1-01-050 skos:narrowMatch ebkph:A02.02, ebkph:A02.03, ebkph:A02.04, ebkph:A02.05, ebkph:A02.07 .
+
+cg:CG-1-01-060 skos:closeMatch ebkph:A02.01 .
+
+cg:CG-1-02-020 skos:relatedMatch ebkph:V03.02 .
+
+cg:CG-1-02-030 skos:closeMatch ebkph:W03 .
+
+cg:CG-1-02-040 skos:relatedMatch ebkph:V03.06 .
+
+cg:CG-1-02-060 skos:closeMatch ebkph:W06 ;
+  skos:relatedMatch ebkph:W04.02 .
+
+cg:CG-1-02-080 skos:broadMatch ebkph:W01 .
+
+cg:CG-2-01-B010 skos:narrowMatch ebkph:B01.01, ebkph:B01.02 .
+
+cg:CG-2-01-B020 skos:closeMatch ebkph:B06.02 ;
+  skos:relatedMatch ebkph:B05.03 .
+
+cg:CG-2-01-B030 skos:closeMatch ebkph:B01.03 .
+
+cg:CG-2-01-B040 skos:broadMatch ebkph:B02.07 .
+
+cg:CG-2-01-B050 skos:narrowMatch ebkph:B05.02, ebkph:B05.03, ebkph:B09.02 .
+
+cg:CG-2-01-B060 skos:closeMatch ebkph:B05.01 .
+
+cg:CG-2-01-B070 skos:broadMatch ebkph:B05.01 .
+
+cg:CG-2-01-B080 skos:narrowMatch ebkph:I01.01, ebkph:B06.03 .
+
+cg:CG-2-01-B090 skos:closeMatch ebkph:B06.06 .
+
+cg:CG-2-01-B100 skos:closeMatch ebkph:B03.02 .
+
+cg:CG-2-01-B110 skos:broadMatch ebkph:B06 ;
+  skos:relatedMatch ebkph:I03.08 .
+
+cg:CG-2-02-B010 skos:narrowMatch ebkph:B07.02, ebkph:B07.03 .
+
+cg:CG-2-02-B020 skos:narrowMatch ebkph:C01.01, ebkph:C01.02, ebkph:C01.03, ebkph:C01.04, ebkph:C01.05 ;
+  skos:relatedMatch ebkph:B06.01, ebkph:B06.04 .
+
+cg:CG-2-02-B030 skos:narrowMatch ebkph:C02.01, ebkph:C01.03, ebkph:E01.01, ebkph:E01.02, ebkph:E01.03 ;
+  skos:relatedMatch ebkph:B06.04 .
+
+cg:CG-2-03-B010 skos:relatedMatch ebkph:C05.01, ebkph:B05.02 .
+
+cg:CG-2-03-B020 skos:broadMatch ebkph:C02, ebkph:C03, ebkph:C04 .
+
+cg:CG-2-03-B030 skos:narrowMatch ebkph:C02.01, ebkph:C02.02, ebkph:C03.01, ebkph:C03.02, ebkph:C04.01, ebkph:C04.02, ebkph:C04.03, ebkph:C04.04, ebkph:C04.05, ebkph:C04.06, ebkph:C04.07, ebkph:C04.08 .
+
+cg:CG-2-03-B040 skos:relatedMatch ebkph:C05.02 .
+
+cg:CG-2-03-B050 skos:broadMatch ebkph:C .
+
+cg:CG-2-04-B010 skos:relatedMatch ebkph:B05.02, ebkph:G06.01 .
+
+cg:CG-2-04-B020 skos:narrowMatch ebkph:E02, ebkph:E03 .
+
+cg:CG-2-04-B030 skos:narrowMatch ebkph:F01, ebkph:F02 .
+
+cg:CG-2-04-B040 skos:closeMatch ebkph:G01 .
+
+cg:CG-2-04-B050 skos:closeMatch ebkph:G05 ;
+  skos:relatedMatch ebkph:J01.04, ebkph:E03.05 .
+
+cg:CG-2-04-B060 skos:narrowMatch ebkph:G02, ebkph:G03, ebkph:G04 .
+
+cg:CG-2-04-B070 skos:narrowMatch ebkph:C05.01, ebkph:C05.02, ebkph:G06.01, ebkph:G06.02 .
+
+cg:CG-2-04-B080 skos:relatedMatch ebkph:E02.04, ebkph:F01.04 .
+
+cg:CG-2-05-B010 skos:narrowMatch ebkph:D05, ebkph:D06, ebkph:D07 .
+
+cg:CG-2-05-B020 skos:narrowMatch ebkph:D01.01, ebkph:D01.02, ebkph:D01.03, ebkph:D01.04, ebkph:D01.06 .
+
+cg:CG-2-05-B030 skos:closeMatch ebkph:D01.05 .
+
+cg:CG-2-05-B040 skos:narrowMatch ebkph:D01.07, ebkph:D01.08, ebkph:D01.09, ebkph:D01.10, ebkph:D01.11, ebkph:D02, ebkph:D03 .
+
+cg:CG-2-05-B050 skos:narrowMatch ebkph:D08, ebkph:D09 .
+
+cg:CG-2-05-B060 skos:closeMatch ebkph:D08.05 ;
+  skos:relatedMatch ebkph:D08.06 .
+
+cg:CG-2-05-B070 skos:broadMatch ebkph:H09 ;
+  skos:relatedMatch ebkph:D09.01 .
+
+cg:CG-2-05-B080 skos:closeMatch ebkph:D04 .
+
+cg:CG-2-05-B090 skos:narrowMatch ebkph:D10, ebkph:D11 .
+
+cg:CG-2-05-B100 skos:closeMatch ebkph:D12 .
+
+cg:CG-2-05-B110 skos:relatedMatch ebkph:D12.03 .
+
+cg:CG-2-05-B120 skos:relatedMatch ebkph:H09.06 .
+
+cg:CG-2-05-B130 skos:broadMatch ebkph:D01.01 .
+
+cg:CG-2-05-B140 skos:relatedMatch ebkph:D01.01, ebkph:D05.02 .
+
+cg:CG-2-05-B150 skos:narrowMatch ebkph:D08.02, ebkph:D09.02 .
+
+cg:CG-2-05-B160 skos:broadMatch ebkph:H07 ;
+  skos:relatedMatch ebkph:I03.07 .
+
+cg:CG-2-05-B170 skos:relatedMatch ebkph:J01.04, ebkph:D01.06 .
+
+cg:CG-2-05-B175 skos:broadMatch ebkph:H06 .
+
+cg:CG-2-05-B180 skos:closeMatch ebkph:H03 .
+
+cg:CG-2-05-B190 skos:closeMatch ebkph:H09.08 .
+
+cg:CG-2-05-B200 skos:closeMatch ebkph:H02 .
+
+cg:CG-2-05-B210 skos:closeMatch ebkph:H05 .
+
+cg:CG-2-05-B220 skos:broadMatch ebkph:H09 .
+
+cg:CG-2-05-B230 skos:relatedMatch ebkph:D03.02, ebkph:H09.06 .
+
+cg:CG-2-05-B240 skos:relatedMatch ebkph:G05.02, ebkph:D01.06 .
+
+cg:CG-2-05-B250 skos:broadMatch ebkph:H .
+
+cg:CG-2-06-B010 skos:closeMatch ebkph:I05.06 .
+
+cg:CG-2-06-B020 skos:narrowMatch ebkph:B04.07 ;
+  skos:relatedMatch ebkph:I01.02 .
+
+cg:CG-2-06-B030 skos:closeMatch ebkph:B04.06 ;
+  skos:relatedMatch ebkph:I01.02 .
+
+cg:CG-2-06-B040 skos:broadMatch ebkph:B04 .
+
+cg:CG-2-06-B050 skos:relatedMatch ebkph:B01.04 .
+
+cg:CG-2-06-B060 skos:relatedMatch ebkph:H01.04, ebkph:D11.04 .
+
+cg:CG-2-07-B010 skos:narrowMatch ebkph:I02.01, ebkph:I02.02 .
+
+cg:CG-2-07-B020 skos:closeMatch ebkph:I02.08 ;
+  skos:relatedMatch ebkph:I02.03 .
+
+cg:CG-2-07-B030 skos:narrowMatch ebkph:I02.05, ebkph:I02.06 .
+
+cg:CG-2-07-B040 skos:closeMatch ebkph:I04 .
+
+cg:CG-2-07-B050 skos:narrowMatch ebkph:I01.01, ebkph:I03 .
+
+cg:CG-2-07-B060 skos:closeMatch ebkph:I06 .
+
+cg:CG-2-07-B070 skos:closeMatch ebkph:I05 ;
+  skos:relatedMatch ebkph:B04 .
+
+cg:CG-2-08-010 skos:broadMatch ebkph:B02.07 .
+
+cg:CG-2-08-020 skos:narrowMatch ebkph:B02.01, ebkph:B03.04 .
+
+cg:CG-2-08-030 skos:broadMatch ebkph:B02.07 ;
+  skos:relatedMatch ebkph:B02.08 .
+
+cg:CG-2-08-040 skos:closeMatch ebkph:B02.04 .
+
+cg:CG-2-08-050 skos:closeMatch ebkph:B08 .
+
+cg:CG-2-08-060 skos:narrowMatch ebkph:B02.02, ebkph:B02.03, ebkph:B02.05, ebkph:B03.03, ebkph:B03.05 .
+
+cg:CG-2-08-070 skos:broadMatch ebkph:B02.02 .
+
+cg:CG-2-08-080 skos:relatedMatch ebkph:V02.02 .
+
+cg:CG-2-08-090 skos:relatedMatch ebkph:B01.04 .
+
+cg:CG-2-08-100 skos:broadMatch ebkph:B02.07 ;
+  skos:relatedMatch ebkph:B02.08 .
+
+cg:CG-2-08-110 skos:relatedMatch ebkph:W02 .
+
+cg:CG-2-08-120 skos:relatedMatch ebkph:W01.02 .
+
+cg:CG-2-08-130 skos:closeMatch ebkph:W05 .
+
+cg:CG-2-08-140 skos:closeMatch ebkph:B02.06 .
+
+cg:CG-2-09-010 skos:broadMatch ebkph:Y01 .
+
+cg:CG-2-09-020 skos:broadMatch ebkph:Y01 .
+
+cg:CG-2-09-030 skos:closeMatch ebkph:Y02 .
+
+cg:CG-2-09-040 skos:relatedMatch ebkph:Y02 .
+
+cg:CG-2-10-010 skos:relatedMatch ebkph:Z01 .
+
+cg:CG-2-10-020 skos:closeMatch ebkph:Z01 .
+
+cg:CG-2-11-010 skos:closeMatch ebkph:B04 .
+
+cg:CG-2-11-020 skos:closeMatch ebkph:B09.03 .
+
+cg:CG-2-12-010 skos:narrowMatch ebkph:J01, ebkph:J02, ebkph:J03 .
+
+cg:CG-2-12-020 skos:closeMatch ebkph:H01 ;
+  skos:relatedMatch ebkph:H04 .
+
+cg:CG-2-12-800 skos:closeMatch ebkph:J04 .
+
+cg:CG-2-13-010 skos:closeMatch ebkph:V01 ;
+  skos:relatedMatch ebkph:V02.01 .
+
+cg:CG-2-13-020 skos:closeMatch ebkph:W01 .
+
+cg:CG-2-13-030 skos:broadMatch ebkph:V01 .
+
+cg:CG-2-13-040 skos:relatedMatch ebkph:V01.05 .
+
+cg:CG-2-13-800 skos:closeMatch ebkph:V03 .

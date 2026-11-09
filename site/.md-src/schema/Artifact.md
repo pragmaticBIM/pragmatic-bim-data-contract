@@ -95,6 +95,7 @@ click StatusType href "./StatusType.html" _blank
 | [Requirement](Requirement.md) | [source_artifact](source_artifact.md) | range | [Artifact](Artifact.md) |
 | [PerformanceRequirement](PerformanceRequirement.md) | [source_artifact](source_artifact.md) | range | [Artifact](Artifact.md) |
 | [SpatialRequirement](SpatialRequirement.md) | [source_artifact](source_artifact.md) | range | [Artifact](Artifact.md) |
+| [IdentificationRequirement](IdentificationRequirement.md) | [source_artifact](source_artifact.md) | range | [Artifact](Artifact.md) |
 | [RegulatoryRequirement](RegulatoryRequirement.md) | [source_artifact](source_artifact.md) | range | [Artifact](Artifact.md) |
 | [BriefRequirement](BriefRequirement.md) | [source_artifact](source_artifact.md) | range | [Artifact](Artifact.md) |
 | [DeliverableRequirement](DeliverableRequirement.md) | [source_artifact](source_artifact.md) | range | [Artifact](Artifact.md) |

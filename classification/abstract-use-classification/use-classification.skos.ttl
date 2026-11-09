@@ -1,0 +1,248 @@
+@prefix : <https://example.org/ch/abstract-use/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+
+:scheme a skos:ConceptScheme ;
+  skos:prefLabel "Abstract use classification"@en ;
+  skos:prefLabel "Abstrakte Nutzungsklassifikation"@de ;
+  skos:prefLabel "Classification abstraite des usages"@fr ;
+  skos:prefLabel "Classificazione astratta degli usi"@it ;
+  dcterms:title "Abstract use classification"@en ;
+  dcterms:identifier "AbstractUseClassification" ;
+  dcterms:creator "pragmatic-bim-public-rules" ;
+  dcterms:issued "2026-10-04" ;
+  dcterms:description "Uses of a building or part of a building. Each gross volume carries exactly one use; uses do not overlap. Links to space activity, SIA 416 and SIA 380/1 are in the use mappings."@en ;
+  dcterms:description "Nutzungen eines Gebäudes oder Gebäudeteils. Jedes Bruttovolumen trägt genau eine Nutzung; Nutzungen überschneiden sich nicht. Die Zuordnungen zu Raumaktivität, SIA 416 und SIA 380/1 stehen in den Nutzungs-Mappings."@de ;
+  dcterms:description "Usages d'un bâtiment ou d'une partie de bâtiment. Chaque volume brut porte exactement un usage ; les usages ne se recoupent pas. Les correspondances avec l'activité des locaux, la SIA 416 et la SIA 380/1 figurent dans les mappings d'usage."@fr ;
+  dcterms:description "Usi di un edificio o di una sua parte. Ogni volume lordo porta esattamente un uso; gli usi non si sovrappongono. Le corrispondenze con l'attività dei locali, la SIA 416 e la SIA 380/1 sono nei mapping degli usi."@it ;
+  skos:hasTopConcept
+    :residential, :office, :education, :retail, :food-service, :accommodation, :assembly, :healthcare, :production, :logistics, :sport, :laboratory, :data-centre, :passenger-transport, :storage, :parking, :building-services .
+
+:residential a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:topConceptOf :scheme ;
+  skos:notation "USE-WH" ;
+  skos:prefLabel "Housing"@en ;
+  skos:prefLabel "Wohnen"@de ;
+  skos:prefLabel "Habitation"@fr ;
+  skos:prefLabel "Abitazione"@it ;
+  skos:definition "Permanent residence of households."@en ;
+  skos:definition "Dauerhaftes Wohnen von Haushalten."@de ;
+  skos:definition "Logement permanent de ménages."@fr ;
+  skos:definition "Abitazione permanente di nuclei domestici."@it .
+
+:office a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:topConceptOf :scheme ;
+  skos:notation "USE-WR" ;
+  skos:prefLabel "Work"@en ;
+  skos:prefLabel "Arbeit"@de ;
+  skos:prefLabel "Travail"@fr ;
+  skos:prefLabel "Lavoro"@it ;
+  skos:definition "Office and administrative work by staff."@en ;
+  skos:definition "Büro- und Verwaltungsarbeit von Mitarbeitenden."@de ;
+  skos:definition "Travail de bureau et d'administration des collaboratrices et collaborateurs."@fr ;
+  skos:definition "Lavoro d'ufficio e amministrativo di collaboratrici e collaboratori."@it .
+
+:education a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:topConceptOf :scheme ;
+  skos:notation "USE-BI" ;
+  skos:prefLabel "Education"@en ;
+  skos:prefLabel "Bildung"@de ;
+  skos:prefLabel "Formation"@fr ;
+  skos:prefLabel "Formazione"@it ;
+  skos:definition "Teaching and learning of pupils and students, for example in schools and universities."@en ;
+  skos:definition "Unterricht und Lernen von Schülerinnen, Schülern und Studierenden, etwa in Schulen und Hochschulen."@de ;
+  skos:definition "Enseignement et apprentissage d'élèves et d'étudiants, par exemple dans les écoles et hautes écoles."@fr ;
+  skos:definition "Insegnamento e apprendimento di allievi e studenti, ad esempio in scuole e scuole universitarie."@it .
+
+:retail a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:topConceptOf :scheme ;
+  skos:notation "USE-VK" ;
+  skos:prefLabel "Retail"@en ;
+  skos:prefLabel "Verkauf"@de ;
+  skos:prefLabel "Vente"@fr ;
+  skos:prefLabel "Vendita"@it ;
+  skos:definition "Sale of goods to customers."@en ;
+  skos:definition "Verkauf von Waren an Kundinnen und Kunden."@de ;
+  skos:definition "Vente de marchandises à la clientèle."@fr ;
+  skos:definition "Vendita di merci alla clientela."@it .
+
+:food-service a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:topConceptOf :scheme ;
+  skos:notation "USE-GA" ;
+  skos:prefLabel "Food service"@en ;
+  skos:prefLabel "Gastronomie"@de ;
+  skos:prefLabel "Restauration"@fr ;
+  skos:prefLabel "Ristorazione"@it ;
+  skos:definition "Preparing and serving food and drink to guests."@en ;
+  skos:definition "Zubereitung und Ausgabe von Speisen und Getränken an Gäste."@de ;
+  skos:definition "Préparation et service de mets et boissons aux hôtes."@fr ;
+  skos:definition "Preparazione e servizio di cibi e bevande agli ospiti."@it .
+
+:accommodation a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:topConceptOf :scheme ;
+  skos:notation "USE-BH" ;
+  skos:prefLabel "Accommodation"@en ;
+  skos:prefLabel "Beherbergung"@de ;
+  skos:prefLabel "Hébergement"@fr ;
+  skos:prefLabel "Alloggio"@it ;
+  skos:definition "Temporary overnight stay of guests, for example in hotels."@en ;
+  skos:definition "Vorübergehendes Übernachten von Gästen, etwa in Hotels."@de ;
+  skos:definition "Hébergement temporaire d'hôtes, par exemple dans des hôtels."@fr ;
+  skos:definition "Alloggio temporaneo di ospiti, ad esempio in alberghi."@it .
+
+:assembly a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:topConceptOf :scheme ;
+  skos:notation "USE-VS" ;
+  skos:prefLabel "Assembly and culture"@en ;
+  skos:prefLabel "Versammlung und Kultur"@de ;
+  skos:prefLabel "Rassemblement et culture"@fr ;
+  skos:prefLabel "Riunione e cultura"@it ;
+  skos:definition "Gathering of audiences for events, culture and worship."@en ;
+  skos:definition "Versammlung von Publikum für Veranstaltungen, Kultur und Kultus."@de ;
+  skos:definition "Rassemblement de public pour des manifestations, la culture et le culte."@fr ;
+  skos:definition "Riunione di pubblico per manifestazioni, cultura e culto."@it .
+
+:healthcare a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:topConceptOf :scheme ;
+  skos:notation "USE-HE" ;
+  skos:prefLabel "Healthcare"@en ;
+  skos:prefLabel "Gesundheit"@de ;
+  skos:prefLabel "Santé"@fr ;
+  skos:prefLabel "Salute"@it ;
+  skos:definition "Examination, treatment and care of patients."@en ;
+  skos:definition "Untersuchung, Behandlung und Pflege von Patientinnen und Patienten."@de ;
+  skos:definition "Examen, traitement et soins des patients."@fr ;
+  skos:definition "Esame, cura e assistenza dei pazienti."@it .
+
+:production a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:topConceptOf :scheme ;
+  skos:notation "USE-PR" ;
+  skos:prefLabel "Production"@en ;
+  skos:prefLabel "Produktion"@de ;
+  skos:prefLabel "Production"@fr ;
+  skos:prefLabel "Produzione"@it ;
+  skos:definition "Manufacturing and processing of goods."@en ;
+  skos:definition "Herstellung und Verarbeitung von Gütern."@de ;
+  skos:definition "Fabrication et transformation de biens."@fr ;
+  skos:definition "Fabbricazione e lavorazione di beni."@it .
+
+:logistics a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:topConceptOf :scheme ;
+  skos:notation "USE-LO" ;
+  skos:prefLabel "Warehousing and logistics"@en ;
+  skos:prefLabel "Lager und Logistik"@de ;
+  skos:prefLabel "Entrepôt et logistique"@fr ;
+  skos:prefLabel "Deposito e logistica"@it ;
+  skos:definition "Storage, handling and distribution of goods."@en ;
+  skos:definition "Lagerung, Umschlag und Verteilung von Gütern."@de ;
+  skos:definition "Stockage, transbordement et distribution de biens."@fr ;
+  skos:definition "Stoccaggio, trasbordo e distribuzione di beni."@it .
+
+:sport a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:topConceptOf :scheme ;
+  skos:notation "USE-SP" ;
+  skos:prefLabel "Sport"@en ;
+  skos:prefLabel "Sport"@de ;
+  skos:prefLabel "Sport"@fr ;
+  skos:prefLabel "Sport"@it ;
+  skos:definition "Sports in halls, pools and facilities."@en ;
+  skos:definition "Sportliche Betätigung in Hallen, Bädern und auf Anlagen."@de ;
+  skos:definition "Activité sportive en salles, piscines et installations."@fr ;
+  skos:definition "Attività sportiva in palestre, piscine e impianti."@it .
+
+:laboratory a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:topConceptOf :scheme ;
+  skos:notation "USE-LA" ;
+  skos:prefLabel "Laboratory and research"@en ;
+  skos:prefLabel "Labor und Forschung"@de ;
+  skos:prefLabel "Laboratoire et recherche"@fr ;
+  skos:prefLabel "Laboratorio e ricerca"@it ;
+  skos:definition "Experimental research and analysis in laboratories."@en ;
+  skos:definition "Experimentelle Forschung und Analytik in Laboren."@de ;
+  skos:definition "Recherche expérimentale et analyses en laboratoire."@fr ;
+  skos:definition "Ricerca sperimentale e analisi in laboratorio."@it .
+
+:data-centre a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:topConceptOf :scheme ;
+  skos:notation "USE-RZ" ;
+  skos:prefLabel "Data centre"@en ;
+  skos:prefLabel "Rechenzentrum"@de ;
+  skos:prefLabel "Centre de données"@fr ;
+  skos:prefLabel "Centro dati"@it ;
+  skos:definition "Operation of IT infrastructure with secured power and cooling."@en ;
+  skos:definition "Betrieb von IT-Infrastruktur mit gesicherter Strom- und Kälteversorgung."@de ;
+  skos:definition "Exploitation d'infrastructures informatiques avec alimentation électrique et refroidissement sécurisés."@fr ;
+  skos:definition "Esercizio di infrastrutture IT con alimentazione elettrica e raffreddamento garantiti."@it .
+
+:passenger-transport a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:topConceptOf :scheme ;
+  skos:notation "USE-VE" ;
+  skos:prefLabel "Passenger transport"@en ;
+  skos:prefLabel "Personenverkehr"@de ;
+  skos:prefLabel "Transport de voyageurs"@fr ;
+  skos:prefLabel "Trasporto passeggeri"@it ;
+  skos:definition "Handling and waiting of travellers, for example in station halls, terminals and waiting areas."@en ;
+  skos:definition "Abfertigung und Aufenthalt von Reisenden, etwa in Bahnhofshallen, Terminals und Wartebereichen."@de ;
+  skos:definition "Prise en charge et séjour de voyageurs, p. ex. dans les halls de gare, terminaux et zones d'attente."@fr ;
+  skos:definition "Accoglienza e permanenza di viaggiatori, ad es. in atri di stazione, terminal e zone d'attesa."@it ;
+  skos:scopeNote "Car parks and garages belong to Parking. Retail, food service and offices in the same building get their own use."@en ;
+  skos:scopeNote "Parkhäuser und Einstellhallen gehören zu Parkierung. Verkauf, Gastronomie und Büros im selben Gebäude erhalten ihre eigene Nutzung."@de ;
+  skos:scopeNote "Les parkings et garages relèvent du Stationnement. Vente, restauration et bureaux dans le même bâtiment reçoivent leur propre usage."@fr ;
+  skos:scopeNote "Autosilo e autorimesse rientrano nel Parcheggio. Vendita, ristorazione e uffici nello stesso edificio ricevono il proprio uso."@it .
+
+:storage a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:topConceptOf :scheme ;
+  skos:notation "USE-KL" ;
+  skos:prefLabel "Cellar and storage"@en ;
+  skos:prefLabel "Keller und Lager"@de ;
+  skos:prefLabel "Caves et dépôts"@fr ;
+  skos:prefLabel "Cantine e depositi"@it ;
+  skos:definition "Storage rooms for the occupants."@en ;
+  skos:definition "Abstell- und Lagerräume für die Nutzerinnen und Nutzer."@de ;
+  skos:definition "Locaux de rangement et de stockage pour les usagers."@fr ;
+  skos:definition "Locali di deposito e ripostiglio per gli utenti."@it .
+
+:parking a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:topConceptOf :scheme ;
+  skos:notation "USE-PK" ;
+  skos:prefLabel "Parking"@en ;
+  skos:prefLabel "Parkierung"@de ;
+  skos:prefLabel "Stationnement"@fr ;
+  skos:prefLabel "Parcheggio"@it ;
+  skos:definition "Parking of vehicles in garages and on parking spaces."@en ;
+  skos:definition "Abstellen von Fahrzeugen in Einstellhallen und auf Parkplätzen."@de ;
+  skos:definition "Stationnement de véhicules dans des garages et sur des places de parc."@fr ;
+  skos:definition "Parcheggio di veicoli in autorimesse e su posteggi."@it ;
+  skos:scopeNote "Also applies to standalone car parks."@en ;
+  skos:scopeNote "Gilt auch für eigenständige Parkhäuser."@de ;
+  skos:scopeNote "S'applique aussi aux parkings indépendants."@fr ;
+  skos:scopeNote "Vale anche per autosilo indipendenti."@it .
+
+:building-services a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:topConceptOf :scheme ;
+  skos:notation "USE-TE" ;
+  skos:prefLabel "Building services"@en ;
+  skos:prefLabel "Technik"@de ;
+  skos:prefLabel "Technique"@fr ;
+  skos:prefLabel "Tecnica"@it ;
+  skos:definition "Rooms for building services, energy and utility connections."@en ;
+  skos:definition "Räume für Haustechnik, Energie und Anschlüsse."@de ;
+  skos:definition "Locaux pour les installations techniques, l'énergie et les raccordements."@fr ;
+  skos:definition "Locali per impianti tecnici, energia e allacciamenti."@it .

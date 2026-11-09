@@ -145,6 +145,7 @@ click StatusType href "./StatusType.html" _blank
 | [PerformanceRequirement](PerformanceRequirement.md) | [applies_to_entities](applies_to_entities.md) | range | [Entity](Entity.md) |
 | [SpatialRequirement](SpatialRequirement.md) | [related_entity](related_entity.md) | range | [Entity](Entity.md) |
 | [SpatialRequirement](SpatialRequirement.md) | [applies_to_entities](applies_to_entities.md) | range | [Entity](Entity.md) |
+| [IdentificationRequirement](IdentificationRequirement.md) | [applies_to_entities](applies_to_entities.md) | range | [Entity](Entity.md) |
 | [RegulatoryRequirement](RegulatoryRequirement.md) | [applies_to_entities](applies_to_entities.md) | range | [Entity](Entity.md) |
 | [BriefRequirement](BriefRequirement.md) | [applies_to_entities](applies_to_entities.md) | range | [Entity](Entity.md) |
 | [DeliverableRequirement](DeliverableRequirement.md) | [applies_to_entities](applies_to_entities.md) | range | [Entity](Entity.md) |

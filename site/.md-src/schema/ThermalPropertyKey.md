@@ -27,6 +27,7 @@ URI: [pbs:ThermalPropertyKey](https://schema.pragmaticbim.ch/ThermalPropertyKey)
 | r_value | pbs:thermal_property_r_value |  |
 | thermal_transmittance | pbs:thermal_property_thermal_transmittance |  |
 | is_external | pbs:thermal_property_is_external | Element faces the outside of the building (IFC IsExternal); marks thermal envelope elements. |
+| air_tightness_n50 | pbs:thermal_property_air_tightness_n50 | Air change rate at 50 Pa pressure difference in 1/h (building envelope). |
 
 
 
@@ -86,6 +87,10 @@ permissible_values:
     description: Element faces the outside of the building (IFC IsExternal); marks
       thermal envelope elements.
     meaning: pbs:thermal_property_is_external
+  air_tightness_n50:
+    text: air_tightness_n50
+    description: Air change rate at 50 Pa pressure difference in 1/h (building envelope).
+    meaning: pbs:thermal_property_air_tightness_n50
 
 ```
 </details>

@@ -31,7 +31,9 @@ URI: [pbs:source_property](https://schema.pragmaticbim.ch/source_property)
 | [AcousticProperty](AcousticProperty.md) | Normalized acoustic-related property. |  no  |
 | [ThermalProperty](ThermalProperty.md) | Normalized thermal-related property. |  no  |
 | [StructuralProperty](StructuralProperty.md) | Normalized structural-related property. |  no  |
+| [IndoorEnvironmentProperty](IndoorEnvironmentProperty.md) | Normalized indoor environment property of a space (temperature, humidity, air, light, occupancy). |  no  |
 | [SecurityProperty](SecurityProperty.md) | Normalized security-related property. |  no  |
+| [EnvironmentalProperty](EnvironmentalProperty.md) | Normalized environmental property of an element type (embodied greenhouse gas emissions and primary energy). |  no  |
 | [MaterialProperty](MaterialProperty.md) | Normalized material-related property. |  no  |
 
 

@@ -1,0 +1,577 @@
+@prefix : <https://example.org/abstract/site-condition/> .
+@prefix map: <https://example.org/mapping/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+
+:scheme a skos:ConceptScheme ;
+  skos:prefLabel "Abstract site conditions"@en ;
+  skos:prefLabel "Abstrakte Standortbedingungen"@de ;
+  dcterms:title "Abstract site conditions"@en ;
+  dcterms:identifier "AbstractSiteCondition" ;
+  dcterms:creator "abstract" ;
+  dcterms:issued "2026-11-09" ;
+  dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
+  dcterms:source <https://github.com/pragmaticBIM/pragmatic-bim-data-contract> ;
+  dcterms:references map:siteConditionsToSiteFacilityProductsMapping, map:siteConditionsToConnectionFunctionalTypeMapping ;
+  skos:definition "Hierarchical classification of the conditions a site sets for a project: legal limits, access, utility connections, design intent, existing conditions, and construction. Classifies site plan geometry (points, lines, areas) and site facts by what they are."@en ;
+  skos:definition "Hierarchische Klassifikation der Bedingungen, die ein Standort einem Projekt setzt: rechtliche Vorgaben, Erschliessung, Werkanschlüsse, Entwurfsabsichten, Bestand und Bauablauf. Klassifiziert Geometrie aus Situationsplänen (Punkte, Linien, Flächen) und Standortfakten nach ihrer Bedeutung."@de ;
+  skos:scopeNote "Classifies the type of a site condition, not its status. Whether an item is a recorded fact, a binding constraint, or a client requirement, its source (cadastre, ÖREB extract, survey, client), and whether it is legally binding are recorded on the item. Assign a leaf notation when the type is known; otherwise assign the parent class. The parcel as a spatial node is LegalSiteContext; SC-LEG-PARCEL classifies its boundary geometry. Temporary site facilities (crane, fence, container) are classified with site facility products (SFP)."@en ;
+  skos:scopeNote "Klassifiziert die Art einer Standortbedingung, nicht ihren Status. Ob ein Eintrag ein erfasster Fakt, eine verbindliche Vorgabe oder eine Bestellervorgabe ist, seine Quelle (Amtliche Vermessung, ÖREB-Auszug, Aufnahme, Besteller) und ob er rechtsverbindlich ist, werden am Eintrag erfasst. Bei bekannter Art Blattnotation zuweisen, sonst die Elternklasse. Die Parzelle als räumlicher Knoten ist LegalSiteContext; SC-LEG-PARCEL klassifiziert ihre Grenzgeometrie. Temporäre Baustelleneinrichtungen (Kran, Zaun, Container) werden mit Baustelleneinrichtungsprodukten (SFP) klassifiziert."@de ;
+  skos:hasTopConcept :SC-LEG, :SC-ACC, :SC-UTL, :SC-DES, :SC-EXI, :SC-CON .
+
+# --- Legal limits (SC-LEG) ---
+
+:SC-LEG a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:topConceptOf :scheme ;
+  skos:notation "SC-LEG" ;
+  skos:prefLabel "Legal limit"@en ;
+  skos:prefLabel "Rechtliche Vorgabe"@de ;
+  skos:definition "Limit on where and how the site may be built on, set by land law, planning law, or private rights."@en ;
+  skos:definition "Beschränkung, wo und wie auf dem Grundstück gebaut werden darf, aus Grundeigentum, Planungsrecht oder privaten Rechten."@de ;
+  skos:narrower :SC-LEG-PARCEL, :SC-LEG-ZONE, :SC-LEG-BUILDING-LINE, :SC-LEG-SETBACK, :SC-LEG-EASEMENT, :SC-LEG-HERITAGE ;
+  dcterms:identifier "legal-limit" .
+
+:SC-LEG-PARCEL a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:notation "SC-LEG-PARCEL" ;
+  skos:prefLabel "Parcel boundary"@en ;
+  skos:prefLabel "Parzellengrenze"@de ;
+  skos:altLabel "Grundstücksgrenze"@de ;
+  skos:altLabel "Grenze"@de ;
+  skos:definition "Boundary of the land parcel as recorded in the cadastral survey."@en ;
+  skos:definition "Grenze des Grundstücks gemäss Amtlicher Vermessung."@de ;
+  dcterms:description "Closed line or area. The parcel identifier (for example the Swiss EGRID) is recorded on the item."@en ;
+  dcterms:description "Geschlossene Linie oder Fläche. Die Grundstücksidentifikation (zum Beispiel der Schweizer EGRID) wird am Eintrag erfasst."@de ;
+  skos:scopeNote "Boundary geometry only. The parcel as a spatial node is LegalSiteContext."@en ;
+  skos:scopeNote "Nur die Grenzgeometrie. Die Parzelle als räumlicher Knoten ist LegalSiteContext."@de ;
+  skos:broader :SC-LEG ;
+  dcterms:identifier "parcel-boundary" .
+
+:SC-LEG-ZONE a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:notation "SC-LEG-ZONE" ;
+  skos:prefLabel "Land-use zone"@en ;
+  skos:prefLabel "Nutzungszone"@de ;
+  skos:altLabel "Bauzone"@de ;
+  skos:definition "Area of the land-use plan with one set of building regulations, such as permitted use, density, height, and number of storeys."@en ;
+  skos:definition "Fläche des Nutzungsplans mit einheitlichen Bauvorschriften wie zulässiger Nutzung, Dichte, Höhe und Geschosszahl."@de ;
+  dcterms:description "Area. The zone code and the regulation values are recorded on the item."@en ;
+  dcterms:description "Fläche. Zonenbezeichnung und Vorschriftswerte werden am Eintrag erfasst."@de ;
+  skos:broader :SC-LEG ;
+  dcterms:identifier "land-use-zone" .
+
+:SC-LEG-BUILDING-LINE a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:notation "SC-LEG-BUILDING-LINE" ;
+  skos:prefLabel "Building line"@en ;
+  skos:prefLabel "Baulinie"@de ;
+  skos:definition "Line fixed in a plan that buildings may not cross, typically along roads, railways, or watercourses."@en ;
+  skos:definition "In einem Plan festgelegte Linie, die Bauten nicht überschreiten dürfen, typischerweise entlang von Strassen, Bahnen oder Gewässern."@de ;
+  dcterms:description "Line. Set by an approved plan, independent of the parcel boundary."@en ;
+  dcterms:description "Linie. Durch einen genehmigten Plan festgelegt, unabhängig von der Parzellengrenze."@de ;
+  skos:scopeNote "A plotted line from a plan. A minimum distance measured from the parcel boundary, a forest, or a watercourse is SC-LEG-SETBACK."@en ;
+  skos:scopeNote "Eine in einem Plan eingetragene Linie. Ein Mindestabstand ab Parzellengrenze, Wald oder Gewässer ist SC-LEG-SETBACK."@de ;
+  skos:broader :SC-LEG ;
+  dcterms:identifier "building-line" .
+
+:SC-LEG-SETBACK a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:notation "SC-LEG-SETBACK" ;
+  skos:prefLabel "Setback line"@en ;
+  skos:prefLabel "Abstandslinie"@de ;
+  skos:definition "Line at a minimum distance from a boundary or a protected feature that buildings must keep."@en ;
+  skos:definition "Linie im Mindestabstand zu einer Grenze oder einem geschützten Element, den Bauten einhalten müssen."@de ;
+  dcterms:description "Line, usually offset from the parcel boundary, a forest edge, or a watercourse. The distance is recorded on the item."@en ;
+  dcterms:description "Linie, meist versetzt zur Parzellengrenze, zum Waldrand oder zu einem Gewässer. Der Abstand wird am Eintrag erfasst."@de ;
+  skos:narrower :SC-LEG-SETBACK-BOUNDARY, :SC-LEG-SETBACK-FOREST, :SC-LEG-SETBACK-WATER ;
+  skos:broader :SC-LEG ;
+  dcterms:identifier "setback-line" .
+
+:SC-LEG-SETBACK-BOUNDARY a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:notation "SC-LEG-SETBACK-BOUNDARY" ;
+  skos:prefLabel "Boundary setback"@en ;
+  skos:prefLabel "Grenzabstand"@de ;
+  skos:definition "Minimum distance of buildings from the parcel boundary set by the building regulations."@en ;
+  skos:definition "Mindestabstand von Bauten zur Parzellengrenze gemäss Bauvorschriften."@de ;
+  skos:broader :SC-LEG-SETBACK ;
+  dcterms:identifier "boundary-setback" .
+
+:SC-LEG-SETBACK-FOREST a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:notation "SC-LEG-SETBACK-FOREST" ;
+  skos:prefLabel "Forest setback"@en ;
+  skos:prefLabel "Waldabstand"@de ;
+  skos:altLabel "Waldabstandslinie"@de ;
+  skos:definition "Minimum distance of buildings from the forest edge."@en ;
+  skos:definition "Mindestabstand von Bauten zum Waldrand."@de ;
+  skos:broader :SC-LEG-SETBACK ;
+  dcterms:identifier "forest-setback" .
+
+:SC-LEG-SETBACK-WATER a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:notation "SC-LEG-SETBACK-WATER" ;
+  skos:prefLabel "Watercourse setback"@en ;
+  skos:prefLabel "Gewässerabstand"@de ;
+  skos:altLabel "Gewässerraum"@de ;
+  skos:altLabel "Gewässerabstandslinie"@de ;
+  skos:definition "Minimum distance of buildings from a watercourse or lake, or the edge of the space reserved for it."@en ;
+  skos:definition "Mindestabstand von Bauten zu einem Fliess- oder stehenden Gewässer, oder Rand des dafür freigehaltenen Raums."@de ;
+  skos:broader :SC-LEG-SETBACK ;
+  dcterms:identifier "watercourse-setback" .
+
+:SC-LEG-EASEMENT a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:notation "SC-LEG-EASEMENT" ;
+  skos:prefLabel "Easement"@en ;
+  skos:prefLabel "Dienstbarkeit"@de ;
+  skos:altLabel "Servitut"@de ;
+  skos:definition "Right of a third party over part of the parcel, recorded in the land register."@en ;
+  skos:definition "Recht eines Dritten an einem Teil des Grundstücks, im Grundbuch eingetragen."@de ;
+  dcterms:description "Area or line. The land register entry is usually text; the geometry is drawn from it or from an easement plan."@en ;
+  dcterms:description "Fläche oder Linie. Der Grundbucheintrag ist meist Text; die Geometrie wird daraus oder aus einem Dienstbarkeitsplan gezeichnet."@de ;
+  skos:narrower :SC-LEG-EASEMENT-ROW, :SC-LEG-EASEMENT-UTILITY, :SC-LEG-EASEMENT-RESTRICTION ;
+  skos:broader :SC-LEG ;
+  dcterms:identifier "easement" .
+
+:SC-LEG-EASEMENT-ROW a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:notation "SC-LEG-EASEMENT-ROW" ;
+  skos:prefLabel "Right of way"@en ;
+  skos:prefLabel "Wegrecht"@de ;
+  skos:altLabel "Fahrwegrecht"@de ;
+  skos:altLabel "Fusswegrecht"@de ;
+  skos:definition "Right of a third party to pass over part of the parcel on foot or by vehicle."@en ;
+  skos:definition "Recht eines Dritten, einen Teil des Grundstücks zu Fuss oder mit Fahrzeugen zu queren."@de ;
+  skos:broader :SC-LEG-EASEMENT ;
+  dcterms:identifier "right-of-way" .
+
+:SC-LEG-EASEMENT-UTILITY a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:notation "SC-LEG-EASEMENT-UTILITY" ;
+  skos:prefLabel "Utility line right"@en ;
+  skos:prefLabel "Leitungsrecht"@de ;
+  skos:altLabel "Durchleitungsrecht"@de ;
+  skos:definition "Right of a third party to run and maintain a pipe or cable through the parcel."@en ;
+  skos:definition "Recht eines Dritten, eine Leitung durch das Grundstück zu führen und zu unterhalten."@de ;
+  skos:scopeNote "The right, not the physical line. A surveyed pipe or cable is SC-EXI-UTILITY."@en ;
+  skos:scopeNote "Das Recht, nicht die Leitung selbst. Eine aufgenommene Leitung ist SC-EXI-UTILITY."@de ;
+  skos:broader :SC-LEG-EASEMENT ;
+  dcterms:identifier "utility-line-right" .
+
+:SC-LEG-EASEMENT-RESTRICTION a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:notation "SC-LEG-EASEMENT-RESTRICTION" ;
+  skos:prefLabel "Building restriction"@en ;
+  skos:prefLabel "Baubeschränkung"@de ;
+  skos:altLabel "Bauverbot"@de ;
+  skos:altLabel "Näherbaurecht"@de ;
+  skos:definition "Private right that forbids or limits building on part of the parcel, or changes the distance rules between neighbours."@en ;
+  skos:definition "Privates Recht, das das Bauen auf einem Teil des Grundstücks verbietet oder beschränkt oder die Abstandsregeln zwischen Nachbarn ändert."@de ;
+  skos:broader :SC-LEG-EASEMENT ;
+  dcterms:identifier "building-restriction" .
+
+:SC-LEG-HERITAGE a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:notation "SC-LEG-HERITAGE" ;
+  skos:prefLabel "Heritage protection"@en ;
+  skos:prefLabel "Denkmal- und Ortsbildschutz"@de ;
+  skos:altLabel "Schutzobjekt"@de ;
+  skos:definition "Protection of a building, object, or townscape area that limits changes, demolition, or new construction."@en ;
+  skos:definition "Schutz eines Gebäudes, Objekts oder Ortsbildbereichs, der Veränderungen, Abbruch oder Neubau beschränkt."@de ;
+  dcterms:description "Point, area, or building outline. The inventory and protection level are recorded on the item."@en ;
+  dcterms:description "Punkt, Fläche oder Gebäudeumriss. Inventar und Schutzstufe werden am Eintrag erfasst."@de ;
+  skos:broader :SC-LEG ;
+  dcterms:identifier "heritage-protection" .
+
+# --- Access (SC-ACC) ---
+
+:SC-ACC a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:topConceptOf :scheme ;
+  skos:notation "SC-ACC" ;
+  skos:prefLabel "Access"@en ;
+  skos:prefLabel "Erschliessung"@de ;
+  skos:definition "Where people and vehicles reach the site in operation."@en ;
+  skos:definition "Wo Personen und Fahrzeuge das Grundstück im Betrieb erreichen."@de ;
+  dcterms:description "Point or line with direction, from the public network onto the site."@en ;
+  dcterms:description "Punkt oder Linie mit Richtung, vom öffentlichen Netz auf das Grundstück."@de ;
+  skos:scopeNote "Permanent access. Temporary access for construction traffic is SC-CON-ACCESS."@en ;
+  skos:scopeNote "Dauerhafte Erschliessung. Temporäre Zufahrt für den Bauverkehr ist SC-CON-ACCESS."@de ;
+  skos:narrower :SC-ACC-CAR, :SC-ACC-BIKE, :SC-ACC-PEDESTRIAN, :SC-ACC-DELIVERY ;
+  dcterms:identifier "access" .
+
+:SC-ACC-CAR a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:notation "SC-ACC-CAR" ;
+  skos:prefLabel "Car access"@en ;
+  skos:prefLabel "Zufahrt Personenwagen"@de ;
+  skos:definition "Access for passenger cars, including the entrance to a car park."@en ;
+  skos:definition "Zufahrt für Personenwagen, einschliesslich der Einfahrt in eine Einstellhalle."@de ;
+  skos:broader :SC-ACC ;
+  dcterms:identifier "car-access" .
+
+:SC-ACC-BIKE a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:notation "SC-ACC-BIKE" ;
+  skos:prefLabel "Bicycle access"@en ;
+  skos:prefLabel "Zufahrt Velo"@de ;
+  skos:definition "Access for bicycles."@en ;
+  skos:definition "Zufahrt für Velos."@de ;
+  skos:broader :SC-ACC ;
+  dcterms:identifier "bicycle-access" .
+
+:SC-ACC-PEDESTRIAN a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:notation "SC-ACC-PEDESTRIAN" ;
+  skos:prefLabel "Pedestrian access"@en ;
+  skos:prefLabel "Zugang Fussgänger"@de ;
+  skos:definition "Access on foot, including the main entrance route."@en ;
+  skos:definition "Zugang zu Fuss, einschliesslich des Hauptzugangs."@de ;
+  skos:broader :SC-ACC ;
+  dcterms:identifier "pedestrian-access" .
+
+:SC-ACC-DELIVERY a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:notation "SC-ACC-DELIVERY" ;
+  skos:prefLabel "Delivery access"@en ;
+  skos:prefLabel "Anlieferung"@de ;
+  skos:altLabel "Zufahrt Lastwagen"@de ;
+  skos:definition "Access for delivery trucks and vans in operation."@en ;
+  skos:definition "Zufahrt für Lastwagen und Lieferwagen im Betrieb."@de ;
+  skos:scopeNote "Deliveries in operation. Construction deliveries are SC-CON-ACCESS."@en ;
+  skos:scopeNote "Anlieferung im Betrieb. Anlieferung während des Baus ist SC-CON-ACCESS."@de ;
+  skos:broader :SC-ACC ;
+  dcterms:identifier "delivery-access" .
+
+# --- Utility connection (SC-UTL) ---
+
+:SC-UTL a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:topConceptOf :scheme ;
+  skos:notation "SC-UTL" ;
+  skos:prefLabel "Utility connection"@en ;
+  skos:prefLabel "Werkanschluss"@de ;
+  skos:altLabel "Hausanschluss"@de ;
+  skos:altLabel "Medienerschliessung"@de ;
+  skos:definition "Point where the site connects, or is to connect, to a public or shared utility network."@en ;
+  skos:definition "Punkt, an dem das Grundstück an ein öffentliches oder gemeinsames Versorgungs- oder Entsorgungsnetz angeschlossen ist oder werden soll."@de ;
+  dcterms:description "Point at the network or where the connection line enters the parcel. Network operator, capacity (for example connection power or pipe diameter), and depth are recorded on the item."@en ;
+  dcterms:description "Punkt am Netz oder dort, wo die Anschlussleitung ins Grundstück eintritt. Netzbetreiber, Kapazität (zum Beispiel Anschlussleistung oder Rohrdurchmesser) und Tiefe werden am Eintrag erfasst."@de ;
+  skos:scopeNote "The connection point. A surveyed pipe or cable is SC-EXI-UTILITY; the right to run a line through a third-party parcel is SC-LEG-EASEMENT-UTILITY."@en ;
+  skos:scopeNote "Der Anschlusspunkt. Eine aufgenommene Leitung ist SC-EXI-UTILITY; das Recht, eine Leitung durch ein fremdes Grundstück zu führen, ist SC-LEG-EASEMENT-UTILITY."@de ;
+  skos:narrower :SC-UTL-WATER, :SC-UTL-WASTEWATER, :SC-UTL-STORMWATER, :SC-UTL-ELECTRICITY, :SC-UTL-TELECOM, :SC-UTL-GAS, :SC-UTL-THERMAL ;
+  dcterms:identifier "utility-connection" .
+
+:SC-UTL-WATER a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:notation "SC-UTL-WATER" ;
+  skos:prefLabel "Water supply connection"@en ;
+  skos:prefLabel "Wasseranschluss"@de ;
+  skos:altLabel "Trinkwasser"@de ;
+  skos:definition "Connection to the public drinking water network, including the supply for fire hydrants and sprinklers."@en ;
+  skos:definition "Anschluss an das öffentliche Trinkwassernetz, einschliesslich der Versorgung für Hydranten und Sprinkler."@de ;
+  skos:broader :SC-UTL ;
+  dcterms:identifier "water-supply-connection" .
+
+:SC-UTL-WASTEWATER a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:notation "SC-UTL-WASTEWATER" ;
+  skos:prefLabel "Wastewater connection"@en ;
+  skos:prefLabel "Schmutzwasseranschluss"@de ;
+  skos:altLabel "Kanalisationsanschluss"@de ;
+  skos:altLabel "Abwasser"@de ;
+  skos:definition "Connection to the public sewer for foul water, or to a combined sewer."@en ;
+  skos:definition "Anschluss an die öffentliche Kanalisation für Schmutzwasser oder an eine Mischwasserleitung."@de ;
+  skos:scopeNote "Foul or combined water. A separate rainwater discharge is SC-UTL-STORMWATER."@en ;
+  skos:scopeNote "Schmutz- oder Mischwasser. Eine getrennte Ableitung von Regenwasser ist SC-UTL-STORMWATER."@de ;
+  skos:broader :SC-UTL ;
+  dcterms:identifier "wastewater-connection" .
+
+:SC-UTL-STORMWATER a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:notation "SC-UTL-STORMWATER" ;
+  skos:prefLabel "Stormwater discharge"@en ;
+  skos:prefLabel "Meteorwasserableitung"@de ;
+  skos:altLabel "Regenwasser"@de ;
+  skos:altLabel "Sauberwasser"@de ;
+  skos:definition "Point where rainwater leaves the site into a separate stormwater sewer or a watercourse."@en ;
+  skos:definition "Punkt, an dem Regenwasser das Grundstück in eine getrennte Meteorwasserleitung oder ein Gewässer verlässt."@de ;
+  skos:scopeNote "Discharge off site. Infiltration or retention on site is a design matter, not a connection."@en ;
+  skos:scopeNote "Ableitung vom Grundstück. Versickerung oder Retention auf dem Grundstück ist eine Entwurfsfrage, kein Anschluss."@de ;
+  skos:broader :SC-UTL ;
+  dcterms:identifier "stormwater-discharge" .
+
+:SC-UTL-ELECTRICITY a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:notation "SC-UTL-ELECTRICITY" ;
+  skos:prefLabel "Electricity connection"@en ;
+  skos:prefLabel "Elektroanschluss"@de ;
+  skos:altLabel "Stromanschluss"@de ;
+  skos:altLabel "Netzanschluss"@de ;
+  skos:definition "Connection to the electricity grid, for supply and for feeding in power generated on site."@en ;
+  skos:definition "Anschluss an das Stromnetz, für den Bezug und für die Einspeisung von vor Ort erzeugtem Strom."@de ;
+  dcterms:description "A transformer station on the site is recorded as a separate item of this type."@en ;
+  dcterms:description "Eine Trafostation auf dem Grundstück wird als eigener Eintrag dieses Typs erfasst."@de ;
+  skos:broader :SC-UTL ;
+  dcterms:identifier "electricity-connection" .
+
+:SC-UTL-TELECOM a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:notation "SC-UTL-TELECOM" ;
+  skos:prefLabel "Telecom connection"@en ;
+  skos:prefLabel "Telekommunikationsanschluss"@de ;
+  skos:altLabel "Glasfaser"@de ;
+  skos:definition "Connection to a telecom network: fibre, copper, or cable."@en ;
+  skos:definition "Anschluss an ein Telekommunikationsnetz: Glasfaser, Kupfer oder Kabelnetz."@de ;
+  skos:broader :SC-UTL ;
+  dcterms:identifier "telecom-connection" .
+
+:SC-UTL-GAS a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:notation "SC-UTL-GAS" ;
+  skos:prefLabel "Gas connection"@en ;
+  skos:prefLabel "Gasanschluss"@de ;
+  skos:definition "Connection to the public gas network."@en ;
+  skos:definition "Anschluss an das öffentliche Gasnetz."@de ;
+  skos:broader :SC-UTL ;
+  dcterms:identifier "gas-connection" .
+
+:SC-UTL-THERMAL a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:notation "SC-UTL-THERMAL" ;
+  skos:prefLabel "Thermal network connection"@en ;
+  skos:prefLabel "Anschluss thermisches Netz"@de ;
+  skos:altLabel "Fernwärme"@de ;
+  skos:altLabel "Wärmeverbund"@de ;
+  skos:altLabel "Anergienetz"@de ;
+  skos:definition "Connection to a district heating, district cooling, or low-temperature (anergy) network."@en ;
+  skos:definition "Anschluss an ein Fernwärme-, Fernkälte- oder Niedertemperaturnetz (Anergienetz)."@de ;
+  skos:broader :SC-UTL ;
+  dcterms:identifier "thermal-network-connection" .
+
+# --- Design intent (SC-DES) ---
+
+:SC-DES a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:topConceptOf :scheme ;
+  skos:notation "SC-DES" ;
+  skos:prefLabel "Design intent"@en ;
+  skos:prefLabel "Entwurfsabsicht"@de ;
+  skos:definition "Spatial intent for the site that guides the design without a legal basis."@en ;
+  skos:definition "Räumliche Absicht für das Grundstück, die den Entwurf ohne rechtliche Grundlage lenkt."@de ;
+  skos:narrower :SC-DES-SIGHTLINE, :SC-DES-OPEN-SPACE, :SC-DES-SENSITIVE-EDGE ;
+  dcterms:identifier "design-intent" .
+
+:SC-DES-SIGHTLINE a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:notation "SC-DES-SIGHTLINE" ;
+  skos:prefLabel "Sightline"@en ;
+  skos:prefLabel "Sichtbezug"@de ;
+  skos:altLabel "Sichtachse"@de ;
+  skos:definition "View to or from the site that the design should keep open."@en ;
+  skos:definition "Sicht zum oder vom Grundstück, die der Entwurf freihalten soll."@de ;
+  dcterms:description "Line from the viewpoint in the direction of view."@en ;
+  dcterms:description "Linie vom Standpunkt in Blickrichtung."@de ;
+  skos:broader :SC-DES ;
+  dcterms:identifier "sightline" .
+
+:SC-DES-OPEN-SPACE a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:notation "SC-DES-OPEN-SPACE" ;
+  skos:prefLabel "Preferred open space"@en ;
+  skos:prefLabel "Bevorzugter Freiraum"@de ;
+  skos:definition "Part of the site that should stay free of buildings."@en ;
+  skos:definition "Teil des Grundstücks, der frei von Bauten bleiben soll."@de ;
+  dcterms:description "Area."@en ;
+  dcterms:description "Fläche."@de ;
+  skos:scopeNote "Intent for the area. The surface finish is classified with outdoor floor surfaces (AOF), the space use with room names (RN-OUT-*)."@en ;
+  skos:scopeNote "Absicht für die Fläche. Der Belag wird mit Aussenbodenbelägen (AOF) klassifiziert, die Raumnutzung mit Raumnamen (RN-OUT-*)."@de ;
+  skos:narrower :SC-DES-OPEN-SPACE-GREEN, :SC-DES-OPEN-SPACE-PAVED ;
+  skos:broader :SC-DES ;
+  dcterms:identifier "preferred-open-space" .
+
+:SC-DES-OPEN-SPACE-GREEN a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:notation "SC-DES-OPEN-SPACE-GREEN" ;
+  skos:prefLabel "Green open space"@en ;
+  skos:prefLabel "Grüner Freiraum"@de ;
+  skos:definition "Open space intended to be planted."@en ;
+  skos:definition "Freiraum, der bepflanzt werden soll."@de ;
+  skos:broader :SC-DES-OPEN-SPACE ;
+  dcterms:identifier "green-open-space" .
+
+:SC-DES-OPEN-SPACE-PAVED a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:notation "SC-DES-OPEN-SPACE-PAVED" ;
+  skos:prefLabel "Paved open space"@en ;
+  skos:prefLabel "Befestigter Freiraum"@de ;
+  skos:definition "Open space intended to be paved, such as a square or forecourt."@en ;
+  skos:definition "Freiraum, der befestigt werden soll, wie ein Platz oder Vorplatz."@de ;
+  skos:broader :SC-DES-OPEN-SPACE ;
+  dcterms:identifier "paved-open-space" .
+
+:SC-DES-SENSITIVE-EDGE a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:notation "SC-DES-SENSITIVE-EDGE" ;
+  skos:prefLabel "Sensitive edge"@en ;
+  skos:prefLabel "Sensibler Rand"@de ;
+  skos:definition "Edge of the site where the design must respond to neighbours, for example with lower height, fewer openings, or a buffer."@en ;
+  skos:definition "Rand des Grundstücks, an dem der Entwurf auf die Nachbarschaft reagieren muss, zum Beispiel mit geringerer Höhe, weniger Öffnungen oder einem Puffer."@de ;
+  dcterms:description "Line along or near the parcel boundary."@en ;
+  dcterms:description "Linie entlang oder nahe der Parzellengrenze."@de ;
+  skos:broader :SC-DES ;
+  dcterms:identifier "sensitive-edge" .
+
+# --- Existing conditions (SC-EXI) ---
+
+:SC-EXI a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:topConceptOf :scheme ;
+  skos:notation "SC-EXI" ;
+  skos:prefLabel "Existing condition"@en ;
+  skos:prefLabel "Bestand"@de ;
+  skos:definition "Physical feature on or below the site before the project starts."@en ;
+  skos:definition "Physisches Element auf oder unter dem Grundstück vor Projektbeginn."@de ;
+  skos:narrower :SC-EXI-BUILDING, :SC-EXI-TREE, :SC-EXI-UTILITY, :SC-EXI-TERRAIN ;
+  dcterms:identifier "existing-condition" .
+
+:SC-EXI-BUILDING a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:notation "SC-EXI-BUILDING" ;
+  skos:prefLabel "Existing building"@en ;
+  skos:prefLabel "Bestandsgebäude"@de ;
+  skos:altLabel "Gebäude"@de ;
+  skos:definition "Building or structure that stands on the site."@en ;
+  skos:definition "Gebäude oder Bauwerk, das auf dem Grundstück steht."@de ;
+  dcterms:description "Footprint area; height or storeys on the item. Assign the parent while keeping or demolishing is undecided."@en ;
+  dcterms:description "Grundrissfläche; Höhe oder Geschosse am Eintrag. Die Elternklasse zuweisen, solange Erhalt oder Abbruch offen ist."@de ;
+  skos:narrower :SC-EXI-BUILDING-KEEP, :SC-EXI-BUILDING-DEMOLISH ;
+  skos:broader :SC-EXI ;
+  dcterms:identifier "existing-building" .
+
+:SC-EXI-BUILDING-KEEP a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:notation "SC-EXI-BUILDING-KEEP" ;
+  skos:prefLabel "Building to keep"@en ;
+  skos:prefLabel "Gebäude erhalten"@de ;
+  skos:definition "Existing building that stays."@en ;
+  skos:definition "Bestandsgebäude, das bestehen bleibt."@de ;
+  skos:broader :SC-EXI-BUILDING ;
+  dcterms:identifier "building-to-keep" .
+
+:SC-EXI-BUILDING-DEMOLISH a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:notation "SC-EXI-BUILDING-DEMOLISH" ;
+  skos:prefLabel "Building to demolish"@en ;
+  skos:prefLabel "Gebäude abbrechen"@de ;
+  skos:altLabel "Abbruch"@de ;
+  skos:definition "Existing building that is removed for the project."@en ;
+  skos:definition "Bestandsgebäude, das für das Projekt rückgebaut wird."@de ;
+  skos:broader :SC-EXI-BUILDING ;
+  dcterms:identifier "building-to-demolish" .
+
+:SC-EXI-TREE a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:notation "SC-EXI-TREE" ;
+  skos:prefLabel "Existing tree"@en ;
+  skos:prefLabel "Bestandsbaum"@de ;
+  skos:altLabel "Baum"@de ;
+  skos:definition "Tree that stands on the site or overhangs it."@en ;
+  skos:definition "Baum, der auf dem Grundstück steht oder in es hineinragt."@de ;
+  dcterms:description "Point at the trunk; crown diameter and species on the item. Assign the parent while keeping or felling is undecided."@en ;
+  dcterms:description "Punkt am Stamm; Kronendurchmesser und Art am Eintrag. Die Elternklasse zuweisen, solange Erhalt oder Fällung offen ist."@de ;
+  skos:narrower :SC-EXI-TREE-KEEP, :SC-EXI-TREE-FELL ;
+  skos:broader :SC-EXI ;
+  dcterms:identifier "existing-tree" .
+
+:SC-EXI-TREE-KEEP a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:notation "SC-EXI-TREE-KEEP" ;
+  skos:prefLabel "Tree to keep"@en ;
+  skos:prefLabel "Baum erhalten"@de ;
+  skos:definition "Existing tree that stays and is protected during construction."@en ;
+  skos:definition "Bestandsbaum, der bestehen bleibt und während des Baus geschützt wird."@de ;
+  skos:broader :SC-EXI-TREE ;
+  dcterms:identifier "tree-to-keep" .
+
+:SC-EXI-TREE-FELL a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:notation "SC-EXI-TREE-FELL" ;
+  skos:prefLabel "Tree to fell"@en ;
+  skos:prefLabel "Baum fällen"@de ;
+  skos:definition "Existing tree that is removed for the project."@en ;
+  skos:definition "Bestandsbaum, der für das Projekt entfernt wird."@de ;
+  skos:broader :SC-EXI-TREE ;
+  dcterms:identifier "tree-to-fell" .
+
+:SC-EXI-UTILITY a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:notation "SC-EXI-UTILITY" ;
+  skos:prefLabel "Existing utility line"@en ;
+  skos:prefLabel "Bestehende Werkleitung"@de ;
+  skos:altLabel "Werkleitung"@de ;
+  skos:altLabel "Leitungskataster"@de ;
+  skos:definition "Pipe or cable in or across the site, such as water, sewage, gas, power, or telecom."@en ;
+  skos:definition "Leitung im oder durch das Grundstück, wie Wasser, Abwasser, Gas, Strom oder Telekommunikation."@de ;
+  dcterms:description "Line; medium and depth on the item."@en ;
+  dcterms:description "Linie; Medium und Tiefe am Eintrag."@de ;
+  skos:scopeNote "The physical line. The right to run it is SC-LEG-EASEMENT-UTILITY; the point where the site connects to the network is SC-UTL."@en ;
+  skos:scopeNote "Die physische Leitung. Das Recht, sie zu führen, ist SC-LEG-EASEMENT-UTILITY; der Punkt, an dem das Grundstück ans Netz angeschlossen wird, ist SC-UTL."@de ;
+  skos:broader :SC-EXI ;
+  dcterms:identifier "existing-utility-line" .
+
+:SC-EXI-TERRAIN a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:notation "SC-EXI-TERRAIN" ;
+  skos:prefLabel "Existing terrain"@en ;
+  skos:prefLabel "Bestehendes Terrain"@de ;
+  skos:altLabel "Höhenkurve"@de ;
+  skos:altLabel "Höhenkote"@de ;
+  skos:definition "Surveyed ground levels of the site, as contour lines or spot heights."@en ;
+  skos:definition "Aufgenommene Geländehöhen des Grundstücks, als Höhenkurven oder Höhenkoten."@de ;
+  skos:broader :SC-EXI ;
+  dcterms:identifier "existing-terrain" .
+
+# --- Construction (SC-CON) ---
+
+:SC-CON a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:topConceptOf :scheme ;
+  skos:notation "SC-CON" ;
+  skos:prefLabel "Construction condition"@en ;
+  skos:prefLabel "Bauablauf"@de ;
+  skos:definition "Condition for the construction phase that the brief fixes before site facilities are planned."@en ;
+  skos:definition "Bedingung für die Bauphase, die die Bestellung festlegt, bevor die Baustelleneinrichtung geplant ist."@de ;
+  skos:scopeNote "Planning zones at brief stage. The facilities placed in them (gate, haul road, storage, containers) are site facility products (SFP)."@en ;
+  skos:scopeNote "Planungszonen auf Stufe Bestellung. Die darin platzierten Einrichtungen (Tor, Baupiste, Lager, Container) sind Baustelleneinrichtungsprodukte (SFP)."@de ;
+  skos:narrower :SC-CON-ACCESS, :SC-CON-LOGISTICS ;
+  dcterms:identifier "construction-condition" .
+
+:SC-CON-ACCESS a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:notation "SC-CON-ACCESS" ;
+  skos:prefLabel "Construction access"@en ;
+  skos:prefLabel "Baustellenzufahrt"@de ;
+  skos:definition "Route by which construction traffic reaches the site from the public road network."@en ;
+  skos:definition "Weg, auf dem der Bauverkehr das Grundstück vom öffentlichen Strassennetz erreicht."@de ;
+  dcterms:description "Line with direction. The vehicle class (truck, van, pedestrian) is recorded on the item."@en ;
+  dcterms:description "Linie mit Richtung. Die Fahrzeugklasse (Lastwagen, Lieferwagen, Fussgänger) wird am Eintrag erfasst."@de ;
+  skos:scopeNote "Temporary. Permanent access is SC-ACC."@en ;
+  skos:scopeNote "Temporär. Dauerhafte Erschliessung ist SC-ACC."@de ;
+  skos:broader :SC-CON ;
+  dcterms:identifier "construction-access" .
+
+:SC-CON-LOGISTICS a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:notation "SC-CON-LOGISTICS" ;
+  skos:prefLabel "Construction logistics area"@en ;
+  skos:prefLabel "Baustelleninstallationsfläche"@de ;
+  skos:altLabel "Installationsplatz"@de ;
+  skos:definition "Part of the site or adjoining land reserved for site facilities, storage, and handling during construction."@en ;
+  skos:definition "Teil des Grundstücks oder angrenzender Flächen, der während des Baus für Baustelleneinrichtung, Lager und Umschlag reserviert ist."@de ;
+  dcterms:description "Area."@en ;
+  dcterms:description "Fläche."@de ;
+  skos:broader :SC-CON ;
+  dcterms:identifier "construction-logistics-area" .

@@ -506,7 +506,7 @@
 
 
 <h1 id="class-performancerequirement">Class: PerformanceRequirement<a class="headerlink" href="#class-performancerequirement" title="Permanent link">&para;</a></h1>
-<p><em>Performance target requirement (U-value, fire rating, airflow, acoustic, etc.). Boolean targets use target_value_boolean with requirement_property_key aligned to entity slot names where applicable (for example is_heated on Space). Application pipelines compare the subject entity slot to the requirement target and record the outcome as MatchChange (match_status met, unmet, or unknown).</em></p>
+<p><em>Performance target requirement (U-value, fire rating, airflow, acoustic, etc.). Boolean targets use target_value_boolean with requirement_property_key aligned to entity slot names where applicable (for example is_heated on Space). Numeric and textual targets use a permissible value of a PerformanceProperty key enum (FirePropertyKey, AcousticPropertyKey, ThermalPropertyKey, StructuralPropertyKey, IndoorEnvironmentPropertyKey, EnvironmentalPropertyKey, SecurityPropertyKey, MaterialPropertyKey) as requirement_property_key. Application pipelines compare the subject entity slot, or the performance_properties entry with the same property_key, to the requirement target and record the outcome as MatchChange (match_status met, unmet, or unknown; unknown when the subject has no value).</em></p>
 <div>
 <p>URI: <a href="https://schema.pragmaticbim.ch/PerformanceRequirement">pbs:PerformanceRequirement</a></p>
 <div class="panzoom-box" data-key="alt" id="panzoom0" oncontextmenu="return false;">
@@ -590,7 +590,7 @@ Hold "Alt" / "Option" to enable pan &amp; zoom
 <tr>
 <td><a href="requirement_property_key.html">requirement_property_key</a></td>
 <td>1 <br/> <a href="String.html">String</a></td>
-<td>Canonical performance key for the target (for example u_value, resistance_rating). Aligns with performance property keys where applicable.</td>
+<td>Canonical performance key for the target (for example u_value, resistance_rating, airborne_sound_rating_db, seismic_structure_class, gwp_embodied). Either a permissible value of a PerformanceProperty key enum, matched against Entity.performance_properties property_key, or an entity slot name such as is_heated.</td>
 <td>direct</td>
 </tr>
 <tr>
@@ -776,9 +776,14 @@ Hold "Alt" / "Option" to enable pan &amp; zoom
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PerformanceRequirement</span>
 <span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Performance target requirement (U-value, fire rating, airflow, acoustic,</span>
 <span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">etc.). Boolean targets use target_value_boolean with requirement_property_key aligned</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">to entity slot names where applicable (for example is_heated on Space). Application</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">pipelines compare the subject entity slot to the requirement target and record the</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">outcome as MatchChange (match_status met, unmet, or unknown).</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">to entity slot names where applicable (for example is_heated on Space). Numeric</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">and textual targets use a permissible value of a PerformanceProperty key enum (FirePropertyKey,</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">AcousticPropertyKey, ThermalPropertyKey, StructuralPropertyKey, IndoorEnvironmentPropertyKey,</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">EnvironmentalPropertyKey, SecurityPropertyKey, MaterialPropertyKey) as requirement_property_key.</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">Application pipelines compare the subject entity slot, or the performance_properties</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">entry with the same property_key, to the requirement target and record the outcome</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">as MatchChange (match_status met, unmet, or unknown; unknown when the subject has</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">no value).</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://schema.pragmaticbim.ch</span>
 <span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Requirement</span>
 <span class="nt">slots</span><span class="p">:</span>
@@ -797,23 +802,31 @@ Hold "Alt" / "Option" to enable pan &amp; zoom
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PerformanceRequirement</span>
 <span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Performance target requirement (U-value, fire rating, airflow, acoustic,</span>
 <span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">etc.). Boolean targets use target_value_boolean with requirement_property_key aligned</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">to entity slot names where applicable (for example is_heated on Space). Application</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">pipelines compare the subject entity slot to the requirement target and record the</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">outcome as MatchChange (match_status met, unmet, or unknown).</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">to entity slot names where applicable (for example is_heated on Space). Numeric</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">and textual targets use a permissible value of a PerformanceProperty key enum (FirePropertyKey,</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">AcousticPropertyKey, ThermalPropertyKey, StructuralPropertyKey, IndoorEnvironmentPropertyKey,</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">EnvironmentalPropertyKey, SecurityPropertyKey, MaterialPropertyKey) as requirement_property_key.</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">Application pipelines compare the subject entity slot, or the performance_properties</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">entry with the same property_key, to the requirement target and record the outcome</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">as MatchChange (match_status met, unmet, or unknown; unknown when the subject has</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">no value).</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://schema.pragmaticbim.ch</span>
 <span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Requirement</span>
 <span class="nt">attributes</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">requirement_property_key</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">requirement_property_key</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'Canonical</span><span class="nv"> </span><span class="s">performance</span><span class="nv"> </span><span class="s">key</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">target</span><span class="nv"> </span><span class="s">(for</span><span class="nv"> </span><span class="s">example</span><span class="nv"> </span><span class="s">u_value,</span><span class="nv"> </span><span class="s">resistance_rating).</span>
-<span class="w">      </span><span class="s">Aligns</span><span class="nv"> </span><span class="s">with</span><span class="nv"> </span><span class="s">performance</span><span class="nv"> </span><span class="s">property</span><span class="nv"> </span><span class="s">keys</span><span class="nv"> </span><span class="s">where</span><span class="nv"> </span><span class="s">applicable.</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;Canonical</span><span class="nv"> </span><span class="s">performance</span><span class="nv"> </span><span class="s">key</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">target</span><span class="nv"> </span><span class="s">(for</span><span class="nv"> </span><span class="s">example</span><span class="nv"> </span><span class="s">u_value,</span><span class="nv"> </span><span class="s">resistance_rating,</span>
+<span class="w">      </span><span class="s">airborne_sound_rating_db,</span><span class="nv"> </span><span class="s">seismic_structure_class,</span><span class="nv"> </span><span class="s">gwp_embodied).</span><span class="nv"> </span><span class="s">Either</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">permissible</span>
+<span class="w">      </span><span class="s">value</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">PerformanceProperty</span><span class="nv"> </span><span class="s">key</span><span class="nv"> </span><span class="s">enum,</span><span class="nv"> </span><span class="s">matched</span><span class="nv"> </span><span class="s">against</span><span class="nv"> </span><span class="s">Entity.performance_properties</span>
+<span class="w">      </span><span class="s">property_key,</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">an</span><span class="nv"> </span><span class="s">entity</span><span class="nv"> </span><span class="s">slot</span><span class="nv"> </span><span class="s">name</span><span class="nv"> </span><span class="s">such</span><span class="nv"> </span><span class="s">as</span><span class="nv"> </span><span class="s">is_heated.</span>
 
-<span class="w">      </span><span class="s">'</span>
+<span class="w">      </span><span class="s">&#39;</span>
 <span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://schema.pragmaticbim.ch</span>
 <span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PerformanceRequirement</span>
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PerformanceRequirement</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">IdentificationRequirement</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
 <span class="w">    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">  </span><span class="nt">target_operator</span><span class="p">:</span>
@@ -834,6 +847,7 @@ Hold "Alt" / "Option" to enable pan &amp; zoom
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PerformanceRequirement</span>
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PerformanceRequirement</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">IdentificationRequirement</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
 <span class="w">  </span><span class="nt">target_value_number</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">target_value_number</span>
@@ -853,6 +867,7 @@ Hold "Alt" / "Option" to enable pan &amp; zoom
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PerformanceRequirement</span>
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PerformanceRequirement</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">IdentificationRequirement</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">boolean</span>
 <span class="w">  </span><span class="nt">target_unit</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">target_unit</span>
@@ -982,11 +997,11 @@ Hold "Alt" / "Option" to enable pan &amp; zoom
 <span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">  </span><span class="nt">geometry_representations</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">geometry_representations</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'Geometry</span><span class="nv"> </span><span class="s">references</span><span class="nv"> </span><span class="s">associated</span><span class="nv"> </span><span class="s">with</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">entity.</span><span class="nv"> </span><span class="s">A</span><span class="nv"> </span><span class="s">single</span><span class="nv"> </span><span class="s">element</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;Geometry</span><span class="nv"> </span><span class="s">references</span><span class="nv"> </span><span class="s">associated</span><span class="nv"> </span><span class="s">with</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">entity.</span><span class="nv"> </span><span class="s">A</span><span class="nv"> </span><span class="s">single</span><span class="nv"> </span><span class="s">element</span>
 <span class="w">      </span><span class="s">may</span><span class="nv"> </span><span class="s">link</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">multiple</span><span class="nv"> </span><span class="s">geometry</span><span class="nv"> </span><span class="s">representations</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">serve</span><span class="nv"> </span><span class="s">different</span><span class="nv"> </span><span class="s">intents</span><span class="nv"> </span><span class="s">(authoring,</span>
 <span class="w">      </span><span class="s">coordination,</span><span class="nv"> </span><span class="s">analysis,</span><span class="nv"> </span><span class="s">visualization)</span><span class="nv"> </span><span class="s">without</span><span class="nv"> </span><span class="s">duplicating</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">element</span><span class="nv"> </span><span class="s">itself.</span>
 
-<span class="w">      </span><span class="s">'</span>
+<span class="w">      </span><span class="s">&#39;</span>
 <span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://schema.pragmaticbim.ch</span>
 <span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PerformanceRequirement</span>
@@ -1020,10 +1035,10 @@ Hold "Alt" / "Option" to enable pan &amp; zoom
 <span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">  </span><span class="nt">performance_properties</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">performance_properties</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'Normalized,</span><span class="nv"> </span><span class="s">strongly</span><span class="nv"> </span><span class="s">typed</span><span class="nv"> </span><span class="s">domain</span><span class="nv"> </span><span class="s">properties</span><span class="nv"> </span><span class="s">(fire/acoustic/thermal/structural/</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;Normalized,</span><span class="nv"> </span><span class="s">strongly</span><span class="nv"> </span><span class="s">typed</span><span class="nv"> </span><span class="s">domain</span><span class="nv"> </span><span class="s">properties</span><span class="nv"> </span><span class="s">(fire/acoustic/thermal/structural/</span>
 <span class="w">      </span><span class="s">security/material)</span><span class="nv"> </span><span class="s">extracted</span><span class="nv"> </span><span class="s">from</span><span class="nv"> </span><span class="s">raw</span><span class="nv"> </span><span class="s">IFC</span><span class="nv"> </span><span class="s">PropertySet</span><span class="nv"> </span><span class="s">values.</span>
 
-<span class="w">      </span><span class="s">'</span>
+<span class="w">      </span><span class="s">&#39;</span>
 <span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://schema.pragmaticbim.ch</span>
 <span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PerformanceRequirement</span>

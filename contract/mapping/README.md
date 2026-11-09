@@ -568,6 +568,23 @@ from_revision: ...
 to_revision: ...
 ```
 
+### Performance targets on walls, slabs, and spaces
+
+Element catalogues (for example the pragmatic BIM Swiss add-ons) pair each target attribute with the attribute carrying the delivered value. The delivered value becomes a `PerformanceProperty` on `Entity.performance_properties`; the target becomes a `PerformanceRequirement` linked via `applies_to_entities`, with `requirement_property_key` set to the same key. Comparing both yields a `MatchChange`.
+
+| Element | Target (requirement pset) | Delivered value | Performance class | Key | Operator |
+|---------|---------------------------|-----------------|-------------------|-----|----------|
+| Wall, slab | `ePset_WallRequirement` / `ePset_SlabRequirement.FireRatingRequired` | `Pset_WallCommon` / `Pset_SlabCommon.FireRating` | `FireProperty` | `resistance_rating` | `minimum` |
+| Exterior wall, roof, base slab | `ThermalTransmittanceMax` | `Pset_WallCommon` / `Pset_SlabCommon.ThermalTransmittance` | `ThermalProperty` | `u_value` | `maximum` |
+| Interior wall, floor slab | `AirborneSoundInsulationMin` | `ePset_Wall` / `ePset_Slab.AirborneSoundInsulation` | `AcousticProperty` | `airborne_sound_rating_db` | `minimum` |
+| Floor slab | `ImpactSoundLevelMax` | `ePset_Slab.ImpactSoundLevel` | `AcousticProperty` | `impact_sound_rating_db` | `maximum` |
+| Load-bearing wall, floor slab, base slab | `SeismicStructureClassRequired` | `ePset_Wall` / `ePset_Slab.SeismicStructureClass` | `StructuralProperty` | `seismic_structure_class` | `minimum` |
+| Wall, slab | `GlobalWarmingPotentialMax` | `ePset_Wall` / `ePset_Slab.GlobalWarmingPotential` | `EnvironmentalProperty` | `gwp_embodied` | `maximum` |
+| Space | `ePset_SpaceRequirement.<Key>` (for example `SummerTemperatureMax`) | `ePset_Space.<Key>Actual` | `IndoorEnvironmentProperty` | for example `summer_temperature_max` | per key |
+| Space | `ePset_SpaceRequirement.DesignAreaLoad` | `ePset_Space.DesignAreaLoadActual` | `StructuralProperty` | `design_area_load` | `minimum` |
+
+Requirement psets map to requirements, never to `performance_properties`: a target value on an element is not evidence that the element performs.
+
 ### IfcSlab PredefinedType split
 
 Per **IfcSlabTypeEnum** (IFC 4.3). `CEILING` is **not** a slab type — ceilings are `IfcCovering` with `PredefinedType=CEILING`.

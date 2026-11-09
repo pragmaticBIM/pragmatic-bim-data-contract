@@ -34,6 +34,7 @@ rn:RN_WRK_MTG ex:mapsToActivity abs:M_WRK_KNW .
 rn:RN_WRK_CNF ex:mapsToActivity abs:M_WRK_KNW .
 rn:RN_WRK_BRK ex:mapsToActivity abs:M_WRK_KNW .
 rn:RN_WRK_COM ex:mapsToActivity abs:M_WRK_KNW .
+rn:RN_WRK_CPY ex:mapsToActivity abs:M_WRK_KNW .
 rn:RN_WRK_REC ex:mapsToActivity abs:M_WRK_KNW .
 rn:RN_CIR_COR ex:mapsToActivity abs:S_CIR_HOR .
 rn:RN_CIR_LOB ex:mapsToActivity abs:S_CIR_HOR .
@@ -42,6 +43,10 @@ rn:RN_CIR_SLU ex:mapsToActivity abs:S_CIR_HOR .
 rn:RN_CIR_STR ex:mapsToActivity abs:S_CIR_VRT_MAN .
 rn:RN_CIR_ELV ex:mapsToActivity abs:S_CIR_VRT_MEC .
 rn:RN_CIR_RAM ex:mapsToActivity abs:S_CIR_VRT_MAN .
+rn:RN_CIR_GLF ex:mapsToActivity abs:S_CIR_VRT_MEC .
+rn:RN_CIR_BLF ex:mapsToActivity abs:S_CIR_VRT_MEC .
+rn:RN_CIR_PLF ex:mapsToActivity abs:M_CIR .
+rn:RN_CIR_TKT ex:mapsToActivity abs:M_CIR .
 rn:RN_HYG_WC_M ex:mapsToActivity abs:S_HYG_WC_M .
 rn:RN_HYG_WC_F ex:mapsToActivity abs:S_HYG_WC_F .
 rn:RN_HYG_WC_IV ex:mapsToActivity abs:S_HYG_WC_IV .
@@ -73,12 +78,19 @@ rn:RN_COM_CAF ex:mapsToActivity abs:M_COM .
 rn:RN_COM_RST ex:mapsToActivity abs:M_COM .
 rn:RN_COM_BAR ex:mapsToActivity abs:M_COM .
 rn:RN_COM_FOD ex:mapsToActivity abs:M_COM .
+rn:RN_COM_KIT ex:mapsToActivity abs:M_COM .
+rn:RN_COM_DSH ex:mapsToActivity abs:M_COM .
 rn:RN_COM_RET ex:mapsToActivity abs:M_COM .
 rn:RN_COM_SAL ex:mapsToActivity abs:M_COM .
 rn:RN_COM_KSK ex:mapsToActivity abs:M_COM .
 rn:RN_COM_CUS ex:mapsToActivity abs:M_COM .
 rn:RN_COM_EXH ex:mapsToActivity abs:M_COM .
+rn:RN_COM_PUP ex:mapsToActivity abs:M_COM .
 rn:RN_COM_HTL ex:mapsToActivity abs:M_COM .
+rn:RN_COM_STG ex:mapsToActivity abs:M_COM .
+rn:RN_COM_STD ex:mapsToActivity abs:M_COM .
+rn:RN_COM_CLK ex:mapsToActivity abs:S_HYG_GRD .
+rn:RN_COM_GYM ex:mapsToActivity abs:M_COM .
 rn:RN_IND_WRK ex:mapsToActivity abs:M_WRK_PRD .
 rn:RN_IND_PRD ex:mapsToActivity abs:M_WRK_PRD .
 rn:RN_IND_ASM ex:mapsToActivity abs:M_WRK_PRD .
@@ -99,6 +111,7 @@ rn:RN_TEC_SRV ex:mapsToActivity abs:S_TEC .
 rn:RN_TEC_GEN ex:mapsToActivity abs:S_TEC .
 rn:RN_TEC_TRA ex:mapsToActivity abs:S_TEC .
 rn:RN_TEC_COM ex:mapsToActivity abs:S_TEC .
+rn:RN_TEC_CTL ex:mapsToActivity abs:M_WRK_KNW, abs:S_TEC .
 rn:RN_TEC_MMR ex:mapsToActivity abs:S_TEC .
 rn:RN_TEC_WST ex:mapsToActivity abs:S_TEC .
 rn:RN_TEC_WSH ex:mapsToActivity abs:S_TEC .

@@ -1,0 +1,32 @@
+@prefix use: <https://example.org/ch/abstract-use/> .
+@prefix abs: <https://example.org/abstract/building-space-activity-classification/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix map: <https://example.org/mapping/> .
+
+map:abstractUseToSpaceActivityMapping a dcterms:Dataset ;
+  dcterms:title "Abstract use to space activity mapping"@en ;
+  dcterms:title "Mapping abstrakter Nutzungen zu Raumaktivitäten"@de ;
+  dcterms:references use:scheme, abs:scheme ;
+  dcterms:issued "2026-10-04" ;
+  dcterms:description "Maps each use to the space activity class that its gross volume falls under. closeMatch is the most specific class that covers the whole use. Uses without a fitting class have no entry: assembly and culture, warehousing and logistics, sport, and data centre."@en ;
+  dcterms:description "Ordnet jede Nutzung der Raumaktivität zu, unter die ihr Bruttovolumen fällt. closeMatch ist die spezifischste Klasse, die die ganze Nutzung abdeckt. Nutzungen ohne passende Klasse haben keinen Eintrag: Versammlung und Kultur, Lager und Logistik, Sport sowie Rechenzentrum."@de .
+
+# --- Main activity ---
+
+use:residential skos:closeMatch abs:M_RES .
+use:office skos:closeMatch abs:M_WRK_KNW .
+use:education skos:closeMatch abs:M_LRN .
+use:retail skos:closeMatch abs:M_COM .
+use:food-service skos:closeMatch abs:M_COM .
+use:accommodation skos:closeMatch abs:M_COM .
+use:healthcare skos:closeMatch abs:M_HEL .
+use:production skos:closeMatch abs:M_WRK_PRD .
+use:laboratory skos:closeMatch abs:M_WRK .
+use:passenger-transport skos:closeMatch abs:M_CIR .
+
+# --- Support ---
+
+use:storage skos:closeMatch abs:S_STO .
+use:parking skos:closeMatch abs:S_PRK .
+use:building-services skos:closeMatch abs:S_TEC .

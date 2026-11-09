@@ -81,7 +81,7 @@
   skos:notation "SEC-BAU-PLN" ;
   skos:prefLabel "Planning and design"@en ;
   skos:prefLabel "Planung"@de ;
-  skos:narrower :architecture, :expert_assessor, :building_services .
+  skos:narrower :architecture, :engineering, :expert_assessor, :building_services .
 
 :architecture a skos:Concept ;
   skos:inScheme :scheme ;
@@ -89,6 +89,17 @@
   skos:notation "SEC-BAU-PLN-ARC" ;
   skos:prefLabel "Architecture"@en ;
   skos:prefLabel "Architektur"@de .
+
+:engineering a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :planning ;
+  skos:notation "SEC-BAU-PLN-ENG" ;
+  skos:prefLabel "Engineering"@en ;
+  skos:prefLabel "Ingenieur"@de ;
+  skos:altLabel "Engineer"@en ;
+  skos:altLabel "Ingenieurbüro"@de ;
+  skos:scopeNote "Engineering firm or engineer in construction planning (for example civil, structural, geotechnical engineering)."@en ;
+  skos:scopeNote "Ingenieurbüro oder Ingenieur in der Bauplanung (z. B. Bau-, Tragwerks-, Geotechnik-Ingenieurwesen)."@de .
 
 :expert_assessor a skos:Concept ;
   skos:inScheme :scheme ;

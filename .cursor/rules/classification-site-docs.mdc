@@ -40,6 +40,7 @@ Run these **before** `build_site.py` when their inputs changed:
 | Room name codes | `python scripts/generate_room_name_vocabulary.py` |
 | KBOB ecobilans Excel | `python scripts/generate_kbob_ecobilans_vocabulary.py` |
 | armasuisse room list | `python scripts/generate_armasuisse_room_name_mapping.py` |
+| Cost groups / ICMS / eBKP mappings | `python scripts/generate_cost_group_vocabulary.py` |
 
 ## Common failure
 

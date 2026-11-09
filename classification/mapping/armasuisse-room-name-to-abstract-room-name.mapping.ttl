@@ -101,7 +101,7 @@ arma:raumliste_innen_eingangshalle skos:closeMatch rn:RN_CIR_LOB ;
   skos:prefLabel "Eingangshalle"@de .
 arma:raumliste_innen_flur_halle_korridore skos:closeMatch rn:RN_CIR_COR ;
   skos:prefLabel "Flur/Halle/Korridore"@de .
-arma:raumliste_innen_sporthalle skos:closeMatch rn:RN_LRN_AUS ;
+arma:raumliste_innen_sporthalle skos:closeMatch rn:RN_COM_GYM ;
   skos:prefLabel "Sporthalle"@de .
 arma:raumliste_innen_halle_mit_hochregallager skos:closeMatch rn:RN_IND_WHS ;
   skos:prefLabel "Halle mit Hochregallager"@de .

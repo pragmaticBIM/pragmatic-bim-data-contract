@@ -82,6 +82,10 @@ vocabularies:
     path: abstract-site-setup-classification/site-setup-products.skos.ttl
     title: Abstract site facility products
 
+  - slug: site-condition
+    path: abstract-site-condition-classification/site-conditions.skos.ttl
+    title: Abstract site conditions
+
   - slug: wall-separator-product
     path: abstract-separator-product-classification/wall-separator-products.skos.ttl
     title: Abstract wall separator products
@@ -145,6 +149,18 @@ vocabularies:
   - slug: model
     path: abstract-model-classification/model-classification.skos.ttl
     title: Abstract model classification
+
+  - slug: use
+    path: abstract-use-classification/use-classification.skos.ttl
+    title: Abstract use classification
+
+  - slug: cost-project-type
+    path: abstract-cost-classification/cost-project-types.skos.ttl
+    title: Abstract cost project types
+
+  - slug: cost-group
+    path: abstract-cost-classification/cost-groups.skos.ttl
+    title: Abstract cost groups
 
 mappings:
   - slug: person-relationship-type-to-target-kind
@@ -326,3 +342,35 @@ mappings:
   - slug: door-connector-products-to-kbob-ecobilans
     path: mapping/abstract-door-connector-products-to-kbob-ecobilans.mapping.ttl
     title: Abstract door connector products to KBOB ecobilans mapping
+
+  - slug: use-to-space-activity
+    path: mapping/abstract-use-to-space-activity.mapping.ttl
+    title: Abstract use to space activity mapping
+
+  - slug: use-to-sia416
+    path: mapping/abstract-use-to-sia416.mapping.ttl
+    title: Abstract use to SIA 416 mapping
+
+  - slug: use-to-sia380-1
+    path: mapping/abstract-use-to-sia380-1.mapping.ttl
+    title: Abstract use to SIA 380/1 building category mapping
+
+  - slug: cost-groups-to-icms
+    path: mapping/abstract-cost-groups-to-icms.mapping.ttl
+    title: Abstract cost groups to ICMS mapping
+
+  - slug: cost-groups-to-ebkp-h
+    path: mapping/abstract-cost-groups-to-ebkp-h.mapping.ttl
+    title: Abstract cost groups to eBKP-H mapping
+
+  - slug: cost-groups-to-ebkp-t
+    path: mapping/abstract-cost-groups-to-ebkp-t.mapping.ttl
+    title: Abstract cost groups to eBKP-T mapping
+
+  - slug: site-conditions-to-site-facility-products
+    path: mapping/abstract-site-conditions-to-site-facility-products.mapping.ttl
+    title: Site conditions to site facility products mapping
+
+  - slug: site-conditions-to-connection-functional-type
+    path: mapping/abstract-site-conditions-to-connection-functional-type.mapping.ttl
+    title: Site conditions to connection functional type mapping

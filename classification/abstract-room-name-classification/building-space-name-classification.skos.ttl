@@ -47,7 +47,7 @@
   skos:prefLabel "Erschliessung"@de ;
   skos:definition "Normalized room names for circulation and access spaces."@en ;
   skos:definition "Normalisierte Raumbezeichnungen für Erschliessungsräume."@de ;
-  skos:narrower :RN_CIR_HOR_GRP, :RN_CIR_VRT_GRP ;
+  skos:narrower :RN_CIR_HOR_GRP, :RN_CIR_VRT_GRP, :RN_CIR_TRN_GRP ;
   dcterms:subject "IfcSpace" ;
   dcterms:identifier "RN-03" .
 
@@ -95,7 +95,7 @@
   skos:prefLabel "Gewerbe"@de ;
   skos:definition "Normalized room names for hospitality and retail spaces."@en ;
   skos:definition "Normalisierte Raumbezeichnungen für Gastronomie- und Verkaufsräume."@de ;
-  skos:narrower :RN_COM_DIN_GRP, :RN_COM_RET_GRP, :RN_COM_HSP_GRP ;
+  skos:narrower :RN_COM_DIN_GRP, :RN_COM_RET_GRP, :RN_COM_HSP_GRP, :RN_COM_ASM_GRP, :RN_COM_SPT_GRP ;
   dcterms:subject "IfcSpace" ;
   dcterms:identifier "RN-07" .
 
@@ -224,10 +224,10 @@
   skos:notation "RN-02-20" ;
   skos:prefLabel "Collaboration"@en ;
   skos:prefLabel "Zusammenarbeit"@de ;
-  skos:definition "Meeting and informal collaboration spaces."@en ;
-  skos:definition "Besprechungs- und informelle Teamräume."@de ;
+  skos:definition "Meeting, informal collaboration, and copy spaces."@en ;
+  skos:definition "Besprechungs-, informelle Team- und Kopierräume."@de ;
   skos:broader :RN_WRK ;
-  skos:narrower :RN_WRK_MTG, :RN_WRK_CNF, :RN_WRK_BRK, :RN_WRK_COM ;
+  skos:narrower :RN_WRK_MTG, :RN_WRK_CNF, :RN_WRK_BRK, :RN_WRK_COM, :RN_WRK_CPY ;
   dcterms:subject "IfcSpace" ;
   dcterms:identifier "RN-02-20" .
 
@@ -260,12 +260,24 @@
   skos:notation "RN-03-20" ;
   skos:prefLabel "Vertical circulation"@en ;
   skos:prefLabel "Vertikale Erschliessung"@de ;
-  skos:definition "Stairs, ramps, and lifts."@en ;
-  skos:definition "Treppen, Rampen und Aufzüge."@de ;
+  skos:definition "Stairs, ramps, and passenger, service, and bed lifts."@en ;
+  skos:definition "Treppen, Rampen sowie Personen-, Waren- und Bettenaufzüge."@de ;
   skos:broader :RN_CIR ;
-  skos:narrower :RN_CIR_STR, :RN_CIR_ELV, :RN_CIR_RAM ;
+  skos:narrower :RN_CIR_STR, :RN_CIR_ELV, :RN_CIR_RAM, :RN_CIR_GLF, :RN_CIR_BLF ;
   dcterms:subject "IfcSpace" ;
   dcterms:identifier "RN-03-20" .
+
+:RN_CIR_TRN_GRP a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:notation "RN-03-30" ;
+  skos:prefLabel "Public transport"@en ;
+  skos:prefLabel "Öffentlicher Verkehr"@de ;
+  skos:definition "Platforms and ticket halls for passenger transport."@en ;
+  skos:definition "Perrons und Schalterhallen im Personenverkehr."@de ;
+  skos:broader :RN_CIR ;
+  skos:narrower :RN_CIR_PLF, :RN_CIR_TKT ;
+  dcterms:subject "IfcSpace" ;
+  dcterms:identifier "RN-03-30" .
 
 :RN_HYG_WC_GRP a skos:Concept ;
   skos:inScheme :scheme ;
@@ -368,10 +380,10 @@
   skos:notation "RN-07-10" ;
   skos:prefLabel "Dining and beverage"@en ;
   skos:prefLabel "Gastronomie"@de ;
-  skos:definition "Cafeterias, restaurants, bars, and food courts."@en ;
-  skos:definition "Cafeterias, Restaurants, Bars und Food-Courts."@de ;
+  skos:definition "Cafeterias, restaurants, bars, food courts, and commercial kitchens."@en ;
+  skos:definition "Cafeterias, Restaurants, Bars, Food-Courts und Gewerbeküchen."@de ;
   skos:broader :RN_COM ;
-  skos:narrower :RN_COM_CAF, :RN_COM_RST, :RN_COM_BAR, :RN_COM_FOD ;
+  skos:narrower :RN_COM_CAF, :RN_COM_RST, :RN_COM_BAR, :RN_COM_FOD, :RN_COM_KIT, :RN_COM_DSH ;
   dcterms:subject "IfcSpace" ;
   dcterms:identifier "RN-07-10" .
 
@@ -380,10 +392,10 @@
   skos:notation "RN-07-20" ;
   skos:prefLabel "Retail and exhibition"@en ;
   skos:prefLabel "Verkauf und Ausstellung"@de ;
-  skos:definition "Retail, sales, kiosk, and exhibition spaces."@en ;
-  skos:definition "Verkaufs-, Ausstellungs- und Kioskbereiche."@de ;
+  skos:definition "Retail, sales, kiosk, pickup, and exhibition spaces."@en ;
+  skos:definition "Verkaufs-, Kiosk-, Abhol- und Ausstellungsbereiche."@de ;
   skos:broader :RN_COM ;
-  skos:narrower :RN_COM_RET, :RN_COM_SAL, :RN_COM_KSK, :RN_COM_CUS, :RN_COM_EXH ;
+  skos:narrower :RN_COM_RET, :RN_COM_SAL, :RN_COM_KSK, :RN_COM_CUS, :RN_COM_EXH, :RN_COM_PUP ;
   dcterms:subject "IfcSpace" ;
   dcterms:identifier "RN-07-20" .
 
@@ -398,6 +410,30 @@
   skos:narrower :RN_COM_HTL ;
   dcterms:subject "IfcSpace" ;
   dcterms:identifier "RN-07-30" .
+
+:RN_COM_ASM_GRP a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:notation "RN-07-40" ;
+  skos:prefLabel "Assembly and culture"@en ;
+  skos:prefLabel "Versammlung und Kultur"@de ;
+  skos:definition "Stages, spectator stands, and cloakrooms for events."@en ;
+  skos:definition "Bühnen, Tribünen und Garderoben für Veranstaltungen."@de ;
+  skos:broader :RN_COM ;
+  skos:narrower :RN_COM_STG, :RN_COM_STD, :RN_COM_CLK ;
+  dcterms:subject "IfcSpace" ;
+  dcterms:identifier "RN-07-40" .
+
+:RN_COM_SPT_GRP a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:notation "RN-07-50" ;
+  skos:prefLabel "Sport"@en ;
+  skos:prefLabel "Sport"@de ;
+  skos:definition "Indoor sports halls."@en ;
+  skos:definition "Sporthallen."@de ;
+  skos:broader :RN_COM ;
+  skos:narrower :RN_COM_GYM ;
+  dcterms:subject "IfcSpace" ;
+  dcterms:identifier "RN-07-50" .
 
 :RN_IND_PRD_GRP a skos:Concept ;
   skos:inScheme :scheme ;
@@ -452,10 +488,10 @@
   skos:notation "RN-09-20" ;
   skos:prefLabel "Electrical and IT plant"@en ;
   skos:prefLabel "Elektro- und IT-Technik"@de ;
-  skos:definition "Electrical, generator, transformer, server, and telecom rooms."@en ;
-  skos:definition "Elektro-, Generator-, Transformator-, Server- und Kommunikationsräume."@de ;
+  skos:definition "Electrical, generator, transformer, server, telecom, and control rooms."@en ;
+  skos:definition "Elektro-, Generator-, Transformator-, Server- und Kommunikationsräume sowie Leitstände."@de ;
   skos:broader :RN_TEC ;
-  skos:narrower :RN_TEC_ELC, :RN_TEC_SRV, :RN_TEC_GEN, :RN_TEC_TRA, :RN_TEC_COM ;
+  skos:narrower :RN_TEC_ELC, :RN_TEC_SRV, :RN_TEC_GEN, :RN_TEC_TRA, :RN_TEC_COM, :RN_TEC_CTL ;
   dcterms:subject "IfcSpace" ;
   dcterms:identifier "RN-09-20" .
 
@@ -880,6 +916,17 @@
   dcterms:subject "IfcSpace" ;
   dcterms:identifier "RN-02-20-04" .
 
+:RN_WRK_CPY a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:notation "RN-02-20-05" ;
+  skos:prefLabel "Copy Room"@en ;
+  skos:prefLabel "Kopierraum"@de ;
+  skos:definition "Shared room for printing, copying, and office supplies."@en ;
+  skos:definition "Gemeinsam genutzter Raum für Drucken, Kopieren und Büromaterial."@de ;
+  skos:broader :RN_WRK_COL_GRP ;
+  dcterms:subject "IfcSpace" ;
+  dcterms:identifier "RN-02-20-05" .
+
 :RN_WRK_REC a skos:Concept ;
   skos:inScheme :scheme ;
   skos:notation "RN-02-30-01" ;
@@ -970,6 +1017,50 @@
   skos:broader :RN_CIR_VRT_GRP ;
   dcterms:subject "IfcSpace" ;
   dcterms:identifier "RN-03-20-03" .
+
+:RN_CIR_GLF a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:notation "RN-03-20-04" ;
+  skos:prefLabel "Service Lift"@en ;
+  skos:prefLabel "Warenaufzug"@de ;
+  skos:definition "Lift for goods, staff, and service routes, separate from public lifts."@en ;
+  skos:definition "Aufzug für Waren, Personal und Servicewege, getrennt von öffentlichen Aufzügen."@de ;
+  skos:broader :RN_CIR_VRT_GRP ;
+  dcterms:subject "IfcSpace" ;
+  dcterms:identifier "RN-03-20-04" .
+
+:RN_CIR_BLF a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:notation "RN-03-20-05" ;
+  skos:prefLabel "Bed Lift"@en ;
+  skos:prefLabel "Bettenaufzug"@de ;
+  skos:definition "Lift sized for transporting patients in beds."@en ;
+  skos:definition "Aufzug für den Transport von Patientinnen und Patienten im Bett."@de ;
+  skos:broader :RN_CIR_VRT_GRP ;
+  dcterms:subject "IfcSpace" ;
+  dcterms:identifier "RN-03-20-05" .
+
+:RN_CIR_PLF a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:notation "RN-03-30-01" ;
+  skos:prefLabel "Platform"@en ;
+  skos:prefLabel "Perron"@de ;
+  skos:definition "Platform for boarding and alighting trains, trams, or buses."@en ;
+  skos:definition "Plattform zum Ein- und Aussteigen in Züge, Trams oder Busse."@de ;
+  skos:broader :RN_CIR_TRN_GRP ;
+  dcterms:subject "IfcSpace" ;
+  dcterms:identifier "RN-03-30-01" .
+
+:RN_CIR_TKT a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:notation "RN-03-30-02" ;
+  skos:prefLabel "Ticket Hall"@en ;
+  skos:prefLabel "Schalterhalle"@de ;
+  skos:definition "Hall with ticket counters and machines for passenger transport."@en ;
+  skos:definition "Halle mit Billettschaltern und -automaten im Personenverkehr."@de ;
+  skos:broader :RN_CIR_TRN_GRP ;
+  dcterms:subject "IfcSpace" ;
+  dcterms:identifier "RN-03-30-02" .
 
 :RN_HYG_WC_M a skos:Concept ;
   skos:inScheme :scheme ;
@@ -1312,6 +1403,28 @@
   dcterms:subject "IfcSpace" ;
   dcterms:identifier "RN-07-10-04" .
 
+:RN_COM_KIT a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:notation "RN-07-10-05" ;
+  skos:prefLabel "Commercial Kitchen"@en ;
+  skos:prefLabel "Gewerbeküche"@de ;
+  skos:definition "Kitchen for commercial food preparation."@en ;
+  skos:definition "Küche für die gewerbliche Zubereitung von Speisen."@de ;
+  skos:broader :RN_COM_DIN_GRP ;
+  dcterms:subject "IfcSpace" ;
+  dcterms:identifier "RN-07-10-05" .
+
+:RN_COM_DSH a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:notation "RN-07-10-06" ;
+  skos:prefLabel "Dishwashing Area"@en ;
+  skos:prefLabel "Spülküche"@de ;
+  skos:definition "Room for returning, cleaning, and staging tableware."@en ;
+  skos:definition "Raum für Rückgabe, Reinigung und Bereitstellung von Geschirr."@de ;
+  skos:broader :RN_COM_DIN_GRP ;
+  dcterms:subject "IfcSpace" ;
+  dcterms:identifier "RN-07-10-06" .
+
 :RN_COM_RET a skos:Concept ;
   skos:inScheme :scheme ;
   skos:notation "RN-07-20-01" ;
@@ -1367,6 +1480,17 @@
   dcterms:subject "IfcSpace" ;
   dcterms:identifier "RN-07-20-05" .
 
+:RN_COM_PUP a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:notation "RN-07-20-06" ;
+  skos:prefLabel "Pickup Point"@en ;
+  skos:prefLabel "Abholstation"@de ;
+  skos:definition "Counter or area where customers collect goods ordered or bought in advance."@en ;
+  skos:definition "Theke oder Bereich, an dem Kundschaft bestellte oder gekaufte Waren abholt."@de ;
+  skos:broader :RN_COM_RET_GRP ;
+  dcterms:subject "IfcSpace" ;
+  dcterms:identifier "RN-07-20-06" .
+
 :RN_COM_HTL a skos:Concept ;
   skos:inScheme :scheme ;
   skos:notation "RN-07-30-01" ;
@@ -1377,6 +1501,50 @@
   skos:broader :RN_COM_HSP_GRP ;
   dcterms:subject "IfcSpace" ;
   dcterms:identifier "RN-07-30-01" .
+
+:RN_COM_STG a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:notation "RN-07-40-01" ;
+  skos:prefLabel "Stage"@en ;
+  skos:prefLabel "Bühne"@de ;
+  skos:definition "Area for performances, including its backstage zone."@en ;
+  skos:definition "Fläche für Aufführungen einschliesslich Hinterbühne."@de ;
+  skos:broader :RN_COM_ASM_GRP ;
+  dcterms:subject "IfcSpace" ;
+  dcterms:identifier "RN-07-40-01" .
+
+:RN_COM_STD a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:notation "RN-07-40-02" ;
+  skos:prefLabel "Spectator Stand"@en ;
+  skos:prefLabel "Tribüne"@de ;
+  skos:definition "Tiered seating or standing area for spectators."@en ;
+  skos:definition "Gestufte Sitz- oder Stehfläche für Zuschauende."@de ;
+  skos:broader :RN_COM_ASM_GRP ;
+  dcterms:subject "IfcSpace" ;
+  dcterms:identifier "RN-07-40-02" .
+
+:RN_COM_CLK a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:notation "RN-07-40-03" ;
+  skos:prefLabel "Cloakroom"@en ;
+  skos:prefLabel "Garderobe"@de ;
+  skos:definition "Room for depositing visitors' coats and bags."@en ;
+  skos:definition "Raum für die Abgabe von Mänteln und Taschen der Besuchenden."@de ;
+  skos:broader :RN_COM_ASM_GRP ;
+  dcterms:subject "IfcSpace" ;
+  dcterms:identifier "RN-07-40-03" .
+
+:RN_COM_GYM a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:notation "RN-07-50-01" ;
+  skos:prefLabel "Sports Hall"@en ;
+  skos:prefLabel "Sporthalle"@de ;
+  skos:definition "Hall for indoor sports and physical education."@en ;
+  skos:definition "Halle für Hallensport und Sportunterricht."@de ;
+  skos:broader :RN_COM_SPT_GRP ;
+  dcterms:subject "IfcSpace" ;
+  dcterms:identifier "RN-07-50-01" .
 
 :RN_IND_WRK a skos:Concept ;
   skos:inScheme :scheme ;
@@ -1597,6 +1765,17 @@
   skos:broader :RN_TEC_ELC_GRP ;
   dcterms:subject "IfcSpace" ;
   dcterms:identifier "RN-09-20-05" .
+
+:RN_TEC_CTL a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:notation "RN-09-20-06" ;
+  skos:prefLabel "Control Room"@en ;
+  skos:prefLabel "Leitstand"@de ;
+  skos:definition "Staffed room for monitoring and operating building or IT systems."@en ;
+  skos:definition "Besetzter Raum für Überwachung und Steuerung von Gebäude- oder IT-Anlagen."@de ;
+  skos:broader :RN_TEC_ELC_GRP ;
+  dcterms:subject "IfcSpace" ;
+  dcterms:identifier "RN-09-20-06" .
 
 :RN_TEC_MMR a skos:Concept ;
   skos:inScheme :scheme ;

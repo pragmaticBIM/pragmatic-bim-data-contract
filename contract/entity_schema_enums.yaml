@@ -1099,6 +1099,14 @@ enums:
           de:
             source: de
             description: Gemeinschaftsbüro
+      rn_02_20_05:
+        description: "Shared room for printing, copying, and office supplies."
+        meaning: https://example.org/abstract/building-space-name-classification/RN_WRK_CPY
+        title: Copy Room
+        alt_descriptions:
+          de:
+            source: de
+            description: Kopierraum
       rn_02_30_01:
         description: "Visitor reception and waiting area."
         meaning: https://example.org/abstract/building-space-name-classification/RN_WRK_REC
@@ -1163,6 +1171,38 @@ enums:
           de:
             source: de
             description: Rampe
+      rn_03_20_04:
+        description: "Lift for goods, staff, and service routes, separate from public lifts."
+        meaning: https://example.org/abstract/building-space-name-classification/RN_CIR_GLF
+        title: Service Lift
+        alt_descriptions:
+          de:
+            source: de
+            description: Warenaufzug
+      rn_03_20_05:
+        description: "Lift sized for transporting patients in beds."
+        meaning: https://example.org/abstract/building-space-name-classification/RN_CIR_BLF
+        title: Bed Lift
+        alt_descriptions:
+          de:
+            source: de
+            description: Bettenaufzug
+      rn_03_30_01:
+        description: "Platform for boarding and alighting trains, trams, or buses."
+        meaning: https://example.org/abstract/building-space-name-classification/RN_CIR_PLF
+        title: Platform
+        alt_descriptions:
+          de:
+            source: de
+            description: Perron
+      rn_03_30_02:
+        description: "Hall with ticket counters and machines for passenger transport."
+        meaning: https://example.org/abstract/building-space-name-classification/RN_CIR_TKT
+        title: Ticket Hall
+        alt_descriptions:
+          de:
+            source: de
+            description: Schalterhalle
       rn_04_10_01:
         description: "Toilet room for male use."
         meaning: https://example.org/abstract/building-space-name-classification/RN_HYG_WC_M
@@ -1411,6 +1451,22 @@ enums:
           de:
             source: de
             description: Food-Court
+      rn_07_10_05:
+        description: "Kitchen for commercial food preparation."
+        meaning: https://example.org/abstract/building-space-name-classification/RN_COM_KIT
+        title: Commercial Kitchen
+        alt_descriptions:
+          de:
+            source: de
+            description: Gewerbeküche
+      rn_07_10_06:
+        description: "Room for returning, cleaning, and staging tableware."
+        meaning: https://example.org/abstract/building-space-name-classification/RN_COM_DSH
+        title: Dishwashing Area
+        alt_descriptions:
+          de:
+            source: de
+            description: Spülküche
       rn_07_20_01:
         description: "Room for displaying and selling goods."
         meaning: https://example.org/abstract/building-space-name-classification/RN_COM_RET
@@ -1451,6 +1507,14 @@ enums:
           de:
             source: de
             description: Ausstellungsraum
+      rn_07_20_06:
+        description: "Counter or area where customers collect goods ordered or bought in advance."
+        meaning: https://example.org/abstract/building-space-name-classification/RN_COM_PUP
+        title: Pickup Point
+        alt_descriptions:
+          de:
+            source: de
+            description: Abholstation
       rn_07_30_01:
         description: "Guest accommodation room."
         meaning: https://example.org/abstract/building-space-name-classification/RN_COM_HTL
@@ -1459,6 +1523,38 @@ enums:
           de:
             source: de
             description: Hotelzimmer
+      rn_07_40_01:
+        description: "Area for performances, including its backstage zone."
+        meaning: https://example.org/abstract/building-space-name-classification/RN_COM_STG
+        title: Stage
+        alt_descriptions:
+          de:
+            source: de
+            description: Bühne
+      rn_07_40_02:
+        description: "Tiered seating or standing area for spectators."
+        meaning: https://example.org/abstract/building-space-name-classification/RN_COM_STD
+        title: Spectator Stand
+        alt_descriptions:
+          de:
+            source: de
+            description: Tribüne
+      rn_07_40_03:
+        description: "Room for depositing visitors' coats and bags."
+        meaning: https://example.org/abstract/building-space-name-classification/RN_COM_CLK
+        title: Cloakroom
+        alt_descriptions:
+          de:
+            source: de
+            description: Garderobe
+      rn_07_50_01:
+        description: "Hall for indoor sports and physical education."
+        meaning: https://example.org/abstract/building-space-name-classification/RN_COM_GYM
+        title: Sports Hall
+        alt_descriptions:
+          de:
+            source: de
+            description: Sporthalle
       rn_08_10_01:
         description: "Room for manual fabrication and repair."
         meaning: https://example.org/abstract/building-space-name-classification/RN_IND_WRK
@@ -1619,6 +1715,14 @@ enums:
           de:
             source: de
             description: Kommunikationsraum
+      rn_09_20_06:
+        description: "Staffed room for monitoring and operating building or IT systems."
+        meaning: https://example.org/abstract/building-space-name-classification/RN_TEC_CTL
+        title: Control Room
+        alt_descriptions:
+          de:
+            source: de
+            description: Leitstand
       rn_09_30_01:
         description: "Room for utility metering equipment."
         meaning: https://example.org/abstract/building-space-name-classification/RN_TEC_MMR
@@ -2282,6 +2386,9 @@ enums:
       is_external:
         description: Element faces the outside of the building (IFC IsExternal); marks thermal envelope elements.
         meaning: pbs:thermal_property_is_external
+      air_tightness_n50:
+        description: Air change rate at 50 Pa pressure difference in 1/h (building envelope).
+        meaning: pbs:thermal_property_air_tightness_n50
   StructuralPropertyKey:
     enum_uri: pbs:StructuralPropertyKey
     description: Canonical structural-related keys derived from IFC PropertySets.
@@ -2292,6 +2399,52 @@ enums:
         meaning: pbs:structural_property_stiffness_class
       strength_class:
         meaning: pbs:structural_property_strength_class
+      design_area_load:
+        description: Imposed design area load in kN/m2.
+        meaning: pbs:structural_property_design_area_load
+      design_point_load:
+        description: Imposed design point load in kN.
+        meaning: pbs:structural_property_design_point_load
+      vibration_class:
+        description: Vibration criterion class, for example ISO Residential (Night).
+        meaning: pbs:structural_property_vibration_class
+      seismic_structure_class:
+        description: Seismic structure class (Bauwerksklasse) I, II, or III under SIA 261.
+        meaning: pbs:structural_property_seismic_structure_class
+  IndoorEnvironmentPropertyKey:
+    enum_uri: pbs:IndoorEnvironmentPropertyKey
+    description: Canonical indoor environment keys for spaces (temperature, humidity, air, light, occupancy).
+    permissible_values:
+      winter_temperature_min:
+        description: Minimum room temperature in winter in degC.
+        meaning: pbs:indoor_environment_winter_temperature_min
+      winter_temperature_max:
+        description: Maximum room temperature in winter in degC.
+        meaning: pbs:indoor_environment_winter_temperature_max
+      summer_temperature_min:
+        description: Minimum room temperature in summer in degC.
+        meaning: pbs:indoor_environment_summer_temperature_min
+      summer_temperature_max:
+        description: Maximum room temperature in summer in degC.
+        meaning: pbs:indoor_environment_summer_temperature_max
+      relative_humidity_min:
+        description: Minimum relative humidity in percent.
+        meaning: pbs:indoor_environment_relative_humidity_min
+      relative_humidity_max:
+        description: Maximum relative humidity in percent.
+        meaning: pbs:indoor_environment_relative_humidity_max
+      outdoor_air_flow_rate:
+        description: Outdoor air flow rate in m3/h.
+        meaning: pbs:indoor_environment_outdoor_air_flow_rate
+      required_illuminance:
+        description: Maintained illuminance in lx.
+        meaning: pbs:indoor_environment_required_illuminance
+      peak_occupancy:
+        description: Peak number of occupants.
+        meaning: pbs:indoor_environment_peak_occupancy
+      daily_operating_hours:
+        description: Daily operating hours in h.
+        meaning: pbs:indoor_environment_daily_operating_hours
   SecurityPropertyKey:
     enum_uri: pbs:SecurityPropertyKey
     description: Canonical security-related keys derived from IFC PropertySets.
@@ -2314,6 +2467,16 @@ enums:
         meaning: pbs:material_property_density
       thermal_conductivity:
         meaning: pbs:material_property_thermal_conductivity
+  EnvironmentalPropertyKey:
+    enum_uri: pbs:EnvironmentalPropertyKey
+    description: Canonical environmental keys for embodied impacts of an element type, per square metre of element area.
+    permissible_values:
+      gwp_embodied:
+        description: Embodied greenhouse gas emissions in kg CO2-eq/m2 (SIA 2032, KBOB).
+        meaning: pbs:environmental_property_gwp_embodied
+      primary_energy_non_renewable_embodied:
+        description: Embodied non-renewable primary energy in kWh/m2 (SIA 2032, KBOB).
+        meaning: pbs:environmental_property_primary_energy_non_renewable_embodied
   ConnectionRequirementDriver:
     enum_uri: pbs:ConnectionRequirementDriver
     description: Main requirement drivers for connection element performance.
@@ -2441,6 +2604,14 @@ enums:
           de:
             source: de
             description: Mindestabstand
+      max_distance:
+        description: Maximum walking distance in metres from the subject to the related entity or space.
+        meaning: pbs:spatial_adjacency_max_distance
+        title: Maximum Distance
+        alt_descriptions:
+          de:
+            source: de
+            description: Maximale Distanz
   RequirementTargetOperator:
     enum_uri: pbs:RequirementTargetOperator
     description: Comparison operator for numeric or textual requirement targets.

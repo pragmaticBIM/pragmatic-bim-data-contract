@@ -25,7 +25,8 @@ URI: [pbs:target_value_string](https://schema.pragmaticbim.ch/target_value_strin
 
 | Name | Description | Modifies Slot |
 | --- | --- | --- |
-| [PerformanceRequirement](PerformanceRequirement.md) | Performance target requirement (U-value, fire rating, airflow, acoustic, etc.). Boolean targets use target_value_boolean with requirement_property_key aligned to entity slot names where applicable (for example is_heated on Space). Application pipelines compare the subject entity slot to the requirement target and record the outcome as MatchChange (match_status met, unmet, or unknown). |  no  |
+| [PerformanceRequirement](PerformanceRequirement.md) | Performance target requirement (U-value, fire rating, airflow, acoustic, etc.). Boolean targets use target_value_boolean with requirement_property_key aligned to entity slot names where applicable (for example is_heated on Space). Numeric and textual targets use a permissible value of a PerformanceProperty key enum (FirePropertyKey, AcousticPropertyKey, ThermalPropertyKey, StructuralPropertyKey, IndoorEnvironmentPropertyKey, EnvironmentalPropertyKey, SecurityPropertyKey, MaterialPropertyKey) as requirement_property_key. Application pipelines compare the subject entity slot, or the performance_properties entry with the same property_key, to the requirement target and record the outcome as MatchChange (match_status met, unmet, or unknown; unknown when the subject has no value). |  no  |
+| [IdentificationRequirement](IdentificationRequirement.md) | Identification or classification value the subject must carry (predefined type, long name, area category, interior or exterior). States what the subject is, not how it performs (PerformanceRequirement) or what it is made of (MaterialRequirement). |  no  |
 
 
 
@@ -39,7 +40,7 @@ URI: [pbs:target_value_string](https://schema.pragmaticbim.ch/target_value_strin
 | Property | Value |
 | --- | --- |
 | Range | [String](String.md) |
-| Domain Of | [PerformanceRequirement](PerformanceRequirement.md) |
+| Domain Of | [PerformanceRequirement](PerformanceRequirement.md), [IdentificationRequirement](IdentificationRequirement.md) |
 
 ### Cardinality and Requirements
 
@@ -89,6 +90,7 @@ from_schema: https://schema.pragmaticbim.ch
 rank: 1000
 domain_of:
 - PerformanceRequirement
+- IdentificationRequirement
 range: string
 
 ```

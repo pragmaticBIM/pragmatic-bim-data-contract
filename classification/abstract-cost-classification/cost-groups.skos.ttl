@@ -1,0 +1,2545 @@
+@prefix : <https://example.org/abstract/cost-group/> .
+@prefix cpt: <https://example.org/abstract/cost-project-type/> .
+@prefix pbs: <https://schema.pragmaticbim.ch/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix map: <https://example.org/mapping/> .
+
+:scheme a skos:ConceptScheme ;
+  skos:prefLabel "Abstract cost groups"@en ;
+  skos:prefLabel "Abstrakte Kostengruppen"@de ;
+  dcterms:title "Abstract cost groups"@en ;
+  dcterms:title "Abstrakte Kostengruppen"@de ;
+  dcterms:identifier "AbstractCostGroup" ;
+  dcterms:creator "pragmatic-bim-public-rules" ;
+  dcterms:issued "2026-11-04" ;
+  dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
+  dcterms:source <https://github.com/simondilhas/pragmatic-bim-public-rules> ;
+  dcterms:references map:abstractCostGroupsToIcmsMapping, map:abstractCostGroupsToEbkpHMapping, map:abstractCostGroupsToEbkpTMapping ;
+  skos:definition "Open life-cycle cost structure for buildings and civil engineering works. Level 2 categories (CG-1 acquisition to CG-6 end of life), Level 3 groups (CG-{C}-{GG}) and Level 4 sub-groups (CG-{C}-{GG}-{SSS}). Construction, renewal and maintenance share the same thirteen groups. Sub-groups with a B prefix apply to buildings, those with a C prefix to civil engineering works (see pbs:projectType); sub-groups without a letter apply to all project types. Codes 800 and above are own extensions without an ICMS sub-group equivalent."@en ;
+  skos:definition "Offene Lebenszyklus-Kostengliederung für Hochbau und Tiefbau. Kategorien der Ebene 2 (CG-1 Erwerb bis CG-6 Lebensende), Gruppen der Ebene 3 (CG-{C}-{GG}) und Untergruppen der Ebene 4 (CG-{C}-{GG}-{SSS}). Erstellung, Erneuerung und Instandhaltung teilen dieselben dreizehn Gruppen. Untergruppen mit Präfix B gelten für Gebäude, mit Präfix C für Tiefbauwerke (siehe pbs:projectType); Untergruppen ohne Buchstaben gelten für alle Projektarten. Codes ab 800 sind eigene Erweiterungen ohne ICMS-Untergruppe."@de ;
+  skos:scopeNote "Own wording; group and sub-group numbering is aligned with ICMS 3 so that matches are exact by design. ICMS, eBKP-H and eBKP-T are referenced by code only in the mapping bridges; no third-party titles or definitions are reproduced. Level 4 sub-groups are provided for construction and acquisition; renewal and maintenance reuse the construction sub-group codes, operation and end of life stop at Level 3."@en ;
+  skos:scopeNote "Eigene Formulierung; die Nummerierung von Gruppen und Untergruppen ist auf ICMS 3 abgestimmt, sodass die Entsprechungen per Konstruktion exakt sind. ICMS, eBKP-H und eBKP-T werden in den Mapping-Brücken nur über Codes referenziert; es werden keine fremden Bezeichnungen oder Definitionen wiedergegeben. Untergruppen der Ebene 4 bestehen für Erstellung und Erwerb; Erneuerung und Instandhaltung verwenden die Untergruppencodes der Erstellung, Betrieb und Lebensende enden auf Ebene 3."@de ;
+  skos:hasTopConcept
+    :CG-1,
+    :CG-2,
+    :CG-3,
+    :CG-4,
+    :CG-5,
+    :CG-6 .
+
+:CG-1 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:topConceptOf :scheme ;
+  skos:notation "CG-1" ;
+  skos:prefLabel "Acquisition"@en ;
+  skos:prefLabel "Erwerb"@de ;
+  skos:definition "Costs of securing the site and of the client's administration, finance, legal and marketing activities."@en ;
+  skos:definition "Kosten für die Sicherung des Grundstücks sowie für Verwaltung, Finanzierung, Recht und Vermarktung durch die Bauherrschaft."@de ;
+  skos:narrower :CG-1-01, :CG-1-02 .
+
+:CG-2 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:topConceptOf :scheme ;
+  skos:notation "CG-2" ;
+  skos:prefLabel "Construction"@en ;
+  skos:prefLabel "Erstellung"@de ;
+  skos:definition "Costs of creating the constructed asset from site preparation to handover, including design and supervision."@en ;
+  skos:definition "Kosten für die Erstellung des Bauwerks von der Baustellenvorbereitung bis zur Übergabe, einschliesslich Planung und Bauleitung."@de ;
+  skos:narrower :CG-2-01, :CG-2-02, :CG-2-03, :CG-2-04, :CG-2-05, :CG-2-06, :CG-2-07, :CG-2-08, :CG-2-09, :CG-2-10, :CG-2-11, :CG-2-12, :CG-2-13 .
+
+:CG-3 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:topConceptOf :scheme ;
+  skos:notation "CG-3" ;
+  skos:prefLabel "Renewal"@en ;
+  skos:prefLabel "Erneuerung"@de ;
+  skos:definition "Costs of replacing major components at the end of their service life after handover."@en ;
+  skos:definition "Kosten für den Ersatz wesentlicher Bauteile am Ende ihrer Nutzungsdauer nach der Übergabe."@de ;
+  skos:narrower :CG-3-01, :CG-3-02, :CG-3-03, :CG-3-04, :CG-3-05, :CG-3-06, :CG-3-07, :CG-3-08, :CG-3-09, :CG-3-10, :CG-3-11, :CG-3-12, :CG-3-13 .
+
+:CG-4 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:topConceptOf :scheme ;
+  skos:notation "CG-4" ;
+  skos:prefLabel "Operation"@en ;
+  skos:prefLabel "Betrieb"@de ;
+  skos:definition "Recurring costs of running the asset during use."@en ;
+  skos:definition "Wiederkehrende Kosten für den Betrieb des Bauwerks während der Nutzung."@de ;
+  skos:narrower :CG-4-01, :CG-4-02, :CG-4-03, :CG-4-04, :CG-4-05, :CG-4-06, :CG-4-07, :CG-4-08 .
+
+:CG-5 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:topConceptOf :scheme ;
+  skos:notation "CG-5" ;
+  skos:prefLabel "Maintenance"@en ;
+  skos:prefLabel "Instandhaltung"@de ;
+  skos:definition "Costs of keeping the asset in working condition through inspection, servicing and repair."@en ;
+  skos:definition "Kosten für den Erhalt der Funktionsfähigkeit durch Inspektion, Wartung und Reparatur."@de ;
+  skos:narrower :CG-5-01, :CG-5-02, :CG-5-03, :CG-5-04, :CG-5-05, :CG-5-06, :CG-5-07, :CG-5-08, :CG-5-09, :CG-5-10, :CG-5-11, :CG-5-12, :CG-5-13 .
+
+:CG-6 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:topConceptOf :scheme ;
+  skos:notation "CG-6" ;
+  skos:prefLabel "End of life"@en ;
+  skos:prefLabel "Lebensende"@de ;
+  skos:definition "Costs of decommissioning, demolishing and reinstating at the end of the asset's life."@en ;
+  skos:definition "Kosten für Ausserbetriebnahme, Rückbau und Wiederherstellung am Ende der Lebensdauer."@de ;
+  skos:narrower :CG-6-01, :CG-6-02, :CG-6-03, :CG-6-04, :CG-6-05, :CG-6-06, :CG-6-07 .
+
+:CG-1-01 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-1 ;
+  skos:notation "CG-1-01" ;
+  skos:prefLabel "Site acquisition"@en ;
+  skos:prefLabel "Grundstückserwerb"@de ;
+  skos:definition "Price and associated costs of securing land, building rights or existing property."@en ;
+  skos:definition "Preis und Nebenkosten für den Erwerb von Land, Baurechten oder bestehenden Liegenschaften."@de ;
+  skos:narrower :CG-1-01-010, :CG-1-01-020, :CG-1-01-030, :CG-1-01-040, :CG-1-01-050, :CG-1-01-060 .
+
+:CG-1-02 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-1 ;
+  skos:notation "CG-1-02" ;
+  skos:prefLabel "Client administration, finance, legal and marketing"@en ;
+  skos:prefLabel "Verwaltung, Finanzierung, Recht und Vermarktung der Bauherrschaft"@de ;
+  skos:definition "Client-side overheads, interest, legal, accounting, sales and leasing costs."@en ;
+  skos:definition "Gemeinkosten der Bauherrschaft, Zinsen, Rechts-, Buchhaltungs-, Verkaufs- und Vermietungskosten."@de ;
+  skos:narrower :CG-1-02-010, :CG-1-02-020, :CG-1-02-030, :CG-1-02-040, :CG-1-02-050, :CG-1-02-060, :CG-1-02-070, :CG-1-02-080 .
+
+:CG-2-01 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2 ;
+  skos:notation "CG-2-01" ;
+  skos:prefLabel "Demolition, site preparation and formation"@en ;
+  skos:prefLabel "Rückbau, Baustellenvorbereitung und Geländeformung"@de ;
+  skos:definition "Investigation, clearance, demolition, remediation and forming of the site before the permanent works."@en ;
+  skos:definition "Untersuchung, Räumung, Rückbau, Sanierung und Formung des Geländes vor den dauerhaften Arbeiten."@de ;
+  skos:narrower :CG-2-01-B010, :CG-2-01-B020, :CG-2-01-B030, :CG-2-01-B040, :CG-2-01-B050, :CG-2-01-B060, :CG-2-01-B070, :CG-2-01-B080, :CG-2-01-B090, :CG-2-01-B100, :CG-2-01-B110, :CG-2-01-C010, :CG-2-01-C020, :CG-2-01-C030, :CG-2-01-C040, :CG-2-01-C050, :CG-2-01-C060, :CG-2-01-C070, :CG-2-01-C080, :CG-2-01-C090, :CG-2-01-C100, :CG-2-01-C110, :CG-2-01-C120, :CG-2-01-C650 .
+
+:CG-2-02 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2 ;
+  skos:notation "CG-2-02" ;
+  skos:prefLabel "Substructure"@en ;
+  skos:prefLabel "Unterbau"@de ;
+  skos:definition "Ground-related works that transfer loads into the ground, up to the top of the lowest floor or formation level."@en ;
+  skos:definition "Erdberührte Arbeiten, die Lasten in den Baugrund abtragen, bis Oberkante der untersten Bodenplatte bzw. des Planums."@de ;
+  skos:narrower :CG-2-02-B010, :CG-2-02-B020, :CG-2-02-B030, :CG-2-02-C010, :CG-2-02-C020, :CG-2-02-C025, :CG-2-02-C030, :CG-2-02-C040, :CG-2-02-C050, :CG-2-02-C060, :CG-2-02-C070, :CG-2-02-C080, :CG-2-02-C090, :CG-2-02-C100, :CG-2-02-C110, :CG-2-02-C120, :CG-2-02-C660, :CG-2-02-C680 .
+
+:CG-2-03 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2 ;
+  skos:notation "CG-2-03" ;
+  skos:prefLabel "Structure"@en ;
+  skos:prefLabel "Tragwerk"@de ;
+  skos:definition "Load-bearing construction above the substructure."@en ;
+  skos:definition "Tragende Konstruktion oberhalb des Unterbaus."@de ;
+  skos:narrower :CG-2-03-B010, :CG-2-03-B020, :CG-2-03-B030, :CG-2-03-B040, :CG-2-03-B050, :CG-2-03-C010, :CG-2-03-C020, :CG-2-03-C030, :CG-2-03-C040, :CG-2-03-C050, :CG-2-03-C060, :CG-2-03-C070, :CG-2-03-C080, :CG-2-03-C090, :CG-2-03-C100, :CG-2-03-C105, :CG-2-03-C110, :CG-2-03-C120, :CG-2-03-C130, :CG-2-03-C140, :CG-2-03-C700, :CG-2-03-C720, :CG-2-03-C750 .
+
+:CG-2-04 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2 ;
+  skos:notation "CG-2-04" ;
+  skos:prefLabel "Architectural and non-structural works"@en ;
+  skos:prefLabel "Ausbau und nichttragende Arbeiten"@de ;
+  skos:definition "Envelope, partitions, finishes, fittings and other non-load-bearing construction."@en ;
+  skos:definition "Gebäudehülle, Trennwände, Beläge, Einbauten und weitere nichttragende Konstruktionen."@de ;
+  skos:narrower :CG-2-04-B010, :CG-2-04-B020, :CG-2-04-B030, :CG-2-04-B040, :CG-2-04-B050, :CG-2-04-B060, :CG-2-04-B070, :CG-2-04-B080, :CG-2-04-C010, :CG-2-04-C020, :CG-2-04-C030, :CG-2-04-C040, :CG-2-04-C050, :CG-2-04-C060, :CG-2-04-C070, :CG-2-04-C080, :CG-2-04-C090, :CG-2-04-C100 .
+
+:CG-2-05 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2 ;
+  skos:notation "CG-2-05" ;
+  skos:prefLabel "Services and equipment"@en ;
+  skos:prefLabel "Technische Anlagen und Ausrüstung"@de ;
+  skos:definition "Mechanical, electrical, plumbing, transport and specialist installations."@en ;
+  skos:definition "Haustechnische, elektrische, sanitäre, fördertechnische und spezielle Anlagen."@de ;
+  skos:narrower :CG-2-05-B010, :CG-2-05-B020, :CG-2-05-B030, :CG-2-05-B040, :CG-2-05-B050, :CG-2-05-B060, :CG-2-05-B070, :CG-2-05-B080, :CG-2-05-B090, :CG-2-05-B100, :CG-2-05-B110, :CG-2-05-B120, :CG-2-05-B130, :CG-2-05-B140, :CG-2-05-B150, :CG-2-05-B160, :CG-2-05-B170, :CG-2-05-B175, :CG-2-05-B180, :CG-2-05-B190, :CG-2-05-B200, :CG-2-05-B210, :CG-2-05-B220, :CG-2-05-B230, :CG-2-05-B240, :CG-2-05-B250, :CG-2-05-B260, :CG-2-05-C005, :CG-2-05-C010, :CG-2-05-C020, :CG-2-05-C030, :CG-2-05-C040, :CG-2-05-C050, :CG-2-05-C060, :CG-2-05-C070, :CG-2-05-C080, :CG-2-05-C090, :CG-2-05-C100, :CG-2-05-C110, :CG-2-05-C115, :CG-2-05-C120, :CG-2-05-C800, :CG-2-05-C810 .
+
+:CG-2-06 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2 ;
+  skos:notation "CG-2-06" ;
+  skos:prefLabel "Surface and underground drainage"@en ;
+  skos:prefLabel "Oberflächen- und Untergrundentwässerung"@de ;
+  skos:definition "Drainage of surface, storm and foul water outside the structure, including connections."@en ;
+  skos:definition "Ableitung von Oberflächen-, Regen- und Schmutzwasser ausserhalb des Bauwerks, einschliesslich Anschlüssen."@de ;
+  skos:narrower :CG-2-06-B010, :CG-2-06-B020, :CG-2-06-B030, :CG-2-06-B040, :CG-2-06-B050, :CG-2-06-B060, :CG-2-06-C010, :CG-2-06-C020, :CG-2-06-C030, :CG-2-06-C040, :CG-2-06-C050 .
+
+:CG-2-07 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2 ;
+  skos:notation "CG-2-07" ;
+  skos:prefLabel "External and ancillary works"@en ;
+  skos:prefLabel "Umgebungs- und Nebenarbeiten"@de ;
+  skos:definition "Retaining structures, enclosures, paving, landscaping and services within the site but outside the main structure."@en ;
+  skos:definition "Stützbauwerke, Einfriedungen, Beläge, Begrünung und Werkleitungen auf dem Grundstück ausserhalb des Hauptbauwerks."@de ;
+  skos:narrower :CG-2-07-B010, :CG-2-07-B020, :CG-2-07-B030, :CG-2-07-B040, :CG-2-07-B050, :CG-2-07-B060, :CG-2-07-B070, :CG-2-07-C010, :CG-2-07-C020, :CG-2-07-C030, :CG-2-07-C040, :CG-2-07-C050, :CG-2-07-C800 .
+
+:CG-2-08 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2 ;
+  skos:notation "CG-2-08" ;
+  skos:prefLabel "Preliminaries and site overheads"@en ;
+  skos:prefLabel "Baustellengemeinkosten"@de ;
+  skos:definition "Constructor's site management, temporary facilities, shared plant and general obligations not allocated to elements."@en ;
+  skos:definition "Baustellenführung, provisorische Einrichtungen, gemeinsame Geräte und allgemeine Pflichten des Unternehmers, die keinem Element zugeordnet sind."@de ;
+  skos:narrower :CG-2-08-010, :CG-2-08-020, :CG-2-08-030, :CG-2-08-040, :CG-2-08-050, :CG-2-08-060, :CG-2-08-070, :CG-2-08-080, :CG-2-08-090, :CG-2-08-100, :CG-2-08-110, :CG-2-08-120, :CG-2-08-130, :CG-2-08-140, :CG-2-08-C025, :CG-2-08-C045, :CG-2-08-C055, :CG-2-08-C065 .
+
+:CG-2-09 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2 ;
+  skos:notation "CG-2-09" ;
+  skos:prefLabel "Risk allowances"@en ;
+  skos:prefLabel "Reserven und Teuerung"@de ;
+  skos:definition "Allowances for design development, contingencies, price level and exchange rate changes."@en ;
+  skos:definition "Reserven für Projektentwicklung, Unvorhergesehenes, Teuerung und Wechselkursänderungen."@de ;
+  skos:narrower :CG-2-09-010, :CG-2-09-020, :CG-2-09-030, :CG-2-09-040 .
+
+:CG-2-10 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2 ;
+  skos:notation "CG-2-10" ;
+  skos:prefLabel "Taxes and levies"@en ;
+  skos:prefLabel "Steuern und Abgaben"@de ;
+  skos:definition "Taxes and levies on construction payments."@en ;
+  skos:definition "Steuern und Abgaben auf Zahlungen für die Erstellung."@de ;
+  skos:narrower :CG-2-10-010, :CG-2-10-020 .
+
+:CG-2-11 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2 ;
+  skos:notation "CG-2-11" ;
+  skos:prefLabel "Off-site works and utilities"@en ;
+  skos:prefLabel "Arbeiten und Werkleitungen ausserhalb des Grundstücks"@de ;
+  skos:definition "Utility connections and public access works outside the site boundary."@en ;
+  skos:definition "Werkleitungsanschlüsse und öffentliche Zufahrten ausserhalb der Grundstücksgrenze."@de ;
+  skos:narrower :CG-2-11-010, :CG-2-11-020 .
+
+:CG-2-12 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2 ;
+  skos:notation "CG-2-12" ;
+  skos:prefLabel "Production equipment, furniture and loose fittings"@en ;
+  skos:prefLabel "Betriebseinrichtungen, Mobiliar und Ausstattung"@de ;
+  skos:definition "Production and process equipment, furniture and loose items supplied for the use of the asset."@en ;
+  skos:definition "Produktions- und Prozesseinrichtungen, Mobiliar und lose Ausstattung für die Nutzung des Bauwerks."@de ;
+  skos:narrower :CG-2-12-010, :CG-2-12-020, :CG-2-12-800 .
+
+:CG-2-13 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2 ;
+  skos:notation "CG-2-13" ;
+  skos:prefLabel "Consultancy and supervision"@en ;
+  skos:prefLabel "Planung, Beratung und Bauleitung"@de ;
+  skos:definition "Fees of designers and advisers, statutory approval charges, site supervision and testing authorities."@en ;
+  skos:definition "Honorare von Planenden und Beratenden, behördliche Bewilligungsgebühren, Bauleitung und Prüfstellen."@de ;
+  skos:narrower :CG-2-13-010, :CG-2-13-020, :CG-2-13-030, :CG-2-13-040, :CG-2-13-800 .
+
+:CG-3-01 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-3 ;
+  skos:notation "CG-3-01" ;
+  skos:prefLabel "Renewal: demolition, site preparation and formation"@en ;
+  skos:prefLabel "Erneuerung: Rückbau, Baustellenvorbereitung und Geländeformung"@de ;
+  skos:definition "Investigation, clearance, demolition, remediation and forming of the site before the permanent works."@en ;
+  skos:definition "Untersuchung, Räumung, Rückbau, Sanierung und Formung des Geländes vor den dauerhaften Arbeiten."@de .
+
+:CG-3-02 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-3 ;
+  skos:notation "CG-3-02" ;
+  skos:prefLabel "Renewal: substructure"@en ;
+  skos:prefLabel "Erneuerung: Unterbau"@de ;
+  skos:definition "Ground-related works that transfer loads into the ground, up to the top of the lowest floor or formation level."@en ;
+  skos:definition "Erdberührte Arbeiten, die Lasten in den Baugrund abtragen, bis Oberkante der untersten Bodenplatte bzw. des Planums."@de .
+
+:CG-3-03 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-3 ;
+  skos:notation "CG-3-03" ;
+  skos:prefLabel "Renewal: structure"@en ;
+  skos:prefLabel "Erneuerung: Tragwerk"@de ;
+  skos:definition "Load-bearing construction above the substructure."@en ;
+  skos:definition "Tragende Konstruktion oberhalb des Unterbaus."@de .
+
+:CG-3-04 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-3 ;
+  skos:notation "CG-3-04" ;
+  skos:prefLabel "Renewal: architectural and non-structural works"@en ;
+  skos:prefLabel "Erneuerung: Ausbau und nichttragende Arbeiten"@de ;
+  skos:definition "Envelope, partitions, finishes, fittings and other non-load-bearing construction."@en ;
+  skos:definition "Gebäudehülle, Trennwände, Beläge, Einbauten und weitere nichttragende Konstruktionen."@de .
+
+:CG-3-05 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-3 ;
+  skos:notation "CG-3-05" ;
+  skos:prefLabel "Renewal: services and equipment"@en ;
+  skos:prefLabel "Erneuerung: Technische Anlagen und Ausrüstung"@de ;
+  skos:definition "Mechanical, electrical, plumbing, transport and specialist installations."@en ;
+  skos:definition "Haustechnische, elektrische, sanitäre, fördertechnische und spezielle Anlagen."@de .
+
+:CG-3-06 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-3 ;
+  skos:notation "CG-3-06" ;
+  skos:prefLabel "Renewal: surface and underground drainage"@en ;
+  skos:prefLabel "Erneuerung: Oberflächen- und Untergrundentwässerung"@de ;
+  skos:definition "Drainage of surface, storm and foul water outside the structure, including connections."@en ;
+  skos:definition "Ableitung von Oberflächen-, Regen- und Schmutzwasser ausserhalb des Bauwerks, einschliesslich Anschlüssen."@de .
+
+:CG-3-07 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-3 ;
+  skos:notation "CG-3-07" ;
+  skos:prefLabel "Renewal: external and ancillary works"@en ;
+  skos:prefLabel "Erneuerung: Umgebungs- und Nebenarbeiten"@de ;
+  skos:definition "Retaining structures, enclosures, paving, landscaping and services within the site but outside the main structure."@en ;
+  skos:definition "Stützbauwerke, Einfriedungen, Beläge, Begrünung und Werkleitungen auf dem Grundstück ausserhalb des Hauptbauwerks."@de .
+
+:CG-3-08 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-3 ;
+  skos:notation "CG-3-08" ;
+  skos:prefLabel "Renewal: preliminaries and site overheads"@en ;
+  skos:prefLabel "Erneuerung: Baustellengemeinkosten"@de ;
+  skos:definition "Constructor's site management, temporary facilities, shared plant and general obligations not allocated to elements."@en ;
+  skos:definition "Baustellenführung, provisorische Einrichtungen, gemeinsame Geräte und allgemeine Pflichten des Unternehmers, die keinem Element zugeordnet sind."@de .
+
+:CG-3-09 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-3 ;
+  skos:notation "CG-3-09" ;
+  skos:prefLabel "Renewal: risk allowances"@en ;
+  skos:prefLabel "Erneuerung: Reserven und Teuerung"@de ;
+  skos:definition "Allowances for design development, contingencies, price level and exchange rate changes."@en ;
+  skos:definition "Reserven für Projektentwicklung, Unvorhergesehenes, Teuerung und Wechselkursänderungen."@de .
+
+:CG-3-10 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-3 ;
+  skos:notation "CG-3-10" ;
+  skos:prefLabel "Renewal: taxes and levies"@en ;
+  skos:prefLabel "Erneuerung: Steuern und Abgaben"@de ;
+  skos:definition "Taxes and levies on construction payments."@en ;
+  skos:definition "Steuern und Abgaben auf Zahlungen für die Erstellung."@de .
+
+:CG-3-11 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-3 ;
+  skos:notation "CG-3-11" ;
+  skos:prefLabel "Renewal: off-site works and utilities"@en ;
+  skos:prefLabel "Erneuerung: Arbeiten und Werkleitungen ausserhalb des Grundstücks"@de ;
+  skos:definition "Utility connections and public access works outside the site boundary."@en ;
+  skos:definition "Werkleitungsanschlüsse und öffentliche Zufahrten ausserhalb der Grundstücksgrenze."@de .
+
+:CG-3-12 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-3 ;
+  skos:notation "CG-3-12" ;
+  skos:prefLabel "Renewal: production equipment, furniture and loose fittings"@en ;
+  skos:prefLabel "Erneuerung: Betriebseinrichtungen, Mobiliar und Ausstattung"@de ;
+  skos:definition "Production and process equipment, furniture and loose items supplied for the use of the asset."@en ;
+  skos:definition "Produktions- und Prozesseinrichtungen, Mobiliar und lose Ausstattung für die Nutzung des Bauwerks."@de .
+
+:CG-3-13 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-3 ;
+  skos:notation "CG-3-13" ;
+  skos:prefLabel "Renewal: consultancy and supervision"@en ;
+  skos:prefLabel "Erneuerung: Planung, Beratung und Bauleitung"@de ;
+  skos:definition "Fees of designers and advisers, statutory approval charges, site supervision and testing authorities."@en ;
+  skos:definition "Honorare von Planenden und Beratenden, behördliche Bewilligungsgebühren, Bauleitung und Prüfstellen."@de .
+
+:CG-5-01 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-5 ;
+  skos:notation "CG-5-01" ;
+  skos:prefLabel "Maintenance: demolition, site preparation and formation"@en ;
+  skos:prefLabel "Instandhaltung: Rückbau, Baustellenvorbereitung und Geländeformung"@de ;
+  skos:definition "Investigation, clearance, demolition, remediation and forming of the site before the permanent works."@en ;
+  skos:definition "Untersuchung, Räumung, Rückbau, Sanierung und Formung des Geländes vor den dauerhaften Arbeiten."@de .
+
+:CG-5-02 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-5 ;
+  skos:notation "CG-5-02" ;
+  skos:prefLabel "Maintenance: substructure"@en ;
+  skos:prefLabel "Instandhaltung: Unterbau"@de ;
+  skos:definition "Ground-related works that transfer loads into the ground, up to the top of the lowest floor or formation level."@en ;
+  skos:definition "Erdberührte Arbeiten, die Lasten in den Baugrund abtragen, bis Oberkante der untersten Bodenplatte bzw. des Planums."@de .
+
+:CG-5-03 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-5 ;
+  skos:notation "CG-5-03" ;
+  skos:prefLabel "Maintenance: structure"@en ;
+  skos:prefLabel "Instandhaltung: Tragwerk"@de ;
+  skos:definition "Load-bearing construction above the substructure."@en ;
+  skos:definition "Tragende Konstruktion oberhalb des Unterbaus."@de .
+
+:CG-5-04 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-5 ;
+  skos:notation "CG-5-04" ;
+  skos:prefLabel "Maintenance: architectural and non-structural works"@en ;
+  skos:prefLabel "Instandhaltung: Ausbau und nichttragende Arbeiten"@de ;
+  skos:definition "Envelope, partitions, finishes, fittings and other non-load-bearing construction."@en ;
+  skos:definition "Gebäudehülle, Trennwände, Beläge, Einbauten und weitere nichttragende Konstruktionen."@de .
+
+:CG-5-05 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-5 ;
+  skos:notation "CG-5-05" ;
+  skos:prefLabel "Maintenance: services and equipment"@en ;
+  skos:prefLabel "Instandhaltung: Technische Anlagen und Ausrüstung"@de ;
+  skos:definition "Mechanical, electrical, plumbing, transport and specialist installations."@en ;
+  skos:definition "Haustechnische, elektrische, sanitäre, fördertechnische und spezielle Anlagen."@de .
+
+:CG-5-06 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-5 ;
+  skos:notation "CG-5-06" ;
+  skos:prefLabel "Maintenance: surface and underground drainage"@en ;
+  skos:prefLabel "Instandhaltung: Oberflächen- und Untergrundentwässerung"@de ;
+  skos:definition "Drainage of surface, storm and foul water outside the structure, including connections."@en ;
+  skos:definition "Ableitung von Oberflächen-, Regen- und Schmutzwasser ausserhalb des Bauwerks, einschliesslich Anschlüssen."@de .
+
+:CG-5-07 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-5 ;
+  skos:notation "CG-5-07" ;
+  skos:prefLabel "Maintenance: external and ancillary works"@en ;
+  skos:prefLabel "Instandhaltung: Umgebungs- und Nebenarbeiten"@de ;
+  skos:definition "Retaining structures, enclosures, paving, landscaping and services within the site but outside the main structure."@en ;
+  skos:definition "Stützbauwerke, Einfriedungen, Beläge, Begrünung und Werkleitungen auf dem Grundstück ausserhalb des Hauptbauwerks."@de .
+
+:CG-5-08 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-5 ;
+  skos:notation "CG-5-08" ;
+  skos:prefLabel "Maintenance: preliminaries and site overheads"@en ;
+  skos:prefLabel "Instandhaltung: Baustellengemeinkosten"@de ;
+  skos:definition "Constructor's site management, temporary facilities, shared plant and general obligations not allocated to elements."@en ;
+  skos:definition "Baustellenführung, provisorische Einrichtungen, gemeinsame Geräte und allgemeine Pflichten des Unternehmers, die keinem Element zugeordnet sind."@de .
+
+:CG-5-09 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-5 ;
+  skos:notation "CG-5-09" ;
+  skos:prefLabel "Maintenance: risk allowances"@en ;
+  skos:prefLabel "Instandhaltung: Reserven und Teuerung"@de ;
+  skos:definition "Allowances for design development, contingencies, price level and exchange rate changes."@en ;
+  skos:definition "Reserven für Projektentwicklung, Unvorhergesehenes, Teuerung und Wechselkursänderungen."@de .
+
+:CG-5-10 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-5 ;
+  skos:notation "CG-5-10" ;
+  skos:prefLabel "Maintenance: taxes and levies"@en ;
+  skos:prefLabel "Instandhaltung: Steuern und Abgaben"@de ;
+  skos:definition "Taxes and levies on construction payments."@en ;
+  skos:definition "Steuern und Abgaben auf Zahlungen für die Erstellung."@de .
+
+:CG-5-11 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-5 ;
+  skos:notation "CG-5-11" ;
+  skos:prefLabel "Maintenance: off-site works and utilities"@en ;
+  skos:prefLabel "Instandhaltung: Arbeiten und Werkleitungen ausserhalb des Grundstücks"@de ;
+  skos:definition "Utility connections and public access works outside the site boundary."@en ;
+  skos:definition "Werkleitungsanschlüsse und öffentliche Zufahrten ausserhalb der Grundstücksgrenze."@de .
+
+:CG-5-12 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-5 ;
+  skos:notation "CG-5-12" ;
+  skos:prefLabel "Maintenance: production equipment, furniture and loose fittings"@en ;
+  skos:prefLabel "Instandhaltung: Betriebseinrichtungen, Mobiliar und Ausstattung"@de ;
+  skos:definition "Production and process equipment, furniture and loose items supplied for the use of the asset."@en ;
+  skos:definition "Produktions- und Prozesseinrichtungen, Mobiliar und lose Ausstattung für die Nutzung des Bauwerks."@de .
+
+:CG-5-13 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-5 ;
+  skos:notation "CG-5-13" ;
+  skos:prefLabel "Maintenance: consultancy and supervision"@en ;
+  skos:prefLabel "Instandhaltung: Planung, Beratung und Bauleitung"@de ;
+  skos:definition "Fees of designers and advisers, statutory approval charges, site supervision and testing authorities."@en ;
+  skos:definition "Honorare von Planenden und Beratenden, behördliche Bewilligungsgebühren, Bauleitung und Prüfstellen."@de .
+
+:CG-4-01 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-4 ;
+  skos:notation "CG-4-01" ;
+  skos:prefLabel "Cleaning"@en ;
+  skos:prefLabel "Reinigung"@de ;
+  skos:definition "Routine and periodic cleaning of the asset."@en ;
+  skos:definition "Unterhalts- und periodische Reinigung des Bauwerks."@de .
+
+:CG-4-02 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-4 ;
+  skos:notation "CG-4-02" ;
+  skos:prefLabel "Utilities"@en ;
+  skos:prefLabel "Ver- und Entsorgungsmedien"@de ;
+  skos:definition "Energy, water and other supplied media consumed in use."@en ;
+  skos:definition "Im Betrieb bezogene Energie, Wasser und weitere Medien."@de .
+
+:CG-4-03 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-4 ;
+  skos:notation "CG-4-03" ;
+  skos:prefLabel "Waste management"@en ;
+  skos:prefLabel "Abfallentsorgung"@de ;
+  skos:definition "Collection, sorting and disposal of operational waste."@en ;
+  skos:definition "Sammlung, Trennung und Entsorgung von Betriebsabfällen."@de .
+
+:CG-4-04 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-4 ;
+  skos:notation "CG-4-04" ;
+  skos:prefLabel "Security"@en ;
+  skos:prefLabel "Sicherheit und Bewachung"@de ;
+  skos:definition "Guarding, access control and security services in use."@en ;
+  skos:definition "Bewachung, Zutrittskontrolle und Sicherheitsdienste im Betrieb."@de .
+
+:CG-4-05 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-4 ;
+  skos:notation "CG-4-05" ;
+  skos:prefLabel "Information and communication technology"@en ;
+  skos:prefLabel "Informations- und Kommunikationstechnik"@de ;
+  skos:definition "Running costs of ICT services and networks."@en ;
+  skos:definition "Betriebskosten von IKT-Diensten und Netzwerken."@de .
+
+:CG-4-06 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-4 ;
+  skos:notation "CG-4-06" ;
+  skos:prefLabel "Operator overheads"@en ;
+  skos:prefLabel "Betreibergemeinkosten"@de ;
+  skos:definition "Operator's management, staff and general obligations."@en ;
+  skos:definition "Führung, Personal und allgemeine Pflichten der Betreiberin."@de .
+
+:CG-4-07 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-4 ;
+  skos:notation "CG-4-07" ;
+  skos:prefLabel "Operation risk allowances"@en ;
+  skos:prefLabel "Reserven Betrieb"@de ;
+  skos:definition "Allowances for uncertainty in operation costs."@en ;
+  skos:definition "Reserven für Unsicherheiten der Betriebskosten."@de .
+
+:CG-4-08 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-4 ;
+  skos:notation "CG-4-08" ;
+  skos:prefLabel "Operation taxes and levies"@en ;
+  skos:prefLabel "Steuern und Abgaben Betrieb"@de ;
+  skos:definition "Taxes and levies on operation."@en ;
+  skos:definition "Steuern und Abgaben auf den Betrieb."@de .
+
+:CG-6-01 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-6 ;
+  skos:notation "CG-6-01" ;
+  skos:prefLabel "Disposal inspection"@en ;
+  skos:prefLabel "Zustandsaufnahme vor Rückbau"@de ;
+  skos:definition "Survey of the asset and hazardous materials before disposal."@en ;
+  skos:definition "Aufnahme des Bauwerks und der Schadstoffe vor dem Rückbau."@de .
+
+:CG-6-02 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-6 ;
+  skos:notation "CG-6-02" ;
+  skos:prefLabel "Decommissioning and decontamination"@en ;
+  skos:prefLabel "Ausserbetriebnahme und Dekontamination"@de ;
+  skos:definition "Taking the asset out of service and removing contaminants."@en ;
+  skos:definition "Ausserbetriebnahme des Bauwerks und Entfernen von Schadstoffen."@de .
+
+:CG-6-03 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-6 ;
+  skos:notation "CG-6-03" ;
+  skos:prefLabel "Demolition and material recovery"@en ;
+  skos:prefLabel "Rückbau und Materialrückgewinnung"@de ;
+  skos:definition "Demolition, dismantling and recovery of reusable or recyclable material."@en ;
+  skos:definition "Abbruch, Demontage und Rückgewinnung wiederverwendbarer oder rezyklierbarer Materialien."@de .
+
+:CG-6-04 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-6 ;
+  skos:notation "CG-6-04" ;
+  skos:prefLabel "Reinstatement"@en ;
+  skos:prefLabel "Wiederherstellung"@de ;
+  skos:definition "Restoring the site after demolition."@en ;
+  skos:definition "Wiederherstellung des Geländes nach dem Rückbau."@de .
+
+:CG-6-05 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-6 ;
+  skos:notation "CG-6-05" ;
+  skos:prefLabel "End-of-life site overheads"@en ;
+  skos:prefLabel "Baustellengemeinkosten Rückbau"@de ;
+  skos:definition "Constructor's site overheads for end-of-life works."@en ;
+  skos:definition "Baustellengemeinkosten des Unternehmers für Rückbauarbeiten."@de .
+
+:CG-6-06 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-6 ;
+  skos:notation "CG-6-06" ;
+  skos:prefLabel "End-of-life risk allowances"@en ;
+  skos:prefLabel "Reserven Rückbau"@de ;
+  skos:definition "Allowances for uncertainty in end-of-life costs."@en ;
+  skos:definition "Reserven für Unsicherheiten der Rückbaukosten."@de .
+
+:CG-6-07 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-6 ;
+  skos:notation "CG-6-07" ;
+  skos:prefLabel "End-of-life taxes and levies"@en ;
+  skos:prefLabel "Steuern und Abgaben Rückbau"@de ;
+  skos:definition "Taxes and levies on end-of-life works."@en ;
+  skos:definition "Steuern und Abgaben auf Rückbauarbeiten."@de .
+
+:CG-1-01-010 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-1-01 ;
+  skos:notation "CG-1-01-010" ;
+  skos:prefLabel "Land and rights purchase"@en ;
+  skos:prefLabel "Kauf von Land und Rechten"@de ;
+  skos:definition "Price paid for land, building rights or existing property."@en ;
+  skos:definition "Preis für Land, Baurechte oder bestehende Liegenschaften."@de .
+
+:CG-1-01-020 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-1-01 ;
+  skos:notation "CG-1-01-020" ;
+  skos:prefLabel "Compensation to occupiers"@en ;
+  skos:prefLabel "Entschädigung von Nutzenden"@de ;
+  skos:definition "Payments to existing occupiers or holders of rights."@en ;
+  skos:definition "Zahlungen an bisherige Nutzende oder Berechtigte."@de .
+
+:CG-1-01-030 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-1-01 ;
+  skos:notation "CG-1-01-030" ;
+  skos:prefLabel "Payment in lieu of site works"@en ;
+  skos:prefLabel "Abgeltung statt Bauleistung"@de ;
+  skos:definition "Payments to previous owners for demolition or modification instead of carrying out the work."@en ;
+  skos:definition "Zahlungen an Voreigentümer für Rückbau oder Anpassungen anstelle der Ausführung."@de .
+
+:CG-1-01-040 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-1-01 ;
+  skos:notation "CG-1-01-040" ;
+  skos:prefLabel "Heritage and environment contributions"@en ;
+  skos:prefLabel "Beiträge an Denkmal- und Umweltschutz"@de ;
+  skos:definition "Contributions required to preserve heritage, culture or environment."@en ;
+  skos:definition "Beiträge zur Erhaltung von Denkmälern, Kultur oder Umwelt."@de .
+
+:CG-1-01-050 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-1-01 ;
+  skos:notation "CG-1-01-050" ;
+  skos:prefLabel "Acquisition fees"@en ;
+  skos:prefLabel "Nebenkosten Erwerb"@de ;
+  skos:definition "Agent, notary, land registry, survey and legal fees for the acquisition."@en ;
+  skos:definition "Vermittlungs-, Notariats-, Grundbuch-, Vermessungs- und Anwaltskosten für den Erwerb."@de .
+
+:CG-1-01-060 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-1-01 ;
+  skos:notation "CG-1-01-060" ;
+  skos:prefLabel "Acquisition taxes"@en ;
+  skos:prefLabel "Steuern Erwerb"@de ;
+  skos:definition "Transfer and gains taxes and statutory charges on the acquisition."@en ;
+  skos:definition "Handänderungs- und Gewinnsteuern sowie Abgaben auf den Erwerb."@de .
+
+:CG-1-02-010 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-1-02 ;
+  skos:notation "CG-1-02-010" ;
+  skos:prefLabel "Client general overheads"@en ;
+  skos:prefLabel "Allgemeine Gemeinkosten Bauherrschaft"@de ;
+  skos:definition "Share of the client's general office costs."@en ;
+  skos:definition "Anteil der allgemeinen Bürokosten der Bauherrschaft."@de .
+
+:CG-1-02-020 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-1-02 ;
+  skos:notation "CG-1-02-020" ;
+  skos:prefLabel "Client project administration"@en ;
+  skos:prefLabel "Projektadministration Bauherrschaft"@de ;
+  skos:definition "Client's in-house project team, project office and related expenses."@en ;
+  skos:definition "Internes Projektteam, Projektbüro und zugehörige Aufwendungen der Bauherrschaft."@de .
+
+:CG-1-02-030 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-1-02 ;
+  skos:notation "CG-1-02-030" ;
+  skos:prefLabel "Interest and finance"@en ;
+  skos:prefLabel "Zinsen und Finanzierung"@de ;
+  skos:definition "Interest and financing charges during the project."@en ;
+  skos:definition "Zinsen und Finanzierungskosten während des Projekts."@de .
+
+:CG-1-02-040 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-1-02 ;
+  skos:notation "CG-1-02-040" ;
+  skos:prefLabel "Client legal expenses"@en ;
+  skos:prefLabel "Rechtskosten Bauherrschaft"@de ;
+  skos:definition "Legal costs not related to the acquisition."@en ;
+  skos:definition "Rechtskosten, die nicht den Erwerb betreffen."@de .
+
+:CG-1-02-050 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-1-02 ;
+  skos:notation "CG-1-02-050" ;
+  skos:prefLabel "Accounting"@en ;
+  skos:prefLabel "Buchhaltung"@de ;
+  skos:definition "Accounting and audit costs of the project."@en ;
+  skos:definition "Buchhaltungs- und Revisionskosten des Projekts."@de .
+
+:CG-1-02-060 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-1-02 ;
+  skos:notation "CG-1-02-060" ;
+  skos:prefLabel "Sales, leasing and marketing"@en ;
+  skos:prefLabel "Verkauf, Vermietung und Vermarktung"@de ;
+  skos:definition "Costs of selling, letting, advertising and promoting the asset."@en ;
+  skos:definition "Kosten für Verkauf, Vermietung, Werbung und Vermarktung des Bauwerks."@de .
+
+:CG-1-02-070 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-1-02 ;
+  skos:notation "CG-1-02-070" ;
+  skos:prefLabel "Sales and leasing taxes"@en ;
+  skos:prefLabel "Steuern auf Verkauf und Vermietung"@de ;
+  skos:definition "Taxes and charges on sale or lease."@en ;
+  skos:definition "Steuern und Abgaben auf Verkauf oder Vermietung."@de .
+
+:CG-1-02-080 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-1-02 ;
+  skos:notation "CG-1-02-080" ;
+  skos:prefLabel "Operating licences and permits"@en ;
+  skos:prefLabel "Betriebsbewilligungen"@de ;
+  skos:definition "Licences and permits required to use or operate the asset."@en ;
+  skos:definition "Bewilligungen für Nutzung oder Betrieb des Bauwerks."@de .
+
+:CG-2-01-B010 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-01 ;
+  skos:notation "CG-2-01-B010" ;
+  skos:prefLabel "Site investigation and survey"@en ;
+  skos:prefLabel "Baugrunduntersuchung und Bestandsaufnahme"@de ;
+  skos:definition "Ground investigation, topographic and condition surveys."@en ;
+  skos:definition "Baugrunduntersuchungen, Geländeaufnahmen und Zustandsaufnahmen."@de ;
+  pbs:projectType cpt:CPT-01 .
+
+:CG-2-01-B020 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-01 ;
+  skos:notation "CG-2-01-B020" ;
+  skos:prefLabel "Environmental remediation"@en ;
+  skos:prefLabel "Altlastensanierung"@de ;
+  skos:definition "Treatment or removal of contaminated ground."@en ;
+  skos:definition "Behandlung oder Entfernung von belastetem Untergrund."@de ;
+  pbs:projectType cpt:CPT-01 .
+
+:CG-2-01-B030 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-01 ;
+  skos:notation "CG-2-01-B030" ;
+  skos:prefLabel "Hazardous material sampling"@en ;
+  skos:prefLabel "Schadstoffbeprobung"@de ;
+  skos:definition "Sampling and testing for hazardous or useful materials."@en ;
+  skos:definition "Beprobung und Prüfung auf Schadstoffe oder verwertbare Materialien."@de ;
+  pbs:projectType cpt:CPT-01 .
+
+:CG-2-01-B040 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-01 ;
+  skos:notation "CG-2-01-B040" ;
+  skos:prefLabel "Temporary site fencing"@en ;
+  skos:prefLabel "Provisorische Bauabschrankung"@de ;
+  skos:definition "Temporary fencing and hoarding before the main works."@en ;
+  skos:definition "Provisorische Abschrankungen vor den Hauptarbeiten."@de ;
+  pbs:projectType cpt:CPT-01 .
+
+:CG-2-01-B050 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-01 ;
+  skos:notation "CG-2-01-B050" ;
+  skos:prefLabel "Demolition and support of adjacent structures"@en ;
+  skos:prefLabel "Rückbau und Sicherung angrenzender Bauwerke"@de ;
+  skos:definition "Demolition of existing buildings and temporary support to neighbours."@en ;
+  skos:definition "Rückbau bestehender Gebäude und Sicherung angrenzender Bauwerke."@de ;
+  pbs:projectType cpt:CPT-01 .
+
+:CG-2-01-B060 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-01 ;
+  skos:notation "CG-2-01-B060" ;
+  skos:prefLabel "Site clearance"@en ;
+  skos:prefLabel "Baufeldräumung"@de ;
+  skos:definition "Clearing, grubbing, topsoil stripping and tree felling."@en ;
+  skos:definition "Räumen, Roden, Oberbodenabtrag und Baumfällung."@de ;
+  pbs:projectType cpt:CPT-01 .
+
+:CG-2-01-B070 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-01 ;
+  skos:notation "CG-2-01-B070" ;
+  skos:prefLabel "Tree transplanting"@en ;
+  skos:prefLabel "Baumverpflanzung"@de ;
+  skos:definition "Lifting and replanting existing trees."@en ;
+  skos:definition "Ausheben und Verpflanzen bestehender Bäume."@de ;
+  pbs:projectType cpt:CPT-01 .
+
+:CG-2-01-B080 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-01 ;
+  skos:notation "CG-2-01-B080" ;
+  skos:prefLabel "Site formation and slope treatment"@en ;
+  skos:prefLabel "Geländeformung und Böschungssicherung"@de ;
+  skos:definition "Shaping of the site and stabilisation of slopes."@en ;
+  skos:definition "Formung des Geländes und Sicherung von Böschungen."@de ;
+  pbs:projectType cpt:CPT-01 .
+
+:CG-2-01-B090 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-01 ;
+  skos:notation "CG-2-01-B090" ;
+  skos:prefLabel "Temporary drainage and dewatering"@en ;
+  skos:prefLabel "Provisorische Entwässerung und Wasserhaltung"@de ;
+  skos:definition "Temporary surface drainage and groundwater control."@en ;
+  skos:definition "Provisorische Oberflächenentwässerung und Wasserhaltung."@de ;
+  pbs:projectType cpt:CPT-01 .
+
+:CG-2-01-B100 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-01 ;
+  skos:notation "CG-2-01-B100" ;
+  skos:prefLabel "Temporary utility protection and diversion"@en ;
+  skos:prefLabel "Provisorische Sicherung und Umlegung von Werkleitungen"@de ;
+  skos:definition "Protecting, diverting or relocating existing utilities."@en ;
+  skos:definition "Sichern, Umlegen oder Verlegen bestehender Werkleitungen."@de ;
+  pbs:projectType cpt:CPT-01 .
+
+:CG-2-01-B110 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-01 ;
+  skos:notation "CG-2-01-B110" ;
+  skos:prefLabel "Erosion control"@en ;
+  skos:prefLabel "Erosionsschutz"@de ;
+  skos:definition "Measures preventing soil erosion during works."@en ;
+  skos:definition "Massnahmen gegen Bodenerosion während der Arbeiten."@de ;
+  pbs:projectType cpt:CPT-01 .
+
+:CG-2-02-B010 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-02 ;
+  skos:notation "CG-2-02-B010" ;
+  skos:prefLabel "Piling and underpinning"@en ;
+  skos:prefLabel "Pfählung und Unterfangung"@de ;
+  skos:definition "Piles, caissons, pile testing and underpinning of the building."@en ;
+  skos:definition "Pfähle, Senkkästen, Pfahlprüfungen und Unterfangungen des Gebäudes."@de ;
+  pbs:projectType cpt:CPT-01 .
+
+:CG-2-02-B020 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-02 ;
+  skos:notation "CG-2-02-B020" ;
+  skos:prefLabel "Foundations and lowest floor"@en ;
+  skos:prefLabel "Fundamente und unterste Bodenplatte"@de ;
+  skos:definition "Footings, pile caps, ground beams, lowest floor slab and lift pits, including excavation."@en ;
+  skos:definition "Fundamente, Pfahlkopfbalken, Fundamentbalken, unterste Bodenplatte und Liftunterfahrten, einschliesslich Aushub."@de ;
+  pbs:projectType cpt:CPT-01 .
+
+:CG-2-02-B030 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-02 ;
+  skos:notation "CG-2-02-B030" ;
+  skos:prefLabel "Basement walls and bottom"@en ;
+  skos:prefLabel "Untergeschosswände und -boden"@de ;
+  skos:definition "Basement retaining walls, bottom slabs, tanking, drainage blanket and insulation."@en ;
+  skos:definition "Erdberührte Untergeschosswände, Bodenplatten, Abdichtung, Sickerschicht und Wärmedämmung."@de ;
+  pbs:projectType cpt:CPT-01 .
+
+:CG-2-03-B010 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-03 ;
+  skos:notation "CG-2-03-B010" ;
+  skos:prefLabel "Structural alterations"@en ;
+  skos:prefLabel "Tragwerksanpassungen"@de ;
+  skos:definition "Removal and alteration of existing load-bearing construction."@en ;
+  skos:definition "Rückbau und Anpassung bestehender tragender Konstruktion."@de ;
+  pbs:projectType cpt:CPT-01 .
+
+:CG-2-03-B020 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-03 ;
+  skos:notation "CG-2-03-B020" ;
+  skos:prefLabel "Below-ground suspended structure"@en ;
+  skos:prefLabel "Tragwerk unter Terrain"@de ;
+  skos:definition "Walls, columns, suspended slabs and stairs between lowest floor and ground floor."@en ;
+  skos:definition "Wände, Stützen, Decken und Treppen zwischen unterster Bodenplatte und Erdgeschoss."@de ;
+  pbs:projectType cpt:CPT-01 .
+
+:CG-2-03-B030 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-03 ;
+  skos:notation "CG-2-03-B030" ;
+  skos:prefLabel "Frame and floors above ground"@en ;
+  skos:prefLabel "Tragwerk über Terrain"@de ;
+  skos:definition "Load-bearing walls, columns, floors, roof structure and stairs above ground floor."@en ;
+  skos:definition "Tragende Wände, Stützen, Decken, Dachkonstruktion und Treppen oberhalb des Erdgeschosses."@de ;
+  pbs:projectType cpt:CPT-01 .
+
+:CG-2-03-B040 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-03 ;
+  skos:notation "CG-2-03-B040" ;
+  skos:prefLabel "Structural tanks, pools and sundries"@en ;
+  skos:prefLabel "Tragende Becken und Ergänzungen"@de ;
+  skos:definition "Structural tanks, pools, plinths and minor structural items."@en ;
+  skos:definition "Tragende Becken, Sockel und kleinere tragende Bauteile."@de ;
+  pbs:projectType cpt:CPT-01 .
+
+:CG-2-03-B050 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-03 ;
+  skos:notation "CG-2-03-B050" ;
+  skos:prefLabel "Prefabricated or composite structure"@en ;
+  skos:prefLabel "Vorgefertigtes oder Verbundtragwerk"@de ;
+  skos:definition "Structure supplied as prefabricated or composite systems."@en ;
+  skos:definition "Tragwerk als vorgefertigtes oder Verbundsystem geliefert."@de ;
+  pbs:projectType cpt:CPT-01 .
+
+:CG-2-04-B010 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-04 ;
+  skos:notation "CG-2-04-B010" ;
+  skos:prefLabel "Non-structural alterations"@en ;
+  skos:prefLabel "Anpassungen nichttragender Bauteile"@de ;
+  skos:definition "Removal and alteration of existing non-load-bearing construction."@en ;
+  skos:definition "Rückbau und Anpassung bestehender nichttragender Bauteile."@de ;
+  pbs:projectType cpt:CPT-01 .
+
+:CG-2-04-B020 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-04 ;
+  skos:notation "CG-2-04-B020" ;
+  skos:prefLabel "External envelope"@en ;
+  skos:prefLabel "Gebäudehülle Fassade"@de ;
+  skos:definition "External wall finishes, cladding, curtain walls, windows, external doors and shutters."@en ;
+  skos:definition "Äussere Wandbekleidungen, Fassadenbekleidungen, Vorhangfassaden, Fenster, Aussentüren und Abschlüsse."@de ;
+  pbs:projectType cpt:CPT-01 .
+
+:CG-2-04-B030 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-04 ;
+  skos:notation "CG-2-04-B030" ;
+  skos:prefLabel "Roof coverings and rooflights"@en ;
+  skos:prefLabel "Bedachung und Oblichter"@de ;
+  skos:definition "Roof finishes, waterproofing, insulation, skylights and roof landscaping."@en ;
+  skos:definition "Dachhaut, Abdichtung, Dämmung, Oblichter und Dachbegrünung."@de ;
+  pbs:projectType cpt:CPT-01 .
+
+:CG-2-04-B040 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-04 ;
+  skos:notation "CG-2-04-B040" ;
+  skos:prefLabel "Internal divisions"@en ;
+  skos:prefLabel "Innenwände und Innentüren"@de ;
+  skos:definition "Non-load-bearing partitions, internal doors, windows and shutters."@en ;
+  skos:definition "Nichttragende Trennwände, Innentüren, Innenfenster und Abschlüsse."@de ;
+  pbs:projectType cpt:CPT-01 .
+
+:CG-2-04-B050 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-04 ;
+  skos:notation "CG-2-04-B050" ;
+  skos:prefLabel "Fittings and sundries"@en ;
+  skos:prefLabel "Einbauten und Ergänzungen"@de ;
+  skos:definition "Balustrades, built-in cabinets, signs and other fixed fittings."@en ;
+  skos:definition "Geländer, Einbauschränke, Beschriftungen und weitere feste Einbauten."@de ;
+  pbs:projectType cpt:CPT-01 .
+
+:CG-2-04-B060 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-04 ;
+  skos:notation "CG-2-04-B060" ;
+  skos:prefLabel "Internal finishes"@en ;
+  skos:prefLabel "Innenbeläge und -bekleidungen"@de ;
+  skos:definition "Floor, wall and ceiling finishes under cover."@en ;
+  skos:definition "Boden-, Wand- und Deckenbeläge in überdeckten Bereichen."@de ;
+  pbs:projectType cpt:CPT-01 .
+
+:CG-2-04-B070 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-04 ;
+  skos:notation "CG-2-04-B070" ;
+  skos:prefLabel "Builder's work for services"@en ;
+  skos:prefLabel "Baumeisterarbeiten für Installationen"@de ;
+  skos:definition "Plinths, openings, sleeves, enclosures and fire stopping for services."@en ;
+  skos:definition "Sockel, Durchbrüche, Hülsen, Verkleidungen und Abschottungen für Installationen."@de ;
+  pbs:projectType cpt:CPT-01 .
+
+:CG-2-04-B080 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-04 ;
+  skos:notation "CG-2-04-B080" ;
+  skos:prefLabel "Prefabricated or composite non-structural work"@en ;
+  skos:prefLabel "Vorgefertigte nichttragende Systeme"@de ;
+  skos:definition "Envelope or fit-out supplied as prefabricated systems."@en ;
+  skos:definition "Hülle oder Ausbau als vorgefertigte Systeme geliefert."@de ;
+  pbs:projectType cpt:CPT-01 .
+
+:CG-2-05-B010 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-05 ;
+  skos:notation "CG-2-05-B010" ;
+  skos:prefLabel "Heating, ventilation and air conditioning"@en ;
+  skos:prefLabel "Heizung, Lüftung und Klima"@de ;
+  skos:definition "Heat and cold generation, distribution and emission, and air handling."@en ;
+  skos:definition "Wärme- und Kälteerzeugung, -verteilung und -abgabe sowie Lufttechnik."@de ;
+  pbs:projectType cpt:CPT-01 .
+
+:CG-2-05-B020 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-05 ;
+  skos:notation "CG-2-05-B020" ;
+  skos:prefLabel "Electrical power"@en ;
+  skos:prefLabel "Starkstromanlagen"@de ;
+  skos:definition "Incoming supply, transformation, storage, distribution and power outlets."@en ;
+  skos:definition "Einspeisung, Transformierung, Speicherung, Verteilung und Anschlüsse Starkstrom."@de ;
+  pbs:projectType cpt:CPT-01 .
+
+:CG-2-05-B030 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-05 ;
+  skos:notation "CG-2-05-B030" ;
+  skos:prefLabel "Lighting fittings"@en ;
+  skos:prefLabel "Leuchten"@de ;
+  skos:definition "Supply and installation of light fittings."@en ;
+  skos:definition "Lieferung und Montage von Leuchten."@de ;
+  pbs:projectType cpt:CPT-01 .
+
+:CG-2-05-B040 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-05 ;
+  skos:notation "CG-2-05-B040" ;
+  skos:prefLabel "Low-voltage, communication and automation"@en ;
+  skos:prefLabel "Schwachstrom, Kommunikation und Automation"@de ;
+  skos:definition "ICT cabling, building automation, security and alarm systems."@en ;
+  skos:definition "IKT-Verkabelung, Gebäudeautomation, Sicherheits- und Alarmanlagen."@de ;
+  pbs:projectType cpt:CPT-01 .
+
+:CG-2-05-B050 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-05 ;
+  skos:notation "CG-2-05-B050" ;
+  skos:prefLabel "Water supply and drainage in the building"@en ;
+  skos:prefLabel "Wasserversorgung und Entwässerung im Gebäude"@de ;
+  skos:definition "Cold and hot water, grey water and internal waste and rainwater drainage."@en ;
+  skos:definition "Kalt- und Warmwasser, Grauwasser sowie interne Schmutz- und Regenwasserableitung."@de ;
+  pbs:projectType cpt:CPT-01 .
+
+:CG-2-05-B060 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-05 ;
+  skos:notation "CG-2-05-B060" ;
+  skos:prefLabel "Sanitary fittings"@en ;
+  skos:prefLabel "Sanitärapparate"@de ;
+  skos:definition "Supply of sanitary appliances and fixtures."@en ;
+  skos:definition "Lieferung von Sanitärapparaten und -ausstattung."@de ;
+  pbs:projectType cpt:CPT-01 .
+
+:CG-2-05-B070 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-05 ;
+  skos:notation "CG-2-05-B070" ;
+  skos:prefLabel "Waste disposal systems"@en ;
+  skos:prefLabel "Abfallentsorgungsanlagen"@de ;
+  skos:definition "Refuse, laboratory and industrial waste systems."@en ;
+  skos:definition "Anlagen für Kehricht-, Labor- und Industrieabfälle."@de ;
+  pbs:projectType cpt:CPT-01 .
+
+:CG-2-05-B080 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-05 ;
+  skos:notation "CG-2-05-B080" ;
+  skos:prefLabel "Fire protection systems"@en ;
+  skos:prefLabel "Brandschutzanlagen"@de ;
+  skos:definition "Sprinklers, hydrants, extinguishing, detection and alarm systems."@en ;
+  skos:definition "Sprinkler, Hydranten, Löschanlagen, Brandmelde- und Alarmanlagen."@de ;
+  pbs:projectType cpt:CPT-01 .
+
+:CG-2-05-B090 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-05 ;
+  skos:notation "CG-2-05-B090" ;
+  skos:prefLabel "Gas and special media"@en ;
+  skos:prefLabel "Gas und Spezialmedien"@de ;
+  skos:definition "Fuel gas, medical, laboratory and industrial gases, compressed air and vacuum."@en ;
+  skos:definition "Brenngas, medizinische, Labor- und Industriegase, Druckluft und Vakuum."@de ;
+  pbs:projectType cpt:CPT-01 .
+
+:CG-2-05-B100 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-05 ;
+  skos:notation "CG-2-05-B100" ;
+  skos:prefLabel "Lifts and conveyors"@en ;
+  skos:prefLabel "Aufzüge und Förderanlagen"@de ;
+  skos:definition "Lifts, platform lifts, escalators, moving walks and conveyors."@en ;
+  skos:definition "Aufzüge, Plattformlifte, Fahrtreppen, Fahrsteige und Förderanlagen."@de ;
+  pbs:projectType cpt:CPT-01 .
+
+:CG-2-05-B110 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-05 ;
+  skos:notation "CG-2-05-B110" ;
+  skos:prefLabel "Facade access equipment"@en ;
+  skos:prefLabel "Fassadenbefahranlagen"@de ;
+  skos:definition "Gondolas and building maintenance units."@en ;
+  skos:definition "Fassadenbefahranlagen und Gondeln."@de ;
+  pbs:projectType cpt:CPT-01 .
+
+:CG-2-05-B120 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-05 ;
+  skos:notation "CG-2-05-B120" ;
+  skos:prefLabel "Turntables"@en ;
+  skos:prefLabel "Drehscheiben"@de ;
+  skos:definition "Vehicle and stage turntables."@en ;
+  skos:definition "Drehscheiben für Fahrzeuge und Bühnen."@de ;
+  pbs:projectType cpt:CPT-01 .
+
+:CG-2-05-B130 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-05 ;
+  skos:notation "CG-2-05-B130" ;
+  skos:prefLabel "Generators"@en ;
+  skos:prefLabel "Notstromaggregate"@de ;
+  skos:definition "Standby and emergency generators."@en ;
+  skos:definition "Ersatz- und Notstromaggregate."@de ;
+  pbs:projectType cpt:CPT-01 .
+
+:CG-2-05-B140 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-05 ;
+  skos:notation "CG-2-05-B140" ;
+  skos:prefLabel "Energy-saving and renewable systems"@en ;
+  skos:prefLabel "Energiesparende und erneuerbare Anlagen"@de ;
+  skos:definition "Photovoltaics, heat recovery and similar energy-saving features."@en ;
+  skos:definition "Photovoltaik, Wärmerückgewinnung und ähnliche energiesparende Anlagen."@de ;
+  pbs:projectType cpt:CPT-01 .
+
+:CG-2-05-B150 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-05 ;
+  skos:notation "CG-2-05-B150" ;
+  skos:prefLabel "Water and wastewater treatment equipment"@en ;
+  skos:prefLabel "Wasser- und Abwasserbehandlungsanlagen"@de ;
+  skos:definition "Treatment plant serving the building."@en ;
+  skos:definition "Behandlungsanlagen für das Gebäude."@de ;
+  pbs:projectType cpt:CPT-01 .
+
+:CG-2-05-B160 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-05 ;
+  skos:notation "CG-2-05-B160" ;
+  skos:prefLabel "Fountains and pool plant"@en ;
+  skos:prefLabel "Brunnen- und Beckentechnik"@de ;
+  skos:definition "Filtration and plant for fountains and pools."@en ;
+  skos:definition "Filtration und Technik für Brunnen und Becken."@de ;
+  pbs:projectType cpt:CPT-01 .
+
+:CG-2-05-B170 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-05 ;
+  skos:notation "CG-2-05-B170" ;
+  skos:prefLabel "Powered signage"@en ;
+  skos:prefLabel "Elektrische Beschriftung"@de ;
+  skos:definition "Illuminated and electronic signs."@en ;
+  skos:definition "Beleuchtete und elektronische Beschriftungen."@de ;
+  pbs:projectType cpt:CPT-01 .
+
+:CG-2-05-B175 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-05 ;
+  skos:notation "CG-2-05-B175" ;
+  skos:prefLabel "Audio-visual systems"@en ;
+  skos:prefLabel "Audiovisuelle Anlagen"@de ;
+  skos:definition "Audio-visual and entertainment systems."@en ;
+  skos:definition "Audiovisuelle und Unterhaltungsanlagen."@de ;
+  pbs:projectType cpt:CPT-01 .
+
+:CG-2-05-B180 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-05 ;
+  skos:notation "CG-2-05-B180" ;
+  skos:prefLabel "Commercial kitchen equipment"@en ;
+  skos:prefLabel "Grossküchenanlagen"@de ;
+  skos:definition "Catering kitchen plant and appliances."@en ;
+  skos:definition "Grossküchentechnik und -geräte."@de ;
+  pbs:projectType cpt:CPT-01 .
+
+:CG-2-05-B190 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-05 ;
+  skos:notation "CG-2-05-B190" ;
+  skos:prefLabel "Cold room equipment"@en ;
+  skos:prefLabel "Kühlzellen"@de ;
+  skos:definition "Cold and freezer rooms."@en ;
+  skos:definition "Kühl- und Tiefkühlzellen."@de ;
+  pbs:projectType cpt:CPT-01 .
+
+:CG-2-05-B200 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-05 ;
+  skos:notation "CG-2-05-B200" ;
+  skos:prefLabel "Laboratory equipment"@en ;
+  skos:prefLabel "Laboreinrichtungen"@de ;
+  skos:definition "Fixed laboratory installations."@en ;
+  skos:definition "Feste Laborinstallationen."@de ;
+  pbs:projectType cpt:CPT-01 .
+
+:CG-2-05-B210 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-05 ;
+  skos:notation "CG-2-05-B210" ;
+  skos:prefLabel "Medical equipment"@en ;
+  skos:prefLabel "Medizinische Einrichtungen"@de ;
+  skos:definition "Fixed medical installations."@en ;
+  skos:definition "Feste medizinische Installationen."@de ;
+  pbs:projectType cpt:CPT-01 .
+
+:CG-2-05-B220 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-05 ;
+  skos:notation "CG-2-05-B220" ;
+  skos:prefLabel "Hotel equipment"@en ;
+  skos:prefLabel "Hoteleinrichtungen"@de ;
+  skos:definition "Fixed hotel-specific equipment."@en ;
+  skos:definition "Feste hotelspezifische Einrichtungen."@de ;
+  pbs:projectType cpt:CPT-01 .
+
+:CG-2-05-B230 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-05 ;
+  skos:notation "CG-2-05-B230" ;
+  skos:prefLabel "Parking and entrance access control"@en ;
+  skos:prefLabel "Park- und Zutrittskontrolle"@de ;
+  skos:definition "Barrier, ticketing and entrance control systems."@en ;
+  skos:definition "Schranken-, Ticket- und Zutrittskontrollsysteme."@de ;
+  pbs:projectType cpt:CPT-01 .
+
+:CG-2-05-B240 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-05 ;
+  skos:notation "CG-2-05-B240" ;
+  skos:prefLabel "Domestic appliances"@en ;
+  skos:prefLabel "Haushaltgeräte"@de ;
+  skos:definition "Built-in household appliances."@en ;
+  skos:definition "Eingebaute Haushaltgeräte."@de ;
+  pbs:projectType cpt:CPT-01 .
+
+:CG-2-05-B250 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-05 ;
+  skos:notation "CG-2-05-B250" ;
+  skos:prefLabel "Other specialist installations"@en ;
+  skos:prefLabel "Weitere Spezialanlagen"@de ;
+  skos:definition "Use-specific installations not listed elsewhere."@en ;
+  skos:definition "Nutzungsspezifische Anlagen, die nicht anderweitig erfasst sind."@de ;
+  pbs:projectType cpt:CPT-01 .
+
+:CG-2-05-B260 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-05 ;
+  skos:notation "CG-2-05-B260" ;
+  skos:prefLabel "Main contractor attendance on services"@en ;
+  skos:prefLabel "Unternehmerleistungen für Installationen"@de ;
+  skos:definition "Main contractor's profit and attendance on services trades."@en ;
+  skos:definition "Zuschläge und Hilfeleistungen des Hauptunternehmers für Installationsgewerke."@de ;
+  pbs:projectType cpt:CPT-01 .
+
+:CG-2-06-B010 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-06 ;
+  skos:notation "CG-2-06-B010" ;
+  skos:prefLabel "Surface water drainage"@en ;
+  skos:prefLabel "Oberflächenentwässerung"@de ;
+  skos:definition "Drainage of paved and landscaped surfaces."@en ;
+  skos:definition "Entwässerung befestigter und begrünter Flächen."@de ;
+  pbs:projectType cpt:CPT-01 .
+
+:CG-2-06-B020 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-06 ;
+  skos:notation "CG-2-06-B020" ;
+  skos:prefLabel "Storm water drainage"@en ;
+  skos:prefLabel "Regenwasserableitung"@de ;
+  skos:definition "Below-ground storm water pipes and structures."@en ;
+  skos:definition "Erdverlegte Regenwasserleitungen und -bauwerke."@de ;
+  pbs:projectType cpt:CPT-01 .
+
+:CG-2-06-B030 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-06 ;
+  skos:notation "CG-2-06-B030" ;
+  skos:prefLabel "Foul and wastewater drainage"@en ;
+  skos:prefLabel "Schmutzwasserableitung"@de ;
+  skos:definition "Below-ground foul water pipes and structures."@en ;
+  skos:definition "Erdverlegte Schmutzwasserleitungen und -bauwerke."@de ;
+  pbs:projectType cpt:CPT-01 .
+
+:CG-2-06-B040 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-06 ;
+  skos:notation "CG-2-06-B040" ;
+  skos:prefLabel "Drainage connections"@en ;
+  skos:prefLabel "Kanalisationsanschlüsse"@de ;
+  skos:definition "Disconnections and connections to drains."@en ;
+  skos:definition "Trennungen und Anschlüsse an die Kanalisation."@de ;
+  pbs:projectType cpt:CPT-01 .
+
+:CG-2-06-B050 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-06 ;
+  skos:notation "CG-2-06-B050" ;
+  skos:prefLabel "Drain inspection"@en ;
+  skos:prefLabel "Kanalinspektion"@de ;
+  skos:definition "Camera inspection of existing or new drains."@en ;
+  skos:definition "Kamerainspektion bestehender oder neuer Leitungen."@de ;
+  pbs:projectType cpt:CPT-01 .
+
+:CG-2-06-B060 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-06 ;
+  skos:notation "CG-2-06-B060" ;
+  skos:prefLabel "Buried process pipes"@en ;
+  skos:prefLabel "Erdverlegte Prozessleitungen"@de ;
+  skos:definition "Buried pipework for process media."@en ;
+  skos:definition "Erdverlegte Leitungen für Prozessmedien."@de ;
+  pbs:projectType cpt:CPT-01 .
+
+:CG-2-07-B010 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-07 ;
+  skos:notation "CG-2-07-B010" ;
+  skos:prefLabel "Retaining structures"@en ;
+  skos:prefLabel "Stützbauwerke"@de ;
+  skos:definition "Permanent retaining walls and slope protection in the site."@en ;
+  skos:definition "Dauerhafte Stützmauern und Böschungsverbau auf dem Grundstück."@de ;
+  pbs:projectType cpt:CPT-01 .
+
+:CG-2-07-B020 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-07 ;
+  skos:notation "CG-2-07-B020" ;
+  skos:prefLabel "Site enclosures and divisions"@en ;
+  skos:prefLabel "Einfriedungen"@de ;
+  skos:definition "Fences, walls and gates around and within the site."@en ;
+  skos:definition "Zäune, Mauern und Tore um und auf dem Grundstück."@de ;
+  pbs:projectType cpt:CPT-01 .
+
+:CG-2-07-B030 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-07 ;
+  skos:notation "CG-2-07-B030" ;
+  skos:prefLabel "Ancillary structures"@en ;
+  skos:prefLabel "Nebenbauten"@de ;
+  skos:definition "Small detached and underground structures in the site."@en ;
+  skos:definition "Kleinbauten und unterirdische Bauwerke auf dem Grundstück."@de ;
+  pbs:projectType cpt:CPT-01 .
+
+:CG-2-07-B040 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-07 ;
+  skos:notation "CG-2-07-B040" ;
+  skos:prefLabel "Roads and paving"@en ;
+  skos:prefLabel "Verkehrsflächen und Beläge"@de ;
+  skos:definition "Hard surfaces, paths and site roads."@en ;
+  skos:definition "Hartflächen, Wege und Zufahrten auf dem Grundstück."@de ;
+  pbs:projectType cpt:CPT-01 .
+
+:CG-2-07-B050 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-07 ;
+  skos:notation "CG-2-07-B050" ;
+  skos:prefLabel "Landscaping"@en ;
+  skos:prefLabel "Begrünung und Geländegestaltung"@de ;
+  skos:definition "Soft and hard landscaping and ground modelling."@en ;
+  skos:definition "Grünflächen, Gestaltung und Geländemodellierung."@de ;
+  pbs:projectType cpt:CPT-01 .
+
+:CG-2-07-B060 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-07 ;
+  skos:notation "CG-2-07-B060" ;
+  skos:prefLabel "External fittings and equipment"@en ;
+  skos:prefLabel "Ausstattung Umgebung"@de ;
+  skos:definition "Furniture, play equipment and waste stations outside."@en ;
+  skos:definition "Mobiliar, Spielgeräte und Entsorgungsstellen im Aussenraum."@de ;
+  pbs:projectType cpt:CPT-01 .
+
+:CG-2-07-B070 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-07 ;
+  skos:notation "CG-2-07-B070" ;
+  skos:prefLabel "External services"@en ;
+  skos:prefLabel "Werkleitungen Umgebung"@de ;
+  skos:definition "Water, gas, power, communications and lighting in the site."@en ;
+  skos:definition "Wasser, Gas, Strom, Kommunikation und Beleuchtung auf dem Grundstück."@de ;
+  pbs:projectType cpt:CPT-01 .
+
+:CG-2-01-C010 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-01 ;
+  skos:notation "CG-2-01-C010" ;
+  skos:prefLabel "Site investigation and survey"@en ;
+  skos:prefLabel "Untersuchung und Vermessung"@de ;
+  skos:definition "Ground investigation, surveys and condition records."@en ;
+  skos:definition "Baugrunduntersuchung, Vermessung und Zustandsaufnahmen."@de ;
+  pbs:projectType cpt:CPT-02, cpt:CPT-03, cpt:CPT-04, cpt:CPT-05, cpt:CPT-06, cpt:CPT-07, cpt:CPT-08 .
+
+:CG-2-01-C020 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-01 ;
+  skos:notation "CG-2-01-C020" ;
+  skos:prefLabel "Environmental remediation"@en ;
+  skos:prefLabel "Altlastensanierung"@de ;
+  skos:definition "Treatment or removal of contaminated ground."@en ;
+  skos:definition "Behandlung oder Entfernung von belastetem Untergrund."@de ;
+  pbs:projectType cpt:CPT-02, cpt:CPT-03, cpt:CPT-04, cpt:CPT-05, cpt:CPT-06, cpt:CPT-07, cpt:CPT-08 .
+
+:CG-2-01-C030 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-01 ;
+  skos:notation "CG-2-01-C030" ;
+  skos:prefLabel "Hazardous material sampling"@en ;
+  skos:prefLabel "Schadstoffbeprobung"@de ;
+  skos:definition "Sampling and testing for hazardous or useful materials."@en ;
+  skos:definition "Beprobung und Prüfung auf Schadstoffe oder verwertbare Materialien."@de ;
+  pbs:projectType cpt:CPT-02, cpt:CPT-03, cpt:CPT-04, cpt:CPT-05, cpt:CPT-06, cpt:CPT-07, cpt:CPT-08 .
+
+:CG-2-01-C040 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-01 ;
+  skos:notation "CG-2-01-C040" ;
+  skos:prefLabel "Temporary fencing"@en ;
+  skos:prefLabel "Provisorische Abschrankung"@de ;
+  skos:definition "Temporary fencing before the main works."@en ;
+  skos:definition "Provisorische Abschrankungen vor den Hauptarbeiten."@de ;
+  pbs:projectType cpt:CPT-02, cpt:CPT-03, cpt:CPT-04, cpt:CPT-05, cpt:CPT-06, cpt:CPT-07, cpt:CPT-08 .
+
+:CG-2-01-C050 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-01 ;
+  skos:notation "CG-2-01-C050" ;
+  skos:prefLabel "Demolition of existing structures"@en ;
+  skos:prefLabel "Rückbau bestehender Bauwerke"@de ;
+  skos:definition "Demolition and support to adjacent structures."@en ;
+  skos:definition "Rückbau und Sicherung angrenzender Bauwerke."@de ;
+  pbs:projectType cpt:CPT-02, cpt:CPT-03, cpt:CPT-04, cpt:CPT-05, cpt:CPT-06, cpt:CPT-07, cpt:CPT-08 .
+
+:CG-2-01-C060 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-01 ;
+  skos:notation "CG-2-01-C060" ;
+  skos:prefLabel "Site clearance"@en ;
+  skos:prefLabel "Baufeldräumung"@de ;
+  skos:definition "Clearing, grubbing, topsoil stripping and tree felling."@en ;
+  skos:definition "Räumen, Roden, Oberbodenabtrag und Baumfällung."@de ;
+  pbs:projectType cpt:CPT-02, cpt:CPT-03, cpt:CPT-04, cpt:CPT-05, cpt:CPT-06, cpt:CPT-07, cpt:CPT-08 .
+
+:CG-2-01-C070 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-01 ;
+  skos:notation "CG-2-01-C070" ;
+  skos:prefLabel "Tree transplanting"@en ;
+  skos:prefLabel "Baumverpflanzung"@de ;
+  skos:definition "Lifting and replanting existing trees."@en ;
+  skos:definition "Ausheben und Verpflanzen bestehender Bäume."@de ;
+  pbs:projectType cpt:CPT-02, cpt:CPT-03, cpt:CPT-04, cpt:CPT-05, cpt:CPT-06, cpt:CPT-07, cpt:CPT-08 .
+
+:CG-2-01-C080 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-01 ;
+  skos:notation "CG-2-01-C080" ;
+  skos:prefLabel "General earthworks and slope treatment"@en ;
+  skos:prefLabel "Allgemeine Erdarbeiten und Böschungssicherung"@de ;
+  skos:definition "Cut, fill and slope treatment serving more than one sub-project."@en ;
+  skos:definition "Abtrag, Schüttung und Böschungssicherung für mehrere Teilprojekte."@de ;
+  pbs:projectType cpt:CPT-02, cpt:CPT-03, cpt:CPT-04, cpt:CPT-05, cpt:CPT-06, cpt:CPT-07, cpt:CPT-08 .
+
+:CG-2-01-C090 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-01 ;
+  skos:notation "CG-2-01-C090" ;
+  skos:prefLabel "Temporary drainage and dewatering"@en ;
+  skos:prefLabel "Provisorische Entwässerung und Wasserhaltung"@de ;
+  skos:definition "Temporary surface drainage and groundwater control."@en ;
+  skos:definition "Provisorische Oberflächenentwässerung und Wasserhaltung."@de ;
+  pbs:projectType cpt:CPT-02, cpt:CPT-03, cpt:CPT-04, cpt:CPT-05, cpt:CPT-06, cpt:CPT-07, cpt:CPT-08 .
+
+:CG-2-01-C100 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-01 ;
+  skos:notation "CG-2-01-C100" ;
+  skos:prefLabel "Temporary access roads and storage areas"@en ;
+  skos:prefLabel "Provisorische Zufahrten und Lagerflächen"@de ;
+  skos:definition "Temporary roads and laydown areas let under an advance contract."@en ;
+  skos:definition "Provisorische Zufahrten und Lagerflächen aus einem Vorabvertrag."@de ;
+  pbs:projectType cpt:CPT-02, cpt:CPT-03, cpt:CPT-04, cpt:CPT-05, cpt:CPT-06, cpt:CPT-07, cpt:CPT-08 .
+
+:CG-2-01-C110 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-01 ;
+  skos:notation "CG-2-01-C110" ;
+  skos:prefLabel "Temporary utility protection and diversion"@en ;
+  skos:prefLabel "Provisorische Sicherung und Umlegung von Werkleitungen"@de ;
+  skos:definition "Protecting, diverting or relocating existing utilities."@en ;
+  skos:definition "Sichern, Umlegen oder Verlegen bestehender Werkleitungen."@de ;
+  pbs:projectType cpt:CPT-02, cpt:CPT-03, cpt:CPT-04, cpt:CPT-05, cpt:CPT-06, cpt:CPT-07, cpt:CPT-08 .
+
+:CG-2-01-C120 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-01 ;
+  skos:notation "CG-2-01-C120" ;
+  skos:prefLabel "Erosion control"@en ;
+  skos:prefLabel "Erosionsschutz"@de ;
+  skos:definition "Measures preventing soil erosion during works."@en ;
+  skos:definition "Massnahmen gegen Bodenerosion während der Arbeiten."@de ;
+  pbs:projectType cpt:CPT-02, cpt:CPT-03, cpt:CPT-04, cpt:CPT-05, cpt:CPT-06, cpt:CPT-07, cpt:CPT-08 .
+
+:CG-2-01-C650 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-01 ;
+  skos:notation "CG-2-01-C650" ;
+  skos:prefLabel "Dredging"@en ;
+  skos:prefLabel "Nassbaggerung"@de ;
+  skos:definition "Dredging of sediments and rock including transport and disposal."@en ;
+  skos:definition "Baggerung von Sedimenten und Fels einschliesslich Transport und Ablagerung."@de ;
+  pbs:projectType cpt:CPT-13, cpt:CPT-16, cpt:CPT-17, cpt:CPT-18, cpt:CPT-19 .
+
+:CG-2-02-C010 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-02 ;
+  skos:notation "CG-2-02-C010" ;
+  skos:prefLabel "Embankments and cuttings"@en ;
+  skos:prefLabel "Dämme und Einschnitte"@de ;
+  skos:definition "Earthworks forming the route of a specific sub-project."@en ;
+  skos:definition "Erdarbeiten zur Ausbildung des Trassees eines Teilprojekts."@de ;
+  pbs:projectType cpt:CPT-02, cpt:CPT-03, cpt:CPT-08, cpt:CPT-13 .
+
+:CG-2-02-C020 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-02 ;
+  skos:notation "CG-2-02-C020" ;
+  skos:prefLabel "Excavation and lateral support"@en ;
+  skos:prefLabel "Aushub und Baugrubensicherung"@de ;
+  skos:definition "Excavation, disposal and temporary support to receive structures."@en ;
+  skos:definition "Aushub, Abtransport und Baugrubensicherung für Bauwerke."@de ;
+  pbs:projectType cpt:CPT-02, cpt:CPT-03, cpt:CPT-04, cpt:CPT-05, cpt:CPT-06, cpt:CPT-07, cpt:CPT-08 .
+
+:CG-2-02-C025 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-02 ;
+  skos:notation "CG-2-02-C025" ;
+  skos:prefLabel "Geotextiles and geomembranes"@en ;
+  skos:prefLabel "Geotextilien und Geomembranen"@de ;
+  skos:definition "Separation, filter and sealing layers in the ground."@en ;
+  skos:definition "Trenn-, Filter- und Dichtungslagen im Baugrund."@de ;
+  pbs:projectType cpt:CPT-02, cpt:CPT-03, cpt:CPT-04, cpt:CPT-05, cpt:CPT-06, cpt:CPT-07, cpt:CPT-08 .
+
+:CG-2-02-C030 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-02 ;
+  skos:notation "CG-2-02-C030" ;
+  skos:prefLabel "Trenches"@en ;
+  skos:prefLabel "Gräben"@de ;
+  skos:definition "Utility and common trenches including backfill."@en ;
+  skos:definition "Leitungs- und Sammelgräben einschliesslich Verfüllung."@de ;
+  pbs:projectType cpt:CPT-02, cpt:CPT-03, cpt:CPT-04, cpt:CPT-05, cpt:CPT-06, cpt:CPT-07, cpt:CPT-08 .
+
+:CG-2-02-C040 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-02 ;
+  skos:notation "CG-2-02-C040" ;
+  skos:prefLabel "Drilling and boring"@en ;
+  skos:prefLabel "Bohrungen"@de ;
+  skos:definition "Drilled and bored works including trenchless installation."@en ;
+  skos:definition "Bohrarbeiten einschliesslich grabenlosem Leitungsbau."@de ;
+  pbs:projectType cpt:CPT-02, cpt:CPT-03, cpt:CPT-04, cpt:CPT-05, cpt:CPT-06, cpt:CPT-07, cpt:CPT-08 .
+
+:CG-2-02-C050 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-02 ;
+  skos:notation "CG-2-02-C050" ;
+  skos:prefLabel "Piling and anchoring"@en ;
+  skos:prefLabel "Pfählung und Verankerung"@de ;
+  skos:definition "Piles, ground anchors and their testing."@en ;
+  skos:definition "Pfähle, Anker und deren Prüfung."@de ;
+  pbs:projectType cpt:CPT-02, cpt:CPT-03, cpt:CPT-04, cpt:CPT-05, cpt:CPT-06, cpt:CPT-07, cpt:CPT-08 .
+
+:CG-2-02-C060 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-02 ;
+  skos:notation "CG-2-02-C060" ;
+  skos:prefLabel "Structural backfill and ground improvement"@en ;
+  skos:prefLabel "Hinterfüllung und Baugrundverbesserung"@de ;
+  skos:definition "Backfill to structures and improvement of the ground."@en ;
+  skos:definition "Hinterfüllung von Bauwerken und Verbesserung des Baugrunds."@de ;
+  pbs:projectType cpt:CPT-02, cpt:CPT-03, cpt:CPT-04, cpt:CPT-05, cpt:CPT-06, cpt:CPT-07, cpt:CPT-08 .
+
+:CG-2-02-C070 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-02 ;
+  skos:notation "CG-2-02-C070" ;
+  skos:prefLabel "Earth-retaining structures"@en ;
+  skos:prefLabel "Stützbauwerke"@de ;
+  skos:definition "Permanent retaining walls and slope securing."@en ;
+  skos:definition "Dauerhafte Stützmauern und Hangsicherungen."@de ;
+  pbs:projectType cpt:CPT-02, cpt:CPT-03, cpt:CPT-04, cpt:CPT-05, cpt:CPT-06, cpt:CPT-07, cpt:CPT-08 .
+
+:CG-2-02-C080 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-02 ;
+  skos:notation "CG-2-02-C080" ;
+  skos:prefLabel "Abutments and wing walls"@en ;
+  skos:prefLabel "Widerlager und Flügelmauern"@de ;
+  skos:definition "End supports and wing walls of bridges."@en ;
+  skos:definition "Endauflager und Flügelmauern von Brücken."@de ;
+  pbs:projectType cpt:CPT-04 .
+
+:CG-2-02-C090 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-02 ;
+  skos:notation "CG-2-02-C090" ;
+  skos:prefLabel "Footings and pile caps"@en ;
+  skos:prefLabel "Fundamente und Pfahlkopfplatten"@de ;
+  skos:definition "Foundations nearest to ground or water level."@en ;
+  skos:definition "Fundamente nahe der Gelände- oder Wasseroberfläche."@de ;
+  pbs:projectType cpt:CPT-02, cpt:CPT-03, cpt:CPT-04, cpt:CPT-05, cpt:CPT-06, cpt:CPT-07, cpt:CPT-08 .
+
+:CG-2-02-C100 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-02 ;
+  skos:notation "CG-2-02-C100" ;
+  skos:prefLabel "Sub-base to pavements and track"@en ;
+  skos:prefLabel "Fundationsschicht Fahrbahn"@de ;
+  skos:definition "Unbound or bound layers beneath road pavements and rail track."@en ;
+  skos:definition "Ungebundene oder gebundene Schichten unter Strassenbelägen und Gleisen."@de ;
+  pbs:projectType cpt:CPT-02, cpt:CPT-03 .
+
+:CG-2-02-C110 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-02 ;
+  skos:notation "CG-2-02-C110" ;
+  skos:prefLabel "Bases for tanks, pipes and wells"@en ;
+  skos:prefLabel "Fundamente für Behälter, Rohre und Brunnen"@de ;
+  skos:definition "Foundation bases for tanks, pipe supports and wells."@en ;
+  skos:definition "Fundamente für Behälter, Rohrauflager und Brunnen."@de ;
+  pbs:projectType cpt:CPT-06, cpt:CPT-07, cpt:CPT-08, cpt:CPT-09 .
+
+:CG-2-02-C120 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-02 ;
+  skos:notation "CG-2-02-C120" ;
+  skos:prefLabel "Beds and surrounds to buried pipes"@en ;
+  skos:prefLabel "Bettung und Umhüllung erdverlegter Leitungen"@de ;
+  skos:definition "Bedding, haunching and surround to buried pipes and cables."@en ;
+  skos:definition "Bettung, Auflager und Umhüllung erdverlegter Rohre und Kabel."@de ;
+  pbs:projectType cpt:CPT-06, cpt:CPT-07, cpt:CPT-08 .
+
+:CG-2-02-C660 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-02 ;
+  skos:notation "CG-2-02-C660" ;
+  skos:prefLabel "Rock revetments and gabions"@en ;
+  skos:prefLabel "Blockwurf und Drahtschotterkörbe"@de ;
+  skos:definition "Rock armour, riprap and gabion protection."@en ;
+  skos:definition "Blockwurf, Steinschüttungen und Drahtschotterkörbe."@de ;
+  pbs:projectType cpt:CPT-13, cpt:CPT-16, cpt:CPT-17, cpt:CPT-18, cpt:CPT-19 .
+
+:CG-2-02-C680 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-02 ;
+  skos:notation "CG-2-02-C680" ;
+  skos:prefLabel "Bank protection"@en ;
+  skos:prefLabel "Uferschutz"@de ;
+  skos:definition "Protection of river and lake banks."@en ;
+  skos:definition "Schutz von Fluss- und Seeufern."@de ;
+  pbs:projectType cpt:CPT-13, cpt:CPT-18 .
+
+:CG-2-03-C010 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-03 ;
+  skos:notation "CG-2-03-C010" ;
+  skos:prefLabel "Piers and pylons"@en ;
+  skos:prefLabel "Pfeiler und Pylone"@de ;
+  skos:definition "Intermediate supports and towers of bridges."@en ;
+  skos:definition "Zwischenstützen und Pylone von Brücken."@de ;
+  pbs:projectType cpt:CPT-04 .
+
+:CG-2-03-C020 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-03 ;
+  skos:notation "CG-2-03-C020" ;
+  skos:prefLabel "Suspension and cable systems"@en ;
+  skos:prefLabel "Seil- und Hängesysteme"@de ;
+  skos:definition "Main cables, stays and hangers."@en ;
+  skos:definition "Tragseile, Schrägseile und Hänger."@de ;
+  pbs:projectType cpt:CPT-04 .
+
+:CG-2-03-C030 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-03 ;
+  skos:notation "CG-2-03-C030" ;
+  skos:prefLabel "Bridge decks"@en ;
+  skos:prefLabel "Brückenüberbau"@de ;
+  skos:definition "Deck structure spanning between supports."@en ;
+  skos:definition "Überbau zwischen den Auflagern."@de ;
+  pbs:projectType cpt:CPT-04 .
+
+:CG-2-03-C040 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-03 ;
+  skos:notation "CG-2-03-C040" ;
+  skos:prefLabel "Bearings"@en ;
+  skos:prefLabel "Brückenlager"@de ;
+  skos:definition "Bearings transferring deck loads to supports."@en ;
+  skos:definition "Lager zur Übertragung der Überbaulasten auf die Stützen."@de ;
+  pbs:projectType cpt:CPT-04 .
+
+:CG-2-03-C050 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-03 ;
+  skos:notation "CG-2-03-C050" ;
+  skos:prefLabel "Tunnel support and lining"@en ;
+  skos:prefLabel "Tunnelsicherung und -ausbau"@de ;
+  skos:definition "Primary support and final lining of underground excavations."@en ;
+  skos:definition "Sicherung und Ausbau von Hohlräumen im Untertagbau."@de ;
+  pbs:projectType cpt:CPT-05 .
+
+:CG-2-03-C060 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-03 ;
+  skos:notation "CG-2-03-C060" ;
+  skos:prefLabel "Road and track bases"@en ;
+  skos:prefLabel "Tragschichten Strasse und Gleis"@de ;
+  skos:definition "Structural base layers of roads and track."@en ;
+  skos:definition "Tragschichten von Strassen und Gleisen."@de ;
+  pbs:projectType cpt:CPT-02, cpt:CPT-03 .
+
+:CG-2-03-C070 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-03 ;
+  skos:notation "CG-2-03-C070" ;
+  skos:prefLabel "Structural pavements"@en ;
+  skos:prefLabel "Tragende Beläge"@de ;
+  skos:definition "Structural pavement layers of roads and runways."@en ;
+  skos:definition "Tragende Belagsschichten von Strassen und Pisten."@de ;
+  pbs:projectType cpt:CPT-02 .
+
+:CG-2-03-C080 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-03 ;
+  skos:notation "CG-2-03-C080" ;
+  skos:prefLabel "Service roads and approaches"@en ;
+  skos:prefLabel "Nebenstrassen und Zufahrten"@de ;
+  skos:definition "Approach roads and service roads to the structure."@en ;
+  skos:definition "Zufahrten und Dienststrassen zum Bauwerk."@de ;
+  pbs:projectType cpt:CPT-02, cpt:CPT-04, cpt:CPT-05 .
+
+:CG-2-03-C090 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-03 ;
+  skos:notation "CG-2-03-C090" ;
+  skos:prefLabel "Parapets and edge details"@en ;
+  skos:prefLabel "Brüstungen und Randabschlüsse"@de ;
+  skos:definition "Edge beams, parapets and edge treatment."@en ;
+  skos:definition "Randbalken, Brüstungen und Randabschlüsse."@de ;
+  pbs:projectType cpt:CPT-02, cpt:CPT-04 .
+
+:CG-2-03-C100 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-03 ;
+  skos:notation "CG-2-03-C100" ;
+  skos:prefLabel "Main structures"@en ;
+  skos:prefLabel "Hauptbauwerke"@de ;
+  skos:definition "Primary walls, slabs, frames and special structures."@en ;
+  skos:definition "Primäre Wände, Platten, Rahmen und Spezialkonstruktionen."@de ;
+  pbs:projectType cpt:CPT-02, cpt:CPT-03, cpt:CPT-04, cpt:CPT-05, cpt:CPT-06, cpt:CPT-07, cpt:CPT-08 .
+
+:CG-2-03-C105 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-03 ;
+  skos:notation "CG-2-03-C105" ;
+  skos:prefLabel "Utility service buildings"@en ;
+  skos:prefLabel "Betriebsgebäude für Werkleitungen"@de ;
+  skos:definition "Small buildings housing utility plant."@en ;
+  skos:definition "Kleinbauten für Werkleitungsanlagen."@de ;
+  pbs:projectType cpt:CPT-06, cpt:CPT-07, cpt:CPT-08, cpt:CPT-10 .
+
+:CG-2-03-C110 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-03 ;
+  skos:notation "CG-2-03-C110" ;
+  skos:prefLabel "Tanks and storage structures"@en ;
+  skos:prefLabel "Behälter und Speicherbauwerke"@de ;
+  skos:definition "Tanks, basins and storage containers."@en ;
+  skos:definition "Behälter, Becken und Speicherbauwerke."@de ;
+  pbs:projectType cpt:CPT-06, cpt:CPT-07, cpt:CPT-13 .
+
+:CG-2-03-C120 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-03 ;
+  skos:notation "CG-2-03-C120" ;
+  skos:prefLabel "Supports for tanks and pipes"@en ;
+  skos:prefLabel "Auflager für Behälter und Rohre"@de ;
+  skos:definition "Structural supports for tanks and pipework."@en ;
+  skos:definition "Tragende Auflager für Behälter und Rohrleitungen."@de ;
+  pbs:projectType cpt:CPT-06, cpt:CPT-07, cpt:CPT-08 .
+
+:CG-2-03-C130 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-03 ;
+  skos:notation "CG-2-03-C130" ;
+  skos:prefLabel "Civil pipework"@en ;
+  skos:prefLabel "Rohrleitungen"@de ;
+  skos:definition "Pipework forming the main asset."@en ;
+  skos:definition "Rohrleitungen als Hauptbestandteil der Anlage."@de ;
+  pbs:projectType cpt:CPT-06, cpt:CPT-07, cpt:CPT-08 .
+
+:CG-2-03-C140 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-03 ;
+  skos:notation "CG-2-03-C140" ;
+  skos:prefLabel "Valves and fittings"@en ;
+  skos:prefLabel "Armaturen und Formstücke"@de ;
+  skos:definition "Valves and fittings in pipework."@en ;
+  skos:definition "Armaturen und Formstücke in Rohrleitungen."@de ;
+  pbs:projectType cpt:CPT-06, cpt:CPT-07, cpt:CPT-08 .
+
+:CG-2-03-C700 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-03 ;
+  skos:notation "CG-2-03-C700" ;
+  skos:prefLabel "Locks and guide structures"@en ;
+  skos:prefLabel "Schleusen und Leitwerke"@de ;
+  skos:definition "Navigation locks and guiding structures."@en ;
+  skos:definition "Schiffsschleusen und Leitwerke."@de ;
+  pbs:projectType cpt:CPT-18 .
+
+:CG-2-03-C720 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-03 ;
+  skos:notation "CG-2-03-C720" ;
+  skos:prefLabel "Flood defences"@en ;
+  skos:prefLabel "Hochwasserschutzbauten"@de ;
+  skos:definition "Dykes, flood walls and barriers."@en ;
+  skos:definition "Dämme, Hochwasserschutzmauern und Sperrwerke."@de ;
+  pbs:projectType cpt:CPT-13, cpt:CPT-16, cpt:CPT-18 .
+
+:CG-2-03-C750 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-03 ;
+  skos:notation "CG-2-03-C750" ;
+  skos:prefLabel "Weirs"@en ;
+  skos:prefLabel "Wehre"@de ;
+  skos:definition "Fixed and movable weirs."@en ;
+  skos:definition "Feste und bewegliche Wehre."@de ;
+  pbs:projectType cpt:CPT-13, cpt:CPT-18 .
+
+:CG-2-04-C010 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-04 ;
+  skos:notation "CG-2-04-C010" ;
+  skos:prefLabel "Non-structural alterations"@en ;
+  skos:prefLabel "Anpassungen nichttragender Bauteile"@de ;
+  skos:definition "Removal and alteration of existing non-structural parts."@en ;
+  skos:definition "Rückbau und Anpassung bestehender nichttragender Bauteile."@de ;
+  pbs:projectType cpt:CPT-02, cpt:CPT-03, cpt:CPT-04, cpt:CPT-05, cpt:CPT-06, cpt:CPT-07, cpt:CPT-08 .
+
+:CG-2-04-C020 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-04 ;
+  skos:notation "CG-2-04-C020" ;
+  skos:prefLabel "Non-structural construction and finishes"@en ;
+  skos:prefLabel "Nichttragende Bauteile und Oberflächen"@de ;
+  skos:definition "Coatings, linings, cladding and built-in parts."@en ;
+  skos:definition "Beschichtungen, Verkleidungen, Bekleidungen und Einbauten."@de ;
+  pbs:projectType cpt:CPT-02, cpt:CPT-03, cpt:CPT-04, cpt:CPT-05, cpt:CPT-06, cpt:CPT-07, cpt:CPT-08 .
+
+:CG-2-04-C030 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-04 ;
+  skos:notation "CG-2-04-C030" ;
+  skos:prefLabel "Running surface"@en ;
+  skos:prefLabel "Fahrbahnoberfläche"@de ;
+  skos:definition "Wearing course of roads and running surface of track."@en ;
+  skos:definition "Deckschicht von Strassen und Fahrfläche von Gleisen."@de ;
+  pbs:projectType cpt:CPT-02, cpt:CPT-03, cpt:CPT-04, cpt:CPT-05 .
+
+:CG-2-04-C040 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-04 ;
+  skos:notation "CG-2-04-C040" ;
+  skos:prefLabel "Signs and markings"@en ;
+  skos:prefLabel "Signalisation und Markierung"@de ;
+  skos:definition "Road signs, markings and similar."@en ;
+  skos:definition "Signale, Markierungen und dergleichen."@de ;
+  pbs:projectType cpt:CPT-02, cpt:CPT-04, cpt:CPT-05 .
+
+:CG-2-04-C050 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-04 ;
+  skos:notation "CG-2-04-C050" ;
+  skos:prefLabel "Gantries"@en ;
+  skos:prefLabel "Signalportale"@de ;
+  skos:definition "Sign and equipment gantries."@en ;
+  skos:definition "Signal- und Ausrüstungsportale."@de ;
+  pbs:projectType cpt:CPT-02, cpt:CPT-03 .
+
+:CG-2-04-C060 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-04 ;
+  skos:notation "CG-2-04-C060" ;
+  skos:prefLabel "Safety facilities"@en ;
+  skos:prefLabel "Sicherheitseinrichtungen"@de ;
+  skos:definition "Safety installations for users and staff."@en ;
+  skos:definition "Sicherheitseinrichtungen für Nutzende und Personal."@de ;
+  pbs:projectType cpt:CPT-02, cpt:CPT-03, cpt:CPT-04, cpt:CPT-05, cpt:CPT-06, cpt:CPT-07, cpt:CPT-08 .
+
+:CG-2-04-C070 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-04 ;
+  skos:notation "CG-2-04-C070" ;
+  skos:prefLabel "Barriers, rails and access"@en ;
+  skos:prefLabel "Rückhaltesysteme und Zugänge"@de ;
+  skos:definition "Vehicle restraint, handrails, ladders and walkways."@en ;
+  skos:definition "Fahrzeugrückhaltesysteme, Handläufe, Leitern und Stege."@de ;
+  pbs:projectType cpt:CPT-02, cpt:CPT-03, cpt:CPT-04, cpt:CPT-05, cpt:CPT-06, cpt:CPT-07, cpt:CPT-08 .
+
+:CG-2-04-C080 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-04 ;
+  skos:notation "CG-2-04-C080" ;
+  skos:prefLabel "Special equipment and fittings"@en ;
+  skos:prefLabel "Spezielle Ausrüstung"@de ;
+  skos:definition "Route-specific fittings not covered elsewhere."@en ;
+  skos:definition "Trassenspezifische Ausrüstung, die nicht anderweitig erfasst ist."@de ;
+  pbs:projectType cpt:CPT-02, cpt:CPT-03, cpt:CPT-04, cpt:CPT-05, cpt:CPT-06, cpt:CPT-07, cpt:CPT-08 .
+
+:CG-2-04-C090 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-04 ;
+  skos:notation "CG-2-04-C090" ;
+  skos:prefLabel "Interior landscaping"@en ;
+  skos:prefLabel "Innenbegrünung"@de ;
+  skos:definition "Planting within enclosed civil structures."@en ;
+  skos:definition "Begrünung innerhalb geschlossener Tiefbauwerke."@de ;
+  pbs:projectType cpt:CPT-02, cpt:CPT-03, cpt:CPT-04, cpt:CPT-05, cpt:CPT-06, cpt:CPT-07, cpt:CPT-08 .
+
+:CG-2-04-C100 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-04 ;
+  skos:notation "CG-2-04-C100" ;
+  skos:prefLabel "Builder's work for services"@en ;
+  skos:prefLabel "Baumeisterarbeiten für Installationen"@de ;
+  skos:definition "Openings, plinths and enclosures for equipment."@en ;
+  skos:definition "Durchbrüche, Sockel und Verkleidungen für Ausrüstung."@de ;
+  pbs:projectType cpt:CPT-02, cpt:CPT-03, cpt:CPT-04, cpt:CPT-05, cpt:CPT-06, cpt:CPT-07, cpt:CPT-08 .
+
+:CG-2-05-C005 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-05 ;
+  skos:notation "CG-2-05-C005" ;
+  skos:prefLabel "District heating and cooling"@en ;
+  skos:prefLabel "Fernwärme und Fernkälte"@de ;
+  skos:definition "District heating and cooling networks."@en ;
+  skos:definition "Fernwärme- und Fernkältenetze."@de ;
+  pbs:projectType cpt:CPT-08 .
+
+:CG-2-05-C010 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-05 ;
+  skos:notation "CG-2-05-C010" ;
+  skos:prefLabel "Mechanical systems"@en ;
+  skos:prefLabel "Mechanische Anlagen"@de ;
+  skos:definition "Ventilation, heating, cooling and pumping plant."@en ;
+  skos:definition "Lüftungs-, Heiz-, Kühl- und Pumpanlagen."@de ;
+  pbs:projectType cpt:CPT-02, cpt:CPT-03, cpt:CPT-04, cpt:CPT-05, cpt:CPT-06, cpt:CPT-07, cpt:CPT-08 .
+
+:CG-2-05-C020 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-05 ;
+  skos:notation "CG-2-05-C020" ;
+  skos:prefLabel "Lighting systems"@en ;
+  skos:prefLabel "Beleuchtung"@de ;
+  skos:definition "Route, tunnel and area lighting."@en ;
+  skos:definition "Strassen-, Tunnel- und Flächenbeleuchtung."@de ;
+  pbs:projectType cpt:CPT-02, cpt:CPT-03, cpt:CPT-04, cpt:CPT-05, cpt:CPT-06, cpt:CPT-07, cpt:CPT-08 .
+
+:CG-2-05-C030 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-05 ;
+  skos:notation "CG-2-05-C030" ;
+  skos:prefLabel "Feature lighting"@en ;
+  skos:prefLabel "Effektbeleuchtung"@de ;
+  skos:definition "Decorative and architectural illumination."@en ;
+  skos:definition "Dekorative und architektonische Beleuchtung."@de ;
+  pbs:projectType cpt:CPT-02, cpt:CPT-03, cpt:CPT-04, cpt:CPT-05, cpt:CPT-06, cpt:CPT-07, cpt:CPT-08 .
+
+:CG-2-05-C040 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-05 ;
+  skos:notation "CG-2-05-C040" ;
+  skos:prefLabel "Low-voltage power supply"@en ;
+  skos:prefLabel "Energieversorgung"@de ;
+  skos:definition "Power supply and distribution for equipment."@en ;
+  skos:definition "Energieversorgung und -verteilung für Ausrüstung."@de ;
+  pbs:projectType cpt:CPT-02, cpt:CPT-03, cpt:CPT-04, cpt:CPT-05, cpt:CPT-06, cpt:CPT-07, cpt:CPT-08 .
+
+:CG-2-05-C050 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-05 ;
+  skos:notation "CG-2-05-C050" ;
+  skos:prefLabel "Cables and cable routes"@en ;
+  skos:prefLabel "Kabel und Kabelanlagen"@de ;
+  skos:definition "Cables, cable trays, duct banks and cable chambers."@en ;
+  skos:definition "Kabel, Kabeltrassen, Rohrblöcke und Kabelschächte."@de ;
+  pbs:projectType cpt:CPT-02, cpt:CPT-03, cpt:CPT-04, cpt:CPT-05, cpt:CPT-06, cpt:CPT-07, cpt:CPT-08 .
+
+:CG-2-05-C060 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-05 ;
+  skos:notation "CG-2-05-C060" ;
+  skos:prefLabel "Other electrical services"@en ;
+  skos:prefLabel "Weitere elektrische Anlagen"@de ;
+  skos:definition "Electrical installations not listed elsewhere."@en ;
+  skos:definition "Elektrische Anlagen, die nicht anderweitig erfasst sind."@de ;
+  pbs:projectType cpt:CPT-02, cpt:CPT-03, cpt:CPT-04, cpt:CPT-05, cpt:CPT-06, cpt:CPT-07, cpt:CPT-08 .
+
+:CG-2-05-C070 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-05 ;
+  skos:notation "CG-2-05-C070" ;
+  skos:prefLabel "Control and instrumentation"@en ;
+  skos:prefLabel "Steuerung und Messtechnik"@de ;
+  skos:definition "Automation, communication and control systems."@en ;
+  skos:definition "Automations-, Kommunikations- und Leitsysteme."@de ;
+  pbs:projectType cpt:CPT-02, cpt:CPT-03, cpt:CPT-04, cpt:CPT-05, cpt:CPT-06, cpt:CPT-07, cpt:CPT-08 .
+
+:CG-2-05-C080 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-05 ;
+  skos:notation "CG-2-05-C080" ;
+  skos:prefLabel "Pipe racks"@en ;
+  skos:prefLabel "Rohrbrücken"@de ;
+  skos:definition "Local supports for service pipes."@en ;
+  skos:definition "Lokale Auflager für Leitungen."@de ;
+  pbs:projectType cpt:CPT-06, cpt:CPT-07, cpt:CPT-10, cpt:CPT-11, cpt:CPT-12 .
+
+:CG-2-05-C090 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-05 ;
+  skos:notation "CG-2-05-C090" ;
+  skos:prefLabel "Water supply and drainage in structures"@en ;
+  skos:prefLabel "Wasser und Entwässerung im Bauwerk"@de ;
+  skos:definition "Water and drainage installations inside civil structures."@en ;
+  skos:definition "Wasser- und Entwässerungsinstallationen in Tiefbauwerken."@de ;
+  pbs:projectType cpt:CPT-02, cpt:CPT-03, cpt:CPT-04, cpt:CPT-05, cpt:CPT-06, cpt:CPT-07, cpt:CPT-08 .
+
+:CG-2-05-C100 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-05 ;
+  skos:notation "CG-2-05-C100" ;
+  skos:prefLabel "Refuse disposal systems"@en ;
+  skos:prefLabel "Abfallentsorgungsanlagen"@de ;
+  skos:definition "Systems for collecting and removing refuse."@en ;
+  skos:definition "Anlagen zur Sammlung und Entsorgung von Abfällen."@de ;
+  pbs:projectType cpt:CPT-02, cpt:CPT-03, cpt:CPT-04, cpt:CPT-05, cpt:CPT-06, cpt:CPT-07, cpt:CPT-08 .
+
+:CG-2-05-C110 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-05 ;
+  skos:notation "CG-2-05-C110" ;
+  skos:prefLabel "Fire services"@en ;
+  skos:prefLabel "Brandschutzanlagen"@de ;
+  skos:definition "Detection, alarm and extinguishing systems."@en ;
+  skos:definition "Melde-, Alarm- und Löschanlagen."@de ;
+  pbs:projectType cpt:CPT-02, cpt:CPT-03, cpt:CPT-04, cpt:CPT-05, cpt:CPT-06, cpt:CPT-07, cpt:CPT-08 .
+
+:CG-2-05-C115 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-05 ;
+  skos:notation "CG-2-05-C115" ;
+  skos:prefLabel "Gas services"@en ;
+  skos:prefLabel "Gasanlagen"@de ;
+  skos:definition "Gas installations within structures."@en ;
+  skos:definition "Gasinstallationen in Bauwerken."@de ;
+  pbs:projectType cpt:CPT-02, cpt:CPT-03, cpt:CPT-04, cpt:CPT-05, cpt:CPT-06, cpt:CPT-07, cpt:CPT-08 .
+
+:CG-2-05-C120 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-05 ;
+  skos:notation "CG-2-05-C120" ;
+  skos:prefLabel "Lifts and escalators"@en ;
+  skos:prefLabel "Aufzüge und Fahrtreppen"@de ;
+  skos:definition "Lifts, escalators and moving walks."@en ;
+  skos:definition "Aufzüge, Fahrtreppen und Fahrsteige."@de ;
+  pbs:projectType cpt:CPT-02, cpt:CPT-03, cpt:CPT-04, cpt:CPT-05, cpt:CPT-06, cpt:CPT-07, cpt:CPT-08 .
+
+:CG-2-05-C800 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-05 ;
+  skos:notation "CG-2-05-C800" ;
+  skos:prefLabel "Traction power and overhead line"@en ;
+  skos:prefLabel "Bahnstrom und Fahrleitung"@de ;
+  skos:definition "Overhead contact line and traction power supply."@en ;
+  skos:definition "Fahrleitung und Bahnstromversorgung."@de ;
+  pbs:projectType cpt:CPT-03 .
+
+:CG-2-05-C810 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-05 ;
+  skos:notation "CG-2-05-C810" ;
+  skos:prefLabel "Rail signalling and train control"@en ;
+  skos:prefLabel "Bahnsicherungsanlagen"@de ;
+  skos:definition "Interlocking, signalling and train protection."@en ;
+  skos:definition "Stellwerke, Signale und Zugbeeinflussung."@de ;
+  pbs:projectType cpt:CPT-03 .
+
+:CG-2-06-C010 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-06 ;
+  skos:notation "CG-2-06-C010" ;
+  skos:prefLabel "Surface water drainage"@en ;
+  skos:prefLabel "Oberflächenentwässerung"@de ;
+  skos:definition "Drainage of route and site surfaces."@en ;
+  skos:definition "Entwässerung von Fahrbahn- und Geländeoberflächen."@de ;
+  pbs:projectType cpt:CPT-02, cpt:CPT-03, cpt:CPT-04, cpt:CPT-05, cpt:CPT-06, cpt:CPT-07, cpt:CPT-08 .
+
+:CG-2-06-C020 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-06 ;
+  skos:notation "CG-2-06-C020" ;
+  skos:prefLabel "Storm water drainage"@en ;
+  skos:prefLabel "Regenwasserableitung"@de ;
+  skos:definition "Storm water pipes, retention and outfalls."@en ;
+  skos:definition "Regenwasserleitungen, Retention und Einleitungen."@de ;
+  pbs:projectType cpt:CPT-02, cpt:CPT-03, cpt:CPT-04, cpt:CPT-05, cpt:CPT-06, cpt:CPT-07, cpt:CPT-08 .
+
+:CG-2-06-C030 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-06 ;
+  skos:notation "CG-2-06-C030" ;
+  skos:prefLabel "Foul and wastewater drainage"@en ;
+  skos:prefLabel "Schmutzwasserableitung"@de ;
+  skos:definition "Foul sewers and wastewater pipes."@en ;
+  skos:definition "Schmutzwasserkanäle und Abwasserleitungen."@de ;
+  pbs:projectType cpt:CPT-02, cpt:CPT-03, cpt:CPT-04, cpt:CPT-05, cpt:CPT-06, cpt:CPT-07, cpt:CPT-08 .
+
+:CG-2-06-C040 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-06 ;
+  skos:notation "CG-2-06-C040" ;
+  skos:prefLabel "Pumping systems"@en ;
+  skos:prefLabel "Pumpanlagen"@de ;
+  skos:definition "Drainage pumping stations."@en ;
+  skos:definition "Entwässerungspumpwerke."@de ;
+  pbs:projectType cpt:CPT-02, cpt:CPT-03, cpt:CPT-04, cpt:CPT-05, cpt:CPT-06, cpt:CPT-07, cpt:CPT-08 .
+
+:CG-2-06-C050 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-06 ;
+  skos:notation "CG-2-06-C050" ;
+  skos:prefLabel "Drainage connections"@en ;
+  skos:prefLabel "Kanalisationsanschlüsse"@de ;
+  skos:definition "Connections to existing drainage."@en ;
+  skos:definition "Anschlüsse an bestehende Kanalisation."@de ;
+  pbs:projectType cpt:CPT-02, cpt:CPT-03, cpt:CPT-04, cpt:CPT-05, cpt:CPT-06, cpt:CPT-07, cpt:CPT-08 .
+
+:CG-2-07-C010 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-07 ;
+  skos:notation "CG-2-07-C010" ;
+  skos:prefLabel "Site enclosures and divisions"@en ;
+  skos:prefLabel "Einfriedungen"@de ;
+  skos:definition "Fences, walls and gates along the route or site."@en ;
+  skos:definition "Zäune, Mauern und Tore entlang der Trasse oder des Areals."@de ;
+  pbs:projectType cpt:CPT-02, cpt:CPT-03, cpt:CPT-04, cpt:CPT-05, cpt:CPT-06, cpt:CPT-07, cpt:CPT-08 .
+
+:CG-2-07-C020 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-07 ;
+  skos:notation "CG-2-07-C020" ;
+  skos:prefLabel "Ancillary structures"@en ;
+  skos:prefLabel "Nebenbauwerke"@de ;
+  skos:definition "Minor structures supporting the main asset."@en ;
+  skos:definition "Kleinere Bauwerke zur Ergänzung der Hauptanlage."@de ;
+  pbs:projectType cpt:CPT-02, cpt:CPT-03, cpt:CPT-04, cpt:CPT-05, cpt:CPT-06, cpt:CPT-07, cpt:CPT-08 .
+
+:CG-2-07-C030 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-07 ;
+  skos:notation "CG-2-07-C030" ;
+  skos:prefLabel "Minor roads and paving"@en ;
+  skos:prefLabel "Kleinere Verkehrsflächen"@de ;
+  skos:definition "Paving not forming a separate sub-project."@en ;
+  skos:definition "Beläge, die kein eigenes Teilprojekt bilden."@de ;
+  pbs:projectType cpt:CPT-02, cpt:CPT-03, cpt:CPT-04, cpt:CPT-05, cpt:CPT-06, cpt:CPT-07, cpt:CPT-08 .
+
+:CG-2-07-C040 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-07 ;
+  skos:notation "CG-2-07-C040" ;
+  skos:prefLabel "Landscaping"@en ;
+  skos:prefLabel "Landschaftsgestaltung"@de ;
+  skos:definition "Soft and hard landscaping."@en ;
+  skos:definition "Grünflächen und Gestaltung."@de ;
+  pbs:projectType cpt:CPT-02, cpt:CPT-03, cpt:CPT-04, cpt:CPT-05, cpt:CPT-06, cpt:CPT-07, cpt:CPT-08 .
+
+:CG-2-07-C050 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-07 ;
+  skos:notation "CG-2-07-C050" ;
+  skos:prefLabel "External fittings and equipment"@en ;
+  skos:prefLabel "Ausstattung Umgebung"@de ;
+  skos:definition "Furniture and equipment along the route."@en ;
+  skos:definition "Mobiliar und Ausstattung entlang der Trasse."@de ;
+  pbs:projectType cpt:CPT-02, cpt:CPT-03, cpt:CPT-04, cpt:CPT-05, cpt:CPT-06, cpt:CPT-07, cpt:CPT-08 .
+
+:CG-2-07-C800 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-07 ;
+  skos:notation "CG-2-07-C800" ;
+  skos:prefLabel "Art in public works"@en ;
+  skos:prefLabel "Kunst am Bau"@de ;
+  skos:definition "Artworks commissioned for the asset."@en ;
+  skos:definition "Für das Bauwerk beauftragte Kunstwerke."@de ;
+  pbs:projectType cpt:CPT-02, cpt:CPT-03, cpt:CPT-04, cpt:CPT-05, cpt:CPT-06, cpt:CPT-07, cpt:CPT-08 .
+
+:CG-2-08-010 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-08 ;
+  skos:notation "CG-2-08-010" ;
+  skos:prefLabel "Site management"@en ;
+  skos:prefLabel "Bauführung"@de ;
+  skos:definition "Constructor's site management staff and support labour."@en ;
+  skos:definition "Bauführungspersonal und Hilfskräfte des Unternehmers."@de .
+
+:CG-2-08-020 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-08 ;
+  skos:notation "CG-2-08-020" ;
+  skos:prefLabel "Temporary access and storage areas"@en ;
+  skos:prefLabel "Provisorische Zufahrten und Lagerflächen"@de ;
+  skos:definition "Temporary access, storage and traffic management at the constructor's discretion."@en ;
+  skos:definition "Provisorische Zufahrten, Lagerflächen und Verkehrsführung nach Wahl des Unternehmers."@de .
+
+:CG-2-08-030 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-08 ;
+  skos:notation "CG-2-08-030" ;
+  skos:prefLabel "Site fencing and security"@en ;
+  skos:prefLabel "Bauabschrankung und Bewachung"@de ;
+  skos:definition "Fencing and security of the site during works."@en ;
+  skos:definition "Abschrankung und Bewachung der Baustelle während der Arbeiten."@de .
+
+:CG-2-08-040 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-08 ;
+  skos:notation "CG-2-08-040" ;
+  skos:prefLabel "Shared construction plant"@en ;
+  skos:prefLabel "Gemeinsame Baugeräte"@de ;
+  skos:definition "Cranes, hoists and other plant shared between trades."@en ;
+  skos:definition "Krane, Bauaufzüge und weitere gemeinsam genutzte Geräte."@de .
+
+:CG-2-08-050 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-08 ;
+  skos:notation "CG-2-08-050" ;
+  skos:prefLabel "Shared scaffolding"@en ;
+  skos:prefLabel "Gemeinsame Gerüste"@de ;
+  skos:definition "Scaffolding shared between trades."@en ;
+  skos:definition "Gemeinsam genutzte Gerüste."@de .
+
+:CG-2-08-060 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-08 ;
+  skos:notation "CG-2-08-060" ;
+  skos:prefLabel "Other temporary facilities and services"@en ;
+  skos:prefLabel "Weitere provisorische Einrichtungen"@de ;
+  skos:definition "Site accommodation, temporary supplies and processing facilities."@en ;
+  skos:definition "Unterkünfte, provisorische Versorgung und Aufbereitungseinrichtungen."@de .
+
+:CG-2-08-070 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-08 ;
+  skos:notation "CG-2-08-070" ;
+  skos:prefLabel "Site technology and communications"@en ;
+  skos:prefLabel "Baustellen-IT und Kommunikation"@de ;
+  skos:definition "Telephone, network, hardware and software on site."@en ;
+  skos:definition "Telefon, Netzwerk, Hard- und Software auf der Baustelle."@de .
+
+:CG-2-08-080 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-08 ;
+  skos:notation "CG-2-08-080" ;
+  skos:prefLabel "Constructor's documentation"@en ;
+  skos:prefLabel "Dokumentation des Unternehmers"@de ;
+  skos:definition "Submissions, reports and as-built records."@en ;
+  skos:definition "Eingaben, Berichte und Revisionsunterlagen."@de .
+
+:CG-2-08-090 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-08 ;
+  skos:notation "CG-2-08-090" ;
+  skos:prefLabel "Quality monitoring and inspection"@en ;
+  skos:prefLabel "Qualitätsüberwachung und Prüfungen"@de ;
+  skos:definition "Monitoring, recording and inspections during works."@en ;
+  skos:definition "Überwachung, Aufzeichnung und Prüfungen während der Arbeiten."@de .
+
+:CG-2-08-100 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-08 ;
+  skos:notation "CG-2-08-100" ;
+  skos:prefLabel "Health, safety and environment"@en ;
+  skos:prefLabel "Arbeitssicherheit und Umweltschutz"@de ;
+  skos:definition "Safety, health and environmental management on site."@en ;
+  skos:definition "Arbeitssicherheit, Gesundheitsschutz und Umweltmanagement auf der Baustelle."@de .
+
+:CG-2-08-110 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-08 ;
+  skos:notation "CG-2-08-110" ;
+  skos:prefLabel "Constructor's insurances and guarantees"@en ;
+  skos:prefLabel "Versicherungen und Garantien des Unternehmers"@de ;
+  skos:definition "Insurances, bonds, guarantees and warranties of the constructor."@en ;
+  skos:definition "Versicherungen, Bürgschaften und Garantien des Unternehmers."@de .
+
+:CG-2-08-120 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-08 ;
+  skos:notation "CG-2-08-120" ;
+  skos:prefLabel "Constructor's statutory fees"@en ;
+  skos:prefLabel "Gebühren des Unternehmers"@de ;
+  skos:definition "Statutory fees and charges borne by the constructor."@en ;
+  skos:definition "Gebühren und Abgaben zulasten des Unternehmers."@de .
+
+:CG-2-08-130 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-08 ;
+  skos:notation "CG-2-08-130" ;
+  skos:prefLabel "Testing and commissioning"@en ;
+  skos:prefLabel "Prüfung und Inbetriebnahme"@de ;
+  skos:definition "Testing and commissioning of the completed works."@en ;
+  skos:definition "Prüfung und Inbetriebnahme der fertiggestellten Arbeiten."@de .
+
+:CG-2-08-140 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-08 ;
+  skos:notation "CG-2-08-140" ;
+  skos:prefLabel "Extreme climate and working conditions"@en ;
+  skos:prefLabel "Erschwerte Witterungs- und Arbeitsbedingungen"@de ;
+  skos:definition "Extra measures for extreme weather or working conditions."@en ;
+  skos:definition "Zusätzliche Massnahmen bei extremer Witterung oder erschwerten Bedingungen."@de .
+
+:CG-2-08-C025 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-08 ;
+  skos:notation "CG-2-08-C025" ;
+  skos:prefLabel "Temporary batching and processing plant"@en ;
+  skos:prefLabel "Provisorische Misch- und Aufbereitungsanlagen"@de ;
+  skos:definition "Temporary concrete batching and material processing yards."@en ;
+  skos:definition "Provisorische Betonmischanlagen und Aufbereitungsplätze."@de ;
+  pbs:projectType cpt:CPT-02, cpt:CPT-03, cpt:CPT-04, cpt:CPT-05, cpt:CPT-06, cpt:CPT-07, cpt:CPT-08 .
+
+:CG-2-08-C045 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-08 ;
+  skos:notation "CG-2-08-C045" ;
+  skos:prefLabel "Marine plant and equipment"@en ;
+  skos:prefLabel "Schwimmende Geräte"@de ;
+  skos:definition "Floating and marine plant for waterborne works."@en ;
+  skos:definition "Schwimmende Geräte für Arbeiten auf dem Wasser."@de ;
+  pbs:projectType cpt:CPT-13, cpt:CPT-16, cpt:CPT-17, cpt:CPT-18, cpt:CPT-19 .
+
+:CG-2-08-C055 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-08 ;
+  skos:notation "CG-2-08-C055" ;
+  skos:prefLabel "Workforce accommodation"@en ;
+  skos:prefLabel "Unterkünfte für Arbeitskräfte"@de ;
+  skos:definition "Living accommodation for the workforce."@en ;
+  skos:definition "Wohnunterkünfte für Arbeitskräfte."@de ;
+  pbs:projectType cpt:CPT-02, cpt:CPT-03, cpt:CPT-04, cpt:CPT-05, cpt:CPT-06, cpt:CPT-07, cpt:CPT-08 .
+
+:CG-2-08-C065 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-08 ;
+  skos:notation "CG-2-08-C065" ;
+  skos:prefLabel "Mobilisation and demobilisation"@en ;
+  skos:prefLabel "Installation und Räumung"@de ;
+  skos:definition "Mobilisation and demobilisation of major plant."@en ;
+  skos:definition "Installation und Räumung von Grossgeräten."@de ;
+  pbs:projectType cpt:CPT-02, cpt:CPT-03, cpt:CPT-04, cpt:CPT-05, cpt:CPT-06, cpt:CPT-07, cpt:CPT-08 .
+
+:CG-2-09-010 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-09 ;
+  skos:notation "CG-2-09-010" ;
+  skos:prefLabel "Design development allowance"@en ;
+  skos:prefLabel "Reserve Projektentwicklung"@de ;
+  skos:definition "Allowance for changes as the design develops."@en ;
+  skos:definition "Reserve für Änderungen im Zuge der Projektentwicklung."@de .
+
+:CG-2-09-020 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-09 ;
+  skos:notation "CG-2-09-020" ;
+  skos:prefLabel "Construction contingency"@en ;
+  skos:prefLabel "Reserve Unvorhergesehenes"@de ;
+  skos:definition "Allowance for unforeseen events during construction."@en ;
+  skos:definition "Reserve für unvorhergesehene Ereignisse während der Ausführung."@de .
+
+:CG-2-09-030 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-09 ;
+  skos:notation "CG-2-09-030" ;
+  skos:prefLabel "Price level adjustment"@en ;
+  skos:prefLabel "Teuerung"@de ;
+  skos:definition "Price changes until tender and during construction."@en ;
+  skos:definition "Preisänderungen bis zur Ausschreibung und während der Ausführung."@de .
+
+:CG-2-09-040 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-09 ;
+  skos:notation "CG-2-09-040" ;
+  skos:prefLabel "Exchange rate adjustment"@en ;
+  skos:prefLabel "Wechselkursänderungen"@de ;
+  skos:definition "Effect of currency fluctuation on costs."@en ;
+  skos:definition "Auswirkung von Wechselkursschwankungen auf die Kosten."@de .
+
+:CG-2-10-010 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-10 ;
+  skos:notation "CG-2-10-010" ;
+  skos:prefLabel "Taxes paid by the constructor"@en ;
+  skos:prefLabel "Steuern zulasten Unternehmer"@de ;
+  skos:definition "Taxes and levies borne by the constructor."@en ;
+  skos:definition "Steuern und Abgaben zulasten des Unternehmers."@de .
+
+:CG-2-10-020 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-10 ;
+  skos:notation "CG-2-10-020" ;
+  skos:prefLabel "Taxes on contract payments"@en ;
+  skos:prefLabel "Steuern auf Vertragszahlungen"@de ;
+  skos:definition "Value added tax and levies paid by the client on contract payments."@en ;
+  skos:definition "Mehrwertsteuer und Abgaben der Bauherrschaft auf Vertragszahlungen."@de .
+
+:CG-2-11-010 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-11 ;
+  skos:notation "CG-2-11-010" ;
+  skos:prefLabel "Off-site utility connections"@en ;
+  skos:prefLabel "Werkleitungsanschlüsse ausserhalb"@de ;
+  skos:definition "Connections, diversions and capacity upgrades of public utilities up to the site."@en ;
+  skos:definition "Anschlüsse, Umlegungen und Kapazitätserweiterungen öffentlicher Werkleitungen bis zum Grundstück."@de .
+
+:CG-2-11-020 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-11 ;
+  skos:notation "CG-2-11-020" ;
+  skos:prefLabel "Public access roads and footpaths"@en ;
+  skos:prefLabel "Öffentliche Zufahrten und Fusswege"@de ;
+  skos:definition "Public roads and footpaths outside the site."@en ;
+  skos:definition "Öffentliche Strassen und Fusswege ausserhalb des Grundstücks."@de .
+
+:CG-2-12-010 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-12 ;
+  skos:notation "CG-2-12-010" ;
+  skos:prefLabel "Loose furniture, fittings and equipment"@en ;
+  skos:prefLabel "Mobiliar und lose Ausstattung"@de ;
+  skos:definition "Loose items normally supplied after completion."@en ;
+  skos:definition "Lose Ausstattung, die üblicherweise nach Fertigstellung geliefert wird."@de .
+
+:CG-2-12-020 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-12 ;
+  skos:notation "CG-2-12-020" ;
+  skos:prefLabel "Fixed production and process equipment"@en ;
+  skos:prefLabel "Feste Produktions- und Prozesseinrichtungen"@de ;
+  skos:definition "Production and process plant installed before completion."@en ;
+  skos:definition "Vor Fertigstellung installierte Produktions- und Prozessanlagen."@de .
+
+:CG-2-12-800 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-12 ;
+  skos:notation "CG-2-12-800" ;
+  skos:prefLabel "Art in architecture"@en ;
+  skos:prefLabel "Kunst am Bau"@de ;
+  skos:definition "Artworks and artistically designed building parts."@en ;
+  skos:definition "Kunstwerke und künstlerisch gestaltete Bauteile."@de ;
+  pbs:projectType cpt:CPT-01 .
+
+:CG-2-13-010 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-13 ;
+  skos:notation "CG-2-13-010" ;
+  skos:prefLabel "Design and consultancy fees"@en ;
+  skos:prefLabel "Planungs- und Beratungshonorare"@de ;
+  skos:definition "Fees and expenses of architects, engineers, surveyors and specialists."@en ;
+  skos:definition "Honorare und Nebenkosten von Architektur, Ingenieurwesen, Vermessung und Fachplanung."@de .
+
+:CG-2-13-020 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-13 ;
+  skos:notation "CG-2-13-020" ;
+  skos:prefLabel "Statutory approval charges"@en ;
+  skos:prefLabel "Bewilligungsgebühren"@de ;
+  skos:definition "Charges payable to authorities for approvals and inspections."@en ;
+  skos:definition "Gebühren an Behörden für Bewilligungen und Abnahmen."@de .
+
+:CG-2-13-030 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-13 ;
+  skos:notation "CG-2-13-030" ;
+  skos:prefLabel "Site supervision"@en ;
+  skos:prefLabel "Bauleitung"@de ;
+  skos:definition "Site supervision including accommodation and travel."@en ;
+  skos:definition "Bauleitung einschliesslich Unterkunft und Reisen."@de .
+
+:CG-2-13-040 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-13 ;
+  skos:notation "CG-2-13-040" ;
+  skos:prefLabel "Testing authorities"@en ;
+  skos:prefLabel "Prüfstellen"@de ;
+  skos:definition "Payments to testing authorities and laboratories."@en ;
+  skos:definition "Zahlungen an Prüfstellen und Labore."@de .
+
+:CG-2-13-800 a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:broader :CG-2-13 ;
+  skos:notation "CG-2-13-800" ;
+  skos:prefLabel "Client-side advisers and project platforms"@en ;
+  skos:prefLabel "Beratung und Projektplattformen der Bauherrschaft"@de ;
+  skos:definition "Competitions, owner, operator and user representatives, advisers and project platforms."@en ;
+  skos:definition "Auswahlverfahren, Vertretung von Eigentümer, Betreiber und Nutzenden, Beratung und Projektplattformen."@de .

@@ -39,8 +39,12 @@ PerformanceProperty <|-- ThermalProperty
 click ThermalProperty href "./ThermalProperty.html" _blank
 PerformanceProperty <|-- StructuralProperty
 click StructuralProperty href "./StructuralProperty.html" _blank
+PerformanceProperty <|-- IndoorEnvironmentProperty
+click IndoorEnvironmentProperty href "./IndoorEnvironmentProperty.html" _blank
 PerformanceProperty <|-- SecurityProperty
 click SecurityProperty href "./SecurityProperty.html" _blank
+PerformanceProperty <|-- EnvironmentalProperty
+click EnvironmentalProperty href "./EnvironmentalProperty.html" _blank
 PerformanceProperty <|-- MaterialProperty
 click MaterialProperty href "./MaterialProperty.html" _blank
 click PerformancePropertyValueType href "./PerformancePropertyValueType.html" _blank
@@ -56,7 +60,9 @@ click PerformancePropertyValueType href "./PerformancePropertyValueType.html" _b
     * [AcousticProperty](AcousticProperty.md)
     * [ThermalProperty](ThermalProperty.md)
     * [StructuralProperty](StructuralProperty.md)
+    * [IndoorEnvironmentProperty](IndoorEnvironmentProperty.md)
     * [SecurityProperty](SecurityProperty.md)
+    * [EnvironmentalProperty](EnvironmentalProperty.md)
     * [MaterialProperty](MaterialProperty.md)
 
 
@@ -109,6 +115,7 @@ click PerformancePropertyValueType href "./PerformancePropertyValueType.html" _b
 | [Requirement](Requirement.md) | [performance_properties](performance_properties.md) | range | [PerformanceProperty](PerformanceProperty.md) |
 | [PerformanceRequirement](PerformanceRequirement.md) | [performance_properties](performance_properties.md) | range | [PerformanceProperty](PerformanceProperty.md) |
 | [SpatialRequirement](SpatialRequirement.md) | [performance_properties](performance_properties.md) | range | [PerformanceProperty](PerformanceProperty.md) |
+| [IdentificationRequirement](IdentificationRequirement.md) | [performance_properties](performance_properties.md) | range | [PerformanceProperty](PerformanceProperty.md) |
 | [RegulatoryRequirement](RegulatoryRequirement.md) | [performance_properties](performance_properties.md) | range | [PerformanceProperty](PerformanceProperty.md) |
 | [BriefRequirement](BriefRequirement.md) | [performance_properties](performance_properties.md) | range | [PerformanceProperty](PerformanceProperty.md) |
 | [DeliverableRequirement](DeliverableRequirement.md) | [performance_properties](performance_properties.md) | range | [PerformanceProperty](PerformanceProperty.md) |

@@ -1,0 +1,17 @@
+@prefix sc: <https://example.org/abstract/site-condition/> .
+@prefix sfp: <https://example.org/abstract/site-facility-product/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix map: <https://example.org/mapping/> .
+
+map:siteConditionsToSiteFacilityProductsMapping a dcterms:Dataset ;
+  dcterms:title "Site conditions to site facility products mapping"@en ;
+  dcterms:title "Mapping Standortbedingungen zu Baustelleneinrichtungsprodukten"@de ;
+  dcterms:references sc:scheme, sfp:scheme ;
+  dcterms:issued "2026-11-09" ;
+  dcterms:description "Links construction site conditions (SC-CON-*) to the site facility products (SFP) typically placed in them. Uses skos:relatedMatch: a construction access or logistics area is a planning zone fixed in the brief; the facilities in it are classified separately once the site set-up is planned. Not bijective."@en ;
+  dcterms:description "Verknüpft Standortbedingungen des Bauablaufs (SC-CON-*) mit den Baustelleneinrichtungsprodukten (SFP), die darin typischerweise platziert werden. skos:relatedMatch: eine Baustellenzufahrt oder Installationsfläche ist eine in der Bestellung festgelegte Planungszone; die Einrichtungen darin werden separat klassifiziert, sobald die Baustelleneinrichtung geplant ist. Nicht bijektiv."@de .
+
+sc:SC-CON-ACCESS skos:relatedMatch sfp:SFP-GATE, sfp:SFP-HAUL-ROAD, sfp:SFP-RAMP, sfp:SFP-TURNING, sfp:SFP-WHEEL-WASH .
+
+sc:SC-CON-LOGISTICS skos:relatedMatch sfp:SFP-STORAGE, sfp:SFP-STORE, sfp:SFP-BUFFER, sfp:SFP-TRANSFER, sfp:SFP-CONTAINER, sfp:SFP-OFFICE, sfp:SFP-BREAK-ROOM, sfp:SFP-SANITARY, sfp:SFP-PARKING, sfp:SFP-SKIP-BAY, sfp:SFP-CRANE-PAD .

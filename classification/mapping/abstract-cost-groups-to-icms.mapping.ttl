@@ -1,0 +1,302 @@
+@prefix cg: <https://example.org/abstract/cost-group/> .
+@prefix cpt: <https://example.org/abstract/cost-project-type/> .
+@prefix icms: <https://example.org/icms/3/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix map: <https://example.org/mapping/> .
+
+map:abstractCostGroupsToIcmsMapping a dcterms:Dataset ;
+  dcterms:title "Abstract cost groups to ICMS mapping"@en ;
+  dcterms:title "Mapping abstrakter Kostengruppen nach ICMS"@de ;
+  dcterms:references cg:scheme, cpt:scheme, icms:scheme ;
+  dcterms:issued "2026-11-04" ;
+  dcterms:description "Maps abstract cost project types and cost groups to International Cost Management Standard (ICMS, 3rd edition) codes by reference only; ICMS is copyright of the ICMS Coalition and no ICMS titles or definitions are reproduced. Project types map with skos:exactMatch to ICMS Level 1 project codes (icms:01 to icms:19). Categories and groups map with skos:exactMatch to project-independent codes (icms:2, icms:2.03). Sub-groups map with skos:closeMatch; their target local names carry the ICMS table: A. for Table A-1 acquisition, B. for Table B-1 buildings and C. for Table C-1 civil engineering works (e.g. icms:B.2.03.030). To form a full ICMS code, prepend the Level 1 project code (e.g. 01.2.03.030). Own extensions (codes 800 and above) map with skos:broadMatch to their ICMS group."@en ;
+  dcterms:description "Ordnet abstrakte Kosten-Projektarten und Kostengruppen den Codes des International Cost Management Standard (ICMS, 3. Ausgabe) nur per Referenz zu; ICMS ist urheberrechtlich durch die ICMS Coalition geschützt, es werden keine ICMS-Bezeichnungen oder -Definitionen wiedergegeben. Projektarten mit skos:exactMatch auf ICMS-Projektcodes der Ebene 1 (icms:01 bis icms:19). Kategorien und Gruppen mit skos:exactMatch auf projektunabhängige Codes (icms:2, icms:2.03). Untergruppen mit skos:closeMatch; der lokale Name des Ziels trägt die ICMS-Tabelle: A. für Tabelle A-1 Erwerb, B. für Tabelle B-1 Gebäude und C. für Tabelle C-1 Tiefbau (z. B. icms:B.2.03.030). Der vollständige ICMS-Code entsteht durch Voranstellen des Projektcodes (z. B. 01.2.03.030). Eigene Erweiterungen (Codes ab 800) mit skos:broadMatch auf ihre ICMS-Gruppe."@de .
+
+# --- Project types (ICMS Level 1) ---
+
+cpt:CPT-01 skos:exactMatch icms:01 .
+cpt:CPT-02 skos:exactMatch icms:02 .
+cpt:CPT-03 skos:exactMatch icms:03 .
+cpt:CPT-04 skos:exactMatch icms:04 .
+cpt:CPT-05 skos:exactMatch icms:05 .
+cpt:CPT-06 skos:exactMatch icms:06 .
+cpt:CPT-07 skos:exactMatch icms:07 .
+cpt:CPT-08 skos:exactMatch icms:08 .
+cpt:CPT-09 skos:exactMatch icms:09 .
+cpt:CPT-10 skos:exactMatch icms:10 .
+cpt:CPT-11 skos:exactMatch icms:11 .
+cpt:CPT-12 skos:exactMatch icms:12 .
+cpt:CPT-13 skos:exactMatch icms:13 .
+cpt:CPT-14 skos:exactMatch icms:14 .
+cpt:CPT-15 skos:exactMatch icms:15 .
+cpt:CPT-16 skos:exactMatch icms:16 .
+cpt:CPT-17 skos:exactMatch icms:17 .
+cpt:CPT-18 skos:exactMatch icms:18 .
+cpt:CPT-19 skos:exactMatch icms:19 .
+
+# --- Categories and groups (ICMS Levels 2 and 3) ---
+
+cg:CG-1 skos:exactMatch icms:1 .
+cg:CG-2 skos:exactMatch icms:2 .
+cg:CG-3 skos:exactMatch icms:3 .
+cg:CG-4 skos:exactMatch icms:4 .
+cg:CG-5 skos:exactMatch icms:5 .
+cg:CG-6 skos:exactMatch icms:6 .
+cg:CG-1-01 skos:exactMatch icms:1.01 .
+cg:CG-1-02 skos:exactMatch icms:1.02 .
+cg:CG-2-01 skos:exactMatch icms:2.01 .
+cg:CG-2-02 skos:exactMatch icms:2.02 .
+cg:CG-2-03 skos:exactMatch icms:2.03 .
+cg:CG-2-04 skos:exactMatch icms:2.04 .
+cg:CG-2-05 skos:exactMatch icms:2.05 .
+cg:CG-2-06 skos:exactMatch icms:2.06 .
+cg:CG-2-07 skos:exactMatch icms:2.07 .
+cg:CG-2-08 skos:exactMatch icms:2.08 .
+cg:CG-2-09 skos:exactMatch icms:2.09 .
+cg:CG-2-10 skos:exactMatch icms:2.10 .
+cg:CG-2-11 skos:exactMatch icms:2.11 .
+cg:CG-2-12 skos:exactMatch icms:2.12 .
+cg:CG-2-13 skos:exactMatch icms:2.13 .
+cg:CG-3-01 skos:exactMatch icms:3.01 .
+cg:CG-3-02 skos:exactMatch icms:3.02 .
+cg:CG-3-03 skos:exactMatch icms:3.03 .
+cg:CG-3-04 skos:exactMatch icms:3.04 .
+cg:CG-3-05 skos:exactMatch icms:3.05 .
+cg:CG-3-06 skos:exactMatch icms:3.06 .
+cg:CG-3-07 skos:exactMatch icms:3.07 .
+cg:CG-3-08 skos:exactMatch icms:3.08 .
+cg:CG-3-09 skos:exactMatch icms:3.09 .
+cg:CG-3-10 skos:exactMatch icms:3.10 .
+cg:CG-3-11 skos:exactMatch icms:3.11 .
+cg:CG-3-12 skos:exactMatch icms:3.12 .
+cg:CG-3-13 skos:exactMatch icms:3.13 .
+cg:CG-5-01 skos:exactMatch icms:5.01 .
+cg:CG-5-02 skos:exactMatch icms:5.02 .
+cg:CG-5-03 skos:exactMatch icms:5.03 .
+cg:CG-5-04 skos:exactMatch icms:5.04 .
+cg:CG-5-05 skos:exactMatch icms:5.05 .
+cg:CG-5-06 skos:exactMatch icms:5.06 .
+cg:CG-5-07 skos:exactMatch icms:5.07 .
+cg:CG-5-08 skos:exactMatch icms:5.08 .
+cg:CG-5-09 skos:exactMatch icms:5.09 .
+cg:CG-5-10 skos:exactMatch icms:5.10 .
+cg:CG-5-11 skos:exactMatch icms:5.11 .
+cg:CG-5-12 skos:exactMatch icms:5.12 .
+cg:CG-5-13 skos:exactMatch icms:5.13 .
+cg:CG-4-01 skos:exactMatch icms:4.01 .
+cg:CG-4-02 skos:exactMatch icms:4.02 .
+cg:CG-4-03 skos:exactMatch icms:4.03 .
+cg:CG-4-04 skos:exactMatch icms:4.04 .
+cg:CG-4-05 skos:exactMatch icms:4.05 .
+cg:CG-4-06 skos:exactMatch icms:4.06 .
+cg:CG-4-07 skos:exactMatch icms:4.07 .
+cg:CG-4-08 skos:exactMatch icms:4.08 .
+cg:CG-6-01 skos:exactMatch icms:6.01 .
+cg:CG-6-02 skos:exactMatch icms:6.02 .
+cg:CG-6-03 skos:exactMatch icms:6.03 .
+cg:CG-6-04 skos:exactMatch icms:6.04 .
+cg:CG-6-05 skos:exactMatch icms:6.05 .
+cg:CG-6-06 skos:exactMatch icms:6.06 .
+cg:CG-6-07 skos:exactMatch icms:6.07 .
+
+# --- Sub-groups (ICMS Level 4) ---
+
+cg:CG-1-01-010 skos:closeMatch icms:1.01.010 .
+cg:CG-1-01-020 skos:closeMatch icms:1.01.020 .
+cg:CG-1-01-030 skos:closeMatch icms:1.01.030 .
+cg:CG-1-01-040 skos:closeMatch icms:1.01.040 .
+cg:CG-1-01-050 skos:closeMatch icms:1.01.050 .
+cg:CG-1-01-060 skos:closeMatch icms:1.01.060 .
+cg:CG-1-02-010 skos:closeMatch icms:1.02.010 .
+cg:CG-1-02-020 skos:closeMatch icms:1.02.020 .
+cg:CG-1-02-030 skos:closeMatch icms:1.02.030 .
+cg:CG-1-02-040 skos:closeMatch icms:1.02.040 .
+cg:CG-1-02-050 skos:closeMatch icms:1.02.050 .
+cg:CG-1-02-060 skos:closeMatch icms:1.02.060 .
+cg:CG-1-02-070 skos:closeMatch icms:1.02.070 .
+cg:CG-1-02-080 skos:closeMatch icms:1.02.080 .
+cg:CG-2-01-B010 skos:closeMatch icms:B.2.01.010 .
+cg:CG-2-01-B020 skos:closeMatch icms:B.2.01.020 .
+cg:CG-2-01-B030 skos:closeMatch icms:B.2.01.030 .
+cg:CG-2-01-B040 skos:closeMatch icms:B.2.01.040 .
+cg:CG-2-01-B050 skos:closeMatch icms:B.2.01.050 .
+cg:CG-2-01-B060 skos:closeMatch icms:B.2.01.060 .
+cg:CG-2-01-B070 skos:closeMatch icms:B.2.01.070 .
+cg:CG-2-01-B080 skos:closeMatch icms:B.2.01.080 .
+cg:CG-2-01-B090 skos:closeMatch icms:B.2.01.090 .
+cg:CG-2-01-B100 skos:closeMatch icms:B.2.01.100 .
+cg:CG-2-01-B110 skos:closeMatch icms:B.2.01.110 .
+cg:CG-2-02-B010 skos:closeMatch icms:B.2.02.010 .
+cg:CG-2-02-B020 skos:closeMatch icms:B.2.02.020 .
+cg:CG-2-02-B030 skos:closeMatch icms:B.2.02.030 .
+cg:CG-2-03-B010 skos:closeMatch icms:B.2.03.010 .
+cg:CG-2-03-B020 skos:closeMatch icms:B.2.03.020 .
+cg:CG-2-03-B030 skos:closeMatch icms:B.2.03.030 .
+cg:CG-2-03-B040 skos:closeMatch icms:B.2.03.040 .
+cg:CG-2-03-B050 skos:closeMatch icms:B.2.03.050 .
+cg:CG-2-04-B010 skos:closeMatch icms:B.2.04.010 .
+cg:CG-2-04-B020 skos:closeMatch icms:B.2.04.020 .
+cg:CG-2-04-B030 skos:closeMatch icms:B.2.04.030 .
+cg:CG-2-04-B040 skos:closeMatch icms:B.2.04.040 .
+cg:CG-2-04-B050 skos:closeMatch icms:B.2.04.050 .
+cg:CG-2-04-B060 skos:closeMatch icms:B.2.04.060 .
+cg:CG-2-04-B070 skos:closeMatch icms:B.2.04.070 .
+cg:CG-2-04-B080 skos:closeMatch icms:B.2.04.080 .
+cg:CG-2-05-B010 skos:closeMatch icms:B.2.05.010 .
+cg:CG-2-05-B020 skos:closeMatch icms:B.2.05.020 .
+cg:CG-2-05-B030 skos:closeMatch icms:B.2.05.030 .
+cg:CG-2-05-B040 skos:closeMatch icms:B.2.05.040 .
+cg:CG-2-05-B050 skos:closeMatch icms:B.2.05.050 .
+cg:CG-2-05-B060 skos:closeMatch icms:B.2.05.060 .
+cg:CG-2-05-B070 skos:closeMatch icms:B.2.05.070 .
+cg:CG-2-05-B080 skos:closeMatch icms:B.2.05.080 .
+cg:CG-2-05-B090 skos:closeMatch icms:B.2.05.090 .
+cg:CG-2-05-B100 skos:closeMatch icms:B.2.05.100 .
+cg:CG-2-05-B110 skos:closeMatch icms:B.2.05.110 .
+cg:CG-2-05-B120 skos:closeMatch icms:B.2.05.120 .
+cg:CG-2-05-B130 skos:closeMatch icms:B.2.05.130 .
+cg:CG-2-05-B140 skos:closeMatch icms:B.2.05.140 .
+cg:CG-2-05-B150 skos:closeMatch icms:B.2.05.150 .
+cg:CG-2-05-B160 skos:closeMatch icms:B.2.05.160 .
+cg:CG-2-05-B170 skos:closeMatch icms:B.2.05.170 .
+cg:CG-2-05-B175 skos:closeMatch icms:B.2.05.175 .
+cg:CG-2-05-B180 skos:closeMatch icms:B.2.05.180 .
+cg:CG-2-05-B190 skos:closeMatch icms:B.2.05.190 .
+cg:CG-2-05-B200 skos:closeMatch icms:B.2.05.200 .
+cg:CG-2-05-B210 skos:closeMatch icms:B.2.05.210 .
+cg:CG-2-05-B220 skos:closeMatch icms:B.2.05.220 .
+cg:CG-2-05-B230 skos:closeMatch icms:B.2.05.230 .
+cg:CG-2-05-B240 skos:closeMatch icms:B.2.05.240 .
+cg:CG-2-05-B250 skos:closeMatch icms:B.2.05.250 .
+cg:CG-2-05-B260 skos:closeMatch icms:B.2.05.260 .
+cg:CG-2-06-B010 skos:closeMatch icms:B.2.06.010 .
+cg:CG-2-06-B020 skos:closeMatch icms:B.2.06.020 .
+cg:CG-2-06-B030 skos:closeMatch icms:B.2.06.030 .
+cg:CG-2-06-B040 skos:closeMatch icms:B.2.06.040 .
+cg:CG-2-06-B050 skos:closeMatch icms:B.2.06.050 .
+cg:CG-2-06-B060 skos:closeMatch icms:B.2.06.060 .
+cg:CG-2-07-B010 skos:closeMatch icms:B.2.07.010 .
+cg:CG-2-07-B020 skos:closeMatch icms:B.2.07.020 .
+cg:CG-2-07-B030 skos:closeMatch icms:B.2.07.030 .
+cg:CG-2-07-B040 skos:closeMatch icms:B.2.07.040 .
+cg:CG-2-07-B050 skos:closeMatch icms:B.2.07.050 .
+cg:CG-2-07-B060 skos:closeMatch icms:B.2.07.060 .
+cg:CG-2-07-B070 skos:closeMatch icms:B.2.07.070 .
+cg:CG-2-01-C010 skos:closeMatch icms:C.2.01.010 .
+cg:CG-2-01-C020 skos:closeMatch icms:C.2.01.020 .
+cg:CG-2-01-C030 skos:closeMatch icms:C.2.01.030 .
+cg:CG-2-01-C040 skos:closeMatch icms:C.2.01.040 .
+cg:CG-2-01-C050 skos:closeMatch icms:C.2.01.050 .
+cg:CG-2-01-C060 skos:closeMatch icms:C.2.01.060 .
+cg:CG-2-01-C070 skos:closeMatch icms:C.2.01.070 .
+cg:CG-2-01-C080 skos:closeMatch icms:C.2.01.080 .
+cg:CG-2-01-C090 skos:closeMatch icms:C.2.01.090 .
+cg:CG-2-01-C100 skos:closeMatch icms:C.2.01.100 .
+cg:CG-2-01-C110 skos:closeMatch icms:C.2.01.110 .
+cg:CG-2-01-C120 skos:closeMatch icms:C.2.01.120 .
+cg:CG-2-01-C650 skos:closeMatch icms:C.2.01.650 .
+cg:CG-2-02-C010 skos:closeMatch icms:C.2.02.010 .
+cg:CG-2-02-C020 skos:closeMatch icms:C.2.02.020 .
+cg:CG-2-02-C025 skos:closeMatch icms:C.2.02.025 .
+cg:CG-2-02-C030 skos:closeMatch icms:C.2.02.030 .
+cg:CG-2-02-C040 skos:closeMatch icms:C.2.02.040 .
+cg:CG-2-02-C050 skos:closeMatch icms:C.2.02.050 .
+cg:CG-2-02-C060 skos:closeMatch icms:C.2.02.060 .
+cg:CG-2-02-C070 skos:closeMatch icms:C.2.02.070 .
+cg:CG-2-02-C080 skos:closeMatch icms:C.2.02.080 .
+cg:CG-2-02-C090 skos:closeMatch icms:C.2.02.090 .
+cg:CG-2-02-C100 skos:closeMatch icms:C.2.02.100 .
+cg:CG-2-02-C110 skos:closeMatch icms:C.2.02.110 .
+cg:CG-2-02-C120 skos:closeMatch icms:C.2.02.120 .
+cg:CG-2-02-C660 skos:closeMatch icms:C.2.02.660 .
+cg:CG-2-02-C680 skos:closeMatch icms:C.2.02.680 .
+cg:CG-2-03-C010 skos:closeMatch icms:C.2.03.010 .
+cg:CG-2-03-C020 skos:closeMatch icms:C.2.03.020 .
+cg:CG-2-03-C030 skos:closeMatch icms:C.2.03.030 .
+cg:CG-2-03-C040 skos:closeMatch icms:C.2.03.040 .
+cg:CG-2-03-C050 skos:closeMatch icms:C.2.03.050 .
+cg:CG-2-03-C060 skos:closeMatch icms:C.2.03.060 .
+cg:CG-2-03-C070 skos:closeMatch icms:C.2.03.070 .
+cg:CG-2-03-C080 skos:closeMatch icms:C.2.03.080 .
+cg:CG-2-03-C090 skos:closeMatch icms:C.2.03.090 .
+cg:CG-2-03-C100 skos:closeMatch icms:C.2.03.100 .
+cg:CG-2-03-C105 skos:closeMatch icms:C.2.03.105 .
+cg:CG-2-03-C110 skos:closeMatch icms:C.2.03.110 .
+cg:CG-2-03-C120 skos:closeMatch icms:C.2.03.120 .
+cg:CG-2-03-C130 skos:closeMatch icms:C.2.03.130 .
+cg:CG-2-03-C140 skos:closeMatch icms:C.2.03.140 .
+cg:CG-2-03-C700 skos:closeMatch icms:C.2.03.700 .
+cg:CG-2-03-C720 skos:closeMatch icms:C.2.03.720 .
+cg:CG-2-03-C750 skos:closeMatch icms:C.2.03.750 .
+cg:CG-2-04-C010 skos:closeMatch icms:C.2.04.010 .
+cg:CG-2-04-C020 skos:closeMatch icms:C.2.04.020 .
+cg:CG-2-04-C030 skos:closeMatch icms:C.2.04.030 .
+cg:CG-2-04-C040 skos:closeMatch icms:C.2.04.040 .
+cg:CG-2-04-C050 skos:closeMatch icms:C.2.04.050 .
+cg:CG-2-04-C060 skos:closeMatch icms:C.2.04.060 .
+cg:CG-2-04-C070 skos:closeMatch icms:C.2.04.070 .
+cg:CG-2-04-C080 skos:closeMatch icms:C.2.04.080 .
+cg:CG-2-04-C090 skos:closeMatch icms:C.2.04.090 .
+cg:CG-2-04-C100 skos:closeMatch icms:C.2.04.100 .
+cg:CG-2-05-C005 skos:closeMatch icms:C.2.05.005 .
+cg:CG-2-05-C010 skos:closeMatch icms:C.2.05.010 .
+cg:CG-2-05-C020 skos:closeMatch icms:C.2.05.020 .
+cg:CG-2-05-C030 skos:closeMatch icms:C.2.05.030 .
+cg:CG-2-05-C040 skos:closeMatch icms:C.2.05.040 .
+cg:CG-2-05-C050 skos:closeMatch icms:C.2.05.050 .
+cg:CG-2-05-C060 skos:closeMatch icms:C.2.05.060 .
+cg:CG-2-05-C070 skos:closeMatch icms:C.2.05.070 .
+cg:CG-2-05-C080 skos:closeMatch icms:C.2.05.080 .
+cg:CG-2-05-C090 skos:closeMatch icms:C.2.05.090 .
+cg:CG-2-05-C100 skos:closeMatch icms:C.2.05.100 .
+cg:CG-2-05-C110 skos:closeMatch icms:C.2.05.110 .
+cg:CG-2-05-C115 skos:closeMatch icms:C.2.05.115 .
+cg:CG-2-05-C120 skos:closeMatch icms:C.2.05.120 .
+cg:CG-2-05-C800 skos:broadMatch icms:2.05 .
+cg:CG-2-05-C810 skos:broadMatch icms:2.05 .
+cg:CG-2-06-C010 skos:closeMatch icms:C.2.06.010 .
+cg:CG-2-06-C020 skos:closeMatch icms:C.2.06.020 .
+cg:CG-2-06-C030 skos:closeMatch icms:C.2.06.030 .
+cg:CG-2-06-C040 skos:closeMatch icms:C.2.06.040 .
+cg:CG-2-06-C050 skos:closeMatch icms:C.2.06.050 .
+cg:CG-2-07-C010 skos:closeMatch icms:C.2.07.010 .
+cg:CG-2-07-C020 skos:closeMatch icms:C.2.07.020 .
+cg:CG-2-07-C030 skos:closeMatch icms:C.2.07.030 .
+cg:CG-2-07-C040 skos:closeMatch icms:C.2.07.040 .
+cg:CG-2-07-C050 skos:closeMatch icms:C.2.07.050 .
+cg:CG-2-07-C800 skos:broadMatch icms:2.07 .
+cg:CG-2-08-010 skos:closeMatch icms:B.2.08.010, icms:C.2.08.010 .
+cg:CG-2-08-020 skos:closeMatch icms:B.2.08.020, icms:C.2.08.020 .
+cg:CG-2-08-030 skos:closeMatch icms:B.2.08.030, icms:C.2.08.030 .
+cg:CG-2-08-040 skos:closeMatch icms:B.2.08.040, icms:C.2.08.040 .
+cg:CG-2-08-050 skos:closeMatch icms:B.2.08.050, icms:C.2.08.050 .
+cg:CG-2-08-060 skos:closeMatch icms:B.2.08.060, icms:C.2.08.060 .
+cg:CG-2-08-070 skos:closeMatch icms:B.2.08.070, icms:C.2.08.070 .
+cg:CG-2-08-080 skos:closeMatch icms:B.2.08.080, icms:C.2.08.080 .
+cg:CG-2-08-090 skos:closeMatch icms:B.2.08.090, icms:C.2.08.090 .
+cg:CG-2-08-100 skos:closeMatch icms:B.2.08.100, icms:C.2.08.100 .
+cg:CG-2-08-110 skos:closeMatch icms:B.2.08.110, icms:C.2.08.110 .
+cg:CG-2-08-120 skos:closeMatch icms:B.2.08.120, icms:C.2.08.120 .
+cg:CG-2-08-130 skos:closeMatch icms:B.2.08.130, icms:C.2.08.130 .
+cg:CG-2-08-140 skos:closeMatch icms:B.2.08.140, icms:C.2.08.140 .
+cg:CG-2-08-C025 skos:closeMatch icms:C.2.08.025 .
+cg:CG-2-08-C045 skos:closeMatch icms:C.2.08.045 .
+cg:CG-2-08-C055 skos:closeMatch icms:C.2.08.055 .
+cg:CG-2-08-C065 skos:closeMatch icms:C.2.08.065 .
+cg:CG-2-09-010 skos:closeMatch icms:B.2.09.010, icms:C.2.09.010 .
+cg:CG-2-09-020 skos:closeMatch icms:B.2.09.020, icms:C.2.09.020 .
+cg:CG-2-09-030 skos:closeMatch icms:B.2.09.030, icms:C.2.09.030 .
+cg:CG-2-09-040 skos:closeMatch icms:B.2.09.040, icms:C.2.09.040 .
+cg:CG-2-10-010 skos:closeMatch icms:B.2.10.010, icms:C.2.10.010 .
+cg:CG-2-10-020 skos:closeMatch icms:B.2.10.020, icms:C.2.10.020 .
+cg:CG-2-11-010 skos:closeMatch icms:B.2.11.010, icms:C.2.11.010 .
+cg:CG-2-11-020 skos:closeMatch icms:B.2.11.020, icms:C.2.11.020 .
+cg:CG-2-12-010 skos:closeMatch icms:B.2.12.010, icms:C.2.12.010 .
+cg:CG-2-12-020 skos:closeMatch icms:B.2.12.020, icms:C.2.12.020 .
+cg:CG-2-12-800 skos:broadMatch icms:2.12 .
+cg:CG-2-13-010 skos:closeMatch icms:B.2.13.010, icms:C.2.13.010 .
+cg:CG-2-13-020 skos:closeMatch icms:B.2.13.020, icms:C.2.13.020 .
+cg:CG-2-13-030 skos:closeMatch icms:B.2.13.030, icms:C.2.13.030 .
+cg:CG-2-13-040 skos:closeMatch icms:B.2.13.040, icms:C.2.13.040 .
+cg:CG-2-13-800 skos:broadMatch icms:2.13 .

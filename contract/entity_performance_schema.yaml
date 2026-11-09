@@ -49,6 +49,13 @@ classes:
     slot_usage:
       property_key:
         range: StructuralPropertyKey
+  IndoorEnvironmentProperty:
+    is_a: PerformanceProperty
+    class_uri: pbs:IndoorEnvironmentProperty
+    description: Normalized indoor environment property of a space (temperature, humidity, air, light, occupancy).
+    slot_usage:
+      property_key:
+        range: IndoorEnvironmentPropertyKey
   SecurityProperty:
     is_a: PerformanceProperty
     class_uri: pbs:SecurityProperty
@@ -56,6 +63,13 @@ classes:
     slot_usage:
       property_key:
         range: SecurityPropertyKey
+  EnvironmentalProperty:
+    is_a: PerformanceProperty
+    class_uri: pbs:EnvironmentalProperty
+    description: Normalized environmental property of an element type (embodied greenhouse gas emissions and primary energy).
+    slot_usage:
+      property_key:
+        range: EnvironmentalPropertyKey
   MaterialProperty:
     is_a: PerformanceProperty
     class_uri: pbs:MaterialProperty

@@ -511,7 +511,7 @@
 <tbody>
 <tr>
 <td><a href="PerformanceRequirement.html">PerformanceRequirement</a></td>
-<td>Performance target requirement (U-value, fire rating, airflow, acoustic, etc.). Boolean targets use target_value_boolean with requirement_property_key aligned to entity slot names where applicable (for example is_heated on Space). Application pipelines compare the subject entity slot to the requirement target and record the outcome as MatchChange (match_status met, unmet, or unknown).</td>
+<td>Performance target requirement (U-value, fire rating, airflow, acoustic, etc.). Boolean targets use target_value_boolean with requirement_property_key aligned to entity slot names where applicable (for example is_heated on Space). Numeric and textual targets use a permissible value of a PerformanceProperty key enum (FirePropertyKey, AcousticPropertyKey, ThermalPropertyKey, StructuralPropertyKey, IndoorEnvironmentPropertyKey, EnvironmentalPropertyKey, SecurityPropertyKey, MaterialPropertyKey) as requirement_property_key. Application pipelines compare the subject entity slot, or the performance_properties entry with the same property_key, to the requirement target and record the outcome as MatchChange (match_status met, unmet, or unknown; unknown when the subject has no value).</td>
 <td>no</td>
 </tr>
 <tr>

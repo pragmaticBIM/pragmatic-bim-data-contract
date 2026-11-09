@@ -1,0 +1,36 @@
+@prefix use: <https://example.org/ch/abstract-use/> .
+@prefix sia: <https://example.org/sia/d0165/flaechenbaum/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix map: <https://example.org/mapping/> .
+
+map:abstractUseToSia416Mapping a dcterms:Dataset ;
+  dcterms:title "Abstract use to SIA 416 mapping"@en ;
+  dcterms:title "Mapping abstrakter Nutzungen zu SIA 416"@de ;
+  dcterms:references use:scheme, sia:scheme ;
+  dcterms:issued "2026-10-04" ;
+  dcterms:description "Maps each use to the SIA 416 area class that dominates its gross volume. Uses that are the purpose of the building map to main usable area (HNF); storage, parking and building services keep their own class. Individual spaces inside a volume are classified through the space activity mapping."@en ;
+  dcterms:description "Ordnet jede Nutzung der SIA-416-Flächenart zu, die ihr Bruttovolumen prägt. Nutzungen, für die gebaut wird, ergeben Hauptnutzfläche (HNF); Keller, Parkierung und Technik behalten ihre eigene Flächenart. Einzelne Räume innerhalb eines Volumens werden über das Mapping der Raumaktivität eingeteilt."@de .
+
+# --- Main usable area ---
+
+use:residential skos:closeMatch sia:HNF .
+use:office skos:closeMatch sia:HNF .
+use:education skos:closeMatch sia:HNF .
+use:retail skos:closeMatch sia:HNF .
+use:food-service skos:closeMatch sia:HNF .
+use:accommodation skos:closeMatch sia:HNF .
+use:assembly skos:closeMatch sia:HNF .
+use:healthcare skos:closeMatch sia:HNF .
+use:production skos:closeMatch sia:HNF .
+use:logistics skos:closeMatch sia:HNF .
+use:sport skos:closeMatch sia:HNF .
+use:laboratory skos:closeMatch sia:HNF .
+use:data-centre skos:closeMatch sia:HNF .
+use:passenger-transport skos:closeMatch sia:HNF .
+
+# --- Other area classes ---
+
+use:storage skos:closeMatch sia:NNF .
+use:parking skos:closeMatch sia:NNF .
+use:building-services skos:closeMatch sia:FF .

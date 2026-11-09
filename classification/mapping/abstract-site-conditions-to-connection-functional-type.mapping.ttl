@@ -1,0 +1,27 @@
+@prefix sc: <https://example.org/abstract/site-condition/> .
+@prefix cft: <https://example.org/abstract/connection-functional-type/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix map: <https://example.org/mapping/> .
+
+map:siteConditionsToConnectionFunctionalTypeMapping a dcterms:Dataset ;
+  dcterms:title "Site conditions to connection functional type mapping"@en ;
+  dcterms:title "Mapping Standortbedingungen zu funktionellem Verbindungstyp"@de ;
+  dcterms:references sc:scheme, cft:scheme ;
+  dcterms:issued "2026-11-09" ;
+  dcterms:description "Links utility connections of a site (SC-UTL-*) to the connection functional type of the medium they carry. Uses skos:relatedMatch: SC-UTL classifies the connection of the site to a network, ConnectionFunctionalType classifies connections between spaces by medium. The medium is the same; the scope differs."@en ;
+  dcterms:description "Verknüpft Werkanschlüsse eines Grundstücks (SC-UTL-*) mit dem funktionellen Verbindungstyp des transportierten Mediums. skos:relatedMatch: SC-UTL klassifiziert den Anschluss des Grundstücks an ein Netz, ConnectionFunctionalType klassifiziert Verbindungen zwischen Räumen nach Medium. Das Medium ist dasselbe, der Geltungsbereich verschieden."@de .
+
+sc:SC-UTL-WATER skos:relatedMatch cft:fresh_water .
+
+sc:SC-UTL-WASTEWATER skos:relatedMatch cft:waste_water .
+
+sc:SC-UTL-STORMWATER skos:relatedMatch cft:waste_water .
+
+sc:SC-UTL-ELECTRICITY skos:relatedMatch cft:electrical .
+
+sc:SC-UTL-TELECOM skos:relatedMatch cft:data .
+
+sc:SC-UTL-GAS skos:relatedMatch cft:special_media .
+
+sc:SC-UTL-THERMAL skos:relatedMatch cft:heating, cft:cooling .

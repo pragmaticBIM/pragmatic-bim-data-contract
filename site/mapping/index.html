@@ -765,6 +765,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#performance-targets-on-walls-slabs-and-spaces" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Performance targets on walls, slabs, and spaces
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#ifcslab-predefinedtype-split" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1308,6 +1319,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#performance-targets-on-walls-slabs-and-spaces" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Performance targets on walls, slabs, and spaces
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#ifcslab-predefinedtype-split" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1784,9 +1806,9 @@ ifc_mapping.merged.yaml   ← single file for adapters
 <h2 id="yaml-file-structure">YAML file structure<a class="headerlink" href="#yaml-file-structure" title="Permanent link">&para;</a></h2>
 <p>The entrypoint <a href="ifc_mapping.yaml"><code>ifc_mapping.yaml</code></a> declares version metadata and an <code>imports</code> list. Split modules compose the full mapping (see <strong>File layout and merge workflow</strong> above). Adapters typically load <a href="ifc_mapping.merged.yaml"><code>ifc_mapping.merged.yaml</code></a>.</p>
 <p>Merged structure:</p>
-<div class="highlight"><pre><span></span><code><span class="nt">mapping_version</span><span class="p">:</span><span class="w"> </span><span class="s">"1.4.0"</span>
+<div class="highlight"><pre><span></span><code><span class="nt">mapping_version</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;1.4.0&quot;</span>
 <span class="nt">schema_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://schema.pragmaticbim.ch/</span>
-<span class="nt">canonical_type_version</span><span class="p">:</span><span class="w"> </span><span class="s">"v0.0.7"</span>
+<span class="nt">canonical_type_version</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;v0.0.7&quot;</span>
 
 <span class="nt">conventions</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">...</span>
 <span class="nt">pset_fallbacks</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">...</span>
@@ -2020,23 +2042,23 @@ ifc_mapping.merged.yaml   ← single file for adapters
 <p><code>metadata_value</code> is stored as text (<code>MetadataEntry.metadata_value</code>). The adapter serializes IFC values (numbers, booleans, enums, object references) to strings. Object references may use GlobalId where resolvable.</p>
 <p>Example <code>attributes</code> JSONB fragment:</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">"ifc_global_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3l$8vj$nL1Pu4$G9QjXjC"</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">"separator_wall_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unit_boundary"</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">"performance_properties"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">  </span><span class="nt">&quot;ifc_global_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;3l$8vj$nL1Pu4$G9QjXjC&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;separator_wall_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;unit_boundary&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;performance_properties&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">    </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">"property_class"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FireProperty"</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">"property_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"resistance_rating"</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">"property_value_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">"property_value_string"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EI60"</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">"source_pset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pset_WallCommon"</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">"source_property"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FireRating"</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">"source_value_raw"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EI 60"</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">"mapping_version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.4.0"</span>
+<span class="w">      </span><span class="nt">&quot;property_class&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;FireProperty&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;property_key&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;resistance_rating&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;property_value_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;property_value_string&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;EI60&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;source_pset&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Pset_WallCommon&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;source_property&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;FireRating&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;source_value_raw&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;EI 60&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;mapping_version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.4.0&quot;</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">  </span><span class="p">],</span>
-<span class="w">  </span><span class="nt">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nt">"metadata_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IfcWall.OverallHeight"</span><span class="p">,</span><span class="w"> </span><span class="nt">"metadata_value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3.0"</span><span class="w"> </span><span class="p">},</span>
-<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nt">"metadata_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pset_WallCommon.FireRating"</span><span class="p">,</span><span class="w"> </span><span class="nt">"metadata_value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EI 60"</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="nt">&quot;metadata&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;metadata_key&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;IfcWall.OverallHeight&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;metadata_value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;3.0&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;metadata_key&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Pset_WallCommon.FireRating&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;metadata_value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;EI 60&quot;</span><span class="w"> </span><span class="p">}</span>
 <span class="w">  </span><span class="p">]</span>
 <span class="p">}</span>
 </code></pre></div>
@@ -2308,7 +2330,7 @@ ifc_mapping.merged.yaml   ← single file for adapters
 <div class="highlight"><pre><span></span><code><span class="k">PREFIX</span> <span class="nn">pbs</span><span class="p">:</span> <span class="nl">&lt;https://schema.pragmaticbim.ch/&gt;</span>
 <span class="k">SELECT</span> <span class="nv">?wall</span> <span class="k">WHERE</span> <span class="p">{</span>
   <span class="nv">?wall</span> <span class="k">a</span> <span class="nn">pbs</span><span class="p">:</span><span class="nt">SeparatorWall</span> <span class="p">;</span> <span class="nn">pbs</span><span class="p">:</span><span class="nt">performance_properties</span> <span class="nv">?p</span> <span class="p">.</span>
-  <span class="nv">?p</span> <span class="nn">pbs</span><span class="p">:</span><span class="nt">property_key</span> <span class="nn">pbs</span><span class="p">:</span><span class="nt">fire_property_resistance_rating</span> <span class="p">;</span> <span class="nn">pbs</span><span class="p">:</span><span class="nt">property_value_string</span> <span class="s">"EI90"</span> <span class="p">.</span>
+  <span class="nv">?p</span> <span class="nn">pbs</span><span class="p">:</span><span class="nt">property_key</span> <span class="nn">pbs</span><span class="p">:</span><span class="nt">fire_property_resistance_rating</span> <span class="p">;</span> <span class="nn">pbs</span><span class="p">:</span><span class="nt">property_value_string</span> <span class="s">&quot;EI90&quot;</span> <span class="p">.</span>
 <span class="p">}</span>
 </code></pre></div>
 <hr />
@@ -2565,6 +2587,87 @@ ifc_mapping.merged.yaml   ← single file for adapters
 <span class="nt">from_revision</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">...</span>
 <span class="nt">to_revision</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">...</span>
 </code></pre></div>
+<h3 id="performance-targets-on-walls-slabs-and-spaces">Performance targets on walls, slabs, and spaces<a class="headerlink" href="#performance-targets-on-walls-slabs-and-spaces" title="Permanent link">&para;</a></h3>
+<p>Element catalogues (for example the pragmatic BIM Swiss add-ons) pair each target attribute with the attribute carrying the delivered value. The delivered value becomes a <code>PerformanceProperty</code> on <code>Entity.performance_properties</code>; the target becomes a <code>PerformanceRequirement</code> linked via <code>applies_to_entities</code>, with <code>requirement_property_key</code> set to the same key. Comparing both yields a <code>MatchChange</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Target (requirement pset)</th>
+<th>Delivered value</th>
+<th>Performance class</th>
+<th>Key</th>
+<th>Operator</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Wall, slab</td>
+<td><code>ePset_WallRequirement</code> / <code>ePset_SlabRequirement.FireRatingRequired</code></td>
+<td><code>Pset_WallCommon</code> / <code>Pset_SlabCommon.FireRating</code></td>
+<td><code>FireProperty</code></td>
+<td><code>resistance_rating</code></td>
+<td><code>minimum</code></td>
+</tr>
+<tr>
+<td>Exterior wall, roof, base slab</td>
+<td><code>ThermalTransmittanceMax</code></td>
+<td><code>Pset_WallCommon</code> / <code>Pset_SlabCommon.ThermalTransmittance</code></td>
+<td><code>ThermalProperty</code></td>
+<td><code>u_value</code></td>
+<td><code>maximum</code></td>
+</tr>
+<tr>
+<td>Interior wall, floor slab</td>
+<td><code>AirborneSoundInsulationMin</code></td>
+<td><code>ePset_Wall</code> / <code>ePset_Slab.AirborneSoundInsulation</code></td>
+<td><code>AcousticProperty</code></td>
+<td><code>airborne_sound_rating_db</code></td>
+<td><code>minimum</code></td>
+</tr>
+<tr>
+<td>Floor slab</td>
+<td><code>ImpactSoundLevelMax</code></td>
+<td><code>ePset_Slab.ImpactSoundLevel</code></td>
+<td><code>AcousticProperty</code></td>
+<td><code>impact_sound_rating_db</code></td>
+<td><code>maximum</code></td>
+</tr>
+<tr>
+<td>Load-bearing wall, floor slab, base slab</td>
+<td><code>SeismicStructureClassRequired</code></td>
+<td><code>ePset_Wall</code> / <code>ePset_Slab.SeismicStructureClass</code></td>
+<td><code>StructuralProperty</code></td>
+<td><code>seismic_structure_class</code></td>
+<td><code>minimum</code></td>
+</tr>
+<tr>
+<td>Wall, slab</td>
+<td><code>GlobalWarmingPotentialMax</code></td>
+<td><code>ePset_Wall</code> / <code>ePset_Slab.GlobalWarmingPotential</code></td>
+<td><code>EnvironmentalProperty</code></td>
+<td><code>gwp_embodied</code></td>
+<td><code>maximum</code></td>
+</tr>
+<tr>
+<td>Space</td>
+<td><code>ePset_SpaceRequirement.&lt;Key&gt;</code> (for example <code>SummerTemperatureMax</code>)</td>
+<td><code>ePset_Space.&lt;Key&gt;Actual</code></td>
+<td><code>IndoorEnvironmentProperty</code></td>
+<td>for example <code>summer_temperature_max</code></td>
+<td>per key</td>
+</tr>
+<tr>
+<td>Space</td>
+<td><code>ePset_SpaceRequirement.DesignAreaLoad</code></td>
+<td><code>ePset_Space.DesignAreaLoadActual</code></td>
+<td><code>StructuralProperty</code></td>
+<td><code>design_area_load</code></td>
+<td><code>minimum</code></td>
+</tr>
+</tbody>
+</table>
+<p>Requirement psets map to requirements, never to <code>performance_properties</code>: a target value on an element is not evidence that the element performs.</p>
 <h3 id="ifcslab-predefinedtype-split">IfcSlab PredefinedType split<a class="headerlink" href="#ifcslab-predefinedtype-split" title="Permanent link">&para;</a></h3>
 <p>Per <strong>IfcSlabTypeEnum</strong> (IFC 4.3). <code>CEILING</code> is <strong>not</strong> a slab type — ceilings are <code>IfcCovering</code> with <code>PredefinedType=CEILING</code>.</p>
 <table>
