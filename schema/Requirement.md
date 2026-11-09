@@ -35,6 +35,8 @@ Requirement <|-- PerformanceRequirement
 click PerformanceRequirement href "./PerformanceRequirement.html" _blank
 Requirement <|-- SpatialRequirement
 click SpatialRequirement href "./SpatialRequirement.html" _blank
+Requirement <|-- IdentificationRequirement
+click IdentificationRequirement href "./IdentificationRequirement.html" _blank
 Requirement <|-- RegulatoryRequirement
 click RegulatoryRequirement href "./RegulatoryRequirement.html" _blank
 Requirement <|-- BriefRequirement
@@ -68,6 +70,7 @@ click StatusType href "./StatusType.html" _blank
     * **Requirement**
         * [PerformanceRequirement](PerformanceRequirement.md)
         * [SpatialRequirement](SpatialRequirement.md)
+        * [IdentificationRequirement](IdentificationRequirement.md)
         * [RegulatoryRequirement](RegulatoryRequirement.md)
         * [BriefRequirement](BriefRequirement.md)
         * [DeliverableRequirement](DeliverableRequirement.md)

@@ -1,0 +1,3135 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://schema.pragmaticbim.ch/classification/cost-group.html">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Abstract cost groups - Pragmatic BIM Data Contract</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/pragmatic-bim-brand.css">
+    
+      <link rel="stylesheet" href="../assets/stylesheets/panzoom.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  <meta name="panzoom-theme" content="material">
+<meta name="panzoom-data" content='{"selectors": [".d2", ".mermaid"], "initial_zoom_level": 1.0}'> </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#abstract-cost-groups" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../index.html" title="Pragmatic BIM Data Contract" class="md-header__button md-logo" aria-label="Pragmatic BIM Data Contract" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Pragmatic BIM Data Contract
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Abstract cost groups
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/pragmaticBIM/pragmatic-bim-data-contract" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    pragmaticBIM/pragmatic-bim-data-contract
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../index.html" title="Pragmatic BIM Data Contract" class="md-nav__button md-logo" aria-label="Pragmatic BIM Data Contract" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Pragmatic BIM Data Contract
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/pragmaticBIM/pragmatic-bim-data-contract" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    pragmaticBIM/pragmatic-bim-data-contract
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pragmatic BIM Data Contract
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schema/pragmatic-bim.docs.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Schema
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mapping/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mappings to IFC
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Classifications
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#scheme" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scheme
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hierarchy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hierarchy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#concepts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Concepts
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="abstract-cost-groups">Abstract cost groups<a class="headerlink" href="#abstract-cost-groups" title="Permanent link">&para;</a></h1>
+<p>Source: <a href="sources/cost-group.ttl"><code>cost-groups.skos.ttl</code></a></p>
+<h2 id="scheme">Scheme<a class="headerlink" href="#scheme" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>definition (de):</strong> Offene Lebenszyklus-Kostengliederung für Hochbau und Tiefbau. Kategorien der Ebene 2 (CG-1 Erwerb bis CG-6 Lebensende), Gruppen der Ebene 3 (CG-{C}-{GG}) und Untergruppen der Ebene 4 (CG-{C}-{GG}-{SSS}). Erstellung, Erneuerung und Instandhaltung teilen dieselben dreizehn Gruppen. Untergruppen mit Präfix B gelten für Gebäude, mit Präfix C für Tiefbauwerke (siehe pbs:projectType); Untergruppen ohne Buchstaben gelten für alle Projektarten. Codes ab 800 sind eigene Erweiterungen ohne ICMS-Untergruppe.</li>
+<li><strong>definition (en):</strong> Open life-cycle cost structure for buildings and civil engineering works. Level 2 categories (CG-1 acquisition to CG-6 end of life), Level 3 groups (CG-{C}-{GG}) and Level 4 sub-groups (CG-{C}-{GG}-{SSS}). Construction, renewal and maintenance share the same thirteen groups. Sub-groups with a B prefix apply to buildings, those with a C prefix to civil engineering works (see pbs:projectType); sub-groups without a letter apply to all project types. Codes 800 and above are own extensions without an ICMS sub-group equivalent.</li>
+<li><strong>prefLabel (de):</strong> Abstrakte Kostengruppen</li>
+<li><strong>prefLabel (en):</strong> Abstract cost groups</li>
+<li><strong>title (de):</strong> Abstrakte Kostengruppen</li>
+<li><strong>title (en):</strong> Abstract cost groups</li>
+</ul>
+<h2 id="hierarchy">Hierarchy<a class="headerlink" href="#hierarchy" title="Permanent link">&para;</a></h2>
+<p>Hierarchy diagram omitted (260 concepts; Mermaid render limit is 80 nodes). See the Concepts table below or the source TTL.</p>
+<h2 id="concepts">Concepts<a class="headerlink" href="#concepts" title="Permanent link">&para;</a></h2>
+<div class="pbs-vocab-concepts" data-default-lang="en" data-active-lang="en">
+<div class="pbs-lang-switcher" role="group" aria-label="Language">
+<button type="button" class="pbs-lang-btn" data-lang="de">DE</button>
+<button type="button" class="pbs-lang-btn" data-lang="en">EN</button>
+</div>
+<table>
+<thead>
+<tr>
+<th>Notation</th>
+<th>Broader</th>
+<th class="pbs-lang-col" data-lang="de" data-field="label">Label</th>
+<th class="pbs-lang-col" data-lang="de" data-field="definition">Definition</th>
+<th class="pbs-lang-col" data-lang="de" data-field="scope_note">Scope note</th>
+<th class="pbs-lang-col" data-lang="en" data-field="label">Label</th>
+<th class="pbs-lang-col" data-lang="en" data-field="definition">Definition</th>
+<th class="pbs-lang-col" data-lang="en" data-field="scope_note">Scope note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CG-1</td>
+<td></td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Erwerb</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Kosten für die Sicherung des Grundstücks sowie für Verwaltung, Finanzierung, Recht und Vermarktung durch die Bauherrschaft.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Acquisition</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Costs of securing the site and of the client&#x27;s administration, finance, legal and marketing activities.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-1-01</td>
+<td>CG-1</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Grundstückserwerb</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Preis und Nebenkosten für den Erwerb von Land, Baurechten oder bestehenden Liegenschaften.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Site acquisition</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Price and associated costs of securing land, building rights or existing property.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-1-01-010</td>
+<td>CG-1-01</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Kauf von Land und Rechten</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Preis für Land, Baurechte oder bestehende Liegenschaften.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Land and rights purchase</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Price paid for land, building rights or existing property.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-1-01-020</td>
+<td>CG-1-01</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Entschädigung von Nutzenden</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Zahlungen an bisherige Nutzende oder Berechtigte.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Compensation to occupiers</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Payments to existing occupiers or holders of rights.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-1-01-030</td>
+<td>CG-1-01</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Abgeltung statt Bauleistung</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Zahlungen an Voreigentümer für Rückbau oder Anpassungen anstelle der Ausführung.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Payment in lieu of site works</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Payments to previous owners for demolition or modification instead of carrying out the work.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-1-01-040</td>
+<td>CG-1-01</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Beiträge an Denkmal- und Umweltschutz</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Beiträge zur Erhaltung von Denkmälern, Kultur oder Umwelt.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Heritage and environment contributions</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Contributions required to preserve heritage, culture or environment.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-1-01-050</td>
+<td>CG-1-01</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Nebenkosten Erwerb</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Vermittlungs-, Notariats-, Grundbuch-, Vermessungs- und Anwaltskosten für den Erwerb.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Acquisition fees</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Agent, notary, land registry, survey and legal fees for the acquisition.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-1-01-060</td>
+<td>CG-1-01</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Steuern Erwerb</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Handänderungs- und Gewinnsteuern sowie Abgaben auf den Erwerb.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Acquisition taxes</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Transfer and gains taxes and statutory charges on the acquisition.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-1-02</td>
+<td>CG-1</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Verwaltung, Finanzierung, Recht und Vermarktung der Bauherrschaft</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Gemeinkosten der Bauherrschaft, Zinsen, Rechts-, Buchhaltungs-, Verkaufs- und Vermietungskosten.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Client administration, finance, legal and marketing</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Client-side overheads, interest, legal, accounting, sales and leasing costs.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-1-02-010</td>
+<td>CG-1-02</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Allgemeine Gemeinkosten Bauherrschaft</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Anteil der allgemeinen Bürokosten der Bauherrschaft.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Client general overheads</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Share of the client&#x27;s general office costs.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-1-02-020</td>
+<td>CG-1-02</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Projektadministration Bauherrschaft</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Internes Projektteam, Projektbüro und zugehörige Aufwendungen der Bauherrschaft.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Client project administration</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Client&#x27;s in-house project team, project office and related expenses.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-1-02-030</td>
+<td>CG-1-02</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Zinsen und Finanzierung</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Zinsen und Finanzierungskosten während des Projekts.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Interest and finance</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Interest and financing charges during the project.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-1-02-040</td>
+<td>CG-1-02</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Rechtskosten Bauherrschaft</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Rechtskosten, die nicht den Erwerb betreffen.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Client legal expenses</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Legal costs not related to the acquisition.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-1-02-050</td>
+<td>CG-1-02</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Buchhaltung</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Buchhaltungs- und Revisionskosten des Projekts.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Accounting</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Accounting and audit costs of the project.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-1-02-060</td>
+<td>CG-1-02</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Verkauf, Vermietung und Vermarktung</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Kosten für Verkauf, Vermietung, Werbung und Vermarktung des Bauwerks.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Sales, leasing and marketing</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Costs of selling, letting, advertising and promoting the asset.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-1-02-070</td>
+<td>CG-1-02</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Steuern auf Verkauf und Vermietung</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Steuern und Abgaben auf Verkauf oder Vermietung.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Sales and leasing taxes</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Taxes and charges on sale or lease.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-1-02-080</td>
+<td>CG-1-02</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Betriebsbewilligungen</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Bewilligungen für Nutzung oder Betrieb des Bauwerks.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Operating licences and permits</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Licences and permits required to use or operate the asset.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2</td>
+<td></td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Erstellung</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Kosten für die Erstellung des Bauwerks von der Baustellenvorbereitung bis zur Übergabe, einschliesslich Planung und Bauleitung.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Construction</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Costs of creating the constructed asset from site preparation to handover, including design and supervision.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-01</td>
+<td>CG-2</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Rückbau, Baustellenvorbereitung und Geländeformung</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Untersuchung, Räumung, Rückbau, Sanierung und Formung des Geländes vor den dauerhaften Arbeiten.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Demolition, site preparation and formation</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Investigation, clearance, demolition, remediation and forming of the site before the permanent works.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-01-B010</td>
+<td>CG-2-01</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Baugrunduntersuchung und Bestandsaufnahme</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Baugrunduntersuchungen, Geländeaufnahmen und Zustandsaufnahmen.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Site investigation and survey</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Ground investigation, topographic and condition surveys.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-01-B020</td>
+<td>CG-2-01</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Altlastensanierung</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Behandlung oder Entfernung von belastetem Untergrund.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Environmental remediation</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Treatment or removal of contaminated ground.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-01-B030</td>
+<td>CG-2-01</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Schadstoffbeprobung</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Beprobung und Prüfung auf Schadstoffe oder verwertbare Materialien.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Hazardous material sampling</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Sampling and testing for hazardous or useful materials.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-01-B040</td>
+<td>CG-2-01</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Provisorische Bauabschrankung</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Provisorische Abschrankungen vor den Hauptarbeiten.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Temporary site fencing</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Temporary fencing and hoarding before the main works.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-01-B050</td>
+<td>CG-2-01</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Rückbau und Sicherung angrenzender Bauwerke</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Rückbau bestehender Gebäude und Sicherung angrenzender Bauwerke.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Demolition and support of adjacent structures</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Demolition of existing buildings and temporary support to neighbours.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-01-B060</td>
+<td>CG-2-01</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Baufeldräumung</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Räumen, Roden, Oberbodenabtrag und Baumfällung.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Site clearance</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Clearing, grubbing, topsoil stripping and tree felling.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-01-B070</td>
+<td>CG-2-01</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Baumverpflanzung</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Ausheben und Verpflanzen bestehender Bäume.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Tree transplanting</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Lifting and replanting existing trees.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-01-B080</td>
+<td>CG-2-01</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Geländeformung und Böschungssicherung</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Formung des Geländes und Sicherung von Böschungen.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Site formation and slope treatment</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Shaping of the site and stabilisation of slopes.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-01-B090</td>
+<td>CG-2-01</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Provisorische Entwässerung und Wasserhaltung</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Provisorische Oberflächenentwässerung und Wasserhaltung.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Temporary drainage and dewatering</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Temporary surface drainage and groundwater control.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-01-B100</td>
+<td>CG-2-01</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Provisorische Sicherung und Umlegung von Werkleitungen</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Sichern, Umlegen oder Verlegen bestehender Werkleitungen.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Temporary utility protection and diversion</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Protecting, diverting or relocating existing utilities.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-01-B110</td>
+<td>CG-2-01</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Erosionsschutz</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Massnahmen gegen Bodenerosion während der Arbeiten.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Erosion control</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Measures preventing soil erosion during works.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-01-C010</td>
+<td>CG-2-01</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Untersuchung und Vermessung</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Baugrunduntersuchung, Vermessung und Zustandsaufnahmen.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Site investigation and survey</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Ground investigation, surveys and condition records.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-01-C020</td>
+<td>CG-2-01</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Altlastensanierung</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Behandlung oder Entfernung von belastetem Untergrund.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Environmental remediation</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Treatment or removal of contaminated ground.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-01-C030</td>
+<td>CG-2-01</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Schadstoffbeprobung</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Beprobung und Prüfung auf Schadstoffe oder verwertbare Materialien.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Hazardous material sampling</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Sampling and testing for hazardous or useful materials.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-01-C040</td>
+<td>CG-2-01</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Provisorische Abschrankung</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Provisorische Abschrankungen vor den Hauptarbeiten.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Temporary fencing</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Temporary fencing before the main works.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-01-C050</td>
+<td>CG-2-01</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Rückbau bestehender Bauwerke</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Rückbau und Sicherung angrenzender Bauwerke.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Demolition of existing structures</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Demolition and support to adjacent structures.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-01-C060</td>
+<td>CG-2-01</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Baufeldräumung</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Räumen, Roden, Oberbodenabtrag und Baumfällung.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Site clearance</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Clearing, grubbing, topsoil stripping and tree felling.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-01-C070</td>
+<td>CG-2-01</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Baumverpflanzung</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Ausheben und Verpflanzen bestehender Bäume.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Tree transplanting</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Lifting and replanting existing trees.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-01-C080</td>
+<td>CG-2-01</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Allgemeine Erdarbeiten und Böschungssicherung</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Abtrag, Schüttung und Böschungssicherung für mehrere Teilprojekte.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">General earthworks and slope treatment</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Cut, fill and slope treatment serving more than one sub-project.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-01-C090</td>
+<td>CG-2-01</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Provisorische Entwässerung und Wasserhaltung</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Provisorische Oberflächenentwässerung und Wasserhaltung.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Temporary drainage and dewatering</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Temporary surface drainage and groundwater control.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-01-C100</td>
+<td>CG-2-01</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Provisorische Zufahrten und Lagerflächen</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Provisorische Zufahrten und Lagerflächen aus einem Vorabvertrag.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Temporary access roads and storage areas</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Temporary roads and laydown areas let under an advance contract.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-01-C110</td>
+<td>CG-2-01</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Provisorische Sicherung und Umlegung von Werkleitungen</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Sichern, Umlegen oder Verlegen bestehender Werkleitungen.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Temporary utility protection and diversion</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Protecting, diverting or relocating existing utilities.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-01-C120</td>
+<td>CG-2-01</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Erosionsschutz</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Massnahmen gegen Bodenerosion während der Arbeiten.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Erosion control</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Measures preventing soil erosion during works.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-01-C650</td>
+<td>CG-2-01</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Nassbaggerung</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Baggerung von Sedimenten und Fels einschliesslich Transport und Ablagerung.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Dredging</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Dredging of sediments and rock including transport and disposal.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-02</td>
+<td>CG-2</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Unterbau</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Erdberührte Arbeiten, die Lasten in den Baugrund abtragen, bis Oberkante der untersten Bodenplatte bzw. des Planums.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Substructure</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Ground-related works that transfer loads into the ground, up to the top of the lowest floor or formation level.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-02-B010</td>
+<td>CG-2-02</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Pfählung und Unterfangung</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Pfähle, Senkkästen, Pfahlprüfungen und Unterfangungen des Gebäudes.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Piling and underpinning</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Piles, caissons, pile testing and underpinning of the building.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-02-B020</td>
+<td>CG-2-02</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Fundamente und unterste Bodenplatte</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Fundamente, Pfahlkopfbalken, Fundamentbalken, unterste Bodenplatte und Liftunterfahrten, einschliesslich Aushub.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Foundations and lowest floor</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Footings, pile caps, ground beams, lowest floor slab and lift pits, including excavation.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-02-B030</td>
+<td>CG-2-02</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Untergeschosswände und -boden</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Erdberührte Untergeschosswände, Bodenplatten, Abdichtung, Sickerschicht und Wärmedämmung.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Basement walls and bottom</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Basement retaining walls, bottom slabs, tanking, drainage blanket and insulation.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-02-C010</td>
+<td>CG-2-02</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Dämme und Einschnitte</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Erdarbeiten zur Ausbildung des Trassees eines Teilprojekts.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Embankments and cuttings</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Earthworks forming the route of a specific sub-project.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-02-C020</td>
+<td>CG-2-02</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Aushub und Baugrubensicherung</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Aushub, Abtransport und Baugrubensicherung für Bauwerke.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Excavation and lateral support</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Excavation, disposal and temporary support to receive structures.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-02-C025</td>
+<td>CG-2-02</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Geotextilien und Geomembranen</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Trenn-, Filter- und Dichtungslagen im Baugrund.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Geotextiles and geomembranes</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Separation, filter and sealing layers in the ground.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-02-C030</td>
+<td>CG-2-02</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Gräben</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Leitungs- und Sammelgräben einschliesslich Verfüllung.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Trenches</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Utility and common trenches including backfill.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-02-C040</td>
+<td>CG-2-02</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Bohrungen</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Bohrarbeiten einschliesslich grabenlosem Leitungsbau.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Drilling and boring</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Drilled and bored works including trenchless installation.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-02-C050</td>
+<td>CG-2-02</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Pfählung und Verankerung</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Pfähle, Anker und deren Prüfung.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Piling and anchoring</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Piles, ground anchors and their testing.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-02-C060</td>
+<td>CG-2-02</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Hinterfüllung und Baugrundverbesserung</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Hinterfüllung von Bauwerken und Verbesserung des Baugrunds.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Structural backfill and ground improvement</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Backfill to structures and improvement of the ground.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-02-C070</td>
+<td>CG-2-02</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Stützbauwerke</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Dauerhafte Stützmauern und Hangsicherungen.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Earth-retaining structures</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Permanent retaining walls and slope securing.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-02-C080</td>
+<td>CG-2-02</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Widerlager und Flügelmauern</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Endauflager und Flügelmauern von Brücken.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Abutments and wing walls</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">End supports and wing walls of bridges.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-02-C090</td>
+<td>CG-2-02</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Fundamente und Pfahlkopfplatten</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Fundamente nahe der Gelände- oder Wasseroberfläche.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Footings and pile caps</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Foundations nearest to ground or water level.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-02-C100</td>
+<td>CG-2-02</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Fundationsschicht Fahrbahn</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Ungebundene oder gebundene Schichten unter Strassenbelägen und Gleisen.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Sub-base to pavements and track</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Unbound or bound layers beneath road pavements and rail track.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-02-C110</td>
+<td>CG-2-02</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Fundamente für Behälter, Rohre und Brunnen</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Fundamente für Behälter, Rohrauflager und Brunnen.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Bases for tanks, pipes and wells</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Foundation bases for tanks, pipe supports and wells.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-02-C120</td>
+<td>CG-2-02</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Bettung und Umhüllung erdverlegter Leitungen</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Bettung, Auflager und Umhüllung erdverlegter Rohre und Kabel.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Beds and surrounds to buried pipes</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Bedding, haunching and surround to buried pipes and cables.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-02-C660</td>
+<td>CG-2-02</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Blockwurf und Drahtschotterkörbe</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Blockwurf, Steinschüttungen und Drahtschotterkörbe.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Rock revetments and gabions</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Rock armour, riprap and gabion protection.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-02-C680</td>
+<td>CG-2-02</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Uferschutz</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Schutz von Fluss- und Seeufern.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Bank protection</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Protection of river and lake banks.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-03</td>
+<td>CG-2</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Tragwerk</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Tragende Konstruktion oberhalb des Unterbaus.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Structure</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Load-bearing construction above the substructure.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-03-B010</td>
+<td>CG-2-03</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Tragwerksanpassungen</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Rückbau und Anpassung bestehender tragender Konstruktion.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Structural alterations</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Removal and alteration of existing load-bearing construction.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-03-B020</td>
+<td>CG-2-03</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Tragwerk unter Terrain</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Wände, Stützen, Decken und Treppen zwischen unterster Bodenplatte und Erdgeschoss.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Below-ground suspended structure</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Walls, columns, suspended slabs and stairs between lowest floor and ground floor.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-03-B030</td>
+<td>CG-2-03</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Tragwerk über Terrain</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Tragende Wände, Stützen, Decken, Dachkonstruktion und Treppen oberhalb des Erdgeschosses.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Frame and floors above ground</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Load-bearing walls, columns, floors, roof structure and stairs above ground floor.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-03-B040</td>
+<td>CG-2-03</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Tragende Becken und Ergänzungen</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Tragende Becken, Sockel und kleinere tragende Bauteile.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Structural tanks, pools and sundries</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Structural tanks, pools, plinths and minor structural items.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-03-B050</td>
+<td>CG-2-03</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Vorgefertigtes oder Verbundtragwerk</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Tragwerk als vorgefertigtes oder Verbundsystem geliefert.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Prefabricated or composite structure</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Structure supplied as prefabricated or composite systems.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-03-C010</td>
+<td>CG-2-03</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Pfeiler und Pylone</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Zwischenstützen und Pylone von Brücken.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Piers and pylons</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Intermediate supports and towers of bridges.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-03-C020</td>
+<td>CG-2-03</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Seil- und Hängesysteme</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Tragseile, Schrägseile und Hänger.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Suspension and cable systems</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Main cables, stays and hangers.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-03-C030</td>
+<td>CG-2-03</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Brückenüberbau</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Überbau zwischen den Auflagern.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Bridge decks</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Deck structure spanning between supports.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-03-C040</td>
+<td>CG-2-03</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Brückenlager</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Lager zur Übertragung der Überbaulasten auf die Stützen.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Bearings</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Bearings transferring deck loads to supports.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-03-C050</td>
+<td>CG-2-03</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Tunnelsicherung und -ausbau</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Sicherung und Ausbau von Hohlräumen im Untertagbau.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Tunnel support and lining</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Primary support and final lining of underground excavations.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-03-C060</td>
+<td>CG-2-03</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Tragschichten Strasse und Gleis</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Tragschichten von Strassen und Gleisen.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Road and track bases</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Structural base layers of roads and track.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-03-C070</td>
+<td>CG-2-03</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Tragende Beläge</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Tragende Belagsschichten von Strassen und Pisten.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Structural pavements</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Structural pavement layers of roads and runways.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-03-C080</td>
+<td>CG-2-03</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Nebenstrassen und Zufahrten</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Zufahrten und Dienststrassen zum Bauwerk.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Service roads and approaches</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Approach roads and service roads to the structure.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-03-C090</td>
+<td>CG-2-03</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Brüstungen und Randabschlüsse</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Randbalken, Brüstungen und Randabschlüsse.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Parapets and edge details</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Edge beams, parapets and edge treatment.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-03-C100</td>
+<td>CG-2-03</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Hauptbauwerke</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Primäre Wände, Platten, Rahmen und Spezialkonstruktionen.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Main structures</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Primary walls, slabs, frames and special structures.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-03-C105</td>
+<td>CG-2-03</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Betriebsgebäude für Werkleitungen</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Kleinbauten für Werkleitungsanlagen.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Utility service buildings</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Small buildings housing utility plant.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-03-C110</td>
+<td>CG-2-03</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Behälter und Speicherbauwerke</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Behälter, Becken und Speicherbauwerke.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Tanks and storage structures</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Tanks, basins and storage containers.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-03-C120</td>
+<td>CG-2-03</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Auflager für Behälter und Rohre</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Tragende Auflager für Behälter und Rohrleitungen.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Supports for tanks and pipes</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Structural supports for tanks and pipework.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-03-C130</td>
+<td>CG-2-03</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Rohrleitungen</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Rohrleitungen als Hauptbestandteil der Anlage.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Civil pipework</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Pipework forming the main asset.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-03-C140</td>
+<td>CG-2-03</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Armaturen und Formstücke</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Armaturen und Formstücke in Rohrleitungen.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Valves and fittings</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Valves and fittings in pipework.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-03-C700</td>
+<td>CG-2-03</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Schleusen und Leitwerke</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Schiffsschleusen und Leitwerke.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Locks and guide structures</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Navigation locks and guiding structures.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-03-C720</td>
+<td>CG-2-03</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Hochwasserschutzbauten</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Dämme, Hochwasserschutzmauern und Sperrwerke.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Flood defences</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Dykes, flood walls and barriers.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-03-C750</td>
+<td>CG-2-03</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Wehre</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Feste und bewegliche Wehre.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Weirs</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Fixed and movable weirs.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-04</td>
+<td>CG-2</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Ausbau und nichttragende Arbeiten</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Gebäudehülle, Trennwände, Beläge, Einbauten und weitere nichttragende Konstruktionen.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Architectural and non-structural works</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Envelope, partitions, finishes, fittings and other non-load-bearing construction.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-04-B010</td>
+<td>CG-2-04</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Anpassungen nichttragender Bauteile</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Rückbau und Anpassung bestehender nichttragender Bauteile.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Non-structural alterations</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Removal and alteration of existing non-load-bearing construction.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-04-B020</td>
+<td>CG-2-04</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Gebäudehülle Fassade</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Äussere Wandbekleidungen, Fassadenbekleidungen, Vorhangfassaden, Fenster, Aussentüren und Abschlüsse.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">External envelope</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">External wall finishes, cladding, curtain walls, windows, external doors and shutters.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-04-B030</td>
+<td>CG-2-04</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Bedachung und Oblichter</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Dachhaut, Abdichtung, Dämmung, Oblichter und Dachbegrünung.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Roof coverings and rooflights</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Roof finishes, waterproofing, insulation, skylights and roof landscaping.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-04-B040</td>
+<td>CG-2-04</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Innenwände und Innentüren</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Nichttragende Trennwände, Innentüren, Innenfenster und Abschlüsse.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Internal divisions</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Non-load-bearing partitions, internal doors, windows and shutters.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-04-B050</td>
+<td>CG-2-04</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Einbauten und Ergänzungen</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Geländer, Einbauschränke, Beschriftungen und weitere feste Einbauten.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Fittings and sundries</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Balustrades, built-in cabinets, signs and other fixed fittings.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-04-B060</td>
+<td>CG-2-04</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Innenbeläge und -bekleidungen</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Boden-, Wand- und Deckenbeläge in überdeckten Bereichen.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Internal finishes</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Floor, wall and ceiling finishes under cover.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-04-B070</td>
+<td>CG-2-04</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Baumeisterarbeiten für Installationen</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Sockel, Durchbrüche, Hülsen, Verkleidungen und Abschottungen für Installationen.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Builder&#x27;s work for services</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Plinths, openings, sleeves, enclosures and fire stopping for services.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-04-B080</td>
+<td>CG-2-04</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Vorgefertigte nichttragende Systeme</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Hülle oder Ausbau als vorgefertigte Systeme geliefert.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Prefabricated or composite non-structural work</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Envelope or fit-out supplied as prefabricated systems.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-04-C010</td>
+<td>CG-2-04</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Anpassungen nichttragender Bauteile</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Rückbau und Anpassung bestehender nichttragender Bauteile.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Non-structural alterations</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Removal and alteration of existing non-structural parts.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-04-C020</td>
+<td>CG-2-04</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Nichttragende Bauteile und Oberflächen</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Beschichtungen, Verkleidungen, Bekleidungen und Einbauten.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Non-structural construction and finishes</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Coatings, linings, cladding and built-in parts.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-04-C030</td>
+<td>CG-2-04</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Fahrbahnoberfläche</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Deckschicht von Strassen und Fahrfläche von Gleisen.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Running surface</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Wearing course of roads and running surface of track.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-04-C040</td>
+<td>CG-2-04</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Signalisation und Markierung</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Signale, Markierungen und dergleichen.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Signs and markings</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Road signs, markings and similar.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-04-C050</td>
+<td>CG-2-04</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Signalportale</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Signal- und Ausrüstungsportale.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Gantries</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Sign and equipment gantries.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-04-C060</td>
+<td>CG-2-04</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Sicherheitseinrichtungen</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Sicherheitseinrichtungen für Nutzende und Personal.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Safety facilities</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Safety installations for users and staff.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-04-C070</td>
+<td>CG-2-04</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Rückhaltesysteme und Zugänge</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Fahrzeugrückhaltesysteme, Handläufe, Leitern und Stege.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Barriers, rails and access</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Vehicle restraint, handrails, ladders and walkways.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-04-C080</td>
+<td>CG-2-04</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Spezielle Ausrüstung</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Trassenspezifische Ausrüstung, die nicht anderweitig erfasst ist.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Special equipment and fittings</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Route-specific fittings not covered elsewhere.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-04-C090</td>
+<td>CG-2-04</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Innenbegrünung</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Begrünung innerhalb geschlossener Tiefbauwerke.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Interior landscaping</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Planting within enclosed civil structures.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-04-C100</td>
+<td>CG-2-04</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Baumeisterarbeiten für Installationen</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Durchbrüche, Sockel und Verkleidungen für Ausrüstung.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Builder&#x27;s work for services</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Openings, plinths and enclosures for equipment.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-05</td>
+<td>CG-2</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Technische Anlagen und Ausrüstung</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Haustechnische, elektrische, sanitäre, fördertechnische und spezielle Anlagen.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Services and equipment</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Mechanical, electrical, plumbing, transport and specialist installations.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-05-B010</td>
+<td>CG-2-05</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Heizung, Lüftung und Klima</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Wärme- und Kälteerzeugung, -verteilung und -abgabe sowie Lufttechnik.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Heating, ventilation and air conditioning</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Heat and cold generation, distribution and emission, and air handling.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-05-B020</td>
+<td>CG-2-05</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Starkstromanlagen</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Einspeisung, Transformierung, Speicherung, Verteilung und Anschlüsse Starkstrom.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Electrical power</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Incoming supply, transformation, storage, distribution and power outlets.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-05-B030</td>
+<td>CG-2-05</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Leuchten</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Lieferung und Montage von Leuchten.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Lighting fittings</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Supply and installation of light fittings.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-05-B040</td>
+<td>CG-2-05</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Schwachstrom, Kommunikation und Automation</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">IKT-Verkabelung, Gebäudeautomation, Sicherheits- und Alarmanlagen.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Low-voltage, communication and automation</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">ICT cabling, building automation, security and alarm systems.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-05-B050</td>
+<td>CG-2-05</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Wasserversorgung und Entwässerung im Gebäude</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Kalt- und Warmwasser, Grauwasser sowie interne Schmutz- und Regenwasserableitung.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Water supply and drainage in the building</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Cold and hot water, grey water and internal waste and rainwater drainage.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-05-B060</td>
+<td>CG-2-05</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Sanitärapparate</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Lieferung von Sanitärapparaten und -ausstattung.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Sanitary fittings</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Supply of sanitary appliances and fixtures.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-05-B070</td>
+<td>CG-2-05</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Abfallentsorgungsanlagen</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Anlagen für Kehricht-, Labor- und Industrieabfälle.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Waste disposal systems</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Refuse, laboratory and industrial waste systems.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-05-B080</td>
+<td>CG-2-05</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Brandschutzanlagen</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Sprinkler, Hydranten, Löschanlagen, Brandmelde- und Alarmanlagen.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Fire protection systems</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Sprinklers, hydrants, extinguishing, detection and alarm systems.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-05-B090</td>
+<td>CG-2-05</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Gas und Spezialmedien</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Brenngas, medizinische, Labor- und Industriegase, Druckluft und Vakuum.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Gas and special media</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Fuel gas, medical, laboratory and industrial gases, compressed air and vacuum.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-05-B100</td>
+<td>CG-2-05</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Aufzüge und Förderanlagen</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Aufzüge, Plattformlifte, Fahrtreppen, Fahrsteige und Förderanlagen.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Lifts and conveyors</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Lifts, platform lifts, escalators, moving walks and conveyors.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-05-B110</td>
+<td>CG-2-05</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Fassadenbefahranlagen</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Fassadenbefahranlagen und Gondeln.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Facade access equipment</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Gondolas and building maintenance units.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-05-B120</td>
+<td>CG-2-05</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Drehscheiben</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Drehscheiben für Fahrzeuge und Bühnen.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Turntables</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Vehicle and stage turntables.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-05-B130</td>
+<td>CG-2-05</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Notstromaggregate</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Ersatz- und Notstromaggregate.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Generators</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Standby and emergency generators.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-05-B140</td>
+<td>CG-2-05</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Energiesparende und erneuerbare Anlagen</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Photovoltaik, Wärmerückgewinnung und ähnliche energiesparende Anlagen.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Energy-saving and renewable systems</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Photovoltaics, heat recovery and similar energy-saving features.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-05-B150</td>
+<td>CG-2-05</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Wasser- und Abwasserbehandlungsanlagen</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Behandlungsanlagen für das Gebäude.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Water and wastewater treatment equipment</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Treatment plant serving the building.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-05-B160</td>
+<td>CG-2-05</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Brunnen- und Beckentechnik</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Filtration und Technik für Brunnen und Becken.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Fountains and pool plant</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Filtration and plant for fountains and pools.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-05-B170</td>
+<td>CG-2-05</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Elektrische Beschriftung</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Beleuchtete und elektronische Beschriftungen.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Powered signage</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Illuminated and electronic signs.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-05-B175</td>
+<td>CG-2-05</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Audiovisuelle Anlagen</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Audiovisuelle und Unterhaltungsanlagen.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Audio-visual systems</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Audio-visual and entertainment systems.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-05-B180</td>
+<td>CG-2-05</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Grossküchenanlagen</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Grossküchentechnik und -geräte.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Commercial kitchen equipment</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Catering kitchen plant and appliances.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-05-B190</td>
+<td>CG-2-05</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Kühlzellen</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Kühl- und Tiefkühlzellen.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Cold room equipment</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Cold and freezer rooms.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-05-B200</td>
+<td>CG-2-05</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Laboreinrichtungen</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Feste Laborinstallationen.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Laboratory equipment</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Fixed laboratory installations.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-05-B210</td>
+<td>CG-2-05</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Medizinische Einrichtungen</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Feste medizinische Installationen.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Medical equipment</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Fixed medical installations.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-05-B220</td>
+<td>CG-2-05</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Hoteleinrichtungen</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Feste hotelspezifische Einrichtungen.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Hotel equipment</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Fixed hotel-specific equipment.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-05-B230</td>
+<td>CG-2-05</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Park- und Zutrittskontrolle</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Schranken-, Ticket- und Zutrittskontrollsysteme.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Parking and entrance access control</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Barrier, ticketing and entrance control systems.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-05-B240</td>
+<td>CG-2-05</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Haushaltgeräte</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Eingebaute Haushaltgeräte.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Domestic appliances</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Built-in household appliances.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-05-B250</td>
+<td>CG-2-05</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Weitere Spezialanlagen</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Nutzungsspezifische Anlagen, die nicht anderweitig erfasst sind.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Other specialist installations</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Use-specific installations not listed elsewhere.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-05-B260</td>
+<td>CG-2-05</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Unternehmerleistungen für Installationen</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Zuschläge und Hilfeleistungen des Hauptunternehmers für Installationsgewerke.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Main contractor attendance on services</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Main contractor&#x27;s profit and attendance on services trades.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-05-C005</td>
+<td>CG-2-05</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Fernwärme und Fernkälte</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Fernwärme- und Fernkältenetze.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">District heating and cooling</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">District heating and cooling networks.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-05-C010</td>
+<td>CG-2-05</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Mechanische Anlagen</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Lüftungs-, Heiz-, Kühl- und Pumpanlagen.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Mechanical systems</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Ventilation, heating, cooling and pumping plant.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-05-C020</td>
+<td>CG-2-05</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Beleuchtung</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Strassen-, Tunnel- und Flächenbeleuchtung.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Lighting systems</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Route, tunnel and area lighting.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-05-C030</td>
+<td>CG-2-05</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Effektbeleuchtung</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Dekorative und architektonische Beleuchtung.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Feature lighting</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Decorative and architectural illumination.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-05-C040</td>
+<td>CG-2-05</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Energieversorgung</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Energieversorgung und -verteilung für Ausrüstung.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Low-voltage power supply</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Power supply and distribution for equipment.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-05-C050</td>
+<td>CG-2-05</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Kabel und Kabelanlagen</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Kabel, Kabeltrassen, Rohrblöcke und Kabelschächte.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Cables and cable routes</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Cables, cable trays, duct banks and cable chambers.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-05-C060</td>
+<td>CG-2-05</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Weitere elektrische Anlagen</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Elektrische Anlagen, die nicht anderweitig erfasst sind.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Other electrical services</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Electrical installations not listed elsewhere.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-05-C070</td>
+<td>CG-2-05</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Steuerung und Messtechnik</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Automations-, Kommunikations- und Leitsysteme.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Control and instrumentation</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Automation, communication and control systems.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-05-C080</td>
+<td>CG-2-05</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Rohrbrücken</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Lokale Auflager für Leitungen.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Pipe racks</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Local supports for service pipes.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-05-C090</td>
+<td>CG-2-05</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Wasser und Entwässerung im Bauwerk</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Wasser- und Entwässerungsinstallationen in Tiefbauwerken.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Water supply and drainage in structures</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Water and drainage installations inside civil structures.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-05-C100</td>
+<td>CG-2-05</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Abfallentsorgungsanlagen</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Anlagen zur Sammlung und Entsorgung von Abfällen.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Refuse disposal systems</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Systems for collecting and removing refuse.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-05-C110</td>
+<td>CG-2-05</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Brandschutzanlagen</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Melde-, Alarm- und Löschanlagen.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Fire services</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Detection, alarm and extinguishing systems.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-05-C115</td>
+<td>CG-2-05</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Gasanlagen</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Gasinstallationen in Bauwerken.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Gas services</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Gas installations within structures.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-05-C120</td>
+<td>CG-2-05</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Aufzüge und Fahrtreppen</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Aufzüge, Fahrtreppen und Fahrsteige.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Lifts and escalators</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Lifts, escalators and moving walks.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-05-C800</td>
+<td>CG-2-05</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Bahnstrom und Fahrleitung</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Fahrleitung und Bahnstromversorgung.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Traction power and overhead line</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Overhead contact line and traction power supply.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-05-C810</td>
+<td>CG-2-05</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Bahnsicherungsanlagen</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Stellwerke, Signale und Zugbeeinflussung.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Rail signalling and train control</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Interlocking, signalling and train protection.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-06</td>
+<td>CG-2</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Oberflächen- und Untergrundentwässerung</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Ableitung von Oberflächen-, Regen- und Schmutzwasser ausserhalb des Bauwerks, einschliesslich Anschlüssen.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Surface and underground drainage</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Drainage of surface, storm and foul water outside the structure, including connections.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-06-B010</td>
+<td>CG-2-06</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Oberflächenentwässerung</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Entwässerung befestigter und begrünter Flächen.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Surface water drainage</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Drainage of paved and landscaped surfaces.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-06-B020</td>
+<td>CG-2-06</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Regenwasserableitung</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Erdverlegte Regenwasserleitungen und -bauwerke.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Storm water drainage</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Below-ground storm water pipes and structures.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-06-B030</td>
+<td>CG-2-06</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Schmutzwasserableitung</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Erdverlegte Schmutzwasserleitungen und -bauwerke.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Foul and wastewater drainage</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Below-ground foul water pipes and structures.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-06-B040</td>
+<td>CG-2-06</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Kanalisationsanschlüsse</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Trennungen und Anschlüsse an die Kanalisation.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Drainage connections</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Disconnections and connections to drains.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-06-B050</td>
+<td>CG-2-06</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Kanalinspektion</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Kamerainspektion bestehender oder neuer Leitungen.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Drain inspection</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Camera inspection of existing or new drains.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-06-B060</td>
+<td>CG-2-06</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Erdverlegte Prozessleitungen</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Erdverlegte Leitungen für Prozessmedien.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Buried process pipes</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Buried pipework for process media.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-06-C010</td>
+<td>CG-2-06</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Oberflächenentwässerung</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Entwässerung von Fahrbahn- und Geländeoberflächen.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Surface water drainage</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Drainage of route and site surfaces.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-06-C020</td>
+<td>CG-2-06</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Regenwasserableitung</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Regenwasserleitungen, Retention und Einleitungen.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Storm water drainage</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Storm water pipes, retention and outfalls.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-06-C030</td>
+<td>CG-2-06</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Schmutzwasserableitung</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Schmutzwasserkanäle und Abwasserleitungen.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Foul and wastewater drainage</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Foul sewers and wastewater pipes.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-06-C040</td>
+<td>CG-2-06</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Pumpanlagen</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Entwässerungspumpwerke.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Pumping systems</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Drainage pumping stations.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-06-C050</td>
+<td>CG-2-06</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Kanalisationsanschlüsse</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Anschlüsse an bestehende Kanalisation.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Drainage connections</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Connections to existing drainage.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-07</td>
+<td>CG-2</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Umgebungs- und Nebenarbeiten</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Stützbauwerke, Einfriedungen, Beläge, Begrünung und Werkleitungen auf dem Grundstück ausserhalb des Hauptbauwerks.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">External and ancillary works</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Retaining structures, enclosures, paving, landscaping and services within the site but outside the main structure.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-07-B010</td>
+<td>CG-2-07</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Stützbauwerke</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Dauerhafte Stützmauern und Böschungsverbau auf dem Grundstück.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Retaining structures</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Permanent retaining walls and slope protection in the site.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-07-B020</td>
+<td>CG-2-07</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Einfriedungen</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Zäune, Mauern und Tore um und auf dem Grundstück.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Site enclosures and divisions</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Fences, walls and gates around and within the site.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-07-B030</td>
+<td>CG-2-07</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Nebenbauten</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Kleinbauten und unterirdische Bauwerke auf dem Grundstück.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Ancillary structures</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Small detached and underground structures in the site.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-07-B040</td>
+<td>CG-2-07</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Verkehrsflächen und Beläge</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Hartflächen, Wege und Zufahrten auf dem Grundstück.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Roads and paving</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Hard surfaces, paths and site roads.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-07-B050</td>
+<td>CG-2-07</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Begrünung und Geländegestaltung</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Grünflächen, Gestaltung und Geländemodellierung.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Landscaping</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Soft and hard landscaping and ground modelling.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-07-B060</td>
+<td>CG-2-07</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Ausstattung Umgebung</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Mobiliar, Spielgeräte und Entsorgungsstellen im Aussenraum.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">External fittings and equipment</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Furniture, play equipment and waste stations outside.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-07-B070</td>
+<td>CG-2-07</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Werkleitungen Umgebung</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Wasser, Gas, Strom, Kommunikation und Beleuchtung auf dem Grundstück.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">External services</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Water, gas, power, communications and lighting in the site.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-07-C010</td>
+<td>CG-2-07</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Einfriedungen</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Zäune, Mauern und Tore entlang der Trasse oder des Areals.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Site enclosures and divisions</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Fences, walls and gates along the route or site.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-07-C020</td>
+<td>CG-2-07</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Nebenbauwerke</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Kleinere Bauwerke zur Ergänzung der Hauptanlage.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Ancillary structures</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Minor structures supporting the main asset.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-07-C030</td>
+<td>CG-2-07</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Kleinere Verkehrsflächen</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Beläge, die kein eigenes Teilprojekt bilden.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Minor roads and paving</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Paving not forming a separate sub-project.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-07-C040</td>
+<td>CG-2-07</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Landschaftsgestaltung</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Grünflächen und Gestaltung.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Landscaping</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Soft and hard landscaping.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-07-C050</td>
+<td>CG-2-07</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Ausstattung Umgebung</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Mobiliar und Ausstattung entlang der Trasse.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">External fittings and equipment</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Furniture and equipment along the route.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-07-C800</td>
+<td>CG-2-07</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Kunst am Bau</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Für das Bauwerk beauftragte Kunstwerke.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Art in public works</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Artworks commissioned for the asset.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-08</td>
+<td>CG-2</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Baustellengemeinkosten</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Baustellenführung, provisorische Einrichtungen, gemeinsame Geräte und allgemeine Pflichten des Unternehmers, die keinem Element zugeordnet sind.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Preliminaries and site overheads</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Constructor&#x27;s site management, temporary facilities, shared plant and general obligations not allocated to elements.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-08-010</td>
+<td>CG-2-08</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Bauführung</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Bauführungspersonal und Hilfskräfte des Unternehmers.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Site management</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Constructor&#x27;s site management staff and support labour.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-08-020</td>
+<td>CG-2-08</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Provisorische Zufahrten und Lagerflächen</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Provisorische Zufahrten, Lagerflächen und Verkehrsführung nach Wahl des Unternehmers.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Temporary access and storage areas</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Temporary access, storage and traffic management at the constructor&#x27;s discretion.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-08-030</td>
+<td>CG-2-08</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Bauabschrankung und Bewachung</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Abschrankung und Bewachung der Baustelle während der Arbeiten.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Site fencing and security</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Fencing and security of the site during works.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-08-040</td>
+<td>CG-2-08</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Gemeinsame Baugeräte</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Krane, Bauaufzüge und weitere gemeinsam genutzte Geräte.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Shared construction plant</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Cranes, hoists and other plant shared between trades.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-08-050</td>
+<td>CG-2-08</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Gemeinsame Gerüste</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Gemeinsam genutzte Gerüste.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Shared scaffolding</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Scaffolding shared between trades.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-08-060</td>
+<td>CG-2-08</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Weitere provisorische Einrichtungen</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Unterkünfte, provisorische Versorgung und Aufbereitungseinrichtungen.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Other temporary facilities and services</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Site accommodation, temporary supplies and processing facilities.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-08-070</td>
+<td>CG-2-08</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Baustellen-IT und Kommunikation</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Telefon, Netzwerk, Hard- und Software auf der Baustelle.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Site technology and communications</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Telephone, network, hardware and software on site.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-08-080</td>
+<td>CG-2-08</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Dokumentation des Unternehmers</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Eingaben, Berichte und Revisionsunterlagen.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Constructor&#x27;s documentation</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Submissions, reports and as-built records.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-08-090</td>
+<td>CG-2-08</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Qualitätsüberwachung und Prüfungen</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Überwachung, Aufzeichnung und Prüfungen während der Arbeiten.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Quality monitoring and inspection</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Monitoring, recording and inspections during works.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-08-100</td>
+<td>CG-2-08</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Arbeitssicherheit und Umweltschutz</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Arbeitssicherheit, Gesundheitsschutz und Umweltmanagement auf der Baustelle.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Health, safety and environment</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Safety, health and environmental management on site.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-08-110</td>
+<td>CG-2-08</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Versicherungen und Garantien des Unternehmers</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Versicherungen, Bürgschaften und Garantien des Unternehmers.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Constructor&#x27;s insurances and guarantees</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Insurances, bonds, guarantees and warranties of the constructor.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-08-120</td>
+<td>CG-2-08</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Gebühren des Unternehmers</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Gebühren und Abgaben zulasten des Unternehmers.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Constructor&#x27;s statutory fees</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Statutory fees and charges borne by the constructor.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-08-130</td>
+<td>CG-2-08</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Prüfung und Inbetriebnahme</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Prüfung und Inbetriebnahme der fertiggestellten Arbeiten.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Testing and commissioning</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Testing and commissioning of the completed works.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-08-140</td>
+<td>CG-2-08</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Erschwerte Witterungs- und Arbeitsbedingungen</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Zusätzliche Massnahmen bei extremer Witterung oder erschwerten Bedingungen.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Extreme climate and working conditions</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Extra measures for extreme weather or working conditions.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-08-C025</td>
+<td>CG-2-08</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Provisorische Misch- und Aufbereitungsanlagen</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Provisorische Betonmischanlagen und Aufbereitungsplätze.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Temporary batching and processing plant</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Temporary concrete batching and material processing yards.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-08-C045</td>
+<td>CG-2-08</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Schwimmende Geräte</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Schwimmende Geräte für Arbeiten auf dem Wasser.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Marine plant and equipment</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Floating and marine plant for waterborne works.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-08-C055</td>
+<td>CG-2-08</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Unterkünfte für Arbeitskräfte</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Wohnunterkünfte für Arbeitskräfte.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Workforce accommodation</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Living accommodation for the workforce.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-08-C065</td>
+<td>CG-2-08</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Installation und Räumung</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Installation und Räumung von Grossgeräten.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Mobilisation and demobilisation</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Mobilisation and demobilisation of major plant.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-09</td>
+<td>CG-2</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Reserven und Teuerung</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Reserven für Projektentwicklung, Unvorhergesehenes, Teuerung und Wechselkursänderungen.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Risk allowances</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Allowances for design development, contingencies, price level and exchange rate changes.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-09-010</td>
+<td>CG-2-09</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Reserve Projektentwicklung</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Reserve für Änderungen im Zuge der Projektentwicklung.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Design development allowance</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Allowance for changes as the design develops.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-09-020</td>
+<td>CG-2-09</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Reserve Unvorhergesehenes</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Reserve für unvorhergesehene Ereignisse während der Ausführung.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Construction contingency</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Allowance for unforeseen events during construction.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-09-030</td>
+<td>CG-2-09</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Teuerung</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Preisänderungen bis zur Ausschreibung und während der Ausführung.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Price level adjustment</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Price changes until tender and during construction.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-09-040</td>
+<td>CG-2-09</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Wechselkursänderungen</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Auswirkung von Wechselkursschwankungen auf die Kosten.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Exchange rate adjustment</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Effect of currency fluctuation on costs.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-10</td>
+<td>CG-2</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Steuern und Abgaben</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Steuern und Abgaben auf Zahlungen für die Erstellung.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Taxes and levies</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Taxes and levies on construction payments.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-10-010</td>
+<td>CG-2-10</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Steuern zulasten Unternehmer</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Steuern und Abgaben zulasten des Unternehmers.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Taxes paid by the constructor</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Taxes and levies borne by the constructor.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-10-020</td>
+<td>CG-2-10</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Steuern auf Vertragszahlungen</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Mehrwertsteuer und Abgaben der Bauherrschaft auf Vertragszahlungen.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Taxes on contract payments</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Value added tax and levies paid by the client on contract payments.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-11</td>
+<td>CG-2</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Arbeiten und Werkleitungen ausserhalb des Grundstücks</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Werkleitungsanschlüsse und öffentliche Zufahrten ausserhalb der Grundstücksgrenze.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Off-site works and utilities</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Utility connections and public access works outside the site boundary.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-11-010</td>
+<td>CG-2-11</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Werkleitungsanschlüsse ausserhalb</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Anschlüsse, Umlegungen und Kapazitätserweiterungen öffentlicher Werkleitungen bis zum Grundstück.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Off-site utility connections</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Connections, diversions and capacity upgrades of public utilities up to the site.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-11-020</td>
+<td>CG-2-11</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Öffentliche Zufahrten und Fusswege</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Öffentliche Strassen und Fusswege ausserhalb des Grundstücks.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Public access roads and footpaths</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Public roads and footpaths outside the site.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-12</td>
+<td>CG-2</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Betriebseinrichtungen, Mobiliar und Ausstattung</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Produktions- und Prozesseinrichtungen, Mobiliar und lose Ausstattung für die Nutzung des Bauwerks.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Production equipment, furniture and loose fittings</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Production and process equipment, furniture and loose items supplied for the use of the asset.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-12-010</td>
+<td>CG-2-12</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Mobiliar und lose Ausstattung</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Lose Ausstattung, die üblicherweise nach Fertigstellung geliefert wird.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Loose furniture, fittings and equipment</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Loose items normally supplied after completion.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-12-020</td>
+<td>CG-2-12</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Feste Produktions- und Prozesseinrichtungen</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Vor Fertigstellung installierte Produktions- und Prozessanlagen.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Fixed production and process equipment</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Production and process plant installed before completion.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-12-800</td>
+<td>CG-2-12</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Kunst am Bau</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Kunstwerke und künstlerisch gestaltete Bauteile.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Art in architecture</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Artworks and artistically designed building parts.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-13</td>
+<td>CG-2</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Planung, Beratung und Bauleitung</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Honorare von Planenden und Beratenden, behördliche Bewilligungsgebühren, Bauleitung und Prüfstellen.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Consultancy and supervision</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Fees of designers and advisers, statutory approval charges, site supervision and testing authorities.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-13-010</td>
+<td>CG-2-13</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Planungs- und Beratungshonorare</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Honorare und Nebenkosten von Architektur, Ingenieurwesen, Vermessung und Fachplanung.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Design and consultancy fees</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Fees and expenses of architects, engineers, surveyors and specialists.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-13-020</td>
+<td>CG-2-13</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Bewilligungsgebühren</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Gebühren an Behörden für Bewilligungen und Abnahmen.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Statutory approval charges</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Charges payable to authorities for approvals and inspections.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-13-030</td>
+<td>CG-2-13</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Bauleitung</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Bauleitung einschliesslich Unterkunft und Reisen.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Site supervision</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Site supervision including accommodation and travel.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-13-040</td>
+<td>CG-2-13</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Prüfstellen</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Zahlungen an Prüfstellen und Labore.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Testing authorities</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Payments to testing authorities and laboratories.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-2-13-800</td>
+<td>CG-2-13</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Beratung und Projektplattformen der Bauherrschaft</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Auswahlverfahren, Vertretung von Eigentümer, Betreiber und Nutzenden, Beratung und Projektplattformen.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Client-side advisers and project platforms</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Competitions, owner, operator and user representatives, advisers and project platforms.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-3</td>
+<td></td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Erneuerung</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Kosten für den Ersatz wesentlicher Bauteile am Ende ihrer Nutzungsdauer nach der Übergabe.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Renewal</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Costs of replacing major components at the end of their service life after handover.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-3-01</td>
+<td>CG-3</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Erneuerung: Rückbau, Baustellenvorbereitung und Geländeformung</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Untersuchung, Räumung, Rückbau, Sanierung und Formung des Geländes vor den dauerhaften Arbeiten.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Renewal: demolition, site preparation and formation</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Investigation, clearance, demolition, remediation and forming of the site before the permanent works.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-3-02</td>
+<td>CG-3</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Erneuerung: Unterbau</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Erdberührte Arbeiten, die Lasten in den Baugrund abtragen, bis Oberkante der untersten Bodenplatte bzw. des Planums.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Renewal: substructure</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Ground-related works that transfer loads into the ground, up to the top of the lowest floor or formation level.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-3-03</td>
+<td>CG-3</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Erneuerung: Tragwerk</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Tragende Konstruktion oberhalb des Unterbaus.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Renewal: structure</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Load-bearing construction above the substructure.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-3-04</td>
+<td>CG-3</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Erneuerung: Ausbau und nichttragende Arbeiten</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Gebäudehülle, Trennwände, Beläge, Einbauten und weitere nichttragende Konstruktionen.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Renewal: architectural and non-structural works</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Envelope, partitions, finishes, fittings and other non-load-bearing construction.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-3-05</td>
+<td>CG-3</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Erneuerung: Technische Anlagen und Ausrüstung</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Haustechnische, elektrische, sanitäre, fördertechnische und spezielle Anlagen.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Renewal: services and equipment</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Mechanical, electrical, plumbing, transport and specialist installations.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-3-06</td>
+<td>CG-3</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Erneuerung: Oberflächen- und Untergrundentwässerung</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Ableitung von Oberflächen-, Regen- und Schmutzwasser ausserhalb des Bauwerks, einschliesslich Anschlüssen.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Renewal: surface and underground drainage</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Drainage of surface, storm and foul water outside the structure, including connections.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-3-07</td>
+<td>CG-3</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Erneuerung: Umgebungs- und Nebenarbeiten</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Stützbauwerke, Einfriedungen, Beläge, Begrünung und Werkleitungen auf dem Grundstück ausserhalb des Hauptbauwerks.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Renewal: external and ancillary works</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Retaining structures, enclosures, paving, landscaping and services within the site but outside the main structure.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-3-08</td>
+<td>CG-3</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Erneuerung: Baustellengemeinkosten</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Baustellenführung, provisorische Einrichtungen, gemeinsame Geräte und allgemeine Pflichten des Unternehmers, die keinem Element zugeordnet sind.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Renewal: preliminaries and site overheads</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Constructor&#x27;s site management, temporary facilities, shared plant and general obligations not allocated to elements.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-3-09</td>
+<td>CG-3</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Erneuerung: Reserven und Teuerung</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Reserven für Projektentwicklung, Unvorhergesehenes, Teuerung und Wechselkursänderungen.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Renewal: risk allowances</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Allowances for design development, contingencies, price level and exchange rate changes.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-3-10</td>
+<td>CG-3</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Erneuerung: Steuern und Abgaben</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Steuern und Abgaben auf Zahlungen für die Erstellung.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Renewal: taxes and levies</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Taxes and levies on construction payments.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-3-11</td>
+<td>CG-3</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Erneuerung: Arbeiten und Werkleitungen ausserhalb des Grundstücks</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Werkleitungsanschlüsse und öffentliche Zufahrten ausserhalb der Grundstücksgrenze.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Renewal: off-site works and utilities</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Utility connections and public access works outside the site boundary.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-3-12</td>
+<td>CG-3</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Erneuerung: Betriebseinrichtungen, Mobiliar und Ausstattung</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Produktions- und Prozesseinrichtungen, Mobiliar und lose Ausstattung für die Nutzung des Bauwerks.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Renewal: production equipment, furniture and loose fittings</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Production and process equipment, furniture and loose items supplied for the use of the asset.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-3-13</td>
+<td>CG-3</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Erneuerung: Planung, Beratung und Bauleitung</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Honorare von Planenden und Beratenden, behördliche Bewilligungsgebühren, Bauleitung und Prüfstellen.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Renewal: consultancy and supervision</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Fees of designers and advisers, statutory approval charges, site supervision and testing authorities.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-4</td>
+<td></td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Betrieb</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Wiederkehrende Kosten für den Betrieb des Bauwerks während der Nutzung.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Operation</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Recurring costs of running the asset during use.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-4-01</td>
+<td>CG-4</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Reinigung</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Unterhalts- und periodische Reinigung des Bauwerks.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Cleaning</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Routine and periodic cleaning of the asset.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-4-02</td>
+<td>CG-4</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Ver- und Entsorgungsmedien</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Im Betrieb bezogene Energie, Wasser und weitere Medien.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Utilities</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Energy, water and other supplied media consumed in use.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-4-03</td>
+<td>CG-4</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Abfallentsorgung</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Sammlung, Trennung und Entsorgung von Betriebsabfällen.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Waste management</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Collection, sorting and disposal of operational waste.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-4-04</td>
+<td>CG-4</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Sicherheit und Bewachung</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Bewachung, Zutrittskontrolle und Sicherheitsdienste im Betrieb.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Security</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Guarding, access control and security services in use.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-4-05</td>
+<td>CG-4</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Informations- und Kommunikationstechnik</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Betriebskosten von IKT-Diensten und Netzwerken.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Information and communication technology</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Running costs of ICT services and networks.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-4-06</td>
+<td>CG-4</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Betreibergemeinkosten</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Führung, Personal und allgemeine Pflichten der Betreiberin.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Operator overheads</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Operator&#x27;s management, staff and general obligations.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-4-07</td>
+<td>CG-4</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Reserven Betrieb</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Reserven für Unsicherheiten der Betriebskosten.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Operation risk allowances</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Allowances for uncertainty in operation costs.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-4-08</td>
+<td>CG-4</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Steuern und Abgaben Betrieb</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Steuern und Abgaben auf den Betrieb.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Operation taxes and levies</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Taxes and levies on operation.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-5</td>
+<td></td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Instandhaltung</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Kosten für den Erhalt der Funktionsfähigkeit durch Inspektion, Wartung und Reparatur.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Maintenance</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Costs of keeping the asset in working condition through inspection, servicing and repair.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-5-01</td>
+<td>CG-5</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Instandhaltung: Rückbau, Baustellenvorbereitung und Geländeformung</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Untersuchung, Räumung, Rückbau, Sanierung und Formung des Geländes vor den dauerhaften Arbeiten.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Maintenance: demolition, site preparation and formation</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Investigation, clearance, demolition, remediation and forming of the site before the permanent works.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-5-02</td>
+<td>CG-5</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Instandhaltung: Unterbau</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Erdberührte Arbeiten, die Lasten in den Baugrund abtragen, bis Oberkante der untersten Bodenplatte bzw. des Planums.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Maintenance: substructure</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Ground-related works that transfer loads into the ground, up to the top of the lowest floor or formation level.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-5-03</td>
+<td>CG-5</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Instandhaltung: Tragwerk</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Tragende Konstruktion oberhalb des Unterbaus.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Maintenance: structure</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Load-bearing construction above the substructure.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-5-04</td>
+<td>CG-5</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Instandhaltung: Ausbau und nichttragende Arbeiten</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Gebäudehülle, Trennwände, Beläge, Einbauten und weitere nichttragende Konstruktionen.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Maintenance: architectural and non-structural works</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Envelope, partitions, finishes, fittings and other non-load-bearing construction.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-5-05</td>
+<td>CG-5</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Instandhaltung: Technische Anlagen und Ausrüstung</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Haustechnische, elektrische, sanitäre, fördertechnische und spezielle Anlagen.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Maintenance: services and equipment</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Mechanical, electrical, plumbing, transport and specialist installations.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-5-06</td>
+<td>CG-5</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Instandhaltung: Oberflächen- und Untergrundentwässerung</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Ableitung von Oberflächen-, Regen- und Schmutzwasser ausserhalb des Bauwerks, einschliesslich Anschlüssen.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Maintenance: surface and underground drainage</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Drainage of surface, storm and foul water outside the structure, including connections.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-5-07</td>
+<td>CG-5</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Instandhaltung: Umgebungs- und Nebenarbeiten</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Stützbauwerke, Einfriedungen, Beläge, Begrünung und Werkleitungen auf dem Grundstück ausserhalb des Hauptbauwerks.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Maintenance: external and ancillary works</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Retaining structures, enclosures, paving, landscaping and services within the site but outside the main structure.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-5-08</td>
+<td>CG-5</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Instandhaltung: Baustellengemeinkosten</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Baustellenführung, provisorische Einrichtungen, gemeinsame Geräte und allgemeine Pflichten des Unternehmers, die keinem Element zugeordnet sind.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Maintenance: preliminaries and site overheads</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Constructor&#x27;s site management, temporary facilities, shared plant and general obligations not allocated to elements.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-5-09</td>
+<td>CG-5</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Instandhaltung: Reserven und Teuerung</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Reserven für Projektentwicklung, Unvorhergesehenes, Teuerung und Wechselkursänderungen.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Maintenance: risk allowances</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Allowances for design development, contingencies, price level and exchange rate changes.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-5-10</td>
+<td>CG-5</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Instandhaltung: Steuern und Abgaben</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Steuern und Abgaben auf Zahlungen für die Erstellung.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Maintenance: taxes and levies</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Taxes and levies on construction payments.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-5-11</td>
+<td>CG-5</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Instandhaltung: Arbeiten und Werkleitungen ausserhalb des Grundstücks</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Werkleitungsanschlüsse und öffentliche Zufahrten ausserhalb der Grundstücksgrenze.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Maintenance: off-site works and utilities</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Utility connections and public access works outside the site boundary.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-5-12</td>
+<td>CG-5</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Instandhaltung: Betriebseinrichtungen, Mobiliar und Ausstattung</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Produktions- und Prozesseinrichtungen, Mobiliar und lose Ausstattung für die Nutzung des Bauwerks.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Maintenance: production equipment, furniture and loose fittings</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Production and process equipment, furniture and loose items supplied for the use of the asset.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-5-13</td>
+<td>CG-5</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Instandhaltung: Planung, Beratung und Bauleitung</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Honorare von Planenden und Beratenden, behördliche Bewilligungsgebühren, Bauleitung und Prüfstellen.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Maintenance: consultancy and supervision</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Fees of designers and advisers, statutory approval charges, site supervision and testing authorities.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-6</td>
+<td></td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Lebensende</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Kosten für Ausserbetriebnahme, Rückbau und Wiederherstellung am Ende der Lebensdauer.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">End of life</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Costs of decommissioning, demolishing and reinstating at the end of the asset&#x27;s life.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-6-01</td>
+<td>CG-6</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Zustandsaufnahme vor Rückbau</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Aufnahme des Bauwerks und der Schadstoffe vor dem Rückbau.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Disposal inspection</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Survey of the asset and hazardous materials before disposal.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-6-02</td>
+<td>CG-6</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Ausserbetriebnahme und Dekontamination</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Ausserbetriebnahme des Bauwerks und Entfernen von Schadstoffen.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Decommissioning and decontamination</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Taking the asset out of service and removing contaminants.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-6-03</td>
+<td>CG-6</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Rückbau und Materialrückgewinnung</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Abbruch, Demontage und Rückgewinnung wiederverwendbarer oder rezyklierbarer Materialien.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Demolition and material recovery</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Demolition, dismantling and recovery of reusable or recyclable material.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-6-04</td>
+<td>CG-6</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Wiederherstellung</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Wiederherstellung des Geländes nach dem Rückbau.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Reinstatement</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Restoring the site after demolition.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-6-05</td>
+<td>CG-6</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Baustellengemeinkosten Rückbau</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Baustellengemeinkosten des Unternehmers für Rückbauarbeiten.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">End-of-life site overheads</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Constructor&#x27;s site overheads for end-of-life works.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-6-06</td>
+<td>CG-6</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Reserven Rückbau</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Reserven für Unsicherheiten der Rückbaukosten.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">End-of-life risk allowances</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Allowances for uncertainty in end-of-life costs.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CG-6-07</td>
+<td>CG-6</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Steuern und Abgaben Rückbau</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Steuern und Abgaben auf Rückbauarbeiten.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">End-of-life taxes and levies</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Taxes and levies on end-of-life works.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["search.suggest", "search.highlight", "content.code.copy", "navigation.top"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="https://unpkg.com/mermaid@11/dist/mermaid.min.js"></script>
+      
+        <script src="../javascripts/mermaid-init.js"></script>
+      
+        <script src="../javascripts/classification-lang-switch.js"></script>
+      
+        <script src="../javascripts/version-selector.js"></script>
+      
+        <script src="../assets/javascripts/panzoom.min.js"></script>
+      
+        <script src="../assets/javascripts/zoompan.js"></script>
+      
+    
+  </body>
+</html>

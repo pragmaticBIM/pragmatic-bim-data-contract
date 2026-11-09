@@ -6,7 +6,7 @@ search:
 # Class: PerformanceRequirement 
 
 
-_Performance target requirement (U-value, fire rating, airflow, acoustic, etc.). Boolean targets use target_value_boolean with requirement_property_key aligned to entity slot names where applicable (for example is_heated on Space). Application pipelines compare the subject entity slot to the requirement target and record the outcome as MatchChange (match_status met, unmet, or unknown)._
+_Performance target requirement (U-value, fire rating, airflow, acoustic, etc.). Boolean targets use target_value_boolean with requirement_property_key aligned to entity slot names where applicable (for example is_heated on Space). Numeric and textual targets use a permissible value of a PerformanceProperty key enum (FirePropertyKey, AcousticPropertyKey, ThermalPropertyKey, StructuralPropertyKey, IndoorEnvironmentPropertyKey, EnvironmentalPropertyKey, SecurityPropertyKey, MaterialPropertyKey) as requirement_property_key. Application pipelines compare the subject entity slot, or the performance_properties entry with the same property_key, to the requirement target and record the outcome as MatchChange (match_status met, unmet, or unknown; unknown when the subject has no value)._
 
 
 
@@ -61,7 +61,7 @@ click RequirementTargetOperator href "./RequirementTargetOperator.html" _blank
 
 | Name | Cardinality and Range | Description | Inheritance |
 | ---  | --- | --- | --- |
-| [requirement_property_key](requirement_property_key.md) | 1 <br/> [String](String.md) | Canonical performance key for the target (for example u_value, resistance_rating). Aligns with performance property keys where applicable. | direct |
+| [requirement_property_key](requirement_property_key.md) | 1 <br/> [String](String.md) | Canonical performance key for the target (for example u_value, resistance_rating, airborne_sound_rating_db, seismic_structure_class, gwp_embodied). Either a permissible value of a PerformanceProperty key enum, matched against Entity.performance_properties property_key, or an entity slot name such as is_heated. | direct |
 | [target_operator](target_operator.md) | 0..1 <br/> [RequirementTargetOperator](RequirementTargetOperator.md) | Comparison operator for the requirement target. | direct |
 | [target_value_string](target_value_string.md) | 0..1 <br/> [String](String.md) | Textual target value when applicable. | direct |
 | [target_value_number](target_value_number.md) | 0..1 <br/> [Double](Double.md) | Numeric target value when applicable. | direct |
@@ -139,9 +139,14 @@ click RequirementTargetOperator href "./RequirementTargetOperator.html" _blank
 name: PerformanceRequirement
 description: Performance target requirement (U-value, fire rating, airflow, acoustic,
   etc.). Boolean targets use target_value_boolean with requirement_property_key aligned
-  to entity slot names where applicable (for example is_heated on Space). Application
-  pipelines compare the subject entity slot to the requirement target and record the
-  outcome as MatchChange (match_status met, unmet, or unknown).
+  to entity slot names where applicable (for example is_heated on Space). Numeric
+  and textual targets use a permissible value of a PerformanceProperty key enum (FirePropertyKey,
+  AcousticPropertyKey, ThermalPropertyKey, StructuralPropertyKey, IndoorEnvironmentPropertyKey,
+  EnvironmentalPropertyKey, SecurityPropertyKey, MaterialPropertyKey) as requirement_property_key.
+  Application pipelines compare the subject entity slot, or the performance_properties
+  entry with the same property_key, to the requirement target and record the outcome
+  as MatchChange (match_status met, unmet, or unknown; unknown when the subject has
+  no value).
 from_schema: https://schema.pragmaticbim.ch
 is_a: Requirement
 slots:
@@ -164,16 +169,23 @@ class_uri: pbs:PerformanceRequirement
 name: PerformanceRequirement
 description: Performance target requirement (U-value, fire rating, airflow, acoustic,
   etc.). Boolean targets use target_value_boolean with requirement_property_key aligned
-  to entity slot names where applicable (for example is_heated on Space). Application
-  pipelines compare the subject entity slot to the requirement target and record the
-  outcome as MatchChange (match_status met, unmet, or unknown).
+  to entity slot names where applicable (for example is_heated on Space). Numeric
+  and textual targets use a permissible value of a PerformanceProperty key enum (FirePropertyKey,
+  AcousticPropertyKey, ThermalPropertyKey, StructuralPropertyKey, IndoorEnvironmentPropertyKey,
+  EnvironmentalPropertyKey, SecurityPropertyKey, MaterialPropertyKey) as requirement_property_key.
+  Application pipelines compare the subject entity slot, or the performance_properties
+  entry with the same property_key, to the requirement target and record the outcome
+  as MatchChange (match_status met, unmet, or unknown; unknown when the subject has
+  no value).
 from_schema: https://schema.pragmaticbim.ch
 is_a: Requirement
 attributes:
   requirement_property_key:
     name: requirement_property_key
-    description: 'Canonical performance key for the target (for example u_value, resistance_rating).
-      Aligns with performance property keys where applicable.
+    description: 'Canonical performance key for the target (for example u_value, resistance_rating,
+      airborne_sound_rating_db, seismic_structure_class, gwp_embodied). Either a permissible
+      value of a PerformanceProperty key enum, matched against Entity.performance_properties
+      property_key, or an entity slot name such as is_heated.
 
       '
     from_schema: https://schema.pragmaticbim.ch
@@ -181,6 +193,7 @@ attributes:
     owner: PerformanceRequirement
     domain_of:
     - PerformanceRequirement
+    - IdentificationRequirement
     range: string
     required: true
   target_operator:
@@ -201,6 +214,7 @@ attributes:
     owner: PerformanceRequirement
     domain_of:
     - PerformanceRequirement
+    - IdentificationRequirement
     range: string
   target_value_number:
     name: target_value_number
@@ -220,6 +234,7 @@ attributes:
     owner: PerformanceRequirement
     domain_of:
     - PerformanceRequirement
+    - IdentificationRequirement
     range: boolean
   target_unit:
     name: target_unit

@@ -6,7 +6,7 @@ search:
 # Slot: property_key 
 
 
-_Canonical key inside the domain; constrained via subclass slot_usage to a domain-specific enum._
+_Canonical key inside the domain; constrained via subclass slot_usage to a domain-specific enum (serialized in RDF as the enum meaning IRI)._
 
 
 
@@ -30,7 +30,9 @@ URI: [pbs:property_key](https://schema.pragmaticbim.ch/property_key)
 | [AcousticProperty](AcousticProperty.md) | Normalized acoustic-related property. |  yes  |
 | [ThermalProperty](ThermalProperty.md) | Normalized thermal-related property. |  yes  |
 | [StructuralProperty](StructuralProperty.md) | Normalized structural-related property. |  yes  |
+| [IndoorEnvironmentProperty](IndoorEnvironmentProperty.md) | Normalized indoor environment property of a space (temperature, humidity, air, light, occupancy). |  yes  |
 | [SecurityProperty](SecurityProperty.md) | Normalized security-related property. |  yes  |
+| [EnvironmentalProperty](EnvironmentalProperty.md) | Normalized environmental property of an element type (embodied greenhouse gas emissions and primary energy). |  yes  |
 | [MaterialProperty](MaterialProperty.md) | Normalized material-related property. |  yes  |
 
 
@@ -44,7 +46,7 @@ URI: [pbs:property_key](https://schema.pragmaticbim.ch/property_key)
 
 | Property | Value |
 | --- | --- |
-| Range | [String](String.md) |
+| Range | [Uriorcurie](Uriorcurie.md) |
 | Domain Of | [PerformanceProperty](PerformanceProperty.md) |
 
 ### Cardinality and Requirements
@@ -92,12 +94,12 @@ URI: [pbs:property_key](https://schema.pragmaticbim.ch/property_key)
 ```yaml
 name: property_key
 description: Canonical key inside the domain; constrained via subclass slot_usage
-  to a domain-specific enum.
+  to a domain-specific enum (serialized in RDF as the enum meaning IRI).
 from_schema: https://schema.pragmaticbim.ch
 rank: 1000
 domain_of:
 - PerformanceProperty
-range: string
+range: uriorcurie
 required: true
 
 ```

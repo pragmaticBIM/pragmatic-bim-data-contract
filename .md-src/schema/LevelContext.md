@@ -162,6 +162,7 @@ click ZoneType href "./ZoneType.html" _blank
 | ---  | ---  |
 | self | pbs:LevelContext |
 | native | pbs:LevelContext |
+| exact | bot:Storey |
 
 
 
@@ -179,6 +180,8 @@ click ZoneType href "./ZoneType.html" _blank
 name: LevelContext
 description: Spatial context node constrained to level/storey semantics.
 from_schema: https://schema.pragmaticbim.ch
+exact_mappings:
+- bot:Storey
 is_a: SpatialContext
 slots:
 - elevation
@@ -195,6 +198,8 @@ class_uri: pbs:LevelContext
 name: LevelContext
 description: Spatial context node constrained to level/storey semantics.
 from_schema: https://schema.pragmaticbim.ch
+exact_mappings:
+- bot:Storey
 is_a: SpatialContext
 attributes:
   elevation:

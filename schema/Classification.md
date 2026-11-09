@@ -78,6 +78,7 @@ click Classification href "./Classification.html" _blank
 | [Requirement](Requirement.md) | [classifications](classifications.md) | range | [Classification](Classification.md) |
 | [PerformanceRequirement](PerformanceRequirement.md) | [classifications](classifications.md) | range | [Classification](Classification.md) |
 | [SpatialRequirement](SpatialRequirement.md) | [classifications](classifications.md) | range | [Classification](Classification.md) |
+| [IdentificationRequirement](IdentificationRequirement.md) | [classifications](classifications.md) | range | [Classification](Classification.md) |
 | [RegulatoryRequirement](RegulatoryRequirement.md) | [classifications](classifications.md) | range | [Classification](Classification.md) |
 | [BriefRequirement](BriefRequirement.md) | [classifications](classifications.md) | range | [Classification](Classification.md) |
 | [DeliverableRequirement](DeliverableRequirement.md) | [classifications](classifications.md) | range | [Classification](Classification.md) |

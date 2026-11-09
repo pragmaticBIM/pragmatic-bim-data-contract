@@ -8,8 +8,8 @@ Declarative mapping from IFC entity classes to the [Pragmatic BIM Data Contract]
 |------|------|
 | [`ifc_mapping.yaml`](ifc_mapping.yaml) | Entrypoint: version, schema URI, `imports` list |
 | [`ifc_mapping.merged.yaml`](ifc_mapping.merged.yaml) | **Generated** single-file artifact for adapters (regenerate after edits) |
-| [`_conventions.yaml`](_conventions.yaml) | Global rules, metadata capture, field anchors |
-| [`_pset_fallbacks.yaml`](_pset_fallbacks.yaml) | PropertySet lookup lists (default + Revit / ArchiCAD / Vectorworks) |
+| [`_conventions.yaml`](_conventions.yaml) | Global rules, metadata capture, field anchors, value normalization rules |
+| [`_pset_fallbacks.yaml`](_pset_fallbacks.yaml) | PropertySet lookup lists for `code_or_number` and performance properties (default + Revit / ArchiCAD / Vectorworks) |
 | [`_relationships.yaml`](_relationships.yaml) | IFC rel class → `relation_type` |
 | [`_fragments.yaml`](_fragments.yaml) | Shared field, geometry, and attribute fragments |
 | [`_templates.yaml`](_templates.yaml) | Shared entity templates (`inherits`) |
@@ -60,6 +60,8 @@ Adapters can either load `ifc_mapping.merged.yaml` directly, or implement the sa
 | Change | File |
 |--------|------|
 | New Revit / ArchiCAD / Vectorworks pset | `_pset_fallbacks.yaml` |
+| New promoted performance property | `_pset_fallbacks.yaml` (lookup) + `_fragments.yaml` (`performance_properties_building_element`) |
+| Value normalization rule | `_conventions.yaml` (`normalize_*`) |
 | New IFC class (architectural) | `entities/architectural.yaml` |
 | New IFC class (HVAC) | `entities/hvac.yaml` |
 | New relationship rule | `_relationships.yaml` |
@@ -76,6 +78,7 @@ IFC exports vary by authoring tool and project. This mapping:
 2. Projects schema slots onto adapter columns (`name`, `code_or_number`, `storey`, `attributes`).
 3. Declares IFC relationship → `content_relations.relation_type` mappings aligned with PBS schema slot names.
 4. Assigns geometry roles for the `content_geometries` table.
+5. Promotes rule-relevant PropertySet values to typed `performance_properties` with canonical keys and normalized values.
 
 Schema slots are defined in [`contract/`](../) (LinkML YAML at folder root). This mapping must not introduce fields absent from those modules.
 
@@ -97,7 +100,7 @@ The adapter writes three tables:
 | `storey` | `parent_level` resolution via spatial containment (GlobalId of `IfcBuildingStorey`) |
 | `source_id` | IFC `GlobalId` — **primary IFC ↔ contract link** (see below) |
 | `source_system` | Export origin (`revit`, `archicad`, `vectorworks`, or default `ifc`) |
-| `attributes` | JSONB of PBS schema slots for the entity class, including `ifc_global_id` and `metadata[]` |
+| `attributes` | JSONB of PBS schema slots for the entity class, including `ifc_global_id`, `performance_properties[]`, and `metadata[]` |
 
 ### IFC ↔ contract identity (`GlobalId`)
 
@@ -120,6 +123,17 @@ Defined in `ifc_mapping.yaml` under `conventions.ifc_contract_link`.
 | `source_content_id` | Source element GlobalId |
 | `target_content_id` | Target element GlobalId |
 | `relation_type` | PBS relationship slot name (e.g. `parent_level`, `separates_spaces`) |
+
+### RDF projection
+
+[`ifc2rdf`](../../README.md#ifc--rdf-export) writes the same mapping as an RDF graph instead of tables. `conventions.rdf_projection` declares the differences:
+
+| Key | Meaning |
+|-----|---------|
+| `field_slots` | Top-level `fields` emitted as schema slots (`name` → `name`, `storey` → `parent_level`, `classifications` → `classifications`). Other fields (for example `code_or_number`) are not emitted, so their PropertySet values stay in `metadata[]`. |
+| `exclude_entities` | IFC classes without an RDF node (`IfcOpeningElement`: `connection_functional_types` is required and has no IFC source). |
+
+Instance IRIs are `{base_uri}{GlobalId}`; relations become triples whose predicate is the slot URI. Inlined records (`classifications`, `metadata`, `performance_properties`) are blank nodes typed with their class and its ancestors (for example `pbs:FireProperty`, `pbs:PerformanceProperty`); enum slots such as `property_key` hold the enum `meaning` IRI (`pbs:fire_property_resistance_rating`).
 
 ### `content_geometries`
 
@@ -172,7 +186,7 @@ The entrypoint [`ifc_mapping.yaml`](ifc_mapping.yaml) declares version metadata 
 Merged structure:
 
 ```yaml
-mapping_version: "1.2.0"
+mapping_version: "1.4.0"
 schema_uri: https://schema.pragmaticbim.ch/
 canonical_type_version: "v0.0.7"
 
@@ -207,6 +221,7 @@ Each `entities.Ifc*` entry defines:
 | `ifc_attribute` | Read a direct IFC attribute |
 | `ifc_attribute_fallback` | Try attributes in order; first non-empty wins |
 | `ifc_pset_fallback` | Try PropertySet/property pairs in order; first match wins |
+| `ifc_pset_performance` | Promote PropertySet values to typed `performance_properties[]` records through a lookup and a normalization rule (see **Performance properties**) |
 | `ifc_attribute_all` | All IFC entity attributes on the instance, minus excluded/promoted ones |
 | `ifc_pset_all` | All PropertySet properties on the instance, minus those used elsewhere |
 | `metadata_merge` | Combine multiple metadata capture rules into one `metadata[]` array |
@@ -244,6 +259,10 @@ Shared defaults (`Pset_BuildingElementCommon.Reference`, etc.) are always append
 
 **When extending:** add new entries at the **top** of the relevant override list for a source system. Do not reorder existing entries — downstream projects may depend on current precedence.
 
+### Source system fallbacks (after the standard psets)
+
+A lookup may also declare `source_system_fallbacks[source_system]`. These pairs are tried **after** `fallbacks`. The full order is `source_system_overrides` → `fallbacks` → `source_system_fallbacks`. Performance properties use this form: the standard `Pset_*Common` value is the declared IFC exchange, and exporters copy their own parameter into it. The Revit Duplex sample shows tool psets disagreeing with it (`PSet_Revit_Structural.Structural = false` where `Pset_SlabCommon.LoadBearing = true`).
+
 ---
 
 ## Classifications
@@ -273,7 +292,7 @@ Every **IFC entity attribute** on the instance is stored unless already promoted
 | Excluded (promoted) | Destination |
 |---------------------|-------------|
 | `GlobalId` | `source_id`, `attributes.ifc_global_id` |
-| `Name`, `LongName`, `ObjectType` | `content.name` |
+| `Name`, `LongName`, `ObjectType` | `content.name` (falls back to `GlobalId` because `Entity.name` is required) |
 | `Description` | `attributes.description` |
 | Attributes mapped to typed PBS slots | e.g. `PredefinedType` → `separator_slab_type` |
 
@@ -281,7 +300,7 @@ Every **IFC entity attribute** on the instance is stored unless already promoted
 
 ### 2. PropertySets
 
-Every **PropertySet property** not used for `code_or_number` or typed attribute slots:
+Every **PropertySet property** not used for `code_or_number` or typed attribute slots. Values promoted to `performance_properties` stay in metadata as well (`keep_used_in: [attributes.performance_properties]`), so the raw value remains traceable next to the normalized record:
 
 **Key format:** `{Pset}.{Property}` — e.g. `Pset_WallCommon.FireRating`.
 
@@ -295,10 +314,115 @@ Example `attributes` JSONB fragment:
 {
   "ifc_global_id": "3l$8vj$nL1Pu4$G9QjXjC",
   "separator_wall_type": "unit_boundary",
+  "performance_properties": [
+    {
+      "property_class": "FireProperty",
+      "property_key": "resistance_rating",
+      "property_value_type": "string",
+      "property_value_string": "EI60",
+      "source_pset": "Pset_WallCommon",
+      "source_property": "FireRating",
+      "source_value_raw": "EI 60",
+      "mapping_version": "1.4.0"
+    }
+  ],
   "metadata": [
     { "metadata_key": "IfcWall.OverallHeight", "metadata_value": "3.0" },
-    { "metadata_key": "Pset_WallCommon.FireRating", "metadata_value": "EI60" }
+    { "metadata_key": "Pset_WallCommon.FireRating", "metadata_value": "EI 60" }
   ]
+}
+```
+
+---
+
+## Performance properties
+
+Rule checks (SHACL, SPARQL) need one stable path and one normalized value per property. Rule-relevant PropertySet values are therefore promoted to typed `PerformanceProperty` records on `Entity.performance_properties` ([`entity_performance_schema.yaml`](../entity_performance_schema.yaml)). The canonical key comes from the domain enum (`FirePropertyKey`, `AcousticPropertyKey`, `ThermalPropertyKey`, `StructuralPropertyKey`).
+
+The fragment `performance_properties_building_element` ([`_fragments.yaml`](_fragments.yaml)) is attached to `IfcWall`, `IfcCurtainWall`, `IfcSlab`, `IfcRoof`, `IfcCovering`, `IfcDoor`, `IfcWindow`, `IfcColumn`, `IfcBeam`, `IfcStair`, and `IfcRamp`.
+
+### Promoted properties
+
+| IFC source (`Pset_*Common`) | Class | `property_key` | Value | Normalization rule |
+|-----------------------------|-------|----------------|-------|--------------------|
+| `FireRating` | `FireProperty` | `resistance_rating` | string | `normalize_fire_rating` |
+| `FireRating` suffix `-RF1` … `-RF4` | `FireProperty` | `reaction_to_fire` | string | `normalize_fire_rating` (`suffix_routes`) |
+| `FireRating` suffix `-Sa`, `-Sm`, `-S200` | `FireProperty` | `smoke_rating` | string | `normalize_fire_rating` (`suffix_routes`) |
+| `AcousticRating` | `AcousticProperty` | `rating_db` | number, `dB` | `normalize_acoustic_rating_db` |
+| `ThermalTransmittance` | `ThermalProperty` | `thermal_transmittance` | number, `W/m2K` | `normalize_thermal_transmittance` |
+| `IsExternal` | `ThermalProperty` | `is_external` | boolean | `normalize_boolean` |
+| `LoadBearing` | `StructuralProperty` | `load_bearing` | boolean | `normalize_boolean` |
+
+`Pset_*Common` stands for the common pset of each mapped class (`Pset_WallCommon`, `Pset_SlabCommon`, `Pset_DoorCommon`, …). The lookup lists `perf_*` in [`_pset_fallbacks.yaml`](_pset_fallbacks.yaml) enumerate the pairs where IFC defines the property. An instance carries only the common pset of its own class.
+
+Tool-specific `source_system_fallbacks` (tried after `Pset_*Common`):
+
+| Property | `revit` | `archicad` | `vectorworks` |
+|----------|---------|------------|---------------|
+| `FireRating` | `PSet_Revit_Type_Identity Data.Fire Rating`, `PSet_Revit_Type_Other.FireRating`, `PSet_Revit_Other.FireRating` | `General Ratings.Fire Resistance Rating` | — |
+| `AcousticRating` | `PSet_Revit_Type_Other.AcousticRating`, `PSet_Revit_Other.AcousticRating` | `General Ratings.Acoustic Rating` | — |
+| `ThermalTransmittance` | `PSet_Revit_Type_Analytical Properties.Heat Transfer Coefficient (U)` | `General Ratings.Thermal Transmittance` | — |
+| `IsExternal` | — (exporter writes `Function` to `Pset_*Common`) | — (exporter writes Position to `Pset_*Common`) | — |
+| `LoadBearing` | `PSet_Revit_Structural.Structural` | — (exporter writes Structural Function to `Pset_*Common`) | — |
+
+Vectorworks maps ratings into `Pset_*Common` through the Data Manager; add project-specific custom psets to the `vectorworks` lists.
+
+### Record slots
+
+| Slot | Value |
+|------|-------|
+| `property_class` | `PerformanceProperty` subclass from the mapping entry; JSONB discriminator only (RDF uses `rdf:type`) |
+| `property_key` | Canonical key from the domain enum (RDF: enum `meaning` IRI, e.g. `pbs:fire_property_resistance_rating`) |
+| `property_value_type` | `string`, `number`, or `boolean` (from the rule's `value_type`) |
+| `property_value_string` / `_number` / `_boolean` | Normalized value |
+| `property_unit`, `property_unit_uri` | From the rule (`dB` / QUDT `DeciB`, `W/m2K` / QUDT `W-PER-M2-K`) |
+| `source_pset`, `source_property` | PropertySet pair the value came from |
+| `source_value_raw` | Raw value before normalization |
+| `mapping_version` | `mapping_version` of this mapping |
+
+The raw value also stays in `metadata[]` under `{Pset}.{Property}`.
+
+### Normalization rules
+
+Rules are declared in [`_conventions.yaml`](_conventions.yaml) and applied in this order:
+
+| Key | Applies to | Effect |
+|-----|-----------|--------|
+| `remove_whitespace` | string | Remove all whitespace (`"EI 90"` → `"EI90"`) |
+| `upper_case` | string | Upper-case the value (`"ei90"` → `"EI90"`) |
+| `suffix_separator` | string | Split the value at the separator; the first part is the main value |
+| `suffix_routes` | string | Each suffix matching `pattern` becomes a separate record with the route's `property_key`. Suffixes without a route are dropped from the normalized value and remain in `source_value_raw` |
+| `accept_pattern` | string | The main value must match (full match), otherwise the value is rejected |
+| `number_pattern` | number | Numeric IFC values are used as-is; text uses the first match (comma decimals accepted) |
+| `accept_range` | number | Bounds with operators `gt`, `gte`, `lt`, `lte` |
+| `true_values` / `false_values` | boolean | Case-insensitive text matches; IFC booleans are used as-is; anything else (for example `UNKNOWN`) is rejected |
+| `unit`, `unit_uri` | number | Written to `property_unit` / `property_unit_uri` |
+
+A rejected value does not stop the lookup: the next pair in the list is tried, and the first value that normalizes wins. Rejected values remain in `metadata[]` only, and `ifc2rdf` lists them in its conversion report.
+
+Fire rating examples (`normalize_fire_rating`):
+
+| Raw value | `resistance_rating` | Separate record |
+|-----------|---------------------|-----------------|
+| `EI 90`, `EI90`, `ei 90` | `EI90` | — |
+| `EI 90-RF1` | `EI90` | `reaction_to_fire` = `RF1` |
+| `EI 30-Sa` | `EI30` | `smoke_rating` = `SA` |
+| `EI 30-C` | `EI30` | — (`-C` kept in `source_value_raw`) |
+| `F90`, `T30` (DIN 4102) | `F90`, `T30` | — |
+| `Fire Rating`, `FireRating` (Revit placeholders) | rejected | — |
+| `耐火等級レベル1` (Japanese grade label) | rejected | — |
+
+`accept_pattern` (`^[A-Z]{1,4}[0-9]{2,4}$`) admits EN 13501-2 and DIN 4102 class notations. National labels outside that pattern stay in `metadata[]`. EN 13501-2 classes with a performance index (`EI2 30`) lose the space between index and minutes (`EI230`).
+
+Acoustic and thermal examples: `Rw 52 dB` → `52` dB; `R'w = 45 (-1;-3)` → `45` dB; `AcousticRating` (Revit placeholder) is rejected, as is any value outside 10–100 dB. `ThermalTransmittance` values (`0.3`, `1.4`, …) are used as numbers within `0 < U ≤ 10`. They are read in the project's thermal transmittance unit, which is W/(m²·K) unless the IFC file assigns another unit.
+
+Rule check example (walls with fire resistance `EI90`):
+
+```sparql
+PREFIX pbs: <https://schema.pragmaticbim.ch/>
+SELECT ?wall WHERE {
+  ?wall a pbs:SeparatorWall ; pbs:performance_properties ?p .
+  ?p pbs:property_key pbs:fire_property_resistance_rating ; pbs:property_value_string "EI90" .
 }
 ```
 
@@ -317,8 +441,10 @@ Global rules live under `relationships` in `ifc_mapping.yaml`. Each entity lists
 | `IfcRelAssignsToGroup` | `group_members` | Assigned to `IfcZone` / `IfcGroup` |
 | `IfcRelAssignsToSystem` | `parent_system` | Element → system |
 | same | `contained_entities` | System → member elements |
-| `IfcRelSpaceBoundary` | `separates_spaces` | Wall/slab → space |
+| `IfcRelSpaceBoundary` | `separates_spaces` | Wall/slab/curtain wall → space |
+| same | `connects_spaces` | Door/window → space |
 | same | `bounded_by` | Covering → space |
+| same | `adjacent_elements` (`space_relation_type`) | Space → every mapped boundary element; serialized as `bot:adjacentElement` |
 | `IfcRelConnectsElements` | `connects_physical_elements` | Structural joints, host connections |
 | `IfcRelConnectsPathElements` | `connects_physical_elements` | Duct/pipe run connectivity |
 | `IfcRelFillsElement` | `connects_physical_elements` | Door/window ↔ opening |
@@ -356,6 +482,7 @@ fields:
 attributes:
   separator_wall_type: unit_boundary
   ifc_global_id: GlobalId
+  performance_properties: FireRating → FireProperty.resistance_rating, … (see Performance properties)
 geometry:
   primary: body_3d
   secondary: footprint_2d
@@ -441,6 +568,23 @@ from_revision: ...
 to_revision: ...
 ```
 
+### Performance targets on walls, slabs, and spaces
+
+Element catalogues (for example the pragmatic BIM Swiss add-ons) pair each target attribute with the attribute carrying the delivered value. The delivered value becomes a `PerformanceProperty` on `Entity.performance_properties`; the target becomes a `PerformanceRequirement` linked via `applies_to_entities`, with `requirement_property_key` set to the same key. Comparing both yields a `MatchChange`.
+
+| Element | Target (requirement pset) | Delivered value | Performance class | Key | Operator |
+|---------|---------------------------|-----------------|-------------------|-----|----------|
+| Wall, slab | `ePset_WallRequirement` / `ePset_SlabRequirement.FireRatingRequired` | `Pset_WallCommon` / `Pset_SlabCommon.FireRating` | `FireProperty` | `resistance_rating` | `minimum` |
+| Exterior wall, roof, base slab | `ThermalTransmittanceMax` | `Pset_WallCommon` / `Pset_SlabCommon.ThermalTransmittance` | `ThermalProperty` | `u_value` | `maximum` |
+| Interior wall, floor slab | `AirborneSoundInsulationMin` | `ePset_Wall` / `ePset_Slab.AirborneSoundInsulation` | `AcousticProperty` | `airborne_sound_rating_db` | `minimum` |
+| Floor slab | `ImpactSoundLevelMax` | `ePset_Slab.ImpactSoundLevel` | `AcousticProperty` | `impact_sound_rating_db` | `maximum` |
+| Load-bearing wall, floor slab, base slab | `SeismicStructureClassRequired` | `ePset_Wall` / `ePset_Slab.SeismicStructureClass` | `StructuralProperty` | `seismic_structure_class` | `minimum` |
+| Wall, slab | `GlobalWarmingPotentialMax` | `ePset_Wall` / `ePset_Slab.GlobalWarmingPotential` | `EnvironmentalProperty` | `gwp_embodied` | `maximum` |
+| Space | `ePset_SpaceRequirement.<Key>` (for example `SummerTemperatureMax`) | `ePset_Space.<Key>Actual` | `IndoorEnvironmentProperty` | for example `summer_temperature_max` | per key |
+| Space | `ePset_SpaceRequirement.DesignAreaLoad` | `ePset_Space.DesignAreaLoadActual` | `StructuralProperty` | `design_area_load` | `minimum` |
+
+Requirement psets map to requirements, never to `performance_properties`: a target value on an element is not evidence that the element performs.
+
 ### IfcSlab PredefinedType split
 
 Per **IfcSlabTypeEnum** (IFC 4.3). `CEILING` is **not** a slab type — ceilings are `IfcCovering` with `PredefinedType=CEILING`.
@@ -491,6 +635,7 @@ Documented limitations where IFC semantics exceed current PBS schema coverage:
 | No stair/ramp class | `IfcStair`, `IfcRamp` → abstract `PhysicalElement`; enrich via `classifications[]` |
 | `IfcCurtainWall` | Mapped to `SeparatorWall` (closest wall-based separator) |
 | `IfcRoof` | Mapped to `PhysicalElement` (assembly container; roof faces are `IfcSlab`/`IfcCovering` parts) |
+| `IsExternal` has no envelope domain | `ThermalProperty` with key `is_external` (envelope membership drives thermal rules) |
 
 These are intentional pragmatic mappings pending schema extension.
 

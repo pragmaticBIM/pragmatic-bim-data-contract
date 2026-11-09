@@ -26,6 +26,10 @@ URI: [pbs:StructuralPropertyKey](https://schema.pragmaticbim.ch/StructuralProper
 | load_bearing | pbs:structural_property_load_bearing |  |
 | stiffness_class | pbs:structural_property_stiffness_class |  |
 | strength_class | pbs:structural_property_strength_class |  |
+| design_area_load | pbs:structural_property_design_area_load | Imposed design area load in kN/m2. |
+| design_point_load | pbs:structural_property_design_point_load | Imposed design point load in kN. |
+| vibration_class | pbs:structural_property_vibration_class | Vibration criterion class, for example ISO Residential (Night). |
+| seismic_structure_class | pbs:structural_property_seismic_structure_class | Seismic structure class (Bauwerksklasse) I, II, or III under SIA 261. |
 
 
 
@@ -80,6 +84,23 @@ permissible_values:
   strength_class:
     text: strength_class
     meaning: pbs:structural_property_strength_class
+  design_area_load:
+    text: design_area_load
+    description: Imposed design area load in kN/m2.
+    meaning: pbs:structural_property_design_area_load
+  design_point_load:
+    text: design_point_load
+    description: Imposed design point load in kN.
+    meaning: pbs:structural_property_design_point_load
+  vibration_class:
+    text: vibration_class
+    description: Vibration criterion class, for example ISO Residential (Night).
+    meaning: pbs:structural_property_vibration_class
+  seismic_structure_class:
+    text: seismic_structure_class
+    description: Seismic structure class (Bauwerksklasse) I, II, or III under SIA
+      261.
+    meaning: pbs:structural_property_seismic_structure_class
 
 ```
 </details>

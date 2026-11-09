@@ -26,6 +26,7 @@ URI: [pbs:SpatialAdjacencyKind](https://schema.pragmaticbim.ch/SpatialAdjacencyK
 | adjacent_to | pbs:spatial_adjacency_adjacent_to | Subject must be adjacent to the related entity or space. | Title: Adjacent To<br>|
 | not_adjacent_to | pbs:spatial_adjacency_not_adjacent_to | Subject must not be adjacent to the related entity or space. | Title: Not Adjacent To<br>|
 | min_clear_distance | pbs:spatial_adjacency_min_clear_distance | Minimum clear distance to the related entity or space. | Title: Minimum Clear Distance<br>|
+| max_distance | pbs:spatial_adjacency_max_distance | Maximum walking distance in metres from the subject to the related entity or space. | Title: Maximum Distance<br>|
 
 
 
@@ -98,6 +99,16 @@ permissible_values:
         source: de
         description: Mindestabstand
     title: Minimum Clear Distance
+  max_distance:
+    text: max_distance
+    description: Maximum walking distance in metres from the subject to the related
+      entity or space.
+    meaning: pbs:spatial_adjacency_max_distance
+    alt_descriptions:
+      de:
+        source: de
+        description: Maximale Distanz
+    title: Maximum Distance
 
 ```
 </details>

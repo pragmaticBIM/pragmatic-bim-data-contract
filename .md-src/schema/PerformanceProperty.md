@@ -39,8 +39,12 @@ PerformanceProperty <|-- ThermalProperty
 click ThermalProperty href "./ThermalProperty.html" _blank
 PerformanceProperty <|-- StructuralProperty
 click StructuralProperty href "./StructuralProperty.html" _blank
+PerformanceProperty <|-- IndoorEnvironmentProperty
+click IndoorEnvironmentProperty href "./IndoorEnvironmentProperty.html" _blank
 PerformanceProperty <|-- SecurityProperty
 click SecurityProperty href "./SecurityProperty.html" _blank
+PerformanceProperty <|-- EnvironmentalProperty
+click EnvironmentalProperty href "./EnvironmentalProperty.html" _blank
 PerformanceProperty <|-- MaterialProperty
 click MaterialProperty href "./MaterialProperty.html" _blank
 click PerformancePropertyValueType href "./PerformancePropertyValueType.html" _blank
@@ -56,7 +60,9 @@ click PerformancePropertyValueType href "./PerformancePropertyValueType.html" _b
     * [AcousticProperty](AcousticProperty.md)
     * [ThermalProperty](ThermalProperty.md)
     * [StructuralProperty](StructuralProperty.md)
+    * [IndoorEnvironmentProperty](IndoorEnvironmentProperty.md)
     * [SecurityProperty](SecurityProperty.md)
+    * [EnvironmentalProperty](EnvironmentalProperty.md)
     * [MaterialProperty](MaterialProperty.md)
 
 
@@ -71,7 +77,7 @@ click PerformancePropertyValueType href "./PerformancePropertyValueType.html" _b
 
 | Name | Cardinality and Range | Description | Inheritance |
 | ---  | --- | --- | --- |
-| [property_key](property_key.md) | 1 <br/> [String](String.md) | Canonical key inside the domain; constrained via subclass slot_usage to a domain-specific enum. | direct |
+| [property_key](property_key.md) | 1 <br/> [Uriorcurie](Uriorcurie.md) | Canonical key inside the domain; constrained via subclass slot_usage to a domain-specific enum (serialized in RDF as the enum meaning IRI). | direct |
 | [property_value_type](property_value_type.md) | 1 <br/> [PerformancePropertyValueType](PerformancePropertyValueType.md) | Value type discriminator for normalized storage (for example string, number, boolean). | direct |
 | [property_value_string](property_value_string.md) | 0..1 <br/> [String](String.md) | String value when property_value_type is string. | direct |
 | [property_value_number](property_value_number.md) | 0..1 <br/> [Double](Double.md) | Numeric value when property_value_type is number. | direct |
@@ -109,6 +115,7 @@ click PerformancePropertyValueType href "./PerformancePropertyValueType.html" _b
 | [Requirement](Requirement.md) | [performance_properties](performance_properties.md) | range | [PerformanceProperty](PerformanceProperty.md) |
 | [PerformanceRequirement](PerformanceRequirement.md) | [performance_properties](performance_properties.md) | range | [PerformanceProperty](PerformanceProperty.md) |
 | [SpatialRequirement](SpatialRequirement.md) | [performance_properties](performance_properties.md) | range | [PerformanceProperty](PerformanceProperty.md) |
+| [IdentificationRequirement](IdentificationRequirement.md) | [performance_properties](performance_properties.md) | range | [PerformanceProperty](PerformanceProperty.md) |
 | [RegulatoryRequirement](RegulatoryRequirement.md) | [performance_properties](performance_properties.md) | range | [PerformanceProperty](PerformanceProperty.md) |
 | [BriefRequirement](BriefRequirement.md) | [performance_properties](performance_properties.md) | range | [PerformanceProperty](PerformanceProperty.md) |
 | [DeliverableRequirement](DeliverableRequirement.md) | [performance_properties](performance_properties.md) | range | [PerformanceProperty](PerformanceProperty.md) |
@@ -222,13 +229,13 @@ attributes:
   property_key:
     name: property_key
     description: Canonical key inside the domain; constrained via subclass slot_usage
-      to a domain-specific enum.
+      to a domain-specific enum (serialized in RDF as the enum meaning IRI).
     from_schema: https://schema.pragmaticbim.ch
     rank: 1000
     owner: PerformanceProperty
     domain_of:
     - PerformanceProperty
-    range: string
+    range: uriorcurie
     required: true
   property_value_type:
     name: property_value_type

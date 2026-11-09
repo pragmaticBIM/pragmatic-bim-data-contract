@@ -138,6 +138,7 @@ click ZoneType href "./ZoneType.html" _blank
 | ---  | ---  |
 | self | pbs:BuildingContext |
 | native | pbs:BuildingContext |
+| exact | bot:Building |
 
 
 
@@ -155,6 +156,8 @@ click ZoneType href "./ZoneType.html" _blank
 name: BuildingContext
 description: Spatial context node constrained to building semantics.
 from_schema: https://schema.pragmaticbim.ch
+exact_mappings:
+- bot:Building
 is_a: BuiltAssetContext
 class_uri: pbs:BuildingContext
 
@@ -168,6 +171,8 @@ class_uri: pbs:BuildingContext
 name: BuildingContext
 description: Spatial context node constrained to building semantics.
 from_schema: https://schema.pragmaticbim.ch
+exact_mappings:
+- bot:Building
 is_a: BuiltAssetContext
 attributes:
   context_type:

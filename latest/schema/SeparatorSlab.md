@@ -38,6 +38,7 @@ click LevelContext href "./LevelContext.html" _blank
 click PerformanceProperty href "./PerformanceProperty.html" _blank
 click QuantityValue href "./QuantityValue.html" _blank
 click LevelContext href "./LevelContext.html" _blank
+click Space href "./Space.html" _blank
 click SeparatorRequirementDriver href "./SeparatorRequirementDriver.html" _blank
 click SeparatorSlabType href "./SeparatorSlabType.html" _blank
 click StatusType href "./StatusType.html" _blank
@@ -68,6 +69,7 @@ click StatusType href "./StatusType.html" _blank
 | [separator_slab_type](separator_slab_type.md) | 1 <br/> [SeparatorSlabType](SeparatorSlabType.md) | Classification of slab-based separator element (for example floor/roof/base slab). | direct |
 | [separates_levels](separates_levels.md) | * <br/> [LevelContext](LevelContext.md) | Level context nodes separated by this slab separator. | direct |
 | [separator_requirement_drivers](separator_requirement_drivers.md) | * <br/> [SeparatorRequirementDriver](SeparatorRequirementDriver.md) | Performance requirement drivers for this separator. Multiple values are allowed because one separator may need to satisfy several requirements. | [Separator](Separator.md) |
+| [separates_spaces](separates_spaces.md) | * <br/> [Space](Space.md) | Spaces separated by this separator element. | [Separator](Separator.md) |
 | [parent_building](parent_building.md) | 0..1 <br/> [BuiltAssetContext](BuiltAssetContext.md) | Parent building context reference. | [PhysicalElement](PhysicalElement.md) |
 | [parent_level](parent_level.md) | 0..1 <br/> [LevelContext](LevelContext.md) | Parent level/storey context reference. | [PhysicalElement](PhysicalElement.md) |
 | [id](id.md) | 1 <br/> [String](String.md) | Unique local identifier. | [Entity](Entity.md) |
@@ -196,6 +198,16 @@ attributes:
     domain_of:
     - Separator
     range: SeparatorRequirementDriver
+    multivalued: true
+  separates_spaces:
+    name: separates_spaces
+    description: Spaces separated by this separator element.
+    from_schema: https://schema.pragmaticbim.ch
+    rank: 1000
+    owner: SeparatorSlab
+    domain_of:
+    - Separator
+    range: Space
     multivalued: true
   parent_building:
     name: parent_building

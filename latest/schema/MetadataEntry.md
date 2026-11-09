@@ -72,6 +72,7 @@ click MetadataEntry href "./MetadataEntry.html" _blank
 | [Requirement](Requirement.md) | [metadata](metadata.md) | range | [MetadataEntry](MetadataEntry.md) |
 | [PerformanceRequirement](PerformanceRequirement.md) | [metadata](metadata.md) | range | [MetadataEntry](MetadataEntry.md) |
 | [SpatialRequirement](SpatialRequirement.md) | [metadata](metadata.md) | range | [MetadataEntry](MetadataEntry.md) |
+| [IdentificationRequirement](IdentificationRequirement.md) | [metadata](metadata.md) | range | [MetadataEntry](MetadataEntry.md) |
 | [RegulatoryRequirement](RegulatoryRequirement.md) | [metadata](metadata.md) | range | [MetadataEntry](MetadataEntry.md) |
 | [BriefRequirement](BriefRequirement.md) | [metadata](metadata.md) | range | [MetadataEntry](MetadataEntry.md) |
 | [DeliverableRequirement](DeliverableRequirement.md) | [metadata](metadata.md) | range | [MetadataEntry](MetadataEntry.md) |

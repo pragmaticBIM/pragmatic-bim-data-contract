@@ -28,6 +28,7 @@ class n_SEC_BAU_MDS["SEC-BAU-MDS: Material distributor"]
 class n_SEC_BAU_MPR["SEC-BAU-MPR: Material producer"]
 class n_SEC_BAU_PLN["SEC-BAU-PLN: Planning and design"]
 class n_SEC_BAU_PLN_ARC["SEC-BAU-PLN-ARC: Architecture"]
+class n_SEC_BAU_PLN_ENG["SEC-BAU-PLN-ENG: Engineering"]
 class n_SEC_BAU_PLN_EXP["SEC-BAU-PLN-EXP: Expert assessor"]
 class n_SEC_BAU_PLN_MEP["SEC-BAU-PLN-MEP: Building services (MEP)"]
 class n_SEC_FOD["SEC-FOD: Food and nutrition"]
@@ -80,6 +81,7 @@ n_SEC_BAU_CLI <|-- n_SEC_BAU_CLI_OWN
 n_SEC_BAU_CLI_OWN <|-- n_SEC_BAU_CLI_OWN_PRV
 n_SEC_BAU_CLI_OWN <|-- n_SEC_BAU_CLI_OWN_PUB
 n_SEC_BAU_PLN <|-- n_SEC_BAU_PLN_ARC
+n_SEC_BAU_PLN <|-- n_SEC_BAU_PLN_ENG
 n_SEC_BAU_PLN <|-- n_SEC_BAU_PLN_EXP
 n_SEC_BAU_PLN <|-- n_SEC_BAU_PLN_MEP
 n_SEC_FOD <|-- n_SEC_FOD_CHF
@@ -276,6 +278,16 @@ n_SEC_MIL <|-- n_SEC_MIL_SPC
 <td class="pbs-lang-col" data-lang="en" data-field="label">Architecture</td>
 <td class="pbs-lang-col" data-lang="en" data-field="definition"></td>
 <td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>SEC-BAU-PLN-ENG</td>
+<td>SEC-BAU-PLN</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Ingenieur</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition"></td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note">Ingenieurbüro oder Ingenieur in der Bauplanung (z. B. Bau-, Tragwerks-, Geotechnik-Ingenieurwesen).</td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Engineering</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note">Engineering firm or engineer in construction planning (for example civil, structural, geotechnical engineering).</td>
 </tr>
 <tr>
 <td>SEC-BAU-PLN-EXP</td>

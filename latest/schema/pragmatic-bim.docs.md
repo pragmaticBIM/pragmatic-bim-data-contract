@@ -60,8 +60,9 @@ Name: pragmatic_bim_data_contract
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[CostRecord](CostRecord.md) | Cost record for estimation, catalog pricing, and calculation. Use cost_record_role to distinguish catalog cost/price (on Product) from project estimate/actual lines. Populate component_cost_items to act as an assembly (aggregated unit price). |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Material](Material.md) | Material definition that can be associated with one or more entities. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Requirement](Requirement.md) | Prescriptive requirement entity (content_kind requirement). Applies to model entities via applies_to_entities. Domain is discriminated by concrete subclass (PerformanceRequirement, SpatialRequirement, DeliverableRequirement, etc.), not a separate slot. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[PerformanceRequirement](PerformanceRequirement.md) | Performance target requirement (U-value, fire rating, airflow, acoustic, etc.). Boolean targets use target_value_boolean with requirement_property_key aligned to entity slot names where applicable (for example is_heated on Space). Application pipelines compare the subject entity slot to the requirement target and record the outcome as MatchChange (match_status met, unmet, or unknown). |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[SpatialRequirement](SpatialRequirement.md) | Spatial constraint requirement (min area, min height, adjacency, etc.). |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[PerformanceRequirement](PerformanceRequirement.md) | Performance target requirement (U-value, fire rating, airflow, acoustic, etc.). Boolean targets use target_value_boolean with requirement_property_key aligned to entity slot names where applicable (for example is_heated on Space). Numeric and textual targets use a permissible value of a PerformanceProperty key enum (FirePropertyKey, AcousticPropertyKey, ThermalPropertyKey, StructuralPropertyKey, IndoorEnvironmentPropertyKey, EnvironmentalPropertyKey, SecurityPropertyKey, MaterialPropertyKey) as requirement_property_key. Application pipelines compare the subject entity slot, or the performance_properties entry with the same property_key, to the requirement target and record the outcome as MatchChange (match_status met, unmet, or unknown; unknown when the subject has no value). |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[SpatialRequirement](SpatialRequirement.md) | Spatial constraint requirement (min area, min height, adjacency, distance, etc.). |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[IdentificationRequirement](IdentificationRequirement.md) | Identification or classification value the subject must carry (predefined type, long name, area category, interior or exterior). States what the subject is, not how it performs (PerformanceRequirement) or what it is made of (MaterialRequirement). |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[RegulatoryRequirement](RegulatoryRequirement.md) | Regulatory reference requirement (building code, norm, standard). |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[BriefRequirement](BriefRequirement.md) | Client or programme requirement, including free-standing brief items. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[DeliverableRequirement](DeliverableRequirement.md) | Deliverable or documentation requirement (model LOD, O&M manual, export format, etc.). |
@@ -91,7 +92,9 @@ Name: pragmatic_bim_data_contract
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[AcousticProperty](AcousticProperty.md) | Normalized acoustic-related property. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ThermalProperty](ThermalProperty.md) | Normalized thermal-related property. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[StructuralProperty](StructuralProperty.md) | Normalized structural-related property. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[IndoorEnvironmentProperty](IndoorEnvironmentProperty.md) | Normalized indoor environment property of a space (temperature, humidity, air, light, occupancy). |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[SecurityProperty](SecurityProperty.md) | Normalized security-related property. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[EnvironmentalProperty](EnvironmentalProperty.md) | Normalized environmental property of an element type (embodied greenhouse gas emissions and primary energy). |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[MaterialProperty](MaterialProperty.md) | Normalized material-related property. |
 | [PostalAddress](PostalAddress.md) | Structured postal or physical address for an agent. |
 | [ContactPoint](ContactPoint.md) | Structured communication endpoint or profile for an agent. |
@@ -115,6 +118,7 @@ Name: pragmatic_bim_data_contract
 | [address_locality](address_locality.md) | Locality, city, or town. |
 | [address_region](address_region.md) | Region, state, canton, or province. |
 | [adjacency_kind](adjacency_kind.md) | Adjacency semantics when this spatial requirement involves another subject. |
+| [adjacent_elements](adjacent_elements.md) | Physical elements adjacent to the space through an IFC space boundary (walls, slabs, doors, windows, coverings). Space-side view of separates_spaces, connects_spaces, and bounded_by, serialized as bot:adjacentElement. |
 | [affected_geometry_role](affected_geometry_role.md) | Geometry role affected for GeometryChange records. |
 | [affected_requirement](affected_requirement.md) | Requirement entity affected by this change. |
 | [affected_subject](affected_subject.md) | Optional typed reference to the changed graph entity when the subject is in the project graph. |
@@ -153,7 +157,7 @@ Name: pragmatic_bim_data_contract
 | [connection_virtual_requirement_drivers](connection_virtual_requirement_drivers.md) | Main requirement drivers for this virtual connection. |
 | [connection_virtual_type](connection_virtual_type.md) | Classification of virtual connection semantics (for example structural_joint, adjacency, access). |
 | [connects_physical_elements](connects_physical_elements.md) | Physical elements connected by this virtual connection (for example wall-wall, wall-slab). |
-| [connects_spaces](connects_spaces.md) | Spaces connected by this virtual connection. |
+| [connects_spaces](connects_spaces.md) | Spaces connected by this connection (for example the two spaces on either side of a door). |
 | [consent_notes](consent_notes.md) | Optional notes about how or where consent was captured. |
 | [consent_records](consent_records.md) | Audit trail of lawful basis and consent for processing personal data. When lawful_basis is consent and state is active, at least one non-withdrawn record should be present. |
 | [contact_channel_type](contact_channel_type.md) | Communication channel type such as email, phone, website, linkedin, whatsapp, signal, slack, teams, or telegram. |
@@ -225,6 +229,7 @@ Name: pragmatic_bim_data_contract
 | [material_category](material_category.md) | Material category label kept intentionally open pending classification-backed modeling. |
 | [material_specification](material_specification.md) | Material grade, specification, or product description. |
 | [materials](materials.md) | Material definitions associated with this entity. |
+| [max_distance](max_distance.md) | Maximum walking distance in metres when adjacency_kind is max_distance. |
 | [meaning_uri](meaning_uri.md) | Optional semantic URI for linking the entity instance to an external ontology concept. |
 | [media_format](media_format.md) | Encoding or format label (for example IFC4, PDF, DWG). |
 | [message_body](message_body.md) | Human-readable message content. |
@@ -273,7 +278,7 @@ Name: pragmatic_bim_data_contract
 | [program_code](program_code.md) | External or internal program identifier. |
 | [programme_ref](programme_ref.md) | URI or identifier for a programme or brief document. |
 | [project_code](project_code.md) | External or internal project identifier. |
-| [property_key](property_key.md) | Canonical key inside the domain; constrained via subclass slot_usage to a domain-specific enum. |
+| [property_key](property_key.md) | Canonical key inside the domain; constrained via subclass slot_usage to a domain-specific enum (serialized in RDF as the enum meaning IRI). |
 | [property_path](property_path.md) | Canonical path to the changed field. Examples: Pset_WallCommon.FireRating, IfcWall.Name, description, section.4.2.requirement_3, body:char_offset:1204-1389. |
 | [property_path_kind](property_path_kind.md) | Classification of the property path for downstream diff interpretation. |
 | [property_unit](property_unit.md) | Normalized unit where applicable (for example min, dB, W/m2K). |
@@ -303,7 +308,7 @@ Name: pragmatic_bim_data_contract
 | [relationship_notes](relationship_notes.md) | Optional free-text context for this relationship record. |
 | [relationship_source](relationship_source.md) | Optional provenance label (for example manual, crm:manual, llm:story-msg-0042, LinkedIn). |
 | [relationship_type](relationship_type.md) | Relationship predicate. classification_scheme must be AbstractPersonRelationshipType; classification_code and classification_uri reference the SKOS concept. |
-| [requirement_property_key](requirement_property_key.md) | Canonical performance key for the target (for example u_value, resistance_rating). Aligns with performance property keys where applicable. |
+| [requirement_property_key](requirement_property_key.md) | Canonical performance key for the target (for example u_value, resistance_rating, airborne_sound_rating_db, seismic_structure_class, gwp_embodied). Either a permissible value of a PerformanceProperty key enum, matched against Entity.performance_properties property_key, or an entity slot name such as is_heated. |
 | [retain_until](retain_until.md) | Storage-limit deadline after which personal data should be deleted or redacted. |
 | [revision](revision.md) | Integer revision counter for change tracking. |
 | [sender](sender.md) | Agent that sent the message. |
@@ -380,9 +385,11 @@ Name: pragmatic_bim_data_contract
 | [ContextType](ContextType.md) |  |
 | [CostRecordRole](CostRecordRole.md) |  |
 | [DependencyType](DependencyType.md) | Precedence logic between two time records (FS finish-to-start, SS start-to-start, FF finish-to-finish, SF start-to-finish). |
+| [EnvironmentalPropertyKey](EnvironmentalPropertyKey.md) | Canonical environmental keys for embodied impacts of an element type, per square metre of element area. |
 | [EquipmentType](EquipmentType.md) |  |
 | [FirePropertyKey](FirePropertyKey.md) | Canonical fire-related keys derived from IFC PropertySets. |
 | [GeometryRepresentationType](GeometryRepresentationType.md) | Classification of geometric representation dimension/style. |
+| [IndoorEnvironmentPropertyKey](IndoorEnvironmentPropertyKey.md) | Canonical indoor environment keys for spaces (temperature, humidity, air, light, occupancy). |
 | [LawfulBasis](LawfulBasis.md) | Lawful basis for processing personal data, aligned with GDPR Article 6 and similar regimes. |
 | [MatchStatus](MatchStatus.md) | Whether an entity satisfies a related requirement at the target revision. |
 | [MaterialPropertyKey](MaterialPropertyKey.md) | Canonical material-related keys derived from IFC PropertySets and material metadata. |

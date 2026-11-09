@@ -28,6 +28,7 @@ License: [CC-BY-4.0](https://creativecommons.org/licenses/by/4.0/) — sourced f
 | [Abstract roof covering products](roof-covering-product.md) | `abstract-covering-product-classification/roof-covering-products.skos.ttl` |
 | [Abstract foundation products](foundation-product.md) | `abstract-foundation-product-classification/foundation-products.skos.ttl` |
 | [Abstract site facility products](site-facility-product.md) | `abstract-site-setup-classification/site-setup-products.skos.ttl` |
+| [Abstract site conditions](site-condition.md) | `abstract-site-condition-classification/site-conditions.skos.ttl` |
 | [Abstract wall separator products](wall-separator-product.md) | `abstract-separator-product-classification/wall-separator-products.skos.ttl` |
 | [KBOB ecobilans construction materials](kbob-ecobilans-baumat.md) | `mapping/kbob-ecobilans-baumat.skos.ttl` |
 | [Abstract slab separator products](slab-separator-product.md) | `abstract-separator-product-classification/slab-separator-products.skos.ttl` |
@@ -44,6 +45,9 @@ License: [CC-BY-4.0](https://creativecommons.org/licenses/by/4.0/) — sourced f
 | [Abstract company sector classification](company-sector.md) | `abstract-company-sector-classification/company-sector-classification.skos.ttl` |
 | [Abstract domain classification](domain.md) | `abstract-domain-classification/domain-classification.skos.ttl` |
 | [Abstract model classification](model.md) | `abstract-model-classification/model-classification.skos.ttl` |
+| [Abstract use classification](use.md) | `abstract-use-classification/use-classification.skos.ttl` |
+| [Abstract cost project types](cost-project-type.md) | `abstract-cost-classification/cost-project-types.skos.ttl` |
+| [Abstract cost groups](cost-group.md) | `abstract-cost-classification/cost-groups.skos.ttl` |
 
 ## Mappings
 
@@ -94,3 +98,11 @@ License: [CC-BY-4.0](https://creativecommons.org/licenses/by/4.0/) — sourced f
 | [Abstract ceiling covering products to KBOB ecobilans mapping](mapping-ceiling-covering-products-to-kbob-ecobilans.md) | `mapping/abstract-ceiling-covering-products-to-kbob-ecobilans.mapping.ttl` |
 | [Abstract wall separator products to KBOB ecobilans mapping](mapping-wall-separator-products-to-kbob-ecobilans.md) | `mapping/abstract-wall-separator-products-to-kbob-ecobilans.mapping.ttl` |
 | [Abstract door connector products to KBOB ecobilans mapping](mapping-door-connector-products-to-kbob-ecobilans.md) | `mapping/abstract-door-connector-products-to-kbob-ecobilans.mapping.ttl` |
+| [Abstract use to space activity mapping](mapping-use-to-space-activity.md) | `mapping/abstract-use-to-space-activity.mapping.ttl` |
+| [Abstract use to SIA 416 mapping](mapping-use-to-sia416.md) | `mapping/abstract-use-to-sia416.mapping.ttl` |
+| [Abstract use to SIA 380/1 building category mapping](mapping-use-to-sia380-1.md) | `mapping/abstract-use-to-sia380-1.mapping.ttl` |
+| [Abstract cost groups to ICMS mapping](mapping-cost-groups-to-icms.md) | `mapping/abstract-cost-groups-to-icms.mapping.ttl` |
+| [Abstract cost groups to eBKP-H mapping](mapping-cost-groups-to-ebkp-h.md) | `mapping/abstract-cost-groups-to-ebkp-h.mapping.ttl` |
+| [Abstract cost groups to eBKP-T mapping](mapping-cost-groups-to-ebkp-t.md) | `mapping/abstract-cost-groups-to-ebkp-t.mapping.ttl` |
+| [Site conditions to site facility products mapping](mapping-site-conditions-to-site-facility-products.md) | `mapping/abstract-site-conditions-to-site-facility-products.mapping.ttl` |
+| [Site conditions to connection functional type mapping](mapping-site-conditions-to-connection-functional-type.md) | `mapping/abstract-site-conditions-to-connection-functional-type.mapping.ttl` |

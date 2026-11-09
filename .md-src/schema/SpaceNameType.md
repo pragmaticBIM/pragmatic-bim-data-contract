@@ -47,6 +47,7 @@ URI: [pbs:SpaceNameType](https://schema.pragmaticbim.ch/SpaceNameType)
 | rn_02_20_02 | https://example.org/abstract/building-space-name-classification/RN_WRK_CNF | Room for formal meetings and presentations. | Title: Conference Room<br>|
 | rn_02_20_03 | https://example.org/abstract/building-space-name-classification/RN_WRK_BRK | Informal staff rest and refreshment space. | Title: Break Room<br>|
 | rn_02_20_04 | https://example.org/abstract/building-space-name-classification/RN_WRK_COM | Shared office for residents working outside their dwelling. | Title: Community Office<br>|
+| rn_02_20_05 | https://example.org/abstract/building-space-name-classification/RN_WRK_CPY | Shared room for printing, copying, and office supplies. | Title: Copy Room<br>|
 | rn_02_30_01 | https://example.org/abstract/building-space-name-classification/RN_WRK_REC | Visitor reception and waiting area. | Title: Reception<br>|
 | rn_03_10_01 | https://example.org/abstract/building-space-name-classification/RN_CIR_COR | Horizontal circulation passage, including narrow aisles between rows or functions. | Title: Corridor<br>|
 | rn_03_10_02 | https://example.org/abstract/building-space-name-classification/RN_CIR_LOB | Main entrance lobby or reception hall. | Title: Lobby<br>|
@@ -55,6 +56,10 @@ URI: [pbs:SpaceNameType](https://schema.pragmaticbim.ch/SpaceNameType)
 | rn_03_20_01 | https://example.org/abstract/building-space-name-classification/RN_CIR_STR | Enclosed stair and landing volume. | Title: Stairwell<br>|
 | rn_03_20_02 | https://example.org/abstract/building-space-name-classification/RN_CIR_ELV | Waiting area at elevator stops. | Title: Elevator Lobby<br>|
 | rn_03_20_03 | https://example.org/abstract/building-space-name-classification/RN_CIR_RAM | Inclined accessible circulation route. | Title: Ramp<br>|
+| rn_03_20_04 | https://example.org/abstract/building-space-name-classification/RN_CIR_GLF | Lift for goods, staff, and service routes, separate from public lifts. | Title: Service Lift<br>|
+| rn_03_20_05 | https://example.org/abstract/building-space-name-classification/RN_CIR_BLF | Lift sized for transporting patients in beds. | Title: Bed Lift<br>|
+| rn_03_30_01 | https://example.org/abstract/building-space-name-classification/RN_CIR_PLF | Platform for boarding and alighting trains, trams, or buses. | Title: Platform<br>|
+| rn_03_30_02 | https://example.org/abstract/building-space-name-classification/RN_CIR_TKT | Hall with ticket counters and machines for passenger transport. | Title: Ticket Hall<br>|
 | rn_04_10_01 | https://example.org/abstract/building-space-name-classification/RN_HYG_WC_M | Toilet room for male use. | Title: Male Toilet<br>|
 | rn_04_10_02 | https://example.org/abstract/building-space-name-classification/RN_HYG_WC_F | Toilet room for female use. | Title: Female Toilet<br>|
 | rn_04_10_03 | https://example.org/abstract/building-space-name-classification/RN_HYG_WC_IV | Wheelchair-accessible toilet room. | Title: Accessible Toilet<br>|
@@ -86,12 +91,19 @@ URI: [pbs:SpaceNameType](https://schema.pragmaticbim.ch/SpaceNameType)
 | rn_07_10_02 | https://example.org/abstract/building-space-name-classification/RN_COM_RST | Full-service dining space. | Title: Restaurant<br>|
 | rn_07_10_03 | https://example.org/abstract/building-space-name-classification/RN_COM_BAR | Room for beverage service. | Title: Bar<br>|
 | rn_07_10_04 | https://example.org/abstract/building-space-name-classification/RN_COM_FOD | Shared dining area with multiple vendors. | Title: Food Court<br>|
+| rn_07_10_05 | https://example.org/abstract/building-space-name-classification/RN_COM_KIT | Kitchen for commercial food preparation. | Title: Commercial Kitchen<br>|
+| rn_07_10_06 | https://example.org/abstract/building-space-name-classification/RN_COM_DSH | Room for returning, cleaning, and staging tableware. | Title: Dishwashing Area<br>|
 | rn_07_20_01 | https://example.org/abstract/building-space-name-classification/RN_COM_RET | Room for displaying and selling goods. | Title: Retail Space<br>|
 | rn_07_20_02 | https://example.org/abstract/building-space-name-classification/RN_COM_SAL | Open retail sales area. | Title: Sales Floor<br>|
 | rn_07_20_03 | https://example.org/abstract/building-space-name-classification/RN_COM_KSK | Small retail or service counter space. | Title: Kiosk<br>|
 | rn_07_20_04 | https://example.org/abstract/building-space-name-classification/RN_COM_CUS | Area for customer assistance and service. | Title: Customer Service Area<br>|
 | rn_07_20_05 | https://example.org/abstract/building-space-name-classification/RN_COM_EXH | Room for displays and exhibitions. | Title: Exhibition Space<br>|
+| rn_07_20_06 | https://example.org/abstract/building-space-name-classification/RN_COM_PUP | Counter or area where customers collect goods ordered or bought in advance. | Title: Pickup Point<br>|
 | rn_07_30_01 | https://example.org/abstract/building-space-name-classification/RN_COM_HTL | Guest accommodation room. | Title: Hotel Room<br>|
+| rn_07_40_01 | https://example.org/abstract/building-space-name-classification/RN_COM_STG | Area for performances, including its backstage zone. | Title: Stage<br>|
+| rn_07_40_02 | https://example.org/abstract/building-space-name-classification/RN_COM_STD | Tiered seating or standing area for spectators. | Title: Spectator Stand<br>|
+| rn_07_40_03 | https://example.org/abstract/building-space-name-classification/RN_COM_CLK | Room for depositing visitors' coats and bags. | Title: Cloakroom<br>|
+| rn_07_50_01 | https://example.org/abstract/building-space-name-classification/RN_COM_GYM | Hall for indoor sports and physical education. | Title: Sports Hall<br>|
 | rn_08_10_01 | https://example.org/abstract/building-space-name-classification/RN_IND_WRK | Room for manual fabrication and repair. | Title: Workshop<br>|
 | rn_08_10_02 | https://example.org/abstract/building-space-name-classification/RN_IND_PRD | Hall for manufacturing processes. | Title: Production Hall<br>|
 | rn_08_10_03 | https://example.org/abstract/building-space-name-classification/RN_IND_ASM | Area for product assembly. | Title: Assembly Area<br>|
@@ -112,6 +124,7 @@ URI: [pbs:SpaceNameType](https://schema.pragmaticbim.ch/SpaceNameType)
 | rn_09_20_03 | https://example.org/abstract/building-space-name-classification/RN_TEC_GEN | Room for backup power generation. | Title: Generator Room<br>|
 | rn_09_20_04 | https://example.org/abstract/building-space-name-classification/RN_TEC_TRA | Room for electrical transformers. | Title: Transformer Room<br>|
 | rn_09_20_05 | https://example.org/abstract/building-space-name-classification/RN_TEC_COM | Room for telecom and low-voltage systems. | Title: Communications Room<br>|
+| rn_09_20_06 | https://example.org/abstract/building-space-name-classification/RN_TEC_CTL | Staffed room for monitoring and operating building or IT systems. | Title: Control Room<br>|
 | rn_09_30_01 | https://example.org/abstract/building-space-name-classification/RN_TEC_MMR | Room for utility metering equipment. | Title: Meter Room<br>|
 | rn_09_30_02 | https://example.org/abstract/building-space-name-classification/RN_TEC_WST | Room for waste collection and handling. | Title: Waste Room<br>|
 | rn_09_30_03 | https://example.org/abstract/building-space-name-classification/RN_TEC_WSH | Vertical chute for transferring household waste to a central collection point. | Title: Waste Chute<br>|
@@ -427,6 +440,15 @@ permissible_values:
         source: de
         description: Gemeinschaftsbüro
     title: Community Office
+  rn_02_20_05:
+    text: rn_02_20_05
+    description: Shared room for printing, copying, and office supplies.
+    meaning: https://example.org/abstract/building-space-name-classification/RN_WRK_CPY
+    alt_descriptions:
+      de:
+        source: de
+        description: Kopierraum
+    title: Copy Room
   rn_02_30_01:
     text: rn_02_30_01
     description: Visitor reception and waiting area.
@@ -500,6 +522,42 @@ permissible_values:
         source: de
         description: Rampe
     title: Ramp
+  rn_03_20_04:
+    text: rn_03_20_04
+    description: Lift for goods, staff, and service routes, separate from public lifts.
+    meaning: https://example.org/abstract/building-space-name-classification/RN_CIR_GLF
+    alt_descriptions:
+      de:
+        source: de
+        description: Warenaufzug
+    title: Service Lift
+  rn_03_20_05:
+    text: rn_03_20_05
+    description: Lift sized for transporting patients in beds.
+    meaning: https://example.org/abstract/building-space-name-classification/RN_CIR_BLF
+    alt_descriptions:
+      de:
+        source: de
+        description: Bettenaufzug
+    title: Bed Lift
+  rn_03_30_01:
+    text: rn_03_30_01
+    description: Platform for boarding and alighting trains, trams, or buses.
+    meaning: https://example.org/abstract/building-space-name-classification/RN_CIR_PLF
+    alt_descriptions:
+      de:
+        source: de
+        description: Perron
+    title: Platform
+  rn_03_30_02:
+    text: rn_03_30_02
+    description: Hall with ticket counters and machines for passenger transport.
+    meaning: https://example.org/abstract/building-space-name-classification/RN_CIR_TKT
+    alt_descriptions:
+      de:
+        source: de
+        description: Schalterhalle
+    title: Ticket Hall
   rn_04_10_01:
     text: rn_04_10_01
     description: Toilet room for male use.
@@ -779,6 +837,24 @@ permissible_values:
         source: de
         description: Food-Court
     title: Food Court
+  rn_07_10_05:
+    text: rn_07_10_05
+    description: Kitchen for commercial food preparation.
+    meaning: https://example.org/abstract/building-space-name-classification/RN_COM_KIT
+    alt_descriptions:
+      de:
+        source: de
+        description: Gewerbeküche
+    title: Commercial Kitchen
+  rn_07_10_06:
+    text: rn_07_10_06
+    description: Room for returning, cleaning, and staging tableware.
+    meaning: https://example.org/abstract/building-space-name-classification/RN_COM_DSH
+    alt_descriptions:
+      de:
+        source: de
+        description: Spülküche
+    title: Dishwashing Area
   rn_07_20_01:
     text: rn_07_20_01
     description: Room for displaying and selling goods.
@@ -824,6 +900,16 @@ permissible_values:
         source: de
         description: Ausstellungsraum
     title: Exhibition Space
+  rn_07_20_06:
+    text: rn_07_20_06
+    description: Counter or area where customers collect goods ordered or bought in
+      advance.
+    meaning: https://example.org/abstract/building-space-name-classification/RN_COM_PUP
+    alt_descriptions:
+      de:
+        source: de
+        description: Abholstation
+    title: Pickup Point
   rn_07_30_01:
     text: rn_07_30_01
     description: Guest accommodation room.
@@ -833,6 +919,42 @@ permissible_values:
         source: de
         description: Hotelzimmer
     title: Hotel Room
+  rn_07_40_01:
+    text: rn_07_40_01
+    description: Area for performances, including its backstage zone.
+    meaning: https://example.org/abstract/building-space-name-classification/RN_COM_STG
+    alt_descriptions:
+      de:
+        source: de
+        description: Bühne
+    title: Stage
+  rn_07_40_02:
+    text: rn_07_40_02
+    description: Tiered seating or standing area for spectators.
+    meaning: https://example.org/abstract/building-space-name-classification/RN_COM_STD
+    alt_descriptions:
+      de:
+        source: de
+        description: Tribüne
+    title: Spectator Stand
+  rn_07_40_03:
+    text: rn_07_40_03
+    description: Room for depositing visitors' coats and bags.
+    meaning: https://example.org/abstract/building-space-name-classification/RN_COM_CLK
+    alt_descriptions:
+      de:
+        source: de
+        description: Garderobe
+    title: Cloakroom
+  rn_07_50_01:
+    text: rn_07_50_01
+    description: Hall for indoor sports and physical education.
+    meaning: https://example.org/abstract/building-space-name-classification/RN_COM_GYM
+    alt_descriptions:
+      de:
+        source: de
+        description: Sporthalle
+    title: Sports Hall
   rn_08_10_01:
     text: rn_08_10_01
     description: Room for manual fabrication and repair.
@@ -1013,6 +1135,15 @@ permissible_values:
         source: de
         description: Kommunikationsraum
     title: Communications Room
+  rn_09_20_06:
+    text: rn_09_20_06
+    description: Staffed room for monitoring and operating building or IT systems.
+    meaning: https://example.org/abstract/building-space-name-classification/RN_TEC_CTL
+    alt_descriptions:
+      de:
+        source: de
+        description: Leitstand
+    title: Control Room
   rn_09_30_01:
     text: rn_09_30_01
     description: Room for utility metering equipment.
