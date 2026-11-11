@@ -60,6 +60,20 @@ document.body.addEventListener("pbs:highlight", async (event) => {
   viewer.highlight(ids);
 });
 
+props.addEventListener("click", (event) => {
+  const button = event.target.closest("[data-route]");
+  if (!button) return;
+  activeCheck = null;
+  markActiveCard();
+  const guids = button.dataset.route.split(" ");
+  const edges = guids.slice(1).map((t, i) => ({ s: guids[i], t, p: "pbs:escape_route_next", failed: false }));
+  const paths = button.dataset.path
+    ? [{ points: JSON.parse(button.dataset.path), failed: false, label: button.dataset.length }]
+    : [];
+  graph.highlight({ checked: guids, failed: [], edges });
+  viewer.highlight({ checked: guids, failed: [], edges, paths });
+});
+
 document.body.addEventListener("htmx:afterSettle", (event) => {
   if (event.target.id === "cards") markActiveCard();
 });
@@ -83,6 +97,29 @@ document.getElementById("clear-highlight").addEventListener("click", () => {
   markSelectedRow(null);
   props.innerHTML = propsPlaceholder;
 });
+
+const structure = document.querySelector(".structure-tree");
+if (structure) {
+  const members = JSON.parse(document.getElementById("structure-members").textContent);
+  const boxes = [...structure.querySelectorAll("input[data-structure]")];
+  const own = (li) => li.querySelector(":scope > label > input");
+  structure.addEventListener("change", (event) => {
+    const item = event.target.closest("li");
+    for (const box of item.querySelectorAll("input[data-structure]")) {
+      box.checked = event.target.checked;
+      box.indeterminate = false;
+    }
+    // A parent stays shown while any child is; unticking a single storey keeps its building.
+    for (let li = item.parentElement.closest("li"); li; li = li.parentElement.closest("li")) {
+      const kids = [...li.querySelectorAll(":scope > ul > li")].map(own);
+      own(li).checked = kids.some((k) => k.checked || k.indeterminate);
+      own(li).indeterminate = own(li).checked && !kids.every((k) => k.checked && !k.indeterminate);
+    }
+    const hidden = boxes.filter((box) => !box.checked).flatMap((box) => members[box.dataset.structure] || []);
+    graph.setHidden(hidden);
+    viewer.setHidden(hidden);
+  });
+}
 
 views.querySelectorAll("[data-layout]").forEach((button) =>
   button.addEventListener("click", () => {

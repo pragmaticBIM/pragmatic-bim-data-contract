@@ -14,7 +14,7 @@ from synthetic import DEMO_GLOBAL_IDS as GID
 from pragmatic_bim.ifc2rdf import convert
 from pragmatic_bim.ifc2rdf.reference import resolve_reference_path
 
-pytest.importorskip("shapely")
+shapely = pytest.importorskip("shapely")
 
 BASE = "https://data.example.org/demo/"
 REF = "https://pragmaticbim.ch/id/element/"
@@ -136,8 +136,9 @@ def test_hosted_by_from_ifc_and_geometry(demo):
     assert objects(graph, "door_ifc", "hosted_by") == {iri("wall_interior")}
     assert objects(graph, "door_geometry", "hosted_by") == {iri("wall_interior")}
     assert objects(graph, "window", "hosted_by") == {iri("wall_exterior")}
+    assert objects(graph, "exit_door", "hosted_by") == {iri("exit_wall")}
     assert report.computed_relations["hosted_by (ifc)"] == 1
-    assert report.computed_relations["hosted_by (geometry)"] == 2
+    assert report.computed_relations["hosted_by (geometry)"] == 3
 
 
 def test_reserved_volume_intersections(demo):
@@ -165,6 +166,26 @@ def test_rests_on_slab_column_slab(demo):
     assert not objects(graph, "floor_slab", "rests_on")
 
 
+def test_equipment_rests_on_slab(demo):
+    graph, _, _ = demo
+    assert objects(graph, "air_handler", "rests_on") == {iri("floor_slab")}
+
+
+def test_neighbour_distances(demo):
+    graph, _, _ = demo
+    records = {
+        graph.value(r, PBS.neighbour): (
+            graph.value(r, PBS.horizontal_clear_distance).toPython(),
+            graph.value(r, PBS.vertical_clear_distance).toPython(),
+        )
+        for r in objects(graph, "air_handler", "neighbours")
+    }
+    assert set(records) == {iri("floor_slab"), iri("wall_exterior"), iri("balcony_slab")}
+    assert records[iri("floor_slab")] == pytest.approx((0.0, 0.0), abs=1e-3)
+    assert records[iri("wall_exterior")] == pytest.approx((0.1, 0.0), abs=1e-3)
+    assert records[iri("balcony_slab")] == pytest.approx((0.4, 0.0), abs=1e-3)
+
+
 def test_side_contact_is_symmetric(demo):
     graph, _, _ = demo
     assert objects(graph, "wall_short", "connects_physical_elements") == {iri("wall_interior")}
@@ -179,6 +200,53 @@ def test_window_lights_interior_space(demo):
     assert quantity(graph, "window", "area_glazed") == pytest.approx(2.0 * 1.2 * 0.75)
     assert quantity(graph, "office", "glazing_ratio") == pytest.approx(1.8 / 20.0)
     assert str(PBS.quantity_type_glazing_ratio) not in quantities(graph, "balcony_space")
+
+
+def test_escape_route_through_doors_to_exit(demo):
+    graph, _, _ = demo
+    assert objects(graph, "exit_door", "escape_route_next") == set()
+    assert quantity(graph, "exit_door", "escape_route_length") == 0
+    # Door centre to corridor edge (0.1), across the corridor, corridor edge to exit centre (0.15).
+    for door, x in (("door_geometry", 3.5), ("door_ifc", 1.5)):
+        assert objects(graph, door, "escape_route_next") == {iri("exit_door")}
+        expected = 0.1 + ((8 - x) ** 2 + 1) ** 0.5 + 0.15
+        assert quantity(graph, door, "escape_route_length") == pytest.approx(expected, abs=1e-3)
+    assert objects(graph, "corridor", "escape_route_next") == {iri("exit_door")}
+    assert quantity(graph, "corridor", "escape_route_length") == pytest.approx(65**0.5 + 0.15, abs=1e-3)
+    # Most remote office corner (0, 0), through the nearer door_geometry.
+    assert objects(graph, "office", "escape_route_next") == {iri("door_geometry")}
+    office = 28.25**0.5 + 0.1 + quantity(graph, "door_geometry", "escape_route_length")
+    assert quantity(graph, "office", "escape_route_length") == pytest.approx(office, abs=1e-3)
+    assert not objects(graph, "balcony_space", "escape_route_next")
+
+
+def test_escape_route_path_geometry(demo):
+    graph, _, _ = demo
+    paths = [
+        str(graph.value(r, PBS.geometry_wkt))
+        for r in graph.objects(iri("office"), PBS.geometry_representations)
+        if str(graph.value(r, PBS.geometry_representation)) == "path_3d"
+    ]
+    assert len(paths) == 1
+    points = shapely.from_wkt(paths[0]).coords
+    # Remote corner, door_geometry (office side, centre, corridor side), exit door centre.
+    expected = [(0, 0, 0), (3.5, 4.0, 0), (3.5, 4.1, 0), (3.5, 4.2, 0), (8.0, 5.2, 0), (8.15, 5.2, 0)]
+    assert [tuple(p) for p in points] == [pytest.approx(p, abs=1e-3) for p in expected]
+
+
+def test_plan_region_walks_around_corners():
+    from shapely.geometry import Polygon
+
+    from pragmatic_bim.ifc2rdf.spatial.escape import PlanRegion
+
+    l_shape = PlanRegion(Polygon([(0, 0), (4, 0), (4, 1), (1, 1), (1, 4), (0, 4)]))
+    walks = l_shape.distances([3.5, 0.5], [[0.5, 3.5], [2.0, 0.5], [3.0, 3.0]])
+    around = (2.5**2 + 0.5**2) ** 0.5 + (0.5**2 + 2.5**2) ** 0.5
+    assert walks[0] == pytest.approx(around)
+    assert walks[1] == pytest.approx(1.5)
+    assert walks[2] == float("inf")
+    assert l_shape.path([3.5, 0.5], [0.5, 3.5]).tolist() == [[3.5, 0.5], [1, 1], [0.5, 3.5]]
+    assert l_shape.path([3.5, 0.5], [2.0, 0.5]).tolist() == [[3.5, 0.5], [2.0, 0.5]]
 
 
 # --- demo rules (what an external SHACL/SPARQL checker would evaluate) --------------

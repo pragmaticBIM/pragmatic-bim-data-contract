@@ -797,8 +797,8 @@ slots:
       kind.
   geometry_wkt:
     range: string
-    description: Inline WKT payload for small 2D representations (for example a footprint_2d polygon in project coordinates,
-      metres).
+    description: Inline WKT payload for small representations (for example a footprint_2d polygon or a path_3d line in
+      project coordinates, metres).
   bbox_min_x:
     range: double
     description: Axis-aligned bounding box minimum X in project coordinates (metres).

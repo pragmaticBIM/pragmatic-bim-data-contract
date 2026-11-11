@@ -103,6 +103,7 @@ Name: pragmatic_bim_data_contract
 | [ConsentRecord](ConsentRecord.md) | Record of lawful basis, scope, and lifecycle for processing personal data on a Person. |
 | [PersonRelationship](PersonRelationship.md) | Typed link from a person to another agent or to a topic concept. The predicate is expressed as a Classification referencing AbstractPersonRelationshipType. Exactly one of related_person, related_company, or related_topic must be set; see the target-kind mapping for predicate-to-slot rules. |
 | [LocalizedText](LocalizedText.md) | Localized text value for a specific language tag. |
+| [NeighbourDistance](NeighbourDistance.md) | Clear distance from an element to a neighbouring physical element, measured from geometry: the horizontal gap between their plan outlines and the vertical gap between their height ranges. Both are 0 where the elements overlap in that direction, so 0 and 0 means touching or intersecting. |
 | [TimeLink](TimeLink.md) | Inline typed precedence link from a TimeRecord to one successor. Not a VirtualEntity — no id, no mixin. Owned by the predecessor record. |
 
 
@@ -207,6 +208,7 @@ Name: pragmatic_bim_data_contract
 | [elevation](elevation.md) | Storey elevation relative to project datum (metres). |
 | [elevation_unit](elevation_unit.md) | Unit for elevation (default m). |
 | [equipment_type](equipment_type.md) | Classification of equipment (for example HVAC, electrical, plumbing). |
+| [escape_route_next](escape_route_next.md) | Next element on the shortest horizontal escape route: the door a space is left through, or the door or stair a door leads on to. The route ends at an exit to the outside or at a stair leaving the storey; follow the slot repeatedly to read the whole route. Computed from geometry; the remaining length is the escape_route_length quantity. |
 | [external_instance_uri](external_instance_uri.md) | URI of the corresponding process instance in an external workflow engine when applicable. |
 | [frame_material](frame_material.md) | Material of the frame or casing surrounding the opening. Applies to opening-type connectors (door, window). |
 | [from_revision](from_revision.md) | Source revision number for this change. |
@@ -215,10 +217,11 @@ Name: pragmatic_bim_data_contract
 | [geometry_reference](geometry_reference.md) | URI/path/hash/pointer to geometry payload. |
 | [geometry_representation](geometry_representation.md) | Representation kind/dimension (for example body_3d, footprint_2d, point), independent of file format. |
 | [geometry_representations](geometry_representations.md) | Geometry references associated with the entity. A single element may link to multiple geometry representations to serve different intents (authoring, coordination, analysis, visualization) without duplicating the element itself. |
-| [geometry_wkt](geometry_wkt.md) | Inline WKT payload for small 2D representations (for example a footprint_2d polygon in project coordinates, metres). |
+| [geometry_wkt](geometry_wkt.md) | Inline WKT payload for small representations (for example a footprint_2d polygon or a path_3d line in project coordinates, metres). |
 | [granted_at](granted_at.md) | Timestamp when consent was given. Required when lawful_basis is consent. |
 | [group_members](group_members.md) | Zone members; may include spaces, separations, systems, etc. |
 | [guards_space](guards_space.md) | Spaces whose walking surface this barrier protects against falls. Computed from geometry: the barrier footprint lies within a tolerance of the space footprint and the space floor is at or below the barrier base. |
+| [horizontal_clear_distance](horizontal_clear_distance.md) | Horizontal clear distance in metres between the plan outlines; 0 where they overlap or touch. |
 | [hosted_by](hosted_by.md) | Host element whose opening this connector fills (for example the wall a door or window sits in). From IfcRelFillsElement and IfcRelVoidsElement, or computed from geometry when the IFC chain is missing. |
 | [id](id.md) | Unique local identifier. |
 | [ifc_attribute_name](ifc_attribute_name.md) | IFC attribute name when property_path_kind is ifc_attribute (for example Name, GlobalId). |
@@ -261,6 +264,8 @@ Name: pragmatic_bim_data_contract
 | [min_height](min_height.md) | Minimum required height or clear height in metres. |
 | [modified_at](modified_at.md) | Last modification timestamp for this entity record. |
 | [name](name.md) | Default display name. |
+| [neighbour](neighbour.md) | The neighbouring element the distances are measured to. |
+| [neighbours](neighbours.md) | Clear distances to the neighbouring physical elements within the measurement range configured for the conversion. Computed from geometry; elements farther away have no record. |
 | [norm_uri](norm_uri.md) | URI identifying the norm, standard, or building code. |
 | [operated_by](operated_by.md) | Organization accountable for this software agent. |
 | [parent_building](parent_building.md) | Parent building context reference. |
@@ -324,7 +329,7 @@ Name: pragmatic_bim_data_contract
 | [relationship_type](relationship_type.md) | Relationship predicate. classification_scheme must be AbstractPersonRelationshipType; classification_code and classification_uri reference the SKOS concept. |
 | [requirement_property_key](requirement_property_key.md) | Canonical performance key for the target (for example u_value, resistance_rating, airborne_sound_rating_db, seismic_structure_class, gwp_embodied). Either a permissible value of a PerformanceProperty key enum, matched against Entity.performance_properties property_key, or an entity slot name such as is_heated. |
 | [reserved_volume_type](reserved_volume_type.md) | Purpose of the reserved volume. |
-| [rests_on](rests_on.md) | Elements this element sits on: its underside bears on their top (for example wall on slab, column on slab, slab on wall or column). Computed from geometric contact; it records contact, not a structural analysis result. The inverse (supports) is read by querying the slot from the other side. |
+| [rests_on](rests_on.md) | Elements this element sits on: its underside bears on their top (for example wall on slab, column on slab, slab on wall or column, equipment on a plinth). Computed from geometric contact; it records contact, not a structural analysis result. The inverse (supports) is read by querying the slot from the other side. |
 | [retain_until](retain_until.md) | Storage-limit deadline after which personal data should be deleted or redacted. |
 | [revision](revision.md) | Integer revision counter for change tracking. |
 | [sender](sender.md) | Agent that sent the message. |
@@ -379,6 +384,7 @@ Name: pragmatic_bim_data_contract
 | [valid_from](valid_from.md) | Optional start of the relationship period (for example employment start for worked_at). |
 | [valid_to](valid_to.md) | Optional end of the relationship period (for example employment end for worked_at). |
 | [vendor](vendor.md) | Company that sells or offers this product. |
+| [vertical_clear_distance](vertical_clear_distance.md) | Vertical clear distance in metres between the height ranges; 0 where they overlap or touch. |
 | [withdrawn_at](withdrawn_at.md) | Timestamp when consent was withdrawn, if applicable. |
 | [zone_type](zone_type.md) | Optional zone classification; intended for SpatialContext nodes where context_type is zone. |
 

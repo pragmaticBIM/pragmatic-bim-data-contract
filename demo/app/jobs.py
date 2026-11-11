@@ -42,6 +42,7 @@ def write_json(path: Path, data: Any) -> None:
 
 def write_status(directory: Path, stage: str, **extra: Any) -> None:
     status = read_json(directory / "status.json", {})
+    status.pop("error", None)
     status.update(stage=stage, updated_at=_now(), **extra)
     write_json(directory / "status.json", status)
 

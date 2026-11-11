@@ -1,7 +1,7 @@
 """Checks over the contract graph, reported per IFC GlobalId.
 
 ``ShaclCheck`` validates against the rule files in ``rules/`` (one result per node shape that
-targets something in the model). Contract conformance is left to the converter and IDS.
+declares a target; ``na`` when it targets nothing in the model). Contract conformance is left to the converter and IDS.
 """
 
 from __future__ import annotations
@@ -21,6 +21,7 @@ from demo.app.graphview import compact, entity_ids
 from demo.app.i18n import german
 
 SH = Namespace("http://www.w3.org/ns/shacl#")
+VIEW = Namespace("https://schema.pragmaticbim.ch/demo/view/")
 RULES_DIR = Path(__file__).with_name("rules")
 SEVERITY_RANK = {"violation": 0, "warning": 1, "info": 2}
 TARGET_PREDICATES = (SH.targetClass, SH.targetNode, SH.targetSubjectsOf, SH.targetObjectsOf, SH.target)
@@ -41,10 +42,15 @@ class CheckResult:
     definition: str = ""
     """The rule as written: the SHACL shape in Turtle."""
     definition_language: str = ""
+    view: dict[str, Any] = field(default_factory=dict)
+    """Relations to draw when the rule is selected: ``{"relations", "chain", "path"}``."""
 
     @property
     def status(self) -> str:
-        return "fail" if self.failed else "pass"
+        """``na`` (not applicable) when the rule targets no element of the model."""
+        if self.failed:
+            return "fail"
+        return "pass" if self.checked else "na"
 
     def to_dict(self) -> dict[str, Any]:
         return {**asdict(self), "status": self.status}
@@ -106,7 +112,7 @@ class ShaclCheck:
             path = results.value(result, SH.resultPath)
             component = str(results.value(result, SH.sourceConstraintComponent)).removeprefix(str(SH))
             messages = _result_messages(results, result, german_messages)
-            key = (focus, path, component, results.value(result, SH.value))
+            key = (focus, path, component, results.value(result, SH.value), messages.get("en"))
             findings[shape][key] = {
                 "guid": ctx.owner.get(focus),
                 "path": compact(path) if path is not None else None,
@@ -119,8 +125,6 @@ class ShaclCheck:
         for node_shape in sorted(targets_of, key=str):
             targets = targets_of[node_shape]
             items = list(findings.pop(node_shape, {}).values())
-            if not targets and not items:
-                continue
             id, title, description, title_de, description_de = self._describe(shapes, node_shape)
             result = _result(
                 id=id,
@@ -134,6 +138,7 @@ class ShaclCheck:
             )
             result.definition = shape_turtle(shapes, node_shape)
             result.definition_language = "turtle"
+            result.view = _view(shapes, node_shape)
             out.append(result)
         leftover = [item for items in findings.values() for item in items.values()]
         if leftover:
@@ -165,6 +170,27 @@ class ShaclCheck:
         )
 
 
+def _view(shapes: Graph, node_shape: Any) -> dict[str, Any]:
+    """Demo annotations on a shape: ``view:relation`` (repeatable), ``view:chain``, ``view:path``, ``view:quantity``.
+
+    ``chain`` follows the relations onward from each checked element (a route); ``path`` names the
+    ``geometry_representation`` drawn in 3D instead of straight lines between the elements;
+    ``quantity`` labels each line with that quantity of the element it starts from.
+    """
+    relations = sorted(compact(r) for r in shapes.objects(node_shape, VIEW.relation))
+    if not relations:
+        return {}
+    chain = shapes.value(node_shape, VIEW.chain)
+    path = shapes.value(node_shape, VIEW.path)
+    quantity = shapes.value(node_shape, VIEW.quantity)
+    return {
+        "relations": relations,
+        "chain": bool(chain.toPython()) if chain is not None else False,
+        "path": str(path) if path is not None else None,
+        "quantity": compact(quantity) if quantity is not None else None,
+    }
+
+
 def default_checks() -> list[Check]:
     return list(ShaclCheck.rules())
 
@@ -173,7 +199,7 @@ def run_checks(graph: Graph, report: ConversionReport, checks: list[Check] | Non
     ctx = CheckContext(graph=graph, report=report, owner=record_owners(graph))
     results = [r for check in (checks if checks is not None else default_checks()) for r in check.run(ctx)]
     return sorted(results, key=lambda r: (
-        {"fail": 0, "pass": 1}[r.status],
+        {"fail": 0, "pass": 1, "na": 2}[r.status],
         SEVERITY_RANK.get(r.severity, 9),
         r.title,
     ))

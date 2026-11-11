@@ -25,6 +25,27 @@
   </ul>
   {% endif %}
 
+  {% if route %}
+  <h3>{{ t("Escape route") }}</h3>
+  <div class="escape-route">
+    <p>
+      {% if route[0].length is not none %}<strong>{{ "%.1f" | format(route[0].length) }} m</strong>{% endif %}
+      <span class="muted">{{ t("from the most remote point to the exit or stair") if element.cls == "Space" else t("from here to the exit or stair") }}</span>
+      <button type="button" class="small" data-route="{{ route | map(attribute='guid') | join(' ') }}"{% if route_path %} data-path="{{ route_path | tojson | forceescape }}"{% endif %}{% if route[0].length is not none %} data-length="{{ '%.1f' | format(route[0].length) }} m"{% endif %}>{{ t("Show route") }}</button>
+    </p>
+    <ol>
+      {% for hop in route[1:] %}
+        <li>
+          <a href="#" hx-get="/jobs/{{ job.id }}/element/{{ hop.guid | urlencode }}" hx-target="#props" hx-swap="innerHTML">{{ hop.element.name }}</a>
+          <span class="muted">{{ L.cls(hop.element.cls) }}</span>
+          {% if loop.last %}<span class="tag">{{ t("exit") if hop.length == 0 else t("stair") }}</span>
+          {% elif hop.length is not none %}<span class="muted">· {{ t("remaining") }} {{ "%.1f" | format(hop.length) }} m</span>{% endif %}
+        </li>
+      {% endfor %}
+    </ol>
+  </div>
+  {% endif %}
+
   <h3>{{ t("Attributes") }}</h3>
   <table class="props">
     {% for a in element.attributes %}

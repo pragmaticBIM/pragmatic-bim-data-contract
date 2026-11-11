@@ -39,6 +39,16 @@ computed_relations:
     contact_tolerance: 0.02
     min_contact_area: 0.01
 
+  # Equipment standing on a slab, plinth, footing or beam (same bearing test).
+  rests_on_equipment:
+    method: vertical_contact
+    subject:
+      contract_class: Equipment
+    object: *structural_elements
+    target_slot: rests_on
+    contact_tolerance: 0.02
+    min_contact_area: 0.01
+
   # Side contact: plan outlines within max_plan_distance, vertical overlap of at least
   # min_overlap_height, and no rests_on between the pair (runs after rests_on). Written on both elements.
   connects_physical_elements:
@@ -62,6 +72,19 @@ computed_relations:
     min_overlap_height: 0.01
     # Skip the product the volume belongs to (IfcRelAggregates, IfcRelNests, IfcRelAssignsToProduct).
     exclude_related_products: true
+
+  # Clear distance to every physical element nearby: horizontal gap between the plan outlines and
+  # vertical gap between the height ranges (each 0 where they overlap). The limits only bound the
+  # measurement; pairs beyond either get no record. Written on the subject as NeighbourDistance records.
+  neighbours:
+    method: neighbour_distance
+    subject:
+      contract_class: Equipment
+    object:
+      contract_class: PhysicalElement
+    target_slot: neighbours
+    max_horizontal_distance: 1.0
+    max_vertical_distance: 1.0
 
   guards_space:
     method: barrier_walking_surface
@@ -105,3 +128,35 @@ computed_relations:
         on: object
         floor_area_sources:
           - {pset: Qto_SpaceBaseQuantities, property: NetFloorArea}
+
+  # Shortest horizontal escape route, walking in plan around the corners of each space and
+  # through its doors. It ends at an exit (external door) or, on storeys without an exit, at a
+  # stair leaving the storey. Doors get the next door or stair on their route; spaces get the
+  # door they are left through, measured from the most remote point of their outline.
+  escape_route:
+    method: escape_route
+    subject:
+      contract_class: Space
+      exclude_property: {Pset_SpaceCommon.IsExternal: true}
+    doors:
+      contract_class: ConnectionPhysical
+      ifc_class: [IfcDoor]
+    exits:
+      contract_class: ConnectionPhysical
+      ifc_class: [IfcDoor]
+      property: {Pset_DoorCommon.IsExternal: true}
+    stairs:
+      contract_class: PhysicalElement
+      ifc_class: [IfcStair, IfcRamp]
+    target_slot: escape_route_next
+    # External doors more than this above the lowest one (balcony doors) are not exits.
+    max_exit_above_lowest: 1.5
+    # Door to space when IFC space boundaries are missing.
+    max_door_distance: 0.30
+    # Outline points tried when looking for the most remote point of a space.
+    boundary_sample_spacing: 0.5
+    quantities:
+      escape_route_length: {unit: m}
+    # Route of each space (most remote point, around corners, through the doors) as WKT
+    # LINESTRING Z in a geometry_representations record of this kind.
+    path_representation: path_3d

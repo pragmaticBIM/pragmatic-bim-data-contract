@@ -14,7 +14,7 @@
     <dt>{{ t("Source system") }}</dt><dd>{{ conversion.source_system }}</dd>
     <dt>{{ t("Entities in the graph") }}</dt><dd>{{ job.status.nodes }}</dd>
     <dt>{{ t("Relations") }}</dt><dd>{{ job.status.edges }}</dd>
-    <dt>{{ t("Checks") }}</dt><dd>{{ summary.fail }} {{ t("failing") }}, {{ summary.pass }} {{ t("passing") }}</dd>
+    <dt>{{ t("Checks") }}</dt><dd>{{ summary.fail }} {{ t("failing") }}, {{ summary.pass }} {{ t("passing") }}, {{ summary.na }} {{ t("not applicable") }}</dd>
   </dl>
 
   <table>

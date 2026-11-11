@@ -1,0 +1,623 @@
+@prefix ifc: <https://w3id.org/ifc/IFC4_ADD2#> .
+@prefix missing: <https://schema.pragmaticbim.ch/missing/> .
+@prefix pbs: <https://schema.pragmaticbim.ch/> .
+@prefix rule: <https://schema.pragmaticbim.ch/demo/rules/tw-schock/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix view: <https://schema.pragmaticbim.ch/demo/view/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# BABS TW Schock 2021: shock safety of installed components (Einbauteile) in civil-defence shelters.
+#
+# Every term in the missing: namespace is NOT part of the Pragmatic BIM data contract yet; it is the
+# term the rule needs (proposed name, to become pbs:). Until the contract has them, the rules target
+# nothing and do not appear in the demo. Existing contract terms are used as they are (pbs:).
+#
+# Missing in the contract
+#
+#   Scope
+#     missing:zone_type_civil_defence_shelter     ZoneType value: civil-defence shelter (Schutzraum, Schutzanlage).
+#                                                 Existing ZoneType values all have meaning ifcowl:IfcSpatialZone,
+#                                                 so zone types cannot be told apart in RDF today.
+#     missing:shock_protection_level              ZoneContext slot, enum ShockProtectionLevel:
+#       missing:shock_protection_level_basis      «Basis» (1 bar): s_max 0.10 m, a_max 125 m/s², DLF 1.25 (default)
+#       missing:shock_protection_level_3_bar      «3 bar»: s_max 0.25 m, a_max 160 m/s², DLF 1.60
+#     Zone membership is read from Space.parent_zone or ZoneContext.group_members (the converter writes the latter).
+#     pbs:parent_space                            exists on Equipment only; ducts and pipes reach a shelter only
+#                                                 through connects_spaces, other elements not at all.
+#
+#   Quantity
+#     missing:quantity_type_mass                  QuantityType value mass [kg] (IFC Qto_*.GrossWeight / NetWeight).
+#
+#   Structural property keys (StructuralPropertyKey values, on Entity.performance_properties)
+#     missing:structural_property_shock_function_category   string: survival | living | facility | other (§4.1, Tab. 1)
+#     missing:structural_property_shock_test_required       boolean: Prüfpflicht (§5.1)
+#     missing:structural_property_shock_approval_number     string: BABS approval of the component (§5.2, §7.3.3)
+#     missing:structural_property_shock_proof_level         string: basis | 3_bar, level the approval is for (§3.1)
+#     missing:structural_property_shock_fixing_type         string: unfixed | post_installed_anchor | cast_in |
+#                                                           plinth_monolithic | plinth_post_cast (§6)
+#     missing:structural_property_anchor_approval_number    string: BABS approval of the anchor system (§4.2, §6.2)
+#     missing:structural_property_anchor_eta                string: ETA of a cast-in system (§6.3)
+#     missing:structural_property_anchor_count              number: anchors n (§8.2)
+#     missing:structural_property_anchor_shock_resistance   number [kN]: R_d,shock per anchor (§8.4)
+#     missing:structural_property_anchor_spacing_x / _y     number [m]: lever arms b_x, b_y (§8.3); default body bbox
+#     missing:structural_property_centre_of_gravity_height  number [m] above the base h_z; default half body height
+#     missing:structural_property_natural_frequency         number [Hz] (§3.3, §8.1)
+#     missing:structural_property_shock_deflection          number [m]: swing path on springs/dampers (§3.2)
+#     missing:structural_property_shock_damper              boolean: mounted on shock dampers (§3.2, §8.1)
+#     missing:structural_property_passive_shock_safety      boolean: passive shock safety verified (§4.3)
+#     missing:structural_property_reinforcement_connection  boolean: post-cast plinth tied to the slab (§6.4)
+#
+#   Relations
+#     missing:within_shock_reach      computed: elements met by an unfixed element moving s_max (sliding), or its
+#                                     height when it falls over (base b < s_max) (§4.3, §9)
+#     missing:documented_by           Entity -> Artifact (mounting instructions, calculation) (§7.2)
+#
+# Already in the contract and used: ZoneContext / zone_type / parent_zone, Equipment / parent_space,
+# Boundary ceiling / bounded_space, quantity_values, performance_properties, rests_on (equipment on a
+# plinth or slab), neighbours (NeighbourDistance: clear horizontal and vertical distance to nearby
+# elements), quantity_type_volume_net, material_property_density, body_3d bounding boxes, ReservedVolume
+# movement_clearance / intersects_elements, Artifact classifications (KBOB B18002 Montageanleitung, B07 Nachweise).
+#
+# Missing in the IFC mapping (not the contract): IfcFurniture -> Equipment(furniture); Qto GrossWeight -> mass.
+#
+# Not checkable from the model: execution of the shock test (§3.2, §7.1), the approval process (§5.2),
+# anchor installation on site (h_ef, s_min, T_inst, drilling; §6.2), rebar inspection of cast-in parts
+# before concreting (§6.3), the data plate on site (§7.3.3), quality management (§7.4), danger to persons.
+
+rule:prefixes
+    sh:declare
+        [ sh:prefix "pbs" ; sh:namespace "https://schema.pragmaticbim.ch/"^^xsd:anyURI ] ,
+        [ sh:prefix "missing" ; sh:namespace "https://schema.pragmaticbim.ch/missing/"^^xsd:anyURI ] ,
+        [ sh:prefix "ifc" ; sh:namespace "https://w3id.org/ifc/IFC4_ADD2#"^^xsd:anyURI ] ,
+        [ sh:prefix "xsd" ; sh:namespace "http://www.w3.org/2001/XMLSchema#"^^xsd:anyURI ] .
+
+# --- §4.1 Function category -------------------------------------------------------------------
+
+rule:ShockFunctionCategory a sh:NodeShape ;
+    sh:name "TW Schock §4.1: function category of installed components" , "TW Schock §4.1: Funktionskategorie der Einbauteile"@de ;
+    sh:description "Every installed component in a shelter states its function: survival, living, facility function or other. The category sets the shock requirements." ,
+        "Jedes Einbauteil im Schutzbau hat eine Funktionskategorie: Überleben, Leben/Aufenthalt, Anlagefunktion oder Andere. Sie bestimmt die Anforderungen an die Schocksicherheit."@de ;
+    sh:severity sh:Violation ;
+    sh:target [
+        a sh:SPARQLTarget ;
+        sh:prefixes rule:prefixes ;
+        sh:select """
+            SELECT DISTINCT ?this WHERE {
+                ?this pbs:parent_space|pbs:bounded_space|^pbs:bounded_by|pbs:connects_spaces ?space .
+                ?space (pbs:parent_zone|^pbs:group_members)/pbs:zone_type missing:zone_type_civil_defence_shelter .
+            }"""
+    ] ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:prefixes rule:prefixes ;
+        sh:message "No shock function category (survival, living, facility, other)." ,
+            "Keine Funktionskategorie für die Schocksicherheit (Überleben, Leben, Anlagefunktion, Andere)."@de ;
+        sh:select """
+            SELECT $this WHERE {
+                FILTER NOT EXISTS {
+                    $this pbs:performance_properties ?p .
+                    ?p pbs:property_key missing:structural_property_shock_function_category ;
+                       pbs:property_value_string ?category .
+                    FILTER (?category IN ("survival", "living", "facility", "other"))
+                }
+            }"""
+    ] .
+
+# --- §4.2, §6.2 Approved anchors above 10 kg --------------------------------------------------
+
+rule:ApprovedAnchors a sh:NodeShape ;
+    sh:name "TW Schock §4.2: BABS-approved anchors above 10 kg" , "TW Schock §4.2: BABS-zugelassene Dübel über 10 kg"@de ;
+    sh:description "Shock-safe components (survival, living, facility function) heavier than 10 kg declare their fixing, and post-installed anchors have a BABS approval." ,
+        "Schocksichere Einbauteile (Überleben, Leben, Anlagefunktion) über 10 kg haben eine Befestigungsart; nachträglich versetzte Dübel haben eine BABS-Zulassung."@de ;
+    sh:severity sh:Violation ;
+    sh:target [
+        a sh:SPARQLTarget ;
+        sh:prefixes rule:prefixes ;
+        sh:select """
+            SELECT DISTINCT ?this WHERE {
+                ?this pbs:parent_space|pbs:bounded_space|^pbs:bounded_by|pbs:connects_spaces ?space .
+                ?space (pbs:parent_zone|^pbs:group_members)/pbs:zone_type missing:zone_type_civil_defence_shelter .
+                ?this pbs:performance_properties ?c ; pbs:quantity_values ?m .
+                ?c pbs:property_key missing:structural_property_shock_function_category ;
+                   pbs:property_value_string ?category .
+                ?m pbs:quantity_type missing:quantity_type_mass ; pbs:quantity_value ?mass .
+                FILTER (?category IN ("survival", "living", "facility") && ?mass > 10.0)
+            }"""
+    ] ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:prefixes rule:prefixes ;
+        sh:message "Fixing type not stated." , "Befestigungsart nicht angegeben."@de ;
+        sh:select """
+            SELECT $this WHERE {
+                FILTER NOT EXISTS {
+                    $this pbs:performance_properties ?p .
+                    ?p pbs:property_key missing:structural_property_shock_fixing_type .
+                }
+            }"""
+    ] ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:prefixes rule:prefixes ;
+        sh:message "Post-installed anchors without BABS approval." , "Nachträglich versetzte Dübel ohne BABS-Zulassung."@de ;
+        sh:select """
+            SELECT $this WHERE {
+                $this pbs:performance_properties ?p .
+                ?p pbs:property_key missing:structural_property_shock_fixing_type ;
+                   pbs:property_value_string "post_installed_anchor" .
+                FILTER NOT EXISTS {
+                    $this pbs:performance_properties ?a .
+                    ?a pbs:property_key missing:structural_property_anchor_approval_number ;
+                       pbs:property_value_string ?number .
+                    FILTER (STRLEN(?number) > 0)
+                }
+            }"""
+    ] .
+
+# --- §5.2, §7.3.3 Approval of components that must be tested ----------------------------------
+
+rule:ComponentApproval a sh:NodeShape ;
+    sh:name "TW Schock §5.2: BABS approval of components that must be tested" , "TW Schock §5.2: BABS-Zulassung prüfpflichtiger Einbauteile"@de ;
+    sh:description "A component that must be shock-tested carries its BABS approval number; the approval covers the shelter's protection level («3 bar» covers «Basis»)." ,
+        "Ein prüfpflichtiges Einbauteil hat eine BABS-Zulassungsnummer; die Zulassung deckt den Schutzgrad des Schutzbaus ab («3 bar» deckt «Basis» ab)."@de ;
+    sh:severity sh:Violation ;
+    sh:target [
+        a sh:SPARQLTarget ;
+        sh:prefixes rule:prefixes ;
+        sh:select """
+            SELECT DISTINCT ?this WHERE {
+                ?this pbs:parent_space|pbs:bounded_space|^pbs:bounded_by|pbs:connects_spaces ?space .
+                ?space (pbs:parent_zone|^pbs:group_members)/pbs:zone_type missing:zone_type_civil_defence_shelter .
+                ?this pbs:performance_properties ?t .
+                ?t pbs:property_key missing:structural_property_shock_test_required ;
+                   pbs:property_value_boolean true .
+            }"""
+    ] ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:prefixes rule:prefixes ;
+        sh:message "No BABS approval number." , "Keine BABS-Zulassungsnummer."@de ;
+        sh:select """
+            SELECT $this WHERE {
+                FILTER NOT EXISTS {
+                    $this pbs:performance_properties ?a .
+                    ?a pbs:property_key missing:structural_property_shock_approval_number ;
+                       pbs:property_value_string ?number .
+                    FILTER (STRLEN(?number) > 0)
+                }
+            }"""
+    ] ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:prefixes rule:prefixes ;
+        sh:message "Approved for protection level {?proof}; the shelter requires 3 bar." ,
+            "Zugelassen für Schutzgrad {?proof}; der Schutzbau verlangt 3 bar."@de ;
+        sh:select """
+            SELECT DISTINCT $this ?proof WHERE {
+                $this pbs:parent_space|pbs:bounded_space|^pbs:bounded_by|pbs:connects_spaces ?space .
+                ?space pbs:parent_zone|^pbs:group_members ?zone .
+                ?zone pbs:zone_type missing:zone_type_civil_defence_shelter ;
+                      missing:shock_protection_level missing:shock_protection_level_3_bar .
+                OPTIONAL {
+                    $this pbs:performance_properties ?l .
+                    ?l pbs:property_key missing:structural_property_shock_proof_level ;
+                       pbs:property_value_string ?level .
+                }
+                BIND (COALESCE(?level, "basis") AS ?proof)
+                FILTER (?proof != "3_bar")
+            }"""
+    ] .
+
+# --- §3.3, §6.4, §8 Calculation of the fixing ---------------------------------------------------
+
+rule:FixingCalculation a sh:NodeShape ;
+    sh:name "TW Schock §8: shock load on the anchors" , "TW Schock §8: Schockbeanspruchung der Dübel"@de ;
+    sh:description "Simplified proof for floor-mounted components: F = m · a_max · DLF (2 · a_max above 16 Hz), shared by n anchors; S_d,shock = max(S_x, S_y, N_z) must not exceed R_d,shock. A post-cast plinth adds its mass." ,
+        "Vereinfachter Nachweis für am Boden befestigte Einbauteile: F = m · a_max · DLF (2 · a_max über 16 Hz), verteilt auf n Dübel; S_d,shock = max(S_x, S_y, N_z) darf R_d,shock nicht überschreiten. Ein nachträglich betonierter Sockel zählt mit seiner Masse."@de ;
+    sh:severity sh:Violation ;
+    sh:target [
+        a sh:SPARQLTarget ;
+        sh:prefixes rule:prefixes ;
+        sh:select """
+            SELECT DISTINCT ?this WHERE {
+                ?this pbs:parent_space|pbs:bounded_space|^pbs:bounded_by|pbs:connects_spaces ?space .
+                ?space (pbs:parent_zone|^pbs:group_members)/pbs:zone_type missing:zone_type_civil_defence_shelter .
+                ?this pbs:performance_properties ?c, ?f .
+                ?c pbs:property_key missing:structural_property_shock_function_category ;
+                   pbs:property_value_string ?category .
+                ?f pbs:property_key missing:structural_property_shock_fixing_type ;
+                   pbs:property_value_string ?fixing .
+                FILTER (?category IN ("survival", "living", "facility") && ?fixing != "unfixed")
+            }"""
+    ] ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:prefixes rule:prefixes ;
+        sh:message "Anchor force {?sd} kN exceeds R_d,shock {?rd} kN (F = {?force} kN on {?anchors} anchors)." ,
+            "Dübelkraft {?sd} kN überschreitet R_d,shock {?rd} kN (F = {?force} kN auf {?anchors} Dübel)."@de ;
+        sh:select """
+            SELECT $this ?sd ?rd ?force ?anchors WHERE {
+                {
+                    SELECT $this (SAMPLE(?zoneLevel) AS ?level) (SAMPLE(?plinthVolume) AS ?volume) (SAMPLE(?plinthDensity) AS ?density)
+                    WHERE {
+                        $this pbs:parent_space|pbs:bounded_space|^pbs:bounded_by|pbs:connects_spaces ?space .
+                        ?space pbs:parent_zone|^pbs:group_members ?zone .
+                        ?zone pbs:zone_type missing:zone_type_civil_defence_shelter .
+                        OPTIONAL { ?zone missing:shock_protection_level ?zoneLevel }
+                        OPTIONAL {
+                            $this pbs:performance_properties ?pf ; pbs:rests_on ?plinth .
+                            ?pf pbs:property_key missing:structural_property_shock_fixing_type ;
+                                pbs:property_value_string "plinth_post_cast" .
+                            ?plinth pbs:quantity_values ?pv .
+                            ?pv pbs:quantity_type pbs:quantity_type_volume_net ; pbs:quantity_value ?plinthVolume .
+                            OPTIONAL {
+                                ?plinth pbs:performance_properties ?pd .
+                                ?pd pbs:property_key pbs:material_property_density ; pbs:property_value_number ?plinthDensity .
+                            }
+                        }
+                    }
+                    GROUP BY $this
+                }
+                $this pbs:quantity_values ?qm ; pbs:performance_properties ?pn, ?pr .
+                ?qm pbs:quantity_type missing:quantity_type_mass ; pbs:quantity_value ?mass .
+                ?pn pbs:property_key missing:structural_property_anchor_count ; pbs:property_value_number ?n .
+                ?pr pbs:property_key missing:structural_property_anchor_shock_resistance ; pbs:property_value_number ?rd .
+                $this pbs:geometry_representations ?g .
+                ?g pbs:geometry_representation "body_3d" ;
+                   pbs:bbox_min_x ?x0 ; pbs:bbox_max_x ?x1 ; pbs:bbox_min_y ?y0 ; pbs:bbox_max_y ?y1 ;
+                   pbs:bbox_min_z ?z0 ; pbs:bbox_max_z ?z1 .
+                OPTIONAL { $this pbs:performance_properties ?ph . ?ph pbs:property_key missing:structural_property_centre_of_gravity_height ; pbs:property_value_number ?hz0 }
+                OPTIONAL { $this pbs:performance_properties ?px . ?px pbs:property_key missing:structural_property_anchor_spacing_x ; pbs:property_value_number ?bx0 }
+                OPTIONAL { $this pbs:performance_properties ?py . ?py pbs:property_key missing:structural_property_anchor_spacing_y ; pbs:property_value_number ?by0 }
+                OPTIONAL { $this pbs:performance_properties ?pq . ?pq pbs:property_key missing:structural_property_natural_frequency ; pbs:property_value_number ?frequency }
+                FILTER (?n > 0)
+                BIND (STR(xsd:integer(ROUND(?n))) AS ?anchors)
+
+                BIND (COALESCE(?level = missing:shock_protection_level_3_bar, false) AS ?bar3)
+                BIND (IF(?bar3, 160.0e0, 125.0e0) AS ?amax)
+                BIND (IF(?bar3, 1.6e0, 1.25e0) AS ?dlf)
+                BIND (IF(COALESCE(?frequency > 16.0e0, false), 2.0e0 * ?amax, ?amax * ?dlf) AS ?a)
+                BIND (?mass + COALESCE(?volume * COALESCE(?density, 2400.0e0), 0.0e0) AS ?m)
+                BIND (?m * ?a / 1000.0e0 AS ?f)
+                BIND (?m * 9.81e0 / 1000.0e0 AS ?weight)
+                BIND (COALESCE(?hz0, (?z1 - ?z0) / 2.0e0) AS ?hz)
+                BIND (COALESCE(?bx0, ?x1 - ?x0) AS ?bx)
+                BIND (COALESCE(?by0, ?y1 - ?y0) AS ?by)
+
+                # S = F/n · sqrt(1 + 4 (h/b)²); SPARQL has no square root: three Newton steps from 1 + 2 h/b.
+                BIND (1.0e0 + 4.0e0 * (?hz / ?bx) * (?hz / ?bx) AS ?kx2)
+                BIND (1.0e0 + 2.0e0 * ?hz / ?bx AS ?kx0)
+                BIND ((?kx0 + ?kx2 / ?kx0) / 2.0e0 AS ?kx1)
+                BIND ((?kx1 + ?kx2 / ?kx1) / 2.0e0 AS ?kx3)
+                BIND ((?kx3 + ?kx2 / ?kx3) / 2.0e0 AS ?kx)
+                BIND (1.0e0 + 4.0e0 * (?hz / ?by) * (?hz / ?by) AS ?ky2)
+                BIND (1.0e0 + 2.0e0 * ?hz / ?by AS ?ky0)
+                BIND ((?ky0 + ?ky2 / ?ky0) / 2.0e0 AS ?ky1)
+                BIND ((?ky1 + ?ky2 / ?ky1) / 2.0e0 AS ?ky3)
+                BIND ((?ky3 + ?ky2 / ?ky3) / 2.0e0 AS ?ky)
+
+                BIND (?f / ?n * ?kx AS ?sx)
+                BIND (?f / ?n * ?ky AS ?sy)
+                BIND ((?f - ?weight) / ?n AS ?nz)
+                BIND (IF(?sx >= ?sy && ?sx >= ?nz, ?sx, IF(?sy >= ?nz, ?sy, ?nz)) AS ?s)
+                FILTER (?s > ?rd)
+                BIND (xsd:integer(ROUND(?s * 10)) AS ?sd10)
+                BIND (xsd:integer(ROUND(?f * 10)) AS ?f10)
+                BIND (CONCAT(STR(xsd:integer(FLOOR(?sd10 / 10))), ".", STR(?sd10 - 10 * xsd:integer(FLOOR(?sd10 / 10)))) AS ?sd)
+                BIND (CONCAT(STR(xsd:integer(FLOOR(?f10 / 10))), ".", STR(?f10 - 10 * xsd:integer(FLOOR(?f10 / 10)))) AS ?force)
+            }"""
+    ] ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:prefixes rule:prefixes ;
+        sh:message "Shock proof of the fixing not possible: mass, anchor count or R_d,shock missing." ,
+            "Schocknachweis der Befestigung nicht möglich: Masse, Dübelanzahl oder R_d,shock fehlt."@de ;
+        sh:select """
+            SELECT $this WHERE {
+                FILTER NOT EXISTS {
+                    $this pbs:quantity_values ?qm ; pbs:performance_properties ?pn, ?pr .
+                    ?qm pbs:quantity_type missing:quantity_type_mass .
+                    ?pn pbs:property_key missing:structural_property_anchor_count .
+                    ?pr pbs:property_key missing:structural_property_anchor_shock_resistance .
+                }
+            }"""
+    ] .
+
+# --- §6.3 Cast-in fixings ---------------------------------------------------------------------
+
+rule:CastInFixing a sh:NodeShape ;
+    sh:name "TW Schock §6.3: cast-in fixings are proven systems" , "TW Schock §6.3: Eingelegte Befestigungen sind bewährte Systeme"@de ;
+    sh:description "Cast-in fixings use systems that can be designed, for example anchor channels with a European Technical Assessment (ETA)." ,
+        "Eingelegte Befestigungen verwenden bemessbare Systeme, zum Beispiel Ankerschienen mit Europäischer Technischer Bewertung (ETA)."@de ;
+    sh:severity sh:Violation ;
+    sh:target [
+        a sh:SPARQLTarget ;
+        sh:prefixes rule:prefixes ;
+        sh:select """
+            SELECT DISTINCT ?this WHERE {
+                ?this pbs:parent_space|pbs:bounded_space|^pbs:bounded_by|pbs:connects_spaces ?space .
+                ?space (pbs:parent_zone|^pbs:group_members)/pbs:zone_type missing:zone_type_civil_defence_shelter .
+                ?this pbs:performance_properties ?f .
+                ?f pbs:property_key missing:structural_property_shock_fixing_type ;
+                   pbs:property_value_string "cast_in" .
+            }"""
+    ] ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:prefixes rule:prefixes ;
+        sh:message "Cast-in fixing without ETA." , "Eingelegte Befestigung ohne ETA."@de ;
+        sh:select """
+            SELECT $this WHERE {
+                FILTER NOT EXISTS {
+                    $this pbs:performance_properties ?e .
+                    ?e pbs:property_key missing:structural_property_anchor_eta ;
+                       pbs:property_value_string ?eta .
+                    FILTER (STRLEN(?eta) > 0)
+                }
+            }"""
+    ] .
+
+# --- §6.4 Post-cast plinths -------------------------------------------------------------------
+
+rule:PostCastPlinth a sh:NodeShape ;
+    view:relation pbs:rests_on ;
+    sh:name "TW Schock §6.4: post-cast plinths are tied to the floor slab" , "TW Schock §6.4: Nachträglich betonierte Sockel sind mit der Bodenplatte verbunden"@de ;
+    sh:description "A plinth cast after the floor slab is connected to it with reinforcement; the proof uses the mass of component and plinth." ,
+        "Ein nachträglich betonierter Sockel ist mit Bewehrungsanschlüssen kraftschlüssig mit der Bodenplatte verbunden; der Nachweis rechnet mit der Masse von Einbauteil und Sockel."@de ;
+    sh:severity sh:Violation ;
+    sh:target [
+        a sh:SPARQLTarget ;
+        sh:prefixes rule:prefixes ;
+        sh:select """
+            SELECT DISTINCT ?this WHERE {
+                ?this pbs:parent_space|pbs:bounded_space|^pbs:bounded_by|pbs:connects_spaces ?space .
+                ?space (pbs:parent_zone|^pbs:group_members)/pbs:zone_type missing:zone_type_civil_defence_shelter .
+                ?this pbs:performance_properties ?f .
+                ?f pbs:property_key missing:structural_property_shock_fixing_type ;
+                   pbs:property_value_string "plinth_post_cast" .
+            }"""
+    ] ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:prefixes rule:prefixes ;
+        sh:message "No plinth found below the component." , "Kein Sockel unter dem Einbauteil gefunden."@de ;
+        sh:select """
+            SELECT $this WHERE { FILTER NOT EXISTS { $this pbs:rests_on ?plinth } }"""
+    ] ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:prefixes rule:prefixes ;
+        sh:message "Plinth {?plinthName} has no reinforcement connection to the floor slab." ,
+            "Sockel {?plinthName} ohne Bewehrungsanschluss an die Bodenplatte."@de ;
+        sh:select """
+            SELECT $this ?plinthName WHERE {
+                $this pbs:rests_on ?plinth .
+                OPTIONAL { ?plinth pbs:name ?name }
+                BIND (COALESCE(?name, "") AS ?plinthName)
+                FILTER NOT EXISTS {
+                    ?plinth pbs:performance_properties ?r .
+                    ?r pbs:property_key missing:structural_property_reinforcement_connection ;
+                       pbs:property_value_boolean true .
+                }
+            }"""
+    ] .
+
+# --- §4.3, §9 Passive shock safety of unfixed components ----------------------------------------
+
+rule:PassiveShockSafety a sh:NodeShape ;
+    view:relation missing:within_shock_reach ;
+    sh:name "TW Schock §4.3: unfixed components endanger no vital installations" , "TW Schock §4.3: Nicht befestigte Einbauteile gefährden keine lebenswichtigen Einbauten"@de ;
+    sh:description "An unfixed component moves s_max relative to the shelter (or falls over when its base is narrower than s_max). Components over 10 kg without approved anchors count as unfixed. Nothing for survival, living or the facility function may lie within that reach." ,
+        "Ein nicht befestigtes Einbauteil verschiebt sich um s_max gegenüber dem Schutzbau (oder fällt um, wenn seine Standfläche schmaler als s_max ist). Einbauteile über 10 kg ohne zugelassene Dübel gelten als nicht befestigt. In dieser Reichweite darf nichts liegen, was für Überleben, Leben oder die Anlagefunktion nötig ist."@de ;
+    sh:severity sh:Violation ;
+    sh:target [
+        a sh:SPARQLTarget ;
+        sh:prefixes rule:prefixes ;
+        sh:select """
+            SELECT DISTINCT ?this WHERE {
+                ?this pbs:parent_space|pbs:bounded_space|^pbs:bounded_by|pbs:connects_spaces ?space .
+                ?space (pbs:parent_zone|^pbs:group_members)/pbs:zone_type missing:zone_type_civil_defence_shelter .
+                ?this pbs:performance_properties ?f .
+                ?f pbs:property_key missing:structural_property_shock_fixing_type ;
+                   pbs:property_value_string ?fixing .
+                OPTIONAL {
+                    ?this pbs:quantity_values ?m .
+                    ?m pbs:quantity_type missing:quantity_type_mass ; pbs:quantity_value ?mass .
+                }
+                BIND (EXISTS {
+                    ?this pbs:performance_properties ?a .
+                    ?a pbs:property_key missing:structural_property_anchor_approval_number .
+                } AS ?approved)
+                FILTER (?fixing = "unfixed"
+                        || (?fixing = "post_installed_anchor" && COALESCE(?mass > 10.0, true) && !?approved))
+            }"""
+    ] ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:prefixes rule:prefixes ;
+        sh:message "Can hit {?otherName} ({?category}) when moving under shock." ,
+            "Kann bei Schock {?otherName} ({?categoryDe}) treffen."@de ;
+        sh:select """
+            SELECT DISTINCT $this ?otherName ?category ?categoryDe WHERE {
+                $this missing:within_shock_reach ?other .
+                ?other pbs:performance_properties ?c .
+                ?c pbs:property_key missing:structural_property_shock_function_category ;
+                   pbs:property_value_string ?category .
+                FILTER (?category IN ("survival", "living", "facility"))
+                OPTIONAL { ?other pbs:name ?name }
+                BIND (COALESCE(?name, "") AS ?otherName)
+                BIND (IF(?category = "survival", "Überleben", IF(?category = "living", "Leben/Aufenthalt", "Anlagefunktion")) AS ?categoryDe)
+            }"""
+    ] .
+
+# --- §4.3.2 Suspended ceilings ----------------------------------------------------------------
+
+rule:SuspendedCeiling a sh:NodeShape ;
+    sh:name "TW Schock §4.3.2: suspended ceilings shed no parts" , "TW Schock §4.3.2: Abgehängte Decken verlieren keine Teile"@de ;
+    sh:description "Suspended ceilings and installations in a shelter keep all parts in place under shock, even when damaged." ,
+        "Abgehängte Decken und Installationen im Schutzbau verlieren im Schockfall trotz Beschädigung keine Teile."@de ;
+    sh:severity sh:Violation ;
+    sh:target [
+        a sh:SPARQLTarget ;
+        sh:prefixes rule:prefixes ;
+        sh:select """
+            SELECT DISTINCT ?this WHERE {
+                ?this pbs:boundary_type ifc:IfcCoveringTypeEnum.CEILING ;
+                      pbs:bounded_space|^pbs:bounded_by ?space .
+                ?space (pbs:parent_zone|^pbs:group_members)/pbs:zone_type missing:zone_type_civil_defence_shelter .
+            }"""
+    ] ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:prefixes rule:prefixes ;
+        sh:message "Passive shock safety not verified." , "Passive Schocksicherheit nicht nachgewiesen."@de ;
+        sh:select """
+            SELECT $this WHERE {
+                FILTER NOT EXISTS {
+                    $this pbs:performance_properties ?p .
+                    ?p pbs:property_key missing:structural_property_passive_shock_safety ;
+                       pbs:property_value_boolean true .
+                }
+            }"""
+    ] .
+
+# --- §3.2 Clearance around components on springs and dampers -----------------------------------
+
+rule:ShockClearance a sh:NodeShape ;
+    view:relation pbs:rests_on ;
+    sh:name "TW Schock §3.2: clearance for the swing path" , "TW Schock §3.2: Spielraum für den Schwingweg"@de ;
+    sh:description "A component on springs or dampers keeps at least its swing path clear to walls and neighbouring components (clear distance from the model; the element it stands on does not count). A modelled movement clearance is optional; if there is one, nothing else lies in it." ,
+        "Ein Einbauteil auf Federn oder Dämpfern hält zu Wänden und benachbarten Einbauteilen mindestens seinen Schwingweg frei (lichter Abstand aus dem Modell; das Bauteil, auf dem es steht, zählt nicht). Ein modellierter Bewegungsraum ist freiwillig; gibt es einen, liegt darin nichts anderes."@de ;
+    sh:severity sh:Violation ;
+    sh:target [
+        a sh:SPARQLTarget ;
+        sh:prefixes rule:prefixes ;
+        sh:select """
+            SELECT DISTINCT ?this WHERE {
+                ?this pbs:parent_space|pbs:bounded_space|^pbs:bounded_by|pbs:connects_spaces ?space .
+                ?space (pbs:parent_zone|^pbs:group_members)/pbs:zone_type missing:zone_type_civil_defence_shelter .
+                ?this pbs:performance_properties ?d .
+                ?d pbs:property_key missing:structural_property_shock_deflection ;
+                   pbs:property_value_number ?deflection .
+                FILTER (?deflection > 0)
+            }"""
+    ] ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:prefixes rule:prefixes ;
+        sh:message "{?otherName} is {?h} m away horizontally and {?v} m vertically; swing path {?deflection} m." ,
+            "{?otherName} liegt horizontal {?h} m und vertikal {?v} m entfernt; Schwingweg {?deflection} m."@de ;
+        sh:select """
+            SELECT DISTINCT $this ?otherName ?h ?v ?deflection WHERE {
+                $this pbs:performance_properties ?d ; pbs:neighbours ?n .
+                ?d pbs:property_key missing:structural_property_shock_deflection ;
+                   pbs:property_value_number ?deflection .
+                ?n pbs:neighbour ?other ;
+                   pbs:horizontal_clear_distance ?dh ;
+                   pbs:vertical_clear_distance ?dv .
+                FILTER NOT EXISTS { $this pbs:rests_on ?other }
+                FILTER (?dh * ?dh + ?dv * ?dv < ?deflection * ?deflection)
+                OPTIONAL { ?other pbs:name ?name }
+                BIND (COALESCE(?name, STR(?other)) AS ?otherName)
+                BIND (ROUND(?dh * 100) / 100 AS ?h)
+                BIND (ROUND(?dv * 100) / 100 AS ?v)
+            }"""
+    ] ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:prefixes rule:prefixes ;
+        sh:message "{?otherName} lies in the movement clearance." , "{?otherName} liegt im Bewegungsraum."@de ;
+        sh:select """
+            SELECT DISTINCT $this ?otherName WHERE {
+                ?clearance pbs:reserved_volume_type pbs:reserved_volume_type_movement_clearance ;
+                           pbs:intersects_elements $this , ?other .
+                FILTER (?other != $this)
+                FILTER NOT EXISTS { $this pbs:rests_on ?other }
+                OPTIONAL { ?other pbs:name ?name }
+                BIND (COALESCE(?name, STR(?other)) AS ?otherName)
+            }"""
+    ] .
+
+# --- §8.1 Stiff, sensitive components on dampers ------------------------------------------------
+
+rule:StiffComponentDamper a sh:NodeShape ;
+    sh:name "TW Schock §8.1: stiff components on shock dampers" , "TW Schock §8.1: Steife Einbauteile auf Schockdämpfern"@de ;
+    sh:description "Stiff components (natural frequency above 16 Hz) needed for survival, living or the facility function are mounted on shock dampers where possible." ,
+        "Steife Einbauteile (Eigenfrequenz über 16 Hz), die für Überleben, Leben oder die Anlagefunktion nötig sind, werden nach Möglichkeit auf Schockdämpfern montiert."@de ;
+    sh:severity sh:Warning ;
+    sh:target [
+        a sh:SPARQLTarget ;
+        sh:prefixes rule:prefixes ;
+        sh:select """
+            SELECT DISTINCT ?this WHERE {
+                ?this pbs:parent_space|pbs:bounded_space|^pbs:bounded_by|pbs:connects_spaces ?space .
+                ?space (pbs:parent_zone|^pbs:group_members)/pbs:zone_type missing:zone_type_civil_defence_shelter .
+                ?this pbs:performance_properties ?c, ?q .
+                ?c pbs:property_key missing:structural_property_shock_function_category ;
+                   pbs:property_value_string ?category .
+                ?q pbs:property_key missing:structural_property_natural_frequency ;
+                   pbs:property_value_number ?frequency .
+                FILTER (?category IN ("survival", "living", "facility") && ?frequency > 16.0)
+            }"""
+    ] ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:prefixes rule:prefixes ;
+        sh:message "Natural frequency {?frequency} Hz without shock dampers." ,
+            "Eigenfrequenz {?frequency} Hz ohne Schockdämpfer."@de ;
+        sh:select """
+            SELECT $this ?frequency WHERE {
+                $this pbs:performance_properties ?q .
+                ?q pbs:property_key missing:structural_property_natural_frequency ;
+                   pbs:property_value_number ?frequency .
+                FILTER NOT EXISTS {
+                    $this pbs:performance_properties ?d .
+                    ?d pbs:property_key missing:structural_property_shock_damper ;
+                       pbs:property_value_boolean true .
+                }
+            }"""
+    ] .
+
+# --- §7.2, §7.3 Mounting instructions and fixing calculation ------------------------------------
+
+rule:ShockDocuments a sh:NodeShape ;
+    view:relation missing:documented_by ;
+    sh:name "TW Schock §7.2: mounting instructions and fixing calculation" , "TW Schock §7.2: Montageanleitung und Verankerungsberechnung"@de ;
+    sh:description "A component that must be shock-tested comes with its mounting instructions (KBOB B18002) and the calculation of its fixing (KBOB B07 Nachweise)." ,
+        "Ein prüfpflichtiges Einbauteil hat eine Montageanleitung (KBOB B18002) und den rechnerischen Nachweis der Befestigung (KBOB B07 Nachweise)."@de ;
+    sh:severity sh:Violation ;
+    sh:target [
+        a sh:SPARQLTarget ;
+        sh:prefixes rule:prefixes ;
+        sh:select """
+            SELECT DISTINCT ?this WHERE {
+                ?this pbs:parent_space|pbs:bounded_space|^pbs:bounded_by|pbs:connects_spaces ?space .
+                ?space (pbs:parent_zone|^pbs:group_members)/pbs:zone_type missing:zone_type_civil_defence_shelter .
+                ?this pbs:performance_properties ?t .
+                ?t pbs:property_key missing:structural_property_shock_test_required ;
+                   pbs:property_value_boolean true .
+            }"""
+    ] ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:prefixes rule:prefixes ;
+        sh:message "No mounting instructions (KBOB B18002)." , "Keine Montageanleitung (KBOB B18002)."@de ;
+        sh:select """
+            SELECT $this WHERE {
+                FILTER NOT EXISTS {
+                    $this missing:documented_by/pbs:classifications/pbs:classification_code "B18002" .
+                }
+            }"""
+    ] ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:prefixes rule:prefixes ;
+        sh:message "No fixing calculation (KBOB B07)." , "Kein rechnerischer Nachweis der Befestigung (KBOB B07)."@de ;
+        sh:select """
+            SELECT $this WHERE {
+                FILTER NOT EXISTS {
+                    $this missing:documented_by/pbs:classifications/pbs:classification_code ?code .
+                    FILTER (STRSTARTS(?code, "B07"))
+                }
+            }"""
+    ] .

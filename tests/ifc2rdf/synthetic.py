@@ -110,6 +110,8 @@ DEMO_ROLES = [
     "maintenance_overlap", "maintenance_touch",
     "railing_front", "railing_side",
     "floor_slab", "ceiling_slab", "column", "wall_short",
+    "corridor", "exit_wall", "exit_door",
+    "air_handler",
 ]
 DEMO_GLOBAL_IDS = {role: ifcopenshell.guid.compress(f"{0xD000 + i:032x}") for i, role in enumerate(DEMO_ROLES)}
 
@@ -132,6 +134,9 @@ def build_demo_model(path: Path) -> dict[str, str]:
       column (x 2.4..2.6, y 1.9..2.1) between them; both full-height walls carry the ceiling.
     - wall_short: EI 30 partition x 2.0..2.1, y 2.1..4.0, 2.5 m high (stops below the
       ceiling slab), abutting wall_interior.
+    - corridor: interior space x 0..8, y 4.2..6.2 behind wall_interior (both doors open into it);
+      exit_door: external door x 8.05..8.25, y 4.7..5.7 in exit_wall (x 8..8.3).
+    - air_handler: equipment x 4.1..4.6, y 0.1..0.7, z 0..1.2 on floor_slab, 0.1 m from wall_exterior.
     """
     f = api.project.create_file(version="IFC4")
     entities = {}
@@ -232,12 +237,26 @@ def build_demo_model(path: Path) -> dict[str, str]:
     box(wall_short, 2.0, 2.1, 0, 2.1, 4.0, 2.5)
     pset(wall_short, "Pset_WallCommon", {"IsExternal": False, "LoadBearing": False, "FireRating": "EI 30"})
 
+    corridor = create("corridor", "IfcSpace", "Korridor", predefined_type="SPACE")
+    api.aggregate.assign_object(f, relating_object=storey, products=[corridor])
+    box(corridor, 0, 4.2, 0, 8, 6.2, 2.8)
+    pset(corridor, "Pset_SpaceCommon", {"IsExternal": False})
+    exit_wall = create("exit_wall", "IfcWall", "Aussenwand Ost", predefined_type="STANDARD")
+    box(exit_wall, 8, 4.2, 0, 8.3, 6.2, 2.8)
+    pset(exit_wall, "Pset_WallCommon", {"IsExternal": True, "LoadBearing": False})
+    exit_door = create("exit_door", "IfcDoor", "Ausgang", predefined_type="DOOR")
+    box(exit_door, 8.05, 4.7, 0, 8.25, 5.7, 2.1)
+    pset(exit_door, "Pset_DoorCommon", {"IsExternal": True})
+    air_handler = create("air_handler", "IfcUnitaryEquipment", "Lüftungsgerät", predefined_type="AIRHANDLER")
+    box(air_handler, 4.1, 0.1, 0, 4.6, 0.7, 1.2)
+
     api.spatial.assign_container(
         f,
         relating_structure=storey,
         products=[
             wall_interior, wall_exterior, balcony_slab, door_ifc, door_geometry, window,
             *maintenance, railing_front, railing_side, floor_slab, ceiling_slab, column, wall_short,
+            exit_wall, exit_door, air_handler,
         ],
     )
     f.write(str(path))

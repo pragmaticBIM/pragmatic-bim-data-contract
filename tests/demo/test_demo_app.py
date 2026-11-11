@@ -74,11 +74,52 @@ def test_rules(job):
     assert guards["status"] == "pass"
     assert {DEMO_GLOBAL_IDS["railing_front"], DEMO_GLOBAL_IDS["railing_side"]} <= set(guards["checked"])
 
+    daylight = checks["rule-WindowArea"]
+    assert daylight["failed"] == [DEMO_GLOBAL_IDS["office"]]
+    assert {i["message"] for i in daylight["items"]} == {
+        "Glazed area 1.8 m² for 20 m² floor area (9 %); at least 2 m² (10 %) required."
+    }
+
+    escape = checks["rule-EscapeRouteLength"]
+    assert escape["status"] == "pass"
+    assert set(escape["checked"]) == {DEMO_GLOBAL_IDS["office"], DEMO_GLOBAL_IDS["corridor"]}
+
+
+def test_rule_connections(client):
+    gid = DEMO_GLOBAL_IDS
+    fire = client.get(f"/jobs/{JOB_ID}/checks/rule-DoorFireRating/ids").json()
+    assert {(e["s"], e["t"], e["p"], e["failed"]) for e in fire["edges"]} == {
+        (gid["door_ifc"], gid["wall_interior"], "pbs:hosted_by", True),
+        (gid["door_geometry"], gid["wall_interior"], "pbs:hosted_by", True),
+    }
+    assert fire["paths"] == []
+
+    escape = client.get(f"/jobs/{JOB_ID}/checks/rule-EscapeRouteLength/ids").json()
+    chain = {(e["s"], e["t"]) for e in escape["edges"]}
+    assert (gid["office"], gid["door_geometry"]) in chain and (gid["door_geometry"], gid["exit_door"]) in chain
+    assert {p["guid"] for p in escape["paths"]} == {gid["office"], gid["corridor"]}
+    assert all(not p["failed"] and len(p["points"][0]) == 3 for p in escape["paths"])
+    office = next(p for p in escape["paths"] if p["guid"] == gid["office"])
+    assert office["label"] == "10.3 m"
+
+
+def test_escape_route_panel(client):
+    gid = DEMO_GLOBAL_IDS
+    office = client.get(f"/jobs/{JOB_ID}/element/{gid['office']}").text
+    assert "Fluchtweg" in office and "10.3 m" in office
+    route = f'data-route="{gid["office"]} {gid["door_geometry"]} {gid["exit_door"]}"'
+    assert route in office
+    assert "noch 4.9 m" in office and "Ausgang" in office
+
 
 def test_workspace_and_check_detail(client):
     page = client.get(f"/jobs/{JOB_ID}")
     assert page.status_code == 200
     assert 'data-job="0123456789ab"' in page.text
+    assert f'data-structure="{DEMO_GLOBAL_IDS["storey"]}"' in page.text
+    members = json.loads(page.text.split('id="structure-members">', 1)[1].split("</script>", 1)[0])
+    assert DEMO_GLOBAL_IDS["office"] in members[DEMO_GLOBAL_IDS["storey"]]
+    assert DEMO_GLOBAL_IDS["office"] in members[DEMO_GLOBAL_IDS["building"]]
 
     checks = json.loads((jobs.DATA_DIR / JOB_ID / "checks.json").read_text())
     check = checks[0]
@@ -86,7 +127,7 @@ def test_workspace_and_check_detail(client):
     assert detail.status_code == 200
     assert json.loads(detail.headers["HX-Trigger"]) == {"pbs:highlight": {"check": check["id"]}}
     ids = client.get(f"/jobs/{JOB_ID}/checks/{check['id']}/ids").json()
-    assert ids == {"checked": check["checked"], "failed": check["failed"]}
+    assert (ids["checked"], ids["failed"]) == (check["checked"], check["failed"])
 
     cards = client.get(f"/jobs/{JOB_ID}/cards?show=all", headers={"HX-Request": "true"})
     assert cards.status_code == 200 and 'id="cards"' in cards.text

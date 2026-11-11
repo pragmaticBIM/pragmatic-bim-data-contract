@@ -26,6 +26,7 @@ URI: [pbs:GeometryRepresentationType](https://schema.pragmaticbim.ch/GeometryRep
 | axis | None | Linear axis/centerline representation. | Title: Axis<br>|
 | body_3d | None | 3D volumetric/body representation. | Title: 3D Body<br>|
 | footprint_2d | None | 2D surface/footprint representation. | Title: 2D Footprint<br>|
+| path_3d | None | Polyline of a computed path through the building (for example an escape route), as WKT LINESTRING Z. | Title: 3D Path<br>|
 | point | None | Point/dot representation. | Title: Point<br>|
 
 
@@ -97,6 +98,15 @@ permissible_values:
         source: de
         description: 2D Grundriss
     title: 2D Footprint
+  path_3d:
+    text: path_3d
+    description: Polyline of a computed path through the building (for example an
+      escape route), as WKT LINESTRING Z.
+    alt_descriptions:
+      de:
+        source: de
+        description: 3D Wegverlauf
+    title: 3D Path
   point:
     text: point
     description: Point/dot representation.

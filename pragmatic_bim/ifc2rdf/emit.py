@@ -59,11 +59,12 @@ def build_graph(conv: "Converter", nodes: list[Node]) -> Graph:
                     graph.add((blank, RDF.type, rdf_type))
                 for key, value in sorted(entry.items()):
                     range_name = schema.slot_range(class_name, key)
-                    term = (
-                        schema.enum_term(range_name, str(value))
-                        if schema.is_enum(range_name)
-                        else schema.literal(range_name, value)
-                    )
+                    if schema.is_enum(range_name):
+                        term = schema.enum_term(range_name, str(value))
+                    elif schema.is_class(range_name):
+                        term = URIRef(str(value))
+                    else:
+                        term = schema.literal(range_name, value)
                     graph.add((blank, schema.slot_uri(key), term))
         present = set(node.values) | set(node.inlined)
         for slot in schema.required_slots(cls):

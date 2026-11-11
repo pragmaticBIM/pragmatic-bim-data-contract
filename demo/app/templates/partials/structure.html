@@ -1,0 +1,11 @@
+<ul>
+  {% for node in structure recursive %}
+    <li>
+      <label title="{{ L.cls(node.cls) }}">
+        <input type="checkbox" checked data-structure="{{ node.guid }}">
+        <span>{{ node.name if node.name != node.guid else L.cls(node.cls) }}</span><span class="n">{{ node.count }}</span>
+      </label>
+      {% if node.children %}<ul>{{ loop(node.children) }}</ul>{% endif %}
+    </li>
+  {% endfor %}
+</ul>

@@ -11,10 +11,12 @@ from typing import TYPE_CHECKING, Callable
 from pragmatic_bim.ifc2rdf.geometry import GeometryResult
 from pragmatic_bim.ifc2rdf.spatial.contacts import side_contact, vertical_contact
 from pragmatic_bim.ifc2rdf.spatial.context import SpatialContext
+from pragmatic_bim.ifc2rdf.spatial.escape import escape_route
 from pragmatic_bim.ifc2rdf.spatial.guards import barrier_walking_surface
 from pragmatic_bim.ifc2rdf.spatial.hosted_by import opening_in_host
 from pragmatic_bim.ifc2rdf.spatial.intersects import prism_overlap
 from pragmatic_bim.ifc2rdf.spatial.lights import window_daylight
+from pragmatic_bim.ifc2rdf.spatial.neighbours import neighbour_distance
 from pragmatic_bim.ifc2rdf.spatial.representations import add_geometry_records
 
 if TYPE_CHECKING:
@@ -27,6 +29,8 @@ METHODS: dict[str, Callable[[SpatialContext, dict], None]] = {
     "prism_overlap": prism_overlap,
     "barrier_walking_surface": barrier_walking_surface,
     "window_daylight": window_daylight,
+    "escape_route": escape_route,
+    "neighbour_distance": neighbour_distance,
 }
 
 

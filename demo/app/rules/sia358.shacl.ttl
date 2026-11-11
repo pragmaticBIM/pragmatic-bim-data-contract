@@ -1,6 +1,7 @@
 @prefix pbs: <https://schema.pragmaticbim.ch/> .
 @prefix rule: <https://schema.pragmaticbim.ch/demo/rules/sia358/> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix view: <https://schema.pragmaticbim.ch/demo/view/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 # SIA 358 (Geländer und Brüstungen): height of fall protection.
@@ -19,6 +20,7 @@ rule:prefixes
     sh:declare [ sh:prefix "pbs" ; sh:namespace "https://schema.pragmaticbim.ch/"^^xsd:anyURI ] .
 
 rule:GuardHeight a sh:NodeShape ;
+    view:relation pbs:guards_space ;
     sh:name "SIA 358: guard height above the walking surface" , "SIA 358: Höhe der Absturzsicherung über der Gehfläche"@de ;
     sh:description "Fall protection is at least 1.00 m above the walking surface it guards, and at least 1.10 m where the drop height exceeds 12 m." ,
         "Die Absturzsicherung ist mindestens 1.00 m über der gesicherten Gehfläche, bei einer Absturzhöhe über 12 m mindestens 1.10 m."@de ;

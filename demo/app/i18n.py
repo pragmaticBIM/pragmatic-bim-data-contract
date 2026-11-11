@@ -134,7 +134,7 @@ class Labels:
         """Labels for ``graph.js`` and ``bridge.js``."""
         if not self.vocab:
             return {"classes": {}, "relations": {}, "ui": {}}
-        ui = ("Relations", "Could not load")
+        ui = ("Relations", "All", "Could not load")
         return {
             "classes": self.vocab.classes,
             "relations": self.vocab.relations,

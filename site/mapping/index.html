@@ -2674,7 +2674,7 @@ ifc_mapping.merged.yaml   ← single file for adapters
 <tr>
 <td><code>rests_on</code></td>
 <td><code>vertical_contact</code></td>
-<td>wall / slab / column / beam / footing → same</td>
+<td>wall / slab / column / beam / footing → same; <code>Equipment</code> → same objects</td>
 <td>Subject bottom within the object's vertical extent (± <code>contact_tolerance</code>, above the object's bottom), subject rises above the object's top, plan overlap ≥ <code>min_contact_area</code></td>
 <td>—</td>
 </tr>
@@ -2693,6 +2693,13 @@ ifc_mapping.merged.yaml   ← single file for adapters
 <td>—</td>
 </tr>
 <tr>
+<td><code>neighbours</code></td>
+<td><code>neighbour_distance</code></td>
+<td><code>Equipment</code> → <code>PhysicalElement</code></td>
+<td>Horizontal gap between the plan outlines ≤ <code>max_horizontal_distance</code> and vertical gap between the height ranges ≤ <code>max_vertical_distance</code>; each gap is 0 where the elements overlap</td>
+<td><code>NeighbourDistance</code> records (<code>neighbour</code>, <code>horizontal_clear_distance</code>, <code>vertical_clear_distance</code>) instead of quantities</td>
+</tr>
+<tr>
 <td><code>guards_space</code></td>
 <td><code>barrier_walking_surface</code></td>
 <td><code>SafetyBarrier</code> → <code>Space</code></td>
@@ -2705,6 +2712,13 @@ ifc_mapping.merged.yaml   ← single file for adapters
 <td>exterior window → interior <code>Space</code></td>
 <td><code>connects_spaces</code> from IFC space boundaries, else the nearest space within <code>max_plan_distance</code> with vertical overlap</td>
 <td><code>area_glazed</code> on the window; <code>glazing_ratio</code> (glazed area ÷ floor area) on every selected space</td>
+</tr>
+<tr>
+<td><code>escape_route_next</code></td>
+<td><code>escape_route</code></td>
+<td>interior <code>Space</code>, door → door / stair</td>
+<td>Walking distance in plan around the corners of each space; spaces whose outlines touch along ≥ <code>min_open_width</code> form one open zone; doors join zones (<code>connects_spaces</code>, else spaces within <code>max_door_distance</code>); the route ends at an external door no more than <code>max_exit_above_lowest</code> above the lowest one, or, on storeys without one, at a stair that leaves the storey; spaces are measured from the most remote point of their outline</td>
+<td><code>escape_route_length</code> on doors (remaining route) and spaces (from the most remote point)</td>
 </tr>
 </tbody>
 </table>
@@ -2739,8 +2753,16 @@ ifc_mapping.merged.yaml   ← single file for adapters
 <td><code>ReservedVolume</code> → <code>intersects_elements</code> (should be empty)</td>
 </tr>
 <tr>
+<td>Swing path of components on dampers is clear</td>
+<td><code>neighbours</code> of the component: clear distance (horizontal and vertical) ≥ swing path, except the elements it <code>rests_on</code></td>
+</tr>
+<tr>
 <td>Minimum glazing ratio of habitable rooms</td>
 <td><code>Space</code> <code>glazing_ratio</code>, <code>lit_space</code></td>
+</tr>
+<tr>
+<td>Maximum horizontal escape route length</td>
+<td><code>Space</code> <code>escape_route_length</code>; follow <code>escape_route_next</code> for the route</td>
 </tr>
 </tbody>
 </table>

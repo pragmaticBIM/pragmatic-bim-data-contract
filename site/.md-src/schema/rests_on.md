@@ -6,7 +6,7 @@ search:
 # Slot: rests_on 
 
 
-_Elements this element sits on: its underside bears on their top (for example wall on slab, column on slab, slab on wall or column). Computed from geometric contact; it records contact, not a structural analysis result. The inverse (supports) is read by querying the slot from the other side._
+_Elements this element sits on: its underside bears on their top (for example wall on slab, column on slab, slab on wall or column, equipment on a plinth). Computed from geometric contact; it records contact, not a structural analysis result. The inverse (supports) is read by querying the slot from the other side._
 
 
 
@@ -93,9 +93,9 @@ URI: [pbs:rests_on](https://schema.pragmaticbim.ch/rests_on)
 ```yaml
 name: rests_on
 description: 'Elements this element sits on: its underside bears on their top (for
-  example wall on slab, column on slab, slab on wall or column). Computed from geometric
-  contact; it records contact, not a structural analysis result. The inverse (supports)
-  is read by querying the slot from the other side.'
+  example wall on slab, column on slab, slab on wall or column, equipment on a plinth).
+  Computed from geometric contact; it records contact, not a structural analysis result.
+  The inverse (supports) is read by querying the slot from the other side.'
 from_schema: https://schema.pragmaticbim.ch
 rank: 1000
 domain_of:

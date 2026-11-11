@@ -1,6 +1,7 @@
 @prefix pbs: <https://schema.pragmaticbim.ch/> .
 @prefix rule: <https://schema.pragmaticbim.ch/demo/rules/fire/> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix view: <https://schema.pragmaticbim.ch/demo/view/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 # Fire safety: doors in fire-resistant walls.
@@ -24,6 +25,7 @@ rule:prefixes
         [ sh:prefix "xsd" ; sh:namespace "http://www.w3.org/2001/XMLSchema#"^^xsd:anyURI ] .
 
 rule:DoorFireRating a sh:NodeShape ;
+    view:relation pbs:hosted_by ;
     sh:name "Doors in fire-resistant walls: at most one class below the wall" , "Türen in Brandschutzwänden: höchstens eine Klasse unter der Wand"@de ;
     sh:description "A door in a fire-resistant wall has a fire resistance at most one class below the wall (E30 < EI30 < EI60 < EI90 < EI120 ...)." ,
         "Eine Tür in einer Wand mit Feuerwiderstand liegt höchstens eine Klasse unter der Wand (E30 < EI30 < EI60 < EI90 < EI120 ...)."@de ;

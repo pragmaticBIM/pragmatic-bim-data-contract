@@ -553,6 +553,7 @@ click PhysicalElement href "./PhysicalElement.html" _blank
 click Classification href "./Classification.html" _blank
 click Entity href "./Entity.html" _blank
 click CostRecord href "./CostRecord.html" _blank
+click PhysicalElement href "./PhysicalElement.html" _blank
 click GeometryRepresentation href "./GeometryRepresentation.html" _blank
 click LocalizedText href "./LocalizedText.html" _blank
 click LocalizedText href "./LocalizedText.html" _blank
@@ -671,6 +672,12 @@ Hold "Alt" / "Option" to enable pan &amp; zoom
 <td><a href="contained_entities.html">contained_entities</a></td>
 <td>* <br/> <a href="Entity.html">Entity</a></td>
 <td>Generic containment for associated entities.</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="escape_route_next.html">escape_route_next</a></td>
+<td>0..1 <br/> <a href="PhysicalElement.html">PhysicalElement</a></td>
+<td>Next element on the shortest horizontal escape route: the door a space is left through, or the door or stair a door leads on to. The route ends at an exit to the outside or at a stair leaving the storey; follow the slot repeatedly to read the whole route. Computed from geometry; the remaining length is the escape_route_length quantity.</td>
 <td>direct</td>
 </tr>
 <tr>
@@ -931,6 +938,7 @@ Hold "Alt" / "Option" to enable pan &amp; zoom
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bounded_by</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">adjacent_elements</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">contained_entities</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">escape_route_next</span>
 <span class="nt">slot_usage</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">parent_building</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">parent_building</span>
@@ -1078,6 +1086,20 @@ Hold "Alt" / "Option" to enable pan &amp; zoom
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">System</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Entity</span>
 <span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">escape_route_next</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">escape_route_next</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;Next</span><span class="nv"> </span><span class="s">element</span><span class="nv"> </span><span class="s">on</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">shortest</span><span class="nv"> </span><span class="s">horizontal</span><span class="nv"> </span><span class="s">escape</span><span class="nv"> </span><span class="s">route:</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">door</span><span class="nv"> </span><span class="s">a</span>
+<span class="w">      </span><span class="s">space</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">left</span><span class="nv"> </span><span class="s">through,</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">door</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">stair</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">door</span><span class="nv"> </span><span class="s">leads</span><span class="nv"> </span><span class="s">on</span><span class="nv"> </span><span class="s">to.</span><span class="nv"> </span><span class="s">The</span><span class="nv"> </span><span class="s">route</span><span class="nv"> </span><span class="s">ends</span>
+<span class="w">      </span><span class="s">at</span><span class="nv"> </span><span class="s">an</span><span class="nv"> </span><span class="s">exit</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">outside</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">at</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">stair</span><span class="nv"> </span><span class="s">leaving</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">storey;</span><span class="nv"> </span><span class="s">follow</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">slot</span>
+<span class="w">      </span><span class="s">repeatedly</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">read</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">whole</span><span class="nv"> </span><span class="s">route.</span><span class="nv"> </span><span class="s">Computed</span><span class="nv"> </span><span class="s">from</span><span class="nv"> </span><span class="s">geometry;</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">remaining</span><span class="nv"> </span><span class="s">length</span>
+<span class="w">      </span><span class="s">is</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">escape_route_length</span><span class="nv"> </span><span class="s">quantity.&#39;</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://schema.pragmaticbim.ch</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Space</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ConnectionPhysical</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Space</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PhysicalElement</span>
 <span class="w">  </span><span class="nt">cost_records</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cost_records</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Cost records associated with this entity.</span>

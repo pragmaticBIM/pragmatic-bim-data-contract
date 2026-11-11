@@ -17,6 +17,7 @@
 }
 </script>
 <script type="application/json" id="labels">{{ L.client() | tojson }}</script>
+<script type="application/json" id="structure-members">{{ structure_members | tojson }}</script>
 <script type="module" src="/static/js/bridge.js"></script>
 {% endblock %}
 {% block topbar %}
@@ -47,6 +48,12 @@
         <button data-layout="model">3D</button>
       </div>
       <button id="clear-highlight" class="ghost">{{ t("Clear highlight") }}</button>
+      {% if structure %}
+      <details class="structure">
+        <summary>{{ t("Structure") }}</summary>
+        <div class="structure-tree">{% include "partials/structure.html" %}</div>
+      </details>
+      {% endif %}
       <div id="legend" class="legend"></div>
     </div>
     <section class="view" id="graph-view"><div class="view-status">{{ t("Loading graph…") }}</div></section>

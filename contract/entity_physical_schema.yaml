@@ -33,6 +33,7 @@ classes:
     - parent_level
     - rests_on
     - connects_physical_elements
+    - neighbours
     slot_usage:
       content_kind:
         equals_string: physical
@@ -40,6 +41,16 @@ classes:
         range: BuiltAssetContext
       parent_level:
         range: LevelContext
+  NeighbourDistance:
+    class_uri: pbs:NeighbourDistance
+    description: >-
+      Clear distance from an element to a neighbouring physical element, measured from geometry: the horizontal gap
+      between their plan outlines and the vertical gap between their height ranges. Both are 0 where the elements
+      overlap in that direction, so 0 and 0 means touching or intersecting.
+    slots:
+    - neighbour
+    - horizontal_clear_distance
+    - vertical_clear_distance
   Separator:
     is_a: PhysicalElement
     class_uri: pbs:Separator
@@ -89,6 +100,7 @@ classes:
     - connection_physical_requirement_drivers
     - hosted_by
     - lit_space
+    - escape_route_next
   SafetyBarrier:
     is_a: PhysicalElement
     class_uri: pbs:SafetyBarrier
@@ -183,8 +195,29 @@ slots:
     range: PhysicalElement
     description: >-
       Elements this element sits on: its underside bears on their top (for example wall on slab, column on slab,
-      slab on wall or column). Computed from geometric contact; it records contact, not a structural analysis result.
-      The inverse (supports) is read by querying the slot from the other side.
+      slab on wall or column, equipment on a plinth). Computed from geometric contact; it records contact, not a
+      structural analysis result. The inverse (supports) is read by querying the slot from the other side.
+  neighbours:
+    multivalued: true
+    range: NeighbourDistance
+    inlined: true
+    description: >-
+      Clear distances to the neighbouring physical elements within the measurement range configured for the
+      conversion. Computed from geometry; elements farther away have no record.
+  neighbour:
+    range: PhysicalElement
+    required: true
+    description: The neighbouring element the distances are measured to.
+  horizontal_clear_distance:
+    range: double
+    minimum_value: 0
+    required: true
+    description: Horizontal clear distance in metres between the plan outlines; 0 where they overlap or touch.
+  vertical_clear_distance:
+    range: double
+    minimum_value: 0
+    required: true
+    description: Vertical clear distance in metres between the height ranges; 0 where they overlap or touch.
   hosted_by:
     range: PhysicalElement
     description: >-

@@ -687,6 +687,16 @@
                     "description": "Default display name.",
                     "type": "string"
                 },
+                "neighbours": {
+                    "description": "Clear distances to the neighbouring physical elements within the measurement range configured for the conversion. Computed from geometry; elements farther away have no record.",
+                    "items": {
+                        "$ref": "#/$defs/NeighbourDistance"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "parent_building": {
                     "description": "Parent building context reference.",
                     "type": [
@@ -722,7 +732,7 @@
                     ]
                 },
                 "rests_on": {
-                    "description": "Elements this element sits on: its underside bears on their top (for example wall on slab, column on slab, slab on wall or column). Computed from geometric contact; it records contact, not a structural analysis result. The inverse (supports) is read by querying the slot from the other side.",
+                    "description": "Elements this element sits on: its underside bears on their top (for example wall on slab, column on slab, slab on wall or column, equipment on a plinth). Computed from geometric contact; it records contact, not a structural analysis result. The inverse (supports) is read by querying the slot from the other side.",
                     "items": {
                         "type": "string"
                     },
@@ -2150,6 +2160,13 @@
                         "null"
                     ]
                 },
+                "escape_route_next": {
+                    "description": "Next element on the shortest horizontal escape route: the door a space is left through, or the door or stair a door leads on to. The route ends at an exit to the outside or at a stair leaving the storey; follow the slot repeatedly to read the whole route. Computed from geometry; the remaining length is the escape_route_length quantity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
                 "frame_material": {
                     "description": "Material of the frame or casing surrounding the opening. Applies to opening-type connectors (door, window).",
                     "type": [
@@ -2252,6 +2269,16 @@
                     "description": "Default display name.",
                     "type": "string"
                 },
+                "neighbours": {
+                    "description": "Clear distances to the neighbouring physical elements within the measurement range configured for the conversion. Computed from geometry; elements farther away have no record.",
+                    "items": {
+                        "$ref": "#/$defs/NeighbourDistance"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "parent_building": {
                     "description": "Parent building context reference.",
                     "type": [
@@ -2287,7 +2314,7 @@
                     ]
                 },
                 "rests_on": {
-                    "description": "Elements this element sits on: its underside bears on their top (for example wall on slab, column on slab, slab on wall or column). Computed from geometric contact; it records contact, not a structural analysis result. The inverse (supports) is read by querying the slot from the other side.",
+                    "description": "Elements this element sits on: its underside bears on their top (for example wall on slab, column on slab, slab on wall or column, equipment on a plinth). Computed from geometric contact; it records contact, not a structural analysis result. The inverse (supports) is read by querying the slot from the other side.",
                     "items": {
                         "type": "string"
                     },
@@ -4457,6 +4484,16 @@
                     "description": "Default display name.",
                     "type": "string"
                 },
+                "neighbours": {
+                    "description": "Clear distances to the neighbouring physical elements within the measurement range configured for the conversion. Computed from geometry; elements farther away have no record.",
+                    "items": {
+                        "$ref": "#/$defs/NeighbourDistance"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "parent_building": {
                     "description": "Parent building context reference.",
                     "type": [
@@ -4509,7 +4546,7 @@
                     ]
                 },
                 "rests_on": {
-                    "description": "Elements this element sits on: its underside bears on their top (for example wall on slab, column on slab, slab on wall or column). Computed from geometric contact; it records contact, not a structural analysis result. The inverse (supports) is read by querying the slot from the other side.",
+                    "description": "Elements this element sits on: its underside bears on their top (for example wall on slab, column on slab, slab on wall or column, equipment on a plinth). Computed from geometric contact; it records contact, not a structural analysis result. The inverse (supports) is read by querying the slot from the other side.",
                     "items": {
                         "type": "string"
                     },
@@ -4821,7 +4858,7 @@
                     "description": "Representation kind/dimension (for example body_3d, footprint_2d, point), independent of file format."
                 },
                 "geometry_wkt": {
-                    "description": "Inline WKT payload for small 2D representations (for example a footprint_2d polygon in project coordinates, metres).",
+                    "description": "Inline WKT payload for small representations (for example a footprint_2d polygon or a path_3d line in project coordinates, metres).",
                     "type": [
                         "string",
                         "null"
@@ -4841,6 +4878,7 @@
                 "axis",
                 "body_3d",
                 "footprint_2d",
+                "path_3d",
                 "point"
             ],
             "title": "GeometryRepresentationType",
@@ -6506,6 +6544,33 @@
             "title": "MetadataEntry",
             "type": "object"
         },
+        "NeighbourDistance": {
+            "additionalProperties": false,
+            "description": "Clear distance from an element to a neighbouring physical element, measured from geometry: the horizontal gap between their plan outlines and the vertical gap between their height ranges. Both are 0 where the elements overlap in that direction, so 0 and 0 means touching or intersecting.",
+            "properties": {
+                "horizontal_clear_distance": {
+                    "description": "Horizontal clear distance in metres between the plan outlines; 0 where they overlap or touch.",
+                    "minimum": 0,
+                    "type": "number"
+                },
+                "neighbour": {
+                    "description": "The neighbouring element the distances are measured to.",
+                    "type": "string"
+                },
+                "vertical_clear_distance": {
+                    "description": "Vertical clear distance in metres between the height ranges; 0 where they overlap or touch.",
+                    "minimum": 0,
+                    "type": "number"
+                }
+            },
+            "required": [
+                "neighbour",
+                "horizontal_clear_distance",
+                "vertical_clear_distance"
+            ],
+            "title": "NeighbourDistance",
+            "type": "object"
+        },
         "PerformanceProperty": {
             "additionalProperties": false,
             "description": "Normalized performance/property record derived from raw IFC PropertySet values with source traceability and strong typing through domain-specific subclasses.",
@@ -7548,6 +7613,16 @@
                     "description": "Default display name.",
                     "type": "string"
                 },
+                "neighbours": {
+                    "description": "Clear distances to the neighbouring physical elements within the measurement range configured for the conversion. Computed from geometry; elements farther away have no record.",
+                    "items": {
+                        "$ref": "#/$defs/NeighbourDistance"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "parent_building": {
                     "description": "Parent building context reference.",
                     "type": [
@@ -7583,7 +7658,7 @@
                     ]
                 },
                 "rests_on": {
-                    "description": "Elements this element sits on: its underside bears on their top (for example wall on slab, column on slab, slab on wall or column). Computed from geometric contact; it records contact, not a structural analysis result. The inverse (supports) is read by querying the slot from the other side.",
+                    "description": "Elements this element sits on: its underside bears on their top (for example wall on slab, column on slab, slab on wall or column, equipment on a plinth). Computed from geometric contact; it records contact, not a structural analysis result. The inverse (supports) is read by querying the slot from the other side.",
                     "items": {
                         "type": "string"
                     },
@@ -8587,7 +8662,8 @@
                 "ratio",
                 "height_above_walking_surface",
                 "area_glazed",
-                "glazing_ratio"
+                "glazing_ratio",
+                "escape_route_length"
             ],
             "title": "QuantityType",
             "type": "string"
@@ -9516,6 +9592,16 @@
                     "description": "Default display name.",
                     "type": "string"
                 },
+                "neighbours": {
+                    "description": "Clear distances to the neighbouring physical elements within the measurement range configured for the conversion. Computed from geometry; elements farther away have no record.",
+                    "items": {
+                        "$ref": "#/$defs/NeighbourDistance"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "parent_building": {
                     "description": "Parent building context reference.",
                     "type": [
@@ -9551,7 +9637,7 @@
                     ]
                 },
                 "rests_on": {
-                    "description": "Elements this element sits on: its underside bears on their top (for example wall on slab, column on slab, slab on wall or column). Computed from geometric contact; it records contact, not a structural analysis result. The inverse (supports) is read by querying the slot from the other side.",
+                    "description": "Elements this element sits on: its underside bears on their top (for example wall on slab, column on slab, slab on wall or column, equipment on a plinth). Computed from geometric contact; it records contact, not a structural analysis result. The inverse (supports) is read by querying the slot from the other side.",
                     "items": {
                         "type": "string"
                     },
@@ -9986,6 +10072,16 @@
                     "description": "Default display name.",
                     "type": "string"
                 },
+                "neighbours": {
+                    "description": "Clear distances to the neighbouring physical elements within the measurement range configured for the conversion. Computed from geometry; elements farther away have no record.",
+                    "items": {
+                        "$ref": "#/$defs/NeighbourDistance"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "parent_building": {
                     "description": "Parent building context reference.",
                     "type": [
@@ -10021,7 +10117,7 @@
                     ]
                 },
                 "rests_on": {
-                    "description": "Elements this element sits on: its underside bears on their top (for example wall on slab, column on slab, slab on wall or column). Computed from geometric contact; it records contact, not a structural analysis result. The inverse (supports) is read by querying the slot from the other side.",
+                    "description": "Elements this element sits on: its underside bears on their top (for example wall on slab, column on slab, slab on wall or column, equipment on a plinth). Computed from geometric contact; it records contact, not a structural analysis result. The inverse (supports) is read by querying the slot from the other side.",
                     "items": {
                         "type": "string"
                     },
@@ -10209,6 +10305,16 @@
                     "description": "Default display name.",
                     "type": "string"
                 },
+                "neighbours": {
+                    "description": "Clear distances to the neighbouring physical elements within the measurement range configured for the conversion. Computed from geometry; elements farther away have no record.",
+                    "items": {
+                        "$ref": "#/$defs/NeighbourDistance"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "parent_building": {
                     "description": "Parent building context reference.",
                     "type": [
@@ -10244,7 +10350,7 @@
                     ]
                 },
                 "rests_on": {
-                    "description": "Elements this element sits on: its underside bears on their top (for example wall on slab, column on slab, slab on wall or column). Computed from geometric contact; it records contact, not a structural analysis result. The inverse (supports) is read by querying the slot from the other side.",
+                    "description": "Elements this element sits on: its underside bears on their top (for example wall on slab, column on slab, slab on wall or column, equipment on a plinth). Computed from geometric contact; it records contact, not a structural analysis result. The inverse (supports) is read by querying the slot from the other side.",
                     "items": {
                         "type": "string"
                     },
@@ -10445,6 +10551,16 @@
                     "description": "Default display name.",
                     "type": "string"
                 },
+                "neighbours": {
+                    "description": "Clear distances to the neighbouring physical elements within the measurement range configured for the conversion. Computed from geometry; elements farther away have no record.",
+                    "items": {
+                        "$ref": "#/$defs/NeighbourDistance"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "parent_building": {
                     "description": "Parent building context reference.",
                     "type": [
@@ -10480,7 +10596,7 @@
                     ]
                 },
                 "rests_on": {
-                    "description": "Elements this element sits on: its underside bears on their top (for example wall on slab, column on slab, slab on wall or column). Computed from geometric contact; it records contact, not a structural analysis result. The inverse (supports) is read by querying the slot from the other side.",
+                    "description": "Elements this element sits on: its underside bears on their top (for example wall on slab, column on slab, slab on wall or column, equipment on a plinth). Computed from geometric contact; it records contact, not a structural analysis result. The inverse (supports) is read by querying the slot from the other side.",
                     "items": {
                         "type": "string"
                     },
@@ -10801,6 +10917,13 @@
                 },
                 "description": {
                     "description": "Default description text.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "escape_route_next": {
+                    "description": "Next element on the shortest horizontal escape route: the door a space is left through, or the door or stair a door leads on to. The route ends at an exit to the outside or at a stair leaving the storey; follow the slot repeatedly to read the whole route. Computed from geometry; the remaining length is the escape_route_length quantity.",
                     "type": [
                         "string",
                         "null"

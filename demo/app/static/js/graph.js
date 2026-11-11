@@ -58,6 +58,7 @@ export class GraphView {
     this.legend = legend;
     this.labels = { classes: {}, relations: {}, ui: {}, ...labels };
     this.hiddenRelations = new Set();
+    this.hiddenNodes = new Set();
     this.hoveredEdge = null;
     this.state = {
       checked: new Set(),
@@ -65,6 +66,7 @@ export class GraphView {
       neighbors: new Set(),
       selected: null,
       selectedNeighbors: new Set(),
+      ruleEdges: null,
       active: false,
     };
   }
@@ -155,7 +157,10 @@ export class GraphView {
   renderRelations() {
     const panel = document.createElement("div");
     panel.className = "relations-panel";
-    panel.innerHTML = `<div class="relations-head">${this.labels.ui.Relations ?? "Relations"}</div>` + this.relations
+    const ui = this.labels.ui;
+    panel.innerHTML = `
+      <div class="relations-head">${ui.Relations ?? "Relations"}</div>
+      <label class="relations-all"><input type="checkbox" data-all><span>${ui.All ?? "All"}</span></label>` + this.relations
       .map(([p, n]) => `
         <label title="${p}">
           <input type="checkbox" value="${p}" ${this.hiddenRelations.has(p) ? "" : "checked"}>
@@ -163,14 +168,32 @@ export class GraphView {
           <span>${this.relationLabel(p)}</span><span class="n">${n}</span>
         </label>`)
       .join("");
+    const all = panel.querySelector("[data-all]");
+    const boxes = [...panel.querySelectorAll("input[value]")];
+    const syncAll = () => {
+      const shown = boxes.filter((box) => box.checked).length;
+      all.checked = shown === boxes.length;
+      all.indeterminate = shown > 0 && shown < boxes.length;
+    };
     panel.addEventListener("change", (event) => {
-      const { value, checked } = event.target;
-      if (checked) this.hiddenRelations.delete(value);
-      else this.hiddenRelations.add(value);
+      const changed = event.target === all ? boxes : [event.target];
+      if (event.target === all) boxes.forEach((box) => (box.checked = all.checked));
+      for (const { value, checked } of changed) {
+        if (checked) this.hiddenRelations.delete(value);
+        else this.hiddenRelations.add(value);
+      }
+      syncAll();
       if (this.state.selected) this.state.selectedNeighbors = this.visibleNeighbors(this.state.selected);
       this.renderer.refresh({ skipIndexation: true });
     });
+    syncAll();
     this.container.appendChild(panel);
+  }
+
+  /** Nodes (and their edges) left out of the drawing, e.g. hidden storeys. */
+  setHidden(guids) {
+    this.hiddenNodes = new Set(guids);
+    this.renderer?.refresh({ skipIndexation: true });
   }
 
   nodesOfClass(cls) {
@@ -198,6 +221,7 @@ export class GraphView {
   }
 
   reduceNode(node, attrs) {
+    if (this.hiddenNodes.has(node)) return { ...attrs, hidden: true };
     const s = this.state;
     const res = { ...attrs };
     if (s.selected && s.selected !== node && !s.selectedNeighbors.has(node)) {
@@ -229,10 +253,20 @@ export class GraphView {
   }
 
   reduceEdge(edge, attrs) {
-    if (this.hiddenRelations.has(attrs.relation)) return { ...attrs, hidden: true };
     const s = this.state;
-    if (edge === this.hoveredEdge) return { ...attrs, size: 2.5, forceLabel: true, zIndex: 3 };
     const [source, target] = this.graph.extremities(edge);
+    if (this.hiddenNodes.has(source) || this.hiddenNodes.has(target)) return { ...attrs, hidden: true };
+    if (s.active && s.ruleEdges && !s.selected) {
+      const rule = s.ruleEdges.get(`${source}|${target}|${attrs.relation}`);
+      if (!rule) return { ...attrs, hidden: true };
+      const hovered = edge === this.hoveredEdge;
+      const label = rule.label ? `${attrs.label} · ${rule.label}` : attrs.label;
+      return {
+        ...attrs, label, color: rule.failed ? FAIL : PASS, size: hovered ? 3 : 2, forceLabel: hovered || Boolean(rule.label), zIndex: 2,
+      };
+    }
+    if (this.hiddenRelations.has(attrs.relation)) return { ...attrs, hidden: true };
+    if (edge === this.hoveredEdge) return { ...attrs, size: 2.5, forceLabel: true, zIndex: 3 };
     if (s.selected) {
       if (source === s.selected || target === s.selected) return { ...attrs, size: 2, forceLabel: true, zIndex: 2 };
       return { ...attrs, hidden: true };
@@ -243,7 +277,8 @@ export class GraphView {
     return { ...attrs, hidden: true };
   }
 
-  highlight({ checked, failed }) {
+  /** ``edges`` (``{s, t, p, failed}``) replaces all other edges while the highlight is active. */
+  highlight({ checked, failed, edges = [] }) {
     if (!this.graph) return;
     const s = this.state;
     s.failed = new Set(failed.filter((n) => this.graph.hasNode(n)));
@@ -251,11 +286,14 @@ export class GraphView {
     s.active = true;
     const focus = s.failed.size ? s.failed : s.checked;
     s.neighbors = new Set();
-    if (focus.size <= MAX_NEIGHBOR_FOCUS) {
+    s.ruleEdges = edges.length ? new Map(edges.map((e) => [`${e.s}|${e.t}|${e.p}`, e])) : null;
+    if (s.ruleEdges) {
+      for (const e of edges) for (const n of [e.s, e.t]) if (this.graph.hasNode(n)) s.neighbors.add(n);
+    } else if (focus.size <= MAX_NEIGHBOR_FOCUS) {
       for (const n of focus) for (const m of this.visibleNeighbors(n)) s.neighbors.add(m);
     }
     this.renderer.refresh();
-    this.focusOn([...focus]);
+    this.focusOn(s.ruleEdges ? [...focus, ...s.checked, ...s.neighbors] : [...focus]);
   }
 
   /** Selected node with its related nodes stays visible, everything else fades; null clears. */
@@ -276,6 +314,7 @@ export class GraphView {
       neighbors: new Set(),
       selected: null,
       selectedNeighbors: new Set(),
+      ruleEdges: null,
       active: false,
     });
     this.renderer.refresh();

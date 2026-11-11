@@ -1,4 +1,4 @@
-{% for value, label in [("fail", "Failing"), ("pass", "Passing"), ("all", "All")] %}
+{% for value, label in [("fail", "Failing"), ("pass", "Passing"), ("na", "Not applicable"), ("all", "All")] %}
   <button class="{{ 'active' if show == value }}"
           hx-get="/jobs/{{ job.id }}/cards?show={{ value }}">{{ t(label) }}</button>
 {% endfor %}

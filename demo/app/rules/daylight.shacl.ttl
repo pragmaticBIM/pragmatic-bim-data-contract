@@ -1,0 +1,67 @@
+@prefix pbs: <https://schema.pragmaticbim.ch/> .
+@prefix rule: <https://schema.pragmaticbim.ch/demo/rules/daylight/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix view: <https://schema.pragmaticbim.ch/demo/view/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# Daylight of rooms (cantonal building law, e.g. Zurich PBG § 302): the glazed window area
+# is at least one tenth of the floor area. Change ?min below (a double, e.g. 1.25e-1 for 1/8)
+# to adjust the share.
+#
+# Evidence computed by ifc2rdf from geometry (contract/mapping/_computed_relations.yaml):
+#   window pbs:lit_space Space, the window QuantityValue quantity_type_area_glazed, and the
+#   space QuantityValue quantity_type_glazing_ratio = glazed area of its windows / floor area.
+# Checked: interior rooms lit by at least one window, except circulation and secondary spaces
+# (BuildingSpaceActivityClassification code S-…). Rooms without any window are not checked.
+# Not covered: room depth, window height above floor, obstruction by neighbouring buildings.
+
+rule:prefixes
+    sh:declare [ sh:prefix "pbs" ; sh:namespace "https://schema.pragmaticbim.ch/"^^xsd:anyURI ] ,
+        [ sh:prefix "xsd" ; sh:namespace "http://www.w3.org/2001/XMLSchema#"^^xsd:anyURI ] .
+
+rule:WindowArea a sh:NodeShape ;
+    view:relation pbs:lit_space ;
+    sh:name "Daylight: minimum window area" , "Belichtung: minimale Fensterfläche"@de ;
+    sh:description "Rooms lit by windows have a glazed window area of at least 10 % of their floor area." ,
+        "Belichtete Räume haben eine Glasfläche der Fenster von mindestens 10 % ihrer Bodenfläche."@de ;
+    sh:severity sh:Violation ;
+    sh:target [
+        a sh:SPARQLTarget ;
+        sh:prefixes rule:prefixes ;
+        sh:select """
+            SELECT DISTINCT ?this WHERE {
+                ?this a pbs:Space ; pbs:quantity_values ?q .
+                ?q pbs:quantity_type pbs:quantity_type_glazing_ratio .
+                ?window pbs:lit_space ?this .
+                FILTER NOT EXISTS {
+                    ?this pbs:classifications ?c .
+                    ?c pbs:classification_scheme "BuildingSpaceActivityClassification" ;
+                       pbs:classification_code ?code .
+                    FILTER (STRSTARTS(STR(?code), "S-"))
+                }
+            }"""
+    ] ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:prefixes rule:prefixes ;
+        sh:message "Glazed area {?glazed} m² for {?floor} m² floor area ({?percent} %); at least {?required} m² ({?minPercent} %) required." ,
+            "Glasfläche {?glazed} m² bei {?floor} m² Bodenfläche ({?percent} %); verlangt sind mindestens {?required} m² ({?minPercent} %)."@de ;
+        sh:select """
+            SELECT $this
+                   (ROUND(SUM(?area) * 100) / 100 AS ?glazed)
+                   (ROUND(SUM(?area) / ?ratio * 10) / 10 AS ?floor)
+                   (ROUND(?ratio * 1000) / 10 AS ?percent)
+                   (ROUND(SUM(?area) / ?ratio * ?min * 100) / 100 AS ?required)
+                   (xsd:integer(ROUND(?min * 100)) AS ?minPercent)
+            WHERE {
+                $this pbs:quantity_values ?q .
+                ?q pbs:quantity_type pbs:quantity_type_glazing_ratio ;
+                   pbs:quantity_value ?ratio .
+                ?window pbs:lit_space $this ; pbs:quantity_values ?wq .
+                ?wq pbs:quantity_type pbs:quantity_type_area_glazed ;
+                    pbs:quantity_value ?area .
+                BIND (1.0e-1 AS ?min)
+                FILTER (?ratio > 0 && ?ratio < ?min)
+            }
+            GROUP BY $this ?ratio ?min"""
+    ] .

@@ -543,6 +543,7 @@ click ConnectionRequirementDriver href "./ConnectionRequirementDriver.html" _bla
 click ConnectionPhysicalType href "./ConnectionPhysicalType.html" _blank
 click PhysicalElement href "./PhysicalElement.html" _blank
 click Space href "./Space.html" _blank
+click PhysicalElement href "./PhysicalElement.html" _blank
 click Material href "./Material.html" _blank
 click GeometryRepresentation href "./GeometryRepresentation.html" _blank
 click PhysicalElement href "./PhysicalElement.html" _blank
@@ -551,6 +552,7 @@ click Space href "./Space.html" _blank
 click LocalizedText href "./LocalizedText.html" _blank
 click LocalizedText href "./LocalizedText.html" _blank
 click MetadataEntry href "./MetadataEntry.html" _blank
+click NeighbourDistance href "./NeighbourDistance.html" _blank
 click BuiltAssetContext href "./BuiltAssetContext.html" _blank
 click LevelContext href "./LevelContext.html" _blank
 click PerformanceProperty href "./PerformanceProperty.html" _blank
@@ -653,6 +655,12 @@ Hold "Alt" / "Option" to enable pan &amp; zoom
 <td>direct</td>
 </tr>
 <tr>
+<td><a href="escape_route_next.html">escape_route_next</a></td>
+<td>0..1 <br/> <a href="PhysicalElement.html">PhysicalElement</a></td>
+<td>Next element on the shortest horizontal escape route: the door a space is left through, or the door or stair a door leads on to. The route ends at an exit to the outside or at a stair leaving the storey; follow the slot repeatedly to read the whole route. Computed from geometry; the remaining length is the escape_route_length quantity.</td>
+<td>direct</td>
+</tr>
+<tr>
 <td><a href="parent_building.html">parent_building</a></td>
 <td>0..1 <br/> <a href="BuiltAssetContext.html">BuiltAssetContext</a></td>
 <td>Parent building context reference.</td>
@@ -667,13 +675,19 @@ Hold "Alt" / "Option" to enable pan &amp; zoom
 <tr>
 <td><a href="rests_on.html">rests_on</a></td>
 <td>* <br/> <a href="PhysicalElement.html">PhysicalElement</a></td>
-<td>Elements this element sits on: its underside bears on their top (for example wall on slab, column on slab, slab on wall or column). Computed from geometric contact; it records contact, not a structural analysis result. The inverse (supports) is read by querying the slot from the other side.</td>
+<td>Elements this element sits on: its underside bears on their top (for example wall on slab, column on slab, slab on wall or column, equipment on a plinth). Computed from geometric contact; it records contact, not a structural analysis result. The inverse (supports) is read by querying the slot from the other side.</td>
 <td><a href="PhysicalElement.html">PhysicalElement</a></td>
 </tr>
 <tr>
 <td><a href="connects_physical_elements.html">connects_physical_elements</a></td>
 <td>* <br/> <a href="PhysicalElement.html">PhysicalElement</a></td>
 <td>Physical elements connected to this one side by side (for example wall-wall junction, beam framing into a column). On a physical element the relation is symmetric and stated on both elements. From IfcRelConnectsElements / IfcRelConnectsPathElements, or computed from geometric contact. Bearing contact is rests_on.</td>
+<td><a href="PhysicalElement.html">PhysicalElement</a></td>
+</tr>
+<tr>
+<td><a href="neighbours.html">neighbours</a></td>
+<td>* <br/> <a href="NeighbourDistance.html">NeighbourDistance</a></td>
+<td>Clear distances to the neighbouring physical elements within the measurement range configured for the conversion. Computed from geometry; elements farther away have no record.</td>
 <td><a href="PhysicalElement.html">PhysicalElement</a></td>
 </tr>
 <tr>
@@ -841,6 +855,7 @@ Hold "Alt" / "Option" to enable pan &amp; zoom
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">connection_physical_requirement_drivers</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">hosted_by</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">lit_space</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">escape_route_next</span>
 <span class="nt">class_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pbs:ConnectionPhysical</span>
 </code></pre></div>
 </details>
@@ -966,6 +981,20 @@ Hold "Alt" / "Option" to enable pan &amp; zoom
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ConnectionPhysical</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Space</span>
 <span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">escape_route_next</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">escape_route_next</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;Next</span><span class="nv"> </span><span class="s">element</span><span class="nv"> </span><span class="s">on</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">shortest</span><span class="nv"> </span><span class="s">horizontal</span><span class="nv"> </span><span class="s">escape</span><span class="nv"> </span><span class="s">route:</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">door</span><span class="nv"> </span><span class="s">a</span>
+<span class="w">      </span><span class="s">space</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">left</span><span class="nv"> </span><span class="s">through,</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">door</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">stair</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">door</span><span class="nv"> </span><span class="s">leads</span><span class="nv"> </span><span class="s">on</span><span class="nv"> </span><span class="s">to.</span><span class="nv"> </span><span class="s">The</span><span class="nv"> </span><span class="s">route</span><span class="nv"> </span><span class="s">ends</span>
+<span class="w">      </span><span class="s">at</span><span class="nv"> </span><span class="s">an</span><span class="nv"> </span><span class="s">exit</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">outside</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">at</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">stair</span><span class="nv"> </span><span class="s">leaving</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">storey;</span><span class="nv"> </span><span class="s">follow</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">slot</span>
+<span class="w">      </span><span class="s">repeatedly</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">read</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">whole</span><span class="nv"> </span><span class="s">route.</span><span class="nv"> </span><span class="s">Computed</span><span class="nv"> </span><span class="s">from</span><span class="nv"> </span><span class="s">geometry;</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">remaining</span><span class="nv"> </span><span class="s">length</span>
+<span class="w">      </span><span class="s">is</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">escape_route_length</span><span class="nv"> </span><span class="s">quantity.&#39;</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://schema.pragmaticbim.ch</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ConnectionPhysical</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ConnectionPhysical</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Space</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PhysicalElement</span>
 <span class="w">  </span><span class="nt">parent_building</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">parent_building</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Parent building context reference.</span>
@@ -994,9 +1023,10 @@ Hold "Alt" / "Option" to enable pan &amp; zoom
 <span class="w">  </span><span class="nt">rests_on</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rests_on</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;Elements</span><span class="nv"> </span><span class="s">this</span><span class="nv"> </span><span class="s">element</span><span class="nv"> </span><span class="s">sits</span><span class="nv"> </span><span class="s">on:</span><span class="nv"> </span><span class="s">its</span><span class="nv"> </span><span class="s">underside</span><span class="nv"> </span><span class="s">bears</span><span class="nv"> </span><span class="s">on</span><span class="nv"> </span><span class="s">their</span><span class="nv"> </span><span class="s">top</span>
-<span class="w">      </span><span class="s">(for</span><span class="nv"> </span><span class="s">example</span><span class="nv"> </span><span class="s">wall</span><span class="nv"> </span><span class="s">on</span><span class="nv"> </span><span class="s">slab,</span><span class="nv"> </span><span class="s">column</span><span class="nv"> </span><span class="s">on</span><span class="nv"> </span><span class="s">slab,</span><span class="nv"> </span><span class="s">slab</span><span class="nv"> </span><span class="s">on</span><span class="nv"> </span><span class="s">wall</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">column).</span><span class="nv"> </span><span class="s">Computed</span>
-<span class="w">      </span><span class="s">from</span><span class="nv"> </span><span class="s">geometric</span><span class="nv"> </span><span class="s">contact;</span><span class="nv"> </span><span class="s">it</span><span class="nv"> </span><span class="s">records</span><span class="nv"> </span><span class="s">contact,</span><span class="nv"> </span><span class="s">not</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">structural</span><span class="nv"> </span><span class="s">analysis</span><span class="nv"> </span><span class="s">result.</span>
-<span class="w">      </span><span class="s">The</span><span class="nv"> </span><span class="s">inverse</span><span class="nv"> </span><span class="s">(supports)</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">read</span><span class="nv"> </span><span class="s">by</span><span class="nv"> </span><span class="s">querying</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">slot</span><span class="nv"> </span><span class="s">from</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">other</span><span class="nv"> </span><span class="s">side.&#39;</span>
+<span class="w">      </span><span class="s">(for</span><span class="nv"> </span><span class="s">example</span><span class="nv"> </span><span class="s">wall</span><span class="nv"> </span><span class="s">on</span><span class="nv"> </span><span class="s">slab,</span><span class="nv"> </span><span class="s">column</span><span class="nv"> </span><span class="s">on</span><span class="nv"> </span><span class="s">slab,</span><span class="nv"> </span><span class="s">slab</span><span class="nv"> </span><span class="s">on</span><span class="nv"> </span><span class="s">wall</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">column,</span><span class="nv"> </span><span class="s">equipment</span>
+<span class="w">      </span><span class="s">on</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">plinth).</span><span class="nv"> </span><span class="s">Computed</span><span class="nv"> </span><span class="s">from</span><span class="nv"> </span><span class="s">geometric</span><span class="nv"> </span><span class="s">contact;</span><span class="nv"> </span><span class="s">it</span><span class="nv"> </span><span class="s">records</span><span class="nv"> </span><span class="s">contact,</span><span class="nv"> </span><span class="s">not</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">structural</span>
+<span class="w">      </span><span class="s">analysis</span><span class="nv"> </span><span class="s">result.</span><span class="nv"> </span><span class="s">The</span><span class="nv"> </span><span class="s">inverse</span><span class="nv"> </span><span class="s">(supports)</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">read</span><span class="nv"> </span><span class="s">by</span><span class="nv"> </span><span class="s">querying</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">slot</span><span class="nv"> </span><span class="s">from</span><span class="nv"> </span><span class="s">the</span>
+<span class="w">      </span><span class="s">other</span><span class="nv"> </span><span class="s">side.&#39;</span>
 <span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://schema.pragmaticbim.ch</span>
 <span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ConnectionPhysical</span>
@@ -1018,6 +1048,19 @@ Hold "Alt" / "Option" to enable pan &amp; zoom
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ConnectionVirtual</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PhysicalElement</span>
 <span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">neighbours</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">neighbours</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Clear distances to the neighbouring physical elements within the</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">measurement range configured for the conversion. Computed from geometry; elements</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">farther away have no record.</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://schema.pragmaticbim.ch</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ConnectionPhysical</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PhysicalElement</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NeighbourDistance</span>
+<span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">  </span><span class="nt">id</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">id</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Unique local identifier.</span>

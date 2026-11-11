@@ -253,6 +253,10 @@ enums:
       glazing_ratio:
         description: Sum of the glazed areas of the windows lighting a space divided by the net floor area of the space.
         meaning: pbs:quantity_type_glazing_ratio
+      escape_route_length:
+        description: Walking distance in plan along the shortest horizontal escape route to an exit to the outside or a
+          stair leaving the storey; on a space measured from its most remote point, on a door from the door.
+        meaning: pbs:quantity_type_escape_route_length
   StatusType:
     enum_uri: pbs:StatusType
     description: Lifecycle or QA gate status used for model progression and approvals.
@@ -817,6 +821,13 @@ enums:
           de:
             source: de
             description: 2D Grundriss
+      path_3d:
+        description: Polyline of a computed path through the building (for example an escape route), as WKT LINESTRING Z.
+        title: 3D Path
+        alt_descriptions:
+          de:
+            source: de
+            description: 3D Wegverlauf
       point:
         description: Point/dot representation.
         title: Point

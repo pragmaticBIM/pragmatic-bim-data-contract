@@ -1,6 +1,9 @@
 import * as THREE from "three";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
+import { Line2 } from "three/addons/lines/Line2.js";
+import { LineGeometry } from "three/addons/lines/LineGeometry.js";
+import { LineMaterial } from "three/addons/lines/LineMaterial.js";
 
 const GLOBAL_ID = /^[0-9A-Za-z_$]{22}$/;
 const CLICK_TOLERANCE = 4;
@@ -22,6 +25,25 @@ const TRANSLUCENT = {
   select: seeThrough(0xf76b15, 0.5),
 };
 const SEE_THROUGH = new Set([MATERIALS.ghost, MATERIALS.space, ...Object.values(TRANSLUCENT)]);
+const LINE_COLORS = { fail: 0xe5484d, pass: 0x30a46c };
+// Paths are stored at floor level; lift them so the floor slab does not hide them.
+const PATH_LIFT = 0.15;
+// Closer than this, a line to the related element's surface would vanish; aim at its centre instead.
+const MIN_LINE_LENGTH = 0.3;
+
+// IFC project coordinates (Z up) to the scene of the IfcOpenShell GLB (Y up).
+const fromIfc = ([x, y, z]) => new THREE.Vector3(x, z, -y);
+
+/** Point halfway along a polyline, measured by length. */
+function midpoint(points) {
+  const lengths = points.slice(1).map((p, i) => p.distanceTo(points[i]));
+  let rest = lengths.reduce((a, b) => a + b, 0) / 2;
+  for (let i = 0; i < lengths.length; i++) {
+    if (rest <= lengths[i]) return points[i].clone().lerp(points[i + 1], lengths[i] ? rest / lengths[i] : 0);
+    rest -= lengths[i];
+  }
+  return points[points.length - 1].clone();
+}
 
 export class Viewer3D {
   constructor(container, url, { onSelect }) {
@@ -32,6 +54,18 @@ export class Viewer3D {
     this.meshes = [];
     this.state = { checked: new Set(), failed: new Set(), selected: null, active: false };
     this.translucent = new Set();
+    this.boxes = new Map();
+    this.hidden = new Set();
+    this.drawn = {};
+    this.lineMaterials = Object.fromEntries(
+      Object.entries(LINE_COLORS).map(([k, color]) => [
+        k,
+        new LineMaterial({ color, linewidth: 3, depthTest: false, transparent: true, opacity: 0.95 }),
+      ]),
+    );
+    this.dotMaterials = Object.fromEntries(
+      Object.entries(LINE_COLORS).map(([k, color]) => [k, new THREE.MeshBasicMaterial({ color, depthTest: false })]),
+    );
   }
 
   /** Volumes such as spaces would hide the building elements; draw them see-through. */
@@ -45,6 +79,7 @@ export class Viewer3D {
     this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
     this.renderer.setPixelRatio(window.devicePixelRatio);
     this.renderer.setSize(w || 1, h || 1);
+    for (const m of Object.values(this.lineMaterials)) m.resolution.set(w || 1, h || 1);
     this.container.appendChild(this.renderer.domElement);
 
     this.scene = new THREE.Scene();
@@ -64,6 +99,8 @@ export class Viewer3D {
     const gltf = await new GLTFLoader().loadAsync(this.url);
     this.model = gltf.scene;
     this.scene.add(this.model);
+    this.connections = new THREE.Group();
+    this.scene.add(this.connections);
     this.index();
     this.applyState();
     this.container.querySelector(".view-status")?.remove();
@@ -98,17 +135,115 @@ export class Viewer3D {
       else if (s.active || s.selected) next = MATERIALS.ghost;
       mesh.material = next;
       mesh.renderOrder = SEE_THROUGH.has(next) ? 1 : 0;
+      mesh.visible = !this.hidden.has(guid);
     }
     this.render();
   }
 
-  highlight({ checked, failed }) {
+  /** ``paths`` (``{points, failed}``, IFC coordinates) are drawn when given, else ``edges`` (``{s, t, failed}``). */
+  highlight({ checked, failed, edges = [], paths = [] }) {
     const s = this.state;
     s.failed = new Set(failed);
     s.checked = new Set(checked.filter((g) => !s.failed.has(g)));
     s.active = true;
+    this.setConnections(paths.length ? { paths } : { edges });
     this.applyState();
-    this.fit(this.focusMeshes());
+    const drawn = paths.length || edges.length;
+    const related = [...s.failed, ...s.checked].flatMap((g) => this.meshesByGuid.get(g) || []).filter((m) => m.visible);
+    this.fit(drawn && related.length ? related : this.focusMeshes());
+  }
+
+  /** Elements left out of the model, e.g. hidden storeys; their connection lines go too. */
+  setHidden(guids) {
+    this.hidden = new Set(guids);
+    if (!this.model) return;
+    this.setConnections(this.drawn);
+    this.applyState();
+  }
+
+  setConnections({ edges = [], paths = [] }) {
+    if (!this.connections) return;
+    this.drawn = { edges, paths };
+    paths = paths.filter((p) => !this.hidden.has(p.guid));
+    edges = edges.filter((e) => !this.hidden.has(e.s) && !this.hidden.has(e.t));
+    for (const child of [...this.connections.children]) {
+      this.connections.remove(child);
+      if (child.isSprite) {
+        child.material.map.dispose();
+        child.material.dispose();
+      } else {
+        child.geometry?.dispose();
+      }
+    }
+    for (const path of paths) {
+      const points = path.points.map((p) => fromIfc(p).add(new THREE.Vector3(0, PATH_LIFT, 0)));
+      this.addLine(points, path.failed);
+      this.addDot(points[0], path.failed);
+      if (path.label) this.addLabel(midpoint(points), path.label, path.failed);
+    }
+    for (const edge of edges) {
+      const from = this.box(edge.s)?.getCenter(new THREE.Vector3());
+      const target = this.box(edge.t);
+      if (!from || !target) continue;
+      let to = target.clampPoint(from, new THREE.Vector3());
+      if (to.distanceTo(from) < MIN_LINE_LENGTH) to = target.getCenter(new THREE.Vector3());
+      this.addLine([from, to], edge.failed);
+      this.addDot(from, edge.failed);
+    }
+    this.render();
+  }
+
+  addLine(points, failed) {
+    if (points.length < 2) return;
+    const geometry = new LineGeometry();
+    geometry.setPositions(points.flatMap((p) => [p.x, p.y, p.z]));
+    const line = new Line2(geometry, this.lineMaterials[failed ? "fail" : "pass"]);
+    line.computeLineDistances();
+    line.renderOrder = 10;
+    this.connections.add(line);
+  }
+
+  addDot(point, failed) {
+    const dot = new THREE.Mesh(new THREE.SphereGeometry(0.12, 12, 8), this.dotMaterials[failed ? "fail" : "pass"]);
+    dot.position.copy(point);
+    dot.renderOrder = 10;
+    this.connections.add(dot);
+  }
+
+  addLabel(point, text, failed) {
+    const canvas = document.createElement("canvas");
+    const ctx = canvas.getContext("2d");
+    const font = "600 36px system-ui, sans-serif";
+    ctx.font = font;
+    canvas.width = Math.ceil(ctx.measureText(text).width) + 24;
+    canvas.height = 52;
+    ctx.font = font;
+    ctx.fillStyle = failed ? "#e5484d" : "#30a46c";
+    ctx.beginPath();
+    ctx.roundRect(0, 0, canvas.width, canvas.height, 10);
+    ctx.fill();
+    ctx.fillStyle = "#fff";
+    ctx.textBaseline = "middle";
+    ctx.fillText(text, 12, canvas.height / 2 + 1);
+    const texture = new THREE.CanvasTexture(canvas);
+    texture.colorSpace = THREE.SRGBColorSpace;
+    const sprite = new THREE.Sprite(new THREE.SpriteMaterial({ map: texture, depthTest: false, sizeAttenuation: false }));
+    const height = 0.022;
+    sprite.scale.set((height * canvas.width) / canvas.height, height, 1);
+    sprite.center.set(0.5, -0.4);
+    sprite.position.copy(point);
+    sprite.renderOrder = 11;
+    this.connections.add(sprite);
+  }
+
+  box(guid) {
+    if (!this.boxes.has(guid)) {
+      const meshes = this.meshesByGuid.get(guid);
+      const box = new THREE.Box3();
+      for (const mesh of meshes || []) box.expandByObject(mesh);
+      this.boxes.set(guid, box.isEmpty() ? null : box);
+    }
+    return this.boxes.get(guid);
   }
 
   /** null clears the selection. */
@@ -123,11 +258,13 @@ export class Viewer3D {
   focusMeshes() {
     const s = this.state;
     const focus = s.active ? [...(s.failed.size ? s.failed : s.checked)].flatMap((g) => this.meshesByGuid.get(g) || []) : [];
-    return focus.length ? focus : this.meshes;
+    const shown = (meshes) => meshes.filter((m) => m.visible);
+    return shown(focus).length ? shown(focus) : shown(this.meshes);
   }
 
   clear() {
     Object.assign(this.state, { checked: new Set(), failed: new Set(), selected: null, active: false });
+    this.setConnections({});
     this.applyState();
     this.fit(this.meshes);
   }
@@ -165,7 +302,7 @@ export class Viewer3D {
         -((e.clientY - rect.top) / rect.height) * 2 + 1,
       );
       raycaster.setFromCamera(pointer, this.camera);
-      const hits = raycaster.intersectObjects(this.meshes, false);
+      const hits = raycaster.intersectObjects(this.meshes.filter((m) => m.visible), false);
       const hit = hits.find((h) => !SEE_THROUGH.has(h.object.material)) || hits[0];
       this.onSelect(hit ? hit.object.userData.guid : null);
     });
@@ -177,6 +314,7 @@ export class Viewer3D {
     this.camera.aspect = w / h;
     this.camera.updateProjectionMatrix();
     this.renderer.setSize(w, h);
+    for (const m of Object.values(this.lineMaterials)) m.resolution.set(w, h);
     this.render();
   }
 

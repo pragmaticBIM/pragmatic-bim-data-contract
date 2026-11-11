@@ -56,6 +56,10 @@ ui:
   info: Hinweis
   fail: fehlerhaft
   pass: erfüllt
+  na: nicht anwendbar
+  Not applicable: Nicht anwendbar
+  not applicable: nicht anwendbar
+  No element in this model is in the scope of the rule.: Kein Element dieses Modells fällt in den Geltungsbereich der Regel.
   No checks in this filter.: Keine Prüfungen in diesem Filter.
   Rule: Regel
   "{failed} of {checked} checked elements fail.": "{failed} von {checked} geprüften Elementen fehlerhaft."
@@ -69,8 +73,16 @@ ui:
     Dieses IFC-Objekt ist nicht Teil des Datenvertrags-Graphen (ausgeschlossen oder nicht abgebildet).
   Attributes: Attribute
   Relations: Beziehungen
+  Structure: Struktur
   this element → related: dieses Element → verknüpftes
   related → this element: verknüpftes → dieses Element
+  Escape route: Fluchtweg
+  from the most remote point to the exit or stair: von der entferntesten Stelle bis zum Ausgang oder zur Treppe
+  from here to the exit or stair: von hier bis zum Ausgang oder zur Treppe
+  Show route: Weg markieren
+  remaining: noch
+  exit: Ausgang
+  stair: Treppe
 
   # Report
   Check report: Prüfbericht
@@ -96,6 +108,7 @@ classes:
   GeometryRepresentation: Geometrie
   QuantityValue: Menge
   MetadataEntry: Metadaten
+  NeighbourDistance: Abstand zum Nachbarbauteil
   PerformanceProperty: Leistungseigenschaft
   Decision: Entscheid
   Task: Aufgabe
@@ -152,6 +165,7 @@ relations:
   pbs:rests_on: [liegt auf, trägt]
   pbs:guards_space: [sichert Raum, gesichert durch]
   pbs:lit_space: [belichtet Raum, belichtet durch]
+  pbs:escape_route_next: [Fluchtweg weiter über, Fluchtweg von]
   pbs:bounded_by: [begrenzt durch, begrenzt]
   pbs:bounded_space: [begrenzt Raum, begrenzt durch]
   pbs:separates_spaces: [trennt Räume, getrennt durch]
@@ -225,6 +239,10 @@ slots:
   pbs:quantity_value: Wert
   pbs:quantity_unit: Einheit
   pbs:quantity_unit_uri: Einheit (URI)
+  pbs:neighbours: Nachbarbauteile
+  pbs:neighbour: Nachbarbauteil
+  pbs:horizontal_clear_distance: Abstand horizontal
+  pbs:vertical_clear_distance: Abstand vertikal
   pbs:metadata_key: Schlüssel
   pbs:metadata_value: Wert
   pbs:property_key: Eigenschaft
@@ -274,6 +292,7 @@ values:
   pbs:quantity_type_height_above_walking_surface: Höhe über Gehfläche
   pbs:quantity_type_area_glazed: Glasfläche
   pbs:quantity_type_glazing_ratio: Glasanteil
+  pbs:quantity_type_escape_route_length: Fluchtweglänge
   pbs:performance_property_value_type_string: Text
   pbs:performance_property_value_type_number: Zahl
   pbs:performance_property_value_type_boolean: ja/nein

@@ -1,6 +1,7 @@
 @prefix pbs: <https://schema.pragmaticbim.ch/> .
 @prefix rule: <https://schema.pragmaticbim.ch/demo/rules/structural/> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix view: <https://schema.pragmaticbim.ch/demo/view/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 # Structural plausibility rules on the contract graph.
@@ -11,6 +12,7 @@ rule:prefixes
     sh:declare [ sh:prefix "pbs" ; sh:namespace "https://schema.pragmaticbim.ch/"^^xsd:anyURI ] .
 
 rule:LoadBearingWallConnected a sh:NodeShape ;
+    view:relation pbs:rests_on ;
     sh:name "Load-bearing walls connect to the load path" , "Tragende Wände sind an den Lastpfad angeschlossen"@de ;
     sh:description "A load-bearing wall rests on, or carries, at least one other load-bearing element (wall, slab, column or beam)." ,
         "Eine tragende Wand liegt auf mindestens einem anderen tragenden Bauteil (Wand, Decke, Stütze oder Träger) oder trägt eines."@de ;
@@ -40,6 +42,7 @@ rule:LoadBearingWallConnected a sh:NodeShape ;
     ] .
 
 rule:LoadBearingSlabSupported a sh:NodeShape ;
+    view:relation pbs:rests_on ;
     sh:name "Load-bearing slabs above ground are supported" , "Tragende Decken über Terrain sind aufgelagert"@de ;
     sh:description "A load-bearing slab on a level above ±0.00 rests on a load-bearing wall, column or beam. Slabs at or below ±0.00 count as ground-bearing." ,
         "Eine tragende Decke in einem Geschoss über ±0.00 liegt auf einer tragenden Wand, Stütze oder einem Träger. Decken auf oder unter ±0.00 gelten als erdberührt."@de ;

@@ -954,6 +954,10 @@
 <td>Localized text value for a specific language tag.</td>
 </tr>
 <tr>
+<td><a href="NeighbourDistance.html">NeighbourDistance</a></td>
+<td>Clear distance from an element to a neighbouring physical element, measured from geometry: the horizontal gap between their plan outlines and the vertical gap between their height ranges. Both are 0 where the elements overlap in that direction, so 0 and 0 means touching or intersecting.</td>
+</tr>
+<tr>
 <td><a href="TimeLink.html">TimeLink</a></td>
 <td>Inline typed precedence link from a TimeRecord to one successor. Not a VirtualEntity — no id, no mixin. Owned by the predecessor record.</td>
 </tr>
@@ -1349,6 +1353,10 @@
 <td>Classification of equipment (for example HVAC, electrical, plumbing).</td>
 </tr>
 <tr>
+<td><a href="escape_route_next.html">escape_route_next</a></td>
+<td>Next element on the shortest horizontal escape route: the door a space is left through, or the door or stair a door leads on to. The route ends at an exit to the outside or at a stair leaving the storey; follow the slot repeatedly to read the whole route. Computed from geometry; the remaining length is the escape_route_length quantity.</td>
+</tr>
+<tr>
 <td><a href="external_instance_uri.html">external_instance_uri</a></td>
 <td>URI of the corresponding process instance in an external workflow engine when applicable.</td>
 </tr>
@@ -1382,7 +1390,7 @@
 </tr>
 <tr>
 <td><a href="geometry_wkt.html">geometry_wkt</a></td>
-<td>Inline WKT payload for small 2D representations (for example a footprint_2d polygon in project coordinates, metres).</td>
+<td>Inline WKT payload for small representations (for example a footprint_2d polygon or a path_3d line in project coordinates, metres).</td>
 </tr>
 <tr>
 <td><a href="granted_at.html">granted_at</a></td>
@@ -1395,6 +1403,10 @@
 <tr>
 <td><a href="guards_space.html">guards_space</a></td>
 <td>Spaces whose walking surface this barrier protects against falls. Computed from geometry: the barrier footprint lies within a tolerance of the space footprint and the space floor is at or below the barrier base.</td>
+</tr>
+<tr>
+<td><a href="horizontal_clear_distance.html">horizontal_clear_distance</a></td>
+<td>Horizontal clear distance in metres between the plan outlines; 0 where they overlap or touch.</td>
 </tr>
 <tr>
 <td><a href="hosted_by.html">hosted_by</a></td>
@@ -1563,6 +1575,14 @@
 <tr>
 <td><a href="name.html">name</a></td>
 <td>Default display name.</td>
+</tr>
+<tr>
+<td><a href="neighbour.html">neighbour</a></td>
+<td>The neighbouring element the distances are measured to.</td>
+</tr>
+<tr>
+<td><a href="neighbours.html">neighbours</a></td>
+<td>Clear distances to the neighbouring physical elements within the measurement range configured for the conversion. Computed from geometry; elements farther away have no record.</td>
 </tr>
 <tr>
 <td><a href="norm_uri.html">norm_uri</a></td>
@@ -1818,7 +1838,7 @@
 </tr>
 <tr>
 <td><a href="rests_on.html">rests_on</a></td>
-<td>Elements this element sits on: its underside bears on their top (for example wall on slab, column on slab, slab on wall or column). Computed from geometric contact; it records contact, not a structural analysis result. The inverse (supports) is read by querying the slot from the other side.</td>
+<td>Elements this element sits on: its underside bears on their top (for example wall on slab, column on slab, slab on wall or column, equipment on a plinth). Computed from geometric contact; it records contact, not a structural analysis result. The inverse (supports) is read by querying the slot from the other side.</td>
 </tr>
 <tr>
 <td><a href="retain_until.html">retain_until</a></td>
@@ -2035,6 +2055,10 @@
 <tr>
 <td><a href="vendor.html">vendor</a></td>
 <td>Company that sells or offers this product.</td>
+</tr>
+<tr>
+<td><a href="vertical_clear_distance.html">vertical_clear_distance</a></td>
+<td>Vertical clear distance in metres between the height ranges; 0 where they overlap or touch.</td>
 </tr>
 <tr>
 <td><a href="withdrawn_at.html">withdrawn_at</a></td>

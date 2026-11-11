@@ -537,11 +537,13 @@ Selectors combine with AND: `contract_class` (including subclasses), `ifc_class`
 | Relation | Method | Subject → object | Geometric test | Quantities |
 |----------|--------|------------------|----------------|------------|
 | `hosted_by` | `opening_in_host` | door / window → `Separator` | Plan distance ≤ `max_plan_distance`, vertical overlap; prefers the host whose oriented plan envelope contains the opening centre | — |
-| `rests_on` | `vertical_contact` | wall / slab / column / beam / footing → same | Subject bottom within the object's vertical extent (± `contact_tolerance`, above the object's bottom), subject rises above the object's top, plan overlap ≥ `min_contact_area` | — |
+| `rests_on` | `vertical_contact` | wall / slab / column / beam / footing → same; `Equipment` → same objects | Subject bottom within the object's vertical extent (± `contact_tolerance`, above the object's bottom), subject rises above the object's top, plan overlap ≥ `min_contact_area` | — |
 | `connects_physical_elements` | `side_contact` | wall / column / beam ↔ same | Plan distance ≤ `max_plan_distance`, vertical overlap ≥ `min_overlap_height`, no `rests_on` between the pair; written on both elements | — |
 | `intersects_elements` | `prism_overlap` | `ReservedVolume` → `PhysicalElement` | Plan overlap ≥ `min_overlap_area` and vertical overlap ≥ `min_overlap_height` (touching does not count); the product the volume belongs to is skipped | — |
+| `neighbours` | `neighbour_distance` | `Equipment` → `PhysicalElement` | Horizontal gap between the plan outlines ≤ `max_horizontal_distance` and vertical gap between the height ranges ≤ `max_vertical_distance`; each gap is 0 where the elements overlap | `NeighbourDistance` records (`neighbour`, `horizontal_clear_distance`, `vertical_clear_distance`) instead of quantities |
 | `guards_space` | `barrier_walking_surface` | `SafetyBarrier` → `Space` | Plan distance ≤ `max_plan_distance`; space floor between barrier base − `max_floor_below_base` and base + `floor_tolerance` | `height_above_walking_surface` = barrier top − highest guarded floor |
 | `lit_space` | `window_daylight` | exterior window → interior `Space` | `connects_spaces` from IFC space boundaries, else the nearest space within `max_plan_distance` with vertical overlap | `area_glazed` on the window; `glazing_ratio` (glazed area ÷ floor area) on every selected space |
+| `escape_route_next` | `escape_route` | interior `Space`, door → door / stair | Walking distance in plan around the corners of each space; spaces whose outlines touch along ≥ `min_open_width` form one open zone; doors join zones (`connects_spaces`, else spaces within `max_door_distance`); the route ends at an external door no more than `max_exit_above_lowest` above the lowest one, or, on storeys without one, at a stair that leaves the storey; spaces are measured from the most remote point of their outline | `escape_route_length` on doors (remaining route) and spaces (from the most remote point) |
 
 Quantities are `pbs:QuantityValue` records (`quantity_type`, `quantity_value`, `quantity_unit`, QUDT `quantity_unit_uri`). Area and floor-area sources are read in the IFC area unit; dimensions in the IFC length unit.
 
@@ -554,7 +556,9 @@ The relations are evidence for rules evaluated outside this repository, for exam
 | Fire-rated walls reach the slab above | a `SeparatorSlab` `rests_on` the wall |
 | Load path: slab → column → slab, no floating load-bearing elements | chains of `rests_on`; load-bearing element without a `rests_on` target |
 | Maintenance and clearance volumes stay free | `ReservedVolume` → `intersects_elements` (should be empty) |
+| Swing path of components on dampers is clear | `neighbours` of the component: clear distance (horizontal and vertical) ≥ swing path, except the elements it `rests_on` |
 | Minimum glazing ratio of habitable rooms | `Space` `glazing_ratio`, `lit_space` |
+| Maximum horizontal escape route length | `Space` `escape_route_length`; follow `escape_route_next` for the route |
 
 ---
 

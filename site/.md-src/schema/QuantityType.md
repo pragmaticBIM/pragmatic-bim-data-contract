@@ -33,6 +33,7 @@ URI: [pbs:QuantityType](https://schema.pragmaticbim.ch/QuantityType)
 | height_above_walking_surface | pbs:quantity_type_height_above_walking_surface | Vertical distance from the guarded walking surface (space floor) to the top of a safety barrier, measured from geometry against the highest guarded floor. |
 | area_glazed | pbs:quantity_type_area_glazed | Projected glazed (transparent) area of a window or glazed door. |
 | glazing_ratio | pbs:quantity_type_glazing_ratio | Sum of the glazed areas of the windows lighting a space divided by the net floor area of the space. |
+| escape_route_length | pbs:quantity_type_escape_route_length | Walking distance in plan along the shortest horizontal escape route to an exit to the outside or a stair leaving the storey; on a space measured from its most remote point, on a door from the door. |
 
 
 
@@ -143,6 +144,12 @@ permissible_values:
     description: Sum of the glazed areas of the windows lighting a space divided by
       the net floor area of the space.
     meaning: pbs:quantity_type_glazing_ratio
+  escape_route_length:
+    text: escape_route_length
+    description: Walking distance in plan along the shortest horizontal escape route
+      to an exit to the outside or a stair leaving the storey; on a space measured
+      from its most remote point, on a door from the door.
+    meaning: pbs:quantity_type_escape_route_length
 
 ```
 </details>

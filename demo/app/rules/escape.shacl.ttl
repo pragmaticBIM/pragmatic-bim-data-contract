@@ -1,0 +1,70 @@
+@prefix pbs: <https://schema.pragmaticbim.ch/> .
+@prefix rule: <https://schema.pragmaticbim.ch/demo/rules/escape/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix view: <https://schema.pragmaticbim.ch/demo/view/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# VKF Brandschutzrichtlinie 16-15 (Flucht- und Rettungswege): horizontal escape route length.
+#
+#   - From the most remote point of a room to an exit to the outside or to a stair
+#     (vertical escape route), at most 35 m. Change ?max below to adjust the limit.
+#
+# Evidence computed by ifc2rdf from geometry (contract/mapping/_computed_relations.yaml):
+#   Space pbs:escape_route_next door or stair, door pbs:escape_route_next door or stair, and the
+#   QuantityValue quantity_type_escape_route_length = walking distance in plan around the corners
+#   of the spaces, door to door.
+# Not covered: the 50 m limit with two independent escape routes, route widths, door directions.
+
+rule:prefixes
+    sh:declare [ sh:prefix "pbs" ; sh:namespace "https://schema.pragmaticbim.ch/"^^xsd:anyURI ] .
+
+rule:EscapeRouteLength a sh:NodeShape ;
+    view:relation pbs:escape_route_next ;
+    view:chain true ;
+    view:path "path_3d" ;
+    view:quantity pbs:quantity_type_escape_route_length ;
+    sh:name "VKF 16-15: escape route length" , "VKF 16-15: Fluchtweglänge"@de ;
+    sh:description "From the most remote point of every interior space the walking distance to an exit to the outside or to a stair is at most 35 m." ,
+        "Von der entferntesten Stelle jedes Innenraums ist der Weg bis zu einem Ausgang ins Freie oder zu einer Treppe höchstens 35 m lang."@de ;
+    sh:severity sh:Violation ;
+    sh:target [
+        a sh:SPARQLTarget ;
+        sh:prefixes rule:prefixes ;
+        sh:select """
+            SELECT ?this WHERE {
+                ?this a pbs:Space .
+                FILTER NOT EXISTS {
+                    ?this pbs:classifications ?c .
+                    ?c pbs:classification_uri ?uri .
+                    FILTER (STRENDS(STR(?uri), "/spaces-exterior"))
+                }
+            }"""
+    ] ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:prefixes rule:prefixes ;
+        sh:message "Escape route {?length} m to the exit or stair; at most {?max} m allowed." ,
+            "Fluchtweg {?length} m bis zum Ausgang oder zur Treppe; zulässig sind höchstens {?max} m."@de ;
+        sh:select """
+            SELECT DISTINCT $this ?length ?max WHERE {
+                $this pbs:quantity_values ?q .
+                ?q pbs:quantity_type pbs:quantity_type_escape_route_length ;
+                   pbs:quantity_value ?value .
+                BIND (35.0 AS ?max)
+                BIND (ROUND(?value * 10) / 10 AS ?length)
+                FILTER (?value > ?max)
+            }"""
+    ] ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:prefixes rule:prefixes ;
+        sh:message "No escape route found: no door chain leads to an exit or a stair (or the space has no geometry)." ,
+            "Kein Fluchtweg gefunden: keine Türfolge führt zu einem Ausgang oder einer Treppe (oder der Raum hat keine Geometrie)."@de ;
+        sh:select """
+            SELECT $this WHERE {
+                FILTER NOT EXISTS {
+                    $this pbs:quantity_values ?q .
+                    ?q pbs:quantity_type pbs:quantity_type_escape_route_length .
+                }
+            }"""
+    ] .

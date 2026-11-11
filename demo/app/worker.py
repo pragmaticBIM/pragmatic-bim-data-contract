@@ -13,7 +13,7 @@ from typing import Any
 
 from pragmatic_bim.ifc2rdf import ConversionReport, convert, to_turtle
 
-from demo.app import checks, graphview
+from demo.app import checks, graphview, tw_schock_data
 from demo.app.jobs import write_json, write_status
 
 
@@ -24,6 +24,7 @@ def run_job(directory: Path, *, reference: Path | bool | None = None) -> None:
     try:
         write_status(directory, "converting")
         graph, report = convert(directory / "model.ifc", reference=reference, geometry_out=directory / "model.glb")
+        tw_schock_data.add_missing_terms(graph, directory / "model.ifc")
         (directory / "model.ttl").write_text(to_turtle(graph), encoding="utf-8")
         write_json(directory / "report.json", report_dict(report))
 

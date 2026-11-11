@@ -15,10 +15,14 @@
   </details>
   {% endif %}
 
+  {% if check.status == "na" %}
+  <p class="muted">{{ t("No element in this model is in the scope of the rule.") }}</p>
+  {% else %}
   <p>
     {{ t("{failed} of {checked} checked elements fail.").format(failed="<b>%d</b>" | format(check.failed | length), checked=check.checked | length) | safe }}
     <span class="legend-inline"><i class="sw fail"></i>{{ t("failing") }} <i class="sw pass"></i>{{ t("passing") }} <i class="sw neighbor"></i>{{ t("related") }}</span>
   </p>
+  {% endif %}
   {% if items %}
   <table class="findings">
     <thead><tr><th>{{ t("Element") }}</th><th>{{ t("Finding") }}</th></tr></thead>

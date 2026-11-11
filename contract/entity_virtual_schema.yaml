@@ -119,6 +119,7 @@ classes:
     - bounded_by
     - adjacent_elements
     - contained_entities
+    - escape_route_next
     slot_usage:
       parent_building:
         range: BuiltAssetContext
@@ -357,6 +358,13 @@ slots:
     multivalued: true
     range: Space
     description: Spaces connected by this connection (for example the two spaces on either side of a door).
+  escape_route_next:
+    range: PhysicalElement
+    description: >-
+      Next element on the shortest horizontal escape route: the door a space is left through, or the door or stair a
+      door leads on to. The route ends at an exit to the outside or at a stair leaving the storey; follow the slot
+      repeatedly to read the whole route. Computed from geometry; the remaining length is the escape_route_length
+      quantity.
   time_records:
     multivalued: true
     range: TimeRecord

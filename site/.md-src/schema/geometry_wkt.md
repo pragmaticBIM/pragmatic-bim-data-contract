@@ -6,7 +6,7 @@ search:
 # Slot: geometry_wkt 
 
 
-_Inline WKT payload for small 2D representations (for example a footprint_2d polygon in project coordinates, metres)._
+_Inline WKT payload for small representations (for example a footprint_2d polygon or a path_3d line in project coordinates, metres)._
 
 
 
@@ -84,8 +84,8 @@ URI: [pbs:geometry_wkt](https://schema.pragmaticbim.ch/geometry_wkt)
 <details>
 ```yaml
 name: geometry_wkt
-description: Inline WKT payload for small 2D representations (for example a footprint_2d
-  polygon in project coordinates, metres).
+description: Inline WKT payload for small representations (for example a footprint_2d
+  polygon or a path_3d line in project coordinates, metres).
 from_schema: https://schema.pragmaticbim.ch
 rank: 1000
 domain_of:

@@ -47,7 +47,7 @@ click GeometryRepresentationType href "./GeometryRepresentationType.html" _blank
 | [geometry_reference](geometry_reference.md) | 1 <br/> [String](String.md) | URI/path/hash/pointer to geometry payload. | direct |
 | [geometry_representation](geometry_representation.md) | 1 <br/> [GeometryRepresentationType](GeometryRepresentationType.md) | Representation kind/dimension (for example body_3d, footprint_2d, point), independent of file format. | direct |
 | [geometry_format](geometry_format.md) | 0..1 <br/> [String](String.md) | Optional serialization/encoding format (for example ifc, gltf, wkt, geojson), independent of representation kind. | direct |
-| [geometry_wkt](geometry_wkt.md) | 0..1 <br/> [String](String.md) | Inline WKT payload for small 2D representations (for example a footprint_2d polygon in project coordinates, metres). | direct |
+| [geometry_wkt](geometry_wkt.md) | 0..1 <br/> [String](String.md) | Inline WKT payload for small representations (for example a footprint_2d polygon or a path_3d line in project coordinates, metres). | direct |
 | [bbox_min_x](bbox_min_x.md) | 0..1 <br/> [Double](Double.md) | Axis-aligned bounding box minimum X in project coordinates (metres). | direct |
 | [bbox_min_y](bbox_min_y.md) | 0..1 <br/> [Double](Double.md) | Axis-aligned bounding box minimum Y in project coordinates (metres). | direct |
 | [bbox_min_z](bbox_min_z.md) | 0..1 <br/> [Double](Double.md) | Axis-aligned bounding box minimum Z (bottom elevation) in project coordinates (metres). | direct |
@@ -220,8 +220,8 @@ attributes:
     range: string
   geometry_wkt:
     name: geometry_wkt
-    description: Inline WKT payload for small 2D representations (for example a footprint_2d
-      polygon in project coordinates, metres).
+    description: Inline WKT payload for small representations (for example a footprint_2d
+      polygon or a path_3d line in project coordinates, metres).
     from_schema: https://schema.pragmaticbim.ch
     rank: 1000
     owner: GeometryRepresentation

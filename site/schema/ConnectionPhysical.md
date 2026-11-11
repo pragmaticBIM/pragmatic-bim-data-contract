@@ -34,6 +34,7 @@ click ConnectionRequirementDriver href "./ConnectionRequirementDriver.html" _bla
 click ConnectionPhysicalType href "./ConnectionPhysicalType.html" _blank
 click PhysicalElement href "./PhysicalElement.html" _blank
 click Space href "./Space.html" _blank
+click PhysicalElement href "./PhysicalElement.html" _blank
 click Material href "./Material.html" _blank
 click GeometryRepresentation href "./GeometryRepresentation.html" _blank
 click PhysicalElement href "./PhysicalElement.html" _blank
@@ -42,6 +43,7 @@ click Space href "./Space.html" _blank
 click LocalizedText href "./LocalizedText.html" _blank
 click LocalizedText href "./LocalizedText.html" _blank
 click MetadataEntry href "./MetadataEntry.html" _blank
+click NeighbourDistance href "./NeighbourDistance.html" _blank
 click BuiltAssetContext href "./BuiltAssetContext.html" _blank
 click LevelContext href "./LevelContext.html" _blank
 click PerformanceProperty href "./PerformanceProperty.html" _blank
@@ -81,10 +83,12 @@ click TransportMedium href "./TransportMedium.html" _blank
 | [connection_physical_requirement_drivers](connection_physical_requirement_drivers.md) | * <br/> [ConnectionRequirementDriver](ConnectionRequirementDriver.md) | Performance requirement drivers for this physical connection element. Multiple values are allowed because one connection may need to satisfy several requirements. | direct |
 | [hosted_by](hosted_by.md) | 0..1 <br/> [PhysicalElement](PhysicalElement.md) | Host element whose opening this connector fills (for example the wall a door or window sits in). From IfcRelFillsElement and IfcRelVoidsElement, or computed from geometry when the IFC chain is missing. | direct |
 | [lit_space](lit_space.md) | * <br/> [Space](Space.md) | Interior spaces that receive daylight through this window. From space boundaries or computed from geometry (adjacent or nearest interior space). | direct |
+| [escape_route_next](escape_route_next.md) | 0..1 <br/> [PhysicalElement](PhysicalElement.md) | Next element on the shortest horizontal escape route: the door a space is left through, or the door or stair a door leads on to. The route ends at an exit to the outside or at a stair leaving the storey; follow the slot repeatedly to read the whole route. Computed from geometry; the remaining length is the escape_route_length quantity. | direct |
 | [parent_building](parent_building.md) | 0..1 <br/> [BuiltAssetContext](BuiltAssetContext.md) | Parent building context reference. | [PhysicalElement](PhysicalElement.md) |
 | [parent_level](parent_level.md) | 0..1 <br/> [LevelContext](LevelContext.md) | Parent level/storey context reference. | [PhysicalElement](PhysicalElement.md) |
-| [rests_on](rests_on.md) | * <br/> [PhysicalElement](PhysicalElement.md) | Elements this element sits on: its underside bears on their top (for example wall on slab, column on slab, slab on wall or column). Computed from geometric contact; it records contact, not a structural analysis result. The inverse (supports) is read by querying the slot from the other side. | [PhysicalElement](PhysicalElement.md) |
+| [rests_on](rests_on.md) | * <br/> [PhysicalElement](PhysicalElement.md) | Elements this element sits on: its underside bears on their top (for example wall on slab, column on slab, slab on wall or column, equipment on a plinth). Computed from geometric contact; it records contact, not a structural analysis result. The inverse (supports) is read by querying the slot from the other side. | [PhysicalElement](PhysicalElement.md) |
 | [connects_physical_elements](connects_physical_elements.md) | * <br/> [PhysicalElement](PhysicalElement.md) | Physical elements connected to this one side by side (for example wall-wall junction, beam framing into a column). On a physical element the relation is symmetric and stated on both elements. From IfcRelConnectsElements / IfcRelConnectsPathElements, or computed from geometric contact. Bearing contact is rests_on. | [PhysicalElement](PhysicalElement.md) |
+| [neighbours](neighbours.md) | * <br/> [NeighbourDistance](NeighbourDistance.md) | Clear distances to the neighbouring physical elements within the measurement range configured for the conversion. Computed from geometry; elements farther away have no record. | [PhysicalElement](PhysicalElement.md) |
 | [id](id.md) | 1 <br/> [String](String.md) | Unique local identifier. | [Entity](Entity.md) |
 | [content_kind](content_kind.md) | 1 <br/> [String](String.md) | Entity type discriminator for adapter projection and querying. Must be a ContentKind value. | [Entity](Entity.md) |
 | [name](name.md) | 1 <br/> [String](String.md) | Default display name. | [Entity](Entity.md) |
@@ -176,6 +180,7 @@ slots:
 - connection_physical_requirement_drivers
 - hosted_by
 - lit_space
+- escape_route_next
 class_uri: pbs:ConnectionPhysical
 
 ```
@@ -305,6 +310,20 @@ attributes:
     - ConnectionPhysical
     range: Space
     multivalued: true
+  escape_route_next:
+    name: escape_route_next
+    description: 'Next element on the shortest horizontal escape route: the door a
+      space is left through, or the door or stair a door leads on to. The route ends
+      at an exit to the outside or at a stair leaving the storey; follow the slot
+      repeatedly to read the whole route. Computed from geometry; the remaining length
+      is the escape_route_length quantity.'
+    from_schema: https://schema.pragmaticbim.ch
+    rank: 1000
+    owner: ConnectionPhysical
+    domain_of:
+    - ConnectionPhysical
+    - Space
+    range: PhysicalElement
   parent_building:
     name: parent_building
     description: Parent building context reference.
@@ -333,9 +352,10 @@ attributes:
   rests_on:
     name: rests_on
     description: 'Elements this element sits on: its underside bears on their top
-      (for example wall on slab, column on slab, slab on wall or column). Computed
-      from geometric contact; it records contact, not a structural analysis result.
-      The inverse (supports) is read by querying the slot from the other side.'
+      (for example wall on slab, column on slab, slab on wall or column, equipment
+      on a plinth). Computed from geometric contact; it records contact, not a structural
+      analysis result. The inverse (supports) is read by querying the slot from the
+      other side.'
     from_schema: https://schema.pragmaticbim.ch
     rank: 1000
     owner: ConnectionPhysical
@@ -357,6 +377,19 @@ attributes:
     - ConnectionVirtual
     range: PhysicalElement
     multivalued: true
+  neighbours:
+    name: neighbours
+    description: Clear distances to the neighbouring physical elements within the
+      measurement range configured for the conversion. Computed from geometry; elements
+      farther away have no record.
+    from_schema: https://schema.pragmaticbim.ch
+    rank: 1000
+    owner: ConnectionPhysical
+    domain_of:
+    - PhysicalElement
+    range: NeighbourDistance
+    multivalued: true
+    inlined: true
   id:
     name: id
     description: Unique local identifier.
