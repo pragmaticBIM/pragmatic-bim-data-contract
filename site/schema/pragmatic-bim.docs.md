@@ -55,7 +55,7 @@ Name: pragmatic_bim_data_contract
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ZoneContext](ZoneContext.md) | Spatial context node constrained to zone semantics. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Space](Space.md) | Spatial container used for occupancy, circulation, service, or analysis. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[System](System.md) | Building service system grouping that serves spaces or zones. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ConnectionVirtual](ConnectionVirtual.md) | Logical or topological connection between spaces and/or physical elements. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ConnectionVirtual](ConnectionVirtual.md) | Logical or topological connection between spaces and/or physical elements. Connections read from IFC relationships and connections computed from geometry (for example a contact test) use the same class; derivation records which of the two applies and how the connection was computed. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[TimeRecord](TimeRecord.md) | Planned work record with baseline and actual dates, optionally linked to model entities and a time plan. — Set milestone_at to mark as a zero-duration checkpoint. — Populate component_time_items to act as a plan container. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[CostRecord](CostRecord.md) | Cost record for estimation, catalog pricing, and calculation. Use cost_record_role to distinguish catalog cost/price (on Product) from project estimate/actual lines. Populate component_cost_items to act as an assembly (aggregated unit price). |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Material](Material.md) | Material definition that can be associated with one or more entities. |
@@ -86,6 +86,7 @@ Name: pragmatic_bim_data_contract
 | [Classification](Classification.md) | Generic classification entry from any scheme (for example IFC, Uniclass, OmniClass, custom). |
 | [GeometryRepresentation](GeometryRepresentation.md) | Minimal geometry reference for an entity, separating representation from encoding format. |
 | [QuantityValue](QuantityValue.md) | Minimal quantity record for costing and analysis. |
+| [Derivation](Derivation.md) | How a value or relation was obtained. Embedded on the record it describes (for example a QuantityValue measured from geometry, or a ConnectionVirtual computed by a contact test) so that every derived fact carries its source kind, method, method version, tolerance, and input entities. Lets checks distinguish values read from IFC, values computed from geometry, project parameters, and manual entries, and lets results be reproduced or recomputed when a method changes. |
 | [MetadataEntry](MetadataEntry.md) | Generic metadata entry for storing IFC attributes, PropertySet fields, or project-specific key-value data. |
 | [PerformanceProperty](PerformanceProperty.md) | Normalized performance/property record derived from raw IFC PropertySet values with source traceability and strong typing through domain-specific subclasses. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[FireProperty](FireProperty.md) | Normalized fire-related property. |
@@ -189,6 +190,15 @@ Name: pragmatic_bim_data_contract
 | [deliverable_format](deliverable_format.md) | Required deliverable format or encoding (for example IFC4, PDF, COBie). |
 | [deliverable_kind](deliverable_kind.md) | Deliverable type label (for example coordination model, O&M manual, as-built record). |
 | [dependency_type](dependency_type.md) | FS | SS | FF | SF |
+| [derivation](derivation.md) | How this value or relation was obtained (source kind, method, version, tolerance, inputs). Omit only when the record is copied unchanged from its source and no further traceability is needed. |
+| [derivation_inputs](derivation_inputs.md) | Entities whose data or geometry were used, beyond the subject itself. For a height measured above a reference surface this includes the reference element (for example the pavement course). |
+| [derivation_method](derivation_method.md) | Identifier of the method or algorithm that produced the value, for example contact_test, height_above_reference_surface, spacing_along_axis, or the IFC relationship class for ifc_explicit sources. |
+| [derivation_method_version](derivation_method_version.md) | Version of the method implementation, so results can be reproduced and recomputed when the method changes. |
+| [derivation_source_kind](derivation_source_kind.md) | Kind of source the value or relation comes from (IFC relationship or property, geometry computation, project parameter, manual entry). |
+| [derivation_tolerance](derivation_tolerance.md) | Geometric or numeric tolerance applied by the method (for example the maximum gap still counted as contact). |
+| [derivation_tolerance_unit](derivation_tolerance_unit.md) | Unit of derivation_tolerance (for example m, mm, deg). |
+| [derived_at](derived_at.md) | Timestamp when the value or relation was derived. |
+| [derived_by](derived_by.md) | Software agent (pipeline, service) that executed the method. |
 | [description](description.md) | Default description text. |
 | [detected_at](detected_at.md) | Timestamp when this change was detected. |
 | [due_at](due_at.md) | Due timestamp for task completion. |
@@ -385,6 +395,7 @@ Name: pragmatic_bim_data_contract
 | [ContextType](ContextType.md) |  |
 | [CostRecordRole](CostRecordRole.md) |  |
 | [DependencyType](DependencyType.md) | Precedence logic between two time records (FS finish-to-start, SS start-to-start, FF finish-to-finish, SF start-to-finish). |
+| [DerivationSourceKind](DerivationSourceKind.md) | Kind of source a derived value or relation comes from. Used by Derivation.derivation_source_kind. |
 | [EnvironmentalPropertyKey](EnvironmentalPropertyKey.md) | Canonical environmental keys for embodied impacts of an element type, per square metre of element area. |
 | [EquipmentType](EquipmentType.md) |  |
 | [FirePropertyKey](FirePropertyKey.md) | Canonical fire-related keys derived from IFC PropertySets. |

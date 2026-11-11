@@ -777,7 +777,7 @@
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ConnectionVirtual.html">ConnectionVirtual</a></td>
-<td>Logical or topological connection between spaces and/or physical elements.</td>
+<td>Logical or topological connection between spaces and/or physical elements. Connections read from IFC relationships and connections computed from geometry (for example a contact test) use the same class; derivation records which of the two applies and how the connection was computed.</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="TimeRecord.html">TimeRecord</a></td>
@@ -884,6 +884,10 @@
 <tr>
 <td><a href="QuantityValue.html">QuantityValue</a></td>
 <td>Minimal quantity record for costing and analysis.</td>
+</tr>
+<tr>
+<td><a href="Derivation.html">Derivation</a></td>
+<td>How a value or relation was obtained. Embedded on the record it describes (for example a QuantityValue measured from geometry, or a ConnectionVirtual computed by a contact test) so that every derived fact carries its source kind, method, method version, tolerance, and input entities. Lets checks distinguish values read from IFC, values computed from geometry, project parameters, and manual entries, and lets results be reproduced or recomputed when a method changes.</td>
 </tr>
 <tr>
 <td><a href="MetadataEntry.html">MetadataEntry</a></td>
@@ -1275,6 +1279,42 @@
 <tr>
 <td><a href="dependency_type.html">dependency_type</a></td>
 <td>FS</td>
+</tr>
+<tr>
+<td><a href="derivation.html">derivation</a></td>
+<td>How this value or relation was obtained (source kind, method, version, tolerance, inputs). Omit only when the record is copied unchanged from its source and no further traceability is needed.</td>
+</tr>
+<tr>
+<td><a href="derivation_inputs.html">derivation_inputs</a></td>
+<td>Entities whose data or geometry were used, beyond the subject itself. For a height measured above a reference surface this includes the reference element (for example the pavement course).</td>
+</tr>
+<tr>
+<td><a href="derivation_method.html">derivation_method</a></td>
+<td>Identifier of the method or algorithm that produced the value, for example contact_test, height_above_reference_surface, spacing_along_axis, or the IFC relationship class for ifc_explicit sources.</td>
+</tr>
+<tr>
+<td><a href="derivation_method_version.html">derivation_method_version</a></td>
+<td>Version of the method implementation, so results can be reproduced and recomputed when the method changes.</td>
+</tr>
+<tr>
+<td><a href="derivation_source_kind.html">derivation_source_kind</a></td>
+<td>Kind of source the value or relation comes from (IFC relationship or property, geometry computation, project parameter, manual entry).</td>
+</tr>
+<tr>
+<td><a href="derivation_tolerance.html">derivation_tolerance</a></td>
+<td>Geometric or numeric tolerance applied by the method (for example the maximum gap still counted as contact).</td>
+</tr>
+<tr>
+<td><a href="derivation_tolerance_unit.html">derivation_tolerance_unit</a></td>
+<td>Unit of derivation_tolerance (for example m, mm, deg).</td>
+</tr>
+<tr>
+<td><a href="derived_at.html">derived_at</a></td>
+<td>Timestamp when the value or relation was derived.</td>
+</tr>
+<tr>
+<td><a href="derived_by.html">derived_by</a></td>
+<td>Software agent (pipeline, service) that executed the method.</td>
 </tr>
 <tr>
 <td><a href="description.html">description</a></td>
@@ -2046,6 +2086,10 @@
 <tr>
 <td><a href="DependencyType.html">DependencyType</a></td>
 <td>Precedence logic between two time records (FS finish-to-start, SS start-to-start, FF finish-to-finish, SF start-to-finish).</td>
+</tr>
+<tr>
+<td><a href="DerivationSourceKind.html">DerivationSourceKind</a></td>
+<td>Kind of source a derived value or relation comes from. Used by Derivation.derivation_source_kind.</td>
 </tr>
 <tr>
 <td><a href="EnvironmentalPropertyKey.html">EnvironmentalPropertyKey</a></td>

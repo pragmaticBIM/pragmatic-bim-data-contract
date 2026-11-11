@@ -537,6 +537,7 @@
 direction TB
 class QuantityValue
 click QuantityValue href "./QuantityValue.html" _blank
+click Derivation href "./Derivation.html" _blank
 click QuantityType href "./QuantityType.html" _blank</code></pre> 
     <div class="panzoom-info-box panzoom-info-box-bottom panzoom-hidden">
 Hold "Alt" / "Option" to enable pan &amp; zoom
@@ -609,6 +610,12 @@ Hold "Alt" / "Option" to enable pan &amp; zoom
 <td><a href="metric_uri.html">metric_uri</a></td>
 <td>0..1 <br/> <a href="Uriorcurie.html">Uriorcurie</a></td>
 <td>Concept URI from building-metrics.skos.ttl or building-ratios.skos.ttl.</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="derivation.html">derivation</a></td>
+<td>0..1 <br/> <a href="Derivation.html">Derivation</a></td>
+<td>How this value or relation was obtained (source kind, method, version, tolerance, inputs). Omit only when the record is copied unchanged from its source and no further traceability is needed.</td>
 <td>direct</td>
 </tr>
 </tbody>
@@ -947,6 +954,7 @@ Hold "Alt" / "Option" to enable pan &amp; zoom
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">metric_scheme</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">metric_code</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">metric_uri</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">derivation</span>
 <span class="nt">class_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pbs:QuantityValue</span>
 </code></pre></div>
 </details>
@@ -999,8 +1007,8 @@ Hold "Alt" / "Option" to enable pan &amp; zoom
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uriorcurie</span>
 <span class="w">  </span><span class="nt">metric_scheme</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">metric_scheme</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;Vocabulary</span><span class="nv"> </span><span class="s">scheme</span><span class="nv"> </span><span class="s">identifier</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">measured</span><span class="nv"> </span><span class="s">concept:</span><span class="nv"> </span><span class="s">AbstractBuildingMetric</span>
-<span class="w">      </span><span class="s">or</span><span class="nv"> </span><span class="s">AbstractBuildingRatio.&#39;</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'Vocabulary</span><span class="nv"> </span><span class="s">scheme</span><span class="nv"> </span><span class="s">identifier</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">measured</span><span class="nv"> </span><span class="s">concept:</span><span class="nv"> </span><span class="s">AbstractBuildingMetric</span>
+<span class="w">      </span><span class="s">or</span><span class="nv"> </span><span class="s">AbstractBuildingRatio.'</span>
 <span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://schema.pragmaticbim.ch</span>
 <span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">QuantityValue</span>
@@ -1026,6 +1034,19 @@ Hold "Alt" / "Option" to enable pan &amp; zoom
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">QuantityValue</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uriorcurie</span>
+<span class="w">  </span><span class="nt">derivation</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">derivation</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">How this value or relation was obtained (source kind, method, version,</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">tolerance, inputs). Omit only when the record is copied unchanged from its source</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">and no further traceability is needed.</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://schema.pragmaticbim.ch</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">QuantityValue</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">QuantityValue</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ConnectionVirtual</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Derivation</span>
+<span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="nt">class_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pbs:QuantityValue</span>
 </code></pre></div>
 </details>

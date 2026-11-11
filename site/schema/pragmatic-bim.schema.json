@@ -2286,7 +2286,7 @@
         },
         "ConnectionVirtual": {
             "additionalProperties": false,
-            "description": "Logical or topological connection between spaces and/or physical elements.",
+            "description": "Logical or topological connection between spaces and/or physical elements. Connections read from IFC relationships and connections computed from geometry (for example a contact test) use the same class; derivation records which of the two applies and how the connection was computed.",
             "properties": {
                 "applies_to_entities": {
                     "description": "Model entities this record applies to (requirements, cost items, schedule items, etc.).",
@@ -2364,6 +2364,17 @@
                         "string",
                         "null"
                     ]
+                },
+                "derivation": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/Derivation"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "How this value or relation was obtained (source kind, method, version, tolerance, inputs). Omit only when the record is copied unchanged from its source and no further traceability is needed."
                 },
                 "description": {
                     "description": "Default description text.",
@@ -4008,6 +4019,86 @@
                 "SF"
             ],
             "title": "DependencyType",
+            "type": "string"
+        },
+        "Derivation": {
+            "additionalProperties": false,
+            "description": "How a value or relation was obtained. Embedded on the record it describes (for example a QuantityValue measured from geometry, or a ConnectionVirtual computed by a contact test) so that every derived fact carries its source kind, method, method version, tolerance, and input entities. Lets checks distinguish values read from IFC, values computed from geometry, project parameters, and manual entries, and lets results be reproduced or recomputed when a method changes.",
+            "properties": {
+                "derivation_inputs": {
+                    "description": "Entities whose data or geometry were used, beyond the subject itself. For a height measured above a reference surface this includes the reference element (for example the pavement course).",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "derivation_method": {
+                    "description": "Identifier of the method or algorithm that produced the value, for example contact_test, height_above_reference_surface, spacing_along_axis, or the IFC relationship class for ifc_explicit sources.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "derivation_method_version": {
+                    "description": "Version of the method implementation, so results can be reproduced and recomputed when the method changes.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "derivation_source_kind": {
+                    "$ref": "#/$defs/DerivationSourceKind",
+                    "description": "Kind of source the value or relation comes from (IFC relationship or property, geometry computation, project parameter, manual entry)."
+                },
+                "derivation_tolerance": {
+                    "description": "Geometric or numeric tolerance applied by the method (for example the maximum gap still counted as contact).",
+                    "minimum": 0,
+                    "type": [
+                        "number",
+                        "null"
+                    ]
+                },
+                "derivation_tolerance_unit": {
+                    "description": "Unit of derivation_tolerance (for example m, mm, deg).",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "derived_at": {
+                    "description": "Timestamp when the value or relation was derived.",
+                    "format": "date-time",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "derived_by": {
+                    "description": "Software agent (pipeline, service) that executed the method.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "derivation_source_kind"
+            ],
+            "title": "Derivation",
+            "type": "object"
+        },
+        "DerivationSourceKind": {
+            "description": "Kind of source a derived value or relation comes from. Used by Derivation.derivation_source_kind.",
+            "enum": [
+                "ifc_explicit",
+                "ifc_geometry",
+                "project_parameter",
+                "manual"
+            ],
+            "title": "DerivationSourceKind",
             "type": "string"
         },
         "Entity": {
@@ -8433,6 +8524,17 @@
             "additionalProperties": false,
             "description": "Minimal quantity record for costing and analysis.",
             "properties": {
+                "derivation": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/Derivation"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "How this value or relation was obtained (source kind, method, version, tolerance, inputs). Omit only when the record is copied unchanged from its source and no further traceability is needed."
+                },
                 "metric_code": {
                     "description": "skos:notation of the concept in the matching abstract metric or ratio scheme.",
                     "type": [

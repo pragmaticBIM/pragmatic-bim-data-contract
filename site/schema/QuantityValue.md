@@ -25,6 +25,7 @@ classDiagram
 direction TB
 class QuantityValue
 click QuantityValue href "./QuantityValue.html" _blank
+click Derivation href "./Derivation.html" _blank
 click QuantityType href "./QuantityType.html" _blank
 ```
 
@@ -51,6 +52,7 @@ click QuantityType href "./QuantityType.html" _blank
 | [metric_scheme](metric_scheme.md) | 0..1 <br/> [String](String.md) | Vocabulary scheme identifier for the measured concept: AbstractBuildingMetric or AbstractBuildingRatio. | direct |
 | [metric_code](metric_code.md) | 0..1 <br/> [String](String.md) | skos:notation of the concept in the matching abstract metric or ratio scheme. | direct |
 | [metric_uri](metric_uri.md) | 0..1 <br/> [Uriorcurie](Uriorcurie.md) | Concept URI from building-metrics.skos.ttl or building-ratios.skos.ttl. | direct |
+| [derivation](derivation.md) | 0..1 <br/> [Derivation](Derivation.md) | How this value or relation was obtained (source kind, method, version, tolerance, inputs). Omit only when the record is copied unchanged from its source and no further traceability is needed. | direct |
 
 
 
@@ -164,6 +166,7 @@ slots:
 - metric_scheme
 - metric_code
 - metric_uri
+- derivation
 class_uri: pbs:QuantityValue
 
 ```
@@ -247,6 +250,19 @@ attributes:
     domain_of:
     - QuantityValue
     range: uriorcurie
+  derivation:
+    name: derivation
+    description: How this value or relation was obtained (source kind, method, version,
+      tolerance, inputs). Omit only when the record is copied unchanged from its source
+      and no further traceability is needed.
+    from_schema: https://schema.pragmaticbim.ch
+    rank: 1000
+    owner: QuantityValue
+    domain_of:
+    - QuantityValue
+    - ConnectionVirtual
+    range: Derivation
+    inlined: true
 class_uri: pbs:QuantityValue
 
 ```
