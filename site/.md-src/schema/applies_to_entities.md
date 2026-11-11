@@ -70,7 +70,7 @@ URI: [pbs:applies_to_entities](https://schema.pragmaticbim.ch/applies_to_entitie
 | [ZoneContext](ZoneContext.md) | Spatial context node constrained to zone semantics. |  no  |
 | [Space](Space.md) | Spatial container used for occupancy, circulation, service, or analysis. |  no  |
 | [System](System.md) | Building service system grouping that serves spaces or zones. |  no  |
-| [ConnectionVirtual](ConnectionVirtual.md) | Logical or topological connection between spaces and/or physical elements. |  no  |
+| [ConnectionVirtual](ConnectionVirtual.md) | Logical or topological connection between spaces and/or physical elements. Connections read from IFC relationships and connections computed from geometry (for example a contact test) use the same class; derivation records which of the two applies and how the connection was computed. |  no  |
 | [Material](Material.md) | Material definition that can be associated with one or more entities. |  no  |
 
 
