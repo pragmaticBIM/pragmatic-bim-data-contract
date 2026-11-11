@@ -1,0 +1,322 @@
+# German labels for the demo UI (mode "Deutsch"). Mode "Technisch" shows the identifiers.
+# Enum values not listed under "values" take their label from the contract (alt_descriptions.de).
+
+ui:
+  # Chrome
+  check demo: Prüf-Demo
+  Labels: Beschriftung
+  Check an IFC model: IFC-Modell prüfen
+  "The model is converted to the Pragmatic BIM contract graph, checked against the SHACL rules, and opened in a linked graph and 3D view. Everything runs locally.": >-
+    Das Modell wird in den Graphen des Pragmatic-BIM-Datenvertrags umgewandelt, mit den SHACL-Regeln
+    geprüft und in einer verknüpften Graph- und 3D-Ansicht geöffnet. Alles läuft lokal.
+  Upload and check: Hochladen und prüfen
+  Previous models: Bisherige Modelle
+  Model: Modell
+  Uploaded: Hochgeladen
+  Status: Status
+  processing: Verarbeitung
+  Processing failed.: Verarbeitung fehlgeschlagen.
+  Back: Zurück
+  queued: in Warteschlange
+  converting: Umwandlung
+  projecting: Projektion
+  checking: Prüfung
+  done: fertig
+  failed: fehlgeschlagen
+  Queued: In Warteschlange
+  IFC to contract graph and geometry: IFC in Datenvertrags-Graph und Geometrie
+  Graph projection: Graph-Projektion
+  SHACL checks: SHACL-Prüfungen
+  Done: Fertig
+
+  # Workspace
+  entities: Objekte
+  relations: Beziehungen
+  failing: fehlerhaft
+  passing: erfüllt
+  related: verknüpft
+  Export report: Bericht exportieren
+  Split: Geteilt
+  Clear highlight: Hervorhebung aufheben
+  Loading graph…: Graph wird geladen…
+  Loading 3D model…: 3D-Modell wird geladen…
+  No geometry for this model.: Keine Geometrie für dieses Modell.
+  Select a check to highlight its elements in the graph and the 3D model.: >-
+    Prüfung wählen, um ihre Elemente im Graphen und im 3D-Modell hervorzuheben.
+  Click an element in the graph or the 3D model to see its properties.: >-
+    Element im Graphen oder im 3D-Modell anklicken, um seine Eigenschaften zu sehen.
+  Could not load: Laden fehlgeschlagen
+
+  # Checks
+  Failing: Fehlerhaft
+  Passing: Erfüllt
+  All: Alle
+  violation: Verstoss
+  warning: Warnung
+  info: Hinweis
+  fail: fehlerhaft
+  pass: erfüllt
+  No checks in this filter.: Keine Prüfungen in diesem Filter.
+  Rule: Regel
+  "{failed} of {checked} checked elements fail.": "{failed} von {checked} geprüften Elementen fehlerhaft."
+  Element: Element
+  Finding: Befund
+  Findings: Befunde
+  "Showing {shown} of {total} findings. The report lists all.": "{shown} von {total} Befunden angezeigt. Der Bericht listet alle."
+
+  # Element
+  This IFC object is not part of the contract graph (excluded or not mapped).: >-
+    Dieses IFC-Objekt ist nicht Teil des Datenvertrags-Graphen (ausgeschlossen oder nicht abgebildet).
+  Attributes: Attribute
+  Relations: Beziehungen
+  this element → related: dieses Element → verknüpftes
+  related → this element: verknüpftes → dieses Element
+
+  # Report
+  Check report: Prüfbericht
+  checked: geprüft
+  Summary: Zusammenfassung
+  Source system: Quellsystem
+  Entities in the graph: Objekte im Graphen
+  Checks: Prüfungen
+  Check: Prüfung
+  Severity: Schweregrad
+  Checked: Geprüft
+  Class: Klasse
+  No findings.: Keine Befunde.
+  Conversion: Umwandlung
+
+classes:
+  Entity: Objekt
+  Agent: Akteur
+  Person: Person
+  Company: Firma
+  SoftwareAgent: Software-Agent
+  Classification: Klassifikation
+  GeometryRepresentation: Geometrie
+  QuantityValue: Menge
+  MetadataEntry: Metadaten
+  PerformanceProperty: Leistungseigenschaft
+  Decision: Entscheid
+  Task: Aufgabe
+  Process: Prozess
+  Message: Nachricht
+  Artifact: Dokument
+  Contract: Vertrag
+  Project: Projekt
+  Program: Programm
+  Product: Produkt
+  Deliverable: Liefergegenstand
+  PostalAddress: Postadresse
+  ContactPoint: Kontakt
+  ConsentRecord: Einwilligung
+  PersonRelationship: Personenbeziehung
+  LocalizedText: Übersetzter Text
+  FireProperty: Brandschutz
+  AcousticProperty: Akustik
+  ThermalProperty: Wärmeschutz
+  StructuralProperty: Tragwerk
+  IndoorEnvironmentProperty: Raumklima
+  SecurityProperty: Sicherheit
+  EnvironmentalProperty: Umwelt
+  MaterialProperty: Materialeigenschaft
+  PhysicalElement: Bauteil
+  Separator: Trennbauteil
+  SeparatorWall: Wand
+  SeparatorSlab: Decke / Platte
+  ConnectionPhysical: Verbindungsbauteil
+  SafetyBarrier: Absturzsicherung
+  Boundary: Begrenzungsbauteil
+  Equipment: Ausrüstung
+  VirtualEntity: Virtuelles Objekt
+  SpatialContext: Räumlicher Kontext
+  PerimeterContext: Perimeter
+  LegalSiteContext: Grundstück
+  BuiltAssetContext: Bauwerk
+  BuildingContext: Gebäude
+  CivilStructureContext: Ingenieurbauwerk
+  LevelContext: Geschoss
+  ZoneContext: Zone
+  Space: Raum
+  ReservedVolume: Freihaltevolumen
+  System: System
+  ConnectionVirtual: Virtuelle Verbindung
+  TimeLink: Terminverknüpfung
+  TimeRecord: Termin
+  CostRecord: Kosten
+  Material: Material
+
+# Predicate: [read from the subject, read from the object]
+relations:
+  pbs:hosted_by: [eingesetzt in, nimmt auf]
+  pbs:rests_on: [liegt auf, trägt]
+  pbs:guards_space: [sichert Raum, gesichert durch]
+  pbs:lit_space: [belichtet Raum, belichtet durch]
+  pbs:bounded_by: [begrenzt durch, begrenzt]
+  pbs:bounded_space: [begrenzt Raum, begrenzt durch]
+  pbs:separates_spaces: [trennt Räume, getrennt durch]
+  pbs:separates_levels: [trennt Geschosse, getrennt durch]
+  pbs:connects_physical_elements: [verbindet Bauteile, verbunden durch]
+  pbs:connects_spaces: [verbindet Räume, verbunden durch]
+  pbs:intersects_elements: [schneidet Bauteil, geschnitten von]
+  pbs:adjacent_elements: [grenzt an Bauteil, angrenzend an]
+  pbs:contained_entities: [enthält, enthalten in]
+  pbs:group_members: [umfasst, gehört zu Gruppe]
+  pbs:serves_spaces: [versorgt Raum, versorgt durch]
+  pbs:serves_zones: [versorgt Zone, versorgt durch]
+  pbs:applies_to_entities: [gilt für, betroffen von]
+  pbs:parent_project: [gehört zu Projekt, umfasst]
+  pbs:parent_perimeter: [liegt im Perimeter, umfasst]
+  pbs:parent_legal_site: [liegt auf Grundstück, umfasst]
+  pbs:parent_building: [gehört zu Gebäude, umfasst]
+  pbs:parent_level: [liegt im Geschoss, umfasst]
+  pbs:parent_zone: [gehört zu Zone, umfasst]
+  pbs:parent_space: [liegt im Raum, umfasst]
+  pbs:parent_system: [gehört zu System, umfasst]
+  pbs:materials: [besteht aus, verwendet in]
+  pbs:frame_material: [Rahmenmaterial, Rahmen von]
+  pbs:infill_material: [Füllungsmaterial, Füllung von]
+  bot:adjacentElement: [angrenzendes Bauteil (BOT), grenzt an Raum (BOT)]
+  bot:containsElement: [enthält Element (BOT), enthalten in (BOT)]
+  bot:intersectingElement: [schneidendes Bauteil (BOT), schneidet Raum (BOT)]
+  bot:hasSpace: [hat Raum (BOT), Raum von (BOT)]
+  bot:hasStorey: [hat Geschoss (BOT), Geschoss von (BOT)]
+  bot:hasBuilding: [hat Gebäude (BOT), Gebäude von (BOT)]
+  bot:containsZone: [enthält Zone (BOT), enthalten in (BOT)]
+  bot:hasElement: [hat Element (BOT), Element von (BOT)]
+
+slots:
+  rdf:type: Klassen
+  pbs:id: ID
+  pbs:name: Name
+  pbs:description: Beschreibung
+  pbs:content_kind: Inhaltsart
+  pbs:tags: Schlagworte
+  pbs:ifc_global_id: IFC-GlobalId
+  pbs:meaning_uri: Bedeutung (URI)
+  pbs:status: Status
+  pbs:created_at: Erstellt
+  pbs:modified_at: Geändert
+  pbs:revision: Revision
+  pbs:classifications: Klassifikationen
+  pbs:geometry_representations: Geometrien
+  pbs:quantity_values: Mengen
+  pbs:metadata: Metadaten
+  pbs:performance_properties: Leistungseigenschaften
+  pbs:localized_names: Übersetzte Namen
+  pbs:localized_descriptions: Übersetzte Beschreibungen
+  pbs:classification_scheme: Schema
+  pbs:classification_code: Code
+  pbs:classification_label: Bezeichnung
+  pbs:classification_uri: URI
+  pbs:classification_version: Version
+  pbs:classification_source: Quelle
+  pbs:geometry_reference: Referenz
+  pbs:geometry_representation: Darstellung
+  pbs:geometry_format: Format
+  pbs:geometry_wkt: WKT
+  pbs:bbox_min_x: Min. X
+  pbs:bbox_min_y: Min. Y
+  pbs:bbox_min_z: Min. Z
+  pbs:bbox_max_x: Max. X
+  pbs:bbox_max_y: Max. Y
+  pbs:bbox_max_z: Max. Z
+  pbs:quantity_type: Mengenart
+  pbs:quantity_value: Wert
+  pbs:quantity_unit: Einheit
+  pbs:quantity_unit_uri: Einheit (URI)
+  pbs:metadata_key: Schlüssel
+  pbs:metadata_value: Wert
+  pbs:property_key: Eigenschaft
+  pbs:property_value_type: Werttyp
+  pbs:property_value_string: Wert (Text)
+  pbs:property_value_number: Wert (Zahl)
+  pbs:property_value_boolean: Wert (ja/nein)
+  pbs:property_unit: Einheit
+  pbs:property_unit_uri: Einheit (URI)
+  pbs:source_pset: Quell-Pset
+  pbs:source_property: Quell-Eigenschaft
+  pbs:source_value_raw: Quellwert
+  pbs:mapping_version: Mapping-Version
+  pbs:language_tag: Sprache
+  pbs:text_value: Text
+  pbs:connection_physical_type: Verbindungsart
+  pbs:connection_functional_types: Funktionen
+  pbs:transport_medium: Transportmedium
+  pbs:separator_wall_type: Wandtyp
+  pbs:separator_slab_type: Deckentyp
+  pbs:boundary_type: Begrenzungstyp
+  pbs:equipment_type: Ausrüstungstyp
+  pbs:barrier_type: Sicherungstyp
+  pbs:context_type: Kontexttyp
+  pbs:zone_type: Zonentyp
+  pbs:space_type: Raumtyp
+  pbs:space_name_type: Raumbezeichnung
+  pbs:is_heated: beheizt
+  pbs:is_cooled: gekühlt
+  pbs:is_above_ground: über Terrain
+  pbs:elevation: Höhenkote
+  pbs:elevation_unit: Einheit der Kote
+  pbs:system_type: Systemtyp
+  pbs:system_discipline: Disziplin
+  pbs:reserved_volume_type: Freihaltetyp
+  pbs:connection_virtual_type: Verbindungstyp
+  pbs:project_code: Projektnummer
+  pbs:material_category: Materialkategorie
+  pbs:material_specification: Materialspezifikation
+
+values:
+  ifc:IfcQuantityArea: Fläche
+  ifc:IfcQuantityVolume: Volumen
+  ifc:IfcQuantityLength: Länge
+  pbs:quantity_type_count: Anzahl
+  pbs:quantity_type_ratio: Verhältnis
+  pbs:quantity_type_height_above_walking_surface: Höhe über Gehfläche
+  pbs:quantity_type_area_glazed: Glasfläche
+  pbs:quantity_type_glazing_ratio: Glasanteil
+  pbs:performance_property_value_type_string: Text
+  pbs:performance_property_value_type_number: Zahl
+  pbs:performance_property_value_type_boolean: ja/nein
+  pbs:status_draft: Entwurf
+  pbs:status_submitted: Eingereicht
+  pbs:status_reviewed: Geprüft
+  pbs:status_approved: Freigegeben
+  pbs:status_rejected: Abgelehnt
+  pbs:status_archived: Archiviert
+  pbs:fire_property_resistance_rating: Feuerwiderstand
+  pbs:fire_property_smoke_rating: Rauchdichtheit
+  pbs:fire_property_reaction_to_fire: Brandverhalten
+  pbs:acoustic_property_rating_db: Schalldämmmass
+  pbs:acoustic_property_impact_sound_rating_db: Trittschallpegel
+  pbs:acoustic_property_airborne_sound_rating_db: Luftschalldämmung
+  pbs:thermal_property_u_value: U-Wert
+  pbs:thermal_property_r_value: R-Wert
+  pbs:thermal_property_thermal_transmittance: Wärmedurchgangskoeffizient
+  pbs:thermal_property_is_external: Aussenbauteil
+  pbs:thermal_property_air_tightness_n50: Luftdichtheit n50
+  pbs:structural_property_load_bearing: tragend
+  pbs:structural_property_stiffness_class: Steifigkeitsklasse
+  pbs:structural_property_strength_class: Festigkeitsklasse
+  pbs:structural_property_design_area_load: Flächenlast
+  pbs:structural_property_design_point_load: Punktlast
+  pbs:structural_property_vibration_class: Schwingungsklasse
+  pbs:structural_property_seismic_structure_class: Bauwerksklasse Erdbeben
+  pbs:indoor_environment_winter_temperature_min: Wintertemperatur min.
+  pbs:indoor_environment_winter_temperature_max: Wintertemperatur max.
+  pbs:indoor_environment_summer_temperature_min: Sommertemperatur min.
+  pbs:indoor_environment_summer_temperature_max: Sommertemperatur max.
+  pbs:indoor_environment_relative_humidity_min: Relative Feuchte min.
+  pbs:indoor_environment_relative_humidity_max: Relative Feuchte max.
+  pbs:indoor_environment_outdoor_air_flow_rate: Aussenluft-Volumenstrom
+  pbs:indoor_environment_required_illuminance: Beleuchtungsstärke
+  pbs:indoor_environment_peak_occupancy: Max. Belegung
+  pbs:indoor_environment_daily_operating_hours: Betriebsstunden pro Tag
+  pbs:security_property_access_control_class: Zutrittskontrollklasse
+  pbs:security_property_intrusion_resistance_class: Widerstandsklasse
+  pbs:security_property_surveillance_coverage: Überwachungsabdeckung
+  pbs:material_property_name: Materialname
+  pbs:material_property_class: Materialklasse
+  pbs:material_property_density: Rohdichte
+  pbs:material_property_thermal_conductivity: Wärmeleitfähigkeit
+  pbs:environmental_property_gwp_embodied: Graue Treibhausgasemissionen
+  pbs:environmental_property_primary_energy_non_renewable_embodied: Graue Energie (nicht erneuerbar)

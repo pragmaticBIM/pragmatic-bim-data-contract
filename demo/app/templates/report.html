@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="{{ L.html_lang }}">
+<head>
+  <meta charset="utf-8">
+  <title>{{ t("Check report") }} – {{ job.meta.name }}</title>
+  <style>{{ css | safe }}</style>
+</head>
+<body>
+  <h1>{{ t("Check report") }}: {{ job.meta.name }}</h1>
+  <p class="muted">Pragmatic BIM data contract {{ conversion.contract_version }} · mapping {{ conversion.mapping_version }} · {{ t("checked") }} {{ job.status.updated_at | replace("T", " ") }}</p>
+
+  <h2>{{ t("Summary") }}</h2>
+  <dl class="facts">
+    <dt>{{ t("Source system") }}</dt><dd>{{ conversion.source_system }}</dd>
+    <dt>{{ t("Entities in the graph") }}</dt><dd>{{ job.status.nodes }}</dd>
+    <dt>{{ t("Relations") }}</dt><dd>{{ job.status.edges }}</dd>
+    <dt>{{ t("Checks") }}</dt><dd>{{ summary.fail }} {{ t("failing") }}, {{ summary.pass }} {{ t("passing") }}</dd>
+  </dl>
+
+  <table>
+    <thead><tr><th>{{ t("Check") }}</th><th>{{ t("Severity") }}</th><th>{{ t("Status") }}</th><th class="num">{{ t("Failing") }}</th><th class="num">{{ t("Checked") }}</th></tr></thead>
+    <tbody>
+    {% for c in checks %}
+      <tr>
+        <td>{% if c.failed %}<a href="#{{ c.id }}">{{ L.title(c) }}</a>{% else %}{{ L.title(c) }}{% endif %}</td>
+        <td class="sev-{{ c.severity }}">{{ t(c.severity) }}</td>
+        <td><span class="badge {{ c.status }}">{{ t(c.status) }}</span></td>
+        <td class="num">{{ c.failed | length }}</td>
+        <td class="num">{{ c.checked | length }}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+
+  <h2>{{ t("Findings") }}</h2>
+  {% for c in checks if c.failed %}
+    <h3 id="{{ c.id }}">{{ L.title(c) }} <span class="sev-{{ c.severity }}">({{ t(c.severity) }}, {{ c.failed | length }} / {{ c.checked | length }})</span></h3>
+    {% if L.description(c) %}<p class="muted">{{ L.description(c) }}</p>{% endif %}
+    {% if c.definition %}
+    <details><summary>{{ t("Rule") }} (SHACL)</summary><pre>{{ c.definition }}</pre></details>
+    {% endif %}
+    <table>
+      <thead><tr><th>{{ t("Element") }}</th><th>{{ t("Class") }}</th><th>GlobalId</th><th>{{ t("Finding") }}</th></tr></thead>
+      <tbody>
+      {% for item in c["items"] %}
+        {% set el = elements.get(item.guid) %}
+        <tr>
+          <td>{{ el.name if el else "" }}</td>
+          <td>{{ L.cls(el.cls) if el else "" }}</td>
+          <td class="mono">{{ item.guid }}</td>
+          <td>{{ L.message(item) }}</td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p>{{ t("No findings.") }}</p>
+  {% endfor %}
+
+  <h2>{{ t("Conversion") }}</h2>
+  <pre>{{ conversion.lines | join("\n") }}</pre>
+</body>
+</html>

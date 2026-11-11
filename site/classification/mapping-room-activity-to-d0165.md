@@ -42,8 +42,12 @@ External target labels are not shipped in this repository; only codes and IRIs a
 | `abs:S-HYG-WC` | `mapsToD0165` | `d0165:NNF-7-1` |
 | `abs:S-HYG-WC-F` | `mapsToD0165` | `d0165:NNF-7-1` |
 | `abs:S-HYG-WC-IV` | `mapsToD0165` | `d0165:NNF-7-1` |
+| `abs:S-HYG-WC-LRN` | `mapsToD0165` | `d0165:NNF-7-1` |
 | `abs:S-HYG-WC-M` | `mapsToD0165` | `d0165:NNF-7-1` |
 | `abs:S-HYG-WC-MIX` | `mapsToD0165` | `d0165:NNF-7-1` |
+| `abs:S-HYG-WC-STF` | `mapsToD0165` | `d0165:NNF-7-1` |
+| `abs:S-HYG-WC-TCH` | `mapsToD0165` | `d0165:NNF-7-1` |
+| `abs:S-HYG-WC-VIS` | `mapsToD0165` | `d0165:NNF-7-1` |
 | `abs:S-PRK` | `mapsToD0165` | `d0165:NNF-7-4` |
 | `abs:S-PRK-EXT` | `mapsToD0165` | `d0165:BUF-10-1` |
 | `abs:S-PRK-INT` | `mapsToD0165` | `d0165:NNF-7-4` |

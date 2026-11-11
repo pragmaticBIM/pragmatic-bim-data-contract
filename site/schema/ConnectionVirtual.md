@@ -67,7 +67,7 @@ click TimeRecord href "./TimeRecord.html" _blank
 | Name | Cardinality and Range | Description | Inheritance |
 | ---  | --- | --- | --- |
 | [connection_virtual_type](connection_virtual_type.md) | 1 <br/> [ConnectionVirtualType](ConnectionVirtualType.md) | Classification of virtual connection semantics (for example structural_joint, adjacency, access). | direct |
-| [connects_physical_elements](connects_physical_elements.md) | * <br/> [PhysicalElement](PhysicalElement.md) | Physical elements connected by this virtual connection (for example wall-wall, wall-slab). | direct |
+| [connects_physical_elements](connects_physical_elements.md) | * <br/> [PhysicalElement](PhysicalElement.md) | Physical elements connected to this one side by side (for example wall-wall junction, beam framing into a column). On a physical element the relation is symmetric and stated on both elements. From IfcRelConnectsElements / IfcRelConnectsPathElements, or computed from geometric contact. Bearing contact is rests_on. | direct |
 | [connects_spaces](connects_spaces.md) | * <br/> [Space](Space.md) | Spaces connected by this connection (for example the two spaces on either side of a door). | direct |
 | [connection_virtual_requirement_drivers](connection_virtual_requirement_drivers.md) | * <br/> [ConnectionRequirementDriver](ConnectionRequirementDriver.md) | Main requirement drivers for this virtual connection. | direct |
 | [cost_records](cost_records.md) | * <br/> [CostRecord](CostRecord.md) | Cost records associated with this entity. | [VirtualEntity](VirtualEntity.md) |
@@ -176,12 +176,15 @@ attributes:
     required: true
   connects_physical_elements:
     name: connects_physical_elements
-    description: Physical elements connected by this virtual connection (for example
-      wall-wall, wall-slab).
+    description: Physical elements connected to this one side by side (for example
+      wall-wall junction, beam framing into a column). On a physical element the relation
+      is symmetric and stated on both elements. From IfcRelConnectsElements / IfcRelConnectsPathElements,
+      or computed from geometric contact. Bearing contact is rests_on.
     from_schema: https://schema.pragmaticbim.ch
     rank: 1000
     owner: ConnectionVirtual
     domain_of:
+    - PhysicalElement
     - ConnectionVirtual
     range: PhysicalElement
     multivalued: true

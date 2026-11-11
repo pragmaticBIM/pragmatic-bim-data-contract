@@ -540,6 +540,17 @@
             "title": "ArtifactKind",
             "type": "string"
         },
+        "BarrierType": {
+            "description": "Classification of safety barriers (fall protection and guiding elements).",
+            "enum": [
+                "balustrade",
+                "guardrail",
+                "handrail",
+                "other"
+            ],
+            "title": "BarrierType",
+            "type": "string"
+        },
         "Boundary": {
             "additionalProperties": false,
             "description": "Physical element acting as a boundary treatment (for example covering).",
@@ -569,6 +580,16 @@
                     "description": "Classification entries from IFC and other schemes.",
                     "items": {
                         "$ref": "#/$defs/Classification"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "connects_physical_elements": {
+                    "description": "Physical elements connected to this one side by side (for example wall-wall junction, beam framing into a column). On a physical element the relation is symmetric and stated on both elements. From IfcRelConnectsElements / IfcRelConnectsPathElements, or computed from geometric contact. Bearing contact is rests_on.",
+                    "items": {
+                        "type": "string"
                     },
                     "type": [
                         "array",
@@ -694,6 +715,16 @@
                     "description": "Quantities associated with the entity.",
                     "items": {
                         "$ref": "#/$defs/QuantityValue"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "rests_on": {
+                    "description": "Elements this element sits on: its underside bears on their top (for example wall on slab, column on slab, slab on wall or column). Computed from geometric contact; it records contact, not a structural analysis result. The inverse (supports) is read by querying the slot from the other side.",
+                    "items": {
+                        "type": "string"
                     },
                     "type": [
                         "array",
@@ -2028,14 +2059,15 @@
                 "waste_water",
                 "special_media",
                 "access",
-                "visual"
+                "visual",
+                "load_transfer"
             ],
             "title": "ConnectionFunctionalType",
             "type": "string"
         },
         "ConnectionPhysical": {
             "additionalProperties": false,
-            "description": "Physical connector providing functional connection between spaces (for example door, window, duct, pipe, cable).",
+            "description": "Physical connector providing functional connection between spaces (for example door, window, duct, pipe, cable) or carrying loads between elements (column, beam).",
             "properties": {
                 "applies_to_entities": {
                     "description": "Model entities this record applies to (requirements, cost items, schedule items, etc.).",
@@ -2077,6 +2109,16 @@
                 "connection_physical_type": {
                     "$ref": "#/$defs/ConnectionPhysicalType",
                     "description": "IFC-derived physical connector form (for example door, window, duct, pipe, cable). Semantic role is expressed via connection_functional_types."
+                },
+                "connects_physical_elements": {
+                    "description": "Physical elements connected to this one side by side (for example wall-wall junction, beam framing into a column). On a physical element the relation is symmetric and stated on both elements. From IfcRelConnectsElements / IfcRelConnectsPathElements, or computed from geometric contact. Bearing contact is rests_on.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
                 },
                 "connects_spaces": {
                     "description": "Spaces connected by this connection (for example the two spaces on either side of a door).",
@@ -2125,6 +2167,13 @@
                         "null"
                     ]
                 },
+                "hosted_by": {
+                    "description": "Host element whose opening this connector fills (for example the wall a door or window sits in). From IfcRelFillsElement and IfcRelVoidsElement, or computed from geometry when the IFC chain is missing.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
                 "id": {
                     "description": "Unique local identifier.",
                     "type": "string"
@@ -2141,6 +2190,16 @@
                     "description": "Material of the opening infill within the frame (for example glazing for windows, door leaf or panel for doors). Applies to opening-type connectors (door, window).",
                     "type": [
                         "string",
+                        "null"
+                    ]
+                },
+                "lit_space": {
+                    "description": "Interior spaces that receive daylight through this window. From space boundaries or computed from geometry (adjacent or nearest interior space).",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
                         "null"
                     ]
                 },
@@ -2227,6 +2286,16 @@
                         "null"
                     ]
                 },
+                "rests_on": {
+                    "description": "Elements this element sits on: its underside bears on their top (for example wall on slab, column on slab, slab on wall or column). Computed from geometric contact; it records contact, not a structural analysis result. The inverse (supports) is read by querying the slot from the other side.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "revision": {
                     "description": "Integer revision counter for change tracking.",
                     "minimum": 0,
@@ -2256,7 +2325,7 @@
             "type": "object"
         },
         "ConnectionPhysicalType": {
-            "description": "Classification of physical connector elements that connect spaces.",
+            "description": "Classification of physical connector elements that connect spaces or carry loads between elements.",
             "enum": [
                 "door",
                 "window",
@@ -2265,7 +2334,9 @@
                 "cable",
                 "conduit",
                 "opening_other",
-                "network_other"
+                "network_other",
+                "column",
+                "beam"
             ],
             "title": "ConnectionPhysicalType",
             "type": "string"
@@ -2323,7 +2394,7 @@
                     "description": "Classification of virtual connection semantics (for example structural_joint, adjacency, access)."
                 },
                 "connects_physical_elements": {
-                    "description": "Physical elements connected by this virtual connection (for example wall-wall, wall-slab).",
+                    "description": "Physical elements connected to this one side by side (for example wall-wall junction, beam framing into a column). On a physical element the relation is symmetric and stated on both elements. From IfcRelConnectsElements / IfcRelConnectsPathElements, or computed from geometric contact. Bearing contact is rests_on.",
                     "items": {
                         "type": "string"
                     },
@@ -4281,6 +4352,16 @@
                         "null"
                     ]
                 },
+                "connects_physical_elements": {
+                    "description": "Physical elements connected to this one side by side (for example wall-wall junction, beam framing into a column). On a physical element the relation is symmetric and stated on both elements. From IfcRelConnectsElements / IfcRelConnectsPathElements, or computed from geometric contact. Bearing contact is rests_on.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "content_kind": {
                     "const": "physical",
                     "description": "Entity type discriminator for adapter projection and querying. Must be a ContentKind value.",
@@ -4421,6 +4502,16 @@
                     "description": "Quantities associated with the entity.",
                     "items": {
                         "$ref": "#/$defs/QuantityValue"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "rests_on": {
+                    "description": "Elements this element sits on: its underside bears on their top (for example wall on slab, column on slab, slab on wall or column). Computed from geometric contact; it records contact, not a structural analysis result. The inverse (supports) is read by querying the slot from the other side.",
+                    "items": {
+                        "type": "string"
                     },
                     "type": [
                         "array",
@@ -4672,6 +4763,48 @@
             "additionalProperties": false,
             "description": "Minimal geometry reference for an entity, separating representation from encoding format.",
             "properties": {
+                "bbox_max_x": {
+                    "description": "Axis-aligned bounding box maximum X in project coordinates (metres).",
+                    "type": [
+                        "number",
+                        "null"
+                    ]
+                },
+                "bbox_max_y": {
+                    "description": "Axis-aligned bounding box maximum Y in project coordinates (metres).",
+                    "type": [
+                        "number",
+                        "null"
+                    ]
+                },
+                "bbox_max_z": {
+                    "description": "Axis-aligned bounding box maximum Z (top elevation) in project coordinates (metres).",
+                    "type": [
+                        "number",
+                        "null"
+                    ]
+                },
+                "bbox_min_x": {
+                    "description": "Axis-aligned bounding box minimum X in project coordinates (metres).",
+                    "type": [
+                        "number",
+                        "null"
+                    ]
+                },
+                "bbox_min_y": {
+                    "description": "Axis-aligned bounding box minimum Y in project coordinates (metres).",
+                    "type": [
+                        "number",
+                        "null"
+                    ]
+                },
+                "bbox_min_z": {
+                    "description": "Axis-aligned bounding box minimum Z (bottom elevation) in project coordinates (metres).",
+                    "type": [
+                        "number",
+                        "null"
+                    ]
+                },
                 "geometry_format": {
                     "description": "Optional serialization/encoding format (for example ifc, gltf, wkt, geojson), independent of representation kind.",
                     "type": [
@@ -4686,6 +4819,13 @@
                 "geometry_representation": {
                     "$ref": "#/$defs/GeometryRepresentationType",
                     "description": "Representation kind/dimension (for example body_3d, footprint_2d, point), independent of file format."
+                },
+                "geometry_wkt": {
+                    "description": "Inline WKT payload for small 2D representations (for example a footprint_2d polygon in project coordinates, metres).",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
                 }
             },
             "required": [
@@ -7307,6 +7447,16 @@
                         "null"
                     ]
                 },
+                "connects_physical_elements": {
+                    "description": "Physical elements connected to this one side by side (for example wall-wall junction, beam framing into a column). On a physical element the relation is symmetric and stated on both elements. From IfcRelConnectsElements / IfcRelConnectsPathElements, or computed from geometric contact. Bearing contact is rests_on.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "content_kind": {
                     "const": "physical",
                     "description": "Entity type discriminator for adapter projection and querying. Must be a ContentKind value.",
@@ -7426,6 +7576,16 @@
                     "description": "Quantities associated with the entity.",
                     "items": {
                         "$ref": "#/$defs/QuantityValue"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "rests_on": {
+                    "description": "Elements this element sits on: its underside bears on their top (for example wall on slab, column on slab, slab on wall or column). Computed from geometric contact; it records contact, not a structural analysis result. The inverse (supports) is read by querying the slot from the other side.",
+                    "items": {
+                        "type": "string"
                     },
                     "type": [
                         "array",
@@ -8424,7 +8584,10 @@
                 "height",
                 "perimeter",
                 "count",
-                "ratio"
+                "ratio",
+                "height_above_walking_surface",
+                "area_glazed",
+                "glazing_ratio"
             ],
             "title": "QuantityType",
             "type": "string"
@@ -8980,6 +9143,445 @@
             "title": "RequirementTargetOperator",
             "type": "string"
         },
+        "ReservedVolume": {
+            "additionalProperties": false,
+            "description": "Volume that must stay clear of building elements (maintenance space, installation path, structural exclusion zone, movement clearance, device space). Modelled as a proxy volume and identified through the pragmaticBIM Reference element definition.",
+            "properties": {
+                "applies_to_entities": {
+                    "description": "Model entities this record applies to (requirements, cost items, schedule items, etc.).",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "classifications": {
+                    "description": "Classification entries from IFC and other schemes.",
+                    "items": {
+                        "$ref": "#/$defs/Classification"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "content_kind": {
+                    "const": "virtual",
+                    "description": "Entity type discriminator for adapter projection and querying. Must be a ContentKind value.",
+                    "type": "string"
+                },
+                "cost_records": {
+                    "description": "Cost records associated with this entity.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "created_at": {
+                    "description": "Creation timestamp for this entity record.",
+                    "format": "date-time",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "Default description text.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "geometry_representations": {
+                    "description": "Geometry references associated with the entity. A single element may link to multiple geometry representations to serve different intents (authoring, coordination, analysis, visualization) without duplicating the element itself.\n",
+                    "items": {
+                        "$ref": "#/$defs/GeometryRepresentation"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "description": "Unique local identifier.",
+                    "type": "string"
+                },
+                "ifc_global_id": {
+                    "description": "IFC GlobalId of the mapped entity.",
+                    "pattern": "^[0-3][0-9A-Za-z_$]{21}$",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "intersects_elements": {
+                    "description": "Physical elements whose body overlaps this reserved volume beyond the configured tolerance. Computed from geometry; an empty value means the volume is clear.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "localized_descriptions": {
+                    "description": "Localized variants of description.",
+                    "items": {
+                        "$ref": "#/$defs/LocalizedText"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "localized_names": {
+                    "description": "Localized variants of name.",
+                    "items": {
+                        "$ref": "#/$defs/LocalizedText"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "materials": {
+                    "description": "Material definitions associated with this entity.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "meaning_uri": {
+                    "description": "Optional semantic URI for linking the entity instance to an external ontology concept.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "metadata": {
+                    "description": "Generic metadata container for IFC attributes/properties and project-specific extensions.",
+                    "items": {
+                        "$ref": "#/$defs/MetadataEntry"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "modified_at": {
+                    "description": "Last modification timestamp for this entity record.",
+                    "format": "date-time",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "description": "Default display name.",
+                    "type": "string"
+                },
+                "parent_building": {
+                    "description": "Parent building context reference.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "parent_level": {
+                    "description": "Parent level/storey context reference.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "parent_space": {
+                    "description": "Parent space where the equipment is located.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "performance_properties": {
+                    "description": "Normalized, strongly typed domain properties (fire/acoustic/thermal/structural/ security/material) extracted from raw IFC PropertySet values.\n",
+                    "items": {
+                        "$ref": "#/$defs/PerformanceProperty"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "quantity_values": {
+                    "description": "Quantities associated with the entity.",
+                    "items": {
+                        "$ref": "#/$defs/QuantityValue"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "reserved_volume_type": {
+                    "$ref": "#/$defs/ReservedVolumeType",
+                    "description": "Purpose of the reserved volume."
+                },
+                "revision": {
+                    "description": "Integer revision counter for change tracking.",
+                    "minimum": 0,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "status": {
+                    "$ref": "#/$defs/StatusType",
+                    "description": "Lifecycle or QA status."
+                },
+                "time_records": {
+                    "description": "Time records associated with this entity.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "reserved_volume_type",
+                "id",
+                "content_kind",
+                "name"
+            ],
+            "title": "ReservedVolume",
+            "type": "object"
+        },
+        "ReservedVolumeType": {
+            "description": "Purpose of a reserved volume that must stay clear of building elements.",
+            "enum": [
+                "maintenance",
+                "installation_path",
+                "exclusion_zone",
+                "movement_clearance",
+                "device_space"
+            ],
+            "title": "ReservedVolumeType",
+            "type": "string"
+        },
+        "SafetyBarrier": {
+            "additionalProperties": false,
+            "description": "Linear fall protection or guiding element (balustrade, guardrail, handrail) along slab, balcony, roof, landing, stair, or ramp edges.",
+            "properties": {
+                "applies_to_entities": {
+                    "description": "Model entities this record applies to (requirements, cost items, schedule items, etc.).",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "barrier_type": {
+                    "$ref": "#/$defs/BarrierType",
+                    "description": "Classification of the safety barrier (balustrade, guardrail, handrail)."
+                },
+                "classifications": {
+                    "description": "Classification entries from IFC and other schemes.",
+                    "items": {
+                        "$ref": "#/$defs/Classification"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "connects_physical_elements": {
+                    "description": "Physical elements connected to this one side by side (for example wall-wall junction, beam framing into a column). On a physical element the relation is symmetric and stated on both elements. From IfcRelConnectsElements / IfcRelConnectsPathElements, or computed from geometric contact. Bearing contact is rests_on.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "content_kind": {
+                    "const": "physical",
+                    "description": "Entity type discriminator for adapter projection and querying. Must be a ContentKind value.",
+                    "type": "string"
+                },
+                "created_at": {
+                    "description": "Creation timestamp for this entity record.",
+                    "format": "date-time",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "Default description text.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "geometry_representations": {
+                    "description": "Geometry references associated with the entity. A single element may link to multiple geometry representations to serve different intents (authoring, coordination, analysis, visualization) without duplicating the element itself.\n",
+                    "items": {
+                        "$ref": "#/$defs/GeometryRepresentation"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "guards_space": {
+                    "description": "Spaces whose walking surface this barrier protects against falls. Computed from geometry: the barrier footprint lies within a tolerance of the space footprint and the space floor is at or below the barrier base.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "description": "Unique local identifier.",
+                    "type": "string"
+                },
+                "ifc_global_id": {
+                    "description": "IFC GlobalId of the mapped entity.",
+                    "pattern": "^[0-3][0-9A-Za-z_$]{21}$",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "localized_descriptions": {
+                    "description": "Localized variants of description.",
+                    "items": {
+                        "$ref": "#/$defs/LocalizedText"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "localized_names": {
+                    "description": "Localized variants of name.",
+                    "items": {
+                        "$ref": "#/$defs/LocalizedText"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "meaning_uri": {
+                    "description": "Optional semantic URI for linking the entity instance to an external ontology concept.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "metadata": {
+                    "description": "Generic metadata container for IFC attributes/properties and project-specific extensions.",
+                    "items": {
+                        "$ref": "#/$defs/MetadataEntry"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "modified_at": {
+                    "description": "Last modification timestamp for this entity record.",
+                    "format": "date-time",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "description": "Default display name.",
+                    "type": "string"
+                },
+                "parent_building": {
+                    "description": "Parent building context reference.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "parent_level": {
+                    "description": "Parent level/storey context reference.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "performance_properties": {
+                    "description": "Normalized, strongly typed domain properties (fire/acoustic/thermal/structural/ security/material) extracted from raw IFC PropertySet values.\n",
+                    "items": {
+                        "$ref": "#/$defs/PerformanceProperty"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "quantity_values": {
+                    "description": "Quantities associated with the entity.",
+                    "items": {
+                        "$ref": "#/$defs/QuantityValue"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "rests_on": {
+                    "description": "Elements this element sits on: its underside bears on their top (for example wall on slab, column on slab, slab on wall or column). Computed from geometric contact; it records contact, not a structural analysis result. The inverse (supports) is read by querying the slot from the other side.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "revision": {
+                    "description": "Integer revision counter for change tracking.",
+                    "minimum": 0,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "status": {
+                    "$ref": "#/$defs/StatusType",
+                    "description": "Lifecycle or QA status."
+                }
+            },
+            "required": [
+                "barrier_type",
+                "id",
+                "content_kind",
+                "name"
+            ],
+            "title": "SafetyBarrier",
+            "type": "object"
+        },
         "ScheduleRequirement": {
             "additionalProperties": false,
             "description": "Schedule obligation requirement (deadline, milestone, or start/finish window).",
@@ -9283,6 +9885,16 @@
                         "null"
                     ]
                 },
+                "connects_physical_elements": {
+                    "description": "Physical elements connected to this one side by side (for example wall-wall junction, beam framing into a column). On a physical element the relation is symmetric and stated on both elements. From IfcRelConnectsElements / IfcRelConnectsPathElements, or computed from geometric contact. Bearing contact is rests_on.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "content_kind": {
                     "const": "physical",
                     "description": "Entity type discriminator for adapter projection and querying. Must be a ContentKind value.",
@@ -9402,6 +10014,16 @@
                     "description": "Quantities associated with the entity.",
                     "items": {
                         "$ref": "#/$defs/QuantityValue"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "rests_on": {
+                    "description": "Elements this element sits on: its underside bears on their top (for example wall on slab, column on slab, slab on wall or column). Computed from geometric contact; it records contact, not a structural analysis result. The inverse (supports) is read by querying the slot from the other side.",
+                    "items": {
+                        "type": "string"
                     },
                     "type": [
                         "array",
@@ -9486,6 +10108,16 @@
                         "null"
                     ]
                 },
+                "connects_physical_elements": {
+                    "description": "Physical elements connected to this one side by side (for example wall-wall junction, beam framing into a column). On a physical element the relation is symmetric and stated on both elements. From IfcRelConnectsElements / IfcRelConnectsPathElements, or computed from geometric contact. Bearing contact is rests_on.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "content_kind": {
                     "const": "physical",
                     "description": "Entity type discriminator for adapter projection and querying. Must be a ContentKind value.",
@@ -9605,6 +10237,16 @@
                     "description": "Quantities associated with the entity.",
                     "items": {
                         "$ref": "#/$defs/QuantityValue"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "rests_on": {
+                    "description": "Elements this element sits on: its underside bears on their top (for example wall on slab, column on slab, slab on wall or column). Computed from geometric contact; it records contact, not a structural analysis result. The inverse (supports) is read by querying the slot from the other side.",
+                    "items": {
+                        "type": "string"
                     },
                     "type": [
                         "array",
@@ -9702,6 +10344,16 @@
                         "null"
                     ]
                 },
+                "connects_physical_elements": {
+                    "description": "Physical elements connected to this one side by side (for example wall-wall junction, beam framing into a column). On a physical element the relation is symmetric and stated on both elements. From IfcRelConnectsElements / IfcRelConnectsPathElements, or computed from geometric contact. Bearing contact is rests_on.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "content_kind": {
                     "const": "physical",
                     "description": "Entity type discriminator for adapter projection and querying. Must be a ContentKind value.",
@@ -9821,6 +10473,16 @@
                     "description": "Quantities associated with the entity.",
                     "items": {
                         "$ref": "#/$defs/QuantityValue"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "rests_on": {
+                    "description": "Elements this element sits on: its underside bears on their top (for example wall on slab, column on slab, slab on wall or column). Computed from geometric contact; it records contact, not a structural analysis result. The inverse (supports) is read by querying the slot from the other side.",
+                    "items": {
+                        "type": "string"
                     },
                     "type": [
                         "array",
@@ -10371,6 +11033,10 @@
                 "rn_04_10_02",
                 "rn_04_10_03",
                 "rn_04_10_04",
+                "rn_04_10_05",
+                "rn_04_10_06",
+                "rn_04_10_07",
+                "rn_04_10_08",
                 "rn_04_20_01",
                 "rn_04_20_02",
                 "rn_04_20_03",
@@ -11923,7 +12589,8 @@
                 "liquid",
                 "gas",
                 "electricity",
-                "data"
+                "data",
+                "structural_load"
             ],
             "title": "TransportMedium",
             "type": "string"

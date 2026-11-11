@@ -29,6 +29,7 @@ Separator <|-- SeparatorWall
 click Separator href "./Separator.html" _blank
 click Entity href "./Entity.html" _blank
 click Classification href "./Classification.html" _blank
+click PhysicalElement href "./PhysicalElement.html" _blank
 click GeometryRepresentation href "./GeometryRepresentation.html" _blank
 click LocalizedText href "./LocalizedText.html" _blank
 click LocalizedText href "./LocalizedText.html" _blank
@@ -37,6 +38,7 @@ click BuiltAssetContext href "./BuiltAssetContext.html" _blank
 click LevelContext href "./LevelContext.html" _blank
 click PerformanceProperty href "./PerformanceProperty.html" _blank
 click QuantityValue href "./QuantityValue.html" _blank
+click PhysicalElement href "./PhysicalElement.html" _blank
 click Space href "./Space.html" _blank
 click SeparatorRequirementDriver href "./SeparatorRequirementDriver.html" _blank
 click SeparatorWallType href "./SeparatorWallType.html" _blank
@@ -70,6 +72,8 @@ click StatusType href "./StatusType.html" _blank
 | [separates_spaces](separates_spaces.md) | * <br/> [Space](Space.md) | Spaces separated by this separator element. | [Separator](Separator.md) |
 | [parent_building](parent_building.md) | 0..1 <br/> [BuiltAssetContext](BuiltAssetContext.md) | Parent building context reference. | [PhysicalElement](PhysicalElement.md) |
 | [parent_level](parent_level.md) | 0..1 <br/> [LevelContext](LevelContext.md) | Parent level/storey context reference. | [PhysicalElement](PhysicalElement.md) |
+| [rests_on](rests_on.md) | * <br/> [PhysicalElement](PhysicalElement.md) | Elements this element sits on: its underside bears on their top (for example wall on slab, column on slab, slab on wall or column). Computed from geometric contact; it records contact, not a structural analysis result. The inverse (supports) is read by querying the slot from the other side. | [PhysicalElement](PhysicalElement.md) |
+| [connects_physical_elements](connects_physical_elements.md) | * <br/> [PhysicalElement](PhysicalElement.md) | Physical elements connected to this one side by side (for example wall-wall junction, beam framing into a column). On a physical element the relation is symmetric and stated on both elements. From IfcRelConnectsElements / IfcRelConnectsPathElements, or computed from geometric contact. Bearing contact is rests_on. | [PhysicalElement](PhysicalElement.md) |
 | [id](id.md) | 1 <br/> [String](String.md) | Unique local identifier. | [Entity](Entity.md) |
 | [content_kind](content_kind.md) | 1 <br/> [String](String.md) | Entity type discriminator for adapter projection and querying. Must be a ContentKind value. | [Entity](Entity.md) |
 | [name](name.md) | 1 <br/> [String](String.md) | Default display name. | [Entity](Entity.md) |
@@ -205,6 +209,7 @@ attributes:
     - PhysicalElement
     - SpatialContext
     - Space
+    - ReservedVolume
     - System
     range: BuiltAssetContext
   parent_level:
@@ -217,7 +222,35 @@ attributes:
     - PhysicalElement
     - SpatialContext
     - Space
+    - ReservedVolume
     range: LevelContext
+  rests_on:
+    name: rests_on
+    description: 'Elements this element sits on: its underside bears on their top
+      (for example wall on slab, column on slab, slab on wall or column). Computed
+      from geometric contact; it records contact, not a structural analysis result.
+      The inverse (supports) is read by querying the slot from the other side.'
+    from_schema: https://schema.pragmaticbim.ch
+    rank: 1000
+    owner: SeparatorWall
+    domain_of:
+    - PhysicalElement
+    range: PhysicalElement
+    multivalued: true
+  connects_physical_elements:
+    name: connects_physical_elements
+    description: Physical elements connected to this one side by side (for example
+      wall-wall junction, beam framing into a column). On a physical element the relation
+      is symmetric and stated on both elements. From IfcRelConnectsElements / IfcRelConnectsPathElements,
+      or computed from geometric contact. Bearing contact is rests_on.
+    from_schema: https://schema.pragmaticbim.ch
+    rank: 1000
+    owner: SeparatorWall
+    domain_of:
+    - PhysicalElement
+    - ConnectionVirtual
+    range: PhysicalElement
+    multivalued: true
   id:
     name: id
     description: Unique local identifier.

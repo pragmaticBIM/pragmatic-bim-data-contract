@@ -21,3 +21,4 @@ func:waste_water skos:relatedMatch phys:pipe .
 func:special_media skos:relatedMatch phys:pipe, phys:network_other .
 func:access skos:relatedMatch phys:door, phys:opening_other .
 func:visual skos:relatedMatch phys:window, phys:opening_other .
+func:load_transfer skos:relatedMatch phys:column, phys:beam .

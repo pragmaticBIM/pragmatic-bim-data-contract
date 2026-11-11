@@ -706,6 +706,45 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Geometry roles">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#geometry-output-ifc2rdf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Geometry output (ifc2rdf)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#element-identification-pragmaticbim-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Element identification (pragmaticBIM Reference)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#computed-relations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Computed relations
+      
+    </span>
+  </a>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1260,6 +1299,45 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Geometry roles">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#geometry-output-ifc2rdf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Geometry output (ifc2rdf)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#element-identification-pragmaticbim-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Element identification (pragmaticBIM Reference)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#computed-relations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Computed relations
+      
+    </span>
+  </a>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1493,6 +1571,7 @@
 _conventions.yaml         ← conventions + metadata anchors
 _pset_fallbacks.yaml      ← tool-specific pset lists
 _relationships.yaml
+_computed_relations.yaml  ← relations and quantities computed from geometry
 _fragments.yaml           ← geometry / field fragments (uses pset anchors)
 entities/architectural.yaml
 entities/hvac.yaml        ← entity blocks (indented under entities:)
@@ -1540,6 +1619,14 @@ ifc_mapping.merged.yaml   ← single file for adapters
 <tr>
 <td>New relationship rule</td>
 <td><code>_relationships.yaml</code></td>
+</tr>
+<tr>
+<td>Geometric relation, threshold, or computed quantity</td>
+<td><code>_computed_relations.yaml</code></td>
+</tr>
+<tr>
+<td>IFC class whose contract class depends on the pragmaticBIM Reference match</td>
+<td>entity block with <code>reference_element_map</code></td>
 </tr>
 <tr>
 <td>Metadata / GlobalId conventions</td>
@@ -1799,20 +1886,21 @@ ifc_mapping.merged.yaml   ← single file for adapters
 <p><strong>Variant suffixes</strong> disambiguate IFC <code>PredefinedType</code> or transport role without inventing new PBS classes:</p>
 <ul>
 <li><code>SeparatorSlab.floor</code>, <code>.roof</code>, <code>.baseslab</code></li>
-<li><code>ConnectionPhysical.duct</code>, <code>.pipe</code>, <code>.network_other</code></li>
+<li><code>ConnectionPhysical.duct</code>, <code>.pipe</code>, <code>.network_other</code>, <code>.column</code>, <code>.beam</code></li>
 <li><code>Boundary.ceiling</code>, <code>.flooring</code>, <code>.cladding</code></li>
 </ul>
 <hr />
 <h2 id="yaml-file-structure">YAML file structure<a class="headerlink" href="#yaml-file-structure" title="Permanent link">&para;</a></h2>
 <p>The entrypoint <a href="ifc_mapping.yaml"><code>ifc_mapping.yaml</code></a> declares version metadata and an <code>imports</code> list. Split modules compose the full mapping (see <strong>File layout and merge workflow</strong> above). Adapters typically load <a href="ifc_mapping.merged.yaml"><code>ifc_mapping.merged.yaml</code></a>.</p>
 <p>Merged structure:</p>
-<div class="highlight"><pre><span></span><code><span class="nt">mapping_version</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;1.4.0&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="nt">mapping_version</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;1.5.0&quot;</span>
 <span class="nt">schema_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://schema.pragmaticbim.ch/</span>
 <span class="nt">canonical_type_version</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;v0.0.7&quot;</span>
 
 <span class="nt">conventions</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">...</span>
 <span class="nt">pset_fallbacks</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">...</span>
 <span class="nt">relationships</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="nt">computed_relations</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">...</span>
 <span class="nt">fragments</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">...</span>
 <span class="nt">entities</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">...</span>
 <span class="nt">templates</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">...</span>
@@ -1833,7 +1921,11 @@ ifc_mapping.merged.yaml   ← single file for adapters
 </tr>
 <tr>
 <td><code>canonical_type</code></td>
-<td>PBS class (fixed or via <code>predefined_type_map</code>)</td>
+<td>PBS class (fixed, or selected through <code>canonical_type_from</code>)</td>
+</tr>
+<tr>
+<td><code>canonical_type_from</code></td>
+<td><code>predefined_type_map</code> (IFC <code>PredefinedType</code>) or <code>reference_element_map</code> (pragmaticBIM Reference match, see <a href="#element-identification-pragmaticbim-reference">Element identification</a>)</td>
 </tr>
 <tr>
 <td><code>inherits</code></td>
@@ -2053,7 +2145,7 @@ ifc_mapping.merged.yaml   ← single file for adapters
 <span class="w">      </span><span class="nt">&quot;source_pset&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Pset_WallCommon&quot;</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;source_property&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;FireRating&quot;</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;source_value_raw&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;EI 60&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;mapping_version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.4.0&quot;</span>
+<span class="w">      </span><span class="nt">&quot;mapping_version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.5.0&quot;</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">  </span><span class="p">],</span>
 <span class="w">  </span><span class="nt">&quot;metadata&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
@@ -2402,18 +2494,23 @@ ifc_mapping.merged.yaml   ← single file for adapters
 </tr>
 <tr>
 <td><code>IfcRelConnectsElements</code></td>
-<td><code>connects_physical_elements</code></td>
+<td><code>connects_physical_elements</code> (<code>symmetric</code>: stated on both elements)</td>
 <td>Structural joints, host connections</td>
 </tr>
 <tr>
 <td><code>IfcRelConnectsPathElements</code></td>
-<td><code>connects_physical_elements</code></td>
-<td>Duct/pipe run connectivity</td>
+<td><code>connects_physical_elements</code> (<code>symmetric</code>)</td>
+<td>Wall-wall junctions, duct/pipe run connectivity</td>
 </tr>
 <tr>
 <td><code>IfcRelFillsElement</code></td>
 <td><code>connects_physical_elements</code></td>
 <td>Door/window ↔ opening</td>
+</tr>
+<tr>
+<td><code>IfcRelVoidsElement</code></td>
+<td><code>hosted_by</code> (<code>chain_relation_type</code>)</td>
+<td>Door/window → wall: <code>IfcRelFillsElement</code> to the opening, then <code>IfcRelVoidsElement</code> to the host</td>
 </tr>
 <tr>
 <td><code>IfcRelServicesBuildings</code></td>
@@ -2460,9 +2557,190 @@ ifc_mapping.merged.yaml   ← single file for adapters
 <td><code>point</code></td>
 </tr>
 <tr>
-<td>Beams/columns (<code>ConnectionVirtual</code>)</td>
+<td>Beams/columns (<code>ConnectionPhysical</code>)</td>
 <td><code>axis</code></td>
+<td><code>body_3d</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="geometry-output-ifc2rdf">Geometry output (ifc2rdf)<a class="headerlink" href="#geometry-output-ifc2rdf" title="Permanent link">&para;</a></h3>
+<p><code>ifc2rdf</code> tessellates every mapped <code>IfcProduct</code> once (IfcOpenShell, world coordinates, metres). From that single pass it writes:</p>
+<ul>
+<li>an optional GLB file (<code>--geometry-out</code>) with one node per product, <strong>named by the IFC GlobalId</strong>, so viewers resolve RDF nodes to meshes without a lookup table;</li>
+<li>per node, one <code>pbs:GeometryRepresentation</code> for each role the entity block lists that the converter can produce (<code>computed_relations.geometry.representations</code>):</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Role</th>
+<th><code>geometry_reference</code></th>
+<th><code>geometry_format</code></th>
+<th>Payload</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>body_3d</code></td>
+<td><code>{glb file}#{GlobalId}</code> (or <code>{ifc file}#{GlobalId}</code> without GLB)</td>
+<td><code>gltf</code> (or <code>ifc</code>)</td>
+<td><code>bbox_min_*</code> / <code>bbox_max_*</code></td>
+</tr>
+<tr>
+<td><code>footprint_2d</code></td>
+<td><code>{ifc file}#{GlobalId}</code></td>
+<td><code>wkt</code></td>
+<td><code>geometry_wkt</code> (plan outline, union of the projected triangles) and the bounding box</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>a <code>height</code> quantity (bounding-box height, <code>m</code>).</li>
+</ul>
+<p>Roles the converter does not compute (<code>axis</code>, <code>point</code>) are not written. Products without a tessellated body are listed in the report (<code>geometry failed</code>). <code>--no-geometry</code> skips the pass and every computed relation.</p>
+<hr />
+<h2 id="element-identification-pragmaticbim-reference">Element identification (pragmaticBIM Reference)<a class="headerlink" href="#element-identification-pragmaticbim-reference" title="Permanent link">&para;</a></h2>
+<p>Element definitions come from a <a href="https://pragmaticbim.ch">pragmaticBIM-reference</a> checkout (<code>elements/*.yaml</code>), located by <code>--reference</code>, <code>$PBS_REFERENCE_PATH</code>, or the sibling checkout <code>../elementplan/pragmaticBIM-reference</code>. Each definition's <code>applicability</code> expression is evaluated against every IFC object:</p>
+<div class="highlight"><pre><span></span><code>(entity_ifc4=IfcBuildingElementProxy AND PredefinedType=USERDEFINED AND ObjectType=Wartungsraum)
+  OR (entity_ifc2x3=IfcBuildingElementProxy AND ObjectType=Wartungsraum)
+</code></pre></div>
+<ul>
+<li>Clauses: <code>NAME=VALUE</code>, bare <code>NAME</code> (attribute or property is set), <code>Pset.Property=VALUE</code>, and <code>entity_ifc2x3</code> / <code>entity_ifc4</code> / <code>entity_ifc4_3</code> for the IFC class (IFC4X3 files also accept <code>entity_ifc4</code> when the expression has no <code>entity_ifc4_3</code> clause). A bare <code>NAME</code> is looked up as an IFC attribute first, then in every property set.</li>
+<li>All language variants (<code>de</code>, <code>en</code>, <code>fr</code>, <code>it</code>) are evaluated; any match counts.</li>
+<li><strong>Specificity:</strong> the score is the number of clauses satisfied by the matching branch. The highest score wins, so <code>architecture-slab-balcony</code> (4 clauses) beats <code>structural-slab-floor</code> (2). Ties are kept and listed as <code>ambiguous reference match</code> in the report.</li>
+</ul>
+<p>The best match(es) are written as classifications:</p>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>classification_scheme</code></td>
+<td><code>pragmaticbim-element</code></td>
+</tr>
+<tr>
+<td><code>classification_code</code></td>
+<td>element <code>code</code> (for example <code>ARC-RAILING</code>)</td>
+</tr>
+<tr>
+<td><code>classification_uri</code></td>
+<td><code>https://pragmaticbim.ch/id/element/{id}</code></td>
+</tr>
+<tr>
+<td><code>classification_version</code></td>
+<td><code>git describe</code> of the reference checkout</td>
+</tr>
+<tr>
+<td><code>classification_source</code></td>
+<td><code>pragmaticBIM-reference</code></td>
+</tr>
+</tbody>
+</table>
+<p>Entity blocks with <code>canonical_type_from: reference_element_map</code> choose the contract class from the match. IFC objects without a listed match are not converted and are counted as <code>no reference match</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">IfcBuildingElementProxy</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">content_kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">virtual</span>
+<span class="w">  </span><span class="nt">canonical_type_from</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">reference_element_map</span>
+<span class="w">  </span><span class="nt">reference_element_map</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">pragmaticbim:element/architecture-maintenance-space</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">canonical_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ReservedVolume.maintenance</span>
+<span class="w">      </span><span class="nt">reserved_volume_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">maintenance</span>
+</code></pre></div>
+<p>Without a reference checkout the stage is skipped (<code>skipped stage</code> in the report) and reference-mapped classes are not converted.</p>
+<hr />
+<h2 id="computed-relations">Computed relations<a class="headerlink" href="#computed-relations" title="Permanent link">&para;</a></h2>
+<p><a href="_computed_relations.yaml"><code>_computed_relations.yaml</code></a> configures relations and quantities derived from geometry. Entries run in file order after the IFC relationships, so a geometric fallback (<code>only_when_unset</code>) only fills what IFC did not state. Each entry names a <code>method</code>, a <code>subject</code> and an <code>object</code> selector, and the <code>target_slot</code> on the subject.</p>
+<p>Selectors combine with AND: <code>contract_class</code> (including subclasses), <code>ifc_class</code>, <code>property</code> (<code>Pset.Property: value</code>), <code>exclude_property</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Relation</th>
+<th>Method</th>
+<th>Subject → object</th>
+<th>Geometric test</th>
+<th>Quantities</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>hosted_by</code></td>
+<td><code>opening_in_host</code></td>
+<td>door / window → <code>Separator</code></td>
+<td>Plan distance ≤ <code>max_plan_distance</code>, vertical overlap; prefers the host whose oriented plan envelope contains the opening centre</td>
 <td>—</td>
+</tr>
+<tr>
+<td><code>rests_on</code></td>
+<td><code>vertical_contact</code></td>
+<td>wall / slab / column / beam / footing → same</td>
+<td>Subject bottom within the object's vertical extent (± <code>contact_tolerance</code>, above the object's bottom), subject rises above the object's top, plan overlap ≥ <code>min_contact_area</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>connects_physical_elements</code></td>
+<td><code>side_contact</code></td>
+<td>wall / column / beam ↔ same</td>
+<td>Plan distance ≤ <code>max_plan_distance</code>, vertical overlap ≥ <code>min_overlap_height</code>, no <code>rests_on</code> between the pair; written on both elements</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>intersects_elements</code></td>
+<td><code>prism_overlap</code></td>
+<td><code>ReservedVolume</code> → <code>PhysicalElement</code></td>
+<td>Plan overlap ≥ <code>min_overlap_area</code> and vertical overlap ≥ <code>min_overlap_height</code> (touching does not count); the product the volume belongs to is skipped</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>guards_space</code></td>
+<td><code>barrier_walking_surface</code></td>
+<td><code>SafetyBarrier</code> → <code>Space</code></td>
+<td>Plan distance ≤ <code>max_plan_distance</code>; space floor between barrier base − <code>max_floor_below_base</code> and base + <code>floor_tolerance</code></td>
+<td><code>height_above_walking_surface</code> = barrier top − highest guarded floor</td>
+</tr>
+<tr>
+<td><code>lit_space</code></td>
+<td><code>window_daylight</code></td>
+<td>exterior window → interior <code>Space</code></td>
+<td><code>connects_spaces</code> from IFC space boundaries, else the nearest space within <code>max_plan_distance</code> with vertical overlap</td>
+<td><code>area_glazed</code> on the window; <code>glazing_ratio</code> (glazed area ÷ floor area) on every selected space</td>
+</tr>
+</tbody>
+</table>
+<p>Quantities are <code>pbs:QuantityValue</code> records (<code>quantity_type</code>, <code>quantity_value</code>, <code>quantity_unit</code>, QUDT <code>quantity_unit_uri</code>). Area and floor-area sources are read in the IFC area unit; dimensions in the IFC length unit.</p>
+<p>The relations are evidence for rules evaluated outside this repository, for example:</p>
+<table>
+<thead>
+<tr>
+<th>Rule</th>
+<th>Evidence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Fall protection ≥ 1.10 m above the walking surface</td>
+<td><code>SafetyBarrier</code> → <code>guards_space</code>, <code>height_above_walking_surface</code></td>
+</tr>
+<tr>
+<td>Doors in fire-rated walls carry a fire rating</td>
+<td><code>ConnectionPhysical</code> → <code>hosted_by</code> → <code>Separator</code> with <code>FireProperty</code></td>
+</tr>
+<tr>
+<td>Fire-rated walls reach the slab above</td>
+<td>a <code>SeparatorSlab</code> <code>rests_on</code> the wall</td>
+</tr>
+<tr>
+<td>Load path: slab → column → slab, no floating load-bearing elements</td>
+<td>chains of <code>rests_on</code>; load-bearing element without a <code>rests_on</code> target</td>
+</tr>
+<tr>
+<td>Maintenance and clearance volumes stay free</td>
+<td><code>ReservedVolume</code> → <code>intersects_elements</code> (should be empty)</td>
+</tr>
+<tr>
+<td>Minimum glazing ratio of habitable rooms</td>
+<td><code>Space</code> <code>glazing_ratio</code>, <code>lit_space</code></td>
 </tr>
 </tbody>
 </table>
@@ -2794,7 +3072,7 @@ ifc_mapping.merged.yaml   ← single file for adapters
 </tr>
 <tr>
 <td>No structural member class</td>
-<td><code>IfcBeam</code>, <code>IfcColumn</code> → <code>ConnectionVirtual</code> with <code>connection_virtual_type: structural_joint</code></td>
+<td><code>IfcBeam</code>, <code>IfcColumn</code> → <code>ConnectionPhysical</code> (<code>connection_physical_type</code> <code>beam</code> / <code>column</code>, functional type <code>load_transfer</code>, transport medium <code>structural_load</code>): members connect elements by carrying loads</td>
 </tr>
 <tr>
 <td>No stair/ramp class</td>

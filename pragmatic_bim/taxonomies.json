@@ -5262,6 +5262,17 @@
           "en": "Accessible Toilet Spaces"
         }
       },
+      "S-HYG-WC-LRN": {
+        "broader": "S-HYG-WC",
+        "definition": {
+          "de": "WC-Raeume fuer Schuelerinnen, Schueler und Studierende, getrennt von den Lehrpersonen.",
+          "en": "Toilet spaces for pupils and students, separate from teachers"
+        },
+        "labels": {
+          "de": "Lernenden-WC",
+          "en": "Students' Toilet Spaces"
+        }
+      },
       "S-HYG-WC-M": {
         "broader": "S-HYG-WC",
         "definition": {
@@ -5282,6 +5293,39 @@
         "labels": {
           "de": "Allgemeine WC-Raeume",
           "en": "Mixed Toilet Spaces"
+        }
+      },
+      "S-HYG-WC-STF": {
+        "broader": "S-HYG-WC",
+        "definition": {
+          "de": "WC-Raeume fuer Mitarbeitende, getrennt von der Kundschaft.",
+          "en": "Toilet spaces for staff, separate from customers"
+        },
+        "labels": {
+          "de": "Mitarbeiter-WC",
+          "en": "Staff Toilet Spaces"
+        }
+      },
+      "S-HYG-WC-TCH": {
+        "broader": "S-HYG-WC",
+        "definition": {
+          "de": "WC-Raeume fuer Lehrpersonen, getrennt von den Lernenden.",
+          "en": "Toilet spaces for teachers, separate from pupils and students"
+        },
+        "labels": {
+          "de": "Lehrpersonen-WC",
+          "en": "Teachers' Toilet Spaces"
+        }
+      },
+      "S-HYG-WC-VIS": {
+        "broader": "S-HYG-WC",
+        "definition": {
+          "de": "WC-Raeume fuer Besuchende und Kundschaft, getrennt von den Mitarbeitenden.",
+          "en": "Toilet spaces for visitors and customers, separate from staff"
+        },
+        "labels": {
+          "de": "Besucher-WC",
+          "en": "Visitor Toilet Spaces"
         }
       },
       "S-PRK": {
@@ -5924,8 +5968,8 @@
       "RN-04-10": {
         "broader": "RN-04",
         "definition": {
-          "de": "WC-R\u00e4ume nach Barrierefreiheit und Geschlechterausstattung.",
-          "en": "Toilet rooms by accessibility and gender provision."
+          "de": "WC-R\u00e4ume nach Barrierefreiheit, Geschlecht und Nutzergruppe.",
+          "en": "Toilet rooms by accessibility, gender, and user group."
         },
         "labels": {
           "de": "Toiletten",
@@ -5974,6 +6018,50 @@
         "labels": {
           "de": "Allgemeines WC",
           "en": "Unisex Toilet"
+        }
+      },
+      "RN-04-10-05": {
+        "broader": "RN-04-10",
+        "definition": {
+          "de": "WC f\u00fcr Lehrpersonen, getrennt von den Lernenden.",
+          "en": "Toilet room for teachers, separate from pupils and students."
+        },
+        "labels": {
+          "de": "Lehrpersonen-WC",
+          "en": "Teachers' toilet"
+        }
+      },
+      "RN-04-10-06": {
+        "broader": "RN-04-10",
+        "definition": {
+          "de": "WC f\u00fcr Sch\u00fclerinnen, Sch\u00fcler und Studierende, getrennt von den Lehrpersonen.",
+          "en": "Toilet room for pupils and students, separate from teachers."
+        },
+        "labels": {
+          "de": "Lernenden-WC",
+          "en": "Students' toilet"
+        }
+      },
+      "RN-04-10-07": {
+        "broader": "RN-04-10",
+        "definition": {
+          "de": "WC f\u00fcr Besuchende und Kundschaft, getrennt von den Mitarbeitenden.",
+          "en": "Toilet room for visitors and customers, separate from staff."
+        },
+        "labels": {
+          "de": "Besucher-WC",
+          "en": "Visitor toilet"
+        }
+      },
+      "RN-04-10-08": {
+        "broader": "RN-04-10",
+        "definition": {
+          "de": "WC f\u00fcr Mitarbeitende, getrennt von der Kundschaft.",
+          "en": "Toilet room for staff, separate from customers."
+        },
+        "labels": {
+          "de": "Mitarbeiter-WC",
+          "en": "Staff toilet"
         }
       },
       "RN-04-20": {

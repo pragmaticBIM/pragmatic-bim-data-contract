@@ -456,7 +456,7 @@
 
 
 <h1 id="enum-connectionphysicaltype">Enum: ConnectionPhysicalType<a class="headerlink" href="#enum-connectionphysicaltype" title="Permanent link">&para;</a></h1>
-<p><em>Classification of physical connector elements that connect spaces.</em></p>
+<p><em>Classification of physical connector elements that connect spaces or carry loads between elements.</em></p>
 <div>
 <p>URI: <a href="https://schema.pragmaticbim.ch/ConnectionPhysicalType">pbs:ConnectionPhysicalType</a></p>
 <p><strong>Enum URI:</strong> <a href="https://schema.pragmaticbim.ch/ConnectionPhysicalType">pbs:ConnectionPhysicalType</a></p>
@@ -519,6 +519,18 @@
 <td>Other network connector segment not covered by controlled values.</td>
 <td>Title: Network Other<br></td>
 </tr>
+<tr>
+<td>column</td>
+<td>ifcowl:IfcColumn</td>
+<td>Vertical load-carrying member transferring loads between slabs, beams, and foundations.</td>
+<td>Title: Column<br></td>
+</tr>
+<tr>
+<td>beam</td>
+<td>ifcowl:IfcBeam</td>
+<td>Horizontal or inclined load-carrying member transferring loads to columns or walls.</td>
+<td>Title: Beam<br></td>
+</tr>
 </tbody>
 </table>
 <h2 id="slots">Slots<a class="headerlink" href="#slots" title="Permanent link">&para;</a></h2>
@@ -544,7 +556,8 @@
 <h2 id="linkml-source">LinkML Source<a class="headerlink" href="#linkml-source" title="Permanent link">&para;</a></h2>
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ConnectionPhysicalType</span>
-<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Classification of physical connector elements that connect spaces.</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Classification of physical connector elements that connect spaces or</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">carry loads between elements.</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://schema.pragmaticbim.ch</span>
 <span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="nt">enum_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pbs:ConnectionPhysicalType</span>
@@ -621,6 +634,26 @@
 <span class="w">        </span><span class="nt">source</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">de</span>
 <span class="w">        </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Sonstiges Netz</span>
 <span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Network Other</span>
+<span class="w">  </span><span class="nt">column</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">column</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Vertical load-carrying member transferring loads between slabs, beams,</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">and foundations.</span>
+<span class="w">    </span><span class="nt">meaning</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ifcowl:IfcColumn</span>
+<span class="w">    </span><span class="nt">alt_descriptions</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">de</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">source</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">de</span>
+<span class="w">        </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Stuetze</span>
+<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Column</span>
+<span class="w">  </span><span class="nt">beam</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">beam</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Horizontal or inclined load-carrying member transferring loads to</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">columns or walls.</span>
+<span class="w">    </span><span class="nt">meaning</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ifcowl:IfcBeam</span>
+<span class="w">    </span><span class="nt">alt_descriptions</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">de</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">source</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">de</span>
+<span class="w">        </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Traeger</span>
+<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Beam</span>
 </code></pre></div>
 </details>
 </div>

@@ -243,6 +243,16 @@ enums:
       ratio:
         description: Dimensionless quotient of two measured quantities.
         meaning: pbs:quantity_type_ratio
+      height_above_walking_surface:
+        description: Vertical distance from the guarded walking surface (space floor) to the top of a safety barrier,
+          measured from geometry against the highest guarded floor.
+        meaning: pbs:quantity_type_height_above_walking_surface
+      area_glazed:
+        description: Projected glazed (transparent) area of a window or glazed door.
+        meaning: pbs:quantity_type_area_glazed
+      glazing_ratio:
+        description: Sum of the glazed areas of the windows lighting a space divided by the net floor area of the space.
+        meaning: pbs:quantity_type_glazing_ratio
   StatusType:
     enum_uri: pbs:StatusType
     description: Lifecycle or QA gate status used for model progression and approvals.
@@ -466,7 +476,7 @@ enums:
             description: Dachbekleidung
   ConnectionPhysicalType:
     enum_uri: pbs:ConnectionPhysicalType
-    description: Classification of physical connector elements that connect spaces.
+    description: Classification of physical connector elements that connect spaces or carry loads between elements.
     permissible_values:
       door:
         description: Human access connector via a door element.
@@ -532,6 +542,22 @@ enums:
           de:
             source: de
             description: Sonstiges Netz
+      column:
+        description: Vertical load-carrying member transferring loads between slabs, beams, and foundations.
+        meaning: ifcowl:IfcColumn
+        title: Column
+        alt_descriptions:
+          de:
+            source: de
+            description: Stuetze
+      beam:
+        description: Horizontal or inclined load-carrying member transferring loads to columns or walls.
+        meaning: ifcowl:IfcBeam
+        title: Beam
+        alt_descriptions:
+          de:
+            source: de
+            description: Traeger
   ConnectionFunctionalType:
     enum_uri: pbs:ConnectionFunctionalType
     description: Functional classification of physical connections between spaces by transported medium or passage role.
@@ -616,6 +642,14 @@ enums:
           de:
             source: de
             description: Sicht / Tageslicht
+      load_transfer:
+        description: Structural connection carrying loads between elements (for example column, beam).
+        meaning: https://example.org/abstract/connection-functional-type/load_transfer
+        title: Load Transfer
+        alt_descriptions:
+          de:
+            source: de
+            description: Lastabtragung
   ConnectionVirtualType:
     enum_uri: pbs:ConnectionVirtualType
     description: Classification of virtual connection semantics using schema-internal meanings because no stable 1:1 IFC mapping exists for these concepts.
@@ -1235,6 +1269,38 @@ enums:
           de:
             source: de
             description: Allgemeines WC
+      rn_04_10_05:
+        description: "Toilet room for teachers, separate from pupils and students."
+        meaning: https://example.org/abstract/building-space-name-classification/RN_HYG_WC_TCH
+        title: Teachers' toilet
+        alt_descriptions:
+          de:
+            source: de
+            description: Lehrpersonen-WC
+      rn_04_10_06:
+        description: "Toilet room for pupils and students, separate from teachers."
+        meaning: https://example.org/abstract/building-space-name-classification/RN_HYG_WC_LRN
+        title: Students' toilet
+        alt_descriptions:
+          de:
+            source: de
+            description: Lernenden-WC
+      rn_04_10_07:
+        description: "Toilet room for visitors and customers, separate from staff."
+        meaning: https://example.org/abstract/building-space-name-classification/RN_HYG_WC_VIS
+        title: Visitor toilet
+        alt_descriptions:
+          de:
+            source: de
+            description: Besucher-WC
+      rn_04_10_08:
+        description: "Toilet room for staff, separate from customers."
+        meaning: https://example.org/abstract/building-space-name-classification/RN_HYG_WC_STF
+        title: Staff toilet
+        alt_descriptions:
+          de:
+            source: de
+            description: Mitarbeiter-WC
       rn_04_20_01:
         description: "Room with shower facilities."
         meaning: https://example.org/abstract/building-space-name-classification/RN_HYG_SHW
@@ -2291,6 +2357,14 @@ enums:
           de:
             source: de
             description: Daten
+      structural_load:
+        description: Structural forces (dead, live, wind, seismic loads).
+        meaning: pbs:transport_medium_structural_load
+        title: Structural Load
+        alt_descriptions:
+          de:
+            source: de
+            description: Tragwerkslasten
   ZoneType:
     enum_uri: pbs:ZoneType
     description: Classification of zone purpose and organizational intent.
@@ -2343,6 +2417,86 @@ enums:
           de:
             source: de
             description: Sicherheit
+  BarrierType:
+    enum_uri: pbs:BarrierType
+    description: Classification of safety barriers (fall protection and guiding elements).
+    permissible_values:
+      balustrade:
+        description: Fall protection at a slab, balcony, or roof edge.
+        meaning: ifcowl:IfcRailingTypeEnum.BALUSTRADE
+        title: Balustrade
+        alt_descriptions:
+          de:
+            source: de
+            description: Brüstungsgeländer
+      guardrail:
+        description: Fall protection along a stair, ramp, or landing.
+        meaning: ifcowl:IfcRailingTypeEnum.GUARDRAIL
+        title: Guardrail
+        alt_descriptions:
+          de:
+            source: de
+            description: Absturzsicherung
+      handrail:
+        description: Handrail for guidance and support.
+        meaning: ifcowl:IfcRailingTypeEnum.HANDRAIL
+        title: Handrail
+        alt_descriptions:
+          de:
+            source: de
+            description: Handlauf
+      other:
+        description: User-defined or unspecified barrier.
+        meaning: pbs:barrier_type_other
+        title: Other
+        alt_descriptions:
+          de:
+            source: de
+            description: Andere
+  ReservedVolumeType:
+    enum_uri: pbs:ReservedVolumeType
+    description: Purpose of a reserved volume that must stay clear of building elements.
+    permissible_values:
+      maintenance:
+        description: Clear maintenance space in front of or around equipment.
+        meaning: pbs:reserved_volume_type_maintenance
+        title: Maintenance space
+        alt_descriptions:
+          de:
+            source: de
+            description: Wartungsraum
+      installation_path:
+        description: Clear path for bringing in or replacing large equipment.
+        meaning: pbs:reserved_volume_type_installation_path
+        title: Installation path
+        alt_descriptions:
+          de:
+            source: de
+            description: Einbringweg
+      exclusion_zone:
+        description: Zone the structural concept keeps free of penetrations and recesses.
+        meaning: pbs:reserved_volume_type_exclusion_zone
+        title: Exclusion zone
+        alt_descriptions:
+          de:
+            source: de
+            description: Sperrzone
+      movement_clearance:
+        description: Clear movement or manoeuvring area (for example turning areas, door swing clearances).
+        meaning: pbs:reserved_volume_type_movement_clearance
+        title: Movement clearance
+        alt_descriptions:
+          de:
+            source: de
+            description: Bewegungsfläche
+      device_space:
+        description: Space reserved for a device chosen late in the design.
+        meaning: pbs:reserved_volume_type_device_space
+        title: Device space
+        alt_descriptions:
+          de:
+            source: de
+            description: Geräteplatz
   PerformancePropertyValueType:
     enum_uri: pbs:PerformancePropertyValueType
     description: Type discriminator for normalized performance property values.

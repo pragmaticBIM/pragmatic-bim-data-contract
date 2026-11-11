@@ -1,0 +1,10 @@
+# Trimmed copy of pragmaticBIM-reference elements/architecture-slab-balcony.yaml (identification fields only).
+id: pragmaticbim:element/architecture-slab-balcony
+code: ARC-SLAB-BALCONY
+status: active
+name:
+  de: Balkon
+  fr: Balcon
+  it: Balcone
+  en: Balcony
+applicability: entity_ifc4=IfcSlab AND PredefinedType=FLOOR AND IsExternal=TRUE AND LoadBearing=TRUE

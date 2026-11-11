@@ -38,7 +38,7 @@ SAMPLES = [
             "BuildingContext": 1,
             "SeparatorWall": 57,
             "SeparatorSlab": 21,
-            "ConnectionPhysical": 38,
+            "ConnectionPhysical": 46,  # 38 doors and windows, 8 beams
         },
         # FireRating holds the placeholders "Fire Rating" / "FireRating" (rejected).
         performance={"structural_property_load_bearing": 85, "thermal_property_is_external": 126},
@@ -55,7 +55,7 @@ SAMPLES = [
             "BuildingContext": 1,
             "SeparatorWall": 13,
             "SeparatorSlab": 4,
-            "ConnectionPhysical": 16,
+            "ConnectionPhysical": 68,  # 16 doors and windows, 1 column, 51 beams
         },
         performance={
             "structural_property_load_bearing": 60,
@@ -83,7 +83,7 @@ SAMPLES = [
             "BuildingContext": 1,
             "SeparatorWall": 8,
             "SeparatorSlab": 4,
-            "ConnectionPhysical": 2,
+            "ConnectionPhysical": 10,  # 2 doors and windows, 8 columns
         },
         # Pset_ColumnCommon.FireRating holds Japanese grade labels (rejected).
         performance={},

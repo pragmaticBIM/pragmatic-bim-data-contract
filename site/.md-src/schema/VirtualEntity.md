@@ -33,6 +33,8 @@ VirtualEntity <|-- SpatialContext
 click SpatialContext href "./SpatialContext.html" _blank
 VirtualEntity <|-- Space
 click Space href "./Space.html" _blank
+VirtualEntity <|-- ReservedVolume
+click ReservedVolume href "./ReservedVolume.html" _blank
 VirtualEntity <|-- System
 click System href "./System.html" _blank
 VirtualEntity <|-- ConnectionVirtual
@@ -66,6 +68,7 @@ click TimeRecord href "./TimeRecord.html" _blank
     * **VirtualEntity**
         * [SpatialContext](SpatialContext.md)
         * [Space](Space.md)
+        * [ReservedVolume](ReservedVolume.md)
         * [System](System.md)
         * [ConnectionVirtual](ConnectionVirtual.md)
         * [TimeRecord](TimeRecord.md)

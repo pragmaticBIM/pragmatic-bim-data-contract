@@ -26,6 +26,7 @@ URI: [pbs:parent_space](https://schema.pragmaticbim.ch/parent_space)
 | Name | Description | Modifies Slot |
 | --- | --- | --- |
 | [Equipment](Equipment.md) | Endpoint or device element (for example terminal, unit, control device, sensor) located in a space and assigned to a system. |  no  |
+| [ReservedVolume](ReservedVolume.md) | Volume that must stay clear of building elements (maintenance space, installation path, structural exclusion zone, movement clearance, device space). Modelled as a proxy volume and identified through the pragmaticBIM Reference element definition. |  no  |
 
 
 
@@ -39,7 +40,7 @@ URI: [pbs:parent_space](https://schema.pragmaticbim.ch/parent_space)
 | Property | Value |
 | --- | --- |
 | Range | [Space](Space.md) |
-| Domain Of | [Equipment](Equipment.md) |
+| Domain Of | [Equipment](Equipment.md), [ReservedVolume](ReservedVolume.md) |
 
 ### Cardinality and Requirements
 
@@ -98,6 +99,7 @@ from_schema: https://schema.pragmaticbim.ch
 rank: 1000
 domain_of:
 - Equipment
+- ReservedVolume
 inverse: contained_entities
 range: Space
 

@@ -124,6 +124,24 @@ classes:
         range: BuiltAssetContext
       parent_level:
         range: LevelContext
+  ReservedVolume:
+    is_a: VirtualEntity
+    class_uri: pbs:ReservedVolume
+    description: >-
+      Volume that must stay clear of building elements (maintenance space, installation path, structural
+      exclusion zone, movement clearance, device space). Modelled as a proxy volume and identified through
+      the pragmaticBIM Reference element definition.
+    slots:
+    - reserved_volume_type
+    - parent_building
+    - parent_level
+    - parent_space
+    - intersects_elements
+    slot_usage:
+      parent_building:
+        range: BuiltAssetContext
+      parent_level:
+        range: LevelContext
   System:
     is_a: VirtualEntity
     class_uri: pbs:System
@@ -294,6 +312,16 @@ slots:
     range: PhysicalElement
     inverse: bounded_space
     description: Physical elements that bound a space.
+  reserved_volume_type:
+    range: ReservedVolumeType
+    required: true
+    description: Purpose of the reserved volume.
+  intersects_elements:
+    multivalued: true
+    range: PhysicalElement
+    description: >-
+      Physical elements whose body overlaps this reserved volume beyond the configured tolerance. Computed from
+      geometry; an empty value means the volume is clear.
   adjacent_elements:
     multivalued: true
     range: PhysicalElement
@@ -321,7 +349,10 @@ slots:
   connects_physical_elements:
     multivalued: true
     range: PhysicalElement
-    description: Physical elements connected by this virtual connection (for example wall-wall, wall-slab).
+    description: >-
+      Physical elements connected to this one side by side (for example wall-wall junction, beam framing into a column).
+      On a physical element the relation is symmetric and stated on both elements. From IfcRelConnectsElements /
+      IfcRelConnectsPathElements, or computed from geometric contact. Bearing contact is rests_on.
   connects_spaces:
     multivalued: true
     range: Space

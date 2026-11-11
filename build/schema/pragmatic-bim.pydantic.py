@@ -251,6 +251,18 @@ class QuantityType(str, Enum):
     """
     Dimensionless quotient of two measured quantities.
     """
+    height_above_walking_surface = "height_above_walking_surface"
+    """
+    Vertical distance from the guarded walking surface (space floor) to the top of a safety barrier, measured from geometry against the highest guarded floor.
+    """
+    area_glazed = "area_glazed"
+    """
+    Projected glazed (transparent) area of a window or glazed door.
+    """
+    glazing_ratio = "glazing_ratio"
+    """
+    Sum of the glazed areas of the windows lighting a space divided by the net floor area of the space.
+    """
 
 
 class StatusType(str, Enum):
@@ -392,7 +404,7 @@ class BoundaryType(str, Enum):
 
 class ConnectionPhysicalType(str, Enum):
     """
-    Classification of physical connector elements that connect spaces.
+    Classification of physical connector elements that connect spaces or carry loads between elements.
     """
     Door = "door"
     """
@@ -425,6 +437,14 @@ class ConnectionPhysicalType(str, Enum):
     Network_Other = "network_other"
     """
     Other network connector segment not covered by controlled values.
+    """
+    Column = "column"
+    """
+    Vertical load-carrying member transferring loads between slabs, beams, and foundations.
+    """
+    Beam = "beam"
+    """
+    Horizontal or inclined load-carrying member transferring loads to columns or walls.
     """
 
 
@@ -471,6 +491,10 @@ class ConnectionFunctionalType(str, Enum):
     Visual_SOLIDUS_Daylight = "visual"
     """
     Sightline or daylight connection without physical passage.
+    """
+    Load_Transfer = "load_transfer"
+    """
+    Structural connection carrying loads between elements (for example column, beam).
     """
 
 
@@ -643,6 +667,10 @@ class SpaceNameType(str, Enum):
     """
     Room for overnight guests.
     """
+    Winter_Garden = "rn_01_10_06"
+    """
+    Closed glazed living room, distinct from open outdoor platforms such as balcony, terrace, and patio.
+    """
     Kitchen = "rn_01_20_01"
     """
     Room for food preparation.
@@ -653,7 +681,7 @@ class SpaceNameType(str, Enum):
     """
     Laundry_Room = "rn_01_20_03"
     """
-    Room for washing and drying clothes.
+    Laundry room inside a single dwelling.
     """
     Utility_Room = "rn_01_20_04"
     """
@@ -679,6 +707,14 @@ class SpaceNameType(str, Enum):
     """
     Residential entrance transition space within a dwelling context.
     """
+    Communal_Laundry = "rn_01_20_10"
+    """
+    Shared laundry for several dwellings, distinct from the laundry inside one dwelling.
+    """
+    Drying_Room = "rn_01_20_11"
+    """
+    Room for drying laundry, distinct from the wash room.
+    """
     Apartment_Unit = "rn_01_30_03"
     """
     Generic residential unit space when not subdivided further.
@@ -702,6 +738,14 @@ class SpaceNameType(str, Enum):
     Break_Room = "rn_02_20_03"
     """
     Informal staff rest and refreshment space.
+    """
+    Community_Office = "rn_02_20_04"
+    """
+    Shared office for residents working outside their dwelling.
+    """
+    Copy_Room = "rn_02_20_05"
+    """
+    Shared room for printing, copying, and office supplies.
     """
     Reception = "rn_02_30_01"
     """
@@ -735,6 +779,22 @@ class SpaceNameType(str, Enum):
     """
     Inclined accessible circulation route.
     """
+    Service_Lift = "rn_03_20_04"
+    """
+    Lift for goods, staff, and service routes, separate from public lifts.
+    """
+    Bed_Lift = "rn_03_20_05"
+    """
+    Lift sized for transporting patients in beds.
+    """
+    Platform = "rn_03_30_01"
+    """
+    Platform for boarding and alighting trains, trams, or buses.
+    """
+    Ticket_Hall = "rn_03_30_02"
+    """
+    Hall with ticket counters and machines for passenger transport.
+    """
     Male_Toilet = "rn_04_10_01"
     """
     Toilet room for male use.
@@ -750,6 +810,22 @@ class SpaceNameType(str, Enum):
     Unisex_Toilet = "rn_04_10_04"
     """
     Toilet room for mixed or all-gender use.
+    """
+    TeachersAPOSTROPHE_toilet = "rn_04_10_05"
+    """
+    Toilet room for teachers, separate from pupils and students.
+    """
+    StudentsAPOSTROPHE_toilet = "rn_04_10_06"
+    """
+    Toilet room for pupils and students, separate from teachers.
+    """
+    Visitor_toilet = "rn_04_10_07"
+    """
+    Toilet room for visitors and customers, separate from staff.
+    """
+    Staff_toilet = "rn_04_10_08"
+    """
+    Toilet room for staff, separate from customers.
     """
     Shower_Room = "rn_04_20_01"
     """
@@ -859,6 +935,14 @@ class SpaceNameType(str, Enum):
     """
     Shared dining area with multiple vendors.
     """
+    Commercial_Kitchen = "rn_07_10_05"
+    """
+    Kitchen for commercial food preparation.
+    """
+    Dishwashing_Area = "rn_07_10_06"
+    """
+    Room for returning, cleaning, and staging tableware.
+    """
     Retail_Space = "rn_07_20_01"
     """
     Room for displaying and selling goods.
@@ -879,9 +963,29 @@ class SpaceNameType(str, Enum):
     """
     Room for displays and exhibitions.
     """
+    Pickup_Point = "rn_07_20_06"
+    """
+    Counter or area where customers collect goods ordered or bought in advance.
+    """
     Hotel_Room = "rn_07_30_01"
     """
     Guest accommodation room.
+    """
+    Stage = "rn_07_40_01"
+    """
+    Area for performances, including its backstage zone.
+    """
+    Spectator_Stand = "rn_07_40_02"
+    """
+    Tiered seating or standing area for spectators.
+    """
+    Cloakroom = "rn_07_40_03"
+    """
+    Room for depositing visitors' coats and bags.
+    """
+    Sports_Hall = "rn_07_50_01"
+    """
+    Hall for indoor sports and physical education.
     """
     Workshop = "rn_08_10_01"
     """
@@ -963,6 +1067,10 @@ class SpaceNameType(str, Enum):
     """
     Room for telecom and low-voltage systems.
     """
+    Control_Room = "rn_09_20_06"
+    """
+    Staffed room for monitoring and operating building or IT systems.
+    """
     Meter_Room = "rn_09_30_01"
     """
     Room for utility metering equipment.
@@ -970,6 +1078,10 @@ class SpaceNameType(str, Enum):
     Waste_Room = "rn_09_30_02"
     """
     Room for waste collection and handling.
+    """
+    Waste_Chute = "rn_09_30_03"
+    """
+    Vertical chute for transferring household waste to a central collection point.
     """
     General_Storage = "rn_10_10_01"
     """
@@ -990,6 +1102,14 @@ class SpaceNameType(str, Enum):
     Janitor_Closet = "rn_10_10_05"
     """
     Small room for cleaning supplies and equipment.
+    """
+    Stroller_Room = "rn_10_10_06"
+    """
+    Store for strollers and mobility aids off the lobby, off the escape route.
+    """
+    Garden_Shed = "rn_10_10_07"
+    """
+    Enclosed outdoor storage room for garden tools and household goods.
     """
     Archive_Room = "rn_10_20_01"
     """
@@ -1018,6 +1138,10 @@ class SpaceNameType(str, Enum):
     Sample_Storage = "rn_10_20_07"
     """
     Storage for laboratory or material samples.
+    """
+    Parcel_Room = "rn_10_20_08"
+    """
+    Parcel locker room, distinct from the mail room and from personal lockers.
     """
     Balcony = "rn_11_10_01"
     """
@@ -1051,6 +1175,10 @@ class SpaceNameType(str, Enum):
     """
     Vegetated flat-roof area modeled as outdoor space.
     """
+    Loggia = "rn_11_10_09"
+    """
+    Recessed open outdoor room inside the building volume, distinct from a projecting balcony.
+    """
     Garden_Area = "rn_11_20_01"
     """
     Landscaped outdoor area as space.
@@ -1082,6 +1210,18 @@ class SpaceNameType(str, Enum):
     Street = "rn_11_40_02"
     """
     Outdoor vehicular circulation route as space, including access roads, driveways, and service roads.
+    """
+    Exterior_Waste_Collection_Area = "rn_11_50_01"
+    """
+    Outdoor area for collecting and presenting bagged household waste.
+    """
+    Underground_Waste_Container = "rn_11_50_02"
+    """
+    Outdoor space allocated to an underground household-waste collection container.
+    """
+    Exterior_Mailbox_and_Parcel_Locker_Area = "rn_11_60_01"
+    """
+    Outdoor area allocated to mailboxes and parcel lockers.
     """
     Shaft = "rn_12_10_01"
     """
@@ -1231,6 +1371,10 @@ class TransportMedium(str, Enum):
     """
     Data/signal medium.
     """
+    Structural_Load = "structural_load"
+    """
+    Structural forces (dead, live, wind, seismic loads).
+    """
 
 
 class ZoneType(str, Enum):
@@ -1260,6 +1404,54 @@ class ZoneType(str, Enum):
     Security = "security"
     """
     Security management zone for access control and surveillance planning.
+    """
+
+
+class BarrierType(str, Enum):
+    """
+    Classification of safety barriers (fall protection and guiding elements).
+    """
+    Balustrade = "balustrade"
+    """
+    Fall protection at a slab, balcony, or roof edge.
+    """
+    Guardrail = "guardrail"
+    """
+    Fall protection along a stair, ramp, or landing.
+    """
+    Handrail = "handrail"
+    """
+    Handrail for guidance and support.
+    """
+    Other = "other"
+    """
+    User-defined or unspecified barrier.
+    """
+
+
+class ReservedVolumeType(str, Enum):
+    """
+    Purpose of a reserved volume that must stay clear of building elements.
+    """
+    Maintenance_space = "maintenance"
+    """
+    Clear maintenance space in front of or around equipment.
+    """
+    Installation_path = "installation_path"
+    """
+    Clear path for bringing in or replacing large equipment.
+    """
+    Exclusion_zone = "exclusion_zone"
+    """
+    Zone the structural concept keeps free of penetrations and recesses.
+    """
+    Movement_clearance = "movement_clearance"
+    """
+    Clear movement or manoeuvring area (for example turning areas, door swing clearances).
+    """
+    Device_space = "device_space"
+    """
+    Space reserved for a device chosen late in the design.
     """
 
 
@@ -1297,6 +1489,14 @@ class ThermalPropertyKey(str, Enum):
     u_value = "u_value"
     r_value = "r_value"
     thermal_transmittance = "thermal_transmittance"
+    is_external = "is_external"
+    """
+    Element faces the outside of the building (IFC IsExternal); marks thermal envelope elements.
+    """
+    air_tightness_n50 = "air_tightness_n50"
+    """
+    Air change rate at 50 Pa pressure difference in 1/h (building envelope).
+    """
 
 
 class StructuralPropertyKey(str, Enum):
@@ -1306,6 +1506,68 @@ class StructuralPropertyKey(str, Enum):
     load_bearing = "load_bearing"
     stiffness_class = "stiffness_class"
     strength_class = "strength_class"
+    design_area_load = "design_area_load"
+    """
+    Imposed design area load in kN/m2.
+    """
+    design_point_load = "design_point_load"
+    """
+    Imposed design point load in kN.
+    """
+    vibration_class = "vibration_class"
+    """
+    Vibration criterion class, for example ISO Residential (Night).
+    """
+    seismic_structure_class = "seismic_structure_class"
+    """
+    Seismic structure class (Bauwerksklasse) I, II, or III under SIA 261.
+    """
+
+
+class IndoorEnvironmentPropertyKey(str, Enum):
+    """
+    Canonical indoor environment keys for spaces (temperature, humidity, air, light, occupancy).
+    """
+    winter_temperature_min = "winter_temperature_min"
+    """
+    Minimum room temperature in winter in degC.
+    """
+    winter_temperature_max = "winter_temperature_max"
+    """
+    Maximum room temperature in winter in degC.
+    """
+    summer_temperature_min = "summer_temperature_min"
+    """
+    Minimum room temperature in summer in degC.
+    """
+    summer_temperature_max = "summer_temperature_max"
+    """
+    Maximum room temperature in summer in degC.
+    """
+    relative_humidity_min = "relative_humidity_min"
+    """
+    Minimum relative humidity in percent.
+    """
+    relative_humidity_max = "relative_humidity_max"
+    """
+    Maximum relative humidity in percent.
+    """
+    outdoor_air_flow_rate = "outdoor_air_flow_rate"
+    """
+    Outdoor air flow rate in m3/h.
+    """
+    required_illuminance = "required_illuminance"
+    """
+    Maintained illuminance in lx.
+    """
+    peak_occupancy = "peak_occupancy"
+    """
+    Peak number of occupants.
+    """
+    daily_operating_hours = "daily_operating_hours"
+    """
+    Daily operating hours in h.
+    """
 
 
 class SecurityPropertyKey(str, Enum):
@@ -1325,6 +1587,20 @@ class MaterialPropertyKey(str, Enum):
     material_class = "material_class"
     density = "density"
     thermal_conductivity = "thermal_conductivity"
+
+
+class EnvironmentalPropertyKey(str, Enum):
+    """
+    Canonical environmental keys for embodied impacts of an element type, per square metre of element area.
+    """
+    gwp_embodied = "gwp_embodied"
+    """
+    Embodied greenhouse gas emissions in kg CO2-eq/m2 (SIA 2032, KBOB).
+    """
+    primary_energy_non_renewable_embodied = "primary_energy_non_renewable_embodied"
+    """
+    Embodied non-renewable primary energy in kWh/m2 (SIA 2032, KBOB).
+    """
 
 
 class ConnectionRequirementDriver(str, Enum):
@@ -1367,6 +1643,10 @@ class SpatialAdjacencyKind(str, Enum):
     Minimum_Clear_Distance = "min_clear_distance"
     """
     Minimum clear distance to the related entity or space.
+    """
+    Maximum_Distance = "max_distance"
+    """
+    Maximum walking distance in metres from the subject to the related entity or space.
     """
 
 
@@ -1758,6 +2038,13 @@ class GeometryRepresentation(ConfiguredBaseModel):
     geometry_reference: str = Field(default=..., description="""URI/path/hash/pointer to geometry payload.""", json_schema_extra = { "linkml_meta": {'domain_of': ['GeometryRepresentation']} })
     geometry_representation: GeometryRepresentationType = Field(default=..., description="""Representation kind/dimension (for example body_3d, footprint_2d, point), independent of file format.""", json_schema_extra = { "linkml_meta": {'domain_of': ['GeometryRepresentation']} })
     geometry_format: Optional[str] = Field(default=None, description="""Optional serialization/encoding format (for example ifc, gltf, wkt, geojson), independent of representation kind.""", json_schema_extra = { "linkml_meta": {'domain_of': ['GeometryRepresentation']} })
+    geometry_wkt: Optional[str] = Field(default=None, description="""Inline WKT payload for small 2D representations (for example a footprint_2d polygon in project coordinates, metres).""", json_schema_extra = { "linkml_meta": {'domain_of': ['GeometryRepresentation']} })
+    bbox_min_x: Optional[float] = Field(default=None, description="""Axis-aligned bounding box minimum X in project coordinates (metres).""", json_schema_extra = { "linkml_meta": {'domain_of': ['GeometryRepresentation']} })
+    bbox_min_y: Optional[float] = Field(default=None, description="""Axis-aligned bounding box minimum Y in project coordinates (metres).""", json_schema_extra = { "linkml_meta": {'domain_of': ['GeometryRepresentation']} })
+    bbox_min_z: Optional[float] = Field(default=None, description="""Axis-aligned bounding box minimum Z (bottom elevation) in project coordinates (metres).""", json_schema_extra = { "linkml_meta": {'domain_of': ['GeometryRepresentation']} })
+    bbox_max_x: Optional[float] = Field(default=None, description="""Axis-aligned bounding box maximum X in project coordinates (metres).""", json_schema_extra = { "linkml_meta": {'domain_of': ['GeometryRepresentation']} })
+    bbox_max_y: Optional[float] = Field(default=None, description="""Axis-aligned bounding box maximum Y in project coordinates (metres).""", json_schema_extra = { "linkml_meta": {'domain_of': ['GeometryRepresentation']} })
+    bbox_max_z: Optional[float] = Field(default=None, description="""Axis-aligned bounding box maximum Z (top elevation) in project coordinates (metres).""", json_schema_extra = { "linkml_meta": {'domain_of': ['GeometryRepresentation']} })
 
 
 class QuantityValue(ConfiguredBaseModel):
@@ -1796,7 +2083,7 @@ class PerformanceProperty(ConfiguredBaseModel):
          'class_uri': 'pbs:PerformanceProperty',
          'from_schema': 'https://schema.pragmaticbim.ch/entity/core'})
 
-    property_key: str = Field(default=..., description="""Canonical key inside the domain; constrained via subclass slot_usage to a domain-specific enum.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PerformanceProperty']} })
+    property_key: str = Field(default=..., description="""Canonical key inside the domain; constrained via subclass slot_usage to a domain-specific enum (serialized in RDF as the enum meaning IRI).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PerformanceProperty']} })
     property_value_type: PerformancePropertyValueType = Field(default=..., description="""Value type discriminator for normalized storage (for example string, number, boolean).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PerformanceProperty']} })
     property_value_string: Optional[str] = Field(default=None, description="""String value when property_value_type is string.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PerformanceProperty']} })
     property_value_number: Optional[float] = Field(default=None, description="""Numeric value when property_value_type is number.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PerformanceProperty']} })
@@ -2418,7 +2705,7 @@ class FireProperty(PerformanceProperty):
          'slot_usage': {'property_key': {'name': 'property_key',
                                          'range': 'FirePropertyKey'}}})
 
-    property_key: FirePropertyKey = Field(default=..., description="""Canonical key inside the domain; constrained via subclass slot_usage to a domain-specific enum.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PerformanceProperty']} })
+    property_key: FirePropertyKey = Field(default=..., description="""Canonical key inside the domain; constrained via subclass slot_usage to a domain-specific enum (serialized in RDF as the enum meaning IRI).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PerformanceProperty']} })
     property_value_type: PerformancePropertyValueType = Field(default=..., description="""Value type discriminator for normalized storage (for example string, number, boolean).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PerformanceProperty']} })
     property_value_string: Optional[str] = Field(default=None, description="""String value when property_value_type is string.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PerformanceProperty']} })
     property_value_number: Optional[float] = Field(default=None, description="""Numeric value when property_value_type is number.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PerformanceProperty']} })
@@ -2440,7 +2727,7 @@ class AcousticProperty(PerformanceProperty):
          'slot_usage': {'property_key': {'name': 'property_key',
                                          'range': 'AcousticPropertyKey'}}})
 
-    property_key: AcousticPropertyKey = Field(default=..., description="""Canonical key inside the domain; constrained via subclass slot_usage to a domain-specific enum.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PerformanceProperty']} })
+    property_key: AcousticPropertyKey = Field(default=..., description="""Canonical key inside the domain; constrained via subclass slot_usage to a domain-specific enum (serialized in RDF as the enum meaning IRI).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PerformanceProperty']} })
     property_value_type: PerformancePropertyValueType = Field(default=..., description="""Value type discriminator for normalized storage (for example string, number, boolean).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PerformanceProperty']} })
     property_value_string: Optional[str] = Field(default=None, description="""String value when property_value_type is string.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PerformanceProperty']} })
     property_value_number: Optional[float] = Field(default=None, description="""Numeric value when property_value_type is number.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PerformanceProperty']} })
@@ -2462,7 +2749,7 @@ class ThermalProperty(PerformanceProperty):
          'slot_usage': {'property_key': {'name': 'property_key',
                                          'range': 'ThermalPropertyKey'}}})
 
-    property_key: ThermalPropertyKey = Field(default=..., description="""Canonical key inside the domain; constrained via subclass slot_usage to a domain-specific enum.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PerformanceProperty']} })
+    property_key: ThermalPropertyKey = Field(default=..., description="""Canonical key inside the domain; constrained via subclass slot_usage to a domain-specific enum (serialized in RDF as the enum meaning IRI).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PerformanceProperty']} })
     property_value_type: PerformancePropertyValueType = Field(default=..., description="""Value type discriminator for normalized storage (for example string, number, boolean).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PerformanceProperty']} })
     property_value_string: Optional[str] = Field(default=None, description="""String value when property_value_type is string.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PerformanceProperty']} })
     property_value_number: Optional[float] = Field(default=None, description="""Numeric value when property_value_type is number.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PerformanceProperty']} })
@@ -2484,7 +2771,29 @@ class StructuralProperty(PerformanceProperty):
          'slot_usage': {'property_key': {'name': 'property_key',
                                          'range': 'StructuralPropertyKey'}}})
 
-    property_key: StructuralPropertyKey = Field(default=..., description="""Canonical key inside the domain; constrained via subclass slot_usage to a domain-specific enum.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PerformanceProperty']} })
+    property_key: StructuralPropertyKey = Field(default=..., description="""Canonical key inside the domain; constrained via subclass slot_usage to a domain-specific enum (serialized in RDF as the enum meaning IRI).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PerformanceProperty']} })
+    property_value_type: PerformancePropertyValueType = Field(default=..., description="""Value type discriminator for normalized storage (for example string, number, boolean).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PerformanceProperty']} })
+    property_value_string: Optional[str] = Field(default=None, description="""String value when property_value_type is string.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PerformanceProperty']} })
+    property_value_number: Optional[float] = Field(default=None, description="""Numeric value when property_value_type is number.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PerformanceProperty']} })
+    property_value_boolean: Optional[bool] = Field(default=None, description="""Boolean value when property_value_type is boolean.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PerformanceProperty']} })
+    property_unit: Optional[str] = Field(default=None, description="""Normalized unit where applicable (for example min, dB, W/m2K).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PerformanceProperty']} })
+    property_unit_uri: Optional[str] = Field(default=None, description="""Optional URI that identifies the normalized property unit in an external vocabulary such as QUDT.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PerformanceProperty']} })
+    source_pset: Optional[str] = Field(default=None, description="""Original IFC PropertySet name (for example Pset_WallCommon).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PerformanceProperty', 'PropertyChange']} })
+    source_property: Optional[str] = Field(default=None, description="""Original property name inside the source PropertySet (for example FireRating).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PerformanceProperty', 'PropertyChange']} })
+    source_value_raw: Optional[str] = Field(default=None, description="""Raw source value before normalization.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PerformanceProperty']} })
+    mapping_version: Optional[str] = Field(default=None, description="""Mapping specification version used to derive the normalized property.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PerformanceProperty']} })
+
+
+class IndoorEnvironmentProperty(PerformanceProperty):
+    """
+    Normalized indoor environment property of a space (temperature, humidity, air, light, occupancy).
+    """
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'pbs:IndoorEnvironmentProperty',
+         'from_schema': 'https://schema.pragmaticbim.ch/entity/performance',
+         'slot_usage': {'property_key': {'name': 'property_key',
+                                         'range': 'IndoorEnvironmentPropertyKey'}}})
+
+    property_key: IndoorEnvironmentPropertyKey = Field(default=..., description="""Canonical key inside the domain; constrained via subclass slot_usage to a domain-specific enum (serialized in RDF as the enum meaning IRI).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PerformanceProperty']} })
     property_value_type: PerformancePropertyValueType = Field(default=..., description="""Value type discriminator for normalized storage (for example string, number, boolean).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PerformanceProperty']} })
     property_value_string: Optional[str] = Field(default=None, description="""String value when property_value_type is string.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PerformanceProperty']} })
     property_value_number: Optional[float] = Field(default=None, description="""Numeric value when property_value_type is number.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PerformanceProperty']} })
@@ -2506,7 +2815,29 @@ class SecurityProperty(PerformanceProperty):
          'slot_usage': {'property_key': {'name': 'property_key',
                                          'range': 'SecurityPropertyKey'}}})
 
-    property_key: SecurityPropertyKey = Field(default=..., description="""Canonical key inside the domain; constrained via subclass slot_usage to a domain-specific enum.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PerformanceProperty']} })
+    property_key: SecurityPropertyKey = Field(default=..., description="""Canonical key inside the domain; constrained via subclass slot_usage to a domain-specific enum (serialized in RDF as the enum meaning IRI).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PerformanceProperty']} })
+    property_value_type: PerformancePropertyValueType = Field(default=..., description="""Value type discriminator for normalized storage (for example string, number, boolean).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PerformanceProperty']} })
+    property_value_string: Optional[str] = Field(default=None, description="""String value when property_value_type is string.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PerformanceProperty']} })
+    property_value_number: Optional[float] = Field(default=None, description="""Numeric value when property_value_type is number.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PerformanceProperty']} })
+    property_value_boolean: Optional[bool] = Field(default=None, description="""Boolean value when property_value_type is boolean.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PerformanceProperty']} })
+    property_unit: Optional[str] = Field(default=None, description="""Normalized unit where applicable (for example min, dB, W/m2K).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PerformanceProperty']} })
+    property_unit_uri: Optional[str] = Field(default=None, description="""Optional URI that identifies the normalized property unit in an external vocabulary such as QUDT.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PerformanceProperty']} })
+    source_pset: Optional[str] = Field(default=None, description="""Original IFC PropertySet name (for example Pset_WallCommon).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PerformanceProperty', 'PropertyChange']} })
+    source_property: Optional[str] = Field(default=None, description="""Original property name inside the source PropertySet (for example FireRating).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PerformanceProperty', 'PropertyChange']} })
+    source_value_raw: Optional[str] = Field(default=None, description="""Raw source value before normalization.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PerformanceProperty']} })
+    mapping_version: Optional[str] = Field(default=None, description="""Mapping specification version used to derive the normalized property.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PerformanceProperty']} })
+
+
+class EnvironmentalProperty(PerformanceProperty):
+    """
+    Normalized environmental property of an element type (embodied greenhouse gas emissions and primary energy).
+    """
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'pbs:EnvironmentalProperty',
+         'from_schema': 'https://schema.pragmaticbim.ch/entity/performance',
+         'slot_usage': {'property_key': {'name': 'property_key',
+                                         'range': 'EnvironmentalPropertyKey'}}})
+
+    property_key: EnvironmentalPropertyKey = Field(default=..., description="""Canonical key inside the domain; constrained via subclass slot_usage to a domain-specific enum (serialized in RDF as the enum meaning IRI).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PerformanceProperty']} })
     property_value_type: PerformancePropertyValueType = Field(default=..., description="""Value type discriminator for normalized storage (for example string, number, boolean).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PerformanceProperty']} })
     property_value_string: Optional[str] = Field(default=None, description="""String value when property_value_type is string.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PerformanceProperty']} })
     property_value_number: Optional[float] = Field(default=None, description="""Numeric value when property_value_type is number.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PerformanceProperty']} })
@@ -2528,7 +2859,7 @@ class MaterialProperty(PerformanceProperty):
          'slot_usage': {'property_key': {'name': 'property_key',
                                          'range': 'MaterialPropertyKey'}}})
 
-    property_key: MaterialPropertyKey = Field(default=..., description="""Canonical key inside the domain; constrained via subclass slot_usage to a domain-specific enum.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PerformanceProperty']} })
+    property_key: MaterialPropertyKey = Field(default=..., description="""Canonical key inside the domain; constrained via subclass slot_usage to a domain-specific enum (serialized in RDF as the enum meaning IRI).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PerformanceProperty']} })
     property_value_type: PerformancePropertyValueType = Field(default=..., description="""Value type discriminator for normalized storage (for example string, number, boolean).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PerformanceProperty']} })
     property_value_string: Optional[str] = Field(default=None, description="""String value when property_value_type is string.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PerformanceProperty']} })
     property_value_number: Optional[float] = Field(default=None, description="""Numeric value when property_value_type is number.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PerformanceProperty']} })
@@ -2590,17 +2921,17 @@ class Requirement(Entity):
 
 class PerformanceRequirement(Requirement):
     """
-    Performance target requirement (U-value, fire rating, airflow, acoustic, etc.). Boolean targets use target_value_boolean with requirement_property_key aligned to entity slot names where applicable (for example is_heated on Space). Application pipelines compare the subject entity slot to the requirement target and record the outcome as MatchChange (match_status met, unmet, or unknown).
+    Performance target requirement (U-value, fire rating, airflow, acoustic, etc.). Boolean targets use target_value_boolean with requirement_property_key aligned to entity slot names where applicable (for example is_heated on Space). Numeric and textual targets use a permissible value of a PerformanceProperty key enum (FirePropertyKey, AcousticPropertyKey, ThermalPropertyKey, StructuralPropertyKey, IndoorEnvironmentPropertyKey, EnvironmentalPropertyKey, SecurityPropertyKey, MaterialPropertyKey) as requirement_property_key. Application pipelines compare the subject entity slot, or the performance_properties entry with the same property_key, to the requirement target and record the outcome as MatchChange (match_status met, unmet, or unknown; unknown when the subject has no value).
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'pbs:PerformanceRequirement',
          'from_schema': 'https://schema.pragmaticbim.ch/entity/requirements'})
 
-    requirement_property_key: str = Field(default=..., description="""Canonical performance key for the target (for example u_value, resistance_rating). Aligns with performance property keys where applicable.
-""", json_schema_extra = { "linkml_meta": {'domain_of': ['PerformanceRequirement']} })
+    requirement_property_key: str = Field(default=..., description="""Canonical performance key for the target (for example u_value, resistance_rating, airborne_sound_rating_db, seismic_structure_class, gwp_embodied). Either a permissible value of a PerformanceProperty key enum, matched against Entity.performance_properties property_key, or an entity slot name such as is_heated.
+""", json_schema_extra = { "linkml_meta": {'domain_of': ['PerformanceRequirement', 'IdentificationRequirement']} })
     target_operator: Optional[RequirementTargetOperator] = Field(default=None, description="""Comparison operator for the requirement target.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PerformanceRequirement', 'CostRequirement']} })
-    target_value_string: Optional[str] = Field(default=None, description="""Textual target value when applicable.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PerformanceRequirement']} })
+    target_value_string: Optional[str] = Field(default=None, description="""Textual target value when applicable.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PerformanceRequirement', 'IdentificationRequirement']} })
     target_value_number: Optional[float] = Field(default=None, description="""Numeric target value when applicable.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PerformanceRequirement', 'CostRequirement']} })
-    target_value_boolean: Optional[bool] = Field(default=None, description="""Boolean target value when applicable.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PerformanceRequirement']} })
+    target_value_boolean: Optional[bool] = Field(default=None, description="""Boolean target value when applicable.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PerformanceRequirement', 'IdentificationRequirement']} })
     target_unit: Optional[str] = Field(default=None, description="""Unit for numeric targets (for example W/m2K, min, dB).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PerformanceRequirement']} })
     target_unit_uri: Optional[str] = Field(default=None, description="""Optional URI identifying the target unit (for example QUDT).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PerformanceRequirement']} })
     source_artifact: Optional[str] = Field(default=None, description="""Optional source artifact backing this requirement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Requirement']} })
@@ -2641,7 +2972,7 @@ class PerformanceRequirement(Requirement):
 
 class SpatialRequirement(Requirement):
     """
-    Spatial constraint requirement (min area, min height, adjacency, etc.).
+    Spatial constraint requirement (min area, min height, adjacency, distance, etc.).
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'pbs:SpatialRequirement',
          'from_schema': 'https://schema.pragmaticbim.ch/entity/requirements'})
@@ -2651,6 +2982,54 @@ class SpatialRequirement(Requirement):
     adjacency_kind: Optional[SpatialAdjacencyKind] = Field(default=None, description="""Adjacency semantics when this spatial requirement involves another subject.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SpatialRequirement']} })
     related_entity: Optional[str] = Field(default=None, description="""Entity or space subject for adjacency or distance constraints.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SpatialRequirement']} })
     min_clear_distance: Optional[float] = Field(default=None, description="""Minimum clear distance in metres when adjacency_kind is min_clear_distance.""", ge=0, json_schema_extra = { "linkml_meta": {'domain_of': ['SpatialRequirement']} })
+    max_distance: Optional[float] = Field(default=None, description="""Maximum walking distance in metres when adjacency_kind is max_distance.""", ge=0, json_schema_extra = { "linkml_meta": {'domain_of': ['SpatialRequirement']} })
+    source_artifact: Optional[str] = Field(default=None, description="""Optional source artifact backing this requirement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Requirement']} })
+    id: str = Field(default=..., description="""Unique local identifier.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Change']} })
+    content_kind: Literal["requirement"] = Field(default=..., description="""Entity type discriminator for adapter projection and querying. Must be a ContentKind value.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity'], 'equals_string': 'requirement'} })
+    name: str = Field(default=..., description="""Default display name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
+    localized_names: Optional[list[LocalizedText]] = Field(default=None, description="""Localized variants of name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
+    description: Optional[str] = Field(default=None, description="""Default description text.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
+    meaning_uri: Optional[str] = Field(default=None, description="""Optional semantic URI for linking the entity instance to an external ontology concept.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
+    localized_descriptions: Optional[list[LocalizedText]] = Field(default=None, description="""Localized variants of description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
+    ifc_global_id: Optional[str] = Field(default=None, description="""IFC GlobalId of the mapped entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Change']} })
+    classifications: Optional[list[Classification]] = Field(default=None, description="""Classification entries from IFC and other schemes.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Artifact']} })
+    geometry_representations: Optional[list[GeometryRepresentation]] = Field(default=None, description="""Geometry references associated with the entity. A single element may link to multiple geometry representations to serve different intents (authoring, coordination, analysis, visualization) without duplicating the element itself.
+""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
+    quantity_values: Optional[list[QuantityValue]] = Field(default=None, description="""Quantities associated with the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
+    metadata: Optional[list[MetadataEntry]] = Field(default=None, description="""Generic metadata container for IFC attributes/properties and project-specific extensions.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
+    performance_properties: Optional[list[PerformanceProperty]] = Field(default=None, description="""Normalized, strongly typed domain properties (fire/acoustic/thermal/structural/ security/material) extracted from raw IFC PropertySet values.
+""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
+    applies_to_entities: Optional[list[str]] = Field(default=None, description="""Model entities this record applies to (requirements, cost items, schedule items, etc.).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'TimeRecord', 'CostRecord']} })
+    created_at: Optional[datetime ] = Field(default=None, description="""Creation timestamp for this entity record.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
+    modified_at: Optional[datetime ] = Field(default=None, description="""Last modification timestamp for this entity record.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
+    revision: Optional[int] = Field(default=None, description="""Integer revision counter for change tracking.""", ge=0, json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
+    status: Optional[StatusType] = Field(default=None, description="""Lifecycle or QA status.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
+
+    @field_validator('ifc_global_id')
+    def pattern_ifc_global_id(cls, v):
+        pattern=re.compile(r"^[0-3][0-9A-Za-z_$]{21}$")
+        if isinstance(v, list):
+            for element in v:
+                if isinstance(element, str) and not pattern.match(element):
+                    err_msg = f"Invalid ifc_global_id format: {element}"
+                    raise ValueError(err_msg)
+        elif isinstance(v, str) and not pattern.match(v):
+            err_msg = f"Invalid ifc_global_id format: {v}"
+            raise ValueError(err_msg)
+        return v
+
+
+class IdentificationRequirement(Requirement):
+    """
+    Identification or classification value the subject must carry (predefined type, long name, area category, interior or exterior). States what the subject is, not how it performs (PerformanceRequirement) or what it is made of (MaterialRequirement).
+    """
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'pbs:IdentificationRequirement',
+         'from_schema': 'https://schema.pragmaticbim.ch/entity/requirements'})
+
+    requirement_property_key: str = Field(default=..., description="""Canonical performance key for the target (for example u_value, resistance_rating, airborne_sound_rating_db, seismic_structure_class, gwp_embodied). Either a permissible value of a PerformanceProperty key enum, matched against Entity.performance_properties property_key, or an entity slot name such as is_heated.
+""", json_schema_extra = { "linkml_meta": {'domain_of': ['PerformanceRequirement', 'IdentificationRequirement']} })
+    target_value_string: Optional[str] = Field(default=None, description="""Textual target value when applicable.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PerformanceRequirement', 'IdentificationRequirement']} })
+    target_value_boolean: Optional[bool] = Field(default=None, description="""Boolean target value when applicable.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PerformanceRequirement', 'IdentificationRequirement']} })
     source_artifact: Optional[str] = Field(default=None, description="""Optional source artifact backing this requirement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Requirement']} })
     id: str = Field(default=..., description="""Unique local identifier.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Change']} })
     content_kind: Literal["requirement"] = Field(default=..., description="""Entity type discriminator for adapter projection and querying. Must be a ContentKind value.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity'], 'equals_string': 'requirement'} })
@@ -2996,8 +3375,14 @@ class PhysicalElement(Entity):
                         'parent_level': {'name': 'parent_level',
                                          'range': 'LevelContext'}}})
 
-    parent_building: Optional[str] = Field(default=None, description="""Parent building context reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement', 'SpatialContext', 'Space', 'System']} })
-    parent_level: Optional[str] = Field(default=None, description="""Parent level/storey context reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement', 'SpatialContext', 'Space']} })
+    parent_building: Optional[str] = Field(default=None, description="""Parent building context reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement',
+                       'SpatialContext',
+                       'Space',
+                       'ReservedVolume',
+                       'System']} })
+    parent_level: Optional[str] = Field(default=None, description="""Parent level/storey context reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement', 'SpatialContext', 'Space', 'ReservedVolume']} })
+    rests_on: Optional[list[str]] = Field(default=None, description="""Elements this element sits on: its underside bears on their top (for example wall on slab, column on slab, slab on wall or column). Computed from geometric contact; it records contact, not a structural analysis result. The inverse (supports) is read by querying the slot from the other side.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement']} })
+    connects_physical_elements: Optional[list[str]] = Field(default=None, description="""Physical elements connected to this one side by side (for example wall-wall junction, beam framing into a column). On a physical element the relation is symmetric and stated on both elements. From IfcRelConnectsElements / IfcRelConnectsPathElements, or computed from geometric contact. Bearing contact is rests_on.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement', 'ConnectionVirtual']} })
     id: str = Field(default=..., description="""Unique local identifier.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Change']} })
     content_kind: Literal["physical"] = Field(default=..., description="""Entity type discriminator for adapter projection and querying. Must be a ContentKind value.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity'], 'equals_string': 'physical'} })
     name: str = Field(default=..., description="""Default display name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
@@ -3044,8 +3429,15 @@ class Separator(PhysicalElement):
 
     separator_requirement_drivers: Optional[list[SeparatorRequirementDriver]] = Field(default=None, description="""Performance requirement drivers for this separator. Multiple values are allowed because one separator may need to satisfy several requirements.
 """, json_schema_extra = { "linkml_meta": {'domain_of': ['Separator']} })
-    parent_building: Optional[str] = Field(default=None, description="""Parent building context reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement', 'SpatialContext', 'Space', 'System']} })
-    parent_level: Optional[str] = Field(default=None, description="""Parent level/storey context reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement', 'SpatialContext', 'Space']} })
+    separates_spaces: Optional[list[str]] = Field(default=None, description="""Spaces separated by this separator element.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Separator']} })
+    parent_building: Optional[str] = Field(default=None, description="""Parent building context reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement',
+                       'SpatialContext',
+                       'Space',
+                       'ReservedVolume',
+                       'System']} })
+    parent_level: Optional[str] = Field(default=None, description="""Parent level/storey context reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement', 'SpatialContext', 'Space', 'ReservedVolume']} })
+    rests_on: Optional[list[str]] = Field(default=None, description="""Elements this element sits on: its underside bears on their top (for example wall on slab, column on slab, slab on wall or column). Computed from geometric contact; it records contact, not a structural analysis result. The inverse (supports) is read by querying the slot from the other side.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement']} })
+    connects_physical_elements: Optional[list[str]] = Field(default=None, description="""Physical elements connected to this one side by side (for example wall-wall junction, beam framing into a column). On a physical element the relation is symmetric and stated on both elements. From IfcRelConnectsElements / IfcRelConnectsPathElements, or computed from geometric contact. Bearing contact is rests_on.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement', 'ConnectionVirtual']} })
     id: str = Field(default=..., description="""Unique local identifier.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Change']} })
     content_kind: Literal["physical"] = Field(default=..., description="""Entity type discriminator for adapter projection and querying. Must be a ContentKind value.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity'], 'equals_string': 'physical'} })
     name: str = Field(default=..., description="""Default display name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
@@ -3090,11 +3482,17 @@ class SeparatorWall(Separator):
          'from_schema': 'https://schema.pragmaticbim.ch/entity/physical'})
 
     separator_wall_type: SeparatorWallType = Field(default=..., description="""Classification of wall-based separator element.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SeparatorWall']} })
-    separates_spaces: Optional[list[str]] = Field(default=None, description="""Spaces separated by this separator element.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SeparatorWall']} })
     separator_requirement_drivers: Optional[list[SeparatorRequirementDriver]] = Field(default=None, description="""Performance requirement drivers for this separator. Multiple values are allowed because one separator may need to satisfy several requirements.
 """, json_schema_extra = { "linkml_meta": {'domain_of': ['Separator']} })
-    parent_building: Optional[str] = Field(default=None, description="""Parent building context reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement', 'SpatialContext', 'Space', 'System']} })
-    parent_level: Optional[str] = Field(default=None, description="""Parent level/storey context reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement', 'SpatialContext', 'Space']} })
+    separates_spaces: Optional[list[str]] = Field(default=None, description="""Spaces separated by this separator element.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Separator']} })
+    parent_building: Optional[str] = Field(default=None, description="""Parent building context reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement',
+                       'SpatialContext',
+                       'Space',
+                       'ReservedVolume',
+                       'System']} })
+    parent_level: Optional[str] = Field(default=None, description="""Parent level/storey context reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement', 'SpatialContext', 'Space', 'ReservedVolume']} })
+    rests_on: Optional[list[str]] = Field(default=None, description="""Elements this element sits on: its underside bears on their top (for example wall on slab, column on slab, slab on wall or column). Computed from geometric contact; it records contact, not a structural analysis result. The inverse (supports) is read by querying the slot from the other side.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement']} })
+    connects_physical_elements: Optional[list[str]] = Field(default=None, description="""Physical elements connected to this one side by side (for example wall-wall junction, beam framing into a column). On a physical element the relation is symmetric and stated on both elements. From IfcRelConnectsElements / IfcRelConnectsPathElements, or computed from geometric contact. Bearing contact is rests_on.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement', 'ConnectionVirtual']} })
     id: str = Field(default=..., description="""Unique local identifier.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Change']} })
     content_kind: Literal["physical"] = Field(default=..., description="""Entity type discriminator for adapter projection and querying. Must be a ContentKind value.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity'], 'equals_string': 'physical'} })
     name: str = Field(default=..., description="""Default display name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
@@ -3142,8 +3540,15 @@ class SeparatorSlab(Separator):
     separates_levels: Optional[list[str]] = Field(default=None, description="""Level context nodes separated by this slab separator.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SeparatorSlab']} })
     separator_requirement_drivers: Optional[list[SeparatorRequirementDriver]] = Field(default=None, description="""Performance requirement drivers for this separator. Multiple values are allowed because one separator may need to satisfy several requirements.
 """, json_schema_extra = { "linkml_meta": {'domain_of': ['Separator']} })
-    parent_building: Optional[str] = Field(default=None, description="""Parent building context reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement', 'SpatialContext', 'Space', 'System']} })
-    parent_level: Optional[str] = Field(default=None, description="""Parent level/storey context reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement', 'SpatialContext', 'Space']} })
+    separates_spaces: Optional[list[str]] = Field(default=None, description="""Spaces separated by this separator element.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Separator']} })
+    parent_building: Optional[str] = Field(default=None, description="""Parent building context reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement',
+                       'SpatialContext',
+                       'Space',
+                       'ReservedVolume',
+                       'System']} })
+    parent_level: Optional[str] = Field(default=None, description="""Parent level/storey context reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement', 'SpatialContext', 'Space', 'ReservedVolume']} })
+    rests_on: Optional[list[str]] = Field(default=None, description="""Elements this element sits on: its underside bears on their top (for example wall on slab, column on slab, slab on wall or column). Computed from geometric contact; it records contact, not a structural analysis result. The inverse (supports) is read by querying the slot from the other side.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement']} })
+    connects_physical_elements: Optional[list[str]] = Field(default=None, description="""Physical elements connected to this one side by side (for example wall-wall junction, beam framing into a column). On a physical element the relation is symmetric and stated on both elements. From IfcRelConnectsElements / IfcRelConnectsPathElements, or computed from geometric contact. Bearing contact is rests_on.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement', 'ConnectionVirtual']} })
     id: str = Field(default=..., description="""Unique local identifier.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Change']} })
     content_kind: Literal["physical"] = Field(default=..., description="""Entity type discriminator for adapter projection and querying. Must be a ContentKind value.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity'], 'equals_string': 'physical'} })
     name: str = Field(default=..., description="""Default display name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
@@ -3181,13 +3586,15 @@ class SeparatorSlab(Separator):
 
 class ConnectionPhysical(PhysicalElement):
     """
-    Physical connector providing functional connection between spaces (for example door, window, duct, pipe, cable).
+    Physical connector providing functional connection between spaces (for example door, window, duct, pipe, cable) or carrying loads between elements (column, beam).
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'pbs:ConnectionPhysical',
          'exact_mappings': ['ifcowl:IfcDoor',
                             'ifcowl:IfcWindow',
                             'ifcowl:IfcFlowSegment',
-                            'ifcowl:IfcCableCarrierSegment'],
+                            'ifcowl:IfcCableCarrierSegment',
+                            'ifcowl:IfcColumn',
+                            'ifcowl:IfcBeam'],
          'from_schema': 'https://schema.pragmaticbim.ch/entity/physical'})
 
     connection_physical_type: ConnectionPhysicalType = Field(default=..., description="""IFC-derived physical connector form (for example door, window, duct, pipe, cable). Semantic role is expressed via connection_functional_types.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ConnectionPhysical']} })
@@ -3195,10 +3602,72 @@ class ConnectionPhysical(PhysicalElement):
     transport_medium: TransportMedium = Field(default=..., description="""Primary transport medium carried or enabled by the connector (for example human_access, air, liquid, electricity).""", json_schema_extra = { "linkml_meta": {'domain_of': ['ConnectionPhysical']} })
     frame_material: Optional[str] = Field(default=None, description="""Material of the frame or casing surrounding the opening. Applies to opening-type connectors (door, window).""", json_schema_extra = { "linkml_meta": {'domain_of': ['ConnectionPhysical']} })
     infill_material: Optional[str] = Field(default=None, description="""Material of the opening infill within the frame (for example glazing for windows, door leaf or panel for doors). Applies to opening-type connectors (door, window).""", json_schema_extra = { "linkml_meta": {'domain_of': ['ConnectionPhysical']} })
+    connects_spaces: Optional[list[str]] = Field(default=None, description="""Spaces connected by this connection (for example the two spaces on either side of a door).""", json_schema_extra = { "linkml_meta": {'domain_of': ['ConnectionPhysical', 'ConnectionVirtual']} })
     connection_physical_requirement_drivers: Optional[list[ConnectionRequirementDriver]] = Field(default=None, description="""Performance requirement drivers for this physical connection element. Multiple values are allowed because one connection may need to satisfy several requirements.
 """, json_schema_extra = { "linkml_meta": {'domain_of': ['ConnectionPhysical']} })
-    parent_building: Optional[str] = Field(default=None, description="""Parent building context reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement', 'SpatialContext', 'Space', 'System']} })
-    parent_level: Optional[str] = Field(default=None, description="""Parent level/storey context reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement', 'SpatialContext', 'Space']} })
+    hosted_by: Optional[str] = Field(default=None, description="""Host element whose opening this connector fills (for example the wall a door or window sits in). From IfcRelFillsElement and IfcRelVoidsElement, or computed from geometry when the IFC chain is missing.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ConnectionPhysical']} })
+    lit_space: Optional[list[str]] = Field(default=None, description="""Interior spaces that receive daylight through this window. From space boundaries or computed from geometry (adjacent or nearest interior space).""", json_schema_extra = { "linkml_meta": {'domain_of': ['ConnectionPhysical']} })
+    parent_building: Optional[str] = Field(default=None, description="""Parent building context reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement',
+                       'SpatialContext',
+                       'Space',
+                       'ReservedVolume',
+                       'System']} })
+    parent_level: Optional[str] = Field(default=None, description="""Parent level/storey context reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement', 'SpatialContext', 'Space', 'ReservedVolume']} })
+    rests_on: Optional[list[str]] = Field(default=None, description="""Elements this element sits on: its underside bears on their top (for example wall on slab, column on slab, slab on wall or column). Computed from geometric contact; it records contact, not a structural analysis result. The inverse (supports) is read by querying the slot from the other side.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement']} })
+    connects_physical_elements: Optional[list[str]] = Field(default=None, description="""Physical elements connected to this one side by side (for example wall-wall junction, beam framing into a column). On a physical element the relation is symmetric and stated on both elements. From IfcRelConnectsElements / IfcRelConnectsPathElements, or computed from geometric contact. Bearing contact is rests_on.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement', 'ConnectionVirtual']} })
+    id: str = Field(default=..., description="""Unique local identifier.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Change']} })
+    content_kind: Literal["physical"] = Field(default=..., description="""Entity type discriminator for adapter projection and querying. Must be a ContentKind value.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity'], 'equals_string': 'physical'} })
+    name: str = Field(default=..., description="""Default display name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
+    localized_names: Optional[list[LocalizedText]] = Field(default=None, description="""Localized variants of name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
+    description: Optional[str] = Field(default=None, description="""Default description text.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
+    meaning_uri: Optional[str] = Field(default=None, description="""Optional semantic URI for linking the entity instance to an external ontology concept.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
+    localized_descriptions: Optional[list[LocalizedText]] = Field(default=None, description="""Localized variants of description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
+    ifc_global_id: Optional[str] = Field(default=None, description="""IFC GlobalId of the mapped entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Change']} })
+    classifications: Optional[list[Classification]] = Field(default=None, description="""Classification entries from IFC and other schemes.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Artifact']} })
+    geometry_representations: Optional[list[GeometryRepresentation]] = Field(default=None, description="""Geometry references associated with the entity. A single element may link to multiple geometry representations to serve different intents (authoring, coordination, analysis, visualization) without duplicating the element itself.
+""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
+    quantity_values: Optional[list[QuantityValue]] = Field(default=None, description="""Quantities associated with the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
+    metadata: Optional[list[MetadataEntry]] = Field(default=None, description="""Generic metadata container for IFC attributes/properties and project-specific extensions.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
+    performance_properties: Optional[list[PerformanceProperty]] = Field(default=None, description="""Normalized, strongly typed domain properties (fire/acoustic/thermal/structural/ security/material) extracted from raw IFC PropertySet values.
+""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
+    applies_to_entities: Optional[list[str]] = Field(default=None, description="""Model entities this record applies to (requirements, cost items, schedule items, etc.).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'TimeRecord', 'CostRecord']} })
+    created_at: Optional[datetime ] = Field(default=None, description="""Creation timestamp for this entity record.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
+    modified_at: Optional[datetime ] = Field(default=None, description="""Last modification timestamp for this entity record.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
+    revision: Optional[int] = Field(default=None, description="""Integer revision counter for change tracking.""", ge=0, json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
+    status: Optional[StatusType] = Field(default=None, description="""Lifecycle or QA status.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
+
+    @field_validator('ifc_global_id')
+    def pattern_ifc_global_id(cls, v):
+        pattern=re.compile(r"^[0-3][0-9A-Za-z_$]{21}$")
+        if isinstance(v, list):
+            for element in v:
+                if isinstance(element, str) and not pattern.match(element):
+                    err_msg = f"Invalid ifc_global_id format: {element}"
+                    raise ValueError(err_msg)
+        elif isinstance(v, str) and not pattern.match(v):
+            err_msg = f"Invalid ifc_global_id format: {v}"
+            raise ValueError(err_msg)
+        return v
+
+
+class SafetyBarrier(PhysicalElement):
+    """
+    Linear fall protection or guiding element (balustrade, guardrail, handrail) along slab, balcony, roof, landing, stair, or ramp edges.
+    """
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'pbs:SafetyBarrier',
+         'exact_mappings': ['ifcowl:IfcRailing'],
+         'from_schema': 'https://schema.pragmaticbim.ch/entity/physical'})
+
+    barrier_type: BarrierType = Field(default=..., description="""Classification of the safety barrier (balustrade, guardrail, handrail).""", json_schema_extra = { "linkml_meta": {'domain_of': ['SafetyBarrier']} })
+    guards_space: Optional[list[str]] = Field(default=None, description="""Spaces whose walking surface this barrier protects against falls. Computed from geometry: the barrier footprint lies within a tolerance of the space footprint and the space floor is at or below the barrier base.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SafetyBarrier']} })
+    parent_building: Optional[str] = Field(default=None, description="""Parent building context reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement',
+                       'SpatialContext',
+                       'Space',
+                       'ReservedVolume',
+                       'System']} })
+    parent_level: Optional[str] = Field(default=None, description="""Parent level/storey context reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement', 'SpatialContext', 'Space', 'ReservedVolume']} })
+    rests_on: Optional[list[str]] = Field(default=None, description="""Elements this element sits on: its underside bears on their top (for example wall on slab, column on slab, slab on wall or column). Computed from geometric contact; it records contact, not a structural analysis result. The inverse (supports) is read by querying the slot from the other side.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement']} })
+    connects_physical_elements: Optional[list[str]] = Field(default=None, description="""Physical elements connected to this one side by side (for example wall-wall junction, beam framing into a column). On a physical element the relation is symmetric and stated on both elements. From IfcRelConnectsElements / IfcRelConnectsPathElements, or computed from geometric contact. Bearing contact is rests_on.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement', 'ConnectionVirtual']} })
     id: str = Field(default=..., description="""Unique local identifier.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Change']} })
     content_kind: Literal["physical"] = Field(default=..., description="""Entity type discriminator for adapter projection and querying. Must be a ContentKind value.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity'], 'equals_string': 'physical'} })
     name: str = Field(default=..., description="""Default display name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
@@ -3244,8 +3713,14 @@ class Boundary(PhysicalElement):
 
     boundary_type: BoundaryType = Field(default=..., description="""Classification of boundary element (e.g., covering).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Boundary']} })
     bounded_space: Optional[str] = Field(default=None, description="""Space bounded by this boundary element.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Boundary'], 'inverse': 'bounded_by'} })
-    parent_building: Optional[str] = Field(default=None, description="""Parent building context reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement', 'SpatialContext', 'Space', 'System']} })
-    parent_level: Optional[str] = Field(default=None, description="""Parent level/storey context reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement', 'SpatialContext', 'Space']} })
+    parent_building: Optional[str] = Field(default=None, description="""Parent building context reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement',
+                       'SpatialContext',
+                       'Space',
+                       'ReservedVolume',
+                       'System']} })
+    parent_level: Optional[str] = Field(default=None, description="""Parent level/storey context reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement', 'SpatialContext', 'Space', 'ReservedVolume']} })
+    rests_on: Optional[list[str]] = Field(default=None, description="""Elements this element sits on: its underside bears on their top (for example wall on slab, column on slab, slab on wall or column). Computed from geometric contact; it records contact, not a structural analysis result. The inverse (supports) is read by querying the slot from the other side.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement']} })
+    connects_physical_elements: Optional[list[str]] = Field(default=None, description="""Physical elements connected to this one side by side (for example wall-wall junction, beam framing into a column). On a physical element the relation is symmetric and stated on both elements. From IfcRelConnectsElements / IfcRelConnectsPathElements, or computed from geometric contact. Bearing contact is rests_on.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement', 'ConnectionVirtual']} })
     id: str = Field(default=..., description="""Unique local identifier.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Change']} })
     content_kind: Literal["physical"] = Field(default=..., description="""Entity type discriminator for adapter projection and querying. Must be a ContentKind value.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity'], 'equals_string': 'physical'} })
     name: str = Field(default=..., description="""Default display name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
@@ -3290,10 +3765,16 @@ class Equipment(PhysicalElement):
          'from_schema': 'https://schema.pragmaticbim.ch/entity/physical'})
 
     equipment_type: EquipmentType = Field(default=..., description="""Classification of equipment (for example HVAC, electrical, plumbing).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Equipment']} })
-    parent_space: Optional[str] = Field(default=None, description="""Parent space where the equipment is located.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Equipment'], 'inverse': 'contained_entities'} })
+    parent_space: Optional[str] = Field(default=None, description="""Parent space where the equipment is located.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Equipment', 'ReservedVolume'], 'inverse': 'contained_entities'} })
     parent_system: Optional[list[str]] = Field(default=None, description="""Parent systems that the equipment belongs to.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Equipment']} })
-    parent_building: Optional[str] = Field(default=None, description="""Parent building context reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement', 'SpatialContext', 'Space', 'System']} })
-    parent_level: Optional[str] = Field(default=None, description="""Parent level/storey context reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement', 'SpatialContext', 'Space']} })
+    parent_building: Optional[str] = Field(default=None, description="""Parent building context reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement',
+                       'SpatialContext',
+                       'Space',
+                       'ReservedVolume',
+                       'System']} })
+    parent_level: Optional[str] = Field(default=None, description="""Parent level/storey context reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement', 'SpatialContext', 'Space', 'ReservedVolume']} })
+    rests_on: Optional[list[str]] = Field(default=None, description="""Elements this element sits on: its underside bears on their top (for example wall on slab, column on slab, slab on wall or column). Computed from geometric contact; it records contact, not a structural analysis result. The inverse (supports) is read by querying the slot from the other side.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement']} })
+    connects_physical_elements: Optional[list[str]] = Field(default=None, description="""Physical elements connected to this one side by side (for example wall-wall junction, beam framing into a column). On a physical element the relation is symmetric and stated on both elements. From IfcRelConnectsElements / IfcRelConnectsPathElements, or computed from geometric contact. Bearing contact is rests_on.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement', 'ConnectionVirtual']} })
     id: str = Field(default=..., description="""Unique local identifier.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Change']} })
     content_kind: Literal["physical"] = Field(default=..., description="""Entity type discriminator for adapter projection and querying. Must be a ContentKind value.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity'], 'equals_string': 'physical'} })
     name: str = Field(default=..., description="""Default display name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
@@ -3403,8 +3884,12 @@ class SpatialContext(VirtualEntity):
     parent_project: Optional[str] = Field(default=None, description="""Parent project reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Process', 'Deliverable', 'SpatialContext', 'System']} })
     parent_perimeter: Optional[str] = Field(default=None, description="""Parent perimeter context reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SpatialContext']} })
     parent_legal_site: Optional[str] = Field(default=None, description="""Parent legal site context reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SpatialContext']} })
-    parent_building: Optional[str] = Field(default=None, description="""Parent building context reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement', 'SpatialContext', 'Space', 'System']} })
-    parent_level: Optional[str] = Field(default=None, description="""Parent level/storey context reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement', 'SpatialContext', 'Space']} })
+    parent_building: Optional[str] = Field(default=None, description="""Parent building context reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement',
+                       'SpatialContext',
+                       'Space',
+                       'ReservedVolume',
+                       'System']} })
+    parent_level: Optional[str] = Field(default=None, description="""Parent level/storey context reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement', 'SpatialContext', 'Space', 'ReservedVolume']} })
     parent_zone: Optional[str] = Field(default=None, description="""Parent zone context reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SpatialContext', 'Space']} })
     group_members: Optional[list[str]] = Field(default=None, description="""Zone members; may include spaces, separations, systems, etc.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SpatialContext']} })
     cost_records: Optional[list[str]] = Field(default=None, description="""Cost records associated with this entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['VirtualEntity']} })
@@ -3458,8 +3943,12 @@ class PerimeterContext(SpatialContext):
     parent_project: Optional[str] = Field(default=None, description="""Parent project reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Process', 'Deliverable', 'SpatialContext', 'System']} })
     parent_perimeter: Optional[str] = Field(default=None, description="""Parent perimeter context reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SpatialContext']} })
     parent_legal_site: Optional[str] = Field(default=None, description="""Parent legal site context reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SpatialContext']} })
-    parent_building: Optional[str] = Field(default=None, description="""Parent building context reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement', 'SpatialContext', 'Space', 'System']} })
-    parent_level: Optional[str] = Field(default=None, description="""Parent level/storey context reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement', 'SpatialContext', 'Space']} })
+    parent_building: Optional[str] = Field(default=None, description="""Parent building context reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement',
+                       'SpatialContext',
+                       'Space',
+                       'ReservedVolume',
+                       'System']} })
+    parent_level: Optional[str] = Field(default=None, description="""Parent level/storey context reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement', 'SpatialContext', 'Space', 'ReservedVolume']} })
     parent_zone: Optional[str] = Field(default=None, description="""Parent zone context reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SpatialContext', 'Space']} })
     group_members: Optional[list[str]] = Field(default=None, description="""Zone members; may include spaces, separations, systems, etc.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SpatialContext']} })
     cost_records: Optional[list[str]] = Field(default=None, description="""Cost records associated with this entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['VirtualEntity']} })
@@ -3512,8 +4001,12 @@ class LegalSiteContext(SpatialContext):
     parent_project: Optional[str] = Field(default=None, description="""Parent project reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Process', 'Deliverable', 'SpatialContext', 'System']} })
     parent_perimeter: Optional[str] = Field(default=None, description="""Parent perimeter context reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SpatialContext']} })
     parent_legal_site: Optional[str] = Field(default=None, description="""Parent legal site context reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SpatialContext']} })
-    parent_building: Optional[str] = Field(default=None, description="""Parent building context reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement', 'SpatialContext', 'Space', 'System']} })
-    parent_level: Optional[str] = Field(default=None, description="""Parent level/storey context reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement', 'SpatialContext', 'Space']} })
+    parent_building: Optional[str] = Field(default=None, description="""Parent building context reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement',
+                       'SpatialContext',
+                       'Space',
+                       'ReservedVolume',
+                       'System']} })
+    parent_level: Optional[str] = Field(default=None, description="""Parent level/storey context reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement', 'SpatialContext', 'Space', 'ReservedVolume']} })
     parent_zone: Optional[str] = Field(default=None, description="""Parent zone context reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SpatialContext', 'Space']} })
     group_members: Optional[list[str]] = Field(default=None, description="""Zone members; may include spaces, separations, systems, etc.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SpatialContext']} })
     cost_records: Optional[list[str]] = Field(default=None, description="""Cost records associated with this entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['VirtualEntity']} })
@@ -3567,8 +4060,12 @@ class BuiltAssetContext(SpatialContext):
     parent_project: Optional[str] = Field(default=None, description="""Parent project reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Process', 'Deliverable', 'SpatialContext', 'System']} })
     parent_perimeter: Optional[str] = Field(default=None, description="""Parent perimeter context reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SpatialContext']} })
     parent_legal_site: Optional[str] = Field(default=None, description="""Parent legal site context reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SpatialContext']} })
-    parent_building: Optional[str] = Field(default=None, description="""Parent building context reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement', 'SpatialContext', 'Space', 'System']} })
-    parent_level: Optional[str] = Field(default=None, description="""Parent level/storey context reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement', 'SpatialContext', 'Space']} })
+    parent_building: Optional[str] = Field(default=None, description="""Parent building context reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement',
+                       'SpatialContext',
+                       'Space',
+                       'ReservedVolume',
+                       'System']} })
+    parent_level: Optional[str] = Field(default=None, description="""Parent level/storey context reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement', 'SpatialContext', 'Space', 'ReservedVolume']} })
     parent_zone: Optional[str] = Field(default=None, description="""Parent zone context reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SpatialContext', 'Space']} })
     group_members: Optional[list[str]] = Field(default=None, description="""Zone members; may include spaces, separations, systems, etc.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SpatialContext']} })
     cost_records: Optional[list[str]] = Field(default=None, description="""Cost records associated with this entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['VirtualEntity']} })
@@ -3614,6 +4111,7 @@ class BuildingContext(BuiltAssetContext):
     Spatial context node constrained to building semantics.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'pbs:BuildingContext',
+         'exact_mappings': ['bot:Building'],
          'from_schema': 'https://schema.pragmaticbim.ch/entity/virtual'})
 
     context_type: ContextType = Field(default=..., description="""Classification of context entity (perimeter, legal_site, building, civil_structure, level, zone).""", json_schema_extra = { "linkml_meta": {'domain_of': ['SpatialContext']} })
@@ -3621,8 +4119,12 @@ class BuildingContext(BuiltAssetContext):
     parent_project: Optional[str] = Field(default=None, description="""Parent project reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Process', 'Deliverable', 'SpatialContext', 'System']} })
     parent_perimeter: Optional[str] = Field(default=None, description="""Parent perimeter context reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SpatialContext']} })
     parent_legal_site: Optional[str] = Field(default=None, description="""Parent legal site context reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SpatialContext']} })
-    parent_building: Optional[str] = Field(default=None, description="""Parent building context reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement', 'SpatialContext', 'Space', 'System']} })
-    parent_level: Optional[str] = Field(default=None, description="""Parent level/storey context reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement', 'SpatialContext', 'Space']} })
+    parent_building: Optional[str] = Field(default=None, description="""Parent building context reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement',
+                       'SpatialContext',
+                       'Space',
+                       'ReservedVolume',
+                       'System']} })
+    parent_level: Optional[str] = Field(default=None, description="""Parent level/storey context reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement', 'SpatialContext', 'Space', 'ReservedVolume']} })
     parent_zone: Optional[str] = Field(default=None, description="""Parent zone context reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SpatialContext', 'Space']} })
     group_members: Optional[list[str]] = Field(default=None, description="""Zone members; may include spaces, separations, systems, etc.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SpatialContext']} })
     cost_records: Optional[list[str]] = Field(default=None, description="""Cost records associated with this entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['VirtualEntity']} })
@@ -3675,8 +4177,12 @@ class CivilStructureContext(BuiltAssetContext):
     parent_project: Optional[str] = Field(default=None, description="""Parent project reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Process', 'Deliverable', 'SpatialContext', 'System']} })
     parent_perimeter: Optional[str] = Field(default=None, description="""Parent perimeter context reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SpatialContext']} })
     parent_legal_site: Optional[str] = Field(default=None, description="""Parent legal site context reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SpatialContext']} })
-    parent_building: Optional[str] = Field(default=None, description="""Parent building context reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement', 'SpatialContext', 'Space', 'System']} })
-    parent_level: Optional[str] = Field(default=None, description="""Parent level/storey context reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement', 'SpatialContext', 'Space']} })
+    parent_building: Optional[str] = Field(default=None, description="""Parent building context reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement',
+                       'SpatialContext',
+                       'Space',
+                       'ReservedVolume',
+                       'System']} })
+    parent_level: Optional[str] = Field(default=None, description="""Parent level/storey context reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement', 'SpatialContext', 'Space', 'ReservedVolume']} })
     parent_zone: Optional[str] = Field(default=None, description="""Parent zone context reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SpatialContext', 'Space']} })
     group_members: Optional[list[str]] = Field(default=None, description="""Zone members; may include spaces, separations, systems, etc.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SpatialContext']} })
     cost_records: Optional[list[str]] = Field(default=None, description="""Cost records associated with this entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['VirtualEntity']} })
@@ -3722,6 +4228,7 @@ class LevelContext(SpatialContext):
     Spatial context node constrained to level/storey semantics.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'pbs:LevelContext',
+         'exact_mappings': ['bot:Storey'],
          'from_schema': 'https://schema.pragmaticbim.ch/entity/virtual'})
 
     elevation: Optional[float] = Field(default=None, description="""Storey elevation relative to project datum (metres).""", json_schema_extra = { "linkml_meta": {'domain_of': ['LevelContext']} })
@@ -3731,8 +4238,12 @@ class LevelContext(SpatialContext):
     parent_project: Optional[str] = Field(default=None, description="""Parent project reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Process', 'Deliverable', 'SpatialContext', 'System']} })
     parent_perimeter: Optional[str] = Field(default=None, description="""Parent perimeter context reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SpatialContext']} })
     parent_legal_site: Optional[str] = Field(default=None, description="""Parent legal site context reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SpatialContext']} })
-    parent_building: Optional[str] = Field(default=None, description="""Parent building context reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement', 'SpatialContext', 'Space', 'System']} })
-    parent_level: Optional[str] = Field(default=None, description="""Parent level/storey context reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement', 'SpatialContext', 'Space']} })
+    parent_building: Optional[str] = Field(default=None, description="""Parent building context reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement',
+                       'SpatialContext',
+                       'Space',
+                       'ReservedVolume',
+                       'System']} })
+    parent_level: Optional[str] = Field(default=None, description="""Parent level/storey context reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement', 'SpatialContext', 'Space', 'ReservedVolume']} })
     parent_zone: Optional[str] = Field(default=None, description="""Parent zone context reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SpatialContext', 'Space']} })
     group_members: Optional[list[str]] = Field(default=None, description="""Zone members; may include spaces, separations, systems, etc.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SpatialContext']} })
     cost_records: Optional[list[str]] = Field(default=None, description="""Cost records associated with this entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['VirtualEntity']} })
@@ -3785,8 +4296,12 @@ class ZoneContext(SpatialContext):
     parent_project: Optional[str] = Field(default=None, description="""Parent project reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Process', 'Deliverable', 'SpatialContext', 'System']} })
     parent_perimeter: Optional[str] = Field(default=None, description="""Parent perimeter context reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SpatialContext']} })
     parent_legal_site: Optional[str] = Field(default=None, description="""Parent legal site context reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SpatialContext']} })
-    parent_building: Optional[str] = Field(default=None, description="""Parent building context reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement', 'SpatialContext', 'Space', 'System']} })
-    parent_level: Optional[str] = Field(default=None, description="""Parent level/storey context reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement', 'SpatialContext', 'Space']} })
+    parent_building: Optional[str] = Field(default=None, description="""Parent building context reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement',
+                       'SpatialContext',
+                       'Space',
+                       'ReservedVolume',
+                       'System']} })
+    parent_level: Optional[str] = Field(default=None, description="""Parent level/storey context reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement', 'SpatialContext', 'Space', 'ReservedVolume']} })
     parent_zone: Optional[str] = Field(default=None, description="""Parent zone context reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SpatialContext', 'Space']} })
     group_members: Optional[list[str]] = Field(default=None, description="""Zone members; may include spaces, separations, systems, etc.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SpatialContext']} })
     cost_records: Optional[list[str]] = Field(default=None, description="""Cost records associated with this entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['VirtualEntity']} })
@@ -3844,11 +4359,74 @@ class Space(VirtualEntity):
     is_heated: Optional[bool] = Field(default=None, description="""Whether the space is designed to receive heating.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Space']} })
     is_cooled: Optional[bool] = Field(default=None, description="""Whether the space is designed to receive cooling (air conditioning).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Space']} })
     is_above_ground: Optional[bool] = Field(default=None, description="""Whether the space is above ground level. When unset, consumers may derive from parent_level elevation relative to project datum.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Space']} })
-    parent_building: Optional[str] = Field(default=None, description="""Parent building context reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement', 'SpatialContext', 'Space', 'System']} })
-    parent_level: Optional[str] = Field(default=None, description="""Parent level/storey context reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement', 'SpatialContext', 'Space']} })
+    parent_building: Optional[str] = Field(default=None, description="""Parent building context reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement',
+                       'SpatialContext',
+                       'Space',
+                       'ReservedVolume',
+                       'System']} })
+    parent_level: Optional[str] = Field(default=None, description="""Parent level/storey context reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement', 'SpatialContext', 'Space', 'ReservedVolume']} })
     parent_zone: Optional[str] = Field(default=None, description="""Parent zone context reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SpatialContext', 'Space']} })
     bounded_by: Optional[list[str]] = Field(default=None, description="""Physical elements that bound a space.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Space'], 'inverse': 'bounded_space'} })
+    adjacent_elements: Optional[list[str]] = Field(default=None, description="""Physical elements adjacent to the space through an IFC space boundary (walls, slabs, doors, windows, coverings). Space-side view of separates_spaces, connects_spaces, and bounded_by, serialized as bot:adjacentElement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Space'], 'slot_uri': 'bot:adjacentElement'} })
     contained_entities: Optional[list[str]] = Field(default=None, description="""Generic containment for associated entities.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Space', 'System']} })
+    cost_records: Optional[list[str]] = Field(default=None, description="""Cost records associated with this entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['VirtualEntity']} })
+    time_records: Optional[list[str]] = Field(default=None, description="""Time records associated with this entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['VirtualEntity']} })
+    materials: Optional[list[str]] = Field(default=None, description="""Material definitions associated with this entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['VirtualEntity']} })
+    id: str = Field(default=..., description="""Unique local identifier.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Change']} })
+    content_kind: Literal["virtual"] = Field(default=..., description="""Entity type discriminator for adapter projection and querying. Must be a ContentKind value.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity'], 'equals_string': 'virtual'} })
+    name: str = Field(default=..., description="""Default display name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
+    localized_names: Optional[list[LocalizedText]] = Field(default=None, description="""Localized variants of name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
+    description: Optional[str] = Field(default=None, description="""Default description text.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
+    meaning_uri: Optional[str] = Field(default=None, description="""Optional semantic URI for linking the entity instance to an external ontology concept.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
+    localized_descriptions: Optional[list[LocalizedText]] = Field(default=None, description="""Localized variants of description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
+    ifc_global_id: Optional[str] = Field(default=None, description="""IFC GlobalId of the mapped entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Change']} })
+    classifications: Optional[list[Classification]] = Field(default=None, description="""Classification entries from IFC and other schemes.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Artifact']} })
+    geometry_representations: Optional[list[GeometryRepresentation]] = Field(default=None, description="""Geometry references associated with the entity. A single element may link to multiple geometry representations to serve different intents (authoring, coordination, analysis, visualization) without duplicating the element itself.
+""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
+    quantity_values: Optional[list[QuantityValue]] = Field(default=None, description="""Quantities associated with the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
+    metadata: Optional[list[MetadataEntry]] = Field(default=None, description="""Generic metadata container for IFC attributes/properties and project-specific extensions.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
+    performance_properties: Optional[list[PerformanceProperty]] = Field(default=None, description="""Normalized, strongly typed domain properties (fire/acoustic/thermal/structural/ security/material) extracted from raw IFC PropertySet values.
+""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
+    applies_to_entities: Optional[list[str]] = Field(default=None, description="""Model entities this record applies to (requirements, cost items, schedule items, etc.).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'TimeRecord', 'CostRecord']} })
+    created_at: Optional[datetime ] = Field(default=None, description="""Creation timestamp for this entity record.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
+    modified_at: Optional[datetime ] = Field(default=None, description="""Last modification timestamp for this entity record.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
+    revision: Optional[int] = Field(default=None, description="""Integer revision counter for change tracking.""", ge=0, json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
+    status: Optional[StatusType] = Field(default=None, description="""Lifecycle or QA status.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
+
+    @field_validator('ifc_global_id')
+    def pattern_ifc_global_id(cls, v):
+        pattern=re.compile(r"^[0-3][0-9A-Za-z_$]{21}$")
+        if isinstance(v, list):
+            for element in v:
+                if isinstance(element, str) and not pattern.match(element):
+                    err_msg = f"Invalid ifc_global_id format: {element}"
+                    raise ValueError(err_msg)
+        elif isinstance(v, str) and not pattern.match(v):
+            err_msg = f"Invalid ifc_global_id format: {v}"
+            raise ValueError(err_msg)
+        return v
+
+
+class ReservedVolume(VirtualEntity):
+    """
+    Volume that must stay clear of building elements (maintenance space, installation path, structural exclusion zone, movement clearance, device space). Modelled as a proxy volume and identified through the pragmaticBIM Reference element definition.
+    """
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'pbs:ReservedVolume',
+         'from_schema': 'https://schema.pragmaticbim.ch/entity/virtual',
+         'slot_usage': {'parent_building': {'name': 'parent_building',
+                                            'range': 'BuiltAssetContext'},
+                        'parent_level': {'name': 'parent_level',
+                                         'range': 'LevelContext'}}})
+
+    reserved_volume_type: ReservedVolumeType = Field(default=..., description="""Purpose of the reserved volume.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ReservedVolume']} })
+    parent_building: Optional[str] = Field(default=None, description="""Parent building context reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement',
+                       'SpatialContext',
+                       'Space',
+                       'ReservedVolume',
+                       'System']} })
+    parent_level: Optional[str] = Field(default=None, description="""Parent level/storey context reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement', 'SpatialContext', 'Space', 'ReservedVolume']} })
+    parent_space: Optional[str] = Field(default=None, description="""Parent space where the equipment is located.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Equipment', 'ReservedVolume'], 'inverse': 'contained_entities'} })
+    intersects_elements: Optional[list[str]] = Field(default=None, description="""Physical elements whose body overlaps this reserved volume beyond the configured tolerance. Computed from geometry; an empty value means the volume is clear.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ReservedVolume']} })
     cost_records: Optional[list[str]] = Field(default=None, description="""Cost records associated with this entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['VirtualEntity']} })
     time_records: Optional[list[str]] = Field(default=None, description="""Time records associated with this entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['VirtualEntity']} })
     materials: Optional[list[str]] = Field(default=None, description="""Material definitions associated with this entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['VirtualEntity']} })
@@ -3902,7 +4480,11 @@ class System(VirtualEntity):
     system_type: SystemType = Field(default=..., description="""Classification of system role (unit, network, terminal).""", json_schema_extra = { "linkml_meta": {'domain_of': ['System']} })
     system_discipline: SystemDiscipline = Field(default=..., description="""Classification of system discipline (electrical, sanitary, ventilation, heating).""", json_schema_extra = { "linkml_meta": {'domain_of': ['System']} })
     parent_project: Optional[str] = Field(default=None, description="""Parent project reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Process', 'Deliverable', 'SpatialContext', 'System']} })
-    parent_building: Optional[str] = Field(default=None, description="""Parent building context reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement', 'SpatialContext', 'Space', 'System']} })
+    parent_building: Optional[str] = Field(default=None, description="""Parent building context reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement',
+                       'SpatialContext',
+                       'Space',
+                       'ReservedVolume',
+                       'System']} })
     serves_spaces: Optional[list[str]] = Field(default=None, description="""Spaces served by this system.""", json_schema_extra = { "linkml_meta": {'domain_of': ['System']} })
     serves_zones: Optional[list[str]] = Field(default=None, description="""Zone context nodes served by this system.""", json_schema_extra = { "linkml_meta": {'domain_of': ['System']} })
     contained_entities: Optional[list[str]] = Field(default=None, description="""Generic containment for associated entities.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Space', 'System']} })
@@ -3952,8 +4534,8 @@ class ConnectionVirtual(VirtualEntity):
          'from_schema': 'https://schema.pragmaticbim.ch/entity/virtual'})
 
     connection_virtual_type: ConnectionVirtualType = Field(default=..., description="""Classification of virtual connection semantics (for example structural_joint, adjacency, access).""", json_schema_extra = { "linkml_meta": {'domain_of': ['ConnectionVirtual']} })
-    connects_physical_elements: Optional[list[str]] = Field(default=None, description="""Physical elements connected by this virtual connection (for example wall-wall, wall-slab).""", json_schema_extra = { "linkml_meta": {'domain_of': ['ConnectionVirtual']} })
-    connects_spaces: Optional[list[str]] = Field(default=None, description="""Spaces connected by this virtual connection.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ConnectionVirtual']} })
+    connects_physical_elements: Optional[list[str]] = Field(default=None, description="""Physical elements connected to this one side by side (for example wall-wall junction, beam framing into a column). On a physical element the relation is symmetric and stated on both elements. From IfcRelConnectsElements / IfcRelConnectsPathElements, or computed from geometric contact. Bearing contact is rests_on.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement', 'ConnectionVirtual']} })
+    connects_spaces: Optional[list[str]] = Field(default=None, description="""Spaces connected by this connection (for example the two spaces on either side of a door).""", json_schema_extra = { "linkml_meta": {'domain_of': ['ConnectionPhysical', 'ConnectionVirtual']} })
     connection_virtual_requirement_drivers: Optional[list[ConnectionRequirementDriver]] = Field(default=None, description="""Main requirement drivers for this virtual connection.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ConnectionVirtual']} })
     cost_records: Optional[list[str]] = Field(default=None, description="""Cost records associated with this entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['VirtualEntity']} })
     time_records: Optional[list[str]] = Field(default=None, description="""Time records associated with this entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['VirtualEntity']} })
@@ -4001,7 +4583,7 @@ class TimeLink(ConfiguredBaseModel):
          'from_schema': 'https://schema.pragmaticbim.ch/entity/virtual'})
 
     target_item: str = Field(default=..., description="""The successor TimeRecord.""", json_schema_extra = { "linkml_meta": {'domain_of': ['TimeLink']} })
-    dependency_type: Optional[DependencyType] = Field(default=DependencyType.Finish_to_Start, description="""FS | SS | FF | SF""", json_schema_extra = { "linkml_meta": {'domain_of': ['TimeLink'], 'ifabsent': 'FS'} })
+    dependency_type: Optional[DependencyType] = Field(default=DependencyType.FS, description="""FS | SS | FF | SF""", json_schema_extra = { "linkml_meta": {'domain_of': ['TimeLink'], 'ifabsent': 'FS'} })
     lag_days: Optional[int] = Field(default=0, json_schema_extra = { "linkml_meta": {'domain_of': ['TimeLink'], 'ifabsent': '0'} })
 
 
@@ -4536,11 +5118,14 @@ FireProperty.model_rebuild()
 AcousticProperty.model_rebuild()
 ThermalProperty.model_rebuild()
 StructuralProperty.model_rebuild()
+IndoorEnvironmentProperty.model_rebuild()
 SecurityProperty.model_rebuild()
+EnvironmentalProperty.model_rebuild()
 MaterialProperty.model_rebuild()
 Requirement.model_rebuild()
 PerformanceRequirement.model_rebuild()
 SpatialRequirement.model_rebuild()
+IdentificationRequirement.model_rebuild()
 RegulatoryRequirement.model_rebuild()
 BriefRequirement.model_rebuild()
 DeliverableRequirement.model_rebuild()
@@ -4552,6 +5137,7 @@ Separator.model_rebuild()
 SeparatorWall.model_rebuild()
 SeparatorSlab.model_rebuild()
 ConnectionPhysical.model_rebuild()
+SafetyBarrier.model_rebuild()
 Boundary.model_rebuild()
 Equipment.model_rebuild()
 VirtualEntity.model_rebuild()
@@ -4564,6 +5150,7 @@ CivilStructureContext.model_rebuild()
 LevelContext.model_rebuild()
 ZoneContext.model_rebuild()
 Space.model_rebuild()
+ReservedVolume.model_rebuild()
 System.model_rebuild()
 ConnectionVirtual.model_rebuild()
 TimeLink.model_rebuild()

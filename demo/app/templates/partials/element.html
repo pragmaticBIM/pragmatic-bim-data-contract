@@ -1,0 +1,75 @@
+{% if not element %}
+  <div class="detail">
+    <h2 class="mono">{{ guid }}</h2>
+    <p class="muted">{{ t("This IFC object is not part of the contract graph (excluded or not mapped).") }}</p>
+  </div>
+{% else %}
+<div class="detail">
+  <div class="detail-head">
+    <h2>{{ element.name }}</h2>
+    <div class="card-meta">
+      <span class="tag" title="{{ element.cls }}">{{ L.cls(element.cls) }}</span>
+      <span class="mono muted">{{ element.guid }}</span>
+    </div>
+  </div>
+
+  {% if findings %}
+  <h3>{{ t("Findings") }}</h3>
+  <ul class="element-findings">
+    {% for f in findings %}
+      <li class="severity-{{ f.check.severity }}">
+        <a href="#" hx-get="/jobs/{{ job.id }}/checks/{{ f.check.id }}" hx-target="#check-detail" hx-swap="innerHTML">{{ L.title(f.check) }}</a>
+        {% for item in f["items"] %}<div class="muted">{{ L.message(item) }}</div>{% endfor %}
+      </li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+
+  <h3>{{ t("Attributes") }}</h3>
+  <table class="props">
+    {% for a in element.attributes %}
+      <tr><th title="{{ a.key }}">{{ L.slot(a.key) }}</th><td title="{{ a.value }}">{{ L.value(a.key, a.value) }}</td></tr>
+    {% endfor %}
+    <tr><th title="rdf:type">{{ L.slot("rdf:type") }}</th><td>{% for c in element.types %}{{ L.cls(c) }}{{ ", " if not loop.last }}{% endfor %}</td></tr>
+  </table>
+
+  {% if relations %}
+  <h3>{{ t("Relations") }}</h3>
+  <div class="relation-tree">
+    {% for group in relations %}
+    <details {{ "open" if group.guids | length <= 3 }}>
+      <summary title="{{ group.predicate }}">
+        <span class="dir" title="{{ t('this element → related') if group.direction == 'out' else t('related → this element') }}">{{ "→" if group.direction == "out" else "←" }}</span>
+        <span class="rel">{{ L.relation(group.predicate, group.direction) }}</span>
+        <span class="muted">({{ group.guids | length }})</span>
+      </summary>
+      <ul>
+        {% for g in group.guids %}
+          {% set other = elements.get(g) %}
+          <li><a href="#" hx-get="/jobs/{{ job.id }}/element/{{ g | urlencode }}" hx-target="#props" hx-swap="innerHTML">{{ other.name if other else g }}</a>
+            <span class="muted">{{ L.cls(other.cls) if other else "" }}</span></li>
+        {% endfor %}
+      </ul>
+    </details>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  {% for slot, rows in element.records.items() %}
+  <details class="records">
+    <summary title="{{ slot }}">{{ L.slot(slot) }} <span class="muted">({{ rows | length }})</span></summary>
+    {% if slot == "pbs:metadata" %}
+      <table class="props">
+        {% for r in rows %}<tr><th>{{ r["pbs:metadata_key"] }}</th><td>{{ r["pbs:metadata_value"] }}</td></tr>{% endfor %}
+      </table>
+    {% else %}
+      {% for r in rows %}
+        <table class="props record">
+          {% for k, v in r.items() %}<tr><th title="{{ k }}">{{ L.slot(k) }}</th><td title="{{ v }}">{{ L.value(k, v) }}</td></tr>{% endfor %}
+        </table>
+      {% endfor %}
+    {% endif %}
+  </details>
+  {% endfor %}
+</div>
+{% endif %}

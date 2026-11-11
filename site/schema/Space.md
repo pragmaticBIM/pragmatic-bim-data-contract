@@ -115,8 +115,11 @@ click TimeRecord href "./TimeRecord.html" _blank
 | [SeparatorWall](SeparatorWall.md) | [separates_spaces](separates_spaces.md) | range | [Space](Space.md) |
 | [SeparatorSlab](SeparatorSlab.md) | [separates_spaces](separates_spaces.md) | range | [Space](Space.md) |
 | [ConnectionPhysical](ConnectionPhysical.md) | [connects_spaces](connects_spaces.md) | range | [Space](Space.md) |
+| [ConnectionPhysical](ConnectionPhysical.md) | [lit_space](lit_space.md) | range | [Space](Space.md) |
+| [SafetyBarrier](SafetyBarrier.md) | [guards_space](guards_space.md) | range | [Space](Space.md) |
 | [Boundary](Boundary.md) | [bounded_space](bounded_space.md) | range | [Space](Space.md) |
 | [Equipment](Equipment.md) | [parent_space](parent_space.md) | range | [Space](Space.md) |
+| [ReservedVolume](ReservedVolume.md) | [parent_space](parent_space.md) | range | [Space](Space.md) |
 | [System](System.md) | [serves_spaces](serves_spaces.md) | range | [Space](Space.md) |
 | [ConnectionVirtual](ConnectionVirtual.md) | [connects_spaces](connects_spaces.md) | range | [Space](Space.md) |
 
@@ -276,6 +279,7 @@ attributes:
     - PhysicalElement
     - SpatialContext
     - Space
+    - ReservedVolume
     - System
     range: BuiltAssetContext
   parent_level:
@@ -288,6 +292,7 @@ attributes:
     - PhysicalElement
     - SpatialContext
     - Space
+    - ReservedVolume
     range: LevelContext
   parent_zone:
     name: parent_zone

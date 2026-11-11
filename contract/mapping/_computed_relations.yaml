@@ -1,0 +1,107 @@
+# Relations and quantities computed from geometry (ifc2rdf geometry stage).
+computed_relations:
+  description: >
+    Relations IFC does not state explicitly, derived from element geometry in project
+    coordinates (metres). Each block names the subject and object selectors, the method,
+    its tolerances, the contract slot written on the subject, and the QuantityValue
+    records written alongside. Selectors combine with AND: contract_class (including
+    subclasses), ifc_class (IFC is_a), property ({Pset.Property: value} must match) and
+    exclude_property ({Pset.Property: value} must not match).
+  geometry:
+    representations:
+      body_3d: gltf
+      footprint_2d: wkt
+    quantities:
+      height: {unit: m}
+
+  hosted_by:
+    method: opening_in_host
+    subject:
+      contract_class: ConnectionPhysical
+      ifc_class: [IfcDoor, IfcWindow]
+    object:
+      contract_class: Separator
+    target_slot: hosted_by
+    only_when_unset: true
+    max_plan_distance: 0.05
+
+  # Bearing contact: the subject's bottom lies within the object's vertical extent
+  # (± contact_tolerance, above the object's bottom), the subject rises above the object's
+  # top, and the plan outlines overlap by at least min_contact_area. Covers walls that stop
+  # on the slab and walls modelled into it. Bounding-box based: sloped elements are approximate.
+  rests_on:
+    method: vertical_contact
+    subject: &structural_elements
+      contract_class: PhysicalElement
+      ifc_class: [IfcWall, IfcSlab, IfcColumn, IfcBeam, IfcFooting]
+    object: *structural_elements
+    target_slot: rests_on
+    contact_tolerance: 0.02
+    min_contact_area: 0.01
+
+  # Side contact: plan outlines within max_plan_distance, vertical overlap of at least
+  # min_overlap_height, and no rests_on between the pair (runs after rests_on). Written on both elements.
+  connects_physical_elements:
+    method: side_contact
+    subject: &side_contact_elements
+      contract_class: PhysicalElement
+      ifc_class: [IfcWall, IfcColumn, IfcBeam]
+    object: *side_contact_elements
+    target_slot: connects_physical_elements
+    max_plan_distance: 0.01
+    min_overlap_height: 0.10
+
+  intersects_elements:
+    method: prism_overlap
+    subject:
+      contract_class: ReservedVolume
+    object:
+      contract_class: PhysicalElement
+    target_slot: intersects_elements
+    min_overlap_area: 0.01
+    min_overlap_height: 0.01
+    # Skip the product the volume belongs to (IfcRelAggregates, IfcRelNests, IfcRelAssignsToProduct).
+    exclude_related_products: true
+
+  guards_space:
+    method: barrier_walking_surface
+    subject:
+      contract_class: SafetyBarrier
+    object:
+      contract_class: Space
+    target_slot: guards_space
+    max_plan_distance: 0.30
+    # Space floor between (barrier base - max_floor_below_base) and (barrier base + floor_tolerance):
+    # barriers on an upstand still guard the floor, voids a storey below do not.
+    floor_tolerance: 0.05
+    max_floor_below_base: 1.0
+    quantities:
+      height_above_walking_surface: {unit: m}
+
+  lit_space:
+    method: window_daylight
+    subject:
+      contract_class: ConnectionPhysical
+      ifc_class: [IfcWindow]
+      property: {Pset_WindowCommon.IsExternal: true}
+    object:
+      contract_class: Space
+      exclude_property: {Pset_SpaceCommon.IsExternal: true}
+    target_slot: lit_space
+    max_plan_distance: 0.60
+    quantities:
+      # Window area: first present area source, else OverallWidth × OverallHeight, else the
+      # geometry (long side of the plan envelope × height); multiplied by the glazing fraction.
+      area_glazed:
+        unit: m2
+        area_sources:
+          - {pset: Qto_WindowBaseQuantities, property: Area}
+        dimension_attributes: [OverallWidth, OverallHeight]
+        glazing_fraction:
+          - {pset: Pset_WindowCommon, property: GlazingAreaFraction}
+      # Written on every selected space with a floor area (0 when no window lights it).
+      glazing_ratio:
+        unit: "1"
+        on: object
+        floor_area_sources:
+          - {pset: Qto_SpaceBaseQuantities, property: NetFloorArea}

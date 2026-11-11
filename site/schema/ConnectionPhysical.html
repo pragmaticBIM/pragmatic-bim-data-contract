@@ -506,7 +506,7 @@
 
 
 <h1 id="class-connectionphysical">Class: ConnectionPhysical<a class="headerlink" href="#class-connectionphysical" title="Permanent link">&para;</a></h1>
-<p><em>Physical connector providing functional connection between spaces (for example door, window, duct, pipe, cable).</em></p>
+<p><em>Physical connector providing functional connection between spaces (for example door, window, duct, pipe, cable) or carrying loads between elements (column, beam).</em></p>
 <div>
 <p>URI: <a href="https://schema.pragmaticbim.ch/ConnectionPhysical">pbs:ConnectionPhysical</a></p>
 <div class="panzoom-box" data-key="alt" id="panzoom0" oncontextmenu="return false;">
@@ -541,10 +541,13 @@ click Classification href "./Classification.html" _blank
 click ConnectionFunctionalType href "./ConnectionFunctionalType.html" _blank
 click ConnectionRequirementDriver href "./ConnectionRequirementDriver.html" _blank
 click ConnectionPhysicalType href "./ConnectionPhysicalType.html" _blank
+click PhysicalElement href "./PhysicalElement.html" _blank
 click Space href "./Space.html" _blank
 click Material href "./Material.html" _blank
 click GeometryRepresentation href "./GeometryRepresentation.html" _blank
+click PhysicalElement href "./PhysicalElement.html" _blank
 click Material href "./Material.html" _blank
+click Space href "./Space.html" _blank
 click LocalizedText href "./LocalizedText.html" _blank
 click LocalizedText href "./LocalizedText.html" _blank
 click MetadataEntry href "./MetadataEntry.html" _blank
@@ -552,6 +555,7 @@ click BuiltAssetContext href "./BuiltAssetContext.html" _blank
 click LevelContext href "./LevelContext.html" _blank
 click PerformanceProperty href "./PerformanceProperty.html" _blank
 click QuantityValue href "./QuantityValue.html" _blank
+click PhysicalElement href "./PhysicalElement.html" _blank
 click StatusType href "./StatusType.html" _blank
 click TransportMedium href "./TransportMedium.html" _blank</code></pre> 
     <div class="panzoom-info-box panzoom-info-box-bottom panzoom-hidden">
@@ -637,6 +641,18 @@ Hold "Alt" / "Option" to enable pan &amp; zoom
 <td>direct</td>
 </tr>
 <tr>
+<td><a href="hosted_by.html">hosted_by</a></td>
+<td>0..1 <br/> <a href="PhysicalElement.html">PhysicalElement</a></td>
+<td>Host element whose opening this connector fills (for example the wall a door or window sits in). From IfcRelFillsElement and IfcRelVoidsElement, or computed from geometry when the IFC chain is missing.</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="lit_space.html">lit_space</a></td>
+<td>* <br/> <a href="Space.html">Space</a></td>
+<td>Interior spaces that receive daylight through this window. From space boundaries or computed from geometry (adjacent or nearest interior space).</td>
+<td>direct</td>
+</tr>
+<tr>
 <td><a href="parent_building.html">parent_building</a></td>
 <td>0..1 <br/> <a href="BuiltAssetContext.html">BuiltAssetContext</a></td>
 <td>Parent building context reference.</td>
@@ -646,6 +662,18 @@ Hold "Alt" / "Option" to enable pan &amp; zoom
 <td><a href="parent_level.html">parent_level</a></td>
 <td>0..1 <br/> <a href="LevelContext.html">LevelContext</a></td>
 <td>Parent level/storey context reference.</td>
+<td><a href="PhysicalElement.html">PhysicalElement</a></td>
+</tr>
+<tr>
+<td><a href="rests_on.html">rests_on</a></td>
+<td>* <br/> <a href="PhysicalElement.html">PhysicalElement</a></td>
+<td>Elements this element sits on: its underside bears on their top (for example wall on slab, column on slab, slab on wall or column). Computed from geometric contact; it records contact, not a structural analysis result. The inverse (supports) is read by querying the slot from the other side.</td>
+<td><a href="PhysicalElement.html">PhysicalElement</a></td>
+</tr>
+<tr>
+<td><a href="connects_physical_elements.html">connects_physical_elements</a></td>
+<td>* <br/> <a href="PhysicalElement.html">PhysicalElement</a></td>
+<td>Physical elements connected to this one side by side (for example wall-wall junction, beam framing into a column). On a physical element the relation is symmetric and stated on both elements. From IfcRelConnectsElements / IfcRelConnectsPathElements, or computed from geometric contact. Bearing contact is rests_on.</td>
 <td><a href="PhysicalElement.html">PhysicalElement</a></td>
 </tr>
 <tr>
@@ -782,7 +810,7 @@ Hold "Alt" / "Option" to enable pan &amp; zoom
 </tr>
 <tr>
 <td>exact</td>
-<td>ifcowl:IfcDoor, ifcowl:IfcWindow, ifcowl:IfcFlowSegment, ifcowl:IfcCableCarrierSegment</td>
+<td>ifcowl:IfcDoor, ifcowl:IfcWindow, ifcowl:IfcFlowSegment, ifcowl:IfcCableCarrierSegment, ifcowl:IfcColumn, ifcowl:IfcBeam</td>
 </tr>
 </tbody>
 </table>
@@ -792,13 +820,16 @@ Hold "Alt" / "Option" to enable pan &amp; zoom
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ConnectionPhysical</span>
 <span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Physical connector providing functional connection between spaces (for</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">example door, window, duct, pipe, cable).</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">example door, window, duct, pipe, cable) or carrying loads between elements (column,</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">beam).</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://schema.pragmaticbim.ch</span>
 <span class="nt">exact_mappings</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ifcowl:IfcDoor</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ifcowl:IfcWindow</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ifcowl:IfcFlowSegment</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ifcowl:IfcCableCarrierSegment</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ifcowl:IfcColumn</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ifcowl:IfcBeam</span>
 <span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PhysicalElement</span>
 <span class="nt">slots</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">connection_physical_type</span>
@@ -808,6 +839,8 @@ Hold "Alt" / "Option" to enable pan &amp; zoom
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">infill_material</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">connects_spaces</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">connection_physical_requirement_drivers</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">hosted_by</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">lit_space</span>
 <span class="nt">class_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pbs:ConnectionPhysical</span>
 </code></pre></div>
 </details>
@@ -815,13 +848,16 @@ Hold "Alt" / "Option" to enable pan &amp; zoom
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ConnectionPhysical</span>
 <span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Physical connector providing functional connection between spaces (for</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">example door, window, duct, pipe, cable).</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">example door, window, duct, pipe, cable) or carrying loads between elements (column,</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">beam).</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://schema.pragmaticbim.ch</span>
 <span class="nt">exact_mappings</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ifcowl:IfcDoor</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ifcowl:IfcWindow</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ifcowl:IfcFlowSegment</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ifcowl:IfcCableCarrierSegment</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ifcowl:IfcColumn</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ifcowl:IfcBeam</span>
 <span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PhysicalElement</span>
 <span class="nt">attributes</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">connection_physical_type</span><span class="p">:</span>
@@ -908,6 +944,28 @@ Hold "Alt" / "Option" to enable pan &amp; zoom
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ConnectionPhysical</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ConnectionRequirementDriver</span>
 <span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">hosted_by</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">hosted_by</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Host element whose opening this connector fills (for example the</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">wall a door or window sits in). From IfcRelFillsElement and IfcRelVoidsElement,</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">or computed from geometry when the IFC chain is missing.</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://schema.pragmaticbim.ch</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ConnectionPhysical</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ConnectionPhysical</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PhysicalElement</span>
+<span class="w">  </span><span class="nt">lit_space</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">lit_space</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Interior spaces that receive daylight through this window. From space</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">boundaries or computed from geometry (adjacent or nearest interior space).</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://schema.pragmaticbim.ch</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ConnectionPhysical</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ConnectionPhysical</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Space</span>
+<span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">  </span><span class="nt">parent_building</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">parent_building</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Parent building context reference.</span>
@@ -918,6 +976,7 @@ Hold "Alt" / "Option" to enable pan &amp; zoom
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PhysicalElement</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SpatialContext</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Space</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ReservedVolume</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">System</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">BuiltAssetContext</span>
 <span class="w">  </span><span class="nt">parent_level</span><span class="p">:</span>
@@ -930,7 +989,35 @@ Hold "Alt" / "Option" to enable pan &amp; zoom
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PhysicalElement</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SpatialContext</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Space</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ReservedVolume</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">LevelContext</span>
+<span class="w">  </span><span class="nt">rests_on</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rests_on</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;Elements</span><span class="nv"> </span><span class="s">this</span><span class="nv"> </span><span class="s">element</span><span class="nv"> </span><span class="s">sits</span><span class="nv"> </span><span class="s">on:</span><span class="nv"> </span><span class="s">its</span><span class="nv"> </span><span class="s">underside</span><span class="nv"> </span><span class="s">bears</span><span class="nv"> </span><span class="s">on</span><span class="nv"> </span><span class="s">their</span><span class="nv"> </span><span class="s">top</span>
+<span class="w">      </span><span class="s">(for</span><span class="nv"> </span><span class="s">example</span><span class="nv"> </span><span class="s">wall</span><span class="nv"> </span><span class="s">on</span><span class="nv"> </span><span class="s">slab,</span><span class="nv"> </span><span class="s">column</span><span class="nv"> </span><span class="s">on</span><span class="nv"> </span><span class="s">slab,</span><span class="nv"> </span><span class="s">slab</span><span class="nv"> </span><span class="s">on</span><span class="nv"> </span><span class="s">wall</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">column).</span><span class="nv"> </span><span class="s">Computed</span>
+<span class="w">      </span><span class="s">from</span><span class="nv"> </span><span class="s">geometric</span><span class="nv"> </span><span class="s">contact;</span><span class="nv"> </span><span class="s">it</span><span class="nv"> </span><span class="s">records</span><span class="nv"> </span><span class="s">contact,</span><span class="nv"> </span><span class="s">not</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">structural</span><span class="nv"> </span><span class="s">analysis</span><span class="nv"> </span><span class="s">result.</span>
+<span class="w">      </span><span class="s">The</span><span class="nv"> </span><span class="s">inverse</span><span class="nv"> </span><span class="s">(supports)</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">read</span><span class="nv"> </span><span class="s">by</span><span class="nv"> </span><span class="s">querying</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">slot</span><span class="nv"> </span><span class="s">from</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">other</span><span class="nv"> </span><span class="s">side.&#39;</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://schema.pragmaticbim.ch</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ConnectionPhysical</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PhysicalElement</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PhysicalElement</span>
+<span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">connects_physical_elements</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">connects_physical_elements</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Physical elements connected to this one side by side (for example</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">wall-wall junction, beam framing into a column). On a physical element the relation</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">is symmetric and stated on both elements. From IfcRelConnectsElements / IfcRelConnectsPathElements,</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">or computed from geometric contact. Bearing contact is rests_on.</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://schema.pragmaticbim.ch</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ConnectionPhysical</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PhysicalElement</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ConnectionVirtual</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PhysicalElement</span>
+<span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">  </span><span class="nt">id</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">id</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Unique local identifier.</span>

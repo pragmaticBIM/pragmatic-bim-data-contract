@@ -14,7 +14,16 @@ dependencies = ["pydantic>=2.0"]
 
 [project.optional-dependencies]
 rdf = ["ifcopenshell>=0.8", "rdflib>=7", "pyyaml>=6"]
-test = ["pragmatic-bim[rdf]", "pytest>=8", "pyshacl>=0.26"]
+geometry = ["pragmatic-bim[rdf]", "numpy", "shapely>=2"]
+test = ["pragmatic-bim[geometry]", "pytest>=8", "pyshacl>=0.26"]
+demo = [
+    "pragmatic-bim[geometry]",
+    "pyshacl>=0.26",
+    "fastapi>=0.110",
+    "uvicorn[standard]>=0.29",
+    "jinja2>=3.1",
+    "python-multipart>=0.0.9",
+]
 
 [project.scripts]
 ifc2rdf = "pragmatic_bim.ifc2rdf.cli:main"

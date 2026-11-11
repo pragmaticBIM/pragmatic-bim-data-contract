@@ -601,7 +601,7 @@ Hold "Alt" / "Option" to enable pan &amp; zoom
 <tr>
 <td><a href="connects_physical_elements.html">connects_physical_elements</a></td>
 <td>* <br/> <a href="PhysicalElement.html">PhysicalElement</a></td>
-<td>Physical elements connected by this virtual connection (for example wall-wall, wall-slab).</td>
+<td>Physical elements connected to this one side by side (for example wall-wall junction, beam framing into a column). On a physical element the relation is symmetric and stated on both elements. From IfcRelConnectsElements / IfcRelConnectsPathElements, or computed from geometric contact. Bearing contact is rests_on.</td>
 <td>direct</td>
 </tr>
 <tr>
@@ -804,12 +804,15 @@ Hold "Alt" / "Option" to enable pan &amp; zoom
 <span class="w">    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">  </span><span class="nt">connects_physical_elements</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">connects_physical_elements</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Physical elements connected by this virtual connection (for example</span>
-<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">wall-wall, wall-slab).</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Physical elements connected to this one side by side (for example</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">wall-wall junction, beam framing into a column). On a physical element the relation</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">is symmetric and stated on both elements. From IfcRelConnectsElements / IfcRelConnectsPathElements,</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">or computed from geometric contact. Bearing contact is rests_on.</span>
 <span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://schema.pragmaticbim.ch</span>
 <span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ConnectionVirtual</span>
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PhysicalElement</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ConnectionVirtual</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PhysicalElement</span>
 <span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>

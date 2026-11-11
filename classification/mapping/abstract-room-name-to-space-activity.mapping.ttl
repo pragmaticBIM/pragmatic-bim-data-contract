@@ -51,6 +51,10 @@ rn:RN_HYG_WC_M ex:mapsToActivity abs:S_HYG_WC_M .
 rn:RN_HYG_WC_F ex:mapsToActivity abs:S_HYG_WC_F .
 rn:RN_HYG_WC_IV ex:mapsToActivity abs:S_HYG_WC_IV .
 rn:RN_HYG_WC_MIX ex:mapsToActivity abs:S_HYG_WC_MIX .
+rn:RN_HYG_WC_TCH ex:mapsToActivity abs:S_HYG_WC_TCH .
+rn:RN_HYG_WC_LRN ex:mapsToActivity abs:S_HYG_WC_LRN .
+rn:RN_HYG_WC_VIS ex:mapsToActivity abs:S_HYG_WC_VIS .
+rn:RN_HYG_WC_STF ex:mapsToActivity abs:S_HYG_WC_STF .
 rn:RN_HYG_SHW ex:mapsToActivity abs:S_HYG_SHW .
 rn:RN_HYG_CHG ex:mapsToActivity abs:S_HYG_SHW .
 rn:RN_HYG_LCK ex:mapsToActivity abs:S_STO_LCK .

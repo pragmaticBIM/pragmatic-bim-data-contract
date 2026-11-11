@@ -514,6 +514,11 @@
 <td>Endpoint or device element (for example terminal, unit, control device, sensor) located in a space and assigned to a system.</td>
 <td>no</td>
 </tr>
+<tr>
+<td><a href="ReservedVolume.html">ReservedVolume</a></td>
+<td>Volume that must stay clear of building elements (maintenance space, installation path, structural exclusion zone, movement clearance, device space). Modelled as a proxy volume and identified through the pragmaticBIM Reference element definition.</td>
+<td>no</td>
+</tr>
 </tbody>
 </table>
 <h2 id="properties">Properties<a class="headerlink" href="#properties" title="Permanent link">&para;</a></h2>
@@ -532,7 +537,7 @@
 </tr>
 <tr>
 <td>Domain Of</td>
-<td><a href="Equipment.html">Equipment</a></td>
+<td><a href="Equipment.html">Equipment</a>, <a href="ReservedVolume.html">ReservedVolume</a></td>
 </tr>
 </tbody>
 </table>
@@ -591,6 +596,7 @@
 <span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="nt">domain_of</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Equipment</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ReservedVolume</span>
 <span class="nt">inverse</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">contained_entities</span>
 <span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Space</span>
 </code></pre></div>

@@ -24,6 +24,8 @@ External target labels are not shipped in this repository; only codes and IRIs a
 | `func:electrical` | `relatedMatch` | `phys:conduit` |
 | `func:fresh-water` | `relatedMatch` | `phys:pipe` |
 | `func:heating` | `relatedMatch` | `phys:pipe` |
+| `func:load-transfer` | `relatedMatch` | `phys:beam` |
+| `func:load-transfer` | `relatedMatch` | `phys:column` |
 | `func:special-media` | `relatedMatch` | `phys:network-other` |
 | `func:special-media` | `relatedMatch` | `phys:pipe` |
 | `func:ventilation` | `relatedMatch` | `phys:duct` |

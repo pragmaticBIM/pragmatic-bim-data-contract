@@ -1,0 +1,10 @@
+# Trimmed copy of pragmaticBIM-reference elements/architecture-slab-floor.yaml (identification fields only).
+id: pragmaticbim:element/architecture-slab-floor
+code: ARC-SLAB-FLOOR
+status: active
+name:
+  de: Decke
+  fr: Dalle de plancher
+  it: Soletta di piano
+  en: Floor slab
+applicability: entity_ifc4=IfcSlab AND PredefinedType=FLOOR AND LoadBearing=TRUE

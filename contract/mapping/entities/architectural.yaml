@@ -22,6 +22,7 @@
       - IfcRelContainedInSpatialStructure
       - IfcRelSpaceBoundary
       - IfcRelConnectsElements
+      - IfcRelConnectsPathElements
       - IfcRelAssociatesClassification
 
   IfcWallStandardCase:
@@ -235,6 +236,7 @@
       - IfcRelContainedInSpatialStructure
       - IfcRelSpaceBoundary
       - IfcRelFillsElement
+      - IfcRelVoidsElement
       - IfcRelConnectsElements
       - IfcRelAssociatesClassification
 
@@ -265,6 +267,7 @@
       - IfcRelContainedInSpatialStructure
       - IfcRelSpaceBoundary
       - IfcRelFillsElement
+      - IfcRelVoidsElement
       - IfcRelConnectsElements
       - IfcRelAssociatesClassification
 
@@ -296,11 +299,11 @@
       - IfcRelConnectsElements
       - IfcRelAssociatesClassification
 
-  # --- Architectural: structural (virtual joints) ---
+  # --- Architectural: structural members (load-transfer connectors) ---
 
   IfcColumn:
-    content_kind: virtual
-    canonical_type: ConnectionVirtual
+    content_kind: physical
+    canonical_type: ConnectionPhysical.column
     fields:
       name: *name_fallback_chain
       code_or_number:
@@ -311,18 +314,25 @@
     attributes:
       <<: *attributes_entity_base
       performance_properties: *performance_properties_building_element
-      connection_virtual_type:
+      connection_physical_type:
         source: constant
-        value: structural_joint
-    geometry: *geometry_axis_only
+        value: column
+      connection_functional_types:
+        source: constant
+        value: [load_transfer]
+      transport_medium:
+        source: constant
+        value: structural_load
+    geometry: *geometry_axis_body
     relations:
       - IfcRelContainedInSpatialStructure
       - IfcRelConnectsElements
+      - IfcRelConnectsPathElements
       - IfcRelAssociatesClassification
 
   IfcBeam:
-    content_kind: virtual
-    canonical_type: ConnectionVirtual
+    content_kind: physical
+    canonical_type: ConnectionPhysical.beam
     fields:
       name: *name_fallback_chain
       code_or_number:
@@ -333,13 +343,20 @@
     attributes:
       <<: *attributes_entity_base
       performance_properties: *performance_properties_building_element
-      connection_virtual_type:
+      connection_physical_type:
         source: constant
-        value: structural_joint
-    geometry: *geometry_axis_only
+        value: beam
+      connection_functional_types:
+        source: constant
+        value: [load_transfer]
+      transport_medium:
+        source: constant
+        value: structural_load
+    geometry: *geometry_axis_body
     relations:
       - IfcRelContainedInSpatialStructure
       - IfcRelConnectsElements
+      - IfcRelConnectsPathElements
       - IfcRelAssociatesClassification
 
   # --- Architectural: circulation (generic physical) ---
@@ -375,6 +392,83 @@
     attributes:
       <<: *attributes_entity_base
       performance_properties: *performance_properties_building_element
+    geometry: *geometry_body_footprint
+    relations:
+      - IfcRelContainedInSpatialStructure
+      - IfcRelAssociatesClassification
+
+  IfcRailing:
+    content_kind: physical
+    canonical_type_from: predefined_type_map
+    # IfcRailingTypeEnum: HANDRAIL, GUARDRAIL, BALUSTRADE, FENCE (IFC 4.3), USERDEFINED, NOTDEFINED.
+    predefined_type_map:
+      BALUSTRADE:
+        canonical_type: SafetyBarrier.balustrade
+        barrier_type: balustrade
+      GUARDRAIL:
+        canonical_type: SafetyBarrier.guardrail
+        barrier_type: guardrail
+      HANDRAIL:
+        canonical_type: SafetyBarrier.handrail
+        barrier_type: handrail
+      default:
+        canonical_type: SafetyBarrier.other
+        barrier_type: other
+    fields:
+      name: *name_fallback_chain
+      code_or_number:
+        source: ifc_pset_fallback
+        <<: *code_equipment
+      storey: *storey_from_containment
+      classifications: *classifications_mapping
+    attributes:
+      <<: *attributes_entity_base
+      performance_properties: *performance_properties_building_element
+      barrier_type:
+        source: predefined_type_map
+        attribute: barrier_type
+    geometry: *geometry_body_footprint
+    relations:
+      - IfcRelContainedInSpatialStructure
+      - IfcRelAssociatesClassification
+
+  # --- Architectural: reserved volumes (proxy volumes identified via pragmaticBIM Reference) ---
+
+  IfcBuildingElementProxy:
+    content_kind: virtual
+    canonical_type_from: reference_element_map
+    notes: >
+      Proxies are mapped only when a pragmaticBIM Reference element definition matches
+      (applicability on ObjectType in any language). Other proxies are not emitted and are
+      counted under "no reference match" in the conversion report.
+    reference_element_map:
+      pragmaticbim:element/architecture-maintenance-space:
+        canonical_type: ReservedVolume.maintenance
+        reserved_volume_type: maintenance
+      pragmaticbim:element/architecture-installation-path:
+        canonical_type: ReservedVolume.installation_path
+        reserved_volume_type: installation_path
+      pragmaticbim:element/structural-exclusion-zone:
+        canonical_type: ReservedVolume.exclusion_zone
+        reserved_volume_type: exclusion_zone
+      pragmaticbim:element/architecture-movement-clearance:
+        canonical_type: ReservedVolume.movement_clearance
+        reserved_volume_type: movement_clearance
+      pragmaticbim:element/architecture-device-space:
+        canonical_type: ReservedVolume.device_space
+        reserved_volume_type: device_space
+    fields:
+      name: *name_fallback_chain
+      code_or_number:
+        source: ifc_pset_fallback
+        <<: *code_equipment
+      storey: *storey_from_containment
+      classifications: *classifications_mapping
+    attributes:
+      <<: *attributes_entity_base
+      reserved_volume_type:
+        source: predefined_type_map
+        attribute: reserved_volume_type
     geometry: *geometry_body_footprint
     relations:
       - IfcRelContainedInSpatialStructure

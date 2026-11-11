@@ -1,0 +1,18 @@
+# Trimmed copy of pragmaticBIM-reference elements/architecture-maintenance-space.yaml (identification fields only).
+id: pragmaticbim:element/architecture-maintenance-space
+code: ARC-MAINT-SPACE
+status: active
+name:
+  de: Wartungsraum
+  fr: Local de maintenance
+  it: Locale di manutenzione
+  en: Maintenance space
+applicability:
+  de: (entity_ifc4=IfcBuildingElementProxy AND PredefinedType=USERDEFINED AND ObjectType=Wartungsraum)
+    OR (entity_ifc2x3=IfcBuildingElementProxy AND ObjectType=Wartungsraum)
+  fr: (entity_ifc4=IfcBuildingElementProxy AND PredefinedType=USERDEFINED AND ObjectType="Local de maintenance")
+    OR (entity_ifc2x3=IfcBuildingElementProxy AND ObjectType="Local de maintenance")
+  it: (entity_ifc4=IfcBuildingElementProxy AND PredefinedType=USERDEFINED AND ObjectType="Locale di manutenzione")
+    OR (entity_ifc2x3=IfcBuildingElementProxy AND ObjectType="Locale di manutenzione")
+  en: (entity_ifc4=IfcBuildingElementProxy AND PredefinedType=USERDEFINED AND ObjectType="Maintenance
+    space") OR (entity_ifc2x3=IfcBuildingElementProxy AND ObjectType="Maintenance space")

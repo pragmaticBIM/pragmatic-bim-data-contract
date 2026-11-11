@@ -47,6 +47,13 @@ click GeometryRepresentationType href "./GeometryRepresentationType.html" _blank
 | [geometry_reference](geometry_reference.md) | 1 <br/> [String](String.md) | URI/path/hash/pointer to geometry payload. | direct |
 | [geometry_representation](geometry_representation.md) | 1 <br/> [GeometryRepresentationType](GeometryRepresentationType.md) | Representation kind/dimension (for example body_3d, footprint_2d, point), independent of file format. | direct |
 | [geometry_format](geometry_format.md) | 0..1 <br/> [String](String.md) | Optional serialization/encoding format (for example ifc, gltf, wkt, geojson), independent of representation kind. | direct |
+| [geometry_wkt](geometry_wkt.md) | 0..1 <br/> [String](String.md) | Inline WKT payload for small 2D representations (for example a footprint_2d polygon in project coordinates, metres). | direct |
+| [bbox_min_x](bbox_min_x.md) | 0..1 <br/> [Double](Double.md) | Axis-aligned bounding box minimum X in project coordinates (metres). | direct |
+| [bbox_min_y](bbox_min_y.md) | 0..1 <br/> [Double](Double.md) | Axis-aligned bounding box minimum Y in project coordinates (metres). | direct |
+| [bbox_min_z](bbox_min_z.md) | 0..1 <br/> [Double](Double.md) | Axis-aligned bounding box minimum Z (bottom elevation) in project coordinates (metres). | direct |
+| [bbox_max_x](bbox_max_x.md) | 0..1 <br/> [Double](Double.md) | Axis-aligned bounding box maximum X in project coordinates (metres). | direct |
+| [bbox_max_y](bbox_max_y.md) | 0..1 <br/> [Double](Double.md) | Axis-aligned bounding box maximum Y in project coordinates (metres). | direct |
+| [bbox_max_z](bbox_max_z.md) | 0..1 <br/> [Double](Double.md) | Axis-aligned bounding box maximum Z (top elevation) in project coordinates (metres). | direct |
 
 
 
@@ -86,6 +93,7 @@ click GeometryRepresentationType href "./GeometryRepresentationType.html" _blank
 | [SeparatorWall](SeparatorWall.md) | [geometry_representations](geometry_representations.md) | range | [GeometryRepresentation](GeometryRepresentation.md) |
 | [SeparatorSlab](SeparatorSlab.md) | [geometry_representations](geometry_representations.md) | range | [GeometryRepresentation](GeometryRepresentation.md) |
 | [ConnectionPhysical](ConnectionPhysical.md) | [geometry_representations](geometry_representations.md) | range | [GeometryRepresentation](GeometryRepresentation.md) |
+| [SafetyBarrier](SafetyBarrier.md) | [geometry_representations](geometry_representations.md) | range | [GeometryRepresentation](GeometryRepresentation.md) |
 | [Boundary](Boundary.md) | [geometry_representations](geometry_representations.md) | range | [GeometryRepresentation](GeometryRepresentation.md) |
 | [Equipment](Equipment.md) | [geometry_representations](geometry_representations.md) | range | [GeometryRepresentation](GeometryRepresentation.md) |
 | [VirtualEntity](VirtualEntity.md) | [geometry_representations](geometry_representations.md) | range | [GeometryRepresentation](GeometryRepresentation.md) |
@@ -98,6 +106,7 @@ click GeometryRepresentationType href "./GeometryRepresentationType.html" _blank
 | [LevelContext](LevelContext.md) | [geometry_representations](geometry_representations.md) | range | [GeometryRepresentation](GeometryRepresentation.md) |
 | [ZoneContext](ZoneContext.md) | [geometry_representations](geometry_representations.md) | range | [GeometryRepresentation](GeometryRepresentation.md) |
 | [Space](Space.md) | [geometry_representations](geometry_representations.md) | range | [GeometryRepresentation](GeometryRepresentation.md) |
+| [ReservedVolume](ReservedVolume.md) | [geometry_representations](geometry_representations.md) | range | [GeometryRepresentation](GeometryRepresentation.md) |
 | [System](System.md) | [geometry_representations](geometry_representations.md) | range | [GeometryRepresentation](GeometryRepresentation.md) |
 | [ConnectionVirtual](ConnectionVirtual.md) | [geometry_representations](geometry_representations.md) | range | [GeometryRepresentation](GeometryRepresentation.md) |
 | [TimeRecord](TimeRecord.md) | [geometry_representations](geometry_representations.md) | range | [GeometryRepresentation](GeometryRepresentation.md) |
@@ -157,6 +166,13 @@ slots:
 - geometry_reference
 - geometry_representation
 - geometry_format
+- geometry_wkt
+- bbox_min_x
+- bbox_min_y
+- bbox_min_z
+- bbox_max_x
+- bbox_max_y
+- bbox_max_z
 class_uri: pbs:GeometryRepresentation
 
 ```
@@ -202,6 +218,72 @@ attributes:
     domain_of:
     - GeometryRepresentation
     range: string
+  geometry_wkt:
+    name: geometry_wkt
+    description: Inline WKT payload for small 2D representations (for example a footprint_2d
+      polygon in project coordinates, metres).
+    from_schema: https://schema.pragmaticbim.ch
+    rank: 1000
+    owner: GeometryRepresentation
+    domain_of:
+    - GeometryRepresentation
+    range: string
+  bbox_min_x:
+    name: bbox_min_x
+    description: Axis-aligned bounding box minimum X in project coordinates (metres).
+    from_schema: https://schema.pragmaticbim.ch
+    rank: 1000
+    owner: GeometryRepresentation
+    domain_of:
+    - GeometryRepresentation
+    range: double
+  bbox_min_y:
+    name: bbox_min_y
+    description: Axis-aligned bounding box minimum Y in project coordinates (metres).
+    from_schema: https://schema.pragmaticbim.ch
+    rank: 1000
+    owner: GeometryRepresentation
+    domain_of:
+    - GeometryRepresentation
+    range: double
+  bbox_min_z:
+    name: bbox_min_z
+    description: Axis-aligned bounding box minimum Z (bottom elevation) in project
+      coordinates (metres).
+    from_schema: https://schema.pragmaticbim.ch
+    rank: 1000
+    owner: GeometryRepresentation
+    domain_of:
+    - GeometryRepresentation
+    range: double
+  bbox_max_x:
+    name: bbox_max_x
+    description: Axis-aligned bounding box maximum X in project coordinates (metres).
+    from_schema: https://schema.pragmaticbim.ch
+    rank: 1000
+    owner: GeometryRepresentation
+    domain_of:
+    - GeometryRepresentation
+    range: double
+  bbox_max_y:
+    name: bbox_max_y
+    description: Axis-aligned bounding box maximum Y in project coordinates (metres).
+    from_schema: https://schema.pragmaticbim.ch
+    rank: 1000
+    owner: GeometryRepresentation
+    domain_of:
+    - GeometryRepresentation
+    range: double
+  bbox_max_z:
+    name: bbox_max_z
+    description: Axis-aligned bounding box maximum Z (top elevation) in project coordinates
+      (metres).
+    from_schema: https://schema.pragmaticbim.ch
+    rank: 1000
+    owner: GeometryRepresentation
+    domain_of:
+    - GeometryRepresentation
+    range: double
 class_uri: pbs:GeometryRepresentation
 
 ```

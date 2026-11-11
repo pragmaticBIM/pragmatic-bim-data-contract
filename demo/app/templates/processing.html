@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}{{ job.meta.name }} – {{ t("processing") }}{% endblock %}
+{% block body_class %}page{% endblock %}
+{% block content %}
+<main class="narrow">
+  <section class="panel">
+    <h1>{{ job.meta.name }}</h1>
+    <div hx-get="/jobs/{{ job.id }}/status" hx-trigger="every 1s" hx-swap="innerHTML">
+      {% include "partials/status.html" %}
+    </div>
+  </section>
+</main>
+{% endblock %}

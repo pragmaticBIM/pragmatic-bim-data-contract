@@ -18,6 +18,12 @@ def data_root() -> Path:
     raise FileNotFoundError("Cannot locate contract/ data directory for pragmatic_bim.ifc2rdf")
 
 
+def repo_root() -> Path | None:
+    """Repository root of a source checkout (None for an installed wheel)."""
+    root = _PACKAGE_DIR.parent
+    return root if (root / "contract" / "mapping").is_dir() and (root / "pyproject.toml").is_file() else None
+
+
 def default_mapping_path() -> Path:
     return data_root() / "contract" / "mapping" / "ifc_mapping.merged.yaml"
 

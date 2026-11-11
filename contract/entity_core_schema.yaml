@@ -126,6 +126,13 @@ classes:
     - geometry_reference
     - geometry_representation
     - geometry_format
+    - geometry_wkt
+    - bbox_min_x
+    - bbox_min_y
+    - bbox_min_z
+    - bbox_max_x
+    - bbox_max_y
+    - bbox_max_z
   QuantityValue:
     class_uri: pbs:QuantityValue
     description: Minimal quantity record for costing and analysis.
@@ -788,6 +795,28 @@ slots:
     range: string
     description: Optional serialization/encoding format (for example ifc, gltf, wkt, geojson), independent of representation
       kind.
+  geometry_wkt:
+    range: string
+    description: Inline WKT payload for small 2D representations (for example a footprint_2d polygon in project coordinates,
+      metres).
+  bbox_min_x:
+    range: double
+    description: Axis-aligned bounding box minimum X in project coordinates (metres).
+  bbox_min_y:
+    range: double
+    description: Axis-aligned bounding box minimum Y in project coordinates (metres).
+  bbox_min_z:
+    range: double
+    description: Axis-aligned bounding box minimum Z (bottom elevation) in project coordinates (metres).
+  bbox_max_x:
+    range: double
+    description: Axis-aligned bounding box maximum X in project coordinates (metres).
+  bbox_max_y:
+    range: double
+    description: Axis-aligned bounding box maximum Y in project coordinates (metres).
+  bbox_max_z:
+    range: double
+    description: Axis-aligned bounding box maximum Z (top elevation) in project coordinates (metres).
   quantity_type:
     range: QuantityType
     required: true

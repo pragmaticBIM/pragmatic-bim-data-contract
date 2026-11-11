@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block body_class %}page{% endblock %}
+{% block content %}
+<main class="narrow">
+  <section class="panel">
+    <h1>{{ t("Check an IFC model") }}</h1>
+    <p class="muted">{{ t("The model is converted to the Pragmatic BIM contract graph, checked against the SHACL rules, and opened in a linked graph and 3D view. Everything runs locally.") }}</p>
+    <form class="upload" hx-post="/jobs" hx-encoding="multipart/form-data" hx-disabled-elt="button"
+          action="/jobs" method="post" enctype="multipart/form-data">
+      <input type="file" name="file" accept=".ifc" required>
+      <button type="submit">{{ t("Upload and check") }}</button>
+      <progress class="htmx-indicator" max="100"></progress>
+    </form>
+  </section>
+
+  {% if jobs %}
+  <section class="panel">
+    <h2>{{ t("Previous models") }}</h2>
+    <table class="jobs">
+      <thead><tr><th>{{ t("Model") }}</th><th>{{ t("Uploaded") }}</th><th>{{ t("Status") }}</th></tr></thead>
+      <tbody>
+      {% for j in jobs %}
+        <tr>
+          <td><a href="/jobs/{{ j.id }}">{{ j.name }}</a></td>
+          <td class="muted">{{ j.uploaded_at | replace("T", " ") }}</td>
+          <td><span class="badge stage-{{ j.status.stage }}">{{ t(j.status.stage) }}</span></td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </section>
+  {% endif %}
+</main>
+{% endblock %}

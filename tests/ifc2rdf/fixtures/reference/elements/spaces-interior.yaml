@@ -1,0 +1,11 @@
+# Trimmed copy of pragmaticBIM-reference elements/spaces-interior.yaml (identification fields only).
+id: pragmaticbim:element/spaces-interior
+code: SPACE-INT
+status: active
+name:
+  de: Innenräume
+  fr: Espaces intérieurs
+  it: Spazi interni
+  en: Interior spaces
+applicability: (entity_ifc4=IfcSpace AND PredefinedType=SPACE AND Pset_SpaceCommon.IsExternal=FALSE) OR
+  (entity_ifc2x3=IfcSpace AND InteriorOrExteriorSpace=INTERNAL AND Pset_SpaceCommon.IsExternal=FALSE)

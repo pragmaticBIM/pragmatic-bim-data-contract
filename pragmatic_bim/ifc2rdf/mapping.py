@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Any
+from typing import Any, Sequence
 
 import ifcopenshell
 import yaml
@@ -20,7 +20,7 @@ class EntityMapping:
     """LinkML class name (``canonical_type`` without the variant suffix)."""
     canonical_type: str
     predefined: dict[str, Any]
-    """Selected ``predefined_type_map`` entry (empty when the entity has none)."""
+    """Selected ``predefined_type_map`` or ``reference_element_map`` entry (empty when the entity has none)."""
 
 
 class Mapping:
@@ -33,6 +33,7 @@ class Mapping:
         self.relationships = data.get("relationships") or {}
         self.entities = data.get("entities") or {}
         self.templates = data.get("templates") or {}
+        self.computed_relations: dict[str, Any] = data.get("computed_relations") or {}
         projection = self.conventions.get("rdf_projection") or {}
         self.field_slots: dict[str, str] = projection.get("field_slots") or {}
         self.excluded: set[str] = set((projection.get("exclude_entities") or {}).keys())
@@ -76,7 +77,18 @@ class Mapping:
                 return name
         return None
 
-    def resolve(self, entity: ifcopenshell.entity_instance) -> EntityMapping | None:
+    def needs_reference_match(self, key: str) -> bool:
+        return self.block(key).get("canonical_type_from") == "reference_element_map"
+
+    def resolve(
+        self, entity: ifcopenshell.entity_instance, reference_ids: Sequence[str] = ()
+    ) -> EntityMapping | None:
+        """Entity block and canonical type for ``entity``.
+
+        ``reference_ids`` are the pragmaticBIM Reference element ids the entity matches,
+        best match first; blocks with ``canonical_type_from: reference_element_map`` use
+        the first id listed in their map and return None when none is.
+        """
         key = self.entity_key(entity)
         if key is None or key in self.excluded:
             return None
@@ -85,6 +97,12 @@ class Mapping:
         if block.get("canonical_type_from") == "predefined_type_map":
             table = block["predefined_type_map"]
             predefined = table.get(predefined_type(entity) or "", table["default"])
+            canonical = predefined["canonical_type"]
+        elif block.get("canonical_type_from") == "reference_element_map":
+            table = block["reference_element_map"]
+            predefined = next((table[i] for i in reference_ids if i in table), {})
+            if not predefined:
+                return None
             canonical = predefined["canonical_type"]
         else:
             canonical = block["canonical_type"]

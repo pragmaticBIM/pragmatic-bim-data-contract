@@ -41,7 +41,8 @@ Name: pragmatic_bim_data_contract
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Separator](Separator.md) | Abstract base class for elements that separate spaces or zones. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[SeparatorWall](SeparatorWall.md) | Wall-based separating element. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[SeparatorSlab](SeparatorSlab.md) | Slab-based separating element (for example floor/roof/base slab separators). |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ConnectionPhysical](ConnectionPhysical.md) | Physical connector providing functional connection between spaces (for example door, window, duct, pipe, cable). |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ConnectionPhysical](ConnectionPhysical.md) | Physical connector providing functional connection between spaces (for example door, window, duct, pipe, cable) or carrying loads between elements (column, beam). |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[SafetyBarrier](SafetyBarrier.md) | Linear fall protection or guiding element (balustrade, guardrail, handrail) along slab, balcony, roof, landing, stair, or ramp edges. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Boundary](Boundary.md) | Physical element acting as a boundary treatment (for example covering). |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Equipment](Equipment.md) | Endpoint or device element (for example terminal, unit, control device, sensor) located in a space and assigned to a system. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[VirtualEntity](VirtualEntity.md) | Abstract base class for non-physical, conceptual, or informational entities. |
@@ -54,6 +55,7 @@ Name: pragmatic_bim_data_contract
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[LevelContext](LevelContext.md) | Spatial context node constrained to level/storey semantics. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ZoneContext](ZoneContext.md) | Spatial context node constrained to zone semantics. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Space](Space.md) | Spatial container used for occupancy, circulation, service, or analysis. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ReservedVolume](ReservedVolume.md) | Volume that must stay clear of building elements (maintenance space, installation path, structural exclusion zone, movement clearance, device space). Modelled as a proxy volume and identified through the pragmaticBIM Reference element definition. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[System](System.md) | Building service system grouping that serves spaces or zones. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ConnectionVirtual](ConnectionVirtual.md) | Logical or topological connection between spaces and/or physical elements. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[TimeRecord](TimeRecord.md) | Planned work record with baseline and actual dates, optionally linked to model entities and a time plan. — Set milestone_at to mark as a zero-duration checkpoint. — Populate component_time_items to act as a plan container. |
@@ -130,6 +132,13 @@ Name: pragmatic_bim_data_contract
 | [artifact_storage_link](artifact_storage_link.md) | Artifact location when the subject is an Artifact entity or embedded field diff. |
 | [assignee](assignee.md) | Responsible agent. |
 | [availability_notes](availability_notes.md) | Optional notes about availability, office hours, or response expectations. |
+| [barrier_type](barrier_type.md) | Classification of the safety barrier (balustrade, guardrail, handrail). |
+| [bbox_max_x](bbox_max_x.md) | Axis-aligned bounding box maximum X in project coordinates (metres). |
+| [bbox_max_y](bbox_max_y.md) | Axis-aligned bounding box maximum Y in project coordinates (metres). |
+| [bbox_max_z](bbox_max_z.md) | Axis-aligned bounding box maximum Z (top elevation) in project coordinates (metres). |
+| [bbox_min_x](bbox_min_x.md) | Axis-aligned bounding box minimum X in project coordinates (metres). |
+| [bbox_min_y](bbox_min_y.md) | Axis-aligned bounding box minimum Y in project coordinates (metres). |
+| [bbox_min_z](bbox_min_z.md) | Axis-aligned bounding box minimum Z (bottom elevation) in project coordinates (metres). |
 | [belongs_to_company](belongs_to_company.md) | Optional company that the person belongs to. |
 | [birthday](birthday.md) | Date of birth. Personal data; governed by personal_data_processing_state, consent_records, and retain_until. |
 | [boundary_type](boundary_type.md) | Classification of boundary element (e.g., covering). |
@@ -156,7 +165,7 @@ Name: pragmatic_bim_data_contract
 | [connection_physical_type](connection_physical_type.md) | IFC-derived physical connector form (for example door, window, duct, pipe, cable). Semantic role is expressed via connection_functional_types. |
 | [connection_virtual_requirement_drivers](connection_virtual_requirement_drivers.md) | Main requirement drivers for this virtual connection. |
 | [connection_virtual_type](connection_virtual_type.md) | Classification of virtual connection semantics (for example structural_joint, adjacency, access). |
-| [connects_physical_elements](connects_physical_elements.md) | Physical elements connected by this virtual connection (for example wall-wall, wall-slab). |
+| [connects_physical_elements](connects_physical_elements.md) | Physical elements connected to this one side by side (for example wall-wall junction, beam framing into a column). On a physical element the relation is symmetric and stated on both elements. From IfcRelConnectsElements / IfcRelConnectsPathElements, or computed from geometric contact. Bearing contact is rests_on. |
 | [connects_spaces](connects_spaces.md) | Spaces connected by this connection (for example the two spaces on either side of a door). |
 | [consent_notes](consent_notes.md) | Optional notes about how or where consent was captured. |
 | [consent_records](consent_records.md) | Audit trail of lawful basis and consent for processing personal data. When lawful_basis is consent and state is active, at least one non-withdrawn record should be present. |
@@ -206,13 +215,17 @@ Name: pragmatic_bim_data_contract
 | [geometry_reference](geometry_reference.md) | URI/path/hash/pointer to geometry payload. |
 | [geometry_representation](geometry_representation.md) | Representation kind/dimension (for example body_3d, footprint_2d, point), independent of file format. |
 | [geometry_representations](geometry_representations.md) | Geometry references associated with the entity. A single element may link to multiple geometry representations to serve different intents (authoring, coordination, analysis, visualization) without duplicating the element itself. |
+| [geometry_wkt](geometry_wkt.md) | Inline WKT payload for small 2D representations (for example a footprint_2d polygon in project coordinates, metres). |
 | [granted_at](granted_at.md) | Timestamp when consent was given. Required when lawful_basis is consent. |
 | [group_members](group_members.md) | Zone members; may include spaces, separations, systems, etc. |
+| [guards_space](guards_space.md) | Spaces whose walking surface this barrier protects against falls. Computed from geometry: the barrier footprint lies within a tolerance of the space footprint and the space floor is at or below the barrier base. |
+| [hosted_by](hosted_by.md) | Host element whose opening this connector fills (for example the wall a door or window sits in). From IfcRelFillsElement and IfcRelVoidsElement, or computed from geometry when the IFC chain is missing. |
 | [id](id.md) | Unique local identifier. |
 | [ifc_attribute_name](ifc_attribute_name.md) | IFC attribute name when property_path_kind is ifc_attribute (for example Name, GlobalId). |
 | [ifc_global_id](ifc_global_id.md) | IFC GlobalId of the mapped entity. |
 | [infill_material](infill_material.md) | Material of the opening infill within the frame (for example glazing for windows, door leaf or panel for doors). Applies to opening-type connectors (door, window). |
 | [intent_verdict](intent_verdict.md) | Intent stability verdict from an automated judge (for example iterthink STABLE/NEW). |
+| [intersects_elements](intersects_elements.md) | Physical elements whose body overlaps this reserved volume beyond the configured tolerance. Computed from geometry; an empty value means the volume is clear. |
 | [is_above_ground](is_above_ground.md) | Whether the space is above ground level. When unset, consumers may derive from parent_level elevation relative to project datum. |
 | [is_cooled](is_cooled.md) | Whether the space is designed to receive cooling (air conditioning). |
 | [is_heated](is_heated.md) | Whether the space is designed to receive heating. |
@@ -222,6 +235,7 @@ Name: pragmatic_bim_data_contract
 | [language_tag](language_tag.md) | IETF BCP 47 language tag (for example en, de, pt-BR). |
 | [lawful_basis](lawful_basis.md) | Lawful basis for processing the scoped personal data categories. |
 | [lifecycle_status](lifecycle_status.md) | Whether the person is active, retired, or deceased. Orthogonal to privacy processing state and workflow QA status. |
+| [lit_space](lit_space.md) | Interior spaces that receive daylight through this window. From space boundaries or computed from geometry (adjacent or nearest interior space). |
 | [localized_descriptions](localized_descriptions.md) | Localized variants of description. |
 | [localized_names](localized_names.md) | Localized variants of name. |
 | [mapping_version](mapping_version.md) | Mapping specification version used to derive the normalized property. |
@@ -309,6 +323,8 @@ Name: pragmatic_bim_data_contract
 | [relationship_source](relationship_source.md) | Optional provenance label (for example manual, crm:manual, llm:story-msg-0042, LinkedIn). |
 | [relationship_type](relationship_type.md) | Relationship predicate. classification_scheme must be AbstractPersonRelationshipType; classification_code and classification_uri reference the SKOS concept. |
 | [requirement_property_key](requirement_property_key.md) | Canonical performance key for the target (for example u_value, resistance_rating, airborne_sound_rating_db, seismic_structure_class, gwp_embodied). Either a permissible value of a PerformanceProperty key enum, matched against Entity.performance_properties property_key, or an entity slot name such as is_heated. |
+| [reserved_volume_type](reserved_volume_type.md) | Purpose of the reserved volume. |
+| [rests_on](rests_on.md) | Elements this element sits on: its underside bears on their top (for example wall on slab, column on slab, slab on wall or column). Computed from geometric contact; it records contact, not a structural analysis result. The inverse (supports) is read by querying the slot from the other side. |
 | [retain_until](retain_until.md) | Storage-limit deadline after which personal data should be deleted or redacted. |
 | [revision](revision.md) | Integer revision counter for change tracking. |
 | [sender](sender.md) | Agent that sent the message. |
@@ -373,12 +389,13 @@ Name: pragmatic_bim_data_contract
 | --- | --- |
 | [AcousticPropertyKey](AcousticPropertyKey.md) | Canonical acoustic-related keys derived from IFC PropertySets. |
 | [ArtifactKind](ArtifactKind.md) | Kind of external project artifact referenced by storage_link. |
+| [BarrierType](BarrierType.md) | Classification of safety barriers (fall protection and guiding elements). |
 | [BoundaryType](BoundaryType.md) |  |
 | [ChangeIntentVerdict](ChangeIntentVerdict.md) | Intent stability verdict from an automated judge (for example iterthink STABLE/NEW). |
 | [ChangeSeverity](ChangeSeverity.md) | Optional severity of a change independent of change type. |
 | [ChangeType](ChangeType.md) | Category of change detected between two revisions. |
 | [ConnectionFunctionalType](ConnectionFunctionalType.md) | Functional classification of physical connections between spaces by transported medium or passage role. |
-| [ConnectionPhysicalType](ConnectionPhysicalType.md) | Classification of physical connector elements that connect spaces. |
+| [ConnectionPhysicalType](ConnectionPhysicalType.md) | Classification of physical connector elements that connect spaces or carry loads between elements. |
 | [ConnectionRequirementDriver](ConnectionRequirementDriver.md) | Main requirement drivers for connection element performance. |
 | [ConnectionVirtualType](ConnectionVirtualType.md) | Classification of virtual connection semantics using schema-internal meanings because no stable 1:1 IFC mapping exists for these concepts. |
 | [ContentKind](ContentKind.md) | Entity type discriminator for adapter projection and querying — not a module router. |
@@ -400,6 +417,7 @@ Name: pragmatic_bim_data_contract
 | [PropertyPathKind](PropertyPathKind.md) | Classification of a property path for diff interpretation across IFC and text sources. |
 | [QuantityType](QuantityType.md) |  |
 | [RequirementTargetOperator](RequirementTargetOperator.md) | Comparison operator for numeric or textual requirement targets. |
+| [ReservedVolumeType](ReservedVolumeType.md) | Purpose of a reserved volume that must stay clear of building elements. |
 | [SecurityPropertyKey](SecurityPropertyKey.md) | Canonical security-related keys derived from IFC PropertySets. |
 | [SeparatorRequirementDriver](SeparatorRequirementDriver.md) | Main requirement drivers for separator performance. |
 | [SeparatorSlabType](SeparatorSlabType.md) | Classification of slab-based separator elements. |

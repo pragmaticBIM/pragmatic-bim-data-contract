@@ -490,8 +490,12 @@ class n_S_HYG_SHW["S-HYG-SHW: Shower and Changing Spaces"]
 class n_S_HYG_WC["S-HYG-WC: Toilet Spaces"]
 class n_S_HYG_WC_F["S-HYG-WC-F: Female Toilet Spaces"]
 class n_S_HYG_WC_IV["S-HYG-WC-IV: Accessible Toilet Spaces"]
+class n_S_HYG_WC_LRN["S-HYG-WC-LRN: Students' Toilet Spaces"]
 class n_S_HYG_WC_M["S-HYG-WC-M: Male Toilet Spaces"]
 class n_S_HYG_WC_MIX["S-HYG-WC-MIX: Mixed Toilet Spaces"]
+class n_S_HYG_WC_STF["S-HYG-WC-STF: Staff Toilet Spaces"]
+class n_S_HYG_WC_TCH["S-HYG-WC-TCH: Teachers' Toilet Spaces"]
+class n_S_HYG_WC_VIS["S-HYG-WC-VIS: Visitor Toilet Spaces"]
 class n_S_PRK["S-PRK: Parking Spaces"]
 class n_S_PRK_EXT["S-PRK-EXT: Exterior Parking Spaces"]
 class n_S_PRK_INT["S-PRK-INT: Interior Parking Spaces"]
@@ -535,8 +539,12 @@ n_S_HYG &lt;|-- n_S_HYG_SHW
 n_S_HYG &lt;|-- n_S_HYG_WC
 n_S_HYG_WC &lt;|-- n_S_HYG_WC_F
 n_S_HYG_WC &lt;|-- n_S_HYG_WC_IV
+n_S_HYG_WC &lt;|-- n_S_HYG_WC_LRN
 n_S_HYG_WC &lt;|-- n_S_HYG_WC_M
 n_S_HYG_WC &lt;|-- n_S_HYG_WC_MIX
+n_S_HYG_WC &lt;|-- n_S_HYG_WC_STF
+n_S_HYG_WC &lt;|-- n_S_HYG_WC_TCH
+n_S_HYG_WC &lt;|-- n_S_HYG_WC_VIS
 n_S_PRK &lt;|-- n_S_PRK_EXT
 n_S_PRK &lt;|-- n_S_PRK_INT
 n_S_PRK &lt;|-- n_S_PRK_SVC
@@ -921,6 +929,18 @@ Hold "Alt" / "Option" to enable pan &amp; zoom
 <td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
 </tr>
 <tr>
+<td>S-HYG-WC-LRN</td>
+<td>S-HYG-WC</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Lernenden-WC</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">WC-Raeume fuer Schuelerinnen, Schueler und Studierende, getrennt von den Lehrpersonen.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="description">Einschliesslich WC fuer Schuelerinnen, Schueler und Studierende.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Students&#x27; Toilet Spaces</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Toilet spaces for pupils and students, separate from teachers</td>
+<td class="pbs-lang-col" data-lang="en" data-field="description">Including pupil and student toilets</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
 <td>S-HYG-WC-M</td>
 <td>S-HYG-WC</td>
 <td class="pbs-lang-col" data-lang="de" data-field="label">Herren-WC</td>
@@ -942,6 +962,42 @@ Hold "Alt" / "Option" to enable pan &amp; zoom
 <td class="pbs-lang-col" data-lang="en" data-field="label">Mixed Toilet Spaces</td>
 <td class="pbs-lang-col" data-lang="en" data-field="definition">Toilet spaces for mixed or unisex use</td>
 <td class="pbs-lang-col" data-lang="en" data-field="description">Including unisex, family, and all-gender restrooms</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>S-HYG-WC-STF</td>
+<td>S-HYG-WC</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Mitarbeiter-WC</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">WC-Raeume fuer Mitarbeitende, getrennt von der Kundschaft.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="description">Einschliesslich Personaltoiletten abseits der Kundschaft.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Staff Toilet Spaces</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Toilet spaces for staff, separate from customers</td>
+<td class="pbs-lang-col" data-lang="en" data-field="description">Including back-of-house staff toilets</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>S-HYG-WC-TCH</td>
+<td>S-HYG-WC</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Lehrpersonen-WC</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">WC-Raeume fuer Lehrpersonen, getrennt von den Lernenden.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="description">Einschliesslich Lehrpersonen-WC in Schulen und Hochschulen.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Teachers&#x27; Toilet Spaces</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Toilet spaces for teachers, separate from pupils and students</td>
+<td class="pbs-lang-col" data-lang="en" data-field="description">Including staff toilets in schools and universities</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>S-HYG-WC-VIS</td>
+<td>S-HYG-WC</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Besucher-WC</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">WC-Raeume fuer Besuchende und Kundschaft, getrennt von den Mitarbeitenden.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="description">Einschliesslich Kundentoiletten im Verkauf.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Visitor Toilet Spaces</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Toilet spaces for visitors and customers, separate from staff</td>
+<td class="pbs-lang-col" data-lang="en" data-field="description">Including customer toilets in retail</td>
 <td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
 </tr>
 <tr>

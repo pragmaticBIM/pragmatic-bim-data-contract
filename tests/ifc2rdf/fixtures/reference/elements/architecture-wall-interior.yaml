@@ -1,0 +1,11 @@
+# Trimmed copy of pragmaticBIM-reference elements/architecture-wall-interior.yaml (identification fields only).
+id: pragmaticbim:element/architecture-wall-interior
+code: ARC-WALL-INT
+status: active
+name:
+  de: Innenwand nicht tragend
+  fr: Cloison intérieure non porteuse
+  it: Parete interna non portante
+  en: Non-load-bearing interior wall
+applicability: (entity_ifc4=IfcWall AND IsExternal=FALSE AND LoadBearing=FALSE) OR (entity_ifc2x3=IfcWall
+  AND IsExternal=FALSE AND LoadBearing=FALSE)

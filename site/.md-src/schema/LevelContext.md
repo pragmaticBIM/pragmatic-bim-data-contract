@@ -119,6 +119,7 @@ click ZoneType href "./ZoneType.html" _blank
 | [SeparatorSlab](SeparatorSlab.md) | [separates_levels](separates_levels.md) | range | [LevelContext](LevelContext.md) |
 | [SeparatorSlab](SeparatorSlab.md) | [parent_level](parent_level.md) | range | [LevelContext](LevelContext.md) |
 | [ConnectionPhysical](ConnectionPhysical.md) | [parent_level](parent_level.md) | range | [LevelContext](LevelContext.md) |
+| [SafetyBarrier](SafetyBarrier.md) | [parent_level](parent_level.md) | range | [LevelContext](LevelContext.md) |
 | [Boundary](Boundary.md) | [parent_level](parent_level.md) | range | [LevelContext](LevelContext.md) |
 | [Equipment](Equipment.md) | [parent_level](parent_level.md) | range | [LevelContext](LevelContext.md) |
 | [SpatialContext](SpatialContext.md) | [parent_level](parent_level.md) | range | [LevelContext](LevelContext.md) |
@@ -130,6 +131,7 @@ click ZoneType href "./ZoneType.html" _blank
 | [LevelContext](LevelContext.md) | [parent_level](parent_level.md) | range | [LevelContext](LevelContext.md) |
 | [ZoneContext](ZoneContext.md) | [parent_level](parent_level.md) | range | [LevelContext](LevelContext.md) |
 | [Space](Space.md) | [parent_level](parent_level.md) | range | [LevelContext](LevelContext.md) |
+| [ReservedVolume](ReservedVolume.md) | [parent_level](parent_level.md) | range | [LevelContext](LevelContext.md) |
 
 
 
@@ -281,6 +283,7 @@ attributes:
     - PhysicalElement
     - SpatialContext
     - Space
+    - ReservedVolume
     - System
     range: BuiltAssetContext
   parent_level:
@@ -293,6 +296,7 @@ attributes:
     - PhysicalElement
     - SpatialContext
     - Space
+    - ReservedVolume
     range: LevelContext
   parent_zone:
     name: parent_zone

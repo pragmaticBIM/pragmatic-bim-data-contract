@@ -1,0 +1,20 @@
+<div id="cards" class="cards">
+  {% if request.headers.get("HX-Request") %}
+  <div class="filters" hx-swap-oob="innerHTML:.filters">{% include "partials/filters.html" %}</div>
+  {% endif %}
+  {% for check in checks %}
+  <button class="card status-{{ check.status }} severity-{{ check.severity }}" data-check="{{ check.id }}"
+          hx-get="/jobs/{{ job.id }}/checks/{{ check.id }}" hx-target="#check-detail" hx-swap="innerHTML">
+    <div class="card-head">
+      <span class="dot"></span>
+      <span class="card-title">{{ L.title(check) }}</span>
+    </div>
+    <div class="card-meta">
+      <span class="tag severity">{{ t(check.severity) }}</span>
+      <span class="count"><b>{{ check.failed | length }}</b> / {{ check.checked | length }}</span>
+    </div>
+  </button>
+  {% else %}
+  <p class="muted empty">{{ t("No checks in this filter.") }}</p>
+  {% endfor %}
+</div>

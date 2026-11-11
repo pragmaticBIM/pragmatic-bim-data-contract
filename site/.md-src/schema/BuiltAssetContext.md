@@ -124,6 +124,7 @@ click ZoneType href "./ZoneType.html" _blank
 | [SeparatorWall](SeparatorWall.md) | [parent_building](parent_building.md) | range | [BuiltAssetContext](BuiltAssetContext.md) |
 | [SeparatorSlab](SeparatorSlab.md) | [parent_building](parent_building.md) | range | [BuiltAssetContext](BuiltAssetContext.md) |
 | [ConnectionPhysical](ConnectionPhysical.md) | [parent_building](parent_building.md) | range | [BuiltAssetContext](BuiltAssetContext.md) |
+| [SafetyBarrier](SafetyBarrier.md) | [parent_building](parent_building.md) | range | [BuiltAssetContext](BuiltAssetContext.md) |
 | [Boundary](Boundary.md) | [parent_building](parent_building.md) | range | [BuiltAssetContext](BuiltAssetContext.md) |
 | [Equipment](Equipment.md) | [parent_building](parent_building.md) | range | [BuiltAssetContext](BuiltAssetContext.md) |
 | [SpatialContext](SpatialContext.md) | [parent_building](parent_building.md) | range | [BuiltAssetContext](BuiltAssetContext.md) |
@@ -135,6 +136,7 @@ click ZoneType href "./ZoneType.html" _blank
 | [LevelContext](LevelContext.md) | [parent_building](parent_building.md) | range | [BuiltAssetContext](BuiltAssetContext.md) |
 | [ZoneContext](ZoneContext.md) | [parent_building](parent_building.md) | range | [BuiltAssetContext](BuiltAssetContext.md) |
 | [Space](Space.md) | [parent_building](parent_building.md) | range | [BuiltAssetContext](BuiltAssetContext.md) |
+| [ReservedVolume](ReservedVolume.md) | [parent_building](parent_building.md) | range | [BuiltAssetContext](BuiltAssetContext.md) |
 | [System](System.md) | [parent_building](parent_building.md) | range | [BuiltAssetContext](BuiltAssetContext.md) |
 
 
@@ -265,6 +267,7 @@ attributes:
     - PhysicalElement
     - SpatialContext
     - Space
+    - ReservedVolume
     - System
     range: BuiltAssetContext
   parent_level:
@@ -277,6 +280,7 @@ attributes:
     - PhysicalElement
     - SpatialContext
     - Space
+    - ReservedVolume
     range: LevelContext
   parent_zone:
     name: parent_zone

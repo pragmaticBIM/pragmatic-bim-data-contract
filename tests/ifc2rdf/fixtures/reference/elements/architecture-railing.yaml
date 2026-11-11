@@ -1,0 +1,10 @@
+# Trimmed copy of pragmaticBIM-reference elements/architecture-railing.yaml (identification fields only).
+id: pragmaticbim:element/architecture-railing
+code: ARC-RAILING
+status: active
+name:
+  de: Absturzsicherung / Geländer
+  fr: Protection contre les chutes / garde-corps
+  it: Protezione anticaduta / parapetto
+  en: Fall protection / railing
+applicability: entity_ifc4=IfcRailing OR entity_ifc2x3=IfcRailing

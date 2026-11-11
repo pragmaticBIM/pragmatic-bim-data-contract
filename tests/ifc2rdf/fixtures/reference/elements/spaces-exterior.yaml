@@ -1,0 +1,11 @@
+# Trimmed copy of pragmaticBIM-reference elements/spaces-exterior.yaml (identification fields only).
+id: pragmaticbim:element/spaces-exterior
+code: SPACE-EXT
+status: active
+name:
+  de: Aussenräume
+  fr: Espaces extérieurs
+  it: Spazi esterni
+  en: Exterior spaces
+applicability: (entity_ifc4=IfcSpace AND PredefinedType=SPACE AND Pset_SpaceCommon.IsExternal=TRUE) OR
+  (entity_ifc2x3=IfcSpace AND InteriorOrExteriorSpace=EXTERNAL AND Pset_SpaceCommon.IsExternal=TRUE)

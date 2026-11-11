@@ -1,0 +1,42 @@
+<div class="detail status-{{ check.status }}">
+  <div class="detail-head">
+    <h2>{{ L.title(check) }}</h2>
+    <div class="card-meta">
+      <span class="tag severity severity-{{ check.severity }}">{{ t(check.severity) }}</span>
+      <span class="badge {{ check.status }}">{{ t(check.status) }}</span>
+    </div>
+  </div>
+  {% if L.description(check) %}<p class="muted">{{ L.description(check) }}</p>{% endif %}
+
+  {% if check.definition %}
+  <details class="rule-definition" open>
+    <summary>{{ t("Rule") }} <span class="muted">(SHACL, Turtle)</span></summary>
+    <pre><code>{{ check.definition }}</code></pre>
+  </details>
+  {% endif %}
+
+  <p>
+    {{ t("{failed} of {checked} checked elements fail.").format(failed="<b>%d</b>" | format(check.failed | length), checked=check.checked | length) | safe }}
+    <span class="legend-inline"><i class="sw fail"></i>{{ t("failing") }} <i class="sw pass"></i>{{ t("passing") }} <i class="sw neighbor"></i>{{ t("related") }}</span>
+  </p>
+  {% if items %}
+  <table class="findings">
+    <thead><tr><th>{{ t("Element") }}</th><th>{{ t("Finding") }}</th></tr></thead>
+    <tbody>
+    {% for item in items %}
+      {% set el = elements.get(item.guid) %}
+      <tr data-guid="{{ item.guid }}" hx-get="/jobs/{{ job.id }}/element/{{ item.guid | urlencode }}" hx-target="#props" hx-swap="innerHTML">
+        <td>
+          <div class="el-name">{{ el.name if el else item.guid }}</div>
+          <div class="muted mono">{{ L.cls(el.cls) if el else "" }} · {{ item.guid }}</div>
+        </td>
+        <td>{{ L.message(item) }}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  {% if check["items"] | length > limit %}
+    <p class="muted">{{ t("Showing {shown} of {total} findings. The report lists all.").format(shown=limit, total=check["items"] | length) }}</p>
+  {% endif %}
+  {% endif %}
+</div>

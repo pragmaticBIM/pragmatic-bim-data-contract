@@ -55,7 +55,8 @@ URI: [pbs:ifc_global_id](https://schema.pragmaticbim.ch/ifc_global_id)
 | [Separator](Separator.md) | Abstract base class for elements that separate spaces or zones. |  no  |
 | [SeparatorWall](SeparatorWall.md) | Wall-based separating element. |  no  |
 | [SeparatorSlab](SeparatorSlab.md) | Slab-based separating element (for example floor/roof/base slab separators). |  no  |
-| [ConnectionPhysical](ConnectionPhysical.md) | Physical connector providing functional connection between spaces (for example door, window, duct, pipe, cable). |  no  |
+| [ConnectionPhysical](ConnectionPhysical.md) | Physical connector providing functional connection between spaces (for example door, window, duct, pipe, cable) or carrying loads between elements (column, beam). |  no  |
+| [SafetyBarrier](SafetyBarrier.md) | Linear fall protection or guiding element (balustrade, guardrail, handrail) along slab, balcony, roof, landing, stair, or ramp edges. |  no  |
 | [Boundary](Boundary.md) | Physical element acting as a boundary treatment (for example covering). |  no  |
 | [Equipment](Equipment.md) | Endpoint or device element (for example terminal, unit, control device, sensor) located in a space and assigned to a system. |  no  |
 | [VirtualEntity](VirtualEntity.md) | Abstract base class for non-physical, conceptual, or informational entities. |  no  |
@@ -68,6 +69,7 @@ URI: [pbs:ifc_global_id](https://schema.pragmaticbim.ch/ifc_global_id)
 | [LevelContext](LevelContext.md) | Spatial context node constrained to level/storey semantics. |  no  |
 | [ZoneContext](ZoneContext.md) | Spatial context node constrained to zone semantics. |  no  |
 | [Space](Space.md) | Spatial container used for occupancy, circulation, service, or analysis. |  no  |
+| [ReservedVolume](ReservedVolume.md) | Volume that must stay clear of building elements (maintenance space, installation path, structural exclusion zone, movement clearance, device space). Modelled as a proxy volume and identified through the pragmaticBIM Reference element definition. |  no  |
 | [System](System.md) | Building service system grouping that serves spaces or zones. |  no  |
 | [ConnectionVirtual](ConnectionVirtual.md) | Logical or topological connection between spaces and/or physical elements. |  no  |
 | [TimeRecord](TimeRecord.md) | Planned work record with baseline and actual dates, optionally linked to model entities and a time plan. — Set milestone_at to mark as a zero-duration checkpoint. — Populate component_time_items to act as a plan container. |  no  |

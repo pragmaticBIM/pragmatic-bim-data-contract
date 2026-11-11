@@ -721,7 +721,11 @@
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ConnectionPhysical.html">ConnectionPhysical</a></td>
-<td>Physical connector providing functional connection between spaces (for example door, window, duct, pipe, cable).</td>
+<td>Physical connector providing functional connection between spaces (for example door, window, duct, pipe, cable) or carrying loads between elements (column, beam).</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="SafetyBarrier.html">SafetyBarrier</a></td>
+<td>Linear fall protection or guiding element (balustrade, guardrail, handrail) along slab, balcony, roof, landing, stair, or ramp edges.</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="Boundary.html">Boundary</a></td>
@@ -770,6 +774,10 @@
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="Space.html">Space</a></td>
 <td>Spatial container used for occupancy, circulation, service, or analysis.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ReservedVolume.html">ReservedVolume</a></td>
+<td>Volume that must stay clear of building elements (maintenance space, installation path, structural exclusion zone, movement clearance, device space). Modelled as a proxy volume and identified through the pragmaticBIM Reference element definition.</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="System.html">System</a></td>
@@ -1041,6 +1049,34 @@
 <td>Optional notes about availability, office hours, or response expectations.</td>
 </tr>
 <tr>
+<td><a href="barrier_type.html">barrier_type</a></td>
+<td>Classification of the safety barrier (balustrade, guardrail, handrail).</td>
+</tr>
+<tr>
+<td><a href="bbox_max_x.html">bbox_max_x</a></td>
+<td>Axis-aligned bounding box maximum X in project coordinates (metres).</td>
+</tr>
+<tr>
+<td><a href="bbox_max_y.html">bbox_max_y</a></td>
+<td>Axis-aligned bounding box maximum Y in project coordinates (metres).</td>
+</tr>
+<tr>
+<td><a href="bbox_max_z.html">bbox_max_z</a></td>
+<td>Axis-aligned bounding box maximum Z (top elevation) in project coordinates (metres).</td>
+</tr>
+<tr>
+<td><a href="bbox_min_x.html">bbox_min_x</a></td>
+<td>Axis-aligned bounding box minimum X in project coordinates (metres).</td>
+</tr>
+<tr>
+<td><a href="bbox_min_y.html">bbox_min_y</a></td>
+<td>Axis-aligned bounding box minimum Y in project coordinates (metres).</td>
+</tr>
+<tr>
+<td><a href="bbox_min_z.html">bbox_min_z</a></td>
+<td>Axis-aligned bounding box minimum Z (bottom elevation) in project coordinates (metres).</td>
+</tr>
+<tr>
 <td><a href="belongs_to_company.html">belongs_to_company</a></td>
 <td>Optional company that the person belongs to.</td>
 </tr>
@@ -1146,7 +1182,7 @@
 </tr>
 <tr>
 <td><a href="connects_physical_elements.html">connects_physical_elements</a></td>
-<td>Physical elements connected by this virtual connection (for example wall-wall, wall-slab).</td>
+<td>Physical elements connected to this one side by side (for example wall-wall junction, beam framing into a column). On a physical element the relation is symmetric and stated on both elements. From IfcRelConnectsElements / IfcRelConnectsPathElements, or computed from geometric contact. Bearing contact is rests_on.</td>
 </tr>
 <tr>
 <td><a href="connects_spaces.html">connects_spaces</a></td>
@@ -1345,12 +1381,24 @@
 <td>Geometry references associated with the entity. A single element may link to multiple geometry representations to serve different intents (authoring, coordination, analysis, visualization) without duplicating the element itself.</td>
 </tr>
 <tr>
+<td><a href="geometry_wkt.html">geometry_wkt</a></td>
+<td>Inline WKT payload for small 2D representations (for example a footprint_2d polygon in project coordinates, metres).</td>
+</tr>
+<tr>
 <td><a href="granted_at.html">granted_at</a></td>
 <td>Timestamp when consent was given. Required when lawful_basis is consent.</td>
 </tr>
 <tr>
 <td><a href="group_members.html">group_members</a></td>
 <td>Zone members; may include spaces, separations, systems, etc.</td>
+</tr>
+<tr>
+<td><a href="guards_space.html">guards_space</a></td>
+<td>Spaces whose walking surface this barrier protects against falls. Computed from geometry: the barrier footprint lies within a tolerance of the space footprint and the space floor is at or below the barrier base.</td>
+</tr>
+<tr>
+<td><a href="hosted_by.html">hosted_by</a></td>
+<td>Host element whose opening this connector fills (for example the wall a door or window sits in). From IfcRelFillsElement and IfcRelVoidsElement, or computed from geometry when the IFC chain is missing.</td>
 </tr>
 <tr>
 <td><a href="id.html">id</a></td>
@@ -1371,6 +1419,10 @@
 <tr>
 <td><a href="intent_verdict.html">intent_verdict</a></td>
 <td>Intent stability verdict from an automated judge (for example iterthink STABLE/NEW).</td>
+</tr>
+<tr>
+<td><a href="intersects_elements.html">intersects_elements</a></td>
+<td>Physical elements whose body overlaps this reserved volume beyond the configured tolerance. Computed from geometry; an empty value means the volume is clear.</td>
 </tr>
 <tr>
 <td><a href="is_above_ground.html">is_above_ground</a></td>
@@ -1407,6 +1459,10 @@
 <tr>
 <td><a href="lifecycle_status.html">lifecycle_status</a></td>
 <td>Whether the person is active, retired, or deceased. Orthogonal to privacy processing state and workflow QA status.</td>
+</tr>
+<tr>
+<td><a href="lit_space.html">lit_space</a></td>
+<td>Interior spaces that receive daylight through this window. From space boundaries or computed from geometry (adjacent or nearest interior space).</td>
 </tr>
 <tr>
 <td><a href="localized_descriptions.html">localized_descriptions</a></td>
@@ -1757,6 +1813,14 @@
 <td>Canonical performance key for the target (for example u_value, resistance_rating, airborne_sound_rating_db, seismic_structure_class, gwp_embodied). Either a permissible value of a PerformanceProperty key enum, matched against Entity.performance_properties property_key, or an entity slot name such as is_heated.</td>
 </tr>
 <tr>
+<td><a href="reserved_volume_type.html">reserved_volume_type</a></td>
+<td>Purpose of the reserved volume.</td>
+</tr>
+<tr>
+<td><a href="rests_on.html">rests_on</a></td>
+<td>Elements this element sits on: its underside bears on their top (for example wall on slab, column on slab, slab on wall or column). Computed from geometric contact; it records contact, not a structural analysis result. The inverse (supports) is read by querying the slot from the other side.</td>
+</tr>
+<tr>
 <td><a href="retain_until.html">retain_until</a></td>
 <td>Storage-limit deadline after which personal data should be deleted or redacted.</td>
 </tr>
@@ -2000,6 +2064,10 @@
 <td>Kind of external project artifact referenced by storage_link.</td>
 </tr>
 <tr>
+<td><a href="BarrierType.html">BarrierType</a></td>
+<td>Classification of safety barriers (fall protection and guiding elements).</td>
+</tr>
+<tr>
 <td><a href="BoundaryType.html">BoundaryType</a></td>
 <td></td>
 </tr>
@@ -2021,7 +2089,7 @@
 </tr>
 <tr>
 <td><a href="ConnectionPhysicalType.html">ConnectionPhysicalType</a></td>
-<td>Classification of physical connector elements that connect spaces.</td>
+<td>Classification of physical connector elements that connect spaces or carry loads between elements.</td>
 </tr>
 <tr>
 <td><a href="ConnectionRequirementDriver.html">ConnectionRequirementDriver</a></td>
@@ -2106,6 +2174,10 @@
 <tr>
 <td><a href="RequirementTargetOperator.html">RequirementTargetOperator</a></td>
 <td>Comparison operator for numeric or textual requirement targets.</td>
+</tr>
+<tr>
+<td><a href="ReservedVolumeType.html">ReservedVolumeType</a></td>
+<td>Purpose of a reserved volume that must stay clear of building elements.</td>
 </tr>
 <tr>
 <td><a href="SecurityPropertyKey.html">SecurityPropertyKey</a></td>

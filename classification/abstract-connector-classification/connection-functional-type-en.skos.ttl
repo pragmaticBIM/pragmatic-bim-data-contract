@@ -12,7 +12,7 @@
   dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
   skos:definition "Functional classification of physical connections between spaces by transported medium or passage role. A connection may carry multiple functional types (for example access plus visual on a glazed door)."@en ;
   skos:definition "Funktionale Klassifikation physischer Verbindungen zwischen Raeumen nach transportiertem Medium oder Durchgangrolle. Eine Verbindung kann mehrere funktionale Typen tragen (z. B. Erschliessung plus Sicht bei einer verglasten Tuer)."@de ;
-  skos:hasTopConcept :electrical, :data, :ventilation, :heating, :cooling, :fresh_water, :waste_water, :special_media, :access, :visual .
+  skos:hasTopConcept :electrical, :data, :ventilation, :heating, :cooling, :fresh_water, :waste_water, :special_media, :access, :visual, :load_transfer .
 
 :electrical a skos:Concept ;
   skos:inScheme :scheme ;
@@ -125,6 +125,17 @@
   skos:definition "Sicht- oder Tageslichtverbindung ohne physischen Durchgang."@de ;
   dcterms:subject "window, opening_other" ;
   dcterms:identifier "visual" .
+
+:load_transfer a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:topConceptOf :scheme ;
+  skos:notation "load_transfer" ;
+  skos:prefLabel "Load Transfer"@en ;
+  skos:prefLabel "Lastabtragung"@de ;
+  skos:definition "Structural connection carrying loads between elements, such as a column between slabs or a beam onto columns or walls."@en ;
+  skos:definition "Tragende Verbindung, die Lasten zwischen Bauteilen abtraegt, etwa eine Stuetze zwischen Decken oder ein Traeger auf Stuetzen oder Waende."@de ;
+  dcterms:subject "column, beam" ;
+  dcterms:identifier "load_transfer" .
 
 :heat_distribution a skos:Concept ;
   skos:inScheme :scheme ;

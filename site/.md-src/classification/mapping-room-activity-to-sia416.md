@@ -42,8 +42,12 @@ External target labels are not shipped in this repository; only codes and IRIs a
 | `abs:S-HYG-WC` | `mapsToSia416` | `sia:NNF` |
 | `abs:S-HYG-WC-F` | `mapsToSia416` | `sia:NNF` |
 | `abs:S-HYG-WC-IV` | `mapsToSia416` | `sia:NNF` |
+| `abs:S-HYG-WC-LRN` | `mapsToSia416` | `sia:NNF` |
 | `abs:S-HYG-WC-M` | `mapsToSia416` | `sia:NNF` |
 | `abs:S-HYG-WC-MIX` | `mapsToSia416` | `sia:NNF` |
+| `abs:S-HYG-WC-STF` | `mapsToSia416` | `sia:NNF` |
+| `abs:S-HYG-WC-TCH` | `mapsToSia416` | `sia:NNF` |
+| `abs:S-HYG-WC-VIS` | `mapsToSia416` | `sia:NNF` |
 | `abs:S-PRK` | `mapsToSia416` | `sia:NNF` |
 | `abs:S-PRK-EXT` | `mapsToSia416` | `sia:BUF` |
 | `abs:S-PRK-INT` | `mapsToSia416` | `sia:NNF` |

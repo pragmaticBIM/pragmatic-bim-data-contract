@@ -190,8 +190,8 @@ pragmatic-bim-data-contract/
 `ifc2rdf` converts an IFC model into Turtle that follows this contract. All mapping decisions come from [`contract/mapping/ifc_mapping.merged.yaml`](contract/mapping/ifc_mapping.merged.yaml); the converter only interprets that file and the LinkML schema.
 
 ```bash
-pip install "pragmatic-bim[rdf]"        # or, in a checkout: pip install -e ".[rdf]"
-ifc2rdf model.ifc -o model.ttl [--contract-version vX.Y.Z] [--base-uri URI]
+pip install "pragmatic-bim[geometry]"   # or, in a checkout: pip install -e ".[geometry]"
+ifc2rdf model.ifc -o model.ttl --geometry-out model.glb [--reference ../elementplan/pragmaticBIM-reference]
 ```
 
 | Option | Default | Meaning |
@@ -199,6 +199,11 @@ ifc2rdf model.ifc -o model.ttl [--contract-version vX.Y.Z] [--base-uri URI]
 | `--base-uri` | `urn:pbs:ifc:{project}/` | Instance IRI prefix; the IFC `GlobalId` is appended. `{project}` is replaced by the `IfcProject` GlobalId. |
 | `--contract-version` | `canonical_type_version` of the mapping | Recorded as `pbs:contract_version` and `dcterms:conformsTo <https://schema.pragmaticbim.ch/{version}/>`. |
 | `--source-system` | detected from `IfcApplication` | Selects Revit / ArchiCAD / Vectorworks PropertySet overrides. |
+| `--reference DIR` / `--no-reference` | `$PBS_REFERENCE_PATH`, then `../elementplan/pragmaticBIM-reference` | pragmaticBIM-reference checkout used to identify elements from their `applicability`. |
+| `--geometry-out FILE` | none | Writes the tessellated model as GLB; mesh nodes are named by IFC GlobalId. |
+| `--no-geometry` | geometry on | Skips tessellation and the relations computed from it. Also skipped when `numpy` / `shapely` are not installed (`[rdf]` extra only). |
+
+The converter runs in stages: identify elements (pragmaticBIM Reference) → build contract nodes → populate slots → IFC relationships → one geometry pass (GLB, footprints, spatial index) → computed relations → emit Turtle.
 
 The output contains:
 
@@ -206,10 +211,25 @@ The output contains:
 - Relations `separates_spaces`, `connects_spaces`, `bounded_by` (from `IfcRelSpaceBoundary`), `parent_level`, `parent_space`, `parent_building`.
 - Rule-relevant PropertySet values (`FireRating`, `AcousticRating`, `ThermalTransmittance`, `IsExternal`, `LoadBearing`) as typed `pbs:performance_properties` records (`pbs:FireProperty`, …) with a canonical `pbs:property_key` and a normalized value; see [Performance properties](contract/mapping/README.md#performance-properties).
 - PropertySet values that are not promoted to a slot, and the raw values of performance properties, as `pbs:metadata` entries with key `{Pset}.{Property}`.
+- The best matching pragmaticBIM Reference element as a classification (`classification_scheme` `pragmaticbim-element`, `classification_uri` `https://pragmaticbim.ch/id/element/…`). Proxies identified as maintenance spaces, installation paths, exclusion zones, movement clearances, or device spaces become `ReservedVolume`; railings become `SafetyBarrier`. See [Element identification](contract/mapping/README.md#element-identification-pragmaticbim-reference).
+- `pbs:geometry_representations` (`body_3d` pointing at the GLB node, `footprint_2d` as WKT, both with bounding box) and a `height` quantity; see [Geometry output](contract/mapping/README.md#geometry-output-ifc2rdf).
+- Computed relations `hosted_by` (door/window → wall), `rests_on` (wall/column/slab/beam bearing on the element below, for example slab → column → slab), `connects_physical_elements` (side contact such as wall-wall junctions, on both elements), `intersects_elements` (reserved volume → physical element), `guards_space` with `height_above_walking_surface` (barrier → space), and `lit_space` with `area_glazed` / `glazing_ratio` (exterior window → interior space); see [Computed relations](contract/mapping/README.md#computed-relations).
 - A `dcat:Dataset` node at the base IRI with `pbs:contract_version`, `pbs:mapping_version`, and the sha256 of the IFC file.
 - [BOT](https://w3id.org/bot) alignment from the schema `exact_mappings`: `bot:Building`, `bot:Storey`, `bot:Space`, `bot:Element`, and `bot:adjacentElement` (slot `Space.adjacent_elements`).
 
-The output validates against [`site/schema/pragmatic-bim.shacl.ttl`](site/schema/pragmatic-bim.shacl.ttl) and is byte-identical across runs. A conversion report (node counts, excluded IFC classes, relations without a contract slot, PropertySet values rejected by a normalization rule) is printed to stderr; `-q` suppresses it.
+The output validates against [`site/schema/pragmatic-bim.shacl.ttl`](site/schema/pragmatic-bim.shacl.ttl) and is byte-identical across runs. A conversion report (node counts, excluded IFC classes, relations without a contract slot, PropertySet values rejected by a normalization rule, identified and ambiguous reference elements, computed relations and quantities, geometry failures, skipped stages) is printed to stderr; `-q` suppresses it.
+
+Barriers lower than 1.10 m above the floor they guard:
+
+```sparql
+PREFIX pbs: <https://schema.pragmaticbim.ch/>
+SELECT ?barrier ?space ?height WHERE {
+  ?barrier a pbs:SafetyBarrier ; pbs:guards_space ?space ;
+           pbs:quantity_values [ pbs:quantity_type pbs:quantity_type_height_above_walking_surface ;
+                                 pbs:quantity_value ?height ] .
+  FILTER (?height < 1.1)
+}
+```
 
 Walls that separate a kitchen, through the contract relations or through BOT:
 
@@ -227,7 +247,7 @@ SELECT DISTINCT ?wall ?name WHERE {
 }
 ```
 
-Tests (`pip install -e ".[test]"`, then `pytest`) convert public Revit, ArchiCAD, and Vectorworks exports downloaded from pinned commits (see `tests/ifc2rdf/samples.py`).
+Tests (`pip install -e ".[test]"`, then `pytest`) convert public Revit, ArchiCAD, and Vectorworks exports downloaded from pinned commits (see `tests/ifc2rdf/samples.py`), and a synthetic demo model with doors, a maintenance volume, a balcony with two railings, and an exterior window (`tests/ifc2rdf/synthetic.py`). They identify elements with trimmed reference definitions in `tests/ifc2rdf/fixtures/reference/`; the pragmaticBIM-reference example models are converted as well when a checkout is found.
 
 ## Governance
 

@@ -1,0 +1,71 @@
+@prefix pbs: <https://schema.pragmaticbim.ch/> .
+@prefix rule: <https://schema.pragmaticbim.ch/demo/rules/structural/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# Structural plausibility rules on the contract graph.
+# "Load-bearing" means a pbs:performance_properties record with
+# pbs:property_key pbs:structural_property_load_bearing and pbs:property_value_boolean true.
+
+rule:prefixes
+    sh:declare [ sh:prefix "pbs" ; sh:namespace "https://schema.pragmaticbim.ch/"^^xsd:anyURI ] .
+
+rule:LoadBearingWallConnected a sh:NodeShape ;
+    sh:name "Load-bearing walls connect to the load path" , "Tragende Wände sind an den Lastpfad angeschlossen"@de ;
+    sh:description "A load-bearing wall rests on, or carries, at least one other load-bearing element (wall, slab, column or beam)." ,
+        "Eine tragende Wand liegt auf mindestens einem anderen tragenden Bauteil (Wand, Decke, Stütze oder Träger) oder trägt eines."@de ;
+    sh:severity sh:Violation ;
+    sh:target [
+        a sh:SPARQLTarget ;
+        sh:prefixes rule:prefixes ;
+        sh:select """
+            SELECT ?this WHERE {
+                ?this a pbs:SeparatorWall ; pbs:performance_properties ?lb .
+                ?lb pbs:property_key pbs:structural_property_load_bearing ; pbs:property_value_boolean true .
+            }"""
+    ] ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:prefixes rule:prefixes ;
+        sh:message "Load-bearing wall neither rests on nor carries a load-bearing element." ,
+            "Tragende Wand liegt weder auf einem tragenden Bauteil noch trägt sie eines."@de ;
+        sh:select """
+            SELECT $this WHERE {
+                FILTER NOT EXISTS {
+                    { $this pbs:rests_on ?other } UNION { ?other pbs:rests_on $this }
+                    ?other pbs:performance_properties ?lb .
+                    ?lb pbs:property_key pbs:structural_property_load_bearing ; pbs:property_value_boolean true .
+                }
+            }"""
+    ] .
+
+rule:LoadBearingSlabSupported a sh:NodeShape ;
+    sh:name "Load-bearing slabs above ground are supported" , "Tragende Decken über Terrain sind aufgelagert"@de ;
+    sh:description "A load-bearing slab on a level above ±0.00 rests on a load-bearing wall, column or beam. Slabs at or below ±0.00 count as ground-bearing." ,
+        "Eine tragende Decke in einem Geschoss über ±0.00 liegt auf einer tragenden Wand, Stütze oder einem Träger. Decken auf oder unter ±0.00 gelten als erdberührt."@de ;
+    sh:severity sh:Violation ;
+    sh:target [
+        a sh:SPARQLTarget ;
+        sh:prefixes rule:prefixes ;
+        sh:select """
+            SELECT ?this WHERE {
+                ?this a pbs:SeparatorSlab ; pbs:performance_properties ?lb ; pbs:parent_level ?level .
+                ?lb pbs:property_key pbs:structural_property_load_bearing ; pbs:property_value_boolean true .
+                ?level pbs:elevation ?elevation .
+                FILTER (?elevation > 0)
+            }"""
+    ] ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:prefixes rule:prefixes ;
+        sh:message "Load-bearing slab above ground does not rest on any load-bearing element." ,
+            "Tragende Decke über Terrain liegt auf keinem tragenden Bauteil auf."@de ;
+        sh:select """
+            SELECT $this WHERE {
+                FILTER NOT EXISTS {
+                    $this pbs:rests_on ?support .
+                    ?support pbs:performance_properties ?lb .
+                    ?lb pbs:property_key pbs:structural_property_load_bearing ; pbs:property_value_boolean true .
+                }
+            }"""
+    ] .

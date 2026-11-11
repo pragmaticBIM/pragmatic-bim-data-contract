@@ -284,10 +284,10 @@
   skos:notation "RN-04-10" ;
   skos:prefLabel "Toilets"@en ;
   skos:prefLabel "Toiletten"@de ;
-  skos:definition "Toilet rooms by accessibility and gender provision."@en ;
-  skos:definition "WC-Räume nach Barrierefreiheit und Geschlechterausstattung."@de ;
+  skos:definition "Toilet rooms by accessibility, gender, and user group."@en ;
+  skos:definition "WC-Räume nach Barrierefreiheit, Geschlecht und Nutzergruppe."@de ;
   skos:broader :RN_HYG ;
-  skos:narrower :RN_HYG_WC_M, :RN_HYG_WC_F, :RN_HYG_WC_IV, :RN_HYG_WC_MIX ;
+  skos:narrower :RN_HYG_WC_M, :RN_HYG_WC_F, :RN_HYG_WC_IV, :RN_HYG_WC_MIX, :RN_HYG_WC_TCH, :RN_HYG_WC_LRN, :RN_HYG_WC_VIS, :RN_HYG_WC_STF ;
   dcterms:subject "IfcSpace" ;
   dcterms:identifier "RN-04-10" .
 
@@ -1105,6 +1105,50 @@
   skos:broader :RN_HYG_WC_GRP ;
   dcterms:subject "IfcSpace" ;
   dcterms:identifier "RN-04-10-04" .
+
+:RN_HYG_WC_TCH a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:notation "RN-04-10-05" ;
+  skos:prefLabel "Teachers' toilet"@en ;
+  skos:prefLabel "Lehrpersonen-WC"@de ;
+  skos:definition "Toilet room for teachers, separate from pupils and students."@en ;
+  skos:definition "WC für Lehrpersonen, getrennt von den Lernenden."@de ;
+  skos:broader :RN_HYG_WC_GRP ;
+  dcterms:subject "IfcSpace" ;
+  dcterms:identifier "RN-04-10-05" .
+
+:RN_HYG_WC_LRN a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:notation "RN-04-10-06" ;
+  skos:prefLabel "Students' toilet"@en ;
+  skos:prefLabel "Lernenden-WC"@de ;
+  skos:definition "Toilet room for pupils and students, separate from teachers."@en ;
+  skos:definition "WC für Schülerinnen, Schüler und Studierende, getrennt von den Lehrpersonen."@de ;
+  skos:broader :RN_HYG_WC_GRP ;
+  dcterms:subject "IfcSpace" ;
+  dcterms:identifier "RN-04-10-06" .
+
+:RN_HYG_WC_VIS a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:notation "RN-04-10-07" ;
+  skos:prefLabel "Visitor toilet"@en ;
+  skos:prefLabel "Besucher-WC"@de ;
+  skos:definition "Toilet room for visitors and customers, separate from staff."@en ;
+  skos:definition "WC für Besuchende und Kundschaft, getrennt von den Mitarbeitenden."@de ;
+  skos:broader :RN_HYG_WC_GRP ;
+  dcterms:subject "IfcSpace" ;
+  dcterms:identifier "RN-04-10-07" .
+
+:RN_HYG_WC_STF a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:notation "RN-04-10-08" ;
+  skos:prefLabel "Staff toilet"@en ;
+  skos:prefLabel "Mitarbeiter-WC"@de ;
+  skos:definition "Toilet room for staff, separate from customers."@en ;
+  skos:definition "WC für Mitarbeitende, getrennt von der Kundschaft."@de ;
+  skos:broader :RN_HYG_WC_GRP ;
+  dcterms:subject "IfcSpace" ;
+  dcterms:identifier "RN-04-10-08" .
 
 :RN_HYG_SHW a skos:Concept ;
   skos:inScheme :scheme ;

@@ -124,8 +124,12 @@ External target labels are not shipped in this repository; only codes and IRIs a
 | `d0165:NNF-7-1` | `mapsToAbstract` | `abs:S-HYG-WC` |
 | `d0165:NNF-7-1` | `mapsToAbstract` | `abs:S-HYG-WC-F` |
 | `d0165:NNF-7-1` | `mapsToAbstract` | `abs:S-HYG-WC-IV` |
+| `d0165:NNF-7-1` | `mapsToAbstract` | `abs:S-HYG-WC-LRN` |
 | `d0165:NNF-7-1` | `mapsToAbstract` | `abs:S-HYG-WC-M` |
 | `d0165:NNF-7-1` | `mapsToAbstract` | `abs:S-HYG-WC-MIX` |
+| `d0165:NNF-7-1` | `mapsToAbstract` | `abs:S-HYG-WC-STF` |
+| `d0165:NNF-7-1` | `mapsToAbstract` | `abs:S-HYG-WC-TCH` |
+| `d0165:NNF-7-1` | `mapsToAbstract` | `abs:S-HYG-WC-VIS` |
 | `d0165:NNF-7-10` | `mapsToAbstract` | `abs:S` |
 | `d0165:NNF-7-2` | `mapsToAbstract` | `abs:S-HYG` |
 | `d0165:NNF-7-2` | `mapsToAbstract` | `abs:S-HYG-GRD` |

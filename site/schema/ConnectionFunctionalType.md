@@ -33,6 +33,7 @@ URI: [pbs:ConnectionFunctionalType](https://schema.pragmaticbim.ch/ConnectionFun
 | special_media | https://example.org/abstract/connection-functional-type/special_media | Gas, compressed air, fire suppression, vacuum, or other process-media connection. | Title: Special Media<br>|
 | access | https://example.org/abstract/connection-functional-type/access | Physical passage of people or goods between spaces. | Title: Access / Circulation<br>|
 | visual | https://example.org/abstract/connection-functional-type/visual | Sightline or daylight connection without physical passage. | Title: Visual / Daylight<br>|
+| load_transfer | https://example.org/abstract/connection-functional-type/load_transfer | Structural connection carrying loads between elements (for example column, beam). | Title: Load Transfer<br>|
 
 
 
@@ -170,6 +171,16 @@ permissible_values:
         source: de
         description: Sicht / Tageslicht
     title: Visual / Daylight
+  load_transfer:
+    text: load_transfer
+    description: Structural connection carrying loads between elements (for example
+      column, beam).
+    meaning: https://example.org/abstract/connection-functional-type/load_transfer
+    alt_descriptions:
+      de:
+        source: de
+        description: Lastabtragung
+    title: Load Transfer
 
 ```
 </details>

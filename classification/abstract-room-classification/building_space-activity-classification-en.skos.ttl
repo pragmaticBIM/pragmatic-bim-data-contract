@@ -342,7 +342,7 @@
   dcterms:description "Toilet rooms classified by intended user group when known"@en ;
   dcterms:description "WC-Raeume nach vorgesehener Nutzergruppe, sofern bekannt."@de ;
   skos:broader :S_HYG ;
-  skos:narrower :S_HYG_WC_F, :S_HYG_WC_IV, :S_HYG_WC_M, :S_HYG_WC_MIX ;
+  skos:narrower :S_HYG_WC_F, :S_HYG_WC_IV, :S_HYG_WC_LRN, :S_HYG_WC_M, :S_HYG_WC_MIX, :S_HYG_WC_STF, :S_HYG_WC_TCH, :S_HYG_WC_VIS ;
   dcterms:subject "IfcSpace" ;
   dcterms:identifier "S-HYG-WC" .
 
@@ -397,6 +397,58 @@
   skos:broader :S_HYG_WC ;
   dcterms:subject "IfcSpace" ;
   dcterms:identifier "S-HYG-WC-MIX" .
+
+:S_HYG_WC_TCH a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:notation "S-HYG-WC-TCH" ;
+  skos:prefLabel "Teachers' Toilet Spaces"@en ;
+  skos:prefLabel "Lehrpersonen-WC"@de ;
+  skos:definition "Toilet spaces for teachers, separate from pupils and students"@en ;
+  skos:definition "WC-Raeume fuer Lehrpersonen, getrennt von den Lernenden."@de ;
+  dcterms:description "Including staff toilets in schools and universities"@en ;
+  dcterms:description "Einschliesslich Lehrpersonen-WC in Schulen und Hochschulen."@de ;
+  skos:broader :S_HYG_WC ;
+  dcterms:subject "IfcSpace" ;
+  dcterms:identifier "S-HYG-WC-TCH" .
+
+:S_HYG_WC_LRN a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:notation "S-HYG-WC-LRN" ;
+  skos:prefLabel "Students' Toilet Spaces"@en ;
+  skos:prefLabel "Lernenden-WC"@de ;
+  skos:definition "Toilet spaces for pupils and students, separate from teachers"@en ;
+  skos:definition "WC-Raeume fuer Schuelerinnen, Schueler und Studierende, getrennt von den Lehrpersonen."@de ;
+  dcterms:description "Including pupil and student toilets"@en ;
+  dcterms:description "Einschliesslich WC fuer Schuelerinnen, Schueler und Studierende."@de ;
+  skos:broader :S_HYG_WC ;
+  dcterms:subject "IfcSpace" ;
+  dcterms:identifier "S-HYG-WC-LRN" .
+
+:S_HYG_WC_VIS a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:notation "S-HYG-WC-VIS" ;
+  skos:prefLabel "Visitor Toilet Spaces"@en ;
+  skos:prefLabel "Besucher-WC"@de ;
+  skos:definition "Toilet spaces for visitors and customers, separate from staff"@en ;
+  skos:definition "WC-Raeume fuer Besuchende und Kundschaft, getrennt von den Mitarbeitenden."@de ;
+  dcterms:description "Including customer toilets in retail"@en ;
+  dcterms:description "Einschliesslich Kundentoiletten im Verkauf."@de ;
+  skos:broader :S_HYG_WC ;
+  dcterms:subject "IfcSpace" ;
+  dcterms:identifier "S-HYG-WC-VIS" .
+
+:S_HYG_WC_STF a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:notation "S-HYG-WC-STF" ;
+  skos:prefLabel "Staff Toilet Spaces"@en ;
+  skos:prefLabel "Mitarbeiter-WC"@de ;
+  skos:definition "Toilet spaces for staff, separate from customers"@en ;
+  skos:definition "WC-Raeume fuer Mitarbeitende, getrennt von der Kundschaft."@de ;
+  dcterms:description "Including back-of-house staff toilets"@en ;
+  dcterms:description "Einschliesslich Personaltoiletten abseits der Kundschaft."@de ;
+  skos:broader :S_HYG_WC ;
+  dcterms:subject "IfcSpace" ;
+  dcterms:identifier "S-HYG-WC-STF" .
 
 :S_HYG_GRD a skos:Concept ;
   skos:inScheme :scheme ;

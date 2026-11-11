@@ -6,7 +6,7 @@ search:
 # Class: ConnectionPhysical 
 
 
-_Physical connector providing functional connection between spaces (for example door, window, duct, pipe, cable)._
+_Physical connector providing functional connection between spaces (for example door, window, duct, pipe, cable) or carrying loads between elements (column, beam)._
 
 
 
@@ -32,10 +32,13 @@ click Classification href "./Classification.html" _blank
 click ConnectionFunctionalType href "./ConnectionFunctionalType.html" _blank
 click ConnectionRequirementDriver href "./ConnectionRequirementDriver.html" _blank
 click ConnectionPhysicalType href "./ConnectionPhysicalType.html" _blank
+click PhysicalElement href "./PhysicalElement.html" _blank
 click Space href "./Space.html" _blank
 click Material href "./Material.html" _blank
 click GeometryRepresentation href "./GeometryRepresentation.html" _blank
+click PhysicalElement href "./PhysicalElement.html" _blank
 click Material href "./Material.html" _blank
+click Space href "./Space.html" _blank
 click LocalizedText href "./LocalizedText.html" _blank
 click LocalizedText href "./LocalizedText.html" _blank
 click MetadataEntry href "./MetadataEntry.html" _blank
@@ -43,6 +46,7 @@ click BuiltAssetContext href "./BuiltAssetContext.html" _blank
 click LevelContext href "./LevelContext.html" _blank
 click PerformanceProperty href "./PerformanceProperty.html" _blank
 click QuantityValue href "./QuantityValue.html" _blank
+click PhysicalElement href "./PhysicalElement.html" _blank
 click StatusType href "./StatusType.html" _blank
 click TransportMedium href "./TransportMedium.html" _blank
 ```
@@ -75,8 +79,12 @@ click TransportMedium href "./TransportMedium.html" _blank
 | [infill_material](infill_material.md) | 0..1 <br/> [Material](Material.md) | Material of the opening infill within the frame (for example glazing for windows, door leaf or panel for doors). Applies to opening-type connectors (door, window). | direct |
 | [connects_spaces](connects_spaces.md) | * <br/> [Space](Space.md) | Spaces connected by this connection (for example the two spaces on either side of a door). | direct |
 | [connection_physical_requirement_drivers](connection_physical_requirement_drivers.md) | * <br/> [ConnectionRequirementDriver](ConnectionRequirementDriver.md) | Performance requirement drivers for this physical connection element. Multiple values are allowed because one connection may need to satisfy several requirements. | direct |
+| [hosted_by](hosted_by.md) | 0..1 <br/> [PhysicalElement](PhysicalElement.md) | Host element whose opening this connector fills (for example the wall a door or window sits in). From IfcRelFillsElement and IfcRelVoidsElement, or computed from geometry when the IFC chain is missing. | direct |
+| [lit_space](lit_space.md) | * <br/> [Space](Space.md) | Interior spaces that receive daylight through this window. From space boundaries or computed from geometry (adjacent or nearest interior space). | direct |
 | [parent_building](parent_building.md) | 0..1 <br/> [BuiltAssetContext](BuiltAssetContext.md) | Parent building context reference. | [PhysicalElement](PhysicalElement.md) |
 | [parent_level](parent_level.md) | 0..1 <br/> [LevelContext](LevelContext.md) | Parent level/storey context reference. | [PhysicalElement](PhysicalElement.md) |
+| [rests_on](rests_on.md) | * <br/> [PhysicalElement](PhysicalElement.md) | Elements this element sits on: its underside bears on their top (for example wall on slab, column on slab, slab on wall or column). Computed from geometric contact; it records contact, not a structural analysis result. The inverse (supports) is read by querying the slot from the other side. | [PhysicalElement](PhysicalElement.md) |
+| [connects_physical_elements](connects_physical_elements.md) | * <br/> [PhysicalElement](PhysicalElement.md) | Physical elements connected to this one side by side (for example wall-wall junction, beam framing into a column). On a physical element the relation is symmetric and stated on both elements. From IfcRelConnectsElements / IfcRelConnectsPathElements, or computed from geometric contact. Bearing contact is rests_on. | [PhysicalElement](PhysicalElement.md) |
 | [id](id.md) | 1 <br/> [String](String.md) | Unique local identifier. | [Entity](Entity.md) |
 | [content_kind](content_kind.md) | 1 <br/> [String](String.md) | Entity type discriminator for adapter projection and querying. Must be a ContentKind value. | [Entity](Entity.md) |
 | [name](name.md) | 1 <br/> [String](String.md) | Default display name. | [Entity](Entity.md) |
@@ -130,7 +138,7 @@ click TransportMedium href "./TransportMedium.html" _blank
 | ---  | ---  |
 | self | pbs:ConnectionPhysical |
 | native | pbs:ConnectionPhysical |
-| exact | ifcowl:IfcDoor, ifcowl:IfcWindow, ifcowl:IfcFlowSegment, ifcowl:IfcCableCarrierSegment |
+| exact | ifcowl:IfcDoor, ifcowl:IfcWindow, ifcowl:IfcFlowSegment, ifcowl:IfcCableCarrierSegment, ifcowl:IfcColumn, ifcowl:IfcBeam |
 
 
 
@@ -147,13 +155,16 @@ click TransportMedium href "./TransportMedium.html" _blank
 ```yaml
 name: ConnectionPhysical
 description: Physical connector providing functional connection between spaces (for
-  example door, window, duct, pipe, cable).
+  example door, window, duct, pipe, cable) or carrying loads between elements (column,
+  beam).
 from_schema: https://schema.pragmaticbim.ch
 exact_mappings:
 - ifcowl:IfcDoor
 - ifcowl:IfcWindow
 - ifcowl:IfcFlowSegment
 - ifcowl:IfcCableCarrierSegment
+- ifcowl:IfcColumn
+- ifcowl:IfcBeam
 is_a: PhysicalElement
 slots:
 - connection_physical_type
@@ -163,6 +174,8 @@ slots:
 - infill_material
 - connects_spaces
 - connection_physical_requirement_drivers
+- hosted_by
+- lit_space
 class_uri: pbs:ConnectionPhysical
 
 ```
@@ -174,13 +187,16 @@ class_uri: pbs:ConnectionPhysical
 ```yaml
 name: ConnectionPhysical
 description: Physical connector providing functional connection between spaces (for
-  example door, window, duct, pipe, cable).
+  example door, window, duct, pipe, cable) or carrying loads between elements (column,
+  beam).
 from_schema: https://schema.pragmaticbim.ch
 exact_mappings:
 - ifcowl:IfcDoor
 - ifcowl:IfcWindow
 - ifcowl:IfcFlowSegment
 - ifcowl:IfcCableCarrierSegment
+- ifcowl:IfcColumn
+- ifcowl:IfcBeam
 is_a: PhysicalElement
 attributes:
   connection_physical_type:
@@ -267,6 +283,28 @@ attributes:
     - ConnectionPhysical
     range: ConnectionRequirementDriver
     multivalued: true
+  hosted_by:
+    name: hosted_by
+    description: Host element whose opening this connector fills (for example the
+      wall a door or window sits in). From IfcRelFillsElement and IfcRelVoidsElement,
+      or computed from geometry when the IFC chain is missing.
+    from_schema: https://schema.pragmaticbim.ch
+    rank: 1000
+    owner: ConnectionPhysical
+    domain_of:
+    - ConnectionPhysical
+    range: PhysicalElement
+  lit_space:
+    name: lit_space
+    description: Interior spaces that receive daylight through this window. From space
+      boundaries or computed from geometry (adjacent or nearest interior space).
+    from_schema: https://schema.pragmaticbim.ch
+    rank: 1000
+    owner: ConnectionPhysical
+    domain_of:
+    - ConnectionPhysical
+    range: Space
+    multivalued: true
   parent_building:
     name: parent_building
     description: Parent building context reference.
@@ -277,6 +315,7 @@ attributes:
     - PhysicalElement
     - SpatialContext
     - Space
+    - ReservedVolume
     - System
     range: BuiltAssetContext
   parent_level:
@@ -289,7 +328,35 @@ attributes:
     - PhysicalElement
     - SpatialContext
     - Space
+    - ReservedVolume
     range: LevelContext
+  rests_on:
+    name: rests_on
+    description: 'Elements this element sits on: its underside bears on their top
+      (for example wall on slab, column on slab, slab on wall or column). Computed
+      from geometric contact; it records contact, not a structural analysis result.
+      The inverse (supports) is read by querying the slot from the other side.'
+    from_schema: https://schema.pragmaticbim.ch
+    rank: 1000
+    owner: ConnectionPhysical
+    domain_of:
+    - PhysicalElement
+    range: PhysicalElement
+    multivalued: true
+  connects_physical_elements:
+    name: connects_physical_elements
+    description: Physical elements connected to this one side by side (for example
+      wall-wall junction, beam framing into a column). On a physical element the relation
+      is symmetric and stated on both elements. From IfcRelConnectsElements / IfcRelConnectsPathElements,
+      or computed from geometric contact. Bearing contact is rests_on.
+    from_schema: https://schema.pragmaticbim.ch
+    rank: 1000
+    owner: ConnectionPhysical
+    domain_of:
+    - PhysicalElement
+    - ConnectionVirtual
+    range: PhysicalElement
+    multivalued: true
   id:
     name: id
     description: Unique local identifier.

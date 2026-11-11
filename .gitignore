@@ -3,3 +3,4 @@ classification/out/
 __pycache__/
 *.pyc
 temp/
+demo-data/

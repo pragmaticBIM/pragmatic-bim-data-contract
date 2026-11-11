@@ -64,6 +64,10 @@ URI: [pbs:SpaceNameType](https://schema.pragmaticbim.ch/SpaceNameType)
 | rn_04_10_02 | https://example.org/abstract/building-space-name-classification/RN_HYG_WC_F | Toilet room for female use. | Title: Female Toilet<br>|
 | rn_04_10_03 | https://example.org/abstract/building-space-name-classification/RN_HYG_WC_IV | Wheelchair-accessible toilet room. | Title: Accessible Toilet<br>|
 | rn_04_10_04 | https://example.org/abstract/building-space-name-classification/RN_HYG_WC_MIX | Toilet room for mixed or all-gender use. | Title: Unisex Toilet<br>|
+| rn_04_10_05 | https://example.org/abstract/building-space-name-classification/RN_HYG_WC_TCH | Toilet room for teachers, separate from pupils and students. | Title: Teachers' toilet<br>|
+| rn_04_10_06 | https://example.org/abstract/building-space-name-classification/RN_HYG_WC_LRN | Toilet room for pupils and students, separate from teachers. | Title: Students' toilet<br>|
+| rn_04_10_07 | https://example.org/abstract/building-space-name-classification/RN_HYG_WC_VIS | Toilet room for visitors and customers, separate from staff. | Title: Visitor toilet<br>|
+| rn_04_10_08 | https://example.org/abstract/building-space-name-classification/RN_HYG_WC_STF | Toilet room for staff, separate from customers. | Title: Staff toilet<br>|
 | rn_04_20_01 | https://example.org/abstract/building-space-name-classification/RN_HYG_SHW | Room with shower facilities. | Title: Shower Room<br>|
 | rn_04_20_02 | https://example.org/abstract/building-space-name-classification/RN_HYG_CHG | Room for changing clothes. | Title: Changing Room<br>|
 | rn_04_20_03 | https://example.org/abstract/building-space-name-classification/RN_HYG_LCK | Room with personal lockers. | Title: Locker Room<br>|
@@ -594,6 +598,42 @@ permissible_values:
         source: de
         description: Allgemeines WC
     title: Unisex Toilet
+  rn_04_10_05:
+    text: rn_04_10_05
+    description: Toilet room for teachers, separate from pupils and students.
+    meaning: https://example.org/abstract/building-space-name-classification/RN_HYG_WC_TCH
+    alt_descriptions:
+      de:
+        source: de
+        description: Lehrpersonen-WC
+    title: Teachers' toilet
+  rn_04_10_06:
+    text: rn_04_10_06
+    description: Toilet room for pupils and students, separate from teachers.
+    meaning: https://example.org/abstract/building-space-name-classification/RN_HYG_WC_LRN
+    alt_descriptions:
+      de:
+        source: de
+        description: Lernenden-WC
+    title: Students' toilet
+  rn_04_10_07:
+    text: rn_04_10_07
+    description: Toilet room for visitors and customers, separate from staff.
+    meaning: https://example.org/abstract/building-space-name-classification/RN_HYG_WC_VIS
+    alt_descriptions:
+      de:
+        source: de
+        description: Besucher-WC
+    title: Visitor toilet
+  rn_04_10_08:
+    text: rn_04_10_08
+    description: Toilet room for staff, separate from customers.
+    meaning: https://example.org/abstract/building-space-name-classification/RN_HYG_WC_STF
+    alt_descriptions:
+      de:
+        source: de
+        description: Mitarbeiter-WC
+    title: Staff toilet
   rn_04_20_01:
     text: rn_04_20_01
     description: Room with shower facilities.

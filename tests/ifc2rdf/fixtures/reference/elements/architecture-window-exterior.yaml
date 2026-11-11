@@ -1,0 +1,10 @@
+# Trimmed copy of pragmaticBIM-reference elements/architecture-window-exterior.yaml (identification fields only).
+id: pragmaticbim:element/architecture-window-exterior
+code: ARC-WINDOW-EXT
+status: active
+name:
+  de: Aussenfenster
+  fr: Fenêtre extérieure
+  it: Finestra esterna
+  en: Exterior window
+applicability: (entity_ifc4=IfcWindow AND IsExternal=TRUE) OR (entity_ifc2x3=IfcWindow AND IsExternal=TRUE)

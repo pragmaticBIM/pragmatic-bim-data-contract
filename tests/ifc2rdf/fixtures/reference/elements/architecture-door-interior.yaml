@@ -1,0 +1,10 @@
+# Trimmed copy of pragmaticBIM-reference elements/architecture-door-interior.yaml (identification fields only).
+id: pragmaticbim:element/architecture-door-interior
+code: ARC-DOOR-INT
+status: active
+name:
+  de: Innentür / Revisionsöffnung
+  fr: Porte intérieure / trappe de visite
+  it: Porta interna / botola di ispezione
+  en: Interior door / inspection hatch
+applicability: (entity_ifc4=IfcDoor AND IsExternal=FALSE) OR (entity_ifc2x3=IfcDoor AND IsExternal=FALSE)

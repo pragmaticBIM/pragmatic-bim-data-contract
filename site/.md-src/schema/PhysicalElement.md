@@ -33,12 +33,15 @@ PhysicalElement <|-- Separator
 click Separator href "./Separator.html" _blank
 PhysicalElement <|-- ConnectionPhysical
 click ConnectionPhysical href "./ConnectionPhysical.html" _blank
+PhysicalElement <|-- SafetyBarrier
+click SafetyBarrier href "./SafetyBarrier.html" _blank
 PhysicalElement <|-- Boundary
 click Boundary href "./Boundary.html" _blank
 PhysicalElement <|-- Equipment
 click Equipment href "./Equipment.html" _blank
 click Entity href "./Entity.html" _blank
 click Classification href "./Classification.html" _blank
+click PhysicalElement href "./PhysicalElement.html" _blank
 click GeometryRepresentation href "./GeometryRepresentation.html" _blank
 click LocalizedText href "./LocalizedText.html" _blank
 click LocalizedText href "./LocalizedText.html" _blank
@@ -47,6 +50,7 @@ click BuiltAssetContext href "./BuiltAssetContext.html" _blank
 click LevelContext href "./LevelContext.html" _blank
 click PerformanceProperty href "./PerformanceProperty.html" _blank
 click QuantityValue href "./QuantityValue.html" _blank
+click PhysicalElement href "./PhysicalElement.html" _blank
 click StatusType href "./StatusType.html" _blank
 ```
 
@@ -59,6 +63,7 @@ click StatusType href "./StatusType.html" _blank
     * **PhysicalElement**
         * [Separator](Separator.md)
         * [ConnectionPhysical](ConnectionPhysical.md)
+        * [SafetyBarrier](SafetyBarrier.md)
         * [Boundary](Boundary.md)
         * [Equipment](Equipment.md)
 
@@ -76,6 +81,8 @@ click StatusType href "./StatusType.html" _blank
 | ---  | --- | --- | --- |
 | [parent_building](parent_building.md) | 0..1 <br/> [BuiltAssetContext](BuiltAssetContext.md) | Parent building context reference. | direct |
 | [parent_level](parent_level.md) | 0..1 <br/> [LevelContext](LevelContext.md) | Parent level/storey context reference. | direct |
+| [rests_on](rests_on.md) | * <br/> [PhysicalElement](PhysicalElement.md) | Elements this element sits on: its underside bears on their top (for example wall on slab, column on slab, slab on wall or column). Computed from geometric contact; it records contact, not a structural analysis result. The inverse (supports) is read by querying the slot from the other side. | direct |
+| [connects_physical_elements](connects_physical_elements.md) | * <br/> [PhysicalElement](PhysicalElement.md) | Physical elements connected to this one side by side (for example wall-wall junction, beam framing into a column). On a physical element the relation is symmetric and stated on both elements. From IfcRelConnectsElements / IfcRelConnectsPathElements, or computed from geometric contact. Bearing contact is rests_on. | direct |
 | [id](id.md) | 1 <br/> [String](String.md) | Unique local identifier. | [Entity](Entity.md) |
 | [content_kind](content_kind.md) | 1 <br/> [String](String.md) | Entity type discriminator for adapter projection and querying. Must be a ContentKind value. | [Entity](Entity.md) |
 | [name](name.md) | 1 <br/> [String](String.md) | Default display name. | [Entity](Entity.md) |
@@ -103,8 +110,26 @@ click StatusType href "./StatusType.html" _blank
 
 | used by | used in | type | used |
 | ---  | --- | --- | --- |
+| [PhysicalElement](PhysicalElement.md) | [rests_on](rests_on.md) | range | [PhysicalElement](PhysicalElement.md) |
+| [PhysicalElement](PhysicalElement.md) | [connects_physical_elements](connects_physical_elements.md) | range | [PhysicalElement](PhysicalElement.md) |
+| [Separator](Separator.md) | [rests_on](rests_on.md) | range | [PhysicalElement](PhysicalElement.md) |
+| [Separator](Separator.md) | [connects_physical_elements](connects_physical_elements.md) | range | [PhysicalElement](PhysicalElement.md) |
+| [SeparatorWall](SeparatorWall.md) | [rests_on](rests_on.md) | range | [PhysicalElement](PhysicalElement.md) |
+| [SeparatorWall](SeparatorWall.md) | [connects_physical_elements](connects_physical_elements.md) | range | [PhysicalElement](PhysicalElement.md) |
+| [SeparatorSlab](SeparatorSlab.md) | [rests_on](rests_on.md) | range | [PhysicalElement](PhysicalElement.md) |
+| [SeparatorSlab](SeparatorSlab.md) | [connects_physical_elements](connects_physical_elements.md) | range | [PhysicalElement](PhysicalElement.md) |
+| [ConnectionPhysical](ConnectionPhysical.md) | [hosted_by](hosted_by.md) | range | [PhysicalElement](PhysicalElement.md) |
+| [ConnectionPhysical](ConnectionPhysical.md) | [rests_on](rests_on.md) | range | [PhysicalElement](PhysicalElement.md) |
+| [ConnectionPhysical](ConnectionPhysical.md) | [connects_physical_elements](connects_physical_elements.md) | range | [PhysicalElement](PhysicalElement.md) |
+| [SafetyBarrier](SafetyBarrier.md) | [rests_on](rests_on.md) | range | [PhysicalElement](PhysicalElement.md) |
+| [SafetyBarrier](SafetyBarrier.md) | [connects_physical_elements](connects_physical_elements.md) | range | [PhysicalElement](PhysicalElement.md) |
+| [Boundary](Boundary.md) | [rests_on](rests_on.md) | range | [PhysicalElement](PhysicalElement.md) |
+| [Boundary](Boundary.md) | [connects_physical_elements](connects_physical_elements.md) | range | [PhysicalElement](PhysicalElement.md) |
+| [Equipment](Equipment.md) | [rests_on](rests_on.md) | range | [PhysicalElement](PhysicalElement.md) |
+| [Equipment](Equipment.md) | [connects_physical_elements](connects_physical_elements.md) | range | [PhysicalElement](PhysicalElement.md) |
 | [Space](Space.md) | [bounded_by](bounded_by.md) | range | [PhysicalElement](PhysicalElement.md) |
 | [Space](Space.md) | [adjacent_elements](adjacent_elements.md) | range | [PhysicalElement](PhysicalElement.md) |
+| [ReservedVolume](ReservedVolume.md) | [intersects_elements](intersects_elements.md) | range | [PhysicalElement](PhysicalElement.md) |
 | [ConnectionVirtual](ConnectionVirtual.md) | [connects_physical_elements](connects_physical_elements.md) | range | [PhysicalElement](PhysicalElement.md) |
 
 
@@ -165,6 +190,8 @@ abstract: true
 slots:
 - parent_building
 - parent_level
+- rests_on
+- connects_physical_elements
 slot_usage:
   content_kind:
     name: content_kind
@@ -214,6 +241,7 @@ attributes:
     - PhysicalElement
     - SpatialContext
     - Space
+    - ReservedVolume
     - System
     range: BuiltAssetContext
   parent_level:
@@ -226,7 +254,35 @@ attributes:
     - PhysicalElement
     - SpatialContext
     - Space
+    - ReservedVolume
     range: LevelContext
+  rests_on:
+    name: rests_on
+    description: 'Elements this element sits on: its underside bears on their top
+      (for example wall on slab, column on slab, slab on wall or column). Computed
+      from geometric contact; it records contact, not a structural analysis result.
+      The inverse (supports) is read by querying the slot from the other side.'
+    from_schema: https://schema.pragmaticbim.ch
+    rank: 1000
+    owner: PhysicalElement
+    domain_of:
+    - PhysicalElement
+    range: PhysicalElement
+    multivalued: true
+  connects_physical_elements:
+    name: connects_physical_elements
+    description: Physical elements connected to this one side by side (for example
+      wall-wall junction, beam framing into a column). On a physical element the relation
+      is symmetric and stated on both elements. From IfcRelConnectsElements / IfcRelConnectsPathElements,
+      or computed from geometric contact. Bearing contact is rests_on.
+    from_schema: https://schema.pragmaticbim.ch
+    rank: 1000
+    owner: PhysicalElement
+    domain_of:
+    - PhysicalElement
+    - ConnectionVirtual
+    range: PhysicalElement
+    multivalued: true
   id:
     name: id
     description: Unique local identifier.

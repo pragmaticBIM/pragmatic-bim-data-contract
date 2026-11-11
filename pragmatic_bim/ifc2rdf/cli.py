@@ -1,4 +1,4 @@
-"""``ifc2rdf model.ifc -o model.ttl [--contract-version vX.Y.Z]``"""
+"""``ifc2rdf model.ifc -o model.ttl [--reference DIR] [--geometry-out model.glb]``"""
 
 from __future__ import annotations
 
@@ -33,6 +33,25 @@ def build_parser() -> argparse.ArgumentParser:
     )
     parser.add_argument("--mapping", type=Path, help="Override ifc_mapping.merged.yaml")
     parser.add_argument("--schema", type=Path, help="Override the contract root schema YAML")
+    reference = parser.add_mutually_exclusive_group()
+    reference.add_argument(
+        "--reference",
+        type=Path,
+        help="pragmaticBIM-reference checkout for element identification "
+        "(default: $PBS_REFERENCE_PATH, then ../elementplan/pragmaticBIM-reference)",
+    )
+    reference.add_argument("--no-reference", action="store_true", help="Skip element identification")
+    geometry = parser.add_mutually_exclusive_group()
+    geometry.add_argument(
+        "--geometry-out",
+        type=Path,
+        help="Write the tessellated model as GLB; node names are IFC GlobalIds",
+    )
+    geometry.add_argument(
+        "--no-geometry",
+        action="store_true",
+        help="Skip geometry and the relations computed from it",
+    )
     parser.add_argument("-q", "--quiet", action="store_true", help="Do not print the conversion report")
     return parser
 
@@ -46,6 +65,9 @@ def main(argv: list[str] | None = None) -> int:
         source_system=args.source_system,
         mapping_path=args.mapping,
         schema_path=args.schema,
+        reference=False if args.no_reference else args.reference,
+        geometry=not args.no_geometry,
+        geometry_out=args.geometry_out,
     )
     turtle = to_turtle(graph)
     if args.output:

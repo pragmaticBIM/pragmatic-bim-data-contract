@@ -28,11 +28,13 @@ URI: [pbs:parent_building](https://schema.pragmaticbim.ch/parent_building)
 | [PhysicalElement](PhysicalElement.md) | Base class for physical elements that can be placed in built asset/level context. |  yes  |
 | [SpatialContext](SpatialContext.md) | Context node used to represent perimeter, legal site, built asset, level, or zone. |  yes  |
 | [Space](Space.md) | Spatial container used for occupancy, circulation, service, or analysis. |  yes  |
+| [ReservedVolume](ReservedVolume.md) | Volume that must stay clear of building elements (maintenance space, installation path, structural exclusion zone, movement clearance, device space). Modelled as a proxy volume and identified through the pragmaticBIM Reference element definition. |  yes  |
 | [System](System.md) | Building service system grouping that serves spaces or zones. |  yes  |
 | [Separator](Separator.md) | Abstract base class for elements that separate spaces or zones. |  no  |
 | [SeparatorWall](SeparatorWall.md) | Wall-based separating element. |  no  |
 | [SeparatorSlab](SeparatorSlab.md) | Slab-based separating element (for example floor/roof/base slab separators). |  no  |
-| [ConnectionPhysical](ConnectionPhysical.md) | Physical connector providing functional connection between spaces (for example door, window, duct, pipe, cable). |  no  |
+| [ConnectionPhysical](ConnectionPhysical.md) | Physical connector providing functional connection between spaces (for example door, window, duct, pipe, cable) or carrying loads between elements (column, beam). |  no  |
+| [SafetyBarrier](SafetyBarrier.md) | Linear fall protection or guiding element (balustrade, guardrail, handrail) along slab, balcony, roof, landing, stair, or ramp edges. |  no  |
 | [Boundary](Boundary.md) | Physical element acting as a boundary treatment (for example covering). |  no  |
 | [Equipment](Equipment.md) | Endpoint or device element (for example terminal, unit, control device, sensor) located in a space and assigned to a system. |  no  |
 | [PerimeterContext](PerimeterContext.md) | Spatial context node constrained to perimeter semantics. |  no  |
@@ -55,7 +57,7 @@ URI: [pbs:parent_building](https://schema.pragmaticbim.ch/parent_building)
 | Property | Value |
 | --- | --- |
 | Range | [Entity](Entity.md) |
-| Domain Of | [PhysicalElement](PhysicalElement.md), [SpatialContext](SpatialContext.md), [Space](Space.md), [System](System.md) |
+| Domain Of | [PhysicalElement](PhysicalElement.md), [SpatialContext](SpatialContext.md), [Space](Space.md), [ReservedVolume](ReservedVolume.md), [System](System.md) |
 
 ### Cardinality and Requirements
 
@@ -107,6 +109,7 @@ domain_of:
 - PhysicalElement
 - SpatialContext
 - Space
+- ReservedVolume
 - System
 range: Entity
 

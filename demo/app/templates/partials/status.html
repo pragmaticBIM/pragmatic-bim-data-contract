@@ -1,0 +1,14 @@
+{% set stages = ["queued", "converting", "projecting", "checking", "done"] %}
+{% set stage = job.status.stage if job.status.stage in stages + ["failed"] else "queued" %}
+{% if stage == "failed" %}
+  <p class="error">{{ t("Processing failed.") }}</p>
+  <pre class="trace">{{ job.status.error }}</pre>
+  <p><a href="/">{{ t("Back") }}</a></p>
+{% else %}
+  <ol class="stages">
+    {% for s in stages %}
+      {% set state = "done" if stages.index(s) < stages.index(stage) else ("active" if s == stage else "") %}
+      <li class="{{ state }}">{{ t({"queued": "Queued", "converting": "IFC to contract graph and geometry", "projecting": "Graph projection", "checking": "SHACL checks", "done": "Done"}[s]) }}</li>
+    {% endfor %}
+  </ol>
+{% endif %}

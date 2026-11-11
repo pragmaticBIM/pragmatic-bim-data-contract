@@ -2,9 +2,14 @@
 
 from __future__ import annotations
 
+from pathlib import Path
+
 import pyshacl
 import rdflib
 from rdflib import RDF, Namespace
+
+# Trimmed pragmaticBIM-reference element definitions, so results do not depend on a local checkout.
+REFERENCE_FIXTURE = Path(__file__).parent / "fixtures" / "reference"
 
 PBS = Namespace("https://schema.pragmaticbim.ch/")
 BOT = Namespace("https://w3id.org/bot#")
@@ -28,11 +33,14 @@ SELECT DISTINCT ?wall WHERE {
 
 BOT_ADJACENCY = PREFIXES + "SELECT ?space ?element WHERE { ?space bot:adjacentElement ?element }"
 
+# Columns and beams bounding a space have no space relation of their own; BOT adjacency is their only link.
 CONTRACT_ADJACENCY = PREFIXES + """
 SELECT ?space ?element WHERE {
   { ?element pbs:separates_spaces ?space }
   UNION { ?element pbs:connects_spaces ?space . ?element a pbs:ConnectionPhysical }
   UNION { ?space pbs:bounded_by ?element }
+  UNION { ?space bot:adjacentElement ?element .
+          ?element pbs:connection_functional_types <https://example.org/abstract/connection-functional-type/load_transfer> }
   ?space a pbs:Space .
 }"""
 

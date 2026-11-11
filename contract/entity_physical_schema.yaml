@@ -31,6 +31,8 @@ classes:
     slots:
     - parent_building
     - parent_level
+    - rests_on
+    - connects_physical_elements
     slot_usage:
       content_kind:
         equals_string: physical
@@ -73,8 +75,10 @@ classes:
     - ifcowl:IfcWindow
     - ifcowl:IfcFlowSegment
     - ifcowl:IfcCableCarrierSegment
+    - ifcowl:IfcColumn
+    - ifcowl:IfcBeam
     description: Physical connector providing functional connection between spaces (for example door, window, duct, pipe,
-      cable).
+      cable) or carrying loads between elements (column, beam).
     slots:
     - connection_physical_type
     - connection_functional_types
@@ -83,6 +87,18 @@ classes:
     - infill_material
     - connects_spaces
     - connection_physical_requirement_drivers
+    - hosted_by
+    - lit_space
+  SafetyBarrier:
+    is_a: PhysicalElement
+    class_uri: pbs:SafetyBarrier
+    exact_mappings:
+    - ifcowl:IfcRailing
+    description: Linear fall protection or guiding element (balustrade, guardrail, handrail) along slab, balcony, roof,
+      landing, stair, or ramp edges.
+    slots:
+    - barrier_type
+    - guards_space
   Boundary:
     is_a: PhysicalElement
     class_uri: pbs:Boundary
@@ -162,3 +178,31 @@ slots:
     multivalued: true
     range: System
     description: Parent systems that the equipment belongs to.
+  rests_on:
+    multivalued: true
+    range: PhysicalElement
+    description: >-
+      Elements this element sits on: its underside bears on their top (for example wall on slab, column on slab,
+      slab on wall or column). Computed from geometric contact; it records contact, not a structural analysis result.
+      The inverse (supports) is read by querying the slot from the other side.
+  hosted_by:
+    range: PhysicalElement
+    description: >-
+      Host element whose opening this connector fills (for example the wall a door or window sits in).
+      From IfcRelFillsElement and IfcRelVoidsElement, or computed from geometry when the IFC chain is missing.
+  lit_space:
+    multivalued: true
+    range: Space
+    description: >-
+      Interior spaces that receive daylight through this window. From space boundaries or computed from
+      geometry (adjacent or nearest interior space).
+  barrier_type:
+    range: BarrierType
+    required: true
+    description: Classification of the safety barrier (balustrade, guardrail, handrail).
+  guards_space:
+    multivalued: true
+    range: Space
+    description: >-
+      Spaces whose walking surface this barrier protects against falls. Computed from geometry: the barrier
+      footprint lies within a tolerance of the space footprint and the space floor is at or below the barrier base.

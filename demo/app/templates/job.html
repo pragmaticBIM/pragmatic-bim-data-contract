@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block title %}{{ job.meta.name }} – Pragmatic BIM check{% endblock %}
+{% block body_class %}app{% endblock %}
+{% block head %}
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/",
+    "graphology": "https://esm.sh/graphology@0.25.4",
+    "graphology-layout-forceatlas2": "https://esm.sh/graphology-layout-forceatlas2@0.10.1",
+    "graphology-layout-forceatlas2/worker": "https://esm.sh/graphology-layout-forceatlas2@0.10.1/worker",
+    "sigma": "https://esm.sh/sigma@3.0.2",
+    "sigma/rendering": "https://esm.sh/sigma@3.0.2/rendering",
+    "@sigma/edge-curve": "https://esm.sh/@sigma/edge-curve@3.1.0?deps=sigma@3.0.2"
+  }
+}
+</script>
+<script type="application/json" id="labels">{{ L.client() | tojson }}</script>
+<script type="module" src="/static/js/bridge.js"></script>
+{% endblock %}
+{% block topbar %}
+  <div class="model">
+    <strong>{{ job.meta.name }}</strong>
+    <span class="muted">{{ job.status.nodes }} {{ t("entities") }} · {{ job.status.edges }} {{ t("relations") }} · {{ job.status.seconds }} s</span>
+  </div>
+  <div class="actions">
+    <span class="badge fail">{{ summary.fail }} {{ t("failing") }}</span>
+    <span class="badge pass">{{ summary.pass }} {{ t("passing") }}</span>
+    <a class="button" href="/jobs/{{ job.id }}/report.html">{{ t("Export report") }}</a>
+  </div>
+{% endblock %}
+{% block content %}
+<div id="workspace" class="workspace" data-job="{{ job.id }}" data-has-geometry="{{ 'true' if has_geometry else 'false' }}">
+  <aside class="checks">
+    <div class="filters" hx-target="#cards" hx-swap="outerHTML">
+      {% include "partials/filters.html" %}
+    </div>
+    {% include "partials/cards.html" %}
+  </aside>
+
+  <main class="views split" id="views">
+    <div class="view-toolbar">
+      <div class="segmented">
+        <button data-layout="graph">Graph</button>
+        <button data-layout="split" class="active">{{ t("Split") }}</button>
+        <button data-layout="model">3D</button>
+      </div>
+      <button id="clear-highlight" class="ghost">{{ t("Clear highlight") }}</button>
+      <div id="legend" class="legend"></div>
+    </div>
+    <section class="view" id="graph-view"><div class="view-status">{{ t("Loading graph…") }}</div></section>
+    <section class="view" id="model-view"><div class="view-status">{{ t("Loading 3D model…") if has_geometry else t("No geometry for this model.") }}</div></section>
+  </main>
+
+  <aside class="inspector">
+    <section id="check-detail" class="inspector-section">
+      <p class="muted">{{ t("Select a check to highlight its elements in the graph and the 3D model.") }}</p>
+    </section>
+    <section id="props" class="inspector-section">
+      <p class="muted">{{ t("Click an element in the graph or the 3D model to see its properties.") }}</p>
+    </section>
+  </aside>
+</div>
+{% endblock %}

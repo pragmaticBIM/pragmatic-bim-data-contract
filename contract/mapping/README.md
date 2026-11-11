@@ -32,6 +32,7 @@ ifc_mapping.yaml          ← entrypoint (imports list)
 _conventions.yaml         ← conventions + metadata anchors
 _pset_fallbacks.yaml      ← tool-specific pset lists
 _relationships.yaml
+_computed_relations.yaml  ← relations and quantities computed from geometry
 _fragments.yaml           ← geometry / field fragments (uses pset anchors)
 entities/architectural.yaml
 entities/hvac.yaml        ← entity blocks (indented under entities:)
@@ -65,6 +66,8 @@ Adapters can either load `ifc_mapping.merged.yaml` directly, or implement the sa
 | New IFC class (architectural) | `entities/architectural.yaml` |
 | New IFC class (HVAC) | `entities/hvac.yaml` |
 | New relationship rule | `_relationships.yaml` |
+| Geometric relation, threshold, or computed quantity | `_computed_relations.yaml` |
+| IFC class whose contract class depends on the pragmaticBIM Reference match | entity block with `reference_element_map` |
 | Metadata / GlobalId conventions | `_conventions.yaml` |
 | Shared field or geometry pattern | `_fragments.yaml` or `_templates.yaml` |
 
@@ -174,7 +177,7 @@ Instance IRIs are `{base_uri}{GlobalId}`; relations become triples whose predica
 **Variant suffixes** disambiguate IFC `PredefinedType` or transport role without inventing new PBS classes:
 
 - `SeparatorSlab.floor`, `.roof`, `.baseslab`
-- `ConnectionPhysical.duct`, `.pipe`, `.network_other`
+- `ConnectionPhysical.duct`, `.pipe`, `.network_other`, `.column`, `.beam`
 - `Boundary.ceiling`, `.flooring`, `.cladding`
 
 ---
@@ -186,13 +189,14 @@ The entrypoint [`ifc_mapping.yaml`](ifc_mapping.yaml) declares version metadata 
 Merged structure:
 
 ```yaml
-mapping_version: "1.4.0"
+mapping_version: "1.5.0"
 schema_uri: https://schema.pragmaticbim.ch/
 canonical_type_version: "v0.0.7"
 
 conventions: ...
 pset_fallbacks: ...
 relationships: ...
+computed_relations: ...
 fragments: ...
 entities: ...
 templates: ...
@@ -205,7 +209,8 @@ Each `entities.Ifc*` entry defines:
 | Key | Description |
 |-----|-------------|
 | `content_kind` | Module category for the DB |
-| `canonical_type` | PBS class (fixed or via `predefined_type_map`) |
+| `canonical_type` | PBS class (fixed, or selected through `canonical_type_from`) |
+| `canonical_type_from` | `predefined_type_map` (IFC `PredefinedType`) or `reference_element_map` (pragmaticBIM Reference match, see [Element identification](#element-identification-pragmaticbim-reference)) |
 | `inherits` | Merge fields from another entity or `templates.*` entry |
 | `fields` | Top-level DB column lookups |
 | `attributes` | PBS schema slots stored in JSONB |
@@ -323,7 +328,7 @@ Example `attributes` JSONB fragment:
       "source_pset": "Pset_WallCommon",
       "source_property": "FireRating",
       "source_value_raw": "EI 60",
-      "mapping_version": "1.4.0"
+      "mapping_version": "1.5.0"
     }
   ],
   "metadata": [
@@ -445,9 +450,10 @@ Global rules live under `relationships` in `ifc_mapping.yaml`. Each entity lists
 | same | `connects_spaces` | Door/window → space |
 | same | `bounded_by` | Covering → space |
 | same | `adjacent_elements` (`space_relation_type`) | Space → every mapped boundary element; serialized as `bot:adjacentElement` |
-| `IfcRelConnectsElements` | `connects_physical_elements` | Structural joints, host connections |
-| `IfcRelConnectsPathElements` | `connects_physical_elements` | Duct/pipe run connectivity |
+| `IfcRelConnectsElements` | `connects_physical_elements` (`symmetric`: stated on both elements) | Structural joints, host connections |
+| `IfcRelConnectsPathElements` | `connects_physical_elements` (`symmetric`) | Wall-wall junctions, duct/pipe run connectivity |
 | `IfcRelFillsElement` | `connects_physical_elements` | Door/window ↔ opening |
+| `IfcRelVoidsElement` | `hosted_by` (`chain_relation_type`) | Door/window → wall: `IfcRelFillsElement` to the opening, then `IfcRelVoidsElement` to the host |
 | `IfcRelServicesBuildings` | `serves_spaces` / `serves_zones` | System service area |
 | `IfcRelAssociatesClassification` | `classifications` | Populates classifications slot |
 
@@ -463,7 +469,92 @@ Uses [`GeometryRepresentationType`](../entity_schema_enums.yaml) values:
 | Duct/pipe segments | `axis` | `body_3d` |
 | Spaces | `footprint_2d` | `body_3d` |
 | Spatial contexts (site, building, storey, zone) | `footprint_2d` | `point` |
-| Beams/columns (`ConnectionVirtual`) | `axis` | — |
+| Beams/columns (`ConnectionPhysical`) | `axis` | `body_3d` |
+
+### Geometry output (ifc2rdf)
+
+`ifc2rdf` tessellates every mapped `IfcProduct` once (IfcOpenShell, world coordinates, metres). From that single pass it writes:
+
+- an optional GLB file (`--geometry-out`) with one node per product, **named by the IFC GlobalId**, so viewers resolve RDF nodes to meshes without a lookup table;
+- per node, one `pbs:GeometryRepresentation` for each role the entity block lists that the converter can produce (`computed_relations.geometry.representations`):
+
+| Role | `geometry_reference` | `geometry_format` | Payload |
+|------|----------------------|-------------------|---------|
+| `body_3d` | `{glb file}#{GlobalId}` (or `{ifc file}#{GlobalId}` without GLB) | `gltf` (or `ifc`) | `bbox_min_*` / `bbox_max_*` |
+| `footprint_2d` | `{ifc file}#{GlobalId}` | `wkt` | `geometry_wkt` (plan outline, union of the projected triangles) and the bounding box |
+
+- a `height` quantity (bounding-box height, `m`).
+
+Roles the converter does not compute (`axis`, `point`) are not written. Products without a tessellated body are listed in the report (`geometry failed`). `--no-geometry` skips the pass and every computed relation.
+
+---
+
+## Element identification (pragmaticBIM Reference)
+
+Element definitions come from a [pragmaticBIM-reference](https://pragmaticbim.ch) checkout (`elements/*.yaml`), located by `--reference`, `$PBS_REFERENCE_PATH`, or the sibling checkout `../elementplan/pragmaticBIM-reference`. Each definition's `applicability` expression is evaluated against every IFC object:
+
+```text
+(entity_ifc4=IfcBuildingElementProxy AND PredefinedType=USERDEFINED AND ObjectType=Wartungsraum)
+  OR (entity_ifc2x3=IfcBuildingElementProxy AND ObjectType=Wartungsraum)
+```
+
+- Clauses: `NAME=VALUE`, bare `NAME` (attribute or property is set), `Pset.Property=VALUE`, and `entity_ifc2x3` / `entity_ifc4` / `entity_ifc4_3` for the IFC class (IFC4X3 files also accept `entity_ifc4` when the expression has no `entity_ifc4_3` clause). A bare `NAME` is looked up as an IFC attribute first, then in every property set.
+- All language variants (`de`, `en`, `fr`, `it`) are evaluated; any match counts.
+- **Specificity:** the score is the number of clauses satisfied by the matching branch. The highest score wins, so `architecture-slab-balcony` (4 clauses) beats `structural-slab-floor` (2). Ties are kept and listed as `ambiguous reference match` in the report.
+
+The best match(es) are written as classifications:
+
+| Slot | Value |
+|------|-------|
+| `classification_scheme` | `pragmaticbim-element` |
+| `classification_code` | element `code` (for example `ARC-RAILING`) |
+| `classification_uri` | `https://pragmaticbim.ch/id/element/{id}` |
+| `classification_version` | `git describe` of the reference checkout |
+| `classification_source` | `pragmaticBIM-reference` |
+
+Entity blocks with `canonical_type_from: reference_element_map` choose the contract class from the match. IFC objects without a listed match are not converted and are counted as `no reference match`:
+
+```yaml
+IfcBuildingElementProxy:
+  content_kind: virtual
+  canonical_type_from: reference_element_map
+  reference_element_map:
+    pragmaticbim:element/architecture-maintenance-space:
+      canonical_type: ReservedVolume.maintenance
+      reserved_volume_type: maintenance
+```
+
+Without a reference checkout the stage is skipped (`skipped stage` in the report) and reference-mapped classes are not converted.
+
+---
+
+## Computed relations
+
+[`_computed_relations.yaml`](_computed_relations.yaml) configures relations and quantities derived from geometry. Entries run in file order after the IFC relationships, so a geometric fallback (`only_when_unset`) only fills what IFC did not state. Each entry names a `method`, a `subject` and an `object` selector, and the `target_slot` on the subject.
+
+Selectors combine with AND: `contract_class` (including subclasses), `ifc_class`, `property` (`Pset.Property: value`), `exclude_property`.
+
+| Relation | Method | Subject → object | Geometric test | Quantities |
+|----------|--------|------------------|----------------|------------|
+| `hosted_by` | `opening_in_host` | door / window → `Separator` | Plan distance ≤ `max_plan_distance`, vertical overlap; prefers the host whose oriented plan envelope contains the opening centre | — |
+| `rests_on` | `vertical_contact` | wall / slab / column / beam / footing → same | Subject bottom within the object's vertical extent (± `contact_tolerance`, above the object's bottom), subject rises above the object's top, plan overlap ≥ `min_contact_area` | — |
+| `connects_physical_elements` | `side_contact` | wall / column / beam ↔ same | Plan distance ≤ `max_plan_distance`, vertical overlap ≥ `min_overlap_height`, no `rests_on` between the pair; written on both elements | — |
+| `intersects_elements` | `prism_overlap` | `ReservedVolume` → `PhysicalElement` | Plan overlap ≥ `min_overlap_area` and vertical overlap ≥ `min_overlap_height` (touching does not count); the product the volume belongs to is skipped | — |
+| `guards_space` | `barrier_walking_surface` | `SafetyBarrier` → `Space` | Plan distance ≤ `max_plan_distance`; space floor between barrier base − `max_floor_below_base` and base + `floor_tolerance` | `height_above_walking_surface` = barrier top − highest guarded floor |
+| `lit_space` | `window_daylight` | exterior window → interior `Space` | `connects_spaces` from IFC space boundaries, else the nearest space within `max_plan_distance` with vertical overlap | `area_glazed` on the window; `glazing_ratio` (glazed area ÷ floor area) on every selected space |
+
+Quantities are `pbs:QuantityValue` records (`quantity_type`, `quantity_value`, `quantity_unit`, QUDT `quantity_unit_uri`). Area and floor-area sources are read in the IFC area unit; dimensions in the IFC length unit.
+
+The relations are evidence for rules evaluated outside this repository, for example:
+
+| Rule | Evidence |
+|------|----------|
+| Fall protection ≥ 1.10 m above the walking surface | `SafetyBarrier` → `guards_space`, `height_above_walking_surface` |
+| Doors in fire-rated walls carry a fire rating | `ConnectionPhysical` → `hosted_by` → `Separator` with `FireProperty` |
+| Fire-rated walls reach the slab above | a `SeparatorSlab` `rests_on` the wall |
+| Load path: slab → column → slab, no floating load-bearing elements | chains of `rests_on`; load-bearing element without a `rests_on` target |
+| Maintenance and clearance volumes stay free | `ReservedVolume` → `intersects_elements` (should be empty) |
+| Minimum glazing ratio of habitable rooms | `Space` `glazing_ratio`, `lit_space` |
 
 ---
 
@@ -631,7 +722,7 @@ Documented limitations where IFC semantics exceed current PBS schema coverage:
 |-----|------------------|
 | `INSULATION`, `MEMBRANE`, and other non-roof `IfcCoveringTypeEnum` values | Map to nearest `BoundaryType` (`cladding` or `flooring`); insulation substance uses optional `MAT-INS*` or subsystem parent product |
 | No fitting enum on `ConnectionPhysicalType` | `IfcDuctFitting`, `IfcPipeFitting` → `network_other` |
-| No structural member class | `IfcBeam`, `IfcColumn` → `ConnectionVirtual` with `connection_virtual_type: structural_joint` |
+| No structural member class | `IfcBeam`, `IfcColumn` → `ConnectionPhysical` (`connection_physical_type` `beam` / `column`, functional type `load_transfer`, transport medium `structural_load`): members connect elements by carrying loads |
 | No stair/ramp class | `IfcStair`, `IfcRamp` → abstract `PhysicalElement`; enrich via `classifications[]` |
 | `IfcCurtainWall` | Mapped to `SeparatorWall` (closest wall-based separator) |
 | `IfcRoof` | Mapped to `PhysicalElement` (assembly container; roof faces are `IfcSlab`/`IfcCovering` parts) |

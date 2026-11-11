@@ -50,17 +50,26 @@ relationships:
     # the space (Space.adjacent_elements, slot_uri bot:adjacentElement).
     space_relation_type: adjacent_elements
 
+  # symmetric: also written from the related element back to the relating element.
   IfcRelConnectsElements:
     description: Physical connectivity between elements.
     relation_type: connects_physical_elements
+    symmetric: true
 
   IfcRelConnectsPathElements:
-    description: MEP path connectivity (duct/pipe runs).
+    description: Path connectivity (wall-wall junctions, duct/pipe runs).
     relation_type: connects_physical_elements
+    symmetric: true
 
   IfcRelFillsElement:
     description: Door/window filling an opening in host element.
     relation_type: connects_physical_elements
+
+  IfcRelVoidsElement:
+    description: >
+      Opening voiding a host element. Not emitted on its own; chained with
+      IfcRelFillsElement into hosted_by on the filling door or window (filler → host).
+    chain_relation_type: hosted_by
 
   IfcRelCoversBldgElements:
     description: Covering applied to a building element (IfcCovering → host).

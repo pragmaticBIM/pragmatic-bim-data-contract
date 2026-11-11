@@ -51,8 +51,8 @@ def test_element_counts_match_ifc(sample):
     for contract_class, ifc_classes in IFC_ORIGINS.items():
         ifc_ids = {e.GlobalId for ifc_class in ifc_classes for e in model.by_type(ifc_class)}
         assert global_ids_of(graph, contract_class) == ifc_ids, contract_class
-    openings = {e.GlobalId for ifc_class in ("IfcDoor", "IfcWindow") for e in model.by_type(ifc_class)}
-    assert openings <= global_ids_of(graph, "ConnectionPhysical")
+    connectors = ("IfcDoor", "IfcWindow", "IfcColumn", "IfcBeam")
+    assert {e.GlobalId for c in connectors for e in model.by_type(c)} <= global_ids_of(graph, "ConnectionPhysical")
 
     counts = {cls: len(set(graph.subjects(RDF.type, PBS[cls]))) for cls in expected.counts}
     assert counts == expected.counts

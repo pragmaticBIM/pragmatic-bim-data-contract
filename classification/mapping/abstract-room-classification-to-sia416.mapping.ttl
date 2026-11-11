@@ -32,6 +32,10 @@ abs:S_HYG_WC_F ex:mapsToSia416 sia:NNF .
 abs:S_HYG_WC_IV ex:mapsToSia416 sia:NNF .
 abs:S_HYG_WC_M ex:mapsToSia416 sia:NNF .
 abs:S_HYG_WC_MIX ex:mapsToSia416 sia:NNF .
+abs:S_HYG_WC_TCH ex:mapsToSia416 sia:NNF .
+abs:S_HYG_WC_LRN ex:mapsToSia416 sia:NNF .
+abs:S_HYG_WC_VIS ex:mapsToSia416 sia:NNF .
+abs:S_HYG_WC_STF ex:mapsToSia416 sia:NNF .
 abs:S_HYG_SHW ex:mapsToSia416 sia:NNF .
 abs:S_STO ex:mapsToSia416 sia:NNF .
 abs:S_STO_GEN ex:mapsToSia416 sia:NNF .

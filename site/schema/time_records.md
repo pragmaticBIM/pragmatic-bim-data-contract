@@ -35,6 +35,7 @@ URI: [pbs:time_records](https://schema.pragmaticbim.ch/time_records)
 | [LevelContext](LevelContext.md) | Spatial context node constrained to level/storey semantics. |  no  |
 | [ZoneContext](ZoneContext.md) | Spatial context node constrained to zone semantics. |  no  |
 | [Space](Space.md) | Spatial container used for occupancy, circulation, service, or analysis. |  no  |
+| [ReservedVolume](ReservedVolume.md) | Volume that must stay clear of building elements (maintenance space, installation path, structural exclusion zone, movement clearance, device space). Modelled as a proxy volume and identified through the pragmaticBIM Reference element definition. |  no  |
 | [System](System.md) | Building service system grouping that serves spaces or zones. |  no  |
 | [ConnectionVirtual](ConnectionVirtual.md) | Logical or topological connection between spaces and/or physical elements. |  no  |
 | [TimeRecord](TimeRecord.md) | Planned work record with baseline and actual dates, optionally linked to model entities and a time plan. — Set milestone_at to mark as a zero-duration checkpoint. — Populate component_time_items to act as a plan container. |  no  |

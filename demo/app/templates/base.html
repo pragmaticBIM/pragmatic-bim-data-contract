@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="{{ L.html_lang }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Pragmatic BIM check{% endblock %}</title>
+  <link rel="stylesheet" href="/static/css/app.css">
+  <script src="https://unpkg.com/htmx.org@2.0.4/dist/htmx.min.js"></script>
+  {% block head %}{% endblock %}
+</head>
+<body class="{% block body_class %}{% endblock %}">
+  <header class="topbar">
+    <a class="brand" href="/">Pragmatic BIM <span>{{ t("check demo") }}</span></a>
+    {% block topbar %}{% endblock %}
+    <nav class="segmented lang" title="{{ t('Labels') }}">
+      {% for code, name in languages.items() %}
+        <a class="{{ 'active' if L.lang == code }}" href="/lang/{{ code }}?next={{ request.url.path | urlencode }}">{{ name }}</a>
+      {% endfor %}
+    </nav>
+  </header>
+  {% block content %}{% endblock %}
+</body>
+</html>

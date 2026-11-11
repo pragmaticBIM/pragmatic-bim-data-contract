@@ -1,0 +1,10 @@
+# Trimmed copy of pragmaticBIM-reference elements/structural-wall.yaml (identification fields only).
+id: pragmaticbim:element/structural-wall
+code: STR-WALL
+status: active
+name:
+  de: Wand detailiert
+  fr: Mur détaillé
+  it: Parete dettagliata
+  en: Wall detailed
+applicability: entity_ifc4=IfcWall OR entity_ifc2x3=IfcWall

@@ -30,6 +30,9 @@ URI: [pbs:QuantityType](https://schema.pragmaticbim.ch/QuantityType)
 | perimeter | ifcowl:IfcQuantityLength | Boundary length around a 2D shape or footprint. |
 | count | pbs:quantity_type_count | Discrete count of items, storeys, or occurrences. |
 | ratio | pbs:quantity_type_ratio | Dimensionless quotient of two measured quantities. |
+| height_above_walking_surface | pbs:quantity_type_height_above_walking_surface | Vertical distance from the guarded walking surface (space floor) to the top of a safety barrier, measured from geometry against the highest guarded floor. |
+| area_glazed | pbs:quantity_type_area_glazed | Projected glazed (transparent) area of a window or glazed door. |
+| glazing_ratio | pbs:quantity_type_glazing_ratio | Sum of the glazed areas of the windows lighting a space divided by the net floor area of the space. |
 
 
 
@@ -125,6 +128,21 @@ permissible_values:
     text: ratio
     description: Dimensionless quotient of two measured quantities.
     meaning: pbs:quantity_type_ratio
+  height_above_walking_surface:
+    text: height_above_walking_surface
+    description: Vertical distance from the guarded walking surface (space floor)
+      to the top of a safety barrier, measured from geometry against the highest guarded
+      floor.
+    meaning: pbs:quantity_type_height_above_walking_surface
+  area_glazed:
+    text: area_glazed
+    description: Projected glazed (transparent) area of a window or glazed door.
+    meaning: pbs:quantity_type_area_glazed
+  glazing_ratio:
+    text: glazing_ratio
+    description: Sum of the glazed areas of the windows lighting a space divided by
+      the net floor area of the space.
+    meaning: pbs:quantity_type_glazing_ratio
 
 ```
 </details>

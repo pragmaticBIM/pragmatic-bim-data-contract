@@ -587,6 +587,48 @@ Hold "Alt" / "Option" to enable pan &amp; zoom
 <td>Optional serialization/encoding format (for example ifc, gltf, wkt, geojson), independent of representation kind.</td>
 <td>direct</td>
 </tr>
+<tr>
+<td><a href="geometry_wkt.html">geometry_wkt</a></td>
+<td>0..1 <br/> <a href="String.html">String</a></td>
+<td>Inline WKT payload for small 2D representations (for example a footprint_2d polygon in project coordinates, metres).</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="bbox_min_x.html">bbox_min_x</a></td>
+<td>0..1 <br/> <a href="Double.html">Double</a></td>
+<td>Axis-aligned bounding box minimum X in project coordinates (metres).</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="bbox_min_y.html">bbox_min_y</a></td>
+<td>0..1 <br/> <a href="Double.html">Double</a></td>
+<td>Axis-aligned bounding box minimum Y in project coordinates (metres).</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="bbox_min_z.html">bbox_min_z</a></td>
+<td>0..1 <br/> <a href="Double.html">Double</a></td>
+<td>Axis-aligned bounding box minimum Z (bottom elevation) in project coordinates (metres).</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="bbox_max_x.html">bbox_max_x</a></td>
+<td>0..1 <br/> <a href="Double.html">Double</a></td>
+<td>Axis-aligned bounding box maximum X in project coordinates (metres).</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="bbox_max_y.html">bbox_max_y</a></td>
+<td>0..1 <br/> <a href="Double.html">Double</a></td>
+<td>Axis-aligned bounding box maximum Y in project coordinates (metres).</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="bbox_max_z.html">bbox_max_z</a></td>
+<td>0..1 <br/> <a href="Double.html">Double</a></td>
+<td>Axis-aligned bounding box maximum Z (top elevation) in project coordinates (metres).</td>
+<td>direct</td>
+</tr>
 </tbody>
 </table>
 <h2 id="usages">Usages<a class="headerlink" href="#usages" title="Permanent link">&para;</a></h2>
@@ -781,6 +823,12 @@ Hold "Alt" / "Option" to enable pan &amp; zoom
 <td><a href="GeometryRepresentation.html">GeometryRepresentation</a></td>
 </tr>
 <tr>
+<td><a href="SafetyBarrier.html">SafetyBarrier</a></td>
+<td><a href="geometry_representations.html">geometry_representations</a></td>
+<td>range</td>
+<td><a href="GeometryRepresentation.html">GeometryRepresentation</a></td>
+</tr>
+<tr>
 <td><a href="Boundary.html">Boundary</a></td>
 <td><a href="geometry_representations.html">geometry_representations</a></td>
 <td>range</td>
@@ -853,6 +901,12 @@ Hold "Alt" / "Option" to enable pan &amp; zoom
 <td><a href="GeometryRepresentation.html">GeometryRepresentation</a></td>
 </tr>
 <tr>
+<td><a href="ReservedVolume.html">ReservedVolume</a></td>
+<td><a href="geometry_representations.html">geometry_representations</a></td>
+<td>range</td>
+<td><a href="GeometryRepresentation.html">GeometryRepresentation</a></td>
+</tr>
+<tr>
 <td><a href="System.html">System</a></td>
 <td><a href="geometry_representations.html">geometry_representations</a></td>
 <td>range</td>
@@ -920,6 +974,13 @@ Hold "Alt" / "Option" to enable pan &amp; zoom
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">geometry_reference</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">geometry_representation</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">geometry_format</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">geometry_wkt</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bbox_min_x</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bbox_min_y</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bbox_min_z</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bbox_max_x</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bbox_max_y</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bbox_max_z</span>
 <span class="nt">class_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pbs:GeometryRepresentation</span>
 </code></pre></div>
 </details>
@@ -961,6 +1022,72 @@ Hold "Alt" / "Option" to enable pan &amp; zoom
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GeometryRepresentation</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
+<span class="w">  </span><span class="nt">geometry_wkt</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">geometry_wkt</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Inline WKT payload for small 2D representations (for example a footprint_2d</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">polygon in project coordinates, metres).</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://schema.pragmaticbim.ch</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GeometryRepresentation</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GeometryRepresentation</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
+<span class="w">  </span><span class="nt">bbox_min_x</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bbox_min_x</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Axis-aligned bounding box minimum X in project coordinates (metres).</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://schema.pragmaticbim.ch</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GeometryRepresentation</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GeometryRepresentation</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">double</span>
+<span class="w">  </span><span class="nt">bbox_min_y</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bbox_min_y</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Axis-aligned bounding box minimum Y in project coordinates (metres).</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://schema.pragmaticbim.ch</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GeometryRepresentation</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GeometryRepresentation</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">double</span>
+<span class="w">  </span><span class="nt">bbox_min_z</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bbox_min_z</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Axis-aligned bounding box minimum Z (bottom elevation) in project</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">coordinates (metres).</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://schema.pragmaticbim.ch</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GeometryRepresentation</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GeometryRepresentation</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">double</span>
+<span class="w">  </span><span class="nt">bbox_max_x</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bbox_max_x</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Axis-aligned bounding box maximum X in project coordinates (metres).</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://schema.pragmaticbim.ch</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GeometryRepresentation</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GeometryRepresentation</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">double</span>
+<span class="w">  </span><span class="nt">bbox_max_y</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bbox_max_y</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Axis-aligned bounding box maximum Y in project coordinates (metres).</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://schema.pragmaticbim.ch</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GeometryRepresentation</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GeometryRepresentation</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">double</span>
+<span class="w">  </span><span class="nt">bbox_max_z</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bbox_max_z</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Axis-aligned bounding box maximum Z (top elevation) in project coordinates</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">(metres).</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://schema.pragmaticbim.ch</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GeometryRepresentation</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GeometryRepresentation</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">double</span>
 <span class="nt">class_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pbs:GeometryRepresentation</span>
 </code></pre></div>
 </details>

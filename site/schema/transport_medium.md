@@ -25,7 +25,7 @@ URI: [pbs:transport_medium](https://schema.pragmaticbim.ch/transport_medium)
 
 | Name | Description | Modifies Slot |
 | --- | --- | --- |
-| [ConnectionPhysical](ConnectionPhysical.md) | Physical connector providing functional connection between spaces (for example door, window, duct, pipe, cable). |  no  |
+| [ConnectionPhysical](ConnectionPhysical.md) | Physical connector providing functional connection between spaces (for example door, window, duct, pipe, cable) or carrying loads between elements (column, beam). |  no  |
 
 
 

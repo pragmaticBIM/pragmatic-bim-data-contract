@@ -32,6 +32,10 @@ abs:S_HYG_WC_F ex:mapsToD0165 d0165:NNF_7_1 .
 abs:S_HYG_WC_IV ex:mapsToD0165 d0165:NNF_7_1 .
 abs:S_HYG_WC_M ex:mapsToD0165 d0165:NNF_7_1 .
 abs:S_HYG_WC_MIX ex:mapsToD0165 d0165:NNF_7_1 .
+abs:S_HYG_WC_TCH ex:mapsToD0165 d0165:NNF_7_1 .
+abs:S_HYG_WC_LRN ex:mapsToD0165 d0165:NNF_7_1 .
+abs:S_HYG_WC_VIS ex:mapsToD0165 d0165:NNF_7_1 .
+abs:S_HYG_WC_STF ex:mapsToD0165 d0165:NNF_7_1 .
 abs:S_HYG_SHW ex:mapsToD0165 d0165:NNF_7_2 .
 abs:S_STO ex:mapsToD0165 d0165:NNF_7_3 .
 abs:S_STO_GEN ex:mapsToD0165 d0165:NNF_7_3 .

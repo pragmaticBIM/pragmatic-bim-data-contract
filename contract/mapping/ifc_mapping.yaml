@@ -8,7 +8,7 @@
 #
 # Regenerate merged output: python scripts/merge_ifc_mapping.py
 
-mapping_version: "1.4.0"
+mapping_version: "1.5.0"
 schema_uri: https://schema.pragmaticbim.ch/
 canonical_type_version: "v0.0.7"
 
@@ -16,6 +16,7 @@ imports:
   - _conventions.yaml
   - _pset_fallbacks.yaml
   - _relationships.yaml
+  - _computed_relations.yaml
   - _fragments.yaml
   - entities/architectural.yaml
   - entities/hvac.yaml
