@@ -131,6 +131,7 @@ click StatusType href "./StatusType.html" _blank
 | [Person](Person.md) | [applies_to_entities](applies_to_entities.md) | range | [Entity](Entity.md) |
 | [Company](Company.md) | [applies_to_entities](applies_to_entities.md) | range | [Entity](Entity.md) |
 | [SoftwareAgent](SoftwareAgent.md) | [applies_to_entities](applies_to_entities.md) | range | [Entity](Entity.md) |
+| [Derivation](Derivation.md) | [derivation_inputs](derivation_inputs.md) | range | [Entity](Entity.md) |
 | [Decision](Decision.md) | [applies_to_entities](applies_to_entities.md) | range | [Entity](Entity.md) |
 | [Task](Task.md) | [applies_to_entities](applies_to_entities.md) | range | [Entity](Entity.md) |
 | [Process](Process.md) | [applies_to_entities](applies_to_entities.md) | range | [Entity](Entity.md) |
