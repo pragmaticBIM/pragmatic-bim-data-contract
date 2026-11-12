@@ -257,6 +257,42 @@ enums:
         description: Walking distance in plan along the shortest horizontal escape route to an exit to the outside or a
           stair leaving the storey; on a space measured from its most remote point, on a door from the door.
         meaning: pbs:quantity_type_escape_route_length
+  DerivationSourceKind:
+    enum_uri: pbs:DerivationSourceKind
+    description: Kind of source a derived value or relation comes from. Used by Derivation.derivation_source_kind.
+    permissible_values:
+      ifc_explicit:
+        description: Read directly from an explicit IFC relationship object or property set, without computation.
+        meaning: pbs:derivation_source_kind_ifc_explicit
+        title: IFC explicit
+        alt_descriptions:
+          de:
+            source: de
+            description: Direkt aus dem IFC
+      ifc_geometry:
+        description: Computed from IFC geometry (for example contact, containment in a void, height above a reference surface, spacing along an axis, surface slope).
+        meaning: pbs:derivation_source_kind_ifc_geometry
+        title: IFC geometry
+        alt_descriptions:
+          de:
+            source: de
+            description: Aus der IFC-Geometrie berechnet
+      project_parameter:
+        description: Taken from project-level parameters outside the model (for example traffic volumes from the project basis).
+        meaning: pbs:derivation_source_kind_project_parameter
+        title: Project parameter
+        alt_descriptions:
+          de:
+            source: de
+            description: Projektparameter
+      manual:
+        description: Entered or confirmed manually by a person.
+        meaning: pbs:derivation_source_kind_manual
+        title: Manual
+        alt_descriptions:
+          de:
+            source: de
+            description: Manuell erfasst
   StatusType:
     enum_uri: pbs:StatusType
     description: Lifecycle or QA gate status used for model progression and approvals.

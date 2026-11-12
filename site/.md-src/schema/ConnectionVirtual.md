@@ -6,7 +6,7 @@ search:
 # Class: ConnectionVirtual 
 
 
-_Logical or topological connection between spaces and/or physical elements._
+_Logical or topological connection between spaces and/or physical elements. Connections read from IFC relationships and connections computed from geometry (for example a contact test) use the same class; derivation records which of the two applies and how the connection was computed._
 
 
 
@@ -34,6 +34,7 @@ click ConnectionVirtualType href "./ConnectionVirtualType.html" _blank
 click PhysicalElement href "./PhysicalElement.html" _blank
 click Space href "./Space.html" _blank
 click CostRecord href "./CostRecord.html" _blank
+click Derivation href "./Derivation.html" _blank
 click GeometryRepresentation href "./GeometryRepresentation.html" _blank
 click LocalizedText href "./LocalizedText.html" _blank
 click LocalizedText href "./LocalizedText.html" _blank
@@ -70,6 +71,7 @@ click TimeRecord href "./TimeRecord.html" _blank
 | [connects_physical_elements](connects_physical_elements.md) | * <br/> [PhysicalElement](PhysicalElement.md) | Physical elements connected to this one side by side (for example wall-wall junction, beam framing into a column). On a physical element the relation is symmetric and stated on both elements. From IfcRelConnectsElements / IfcRelConnectsPathElements, or computed from geometric contact. Bearing contact is rests_on. | direct |
 | [connects_spaces](connects_spaces.md) | * <br/> [Space](Space.md) | Spaces connected by this connection (for example the two spaces on either side of a door). | direct |
 | [connection_virtual_requirement_drivers](connection_virtual_requirement_drivers.md) | * <br/> [ConnectionRequirementDriver](ConnectionRequirementDriver.md) | Main requirement drivers for this virtual connection. | direct |
+| [derivation](derivation.md) | 0..1 <br/> [Derivation](Derivation.md) | How this value or relation was obtained (source kind, method, version, tolerance, inputs). Omit only when the record is copied unchanged from its source and no further traceability is needed. | direct |
 | [cost_records](cost_records.md) | * <br/> [CostRecord](CostRecord.md) | Cost records associated with this entity. | [VirtualEntity](VirtualEntity.md) |
 | [time_records](time_records.md) | * <br/> [TimeRecord](TimeRecord.md) | Time records associated with this entity. | [VirtualEntity](VirtualEntity.md) |
 | [materials](materials.md) | * <br/> [Material](Material.md) | Material definitions associated with this entity. | [VirtualEntity](VirtualEntity.md) |
@@ -142,6 +144,9 @@ click TimeRecord href "./TimeRecord.html" _blank
 ```yaml
 name: ConnectionVirtual
 description: Logical or topological connection between spaces and/or physical elements.
+  Connections read from IFC relationships and connections computed from geometry (for
+  example a contact test) use the same class; derivation records which of the two
+  applies and how the connection was computed.
 from_schema: https://schema.pragmaticbim.ch
 is_a: VirtualEntity
 slots:
@@ -149,6 +154,7 @@ slots:
 - connects_physical_elements
 - connects_spaces
 - connection_virtual_requirement_drivers
+- derivation
 class_uri: pbs:ConnectionVirtual
 
 ```
@@ -160,6 +166,9 @@ class_uri: pbs:ConnectionVirtual
 ```yaml
 name: ConnectionVirtual
 description: Logical or topological connection between spaces and/or physical elements.
+  Connections read from IFC relationships and connections computed from geometry (for
+  example a contact test) use the same class; derivation records which of the two
+  applies and how the connection was computed.
 from_schema: https://schema.pragmaticbim.ch
 is_a: VirtualEntity
 attributes:
@@ -210,6 +219,19 @@ attributes:
     - ConnectionVirtual
     range: ConnectionRequirementDriver
     multivalued: true
+  derivation:
+    name: derivation
+    description: How this value or relation was obtained (source kind, method, version,
+      tolerance, inputs). Omit only when the record is copied unchanged from its source
+      and no further traceability is needed.
+    from_schema: https://schema.pragmaticbim.ch
+    rank: 1000
+    owner: ConnectionVirtual
+    domain_of:
+    - QuantityValue
+    - ConnectionVirtual
+    range: Derivation
+    inlined: true
   cost_records:
     name: cost_records
     description: Cost records associated with this entity.

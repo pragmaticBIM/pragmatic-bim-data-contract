@@ -269,6 +269,28 @@ class QuantityType(str, Enum):
     """
 
 
+class DerivationSourceKind(str, Enum):
+    """
+    Kind of source a derived value or relation comes from. Used by Derivation.derivation_source_kind.
+    """
+    IFC_explicit = "ifc_explicit"
+    """
+    Read directly from an explicit IFC relationship object or property set, without computation.
+    """
+    IFC_geometry = "ifc_geometry"
+    """
+    Computed from IFC geometry (for example contact, containment in a void, height above a reference surface, spacing along an axis, surface slope).
+    """
+    Project_parameter = "project_parameter"
+    """
+    Taken from project-level parameters outside the model (for example traffic volumes from the project basis).
+    """
+    Manual = "manual"
+    """
+    Entered or confirmed manually by a person.
+    """
+
+
 class StatusType(str, Enum):
     """
     Lifecycle or QA gate status used for model progression and approvals.
@@ -2069,6 +2091,25 @@ class QuantityValue(ConfiguredBaseModel):
     metric_scheme: Optional[str] = Field(default=None, description="""Vocabulary scheme identifier for the measured concept: AbstractBuildingMetric or AbstractBuildingRatio.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantityValue']} })
     metric_code: Optional[str] = Field(default=None, description="""skos:notation of the concept in the matching abstract metric or ratio scheme.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantityValue']} })
     metric_uri: Optional[str] = Field(default=None, description="""Concept URI from building-metrics.skos.ttl or building-ratios.skos.ttl.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantityValue']} })
+    derivation: Optional[Derivation] = Field(default=None, description="""How this value or relation was obtained (source kind, method, version, tolerance, inputs). Omit only when the record is copied unchanged from its source and no further traceability is needed.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantityValue', 'ConnectionVirtual']} })
+
+
+class Derivation(ConfiguredBaseModel):
+    """
+    How a value or relation was obtained. Embedded on the record it describes (for example a QuantityValue measured from geometry, or a ConnectionVirtual computed by a contact test) so that every derived fact carries its source kind, method, method version, tolerance, and input entities. Lets checks distinguish values read from IFC, values computed from geometry, project parameters, and manual entries, and lets results be reproduced or recomputed when a method changes.
+    """
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'pbs:Derivation',
+         'exact_mappings': ['prov:Activity'],
+         'from_schema': 'https://schema.pragmaticbim.ch/entity/core'})
+
+    derivation_source_kind: DerivationSourceKind = Field(default=..., description="""Kind of source the value or relation comes from (IFC relationship or property, geometry computation, project parameter, manual entry).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Derivation']} })
+    derivation_method: Optional[str] = Field(default=None, description="""Identifier of the method or algorithm that produced the value, for example contact_test, height_above_reference_surface, spacing_along_axis, or the IFC relationship class for ifc_explicit sources.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Derivation']} })
+    derivation_method_version: Optional[str] = Field(default=None, description="""Version of the method implementation, so results can be reproduced and recomputed when the method changes.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Derivation']} })
+    derivation_tolerance: Optional[float] = Field(default=None, description="""Geometric or numeric tolerance applied by the method (for example the maximum gap still counted as contact).""", ge=0, json_schema_extra = { "linkml_meta": {'domain_of': ['Derivation']} })
+    derivation_tolerance_unit: Optional[str] = Field(default=None, description="""Unit of derivation_tolerance (for example m, mm, deg).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Derivation']} })
+    derivation_inputs: Optional[list[str]] = Field(default=None, description="""Entities whose data or geometry were used, beyond the subject itself. For a height measured above a reference surface this includes the reference element (for example the pavement course).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Derivation']} })
+    derived_by: Optional[str] = Field(default=None, description="""Software agent (pipeline, service) that executed the method.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Derivation']} })
+    derived_at: Optional[datetime ] = Field(default=None, description="""Timestamp when the value or relation was derived.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Derivation']} })
 
 
 class MetadataEntry(ConfiguredBaseModel):
@@ -4558,7 +4599,7 @@ class System(VirtualEntity):
 
 class ConnectionVirtual(VirtualEntity):
     """
-    Logical or topological connection between spaces and/or physical elements.
+    Logical or topological connection between spaces and/or physical elements. Connections read from IFC relationships and connections computed from geometry (for example a contact test) use the same class; derivation records which of the two applies and how the connection was computed.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'pbs:ConnectionVirtual',
          'from_schema': 'https://schema.pragmaticbim.ch/entity/virtual'})
@@ -4567,6 +4608,7 @@ class ConnectionVirtual(VirtualEntity):
     connects_physical_elements: Optional[list[str]] = Field(default=None, description="""Physical elements connected to this one side by side (for example wall-wall junction, beam framing into a column). On a physical element the relation is symmetric and stated on both elements. From IfcRelConnectsElements / IfcRelConnectsPathElements, or computed from geometric contact. Bearing contact is rests_on.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement', 'ConnectionVirtual']} })
     connects_spaces: Optional[list[str]] = Field(default=None, description="""Spaces connected by this connection (for example the two spaces on either side of a door).""", json_schema_extra = { "linkml_meta": {'domain_of': ['ConnectionPhysical', 'ConnectionVirtual']} })
     connection_virtual_requirement_drivers: Optional[list[ConnectionRequirementDriver]] = Field(default=None, description="""Main requirement drivers for this virtual connection.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ConnectionVirtual']} })
+    derivation: Optional[Derivation] = Field(default=None, description="""How this value or relation was obtained (source kind, method, version, tolerance, inputs). Omit only when the record is copied unchanged from its source and no further traceability is needed.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantityValue', 'ConnectionVirtual']} })
     cost_records: Optional[list[str]] = Field(default=None, description="""Cost records associated with this entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['VirtualEntity']} })
     time_records: Optional[list[str]] = Field(default=None, description="""Time records associated with this entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['VirtualEntity']} })
     materials: Optional[list[str]] = Field(default=None, description="""Material definitions associated with this entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['VirtualEntity']} })
@@ -5127,6 +5169,7 @@ SoftwareAgent.model_rebuild()
 Classification.model_rebuild()
 GeometryRepresentation.model_rebuild()
 QuantityValue.model_rebuild()
+Derivation.model_rebuild()
 MetadataEntry.model_rebuild()
 PerformanceProperty.model_rebuild()
 Decision.model_rebuild()

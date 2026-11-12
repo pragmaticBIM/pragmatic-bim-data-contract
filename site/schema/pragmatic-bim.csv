@@ -12,7 +12,7 @@ CivilStructureContext,,Spatial context node constrained to civil structure seman
 Classification,,"Generic classification entry from any scheme (for example IFC, Uniclass, OmniClass, custom)."
 Company,,"Organization, company, or legal entity participating in the project or asset lifecycle."
 ConnectionPhysical,,"Physical connector providing functional connection between spaces (for example door, window, duct, pipe, cable) or carrying loads between elements (column, beam)."
-ConnectionVirtual,,Logical or topological connection between spaces and/or physical elements.
+ConnectionVirtual,,Logical or topological connection between spaces and/or physical elements. Connections read from IFC relationships and connections computed from geometry (for example a contact test) use the same class; derivation records which of the two applies and how the connection was computed.
 ConsentRecord,,"Record of lawful basis, scope, and lifecycle for processing personal data on a Person."
 ContactPoint,,Structured communication endpoint or profile for an agent.
 Contract,,"Commercial agreement entity for project scope, parties, and governance. Links to a signed artifact and related model entities via applies_to_entities. Entity.status covers record lifecycle; contract_status uses workflow vocabulary URIs."
@@ -22,6 +22,7 @@ Decision,,Decision entity for workflow traceability and governance. Entity.statu
 DeletionChange,,Entity removed in to_revision.
 Deliverable,,Outcome or handover item produced within a project.
 DeliverableRequirement,,"Deliverable or documentation requirement (model LOD, O&M manual, export format, etc.)."
+Derivation,,"How a value or relation was obtained. Embedded on the record it describes (for example a QuantityValue measured from geometry, or a ConnectionVirtual computed by a contact test) so that every derived fact carries its source kind, method, method version, tolerance, and input entities. Lets checks distinguish values read from IFC, values computed from geometry, project parameters, and manual entries, and lets results be reproduced or recomputed when a method changes."
 Entity,,"Common base class for everything in the project graph. Has identity, lifecycle, and status."
 EnvironmentalProperty,,Normalized environmental property of an element type (embodied greenhouse gas emissions and primary energy).
 Equipment,,"Endpoint or device element (for example terminal, unit, control device, sensor) located in a space and assigned to a system."

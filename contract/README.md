@@ -63,6 +63,7 @@ Business scope hierarchy: `Program` (`content_kind: program`) groups `Project` r
 - Building metric and ratio results link to SKOS vocabularies via `QuantityValue.metric_scheme`, `metric_code`, and `metric_uri` (`AbstractBuildingMetric` or `AbstractBuildingRatio`). See [`classification/abstract-metric-definition/`](../classification/abstract-metric-definition/) and [`classification/abstract-ratio-definition/`](../classification/abstract-ratio-definition/).
 - `cost_category` and `material_category` are intentionally open text for now and can later be aligned with stronger classification systems.
 - Units can be carried as plain strings for operational compatibility and optionally accompanied by unit URIs (for example QUDT) for stronger semantic alignment.
+- Derived values and relations carry an embedded `Derivation` (`QuantityValue.derivation`, `ConnectionVirtual.derivation`): `derivation_source_kind` (`ifc_explicit`, `ifc_geometry`, `project_parameter`, `manual`), `derivation_method`, `derivation_method_version`, `derivation_tolerance` with unit, `derivation_inputs` (for example the reference element of a height measured above it), `derived_by`, and `derived_at`. Requirement checks use it to tell a value read from IFC from one computed from geometry, and to recompute results when a method changes.
 
 ## IFC mapping
 

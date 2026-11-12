@@ -144,6 +144,26 @@ classes:
     - metric_scheme
     - metric_code
     - metric_uri
+    - derivation
+  Derivation:
+    class_uri: pbs:Derivation
+    exact_mappings:
+    - prov:Activity
+    description: >-
+      How a value or relation was obtained. Embedded on the record it describes (for example a QuantityValue
+      measured from geometry, or a ConnectionVirtual computed by a contact test) so that every derived fact
+      carries its source kind, method, method version, tolerance, and input entities. Lets checks distinguish
+      values read from IFC, values computed from geometry, project parameters, and manual entries, and lets
+      results be reproduced or recomputed when a method changes.
+    slots:
+    - derivation_source_kind
+    - derivation_method
+    - derivation_method_version
+    - derivation_tolerance
+    - derivation_tolerance_unit
+    - derivation_inputs
+    - derived_by
+    - derived_at
   MetadataEntry:
     class_uri: pbs:MetadataEntry
     description: Generic metadata entry for storing IFC attributes, PropertySet fields, or project-specific key-value data.
@@ -843,6 +863,45 @@ slots:
   metric_uri:
     range: uriorcurie
     description: Concept URI from building-metrics.skos.ttl or building-ratios.skos.ttl.
+  derivation:
+    range: Derivation
+    inlined: true
+    description: >-
+      How this value or relation was obtained (source kind, method, version, tolerance, inputs).
+      Omit only when the record is copied unchanged from its source and no further traceability is needed.
+  derivation_source_kind:
+    range: DerivationSourceKind
+    required: true
+    description: Kind of source the value or relation comes from (IFC relationship or property, geometry computation, project parameter, manual entry).
+  derivation_method:
+    range: string
+    description: >-
+      Identifier of the method or algorithm that produced the value, for example contact_test,
+      height_above_reference_surface, spacing_along_axis, or the IFC relationship class for ifc_explicit sources.
+  derivation_method_version:
+    range: string
+    description: Version of the method implementation, so results can be reproduced and recomputed when the method changes.
+  derivation_tolerance:
+    range: double
+    minimum_value: 0
+    description: Geometric or numeric tolerance applied by the method (for example the maximum gap still counted as contact).
+  derivation_tolerance_unit:
+    range: string
+    description: Unit of derivation_tolerance (for example m, mm, deg).
+  derivation_inputs:
+    multivalued: true
+    range: Entity
+    inlined: false
+    description: >-
+      Entities whose data or geometry were used, beyond the subject itself. For a height measured above
+      a reference surface this includes the reference element (for example the pavement course).
+  derived_by:
+    range: SoftwareAgent
+    inlined: false
+    description: Software agent (pipeline, service) that executed the method.
+  derived_at:
+    range: datetime
+    description: Timestamp when the value or relation was derived.
   metadata_key:
     range: string
     required: true

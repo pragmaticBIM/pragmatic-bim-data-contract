@@ -25,7 +25,7 @@ URI: [pbs:connection_virtual_type](https://schema.pragmaticbim.ch/connection_vir
 
 | Name | Description | Modifies Slot |
 | --- | --- | --- |
-| [ConnectionVirtual](ConnectionVirtual.md) | Logical or topological connection between spaces and/or physical elements. |  no  |
+| [ConnectionVirtual](ConnectionVirtual.md) | Logical or topological connection between spaces and/or physical elements. Connections read from IFC relationships and connections computed from geometry (for example a contact test) use the same class; derivation records which of the two applies and how the connection was computed. |  no  |
 
 
 

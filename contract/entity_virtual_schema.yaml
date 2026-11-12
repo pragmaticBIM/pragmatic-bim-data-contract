@@ -165,12 +165,16 @@ classes:
   ConnectionVirtual:
     is_a: VirtualEntity
     class_uri: pbs:ConnectionVirtual
-    description: Logical or topological connection between spaces and/or physical elements.
+    description: >-
+      Logical or topological connection between spaces and/or physical elements. Connections read from IFC
+      relationships and connections computed from geometry (for example a contact test) use the same class;
+      derivation records which of the two applies and how the connection was computed.
     slots:
     - connection_virtual_type
     - connects_physical_elements
     - connects_spaces
     - connection_virtual_requirement_drivers
+    - derivation
   TimeLink:
     class_uri: pbs:TimeLink
     description: >-
