@@ -2279,6 +2279,13 @@
                         "null"
                     ]
                 },
+                "opens_in_escape_direction": {
+                    "description": "Whether a swing door leaf opens in the direction of the shortest horizontal escape route through the door. Computed from door OperationType and local placement against escape_route_next; unset when the door is not on a route or the operation type is not a swing.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
                 "parent_building": {
                     "description": "Parent building context reference.",
                     "type": [
@@ -8754,7 +8761,10 @@
                 "height_above_walking_surface",
                 "area_glazed",
                 "glazing_ratio",
-                "escape_route_length"
+                "escape_route_length",
+                "clear_width",
+                "tread_length_at_inner_side",
+                "escape_route_clear_width"
             ],
             "title": "QuantityType",
             "type": "string"

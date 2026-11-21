@@ -71,6 +71,41 @@ fragments:
           <<: *perf_load_bearing
         normalize: *normalize_boolean
 
+  # Space indoor-environment properties promoted to IndoorEnvironmentProperty records.
+  performance_properties_space: &performance_properties_space
+    source: ifc_pset_performance
+    properties:
+      - property_class: IndoorEnvironmentProperty
+        property_key: peak_occupancy
+        lookup:
+          source: ifc_pset_fallback
+          <<: *perf_peak_occupancy
+        normalize: *normalize_count
+
+  # Typed QuantityValue records from PropertySets (lengths in project units → metres).
+  quantity_values_stair: &quantity_values_stair
+    source: ifc_pset_quantity
+    quantities:
+      - quantity_type: clear_width
+        lookup:
+          source: ifc_pset_fallback
+          <<: *qty_stair_clear_width
+        normalize: *normalize_positive_length
+      - quantity_type: tread_length_at_inner_side
+        lookup:
+          source: ifc_pset_fallback
+          <<: *qty_tread_length_at_inner_side
+        normalize: *normalize_positive_length
+
+  quantity_values_escape_route_clear_width: &quantity_values_escape_route_clear_width
+    source: ifc_pset_quantity
+    quantities:
+      - quantity_type: escape_route_clear_width
+        lookup:
+          source: ifc_pset_fallback
+          <<: *qty_escape_route_clear_width
+        normalize: *normalize_positive_length
+
   attributes_entity_base: &attributes_entity_base
     ifc_global_id:
       source: ifc_attribute

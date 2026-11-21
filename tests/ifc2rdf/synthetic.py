@@ -9,6 +9,7 @@ import ifcopenshell.api.aggregate
 import ifcopenshell.api.context
 import ifcopenshell.api.feature
 import ifcopenshell.api.geometry
+import ifcopenshell.api.group
 import ifcopenshell.api.project
 import ifcopenshell.api.pset
 import ifcopenshell.api.root
@@ -261,3 +262,132 @@ def build_demo_model(path: Path) -> dict[str, str]:
     )
     f.write(str(path))
     return dict(DEMO_GLOBAL_IDS)
+
+
+VKF_ROLES = [
+    "project", "site", "building", "storey",
+    "room", "corridor", "stair_flight",
+    "door_out", "door_in", "exit_door",
+    "fire_zone",
+]
+VKF_GLOBAL_IDS = {role: ifcopenshell.guid.compress(f"{0xE000 + i:032x}") for i, role in enumerate(VKF_ROLES)}
+
+
+def build_vkf_model(path: Path) -> dict[str, str]:
+    """Minimal IFC covering VKF 16-15 contract facts (occupancy, stair/route width, door swing, fire zone).
+
+    Plan (metres): room x 0..4, y 0..3 → door_out (opens with escape, local +Y → +Y) →
+    corridor x 0..4, y 3.2..5 → exit_door at y=5 (opens outward, local +Y → +Y).
+    door_in in the same wall opens against escape (local +Y → −Y).
+    Stair flight in the corridor carries ClearWidth and TreadLengthAtInnerSide.
+    Room has PeakOccupancyActual and EscapeRouteClearWidth; assigned to a fire IfcZone.
+    """
+    f = api.project.create_file(version="IFC4")
+    entities = {}
+
+    def create(role: str, ifc_class: str, name: str, **kwargs):
+        entity = api.root.create_entity(f, ifc_class=ifc_class, name=name, **kwargs)
+        entity.GlobalId = VKF_GLOBAL_IDS[role]
+        entities[role] = entity
+        return entity
+
+    def pset(product, name: str, properties: dict) -> None:
+        api.pset.edit_pset(f, pset=api.pset.add_pset(f, product=product, name=name), properties=properties)
+
+    project = create("project", "IfcProject", "VKF")
+    api.unit.assign_unit(f)  # millimetres
+    model = api.context.add_context(f, context_type="Model")
+    body = api.context.add_context(
+        f, context_type="Model", context_identifier="Body", target_view="MODEL_VIEW", parent=model
+    )
+
+    def box(product, x0, y0, z0, x1, y1, z1, y_axis=None) -> None:
+        """Axis-aligned box. Optional ``y_axis`` (plan unit vector) sets local +Y (door opening side)."""
+        matrix = np.eye(4)
+        if y_axis is not None:
+            y = np.asarray(y_axis, dtype=float)
+            y = y / float(np.linalg.norm(y))
+            # Right-handed with +Z up: X = (Yx, -Yx) so X × Y = +Z.
+            x = np.array([y[1], -y[0]], dtype=float)
+            matrix[0, 0], matrix[1, 0] = float(x[0]), float(x[1])
+            matrix[0, 1], matrix[1, 1] = float(y[0]), float(y[1])
+            # Representation is length along local X, thickness along local Y.
+            length = abs((x1 - x0) * float(x[0]) + (y1 - y0) * float(x[1]))
+            thickness = abs((x1 - x0) * float(y[0]) + (y1 - y0) * float(y[1]))
+        else:
+            length = float(x1 - x0)
+            thickness = float(y1 - y0)
+        matrix[0, 3], matrix[1, 3], matrix[2, 3] = float(x0), float(y0), float(z0)
+        api.geometry.edit_object_placement(f, product=product, matrix=matrix)
+        representation = api.geometry.add_wall_representation(
+            f,
+            context=body,
+            length=max(length, 0.05),
+            height=float(z1 - z0),
+            thickness=max(thickness, 0.05),
+        )
+        api.geometry.assign_representation(f, product=product, representation=representation)
+
+    site = create("site", "IfcSite", "Site")
+    building = create("building", "IfcBuilding", "Building")
+    storey = create("storey", "IfcBuildingStorey", "EG")
+    storey.Elevation = 0.0
+    api.aggregate.assign_object(f, relating_object=project, products=[site])
+    api.aggregate.assign_object(f, relating_object=site, products=[building])
+    api.aggregate.assign_object(f, relating_object=building, products=[storey])
+
+    room = create("room", "IfcSpace", "Raum", predefined_type="SPACE")
+    corridor = create("corridor", "IfcSpace", "Korridor", predefined_type="SPACE")
+    api.aggregate.assign_object(f, relating_object=storey, products=[room, corridor])
+    box(room, 0, 0, 0, 4, 3, 2.8)
+    box(corridor, 0, 3.2, 0, 4, 5, 2.8)
+    pset(room, "Pset_SpaceCommon", {"IsExternal": False})
+    pset(corridor, "Pset_SpaceCommon", {"IsExternal": False})
+    # Lengths in project units (mm); ifc_pset_quantity converts to metres.
+    pset(room, "ePset_Space", {"PeakOccupancyActual": 40, "EscapeRouteClearWidth": 1200})
+    pset(corridor, "ePset_Space", {"EscapeRouteClearWidth": 1500})
+
+    door_out = create("door_out", "IfcDoor", "Tür raus", predefined_type="DOOR")
+    door_in = create("door_in", "IfcDoor", "Tür rein", predefined_type="DOOR")
+    exit_door = create("exit_door", "IfcDoor", "Ausgang", predefined_type="DOOR")
+    # Local +Y toward corridor (+Y): opens with escape from room → corridor → exit.
+    box(door_out, 1.0, 2.95, 0, 2.0, 3.25, 2.1, y_axis=(0.0, 1.0))
+    door_out.OperationType = "SINGLE_SWING_LEFT"
+    # Local +Y toward room (−Y): opens against escape.
+    box(door_in, 2.5, 2.95, 0, 3.5, 3.25, 2.1, y_axis=(0.0, -1.0))
+    door_in.OperationType = "SINGLE_SWING_RIGHT"
+    # Exit: local +Y outward (+Y).
+    box(exit_door, 1.5, 4.9, 0, 2.5, 5.1, 2.1, y_axis=(0.0, 1.0))
+    exit_door.OperationType = "SINGLE_SWING_LEFT"
+    for door, external in ((door_out, False), (door_in, False), (exit_door, True)):
+        pset(door, "Pset_DoorCommon", {"IsExternal": external})
+
+    stair = create("stair_flight", "IfcStairFlight", "Lauf", predefined_type="WINDER")
+    box(stair, 3.2, 3.4, 0, 3.9, 4.8, 2.8)
+    pset(stair, "ePset_StairFlight", {"ClearWidth": 1250})
+    pset(stair, "Pset_StairFlightCommon", {"TreadLengthAtInnerSide": 150})
+
+    fire_zone = create("fire_zone", "IfcZone", "Fire compartment A")
+    api.group.assign_group(f, products=[room, corridor], group=fire_zone)
+
+    for space, element in (
+        (room, door_out),
+        (corridor, door_out),
+        (room, door_in),
+        (corridor, door_in),
+        (corridor, exit_door),
+    ):
+        f.create_entity(
+            "IfcRelSpaceBoundary",
+            GlobalId=ifcopenshell.guid.new(),
+            RelatingSpace=space,
+            RelatedBuildingElement=element,
+            PhysicalOrVirtualBoundary="PHYSICAL",
+            InternalOrExternalBoundary="INTERNAL",
+        )
+
+    api.spatial.assign_container(
+        f, relating_structure=storey, products=[door_out, door_in, exit_door, stair]
+    )
+    f.write(str(path))
+    return dict(VKF_GLOBAL_IDS)

@@ -115,9 +115,16 @@ def run_geometry_pass(
     if glb_path is not None:
         result.glb_path = Path(glb_path)
         result.glb_path.parent.mkdir(parents=True, exist_ok=True)
-        serializer_settings = ifcopenshell.geom.serializer_settings()
-        serializer_settings.set("use-element-guids", True)
-        serializer = ifcopenshell.geom.serializers.gltf(str(result.glb_path), settings, serializer_settings)
+        # ifcopenshell 0.8: separate serializer_settings; 0.9+: options live on settings.
+        if hasattr(ifcopenshell.geom, "serializer_settings"):
+            serializer_settings = ifcopenshell.geom.serializer_settings()
+            serializer_settings.set("use-element-guids", True)
+            serializer = ifcopenshell.geom.serializers.gltf(
+                str(result.glb_path), settings, serializer_settings
+            )
+        else:
+            settings.set("use-element-guids", True)
+            serializer = ifcopenshell.geom.serializers.gltf(str(result.glb_path), settings)
         serializer.setFile(ifc_file)
         serializer.setUnitNameAndMagnitude("METER", 1.0)
         serializer.writeHeader()

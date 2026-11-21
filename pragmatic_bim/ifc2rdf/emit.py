@@ -58,19 +58,33 @@ def build_graph(conv: "Converter", nodes: list[Node]) -> Graph:
                 for rdf_type in schema.rdf_types(class_name):
                     graph.add((blank, RDF.type, rdf_type))
                 for key, value in sorted(entry.items()):
-                    range_name = schema.slot_range(class_name, key)
-                    if schema.is_enum(range_name):
-                        term = schema.enum_term(range_name, str(value))
-                    elif schema.is_class(range_name):
-                        term = URIRef(str(value))
-                    else:
-                        term = schema.literal(range_name, value)
-                    graph.add((blank, schema.slot_uri(key), term))
+                    _emit_slot(graph, schema, blank, class_name, key, value, digest, slot, index)
         present = set(node.values) | set(node.inlined)
         for slot in schema.required_slots(cls):
             if slot not in present:
                 conv.report.missing_required[f"{cls}.{slot}"] += 1
     return graph
+
+
+def _emit_slot(graph: Graph, schema, subject, class_name: str, key: str, value, digest: str, slot: str, index: int) -> None:
+    """Write one slot of an inlined record; nested class dicts become blank nodes."""
+    range_name = schema.slot_range(class_name, key)
+    if isinstance(value, dict) and value.get("_class") and schema.is_class(range_name):
+        nested_class = value["_class"]
+        nested = BNode(f"{digest}{slot[:2]}{index:05d}{key[:4]}")
+        graph.add((subject, schema.slot_uri(key), nested))
+        for rdf_type in schema.rdf_types(nested_class):
+            graph.add((nested, RDF.type, rdf_type))
+        for nested_key, nested_value in sorted((k, v) for k, v in value.items() if k != "_class"):
+            _emit_slot(graph, schema, nested, nested_class, nested_key, nested_value, digest, slot, index)
+        return
+    if schema.is_enum(range_name):
+        term = schema.enum_term(range_name, str(value))
+    elif schema.is_class(range_name):
+        term = URIRef(str(value))
+    else:
+        term = schema.literal(range_name, value)
+    graph.add((subject, schema.slot_uri(key), term))
 
 
 def to_turtle(graph: Graph) -> str:

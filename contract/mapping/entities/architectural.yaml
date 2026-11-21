@@ -374,6 +374,26 @@
     attributes:
       <<: *attributes_entity_base
       performance_properties: *performance_properties_building_element
+      quantity_values: *quantity_values_stair
+    geometry: *geometry_body_footprint
+    relations:
+      - IfcRelContainedInSpatialStructure
+      - IfcRelAssociatesClassification
+
+  IfcStairFlight:
+    content_kind: physical
+    canonical_type: PhysicalElement
+    fields:
+      name: *name_fallback_chain
+      code_or_number:
+        source: ifc_pset_fallback
+        <<: *code_equipment
+      storey: *storey_from_containment
+      classifications: *classifications_mapping
+    attributes:
+      <<: *attributes_entity_base
+      performance_properties: *performance_properties_building_element
+      quantity_values: *quantity_values_stair
     geometry: *geometry_body_footprint
     relations:
       - IfcRelContainedInSpatialStructure
@@ -491,6 +511,8 @@
       - *space_above_ground_from_level
     attributes:
       <<: *attributes_entity_base
+      performance_properties: *performance_properties_space
+      quantity_values: *quantity_values_escape_route_clear_width
       space_type:
         source: ifc_attribute_heuristic
         attribute: LongName

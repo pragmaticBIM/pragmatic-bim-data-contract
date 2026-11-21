@@ -147,7 +147,7 @@ computed_relations:
       property: {Pset_DoorCommon.IsExternal: true}
     stairs:
       contract_class: PhysicalElement
-      ifc_class: [IfcStair, IfcRamp]
+      ifc_class: [IfcStair, IfcStairFlight, IfcRamp]
     target_slot: escape_route_next
     # External doors more than this above the lowest one (balcony doors) are not exits.
     max_exit_above_lowest: 1.5
@@ -160,3 +160,22 @@ computed_relations:
     # Route of each space (most remote point, around corners, through the doors) as WKT
     # LINESTRING Z in a geometry_representations record of this kind.
     path_representation: path_3d
+
+  # After escape_route: whether a swing door leaf opens in the escape travel direction
+  # (door centre → next portal, or outward for exits), using OperationType and local +Y.
+  door_opens_in_escape_direction:
+    method: door_opens_in_escape_direction
+    subject:
+      contract_class: ConnectionPhysical
+      ifc_class: [IfcDoor]
+    target_slot: opens_in_escape_direction
+    # OperationType values treated as swing doors; others leave the slot unset.
+    swing_operation_types:
+      - SINGLE_SWING_LEFT
+      - SINGLE_SWING_RIGHT
+      - DOUBLE_SWING_LEFT
+      - DOUBLE_SWING_RIGHT
+      - DOUBLE_DOOR_SINGLE_SWING
+      - DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_LEFT
+      - DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_RIGHT
+      - DOUBLE_DOOR_DOUBLE_SWING

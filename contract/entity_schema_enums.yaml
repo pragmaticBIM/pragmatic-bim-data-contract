@@ -257,6 +257,15 @@ enums:
         description: Walking distance in plan along the shortest horizontal escape route to an exit to the outside or a
           stair leaving the storey; on a space measured from its most remote point, on a door from the door.
         meaning: pbs:quantity_type_escape_route_length
+      clear_width:
+        description: Clear usable width of a stair flight or stair (lichte Laufbreite), typically for escape-route checks.
+        meaning: pbs:quantity_type_clear_width
+      tread_length_at_inner_side:
+        description: Tread length at the inner edge of a winder stair flight; given for winder flights only.
+        meaning: pbs:quantity_type_tread_length_at_inner_side
+      escape_route_clear_width:
+        description: Planned clear width of the horizontal escape route in a space at its narrowest point.
+        meaning: pbs:quantity_type_escape_route_clear_width
   DerivationSourceKind:
     enum_uri: pbs:DerivationSourceKind
     description: Kind of source a derived value or relation comes from. Used by Derivation.derivation_source_kind.

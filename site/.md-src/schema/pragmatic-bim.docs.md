@@ -277,6 +277,7 @@ Name: pragmatic_bim_data_contract
 | [neighbour](neighbour.md) | The neighbouring element the distances are measured to. |
 | [neighbours](neighbours.md) | Clear distances to the neighbouring physical elements within the measurement range configured for the conversion. Computed from geometry; elements farther away have no record. |
 | [norm_uri](norm_uri.md) | URI identifying the norm, standard, or building code. |
+| [opens_in_escape_direction](opens_in_escape_direction.md) | Whether a swing door leaf opens in the direction of the shortest horizontal escape route through the door. Computed from door OperationType and local placement against escape_route_next; unset when the door is not on a route or the operation type is not a swing. |
 | [operated_by](operated_by.md) | Organization accountable for this software agent. |
 | [parent_building](parent_building.md) | Parent building context reference. |
 | [parent_legal_site](parent_legal_site.md) | Parent legal site context reference. |

@@ -75,9 +75,17 @@ def _relation_pairs(conv: "Converter", key: str, rel):
     elif key == "IfcRelAssignsToGroup":
         group = rel.RelatingGroup
         classes = spec.get("group_classes") or []
-        if group is not None and group.is_a() in classes:
+        if group is not None and any(group.is_a(c) for c in classes):
+            member_slot = spec.get("member_relation_type")
+            member_when = spec.get("member_relation_when_group_class")
             for member in rel.RelatedObjects or []:
                 yield group, member, spec["relation_type"], "a"
+                if (
+                    member_slot
+                    and member_when
+                    and group.is_a(member_when)
+                ):
+                    yield member, group, member_slot, "a"
     elif key == "IfcRelAssignsToSystem":
         system = rel.RelatingGroup
         for member in rel.RelatedObjects or []:

@@ -61,7 +61,8 @@ Adapters can either load `ifc_mapping.merged.yaml` directly, or implement the sa
 | Change | File |
 |--------|------|
 | New Revit / ArchiCAD / Vectorworks pset | `_pset_fallbacks.yaml` |
-| New promoted performance property | `_pset_fallbacks.yaml` (lookup) + `_fragments.yaml` (`performance_properties_building_element`) |
+| New promoted performance property | `_pset_fallbacks.yaml` (lookup) + `_fragments.yaml` (`performance_properties_building_element` or `performance_properties_space`) |
+| New typed quantity from a PropertySet | `_pset_fallbacks.yaml` (lookup) + `_fragments.yaml` (`quantity_values_*`) |
 | Value normalization rule | `_conventions.yaml` (`normalize_*`) |
 | New IFC class (architectural) | `entities/architectural.yaml` |
 | New IFC class (HVAC) | `entities/hvac.yaml` |
@@ -227,6 +228,7 @@ Each `entities.Ifc*` entry defines:
 | `ifc_attribute_fallback` | Try attributes in order; first non-empty wins |
 | `ifc_pset_fallback` | Try PropertySet/property pairs in order; first match wins |
 | `ifc_pset_performance` | Promote PropertySet values to typed `performance_properties[]` records through a lookup and a normalization rule (see **Performance properties**) |
+| `ifc_pset_quantity` | Promote PropertySet values to typed `quantity_values[]` records through a lookup and a normalization rule (lengths converted to metres; see **Typed quantities from PropertySets**) |
 | `ifc_attribute_all` | All IFC entity attributes on the instance, minus excluded/promoted ones |
 | `ifc_pset_all` | All PropertySet properties on the instance, minus those used elsewhere |
 | `metadata_merge` | Combine multiple metadata capture rules into one `metadata[]` array |
@@ -344,7 +346,7 @@ Example `attributes` JSONB fragment:
 
 Rule checks (SHACL, SPARQL) need one stable path and one normalized value per property. Rule-relevant PropertySet values are therefore promoted to typed `PerformanceProperty` records on `Entity.performance_properties` ([`entity_performance_schema.yaml`](../entity_performance_schema.yaml)). The canonical key comes from the domain enum (`FirePropertyKey`, `AcousticPropertyKey`, `ThermalPropertyKey`, `StructuralPropertyKey`).
 
-The fragment `performance_properties_building_element` ([`_fragments.yaml`](_fragments.yaml)) is attached to `IfcWall`, `IfcCurtainWall`, `IfcSlab`, `IfcRoof`, `IfcCovering`, `IfcDoor`, `IfcWindow`, `IfcColumn`, `IfcBeam`, `IfcStair`, and `IfcRamp`.
+The fragment `performance_properties_building_element` ([`_fragments.yaml`](_fragments.yaml)) is attached to `IfcWall`, `IfcCurtainWall`, `IfcSlab`, `IfcRoof`, `IfcCovering`, `IfcDoor`, `IfcWindow`, `IfcColumn`, `IfcBeam`, `IfcStair`, `IfcStairFlight`, and `IfcRamp`. The fragment `performance_properties_space` is attached to `IfcSpace`.
 
 ### Promoted properties
 
@@ -357,6 +359,17 @@ The fragment `performance_properties_building_element` ([`_fragments.yaml`](_fra
 | `ThermalTransmittance` | `ThermalProperty` | `thermal_transmittance` | number, `W/m2K` | `normalize_thermal_transmittance` |
 | `IsExternal` | `ThermalProperty` | `is_external` | boolean | `normalize_boolean` |
 | `LoadBearing` | `StructuralProperty` | `load_bearing` | boolean | `normalize_boolean` |
+| `ePset_Space.PeakOccupancyActual` (then `Pset_SpaceOccupancyRequirements.OccupancyNumberPeak`) | `IndoorEnvironmentProperty` | `peak_occupancy` | number | `normalize_count` |
+
+### Typed quantities from PropertySets
+
+Rule-relevant length PropertySet values are promoted to typed `QuantityValue` records on `Entity.quantity_values` via `ifc_pset_quantity`. Lengths are converted from project units to metres. Each record carries `derivation` with `derivation_source_kind: ifc_explicit` and `derivation_method` set to `{pset}.{property}`.
+
+| IFC source | `quantity_type` | Attached to |
+|------------|-----------------|-------------|
+| `ePset_StairFlight.ClearWidth` / `ePset_Stair.ClearWidth` | `clear_width` | `IfcStair`, `IfcStairFlight` |
+| `Pset_StairFlightCommon.TreadLengthAtInnerSide` / `ePset_Stair.TreadLengthAtInnerSide` | `tread_length_at_inner_side` | `IfcStair`, `IfcStairFlight` |
+| `ePset_Space.EscapeRouteClearWidth` | `escape_route_clear_width` | `IfcSpace` |
 
 `Pset_*Common` stands for the common pset of each mapped class (`Pset_WallCommon`, `Pset_SlabCommon`, `Pset_DoorCommon`, …). The lookup lists `perf_*` in [`_pset_fallbacks.yaml`](_pset_fallbacks.yaml) enumerate the pairs where IFC defines the property. An instance carries only the common pset of its own class.
 
@@ -544,6 +557,7 @@ Selectors combine with AND: `contract_class` (including subclasses), `ifc_class`
 | `guards_space` | `barrier_walking_surface` | `SafetyBarrier` → `Space` | Plan distance ≤ `max_plan_distance`; space floor between barrier base − `max_floor_below_base` and base + `floor_tolerance` | `height_above_walking_surface` = barrier top − highest guarded floor |
 | `lit_space` | `window_daylight` | exterior window → interior `Space` | `connects_spaces` from IFC space boundaries, else the nearest space within `max_plan_distance` with vertical overlap | `area_glazed` on the window; `glazing_ratio` (glazed area ÷ floor area) on every selected space |
 | `escape_route_next` | `escape_route` | interior `Space`, door → door / stair | Walking distance in plan around the corners of each space; spaces whose outlines touch along ≥ `min_open_width` form one open zone; doors join zones (`connects_spaces`, else spaces within `max_door_distance`); the route ends at an external door no more than `max_exit_above_lowest` above the lowest one, or, on storeys without one, at a stair that leaves the storey; spaces are measured from the most remote point of their outline | `escape_route_length` on doors (remaining route) and spaces (from the most remote point) |
+| `opens_in_escape_direction` | `door_opens_in_escape_direction` | swing door → boolean | After `escape_route`: travel direction through the door (centre → next portal, or outward for exits) vs the door's local +Y from `ObjectPlacement`; only for swing `OperationType` values | — |
 
 Quantities are `pbs:QuantityValue` records (`quantity_type`, `quantity_value`, `quantity_unit`, QUDT `quantity_unit_uri`). Area and floor-area sources are read in the IFC area unit; dimensions in the IFC length unit.
 
@@ -559,6 +573,9 @@ The relations are evidence for rules evaluated outside this repository, for exam
 | Swing path of components on dampers is clear | `neighbours` of the component: clear distance (horizontal and vertical) ≥ swing path, except the elements it `rests_on` |
 | Minimum glazing ratio of habitable rooms | `Space` `glazing_ratio`, `lit_space` |
 | Maximum horizontal escape route length | `Space` `escape_route_length`; follow `escape_route_next` for the route |
+| Clear stair / escape-route width | `clear_width`, `tread_length_at_inner_side`, `escape_route_clear_width` quantities |
+| Door opens in escape direction | `ConnectionPhysical.opens_in_escape_direction` |
+| Fire compartment of a space | `Space.parent_zone` where `ZoneContext.zone_type` is `fire` |
 
 ---
 
