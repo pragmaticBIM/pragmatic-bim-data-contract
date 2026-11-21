@@ -22,7 +22,11 @@ rat:scheme a skos:ConceptScheme ;
     rat:ratio_facade_area_to_gross_volume,
     rat:ratio_facade_area_to_gross_floor_area,
     rat:ratio_construction_floor_area_to_gross_floor_area,
-    rat:ratio_envelope_area_to_gross_floor_area .
+    rat:ratio_envelope_area_to_gross_floor_area,
+    rat:ratio_main_usable_area_to_gross_floor_area,
+    rat:ratio_circulation_area_to_gross_floor_area,
+    rat:ratio_envelope_area_to_gross_volume,
+    rat:ratio_envelope_area_to_energy_reference_area .
 
 rat:ratio_building_volume_to_gross_floor_area a skos:Concept ;
   skos:inScheme rat:scheme ;
@@ -128,3 +132,59 @@ rat:ratio_envelope_area_to_gross_floor_area a skos:Concept ;
   pbs:measurementKind "ratio" ;
   pbs:relatedMetric met:total_envelope_area, met:total_gross_floor_area ;
   dcterms:identifier "ratio_envelope_area_to_gross_floor_area" .
+
+rat:ratio_main_usable_area_to_gross_floor_area a skos:Concept ;
+  skos:inScheme rat:scheme ;
+  skos:topConceptOf rat:scheme ;
+  skos:notation "ratio_main_usable_area_to_gross_floor_area" ;
+  skos:prefLabel "Main usable area to gross floor area ratio"@en ;
+  skos:prefLabel "Hauptnutzflaeche zu Bruttogeschossflaeche"@de ;
+  skos:definition "Quotient of main usable area (SIA 416 HNF) and gross floor area (SIA 416 GF); compactness / space-efficiency ratio HNF/GF."@en ;
+  skos:related met:total_main_usable_area, met:total_gross_floor_area ;
+  pbs:quantityType "ratio" ;
+  pbs:defaultUnit "1" ;
+  pbs:measurementKind "ratio" ;
+  pbs:relatedMetric met:total_main_usable_area, met:total_gross_floor_area ;
+  dcterms:identifier "ratio_main_usable_area_to_gross_floor_area" .
+
+rat:ratio_circulation_area_to_gross_floor_area a skos:Concept ;
+  skos:inScheme rat:scheme ;
+  skos:topConceptOf rat:scheme ;
+  skos:notation "ratio_circulation_area_to_gross_floor_area" ;
+  skos:prefLabel "Circulation area to gross floor area ratio"@en ;
+  skos:prefLabel "Verkehrsflaeche zu Bruttogeschossflaeche"@de ;
+  skos:definition "Quotient of circulation area (SIA 416 VF) and gross floor area (SIA 416 GF); ratio VF/GF."@en ;
+  skos:related met:total_circulation_area, met:total_gross_floor_area ;
+  pbs:quantityType "ratio" ;
+  pbs:defaultUnit "1" ;
+  pbs:measurementKind "ratio" ;
+  pbs:relatedMetric met:total_circulation_area, met:total_gross_floor_area ;
+  dcterms:identifier "ratio_circulation_area_to_gross_floor_area" .
+
+rat:ratio_envelope_area_to_gross_volume a skos:Concept ;
+  skos:inScheme rat:scheme ;
+  skos:topConceptOf rat:scheme ;
+  skos:notation "ratio_envelope_area_to_gross_volume" ;
+  skos:prefLabel "Envelope area to gross volume ratio"@en ;
+  skos:prefLabel "Gebaeudehuellflaeche zu Gebaeudevolumen"@de ;
+  skos:definition "Quotient of total envelope area and gross building volume (SIA 416 GV); surface-to-volume ratio A/V. Dimensionally 1/m; the unit follows the sibling ratio convention."@en ;
+  skos:related met:total_envelope_area, met:total_gross_building_volume ;
+  pbs:quantityType "ratio" ;
+  pbs:defaultUnit "1" ;
+  pbs:measurementKind "ratio" ;
+  pbs:relatedMetric met:total_envelope_area, met:total_gross_building_volume ;
+  dcterms:identifier "ratio_envelope_area_to_gross_volume" .
+
+rat:ratio_envelope_area_to_energy_reference_area a skos:Concept ;
+  skos:inScheme rat:scheme ;
+  skos:topConceptOf rat:scheme ;
+  skos:notation "ratio_envelope_area_to_energy_reference_area" ;
+  skos:prefLabel "Envelope area to energy reference area ratio"@en ;
+  skos:prefLabel "Gebaeudehuellzahl"@de ;
+  skos:definition "Quotient of total envelope area and energy reference area (Energiebezugsflaeche, EBF per SIA 380/1); Gebaeudehuellzahl. Until a heated flag exists on spaces, EBF is approximated by the heated gross floor area (GF); the operand is therefore met:total_gross_floor_area."@en ;
+  skos:related met:total_envelope_area, met:total_gross_floor_area ;
+  pbs:quantityType "ratio" ;
+  pbs:defaultUnit "1" ;
+  pbs:measurementKind "ratio" ;
+  pbs:relatedMetric met:total_envelope_area, met:total_gross_floor_area ;
+  dcterms:identifier "ratio_envelope_area_to_energy_reference_area" .
