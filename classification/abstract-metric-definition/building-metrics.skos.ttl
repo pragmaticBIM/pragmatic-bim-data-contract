@@ -18,6 +18,10 @@ met:scheme a skos:ConceptScheme ;
     met:total_net_floor_area,
     met:total_construction_floor_area,
     met:total_exterior_floor_area,
+    met:total_main_usable_area,
+    met:total_secondary_usable_area,
+    met:total_circulation_area,
+    met:total_technical_area,
     met:total_gross_building_volume,
     met:total_net_building_volume,
     met:total_vertical_facade_area,
@@ -152,6 +156,160 @@ met:total_exterior_floor_area a skos:Concept ;
   pbs:defaultUnit "m2" ;
   pbs:measurementKind "area" ;
   dcterms:identifier "total_exterior_floor_area" .
+
+# --- Use areas (SIA 416) ---
+
+met:total_main_usable_area a skos:Concept ;
+  skos:inScheme met:scheme ;
+  skos:topConceptOf met:scheme ;
+  skos:notation "total_main_usable_area" ;
+  skos:prefLabel "Total main usable area"@en ;
+  skos:prefLabel "Gesamte Hauptnutzflaeche"@de ;
+  skos:definition "Sum of main usable area (Hauptnutzflaeche, HNF per SIA 416) derived from spaces classified as main usable area: floor area serving the primary purpose of use of the building."@en ;
+  dcterms:description "Equals SIA 416 HNF. Derived from spaces by SIA 416 class; calculation logic lives in application pipelines."@en ;
+  skos:narrower met:total_main_usable_area_above_ground, met:total_main_usable_area_below_ground ;
+  pbs:quantityType "area_net_horizontal" ;
+  pbs:defaultUnit "m2" ;
+  pbs:measurementKind "area" ;
+  dcterms:identifier "total_main_usable_area" .
+
+met:total_main_usable_area_above_ground a skos:Concept ;
+  skos:inScheme met:scheme ;
+  skos:notation "total_main_usable_area_above_ground" ;
+  skos:prefLabel "Total main usable area above ground"@en ;
+  skos:definition "Main usable area (SIA 416 HNF) of spaces above ground level."@en ;
+  skos:broader met:total_main_usable_area ;
+  pbs:quantityType "area_net_horizontal" ;
+  pbs:defaultUnit "m2" ;
+  pbs:measurementKind "area" ;
+  pbs:spatialScope "above_ground" ;
+  dcterms:identifier "total_main_usable_area_above_ground" .
+
+met:total_main_usable_area_below_ground a skos:Concept ;
+  skos:inScheme met:scheme ;
+  skos:notation "total_main_usable_area_below_ground" ;
+  skos:prefLabel "Total main usable area below ground"@en ;
+  skos:definition "Main usable area (SIA 416 HNF) of spaces below ground level."@en ;
+  skos:broader met:total_main_usable_area ;
+  pbs:quantityType "area_net_horizontal" ;
+  pbs:defaultUnit "m2" ;
+  pbs:measurementKind "area" ;
+  pbs:spatialScope "below_ground" ;
+  dcterms:identifier "total_main_usable_area_below_ground" .
+
+met:total_secondary_usable_area a skos:Concept ;
+  skos:inScheme met:scheme ;
+  skos:topConceptOf met:scheme ;
+  skos:notation "total_secondary_usable_area" ;
+  skos:prefLabel "Total secondary usable area"@en ;
+  skos:prefLabel "Gesamte Nebennutzflaeche"@de ;
+  skos:definition "Sum of secondary usable area (Nebennutzflaeche, NNF per SIA 416) derived from spaces classified as secondary usable area: floor area supporting but not serving the primary purpose of use, such as storage, cellar, and bicycle rooms."@en ;
+  dcterms:description "Equals SIA 416 NNF. Derived from spaces by SIA 416 class; calculation logic lives in application pipelines."@en ;
+  skos:narrower met:total_secondary_usable_area_above_ground, met:total_secondary_usable_area_below_ground ;
+  pbs:quantityType "area_net_horizontal" ;
+  pbs:defaultUnit "m2" ;
+  pbs:measurementKind "area" ;
+  dcterms:identifier "total_secondary_usable_area" .
+
+met:total_secondary_usable_area_above_ground a skos:Concept ;
+  skos:inScheme met:scheme ;
+  skos:notation "total_secondary_usable_area_above_ground" ;
+  skos:prefLabel "Total secondary usable area above ground"@en ;
+  skos:definition "Secondary usable area (SIA 416 NNF) of spaces above ground level."@en ;
+  skos:broader met:total_secondary_usable_area ;
+  pbs:quantityType "area_net_horizontal" ;
+  pbs:defaultUnit "m2" ;
+  pbs:measurementKind "area" ;
+  pbs:spatialScope "above_ground" ;
+  dcterms:identifier "total_secondary_usable_area_above_ground" .
+
+met:total_secondary_usable_area_below_ground a skos:Concept ;
+  skos:inScheme met:scheme ;
+  skos:notation "total_secondary_usable_area_below_ground" ;
+  skos:prefLabel "Total secondary usable area below ground"@en ;
+  skos:definition "Secondary usable area (SIA 416 NNF) of spaces below ground level."@en ;
+  skos:broader met:total_secondary_usable_area ;
+  pbs:quantityType "area_net_horizontal" ;
+  pbs:defaultUnit "m2" ;
+  pbs:measurementKind "area" ;
+  pbs:spatialScope "below_ground" ;
+  dcterms:identifier "total_secondary_usable_area_below_ground" .
+
+met:total_circulation_area a skos:Concept ;
+  skos:inScheme met:scheme ;
+  skos:topConceptOf met:scheme ;
+  skos:notation "total_circulation_area" ;
+  skos:prefLabel "Total circulation area"@en ;
+  skos:prefLabel "Gesamte Verkehrsflaeche"@de ;
+  skos:definition "Sum of circulation area (Verkehrsflaeche, VF per SIA 416) derived from spaces classified as circulation area: floor area for horizontal and vertical access such as corridors, stairs, and lift shafts."@en ;
+  dcterms:description "Equals SIA 416 VF. Derived from spaces by SIA 416 class; calculation logic lives in application pipelines."@en ;
+  skos:narrower met:total_circulation_area_above_ground, met:total_circulation_area_below_ground ;
+  pbs:quantityType "area_net_horizontal" ;
+  pbs:defaultUnit "m2" ;
+  pbs:measurementKind "area" ;
+  dcterms:identifier "total_circulation_area" .
+
+met:total_circulation_area_above_ground a skos:Concept ;
+  skos:inScheme met:scheme ;
+  skos:notation "total_circulation_area_above_ground" ;
+  skos:prefLabel "Total circulation area above ground"@en ;
+  skos:definition "Circulation area (SIA 416 VF) of spaces above ground level."@en ;
+  skos:broader met:total_circulation_area ;
+  pbs:quantityType "area_net_horizontal" ;
+  pbs:defaultUnit "m2" ;
+  pbs:measurementKind "area" ;
+  pbs:spatialScope "above_ground" ;
+  dcterms:identifier "total_circulation_area_above_ground" .
+
+met:total_circulation_area_below_ground a skos:Concept ;
+  skos:inScheme met:scheme ;
+  skos:notation "total_circulation_area_below_ground" ;
+  skos:prefLabel "Total circulation area below ground"@en ;
+  skos:definition "Circulation area (SIA 416 VF) of spaces below ground level."@en ;
+  skos:broader met:total_circulation_area ;
+  pbs:quantityType "area_net_horizontal" ;
+  pbs:defaultUnit "m2" ;
+  pbs:measurementKind "area" ;
+  pbs:spatialScope "below_ground" ;
+  dcterms:identifier "total_circulation_area_below_ground" .
+
+met:total_technical_area a skos:Concept ;
+  skos:inScheme met:scheme ;
+  skos:topConceptOf met:scheme ;
+  skos:notation "total_technical_area" ;
+  skos:prefLabel "Total technical area"@en ;
+  skos:prefLabel "Gesamte Funktionsflaeche"@de ;
+  skos:definition "Sum of technical area (Funktionsflaeche, FF per SIA 416) derived from spaces classified as technical area: floor area for building services installations and plant rooms."@en ;
+  dcterms:description "Equals SIA 416 FF. Derived from spaces by SIA 416 class; calculation logic lives in application pipelines."@en ;
+  skos:narrower met:total_technical_area_above_ground, met:total_technical_area_below_ground ;
+  pbs:quantityType "area_net_horizontal" ;
+  pbs:defaultUnit "m2" ;
+  pbs:measurementKind "area" ;
+  dcterms:identifier "total_technical_area" .
+
+met:total_technical_area_above_ground a skos:Concept ;
+  skos:inScheme met:scheme ;
+  skos:notation "total_technical_area_above_ground" ;
+  skos:prefLabel "Total technical area above ground"@en ;
+  skos:definition "Technical area (SIA 416 FF) of spaces above ground level."@en ;
+  skos:broader met:total_technical_area ;
+  pbs:quantityType "area_net_horizontal" ;
+  pbs:defaultUnit "m2" ;
+  pbs:measurementKind "area" ;
+  pbs:spatialScope "above_ground" ;
+  dcterms:identifier "total_technical_area_above_ground" .
+
+met:total_technical_area_below_ground a skos:Concept ;
+  skos:inScheme met:scheme ;
+  skos:notation "total_technical_area_below_ground" ;
+  skos:prefLabel "Total technical area below ground"@en ;
+  skos:definition "Technical area (SIA 416 FF) of spaces below ground level."@en ;
+  skos:broader met:total_technical_area ;
+  pbs:quantityType "area_net_horizontal" ;
+  pbs:defaultUnit "m2" ;
+  pbs:measurementKind "area" ;
+  pbs:spatialScope "below_ground" ;
+  dcterms:identifier "total_technical_area_below_ground" .
 
 # --- Volume ---
 
