@@ -90,3 +90,31 @@ def test_thermal_transmittance(raw, expected):
 )
 def test_boolean(raw, expected):
     assert normalize(RULES["normalize_boolean"], raw) == ([] if expected is None else [(None, expected)])
+
+
+@pytest.mark.parametrize(
+    ("raw", "expected"),
+    [
+        (40, 40.0),
+        ("12", 12.0),
+        ("8,5", 8.5),
+        (0, None),
+        (-1, None),
+        ("n/a", None),
+    ],
+)
+def test_count(raw, expected):
+    assert normalize(RULES["normalize_count"], raw) == ([] if expected is None else [(None, expected)])
+
+
+@pytest.mark.parametrize(
+    ("raw", "expected"),
+    [
+        (1.25, 1.25),
+        ("1200", 1200.0),
+        (0, None),
+        ("width", None),
+    ],
+)
+def test_positive_length(raw, expected):
+    assert normalize(RULES["normalize_positive_length"], raw) == ([] if expected is None else [(None, expected)])

@@ -112,8 +112,8 @@ conventions:
   metadata_unmapped_psets: &metadata_unmapped_psets
     source: ifc_pset_all
     exclude_used_in: [code_or_number, attributes]
-    # performance_properties normalizes the value; the raw value stays in metadata.
-    keep_used_in: [attributes.performance_properties]
+    # performance_properties / quantity_values normalize the value; the raw value stays in metadata.
+    keep_used_in: [attributes.performance_properties, attributes.quantity_values]
     map_to: metadata
     entry_format:
       metadata_key: "{pset}.{property}"
@@ -227,6 +227,22 @@ conventions:
     # IfcBoolean / IfcLogical; UNKNOWN and free text are rejected.
     true_values: ["true", ".t.", "yes"]
     false_values: ["false", ".f.", "no"]
+
+  normalize_count: &normalize_count
+    value_type: number
+    number_pattern: "[0-9]+(?:[.,][0-9]+)?"
+    accept_range: {gt: 0}
+    unit: "1"
+    unit_uri: http://qudt.org/vocab/unit/UNITLESS
+
+  normalize_positive_length: &normalize_positive_length
+    value_type: number
+    # Length in project units; ifc_pset_quantity converts to metres via the model length scale.
+    number_pattern: "[0-9]+(?:[.,][0-9]+)?"
+    accept_range: {gt: 0}
+    unit: m
+    unit_uri: http://qudt.org/vocab/unit/M
+    convert_length_to: m
 
 
 pset_fallbacks:
@@ -497,6 +513,27 @@ pset_fallbacks:
       archicad: []
       vectorworks: []
 
+  # --- Space indoor environment / occupancy ---
+  perf_peak_occupancy: &perf_peak_occupancy
+    fallbacks:
+      - {pset: ePset_Space, property: PeakOccupancyActual}
+      - {pset: Pset_SpaceOccupancyRequirements, property: OccupancyNumberPeak}
+
+  # --- Stair and escape-route clear widths (typed quantities) ---
+  qty_stair_clear_width: &qty_stair_clear_width
+    fallbacks:
+      - {pset: ePset_StairFlight, property: ClearWidth}
+      - {pset: ePset_Stair, property: ClearWidth}
+
+  qty_tread_length_at_inner_side: &qty_tread_length_at_inner_side
+    fallbacks:
+      - {pset: Pset_StairFlightCommon, property: TreadLengthAtInnerSide}
+      - {pset: ePset_Stair, property: TreadLengthAtInnerSide}
+
+  qty_escape_route_clear_width: &qty_escape_route_clear_width
+    fallbacks:
+      - {pset: ePset_Space, property: EscapeRouteClearWidth}
+
 
 relationships:
   IfcRelContainedInSpatialStructure:
@@ -524,8 +561,13 @@ relationships:
         relation_type: parent_zone
 
   IfcRelAssignsToGroup:
-    description: Element assigned to zone or group.
+    description: >
+      Element assigned to zone or group. Writes group_members on the zone/group, and
+      parent_zone on the member when the group is an IfcZone and the member declares that slot
+      (fire-compartment identity for spaces assigned to a zone with zone_type fire).
     relation_type: group_members
+    member_relation_type: parent_zone
+    member_relation_when_group_class: IfcZone
     group_classes: [IfcZone, IfcGroup]
 
   IfcRelAssignsToSystem:
@@ -736,7 +778,7 @@ computed_relations:
       property: {Pset_DoorCommon.IsExternal: true}
     stairs:
       contract_class: PhysicalElement
-      ifc_class: [IfcStair, IfcRamp]
+      ifc_class: [IfcStair, IfcStairFlight, IfcRamp]
     target_slot: escape_route_next
     # External doors more than this above the lowest one (balcony doors) are not exits.
     max_exit_above_lowest: 1.5
@@ -749,6 +791,25 @@ computed_relations:
     # Route of each space (most remote point, around corners, through the doors) as WKT
     # LINESTRING Z in a geometry_representations record of this kind.
     path_representation: path_3d
+
+  # After escape_route: whether a swing door leaf opens in the escape travel direction
+  # (door centre → next portal, or outward for exits), using OperationType and local +Y.
+  door_opens_in_escape_direction:
+    method: door_opens_in_escape_direction
+    subject:
+      contract_class: ConnectionPhysical
+      ifc_class: [IfcDoor]
+    target_slot: opens_in_escape_direction
+    # OperationType values treated as swing doors; others leave the slot unset.
+    swing_operation_types:
+      - SINGLE_SWING_LEFT
+      - SINGLE_SWING_RIGHT
+      - DOUBLE_SWING_LEFT
+      - DOUBLE_SWING_RIGHT
+      - DOUBLE_DOOR_SINGLE_SWING
+      - DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_LEFT
+      - DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_RIGHT
+      - DOUBLE_DOOR_DOUBLE_SWING
 
 
 fragments:
@@ -822,6 +883,41 @@ fragments:
           source: ifc_pset_fallback
           <<: *perf_load_bearing
         normalize: *normalize_boolean
+
+  # Space indoor-environment properties promoted to IndoorEnvironmentProperty records.
+  performance_properties_space: &performance_properties_space
+    source: ifc_pset_performance
+    properties:
+      - property_class: IndoorEnvironmentProperty
+        property_key: peak_occupancy
+        lookup:
+          source: ifc_pset_fallback
+          <<: *perf_peak_occupancy
+        normalize: *normalize_count
+
+  # Typed QuantityValue records from PropertySets (lengths in project units → metres).
+  quantity_values_stair: &quantity_values_stair
+    source: ifc_pset_quantity
+    quantities:
+      - quantity_type: clear_width
+        lookup:
+          source: ifc_pset_fallback
+          <<: *qty_stair_clear_width
+        normalize: *normalize_positive_length
+      - quantity_type: tread_length_at_inner_side
+        lookup:
+          source: ifc_pset_fallback
+          <<: *qty_tread_length_at_inner_side
+        normalize: *normalize_positive_length
+
+  quantity_values_escape_route_clear_width: &quantity_values_escape_route_clear_width
+    source: ifc_pset_quantity
+    quantities:
+      - quantity_type: escape_route_clear_width
+        lookup:
+          source: ifc_pset_fallback
+          <<: *qty_escape_route_clear_width
+        normalize: *normalize_positive_length
 
   attributes_entity_base: &attributes_entity_base
     ifc_global_id:
@@ -1231,6 +1327,26 @@ entities:
     attributes:
       <<: *attributes_entity_base
       performance_properties: *performance_properties_building_element
+      quantity_values: *quantity_values_stair
+    geometry: *geometry_body_footprint
+    relations:
+      - IfcRelContainedInSpatialStructure
+      - IfcRelAssociatesClassification
+
+  IfcStairFlight:
+    content_kind: physical
+    canonical_type: PhysicalElement
+    fields:
+      name: *name_fallback_chain
+      code_or_number:
+        source: ifc_pset_fallback
+        <<: *code_equipment
+      storey: *storey_from_containment
+      classifications: *classifications_mapping
+    attributes:
+      <<: *attributes_entity_base
+      performance_properties: *performance_properties_building_element
+      quantity_values: *quantity_values_stair
     geometry: *geometry_body_footprint
     relations:
       - IfcRelContainedInSpatialStructure
@@ -1348,6 +1464,8 @@ entities:
       - *space_above_ground_from_level
     attributes:
       <<: *attributes_entity_base
+      performance_properties: *performance_properties_space
+      quantity_values: *quantity_values_escape_route_clear_width
       space_type:
         source: ifc_attribute_heuristic
         attribute: LongName

@@ -11,6 +11,7 @@ from typing import TYPE_CHECKING, Callable
 from pragmatic_bim.ifc2rdf.geometry import GeometryResult
 from pragmatic_bim.ifc2rdf.spatial.contacts import side_contact, vertical_contact
 from pragmatic_bim.ifc2rdf.spatial.context import SpatialContext
+from pragmatic_bim.ifc2rdf.spatial.door_swing import door_opens_in_escape_direction
 from pragmatic_bim.ifc2rdf.spatial.escape import escape_route
 from pragmatic_bim.ifc2rdf.spatial.guards import barrier_walking_surface
 from pragmatic_bim.ifc2rdf.spatial.hosted_by import opening_in_host
@@ -30,6 +31,7 @@ METHODS: dict[str, Callable[[SpatialContext, dict], None]] = {
     "barrier_walking_surface": barrier_walking_surface,
     "window_daylight": window_daylight,
     "escape_route": escape_route,
+    "door_opens_in_escape_direction": door_opens_in_escape_direction,
     "neighbour_distance": neighbour_distance,
 }
 

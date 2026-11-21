@@ -34,6 +34,9 @@ URI: [pbs:QuantityType](https://schema.pragmaticbim.ch/QuantityType)
 | area_glazed | pbs:quantity_type_area_glazed | Projected glazed (transparent) area of a window or glazed door. |
 | glazing_ratio | pbs:quantity_type_glazing_ratio | Sum of the glazed areas of the windows lighting a space divided by the net floor area of the space. |
 | escape_route_length | pbs:quantity_type_escape_route_length | Walking distance in plan along the shortest horizontal escape route to an exit to the outside or a stair leaving the storey; on a space measured from its most remote point, on a door from the door. |
+| clear_width | pbs:quantity_type_clear_width | Clear usable width of a stair flight or stair (lichte Laufbreite), typically for escape-route checks. |
+| tread_length_at_inner_side | pbs:quantity_type_tread_length_at_inner_side | Tread length at the inner edge of a winder stair flight; given for winder flights only. |
+| escape_route_clear_width | pbs:quantity_type_escape_route_clear_width | Planned clear width of the horizontal escape route in a space at its narrowest point. |
 
 
 
@@ -150,6 +153,21 @@ permissible_values:
       to an exit to the outside or a stair leaving the storey; on a space measured
       from its most remote point, on a door from the door.
     meaning: pbs:quantity_type_escape_route_length
+  clear_width:
+    text: clear_width
+    description: Clear usable width of a stair flight or stair (lichte Laufbreite),
+      typically for escape-route checks.
+    meaning: pbs:quantity_type_clear_width
+  tread_length_at_inner_side:
+    text: tread_length_at_inner_side
+    description: Tread length at the inner edge of a winder stair flight; given for
+      winder flights only.
+    meaning: pbs:quantity_type_tread_length_at_inner_side
+  escape_route_clear_width:
+    text: escape_route_clear_width
+    description: Planned clear width of the horizontal escape route in a space at
+      its narrowest point.
+    meaning: pbs:quantity_type_escape_route_clear_width
 
 ```
 </details>

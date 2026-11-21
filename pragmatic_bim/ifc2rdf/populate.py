@@ -49,6 +49,9 @@ def populate(conv: "Converter", node: Node) -> None:
         if isinstance(spec, dict) and spec.get("source") == "ifc_pset_performance":
             performance_psets |= _performance_properties(conv, node, ev, slot, spec)
             continue
+        if isinstance(spec, dict) and spec.get("source") == "ifc_pset_quantity":
+            performance_psets |= _quantity_values(conv, node, ev, slot, spec)
+            continue
         promoted_attrs |= spec_attributes(spec)
         ev.trace.clear()
         value = ev.evaluate(spec, slot)
@@ -97,6 +100,42 @@ def _performance_properties(
                     entry["property_unit_uri"] = rule.get("unit_uri")
                 conv.writer.add_inlined(node, slot, prop["property_class"], entry)
             used.add((pset, name))
+            break
+    return used
+
+
+def _quantity_values(
+    conv: "Converter", node: Node, ev: Evaluator, slot: str, spec: dict[str, Any]
+) -> set[tuple[str, str]]:
+    """Add typed QuantityValue records from PropertySets; return ``(pset, property)`` pairs used."""
+    used: set[tuple[str, str]] = set()
+    if slot not in conv.schema.class_slots(node.contract_class):
+        conv.report.dropped[f"{node.contract_class}.{slot} (slot not on class)"] += 1
+        return used
+    for qty in spec.get("quantities") or []:
+        rule = qty.get("normalize") or {}
+        label = f"QuantityValue.{qty['quantity_type']}"
+        for pset, name, raw in ev.pset_candidates(qty["lookup"]):
+            values = normalize(rule, raw)
+            if not values:
+                conv.report.rejected_values[f"{label} {pset}.{name}={raw!r}"] += 1
+                continue
+            _, value = values[0]
+            if rule.get("convert_length_to") == "m" and isinstance(value, (int, float)):
+                value = float(value) * conv.length_scale
+            entry = {
+                "quantity_type": qty["quantity_type"],
+                "quantity_value": round(float(value), 4),
+                "quantity_unit": rule.get("unit", "m"),
+                "quantity_unit_uri": rule.get("unit_uri"),
+                "derivation": {
+                    "_class": "Derivation",
+                    "derivation_source_kind": "ifc_explicit",
+                    "derivation_method": f"{pset}.{name}",
+                },
+            }
+            if conv.writer.add_inlined(node, slot, "QuantityValue", entry):
+                used.add((pset, name))
             break
     return used
 

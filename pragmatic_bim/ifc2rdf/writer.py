@@ -88,6 +88,15 @@ class SlotWriter:
                     return False
             elif range_name in ("uriorcurie", "uri") and not IRI_PATTERN.match(str(clean[key])):
                 del clean[key]
+            elif isinstance(clean[key], dict) and self.schema.is_class(range_name):
+                nested_class = clean[key].get("_class") or range_name
+                nested = {k: v for k, v in clean[key].items() if k != "_class" and present(v)}
+                nested_missing = [s for s in self.schema.required_slots(nested_class) if s not in nested]
+                if nested_missing:
+                    reason = f"{nested_class} missing {', '.join(nested_missing)}"
+                    self.report.dropped[f"{node.contract_class}.{slot} entry ({reason})"] += 1
+                    return False
+                clean[key] = {"_class": nested_class, **nested}
             elif not isinstance(clean[key], (str, int, float, bool)):
                 serialized = serialize_value(clean[key])
                 if serialized is None:

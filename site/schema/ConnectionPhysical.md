@@ -84,6 +84,7 @@ click TransportMedium href "./TransportMedium.html" _blank
 | [hosted_by](hosted_by.md) | 0..1 <br/> [PhysicalElement](PhysicalElement.md) | Host element whose opening this connector fills (for example the wall a door or window sits in). From IfcRelFillsElement and IfcRelVoidsElement, or computed from geometry when the IFC chain is missing. | direct |
 | [lit_space](lit_space.md) | * <br/> [Space](Space.md) | Interior spaces that receive daylight through this window. From space boundaries or computed from geometry (adjacent or nearest interior space). | direct |
 | [escape_route_next](escape_route_next.md) | 0..1 <br/> [PhysicalElement](PhysicalElement.md) | Next element on the shortest horizontal escape route: the door a space is left through, or the door or stair a door leads on to. The route ends at an exit to the outside or at a stair leaving the storey; follow the slot repeatedly to read the whole route. Computed from geometry; the remaining length is the escape_route_length quantity. | direct |
+| [opens_in_escape_direction](opens_in_escape_direction.md) | 0..1 <br/> [Boolean](Boolean.md) | Whether a swing door leaf opens in the direction of the shortest horizontal escape route through the door. Computed from door OperationType and local placement against escape_route_next; unset when the door is not on a route or the operation type is not a swing. | direct |
 | [parent_building](parent_building.md) | 0..1 <br/> [BuiltAssetContext](BuiltAssetContext.md) | Parent building context reference. | [PhysicalElement](PhysicalElement.md) |
 | [parent_level](parent_level.md) | 0..1 <br/> [LevelContext](LevelContext.md) | Parent level/storey context reference. | [PhysicalElement](PhysicalElement.md) |
 | [rests_on](rests_on.md) | * <br/> [PhysicalElement](PhysicalElement.md) | Elements this element sits on: its underside bears on their top (for example wall on slab, column on slab, slab on wall or column, equipment on a plinth). Computed from geometric contact; it records contact, not a structural analysis result. The inverse (supports) is read by querying the slot from the other side. | [PhysicalElement](PhysicalElement.md) |
@@ -181,6 +182,7 @@ slots:
 - hosted_by
 - lit_space
 - escape_route_next
+- opens_in_escape_direction
 class_uri: pbs:ConnectionPhysical
 
 ```
@@ -324,6 +326,18 @@ attributes:
     - ConnectionPhysical
     - Space
     range: PhysicalElement
+  opens_in_escape_direction:
+    name: opens_in_escape_direction
+    description: Whether a swing door leaf opens in the direction of the shortest
+      horizontal escape route through the door. Computed from door OperationType and
+      local placement against escape_route_next; unset when the door is not on a route
+      or the operation type is not a swing.
+    from_schema: https://schema.pragmaticbim.ch
+    rank: 1000
+    owner: ConnectionPhysical
+    domain_of:
+    - ConnectionPhysical
+    range: boolean
   parent_building:
     name: parent_building
     description: Parent building context reference.

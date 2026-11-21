@@ -660,6 +660,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#typed-quantities-from-propertysets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Typed quantities from PropertySets
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#record-slots" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1253,6 +1264,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#typed-quantities-from-propertysets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Typed quantities from PropertySets
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#record-slots" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1602,7 +1624,11 @@ ifc_mapping.merged.yaml   ← single file for adapters
 </tr>
 <tr>
 <td>New promoted performance property</td>
-<td><code>_pset_fallbacks.yaml</code> (lookup) + <code>_fragments.yaml</code> (<code>performance_properties_building_element</code>)</td>
+<td><code>_pset_fallbacks.yaml</code> (lookup) + <code>_fragments.yaml</code> (<code>performance_properties_building_element</code> or <code>performance_properties_space</code>)</td>
+</tr>
+<tr>
+<td>New typed quantity from a PropertySet</td>
+<td><code>_pset_fallbacks.yaml</code> (lookup) + <code>_fragments.yaml</code> (<code>quantity_values_*</code>)</td>
 </tr>
 <tr>
 <td>Value normalization rule</td>
@@ -1976,6 +2002,10 @@ ifc_mapping.merged.yaml   ← single file for adapters
 <td>Promote PropertySet values to typed <code>performance_properties[]</code> records through a lookup and a normalization rule (see <strong>Performance properties</strong>)</td>
 </tr>
 <tr>
+<td><code>ifc_pset_quantity</code></td>
+<td>Promote PropertySet values to typed <code>quantity_values[]</code> records through a lookup and a normalization rule (lengths converted to metres; see <strong>Typed quantities from PropertySets</strong>)</td>
+</tr>
+<tr>
 <td><code>ifc_attribute_all</code></td>
 <td>All IFC entity attributes on the instance, minus excluded/promoted ones</td>
 </tr>
@@ -2157,7 +2187,7 @@ ifc_mapping.merged.yaml   ← single file for adapters
 <hr />
 <h2 id="performance-properties">Performance properties<a class="headerlink" href="#performance-properties" title="Permanent link">&para;</a></h2>
 <p>Rule checks (SHACL, SPARQL) need one stable path and one normalized value per property. Rule-relevant PropertySet values are therefore promoted to typed <code>PerformanceProperty</code> records on <code>Entity.performance_properties</code> (<a href="../entity_performance_schema.yaml"><code>entity_performance_schema.yaml</code></a>). The canonical key comes from the domain enum (<code>FirePropertyKey</code>, <code>AcousticPropertyKey</code>, <code>ThermalPropertyKey</code>, <code>StructuralPropertyKey</code>).</p>
-<p>The fragment <code>performance_properties_building_element</code> (<a href="_fragments.yaml"><code>_fragments.yaml</code></a>) is attached to <code>IfcWall</code>, <code>IfcCurtainWall</code>, <code>IfcSlab</code>, <code>IfcRoof</code>, <code>IfcCovering</code>, <code>IfcDoor</code>, <code>IfcWindow</code>, <code>IfcColumn</code>, <code>IfcBeam</code>, <code>IfcStair</code>, and <code>IfcRamp</code>.</p>
+<p>The fragment <code>performance_properties_building_element</code> (<a href="_fragments.yaml"><code>_fragments.yaml</code></a>) is attached to <code>IfcWall</code>, <code>IfcCurtainWall</code>, <code>IfcSlab</code>, <code>IfcRoof</code>, <code>IfcCovering</code>, <code>IfcDoor</code>, <code>IfcWindow</code>, <code>IfcColumn</code>, <code>IfcBeam</code>, <code>IfcStair</code>, <code>IfcStairFlight</code>, and <code>IfcRamp</code>. The fragment <code>performance_properties_space</code> is attached to <code>IfcSpace</code>.</p>
 <h3 id="promoted-properties">Promoted properties<a class="headerlink" href="#promoted-properties" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
@@ -2218,6 +2248,41 @@ ifc_mapping.merged.yaml   ← single file for adapters
 <td><code>load_bearing</code></td>
 <td>boolean</td>
 <td><code>normalize_boolean</code></td>
+</tr>
+<tr>
+<td><code>ePset_Space.PeakOccupancyActual</code> (then <code>Pset_SpaceOccupancyRequirements.OccupancyNumberPeak</code>)</td>
+<td><code>IndoorEnvironmentProperty</code></td>
+<td><code>peak_occupancy</code></td>
+<td>number</td>
+<td><code>normalize_count</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="typed-quantities-from-propertysets">Typed quantities from PropertySets<a class="headerlink" href="#typed-quantities-from-propertysets" title="Permanent link">&para;</a></h3>
+<p>Rule-relevant length PropertySet values are promoted to typed <code>QuantityValue</code> records on <code>Entity.quantity_values</code> via <code>ifc_pset_quantity</code>. Lengths are converted from project units to metres. Each record carries <code>derivation</code> with <code>derivation_source_kind: ifc_explicit</code> and <code>derivation_method</code> set to <code>{pset}.{property}</code>.</p>
+<table>
+<thead>
+<tr>
+<th>IFC source</th>
+<th><code>quantity_type</code></th>
+<th>Attached to</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ePset_StairFlight.ClearWidth</code> / <code>ePset_Stair.ClearWidth</code></td>
+<td><code>clear_width</code></td>
+<td><code>IfcStair</code>, <code>IfcStairFlight</code></td>
+</tr>
+<tr>
+<td><code>Pset_StairFlightCommon.TreadLengthAtInnerSide</code> / <code>ePset_Stair.TreadLengthAtInnerSide</code></td>
+<td><code>tread_length_at_inner_side</code></td>
+<td><code>IfcStair</code>, <code>IfcStairFlight</code></td>
+</tr>
+<tr>
+<td><code>ePset_Space.EscapeRouteClearWidth</code></td>
+<td><code>escape_route_clear_width</code></td>
+<td><code>IfcSpace</code></td>
 </tr>
 </tbody>
 </table>
@@ -2720,6 +2785,13 @@ ifc_mapping.merged.yaml   ← single file for adapters
 <td>Walking distance in plan around the corners of each space; spaces whose outlines touch along ≥ <code>min_open_width</code> form one open zone; doors join zones (<code>connects_spaces</code>, else spaces within <code>max_door_distance</code>); the route ends at an external door no more than <code>max_exit_above_lowest</code> above the lowest one, or, on storeys without one, at a stair that leaves the storey; spaces are measured from the most remote point of their outline</td>
 <td><code>escape_route_length</code> on doors (remaining route) and spaces (from the most remote point)</td>
 </tr>
+<tr>
+<td><code>opens_in_escape_direction</code></td>
+<td><code>door_opens_in_escape_direction</code></td>
+<td>swing door → boolean</td>
+<td>After <code>escape_route</code>: travel direction through the door (centre → next portal, or outward for exits) vs the door's local +Y from <code>ObjectPlacement</code>; only for swing <code>OperationType</code> values</td>
+<td>—</td>
+</tr>
 </tbody>
 </table>
 <p>Quantities are <code>pbs:QuantityValue</code> records (<code>quantity_type</code>, <code>quantity_value</code>, <code>quantity_unit</code>, QUDT <code>quantity_unit_uri</code>). Area and floor-area sources are read in the IFC area unit; dimensions in the IFC length unit.</p>
@@ -2763,6 +2835,18 @@ ifc_mapping.merged.yaml   ← single file for adapters
 <tr>
 <td>Maximum horizontal escape route length</td>
 <td><code>Space</code> <code>escape_route_length</code>; follow <code>escape_route_next</code> for the route</td>
+</tr>
+<tr>
+<td>Clear stair / escape-route width</td>
+<td><code>clear_width</code>, <code>tread_length_at_inner_side</code>, <code>escape_route_clear_width</code> quantities</td>
+</tr>
+<tr>
+<td>Door opens in escape direction</td>
+<td><code>ConnectionPhysical.opens_in_escape_direction</code></td>
+</tr>
+<tr>
+<td>Fire compartment of a space</td>
+<td><code>Space.parent_zone</code> where <code>ZoneContext.zone_type</code> is <code>fire</code></td>
 </tr>
 </tbody>
 </table>

@@ -101,6 +101,7 @@ classes:
     - hosted_by
     - lit_space
     - escape_route_next
+    - opens_in_escape_direction
   SafetyBarrier:
     is_a: PhysicalElement
     class_uri: pbs:SafetyBarrier
@@ -229,6 +230,12 @@ slots:
     description: >-
       Interior spaces that receive daylight through this window. From space boundaries or computed from
       geometry (adjacent or nearest interior space).
+  opens_in_escape_direction:
+    range: boolean
+    description: >-
+      Whether a swing door leaf opens in the direction of the shortest horizontal escape route through the door.
+      Computed from door OperationType and local placement against escape_route_next; unset when the door is not on
+      a route or the operation type is not a swing.
   barrier_type:
     range: BarrierType
     required: true

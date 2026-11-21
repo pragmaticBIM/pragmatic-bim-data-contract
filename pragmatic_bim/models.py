@@ -267,6 +267,18 @@ class QuantityType(str, Enum):
     """
     Walking distance in plan along the shortest horizontal escape route to an exit to the outside or a stair leaving the storey; on a space measured from its most remote point, on a door from the door.
     """
+    clear_width = "clear_width"
+    """
+    Clear usable width of a stair flight or stair (lichte Laufbreite), typically for escape-route checks.
+    """
+    tread_length_at_inner_side = "tread_length_at_inner_side"
+    """
+    Tread length at the inner edge of a winder stair flight; given for winder flights only.
+    """
+    escape_route_clear_width = "escape_route_clear_width"
+    """
+    Planned clear width of the horizontal escape route in a space at its narrowest point.
+    """
 
 
 class DerivationSourceKind(str, Enum):
@@ -3673,6 +3685,7 @@ class ConnectionPhysical(PhysicalElement):
     hosted_by: Optional[str] = Field(default=None, description="""Host element whose opening this connector fills (for example the wall a door or window sits in). From IfcRelFillsElement and IfcRelVoidsElement, or computed from geometry when the IFC chain is missing.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ConnectionPhysical']} })
     lit_space: Optional[list[str]] = Field(default=None, description="""Interior spaces that receive daylight through this window. From space boundaries or computed from geometry (adjacent or nearest interior space).""", json_schema_extra = { "linkml_meta": {'domain_of': ['ConnectionPhysical']} })
     escape_route_next: Optional[str] = Field(default=None, description="""Next element on the shortest horizontal escape route: the door a space is left through, or the door or stair a door leads on to. The route ends at an exit to the outside or at a stair leaving the storey; follow the slot repeatedly to read the whole route. Computed from geometry; the remaining length is the escape_route_length quantity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ConnectionPhysical', 'Space']} })
+    opens_in_escape_direction: Optional[bool] = Field(default=None, description="""Whether a swing door leaf opens in the direction of the shortest horizontal escape route through the door. Computed from door OperationType and local placement against escape_route_next; unset when the door is not on a route or the operation type is not a swing.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ConnectionPhysical']} })
     parent_building: Optional[str] = Field(default=None, description="""Parent building context reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement',
                        'SpatialContext',
                        'Space',

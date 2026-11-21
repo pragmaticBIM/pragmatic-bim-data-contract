@@ -106,8 +106,8 @@ conventions:
   metadata_unmapped_psets: &metadata_unmapped_psets
     source: ifc_pset_all
     exclude_used_in: [code_or_number, attributes]
-    # performance_properties normalizes the value; the raw value stays in metadata.
-    keep_used_in: [attributes.performance_properties]
+    # performance_properties / quantity_values normalize the value; the raw value stays in metadata.
+    keep_used_in: [attributes.performance_properties, attributes.quantity_values]
     map_to: metadata
     entry_format:
       metadata_key: "{pset}.{property}"
@@ -221,4 +221,20 @@ conventions:
     # IfcBoolean / IfcLogical; UNKNOWN and free text are rejected.
     true_values: ["true", ".t.", "yes"]
     false_values: ["false", ".f.", "no"]
+
+  normalize_count: &normalize_count
+    value_type: number
+    number_pattern: "[0-9]+(?:[.,][0-9]+)?"
+    accept_range: {gt: 0}
+    unit: "1"
+    unit_uri: http://qudt.org/vocab/unit/UNITLESS
+
+  normalize_positive_length: &normalize_positive_length
+    value_type: number
+    # Length in project units; ifc_pset_quantity converts to metres via the model length scale.
+    number_pattern: "[0-9]+(?:[.,][0-9]+)?"
+    accept_range: {gt: 0}
+    unit: m
+    unit_uri: http://qudt.org/vocab/unit/M
+    convert_length_to: m
 

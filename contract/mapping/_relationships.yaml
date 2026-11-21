@@ -25,8 +25,13 @@ relationships:
         relation_type: parent_zone
 
   IfcRelAssignsToGroup:
-    description: Element assigned to zone or group.
+    description: >
+      Element assigned to zone or group. Writes group_members on the zone/group, and
+      parent_zone on the member when the group is an IfcZone and the member declares that slot
+      (fire-compartment identity for spaces assigned to a zone with zone_type fire).
     relation_type: group_members
+    member_relation_type: parent_zone
+    member_relation_when_group_class: IfcZone
     group_classes: [IfcZone, IfcGroup]
 
   IfcRelAssignsToSystem:

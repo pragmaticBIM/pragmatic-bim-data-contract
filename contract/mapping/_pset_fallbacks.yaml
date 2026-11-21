@@ -266,3 +266,24 @@ pset_fallbacks:
         - {pset: PSet_Revit_Structural, property: Structural}
       archicad: []
       vectorworks: []
+
+  # --- Space indoor environment / occupancy ---
+  perf_peak_occupancy: &perf_peak_occupancy
+    fallbacks:
+      - {pset: ePset_Space, property: PeakOccupancyActual}
+      - {pset: Pset_SpaceOccupancyRequirements, property: OccupancyNumberPeak}
+
+  # --- Stair and escape-route clear widths (typed quantities) ---
+  qty_stair_clear_width: &qty_stair_clear_width
+    fallbacks:
+      - {pset: ePset_StairFlight, property: ClearWidth}
+      - {pset: ePset_Stair, property: ClearWidth}
+
+  qty_tread_length_at_inner_side: &qty_tread_length_at_inner_side
+    fallbacks:
+      - {pset: Pset_StairFlightCommon, property: TreadLengthAtInnerSide}
+      - {pset: ePset_Stair, property: TreadLengthAtInnerSide}
+
+  qty_escape_route_clear_width: &qty_escape_route_clear_width
+    fallbacks:
+      - {pset: ePset_Space, property: EscapeRouteClearWidth}
