@@ -74,9 +74,6 @@ def test_fire_compartment_via_parent_zone(vkf):
     graph, _ = vkf
     zone = iri("fire_zone")
     assert (zone, rdflib.RDF.type, PBS.ZoneContext) in graph
-    # ZoneType.fire shares the IFC SpatialZone meaning IRI with other spatial zone kinds.
-    assert set(graph.objects(zone, PBS.zone_type)) == {
-        rdflib.URIRef("https://w3id.org/ifc/IFC4_ADD2#IfcSpatialZone")
-    }
+    assert set(graph.objects(zone, PBS.zone_type)) == {PBS.zone_type_fire}
     assert set(graph.objects(iri("room"), PBS.parent_zone)) == {zone}
     assert set(graph.objects(iri("corridor"), PBS.parent_zone)) == {zone}
