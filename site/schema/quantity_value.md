@@ -6,7 +6,7 @@ search:
 # Slot: quantity_value 
 
 
-_Numeric quantity value._
+_Numeric quantity value. Most QuantityTypes are non-negative; signed types such as height_above_ground_floor and height_above_terrain may be negative when the reference lies below the datum._
 
 
 
@@ -46,13 +46,6 @@ URI: [pbs:quantity_value](https://schema.pragmaticbim.ch/quantity_value)
 | Property | Value |
 | --- | --- |
 | Required | Yes |
-### Value Constraints
-
-| Property | Value |
-| --- | --- |
-| Minimum Value | 0 |
-
-
 
 
 
@@ -92,14 +85,15 @@ URI: [pbs:quantity_value](https://schema.pragmaticbim.ch/quantity_value)
 <details>
 ```yaml
 name: quantity_value
-description: Numeric quantity value.
+description: Numeric quantity value. Most QuantityTypes are non-negative; signed types
+  such as height_above_ground_floor and height_above_terrain may be negative when
+  the reference lies below the datum.
 from_schema: https://schema.pragmaticbim.ch
 rank: 1000
 domain_of:
 - QuantityValue
 range: double
 required: true
-minimum_value: 0
 
 ```
 </details></div>

@@ -2218,7 +2218,7 @@ class QuantityValue(ConfiguredBaseModel):
          'from_schema': 'https://schema.pragmaticbim.ch/entity/core'})
 
     quantity_type: QuantityType = Field(default=..., description="""Controlled quantity type.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantityValue']} })
-    quantity_value: float = Field(default=..., description="""Numeric quantity value.""", ge=0, json_schema_extra = { "linkml_meta": {'domain_of': ['QuantityValue']} })
+    quantity_value: float = Field(default=..., description="""Numeric quantity value. Most QuantityTypes are non-negative; signed types such as height_above_ground_floor and height_above_terrain may be negative when the reference lies below the datum.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantityValue']} })
     quantity_unit: str = Field(default=..., description="""Unit of the quantity value.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantityValue']} })
     quantity_unit_uri: Optional[str] = Field(default=None, description="""Optional URI that identifies the quantity unit in an external vocabulary such as QUDT.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantityValue']} })
     metric_scheme: Optional[str] = Field(default=None, description="""Vocabulary scheme identifier for the measured concept: AbstractBuildingMetric or AbstractBuildingRatio.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantityValue']} })

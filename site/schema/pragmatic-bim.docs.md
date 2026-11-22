@@ -323,7 +323,7 @@ Name: pragmatic_bim_data_contract
 | [quantity_type](quantity_type.md) | Controlled quantity type. |
 | [quantity_unit](quantity_unit.md) | Unit of the quantity value. |
 | [quantity_unit_uri](quantity_unit_uri.md) | Optional URI that identifies the quantity unit in an external vocabulary such as QUDT. |
-| [quantity_value](quantity_value.md) | Numeric quantity value. |
+| [quantity_value](quantity_value.md) | Numeric quantity value. Most QuantityTypes are non-negative; signed types such as height_above_ground_floor and height_above_terrain may be negative when the reference lies below the datum. |
 | [quantity_values](quantity_values.md) | Quantities associated with the entity. |
 | [rationale](rationale.md) | Human-readable rationale that explains why the decision was made. |
 | [recipients](recipients.md) | Agents that received the message. |

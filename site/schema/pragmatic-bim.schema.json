@@ -8976,8 +8976,7 @@
                     ]
                 },
                 "quantity_value": {
-                    "description": "Numeric quantity value.",
-                    "minimum": 0,
+                    "description": "Numeric quantity value. Most QuantityTypes are non-negative; signed types such as height_above_ground_floor and height_above_terrain may be negative when the reference lies below the datum.",
                     "type": "number"
                 }
             },

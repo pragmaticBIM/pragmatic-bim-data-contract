@@ -46,7 +46,7 @@ click QuantityType href "./QuantityType.html" _blank
 | Name | Cardinality and Range | Description | Inheritance |
 | ---  | --- | --- | --- |
 | [quantity_type](quantity_type.md) | 1 <br/> [QuantityType](QuantityType.md) | Controlled quantity type. | direct |
-| [quantity_value](quantity_value.md) | 1 <br/> [Double](Double.md) | Numeric quantity value. | direct |
+| [quantity_value](quantity_value.md) | 1 <br/> [Double](Double.md) | Numeric quantity value. Most QuantityTypes are non-negative; signed types such as height_above_ground_floor and height_above_terrain may be negative when the reference lies below the datum. | direct |
 | [quantity_unit](quantity_unit.md) | 1 <br/> [String](String.md) | Unit of the quantity value. | direct |
 | [quantity_unit_uri](quantity_unit_uri.md) | 0..1 <br/> [Uriorcurie](Uriorcurie.md) | Optional URI that identifies the quantity unit in an external vocabulary such as QUDT. | direct |
 | [metric_scheme](metric_scheme.md) | 0..1 <br/> [String](String.md) | Vocabulary scheme identifier for the measured concept: AbstractBuildingMetric or AbstractBuildingRatio. | direct |
@@ -196,7 +196,9 @@ attributes:
     required: true
   quantity_value:
     name: quantity_value
-    description: Numeric quantity value.
+    description: Numeric quantity value. Most QuantityTypes are non-negative; signed
+      types such as height_above_ground_floor and height_above_terrain may be negative
+      when the reference lies below the datum.
     from_schema: https://schema.pragmaticbim.ch
     rank: 1000
     owner: QuantityValue
@@ -204,7 +206,6 @@ attributes:
     - QuantityValue
     range: double
     required: true
-    minimum_value: 0
   quantity_unit:
     name: quantity_unit
     description: Unit of the quantity value.
