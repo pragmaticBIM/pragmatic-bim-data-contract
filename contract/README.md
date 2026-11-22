@@ -52,6 +52,10 @@ Full class hierarchy and reference tables: [schema documentation](https://schema
 
 `SafetyBarrier` no longer embeds `height_above_walking_surface` as a `QuantityValue`. The height is a `DerivedMeasurement` on the barrier and the worst-case guarded space (`quantity_type` `height_above_walking_surface`); `guards_space` remains on the barrier. Regenerate graphs from IFC; update SHACL/SPARQL that read the embedded quantity.
 
+`Space` no longer embeds `glazing_ratio` as a `QuantityValue`. The ratio is a `DerivedMeasurement` on the space and its contributing windows (`quantity_type` `glazing_ratio`); `lit_space` and window `area_glazed` remain. Regenerate graphs from IFC; update SHACL/SPARQL that read the embedded quantity.
+
+Doors and spaces no longer embed `escape_route_length` as a `QuantityValue`. The length is a `DerivedMeasurement` (`quantity_type` `escape_route_length`); `escape_route_next` remains. Exit portals write no measurement. Regenerate graphs from IFC; update SHACL/SPARQL that read the embedded quantity.
+
 Documents, decisions, tasks, and messages are now top-level entity records linked via `applies_to_entities` instead of being embedded on other entities. `ContentKind.change` is removed. Change records use typed references (`affected_subject`, `affected_requirement`, `related_requirement`, `triggered_task`, `triggered_process`) instead of bare string IDs where applicable.
 
 External files are modeled as `Artifact` (`content_kind: artifact`) with `artifact_kind` (text document, model, plan) and `storage_link`, replacing `yamlDocument` / `ContentKind.document`. Requirement provenance uses `source_artifact` (was `source_document`). Change records use `artifact_storage_link` (was `document_storage_link`).

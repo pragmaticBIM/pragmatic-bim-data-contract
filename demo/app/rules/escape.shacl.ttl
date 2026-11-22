@@ -10,9 +10,10 @@
 #     (vertical escape route), at most 35 m. Change ?max below to adjust the limit.
 #
 # Evidence computed by ifc2rdf from geometry (contract/mapping/_computed_relations.yaml):
-#   Space pbs:escape_route_next door or stair, door pbs:escape_route_next door or stair, and the
-#   QuantityValue quantity_type_escape_route_length = walking distance in plan around the corners
-#   of the spaces, door to door.
+#   Space pbs:escape_route_next door or stair, door pbs:escape_route_next door or stair, and a
+#   DerivedMeasurement with quantity_type_escape_route_length = walking distance in plan around
+#   the corners of the spaces, door to door (applies_to_entities: space + first portal, or
+#   door + exit).
 # Not covered: the 50 m limit with two independent escape routes, route widths, door directions.
 
 rule:prefixes
@@ -47,7 +48,9 @@ rule:EscapeRouteLength a sh:NodeShape ;
             "Fluchtweg {?length} m bis zum Ausgang oder zur Treppe; zulässig sind höchstens {?max} m."@de ;
         sh:select """
             SELECT DISTINCT $this ?length ?max WHERE {
-                $this pbs:quantity_values ?q .
+                ?m a pbs:DerivedMeasurement ;
+                   pbs:applies_to_entities $this ;
+                   pbs:quantity_values ?q .
                 ?q pbs:quantity_type pbs:quantity_type_escape_route_length ;
                    pbs:quantity_value ?value .
                 BIND (35.0 AS ?max)
@@ -63,7 +66,9 @@ rule:EscapeRouteLength a sh:NodeShape ;
         sh:select """
             SELECT $this WHERE {
                 FILTER NOT EXISTS {
-                    $this pbs:quantity_values ?q .
+                    ?m a pbs:DerivedMeasurement ;
+                       pbs:applies_to_entities $this ;
+                       pbs:quantity_values ?q .
                     ?q pbs:quantity_type pbs:quantity_type_escape_route_length .
                 }
             }"""

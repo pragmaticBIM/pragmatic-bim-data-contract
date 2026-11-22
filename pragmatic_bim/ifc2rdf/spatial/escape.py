@@ -4,8 +4,8 @@ Doors connect the spaces they open into (IFC ``connects_spaces``, else spaces wi
 ``max_door_distance``). A route ends at an exit (an external door on the lowest exit level)
 or, on storeys without an exit, at a stair that leaves the storey. Inside a space the walking
 distance is the shortest path in plan around the corners of the space outline. Each door gets
-the next door or stair on its route and the remaining length; each space gets the door it is
-left through and the length from its most remote point on the outline.
+the next door or stair on its route; each space gets the door it is left through. Route
+lengths are ``DerivedMeasurement`` entities (exit portals write none).
 """
 
 from __future__ import annotations
@@ -29,6 +29,8 @@ from pragmatic_bim.ifc2rdf.spatial.context import SpatialContext
 _SIMPLIFY = 0.02
 _STAIR_MIN_AREA = 0.05
 _FLOOR_TOLERANCE = 0.3
+_METHOD = "escape_route"
+_METHOD_VERSION = "0.1"
 
 
 class PlanRegion:
@@ -190,8 +192,22 @@ def escape_route(ctx: SpatialContext, spec: dict[str, Any]) -> None:
         door = elements[key]
         if key in following:
             ctx.relate(door, slot, elements[following[key][0]], "geometry")
-        if quantity is not None:
-            ctx.add_quantity(door, "escape_route_length", length, quantity["unit"])
+        if quantity is None or length <= 0 or key not in following:
+            continue
+        chain = _follow_keys(key, following)
+        exit_node = elements[chain[-1]]
+        inputs = [elements[step] for step in chain[:-1]]
+        points = _door_route_points(key, following)
+        ctx.add_measurement(
+            [door, exit_node],
+            [("escape_route_length", length, quantity["unit"])],
+            method=_METHOD,
+            method_version=_METHOD_VERSION,
+            inputs=inputs,
+            line_wkt=(
+                shapely.to_wkt(shapely.linestrings(points), rounding_precision=3) if points is not None else None
+            ),
+        )
 
     for zone in zones:
         reachable = [p for p in zone.portals if p.key in distance]
@@ -202,10 +218,18 @@ def escape_route(ctx: SpatialContext, spec: dict[str, Any]) -> None:
                 continue
             portal, length, start = route
             ctx.relate(space, slot, portal.node, "geometry")
+            points = _route_points(zone, start, portal, following)
             if quantity is not None:
-                ctx.add_quantity(space, "escape_route_length", length, quantity["unit"])
+                along = [elements[step] for step in [portal.key, *_follow_keys(portal.key, following)]]
+                ctx.add_measurement(
+                    [space, portal.node],
+                    [("escape_route_length", length, quantity["unit"])],
+                    method=_METHOD,
+                    method_version=_METHOD_VERSION,
+                    inputs=along,
+                    line_wkt=shapely.to_wkt(shapely.linestrings(points), rounding_precision=3),
+                )
             if spec.get("path_representation"):
-                points = _route_points(zone, start, portal, following)
                 ctx.conv.writer.add_inlined(
                     space,
                     "geometry_representations",
@@ -234,6 +258,17 @@ def _remote_route(
     return portals[int(np.argmin(costs[:, remote]))], float(best[remote]), samples[remote]
 
 
+def _follow_keys(key: tuple, following: dict) -> list[tuple]:
+    """Portal keys after ``key`` along the route, ending at the exit or stair."""
+    chain: list[tuple] = []
+    seen: set[tuple] = set()
+    while key in following and key not in seen:
+        seen.add(key)
+        key = following[key][0]
+        chain.append(key)
+    return chain
+
+
 def _route_points(zone: _Zone, start: np.ndarray, portal: _Portal, following: dict) -> np.ndarray:
     """3D polyline from ``start`` in ``zone`` through ``portal`` and every following door to the route end."""
     points = _lift(zone.region.path(start, portal.point), zone.floor)
@@ -246,6 +281,27 @@ def _route_points(zone: _Zone, start: np.ndarray, portal: _Portal, following: di
         points += _lift(through.region.path(here.point, there.point), through.floor)
         points.append([*there.centre, there.z])
         key = via
+    return _clean_points(points)
+
+
+def _door_route_points(key: tuple, following: dict) -> np.ndarray | None:
+    """3D polyline from a door along ``following`` to the route end, or ``None`` if none."""
+    if key not in following:
+        return None
+    points: list[list[float]] = []
+    while key in following:
+        via, through = following[key]
+        here = _portal(through, key)
+        there = _portal(through, via)
+        if not points:
+            points.append([*here.centre, here.z])
+        points += _lift(through.region.path(here.point, there.point), through.floor)
+        points.append([*there.centre, there.z])
+        key = via
+    return _clean_points(points)
+
+
+def _clean_points(points: list[list[float]]) -> np.ndarray:
     clean = [points[0]]
     for point in points[1:]:
         if np.linalg.norm(np.subtract(point, clean[-1])) > 1e-3:
