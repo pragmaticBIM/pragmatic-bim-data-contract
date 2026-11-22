@@ -565,7 +565,7 @@ Selectors combine with AND: `contract_class` (including subclasses), `ifc_class`
 | `connects_physical_elements` | `side_contact` | wall / column / beam ↔ same | Plan distance ≤ `max_plan_distance`, vertical overlap ≥ `min_overlap_height`, no `rests_on` between the pair; written on both elements | — |
 | `intersects_elements` | `prism_overlap` | `ReservedVolume` → `PhysicalElement` | Plan overlap ≥ `min_overlap_area` and vertical overlap ≥ `min_overlap_height` (touching does not count); the product the volume belongs to is skipped | — |
 | `neighbours` | `neighbour_distance` | `Equipment` → `PhysicalElement` | Horizontal gap between the plan outlines ≤ `max_horizontal_distance` and vertical gap between the height ranges ≤ `max_vertical_distance`; each gap is 0 where the elements overlap | `DerivedMeasurement` with `horizontal_clear_distance` and `vertical_clear_distance` plus a display `LINESTRING Z` (no `target_slot`) |
-| `guards_space` | `barrier_walking_surface` | `SafetyBarrier` → `Space` | Plan distance ≤ `max_plan_distance`; space floor between barrier base − `max_floor_below_base` and base + `floor_tolerance` | `height_above_walking_surface` = barrier top − highest guarded floor |
+| `guards_space` | `barrier_walking_surface` | `SafetyBarrier` → `Space` | Plan distance ≤ `max_plan_distance`; space floor between barrier base − `max_floor_below_base` and base + `floor_tolerance` | `guards_space` on the barrier; `DerivedMeasurement` with `height_above_walking_surface` (barrier + worst-case space), all guarded spaces as `derivation_inputs`, vertical `LINESTRING Z` |
 | `lit_space` | `window_daylight` | exterior window → interior `Space` | `connects_spaces` from IFC space boundaries, else the nearest space within `max_plan_distance` with vertical overlap | `area_glazed` on the window; `glazing_ratio` (glazed area ÷ floor area) on every selected space |
 | `escape_route_next` | `escape_route` | interior `Space`, door → door / stair | Walking distance in plan around the corners of each space; spaces whose outlines touch along ≥ `min_open_width` form one open zone; doors join zones (`connects_spaces`, else spaces within `max_door_distance`); the route ends at an external door no more than `max_exit_above_lowest` above the lowest one, or, on storeys without one, at a stair that leaves the storey; spaces are measured from the most remote point of their outline | `escape_route_length` on doors (remaining route) and spaces (from the most remote point) |
 | `opens_in_escape_direction` | `door_opens_in_escape_direction` | swing door → boolean | After `escape_route`: travel direction through the door (centre → next portal, or outward for exits) vs the door's local +Y from `ObjectPlacement`; only for swing `OperationType` values | — |
@@ -576,7 +576,7 @@ The relations are evidence for rules evaluated outside this repository, for exam
 
 | Rule | Evidence |
 |------|----------|
-| Fall protection ≥ 1.10 m above the walking surface | `SafetyBarrier` → `guards_space`, `height_above_walking_surface` |
+| Fall protection ≥ 1.10 m above the walking surface | `SafetyBarrier` → `guards_space`; `DerivedMeasurement` `height_above_walking_surface` |
 | Doors in fire-rated walls carry a fire rating | `ConnectionPhysical` → `hosted_by` → `Separator` with `FireProperty` |
 | Fire-rated walls reach the slab above | a `SeparatorSlab` `rests_on` the wall |
 | Load path: slab → column → slab, no floating load-bearing elements | chains of `rests_on`; load-bearing element without a `rests_on` target |

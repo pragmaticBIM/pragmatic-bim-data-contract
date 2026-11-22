@@ -807,6 +807,9 @@ computed_relations:
     max_horizontal_distance: 1.0
     max_vertical_distance: 1.0
 
+  # guards_space stays on the barrier; height_above_walking_surface is a DerivedMeasurement
+  # on the barrier and the worst-case (highest) guarded space, with all guarded spaces as
+  # derivation_inputs and a vertical LINESTRING Z from that floor to the barrier top.
   guards_space:
     method: barrier_walking_surface
     subject:

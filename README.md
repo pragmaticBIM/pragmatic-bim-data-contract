@@ -213,7 +213,7 @@ The output contains:
 - PropertySet values that are not promoted to a slot, and the raw values of performance properties, as `pbs:metadata` entries with key `{Pset}.{Property}`.
 - The best matching pragmaticBIM Reference element as a classification (`classification_scheme` `pragmaticbim-element`, `classification_uri` `https://pragmaticbim.ch/id/element/…`). Proxies identified as maintenance spaces, installation paths, exclusion zones, movement clearances, or device spaces become `ReservedVolume`; railings become `SafetyBarrier`. See [Element identification](contract/mapping/README.md#element-identification-pragmaticbim-reference).
 - `pbs:geometry_representations` (`body_3d` pointing at the GLB node, `footprint_2d` as WKT, both with bounding box) and a `height` quantity; see [Geometry output](contract/mapping/README.md#geometry-output-ifc2rdf).
-- Computed relations `hosted_by` (door/window → wall), `rests_on` (wall/column/slab/beam bearing on the element below, for example slab → column → slab, and equipment on a slab or plinth), `connects_physical_elements` (side contact such as wall-wall junctions, on both elements), `intersects_elements` (reserved volume → physical element), neighbour clear distances as `DerivedMeasurement` entities (`horizontal_clear_distance` / `vertical_clear_distance` from equipment to nearby physical elements), `guards_space` with `height_above_walking_surface` (barrier → space), and `lit_space` with `area_glazed` / `glazing_ratio` (exterior window → interior space); see [Computed relations](contract/mapping/README.md#computed-relations).
+- Computed relations `hosted_by` (door/window → wall), `rests_on` (wall/column/slab/beam bearing on the element below, for example slab → column → slab, and equipment on a slab or plinth), `connects_physical_elements` (side contact such as wall-wall junctions, on both elements), `intersects_elements` (reserved volume → physical element), neighbour clear distances as `DerivedMeasurement` entities (`horizontal_clear_distance` / `vertical_clear_distance` from equipment to nearby physical elements), `guards_space` (barrier → space) with barrier height as a `DerivedMeasurement` (`height_above_walking_surface`), and `lit_space` with `area_glazed` / `glazing_ratio` (exterior window → interior space); see [Computed relations](contract/mapping/README.md#computed-relations).
 - A `dcat:Dataset` node at the base IRI with `pbs:contract_version`, `pbs:mapping_version`, and the sha256 of the IFC file.
 - [BOT](https://w3id.org/bot) alignment from the schema `exact_mappings`: `bot:Building`, `bot:Storey`, `bot:Space`, `bot:Element`, and `bot:adjacentElement` (slot `Space.adjacent_elements`).
 
@@ -224,9 +224,11 @@ Barriers lower than 1.10 m above the floor they guard:
 ```sparql
 PREFIX pbs: <https://schema.pragmaticbim.ch/>
 SELECT ?barrier ?space ?height WHERE {
-  ?barrier a pbs:SafetyBarrier ; pbs:guards_space ?space ;
-           pbs:quantity_values [ pbs:quantity_type pbs:quantity_type_height_above_walking_surface ;
-                                 pbs:quantity_value ?height ] .
+  ?barrier a pbs:SafetyBarrier ; pbs:guards_space ?space .
+  ?m a pbs:DerivedMeasurement ;
+     pbs:applies_to_entities ?barrier , ?space ;
+     pbs:quantity_values [ pbs:quantity_type pbs:quantity_type_height_above_walking_surface ;
+                           pbs:quantity_value ?height ] .
   FILTER (?height < 1.1)
 }
 ```
