@@ -68,9 +68,15 @@ def test_every_mapped_ifc_entity_is_one_node_with_global_id(sample):
         for e in model.by_type("IfcRoot")
         if mapping.entity_key(e) is not None and mapping.resolve(e) is not None
     }
-    entities = set(graph.subjects(RDF.type, PBS.Entity))
-    assert len(entities) == len(mapped) == sum(report.nodes_by_class.values())
-    for node in entities:
+    # Synthetic Entity nodes (DerivedMeasurement, ConnectionVirtual, …) have no IFC GlobalId.
+    ifc_entities = {
+        node
+        for node in graph.subjects(RDF.type, PBS.Entity)
+        if graph.value(node, PBS.ifc_global_id) is not None
+    }
+    assert len(ifc_entities) == len(mapped)
+    assert sum(report.nodes_by_class.values()) >= len(mapped)
+    for node in ifc_entities:
         values = list(graph.objects(node, PBS.ifc_global_id))
         assert len(values) == 1, node
         assert str(node).endswith(str(values[0]))
