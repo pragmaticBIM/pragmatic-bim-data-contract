@@ -360,6 +360,16 @@ The fragment `performance_properties_building_element` ([`_fragments.yaml`](_fra
 | `IsExternal` | `ThermalProperty` | `is_external` | boolean | `normalize_boolean` |
 | `LoadBearing` | `StructuralProperty` | `load_bearing` | boolean | `normalize_boolean` |
 | `ePset_Space.PeakOccupancyActual` (then `Pset_SpaceOccupancyRequirements.OccupancyNumberPeak`) | `IndoorEnvironmentProperty` | `peak_occupancy` | number | `normalize_count` |
+| `ePset_SafetyLighting.SafetyRatedDuration` | `FireProperty` | `safety_rated_duration` | number (min) | `normalize_safety_duration_min` |
+| `ePset_SafetyLighting.SafetyStartUpTime` | `FireProperty` | `safety_start_up_time` | number (s) | `normalize_safety_start_up_s` |
+| `ePset_SafetyLighting.SafetySupplyType` | `FireProperty` | `safety_supply_type` | string | `normalize_safety_token` |
+| `ePset_SafetyLighting.SafetyFloorIlluminance` | `FireProperty` | `safety_floor_illuminance` | number (lx) | `normalize_safety_illuminance_lx` |
+| `ePset_SafetyLighting.SafetyNotSwitchable` | `FireProperty` | `safety_not_switchable` | boolean | `normalize_boolean` |
+| `ePset_EscapeSign.LightingType` | `FireProperty` | `escape_sign_lighting_type` | string | `normalize_safety_token` |
+| `ePset_EscapeSign.SupplyType` | `FireProperty` | `escape_sign_supply_type` | string | `normalize_safety_token` |
+| `ePset_EscapeSign.MountingHeight` | `FireProperty` | `escape_sign_mounting_height` | number (m) | `normalize_escape_sign_mounting_height` |
+
+`ePset_Space.EscapeRouteRole` maps to `Space.escape_route_role` (`HORIZONTAL` / `VERTICAL` / `EXIT`). `IfcLightFixture` maps to `Equipment` with the safety-lighting properties; `mep-escape-sign` proxies map to `Equipment` with the escape-sign properties.
 
 ### Typed quantities from PropertySets
 
@@ -576,6 +586,9 @@ The relations are evidence for rules evaluated outside this repository, for exam
 | Clear stair / escape-route width | `clear_width`, `tread_length_at_inner_side`, `escape_route_clear_width` quantities |
 | Door opens in escape direction | `ConnectionPhysical.opens_in_escape_direction` |
 | Fire compartment of a space | `Space.parent_zone` where `ZoneContext.zone_type` is `fire` |
+| Escape-route role of a space | `Space.escape_route_role` |
+| Safety lighting duration / start-up / illuminance | `FireProperty` keys on `IfcLightFixture` |
+| Escape sign lighting type / supply / mounting height | `FireProperty` keys on `mep-escape-sign` |
 
 ---
 

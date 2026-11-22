@@ -220,6 +220,7 @@ Name: pragmatic_bim_data_contract
 | [elevation_unit](elevation_unit.md) | Unit for elevation (default m). |
 | [equipment_type](equipment_type.md) | Classification of equipment (for example HVAC, electrical, plumbing). |
 | [escape_route_next](escape_route_next.md) | Next element on the shortest horizontal escape route: the door a space is left through, or the door or stair a door leads on to. The route ends at an exit to the outside or at a stair leaving the storey; follow the slot repeatedly to read the whole route. Computed from geometry; the remaining length is the escape_route_length quantity. |
+| [escape_route_role](escape_route_role.md) | Role of this space on an escape route: horizontal, vertical, or exit to the open air. Unset when the space is not part of an escape route. From ePset_Space.EscapeRouteRole; shared by VKF 16-15 and 17-15 checks. |
 | [external_instance_uri](external_instance_uri.md) | URI of the corresponding process instance in an external workflow engine when applicable. |
 | [frame_material](frame_material.md) | Material of the frame or casing surrounding the opening. Applies to opening-type connectors (door, window). |
 | [from_revision](from_revision.md) | Source revision number for this change. |
@@ -424,6 +425,7 @@ Name: pragmatic_bim_data_contract
 | [DerivationSourceKind](DerivationSourceKind.md) | Kind of source a derived value or relation comes from. Used by Derivation.derivation_source_kind. |
 | [EnvironmentalPropertyKey](EnvironmentalPropertyKey.md) | Canonical environmental keys for embodied impacts of an element type, per square metre of element area. |
 | [EquipmentType](EquipmentType.md) |  |
+| [EscapeRouteRole](EscapeRouteRole.md) | Role of a space on an escape route (VKF 16-15 / 17-15): horizontal route, vertical route, or exit to the open air. Set only on spaces that belong to an escape route. |
 | [FirePropertyKey](FirePropertyKey.md) | Canonical fire-related keys derived from IFC PropertySets. |
 | [GeometryRepresentationType](GeometryRepresentationType.md) | Classification of geometric representation dimension/style. |
 | [IndoorEnvironmentPropertyKey](IndoorEnvironmentPropertyKey.md) | Canonical indoor environment keys for spaces (temperature, humidity, air, light, occupancy). |

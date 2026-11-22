@@ -82,6 +82,64 @@ fragments:
           <<: *perf_peak_occupancy
         normalize: *normalize_count
 
+  # Safety luminaire attributes (ePset_SafetyLighting) on IfcLightFixture / SECURITYLIGHTING.
+  performance_properties_safety_lighting: &performance_properties_safety_lighting
+    source: ifc_pset_performance
+    properties:
+      - property_class: FireProperty
+        property_key: safety_rated_duration
+        lookup:
+          source: ifc_pset_fallback
+          <<: *perf_safety_rated_duration
+        normalize: *normalize_safety_duration_min
+      - property_class: FireProperty
+        property_key: safety_start_up_time
+        lookup:
+          source: ifc_pset_fallback
+          <<: *perf_safety_start_up_time
+        normalize: *normalize_safety_start_up_s
+      - property_class: FireProperty
+        property_key: safety_supply_type
+        lookup:
+          source: ifc_pset_fallback
+          <<: *perf_safety_supply_type
+        normalize: *normalize_safety_token
+      - property_class: FireProperty
+        property_key: safety_floor_illuminance
+        lookup:
+          source: ifc_pset_fallback
+          <<: *perf_safety_floor_illuminance
+        normalize: *normalize_safety_illuminance_lx
+      - property_class: FireProperty
+        property_key: safety_not_switchable
+        lookup:
+          source: ifc_pset_fallback
+          <<: *perf_safety_not_switchable
+        normalize: *normalize_boolean
+
+  # Escape sign attributes (ePset_EscapeSign) on the mep-escape-sign proxy.
+  performance_properties_escape_sign: &performance_properties_escape_sign
+    source: ifc_pset_performance
+    properties:
+      - property_class: FireProperty
+        property_key: escape_sign_lighting_type
+        lookup:
+          source: ifc_pset_fallback
+          <<: *perf_escape_sign_lighting_type
+        normalize: *normalize_safety_token
+      - property_class: FireProperty
+        property_key: escape_sign_supply_type
+        lookup:
+          source: ifc_pset_fallback
+          <<: *perf_escape_sign_supply_type
+        normalize: *normalize_safety_token
+      - property_class: FireProperty
+        property_key: escape_sign_mounting_height
+        lookup:
+          source: ifc_pset_fallback
+          <<: *perf_escape_sign_mounting_height
+        normalize: *normalize_escape_sign_mounting_height
+
   # Typed QuantityValue records from PropertySets (lengths in project units → metres).
   quantity_values_stair: &quantity_values_stair
     source: ifc_pset_quantity

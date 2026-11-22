@@ -1,0 +1,17 @@
+# Trimmed copy of pragmaticBIM-reference elements/mep-escape-sign.yaml (identification fields only).
+id: pragmaticbim:element/mep-escape-sign
+code: MEP-ESCAPE-SIGN
+status: active
+name:
+  de: Rettungszeichen
+  fr: Signal de sauvetage
+  it: Segnale di salvataggio
+  en: Escape sign
+entity_ifc2x3: IfcBuildingElementProxy
+entity_ifc4: IfcBuildingElementProxy
+entity_ifc4_3: IfcBuildingElementProxy
+applicability:
+  de: (entity_ifc4=IfcBuildingElementProxy AND PredefinedType=USERDEFINED AND (ObjectType=Rettungszeichen OR ObjectType=Richtungsanzeiger)) OR (entity_ifc2x3=IfcBuildingElementProxy AND (ObjectType=Rettungszeichen OR ObjectType=Richtungsanzeiger))
+  fr: (entity_ifc4=IfcBuildingElementProxy AND PredefinedType=USERDEFINED AND (ObjectType="Signal de sauvetage" OR ObjectType="Indicateur de direction")) OR (entity_ifc2x3=IfcBuildingElementProxy AND (ObjectType="Signal de sauvetage" OR ObjectType="Indicateur de direction"))
+  it: (entity_ifc4=IfcBuildingElementProxy AND PredefinedType=USERDEFINED AND (ObjectType="Segnale di salvataggio" OR ObjectType="Indicatore di direzione")) OR (entity_ifc2x3=IfcBuildingElementProxy AND (ObjectType="Segnale di salvataggio" OR ObjectType="Indicatore di direzione"))
+  en: (entity_ifc4=IfcBuildingElementProxy AND PredefinedType=USERDEFINED AND (ObjectType="Escape sign" OR ObjectType="Direction indicator")) OR (entity_ifc2x3=IfcBuildingElementProxy AND (ObjectType="Escape sign" OR ObjectType="Direction indicator"))

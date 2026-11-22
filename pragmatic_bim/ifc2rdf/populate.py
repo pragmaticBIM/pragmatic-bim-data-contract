@@ -40,7 +40,8 @@ def populate(conv: "Converter", node: Node) -> None:
             conv.writer.set(node, slot, value)
             used_psets.update(ev.trace)
 
-    conv.writer.set(node, "content_kind", block["content_kind"])
+    content_kind = em.predefined.get("content_kind", block["content_kind"])
+    conv.writer.set(node, "content_kind", content_kind)
     attributes = block.get("attributes") or {}
     performance_psets: set[tuple[str, str]] = set()
     for slot, spec in attributes.items():

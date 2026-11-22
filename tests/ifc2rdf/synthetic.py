@@ -391,3 +391,86 @@ def build_vkf_model(path: Path) -> dict[str, str]:
     )
     f.write(str(path))
     return dict(VKF_GLOBAL_IDS)
+
+
+VKF_17_ROLES = [
+    "project", "site", "building", "storey",
+    "corridor", "light", "escape_sign",
+]
+VKF_17_GLOBAL_IDS = {
+    role: ifcopenshell.guid.compress(f"{0xE100 + i:032x}") for i, role in enumerate(VKF_17_ROLES)
+}
+
+
+def build_vkf_17_15_model(path: Path) -> dict[str, str]:
+    """Minimal IFC covering VKF 17-15 contract facts (escape-route role, safety lighting, escape sign)."""
+    f = api.project.create_file(version="IFC4")
+    entities = {}
+
+    def create(role: str, ifc_class: str, name: str, **kwargs):
+        entity = api.root.create_entity(f, ifc_class=ifc_class, name=name, **kwargs)
+        entity.GlobalId = VKF_17_GLOBAL_IDS[role]
+        entities[role] = entity
+        return entity
+
+    def pset(product, name: str, properties: dict) -> None:
+        api.pset.edit_pset(f, pset=api.pset.add_pset(f, product=product, name=name), properties=properties)
+
+    project = create("project", "IfcProject", "VKF-17")
+    api.unit.assign_unit(f)
+    model = api.context.add_context(f, context_type="Model")
+    body = api.context.add_context(
+        f, context_type="Model", context_identifier="Body", target_view="MODEL_VIEW", parent=model
+    )
+
+    site = create("site", "IfcSite", "Site")
+    building = create("building", "IfcBuilding", "Building")
+    storey = create("storey", "IfcBuildingStorey", "EG")
+    storey.Elevation = 0.0
+    api.aggregate.assign_object(f, relating_object=project, products=[site])
+    api.aggregate.assign_object(f, relating_object=site, products=[building])
+    api.aggregate.assign_object(f, relating_object=building, products=[storey])
+
+    corridor = create("corridor", "IfcSpace", "Korridor", predefined_type="SPACE")
+    api.aggregate.assign_object(f, relating_object=storey, products=[corridor])
+    pset(corridor, "Pset_SpaceCommon", {"IsExternal": False})
+    pset(corridor, "ePset_Space", {"EscapeRouteRole": "HORIZONTAL"})
+
+    light = create("light", "IfcLightFixture", "Safety light", predefined_type="SECURITYLIGHTING")
+    pset(
+        light,
+        "ePset_SafetyLighting",
+        {
+            "SafetyRatedDuration": 30,
+            "SafetyStartUpTime": 15,
+            "SafetySupplyType": "SINGLE_BATTERY",
+            "SafetyFloorIlluminance": 1.0,
+            "SafetyNotSwitchable": True,
+        },
+    )
+
+    sign = create("escape_sign", "IfcBuildingElementProxy", "Escape sign", predefined_type="USERDEFINED")
+    sign.ObjectType = "Escape sign"
+    pset(
+        sign,
+        "ePset_EscapeSign",
+        {
+            "LightingType": "BACKLIT",
+            "SupplyType": "CENTRAL_BATTERY",
+            "MountingHeight": 2.1,
+        },
+    )
+
+    for product, (x0, y0) in ((light, (1.0, 1.0)), (sign, (2.0, 1.0))):
+        matrix = np.eye(4)
+        matrix[0, 3], matrix[1, 3], matrix[2, 3] = x0, y0, 2.0
+        api.geometry.edit_object_placement(f, product=product, matrix=matrix)
+        representation = api.geometry.add_wall_representation(
+            f, context=body, length=0.2, height=0.2, thickness=0.1
+        )
+        api.geometry.assign_representation(f, product=product, representation=representation)
+
+    # Contain in storey (and space for equipment parent_space via containment when supported).
+    api.spatial.assign_container(f, relating_structure=storey, products=[light, sign])
+    f.write(str(path))
+    return dict(VKF_17_GLOBAL_IDS)

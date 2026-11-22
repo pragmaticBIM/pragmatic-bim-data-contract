@@ -58,7 +58,7 @@
     
     
   <meta name="panzoom-theme" content="material">
-<meta name="panzoom-data" content='{"selectors": [".d2", ".mermaid"], "initial_zoom_level": 1.0}'> </head>
+<meta name="panzoom-data" content='{"selectors": [".mermaid", ".d2"], "initial_zoom_level": 1.0}'> </head>
   
   
     
@@ -485,6 +485,46 @@
 <td>pbs:fire_property_reaction_to_fire</td>
 <td></td>
 </tr>
+<tr>
+<td>safety_rated_duration</td>
+<td>pbs:fire_property_safety_rated_duration</td>
+<td>Rated operating time of safety lighting when normal lighting fails, in minutes (VKF 17-15).</td>
+</tr>
+<tr>
+<td>safety_start_up_time</td>
+<td>pbs:fire_property_safety_start_up_time</td>
+<td>Time until safety lighting operates after general power supply failure, in seconds (VKF 17-15).</td>
+</tr>
+<tr>
+<td>safety_supply_type</td>
+<td>pbs:fire_property_safety_supply_type</td>
+<td>Safety power source type (SINGLE_BATTERY, CENTRAL_BATTERY, GENERATOR).</td>
+</tr>
+<tr>
+<td>safety_floor_illuminance</td>
+<td>pbs:fire_property_safety_floor_illuminance</td>
+<td>Planned illuminance of safety lighting at floor level of the escape route, in lx.</td>
+</tr>
+<tr>
+<td>safety_not_switchable</td>
+<td>pbs:fire_property_safety_not_switchable</td>
+<td>Whether the safety luminaire cannot be switched off by a main or room lighting switch.</td>
+</tr>
+<tr>
+<td>escape_sign_lighting_type</td>
+<td>pbs:fire_property_escape_sign_lighting_type</td>
+<td>Lighting type of an escape sign (ILLUMINATED, BACKLIT, AFTERGLOW).</td>
+</tr>
+<tr>
+<td>escape_sign_supply_type</td>
+<td>pbs:fire_property_escape_sign_supply_type</td>
+<td>Safety power source of a lit or backlit escape sign (SINGLE_BATTERY, CENTRAL_BATTERY, GENERATOR).</td>
+</tr>
+<tr>
+<td>escape_sign_mounting_height</td>
+<td>pbs:fire_property_escape_sign_mounting_height</td>
+<td>Mounting height of the lower edge of an escape sign above the finished floor, in metres.</td>
+</tr>
 </tbody>
 </table>
 <h2 id="slots">Slots<a class="headerlink" href="#slots" title="Permanent link">&para;</a></h2>
@@ -524,6 +564,44 @@
 <span class="w">  </span><span class="nt">reaction_to_fire</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">reaction_to_fire</span>
 <span class="w">    </span><span class="nt">meaning</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pbs:fire_property_reaction_to_fire</span>
+<span class="w">  </span><span class="nt">safety_rated_duration</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">safety_rated_duration</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Rated operating time of safety lighting when normal lighting fails,</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">in minutes (VKF 17-15).</span>
+<span class="w">    </span><span class="nt">meaning</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pbs:fire_property_safety_rated_duration</span>
+<span class="w">  </span><span class="nt">safety_start_up_time</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">safety_start_up_time</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Time until safety lighting operates after general power supply failure,</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">in seconds (VKF 17-15).</span>
+<span class="w">    </span><span class="nt">meaning</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pbs:fire_property_safety_start_up_time</span>
+<span class="w">  </span><span class="nt">safety_supply_type</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">safety_supply_type</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Safety power source type (SINGLE_BATTERY, CENTRAL_BATTERY, GENERATOR).</span>
+<span class="w">    </span><span class="nt">meaning</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pbs:fire_property_safety_supply_type</span>
+<span class="w">  </span><span class="nt">safety_floor_illuminance</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">safety_floor_illuminance</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Planned illuminance of safety lighting at floor level of the escape</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">route, in lx.</span>
+<span class="w">    </span><span class="nt">meaning</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pbs:fire_property_safety_floor_illuminance</span>
+<span class="w">  </span><span class="nt">safety_not_switchable</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">safety_not_switchable</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Whether the safety luminaire cannot be switched off by a main or</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">room lighting switch.</span>
+<span class="w">    </span><span class="nt">meaning</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pbs:fire_property_safety_not_switchable</span>
+<span class="w">  </span><span class="nt">escape_sign_lighting_type</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">escape_sign_lighting_type</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Lighting type of an escape sign (ILLUMINATED, BACKLIT, AFTERGLOW).</span>
+<span class="w">    </span><span class="nt">meaning</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pbs:fire_property_escape_sign_lighting_type</span>
+<span class="w">  </span><span class="nt">escape_sign_supply_type</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">escape_sign_supply_type</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Safety power source of a lit or backlit escape sign (SINGLE_BATTERY,</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">CENTRAL_BATTERY, GENERATOR).</span>
+<span class="w">    </span><span class="nt">meaning</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pbs:fire_property_escape_sign_supply_type</span>
+<span class="w">  </span><span class="nt">escape_sign_mounting_height</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">escape_sign_mounting_height</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Mounting height of the lower edge of an escape sign above the finished</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">floor, in metres.</span>
+<span class="w">    </span><span class="nt">meaning</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pbs:fire_property_escape_sign_mounting_height</span>
 </code></pre></div>
 </details>
 </div>

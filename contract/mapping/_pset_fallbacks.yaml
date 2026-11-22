@@ -287,3 +287,40 @@ pset_fallbacks:
   qty_escape_route_clear_width: &qty_escape_route_clear_width
     fallbacks:
       - {pset: ePset_Space, property: EscapeRouteClearWidth}
+
+  # --- Safety lighting / escape signs (VKF 17-15) ---
+  perf_safety_rated_duration: &perf_safety_rated_duration
+    fallbacks:
+      - {pset: ePset_SafetyLighting, property: SafetyRatedDuration}
+
+  perf_safety_start_up_time: &perf_safety_start_up_time
+    fallbacks:
+      - {pset: ePset_SafetyLighting, property: SafetyStartUpTime}
+
+  perf_safety_supply_type: &perf_safety_supply_type
+    fallbacks:
+      - {pset: ePset_SafetyLighting, property: SafetySupplyType}
+
+  perf_safety_floor_illuminance: &perf_safety_floor_illuminance
+    fallbacks:
+      - {pset: ePset_SafetyLighting, property: SafetyFloorIlluminance}
+
+  perf_safety_not_switchable: &perf_safety_not_switchable
+    fallbacks:
+      - {pset: ePset_SafetyLighting, property: SafetyNotSwitchable}
+
+  perf_escape_sign_lighting_type: &perf_escape_sign_lighting_type
+    fallbacks:
+      - {pset: ePset_EscapeSign, property: LightingType}
+
+  perf_escape_sign_supply_type: &perf_escape_sign_supply_type
+    fallbacks:
+      - {pset: ePset_EscapeSign, property: SupplyType}
+
+  perf_escape_sign_mounting_height: &perf_escape_sign_mounting_height
+    fallbacks:
+      - {pset: ePset_EscapeSign, property: MountingHeight}
+
+  escape_route_role_pset: &escape_route_role_pset
+    fallbacks:
+      - {pset: ePset_Space, property: EscapeRouteRole}

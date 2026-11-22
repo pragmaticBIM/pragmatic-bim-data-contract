@@ -58,7 +58,7 @@
     
     
   <meta name="panzoom-theme" content="material">
-<meta name="panzoom-data" content='{"selectors": [".d2", ".mermaid"], "initial_zoom_level": 1.0}'> </head>
+<meta name="panzoom-data" content='{"selectors": [".mermaid", ".d2"], "initial_zoom_level": 1.0}'> </head>
   
   
     
@@ -554,6 +554,7 @@ click Classification href "./Classification.html" _blank
 click Entity href "./Entity.html" _blank
 click CostRecord href "./CostRecord.html" _blank
 click PhysicalElement href "./PhysicalElement.html" _blank
+click EscapeRouteRole href "./EscapeRouteRole.html" _blank
 click GeometryRepresentation href "./GeometryRepresentation.html" _blank
 click LocalizedText href "./LocalizedText.html" _blank
 click LocalizedText href "./LocalizedText.html" _blank
@@ -678,6 +679,12 @@ Hold "Alt" / "Option" to enable pan &amp; zoom
 <td><a href="escape_route_next.html">escape_route_next</a></td>
 <td>0..1 <br/> <a href="PhysicalElement.html">PhysicalElement</a></td>
 <td>Next element on the shortest horizontal escape route: the door a space is left through, or the door or stair a door leads on to. The route ends at an exit to the outside or at a stair leaving the storey; follow the slot repeatedly to read the whole route. Computed from geometry; the remaining length is the escape_route_length quantity.</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="escape_route_role.html">escape_route_role</a></td>
+<td>0..1 <br/> <a href="EscapeRouteRole.html">EscapeRouteRole</a></td>
+<td>Role of this space on an escape route: horizontal, vertical, or exit to the open air. Unset when the space is not part of an escape route. From ePset_Space.EscapeRouteRole; shared by VKF 16-15 and 17-15 checks.</td>
 <td>direct</td>
 </tr>
 <tr>
@@ -939,6 +946,7 @@ Hold "Alt" / "Option" to enable pan &amp; zoom
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">adjacent_elements</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">contained_entities</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">escape_route_next</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">escape_route_role</span>
 <span class="nt">slot_usage</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">parent_building</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">parent_building</span>
@@ -1100,6 +1108,17 @@ Hold "Alt" / "Option" to enable pan &amp; zoom
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ConnectionPhysical</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Space</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PhysicalElement</span>
+<span class="w">  </span><span class="nt">escape_route_role</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">escape_route_role</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;Role</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">this</span><span class="nv"> </span><span class="s">space</span><span class="nv"> </span><span class="s">on</span><span class="nv"> </span><span class="s">an</span><span class="nv"> </span><span class="s">escape</span><span class="nv"> </span><span class="s">route:</span><span class="nv"> </span><span class="s">horizontal,</span><span class="nv"> </span><span class="s">vertical,</span><span class="nv"> </span><span class="s">or</span>
+<span class="w">      </span><span class="s">exit</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">open</span><span class="nv"> </span><span class="s">air.</span><span class="nv"> </span><span class="s">Unset</span><span class="nv"> </span><span class="s">when</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">space</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">not</span><span class="nv"> </span><span class="s">part</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">an</span><span class="nv"> </span><span class="s">escape</span><span class="nv"> </span><span class="s">route.</span><span class="nv"> </span><span class="s">From</span>
+<span class="w">      </span><span class="s">ePset_Space.EscapeRouteRole;</span><span class="nv"> </span><span class="s">shared</span><span class="nv"> </span><span class="s">by</span><span class="nv"> </span><span class="s">VKF</span><span class="nv"> </span><span class="s">16-15</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">17-15</span><span class="nv"> </span><span class="s">checks.&#39;</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://schema.pragmaticbim.ch</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Space</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Space</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">EscapeRouteRole</span>
 <span class="w">  </span><span class="nt">cost_records</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cost_records</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Cost records associated with this entity.</span>

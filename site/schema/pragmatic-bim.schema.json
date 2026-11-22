@@ -4851,6 +4851,16 @@
             "title": "EquipmentType",
             "type": "string"
         },
+        "EscapeRouteRole": {
+            "description": "Role of a space on an escape route (VKF 16-15 / 17-15): horizontal route, vertical route, or exit to the open air. Set only on spaces that belong to an escape route.",
+            "enum": [
+                "HORIZONTAL",
+                "VERTICAL",
+                "EXIT"
+            ],
+            "title": "EscapeRouteRole",
+            "type": "string"
+        },
         "FireProperty": {
             "additionalProperties": false,
             "description": "Normalized fire-related property.",
@@ -4939,7 +4949,15 @@
             "enum": [
                 "resistance_rating",
                 "smoke_rating",
-                "reaction_to_fire"
+                "reaction_to_fire",
+                "safety_rated_duration",
+                "safety_start_up_time",
+                "safety_supply_type",
+                "safety_floor_illuminance",
+                "safety_not_switchable",
+                "escape_sign_lighting_type",
+                "escape_sign_supply_type",
+                "escape_sign_mounting_height"
             ],
             "title": "FirePropertyKey",
             "type": "string"
@@ -11212,6 +11230,10 @@
                         "string",
                         "null"
                     ]
+                },
+                "escape_route_role": {
+                    "$ref": "#/$defs/EscapeRouteRole",
+                    "description": "Role of this space on an escape route: horizontal, vertical, or exit to the open air. Unset when the space is not part of an escape route. From ePset_Space.EscapeRouteRole; shared by VKF 16-15 and 17-15 checks."
                 },
                 "geometry_representations": {
                     "description": "Geometry references associated with the entity. A single element may link to multiple geometry representations to serve different intents (authoring, coordination, analysis, visualization) without duplicating the element itself.\n",

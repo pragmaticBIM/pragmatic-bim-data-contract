@@ -2609,6 +2609,60 @@ enums:
         meaning: pbs:fire_property_smoke_rating
       reaction_to_fire:
         meaning: pbs:fire_property_reaction_to_fire
+      safety_rated_duration:
+        description: Rated operating time of safety lighting when normal lighting fails, in minutes (VKF 17-15).
+        meaning: pbs:fire_property_safety_rated_duration
+      safety_start_up_time:
+        description: Time until safety lighting operates after general power supply failure, in seconds (VKF 17-15).
+        meaning: pbs:fire_property_safety_start_up_time
+      safety_supply_type:
+        description: Safety power source type (SINGLE_BATTERY, CENTRAL_BATTERY, GENERATOR).
+        meaning: pbs:fire_property_safety_supply_type
+      safety_floor_illuminance:
+        description: Planned illuminance of safety lighting at floor level of the escape route, in lx.
+        meaning: pbs:fire_property_safety_floor_illuminance
+      safety_not_switchable:
+        description: Whether the safety luminaire cannot be switched off by a main or room lighting switch.
+        meaning: pbs:fire_property_safety_not_switchable
+      escape_sign_lighting_type:
+        description: Lighting type of an escape sign (ILLUMINATED, BACKLIT, AFTERGLOW).
+        meaning: pbs:fire_property_escape_sign_lighting_type
+      escape_sign_supply_type:
+        description: Safety power source of a lit or backlit escape sign (SINGLE_BATTERY, CENTRAL_BATTERY, GENERATOR).
+        meaning: pbs:fire_property_escape_sign_supply_type
+      escape_sign_mounting_height:
+        description: Mounting height of the lower edge of an escape sign above the finished floor, in metres.
+        meaning: pbs:fire_property_escape_sign_mounting_height
+  EscapeRouteRole:
+    enum_uri: pbs:EscapeRouteRole
+    description: >-
+      Role of a space on an escape route (VKF 16-15 / 17-15): horizontal route, vertical route, or exit
+      to the open air. Set only on spaces that belong to an escape route.
+    permissible_values:
+      HORIZONTAL:
+        description: Horizontal escape route (for example a corridor or lobby on the escape path).
+        meaning: pbs:escape_route_role_horizontal
+        title: Horizontal
+        alt_descriptions:
+          de:
+            source: de
+            description: Horizontal
+      VERTICAL:
+        description: Vertical escape route (for example a stairwell).
+        meaning: pbs:escape_route_role_vertical
+        title: Vertical
+        alt_descriptions:
+          de:
+            source: de
+            description: Vertikal
+      EXIT:
+        description: Exit to the open air or equivalent end of the escape route.
+        meaning: pbs:escape_route_role_exit
+        title: Exit
+        alt_descriptions:
+          de:
+            source: de
+            description: Ausgang
   AcousticPropertyKey:
     enum_uri: pbs:AcousticPropertyKey
     description: Canonical acoustic-related keys derived from IFC PropertySets.

@@ -244,6 +244,41 @@ conventions:
     unit_uri: http://qudt.org/vocab/unit/M
     convert_length_to: m
 
+  normalize_safety_duration_min: &normalize_safety_duration_min
+    value_type: number
+    number_pattern: "[0-9]+(?:[.,][0-9]+)?"
+    accept_range: {gt: 0}
+    unit: min
+    unit_uri: http://qudt.org/vocab/unit/MIN
+
+  normalize_safety_start_up_s: &normalize_safety_start_up_s
+    value_type: number
+    number_pattern: "[0-9]+(?:[.,][0-9]+)?"
+    accept_range: {gte: 0}
+    unit: s
+    unit_uri: http://qudt.org/vocab/unit/SEC
+
+  normalize_safety_illuminance_lx: &normalize_safety_illuminance_lx
+    value_type: number
+    number_pattern: "[0-9]+(?:[.,][0-9]+)?"
+    accept_range: {gte: 0}
+    unit: lx
+    unit_uri: http://qudt.org/vocab/unit/LUX
+
+  normalize_escape_sign_mounting_height: &normalize_escape_sign_mounting_height
+    value_type: number
+    # IfcReal in metres (catalog unit), not project length measure.
+    number_pattern: "[0-9]+(?:[.,][0-9]+)?"
+    accept_range: {gt: 0}
+    unit: m
+    unit_uri: http://qudt.org/vocab/unit/M
+
+  normalize_safety_token: &normalize_safety_token
+    value_type: string
+    remove_whitespace: true
+    upper_case: true
+    accept_pattern: "^[A-Z0-9_]+$"
+
 
 pset_fallbacks:
   code_or_number_default_items: &code_default_items
@@ -533,6 +568,43 @@ pset_fallbacks:
   qty_escape_route_clear_width: &qty_escape_route_clear_width
     fallbacks:
       - {pset: ePset_Space, property: EscapeRouteClearWidth}
+
+  # --- Safety lighting / escape signs (VKF 17-15) ---
+  perf_safety_rated_duration: &perf_safety_rated_duration
+    fallbacks:
+      - {pset: ePset_SafetyLighting, property: SafetyRatedDuration}
+
+  perf_safety_start_up_time: &perf_safety_start_up_time
+    fallbacks:
+      - {pset: ePset_SafetyLighting, property: SafetyStartUpTime}
+
+  perf_safety_supply_type: &perf_safety_supply_type
+    fallbacks:
+      - {pset: ePset_SafetyLighting, property: SafetySupplyType}
+
+  perf_safety_floor_illuminance: &perf_safety_floor_illuminance
+    fallbacks:
+      - {pset: ePset_SafetyLighting, property: SafetyFloorIlluminance}
+
+  perf_safety_not_switchable: &perf_safety_not_switchable
+    fallbacks:
+      - {pset: ePset_SafetyLighting, property: SafetyNotSwitchable}
+
+  perf_escape_sign_lighting_type: &perf_escape_sign_lighting_type
+    fallbacks:
+      - {pset: ePset_EscapeSign, property: LightingType}
+
+  perf_escape_sign_supply_type: &perf_escape_sign_supply_type
+    fallbacks:
+      - {pset: ePset_EscapeSign, property: SupplyType}
+
+  perf_escape_sign_mounting_height: &perf_escape_sign_mounting_height
+    fallbacks:
+      - {pset: ePset_EscapeSign, property: MountingHeight}
+
+  escape_route_role_pset: &escape_route_role_pset
+    fallbacks:
+      - {pset: ePset_Space, property: EscapeRouteRole}
 
 
 relationships:
@@ -894,6 +966,64 @@ fragments:
           source: ifc_pset_fallback
           <<: *perf_peak_occupancy
         normalize: *normalize_count
+
+  # Safety luminaire attributes (ePset_SafetyLighting) on IfcLightFixture / SECURITYLIGHTING.
+  performance_properties_safety_lighting: &performance_properties_safety_lighting
+    source: ifc_pset_performance
+    properties:
+      - property_class: FireProperty
+        property_key: safety_rated_duration
+        lookup:
+          source: ifc_pset_fallback
+          <<: *perf_safety_rated_duration
+        normalize: *normalize_safety_duration_min
+      - property_class: FireProperty
+        property_key: safety_start_up_time
+        lookup:
+          source: ifc_pset_fallback
+          <<: *perf_safety_start_up_time
+        normalize: *normalize_safety_start_up_s
+      - property_class: FireProperty
+        property_key: safety_supply_type
+        lookup:
+          source: ifc_pset_fallback
+          <<: *perf_safety_supply_type
+        normalize: *normalize_safety_token
+      - property_class: FireProperty
+        property_key: safety_floor_illuminance
+        lookup:
+          source: ifc_pset_fallback
+          <<: *perf_safety_floor_illuminance
+        normalize: *normalize_safety_illuminance_lx
+      - property_class: FireProperty
+        property_key: safety_not_switchable
+        lookup:
+          source: ifc_pset_fallback
+          <<: *perf_safety_not_switchable
+        normalize: *normalize_boolean
+
+  # Escape sign attributes (ePset_EscapeSign) on the mep-escape-sign proxy.
+  performance_properties_escape_sign: &performance_properties_escape_sign
+    source: ifc_pset_performance
+    properties:
+      - property_class: FireProperty
+        property_key: escape_sign_lighting_type
+        lookup:
+          source: ifc_pset_fallback
+          <<: *perf_escape_sign_lighting_type
+        normalize: *normalize_safety_token
+      - property_class: FireProperty
+        property_key: escape_sign_supply_type
+        lookup:
+          source: ifc_pset_fallback
+          <<: *perf_escape_sign_supply_type
+        normalize: *normalize_safety_token
+      - property_class: FireProperty
+        property_key: escape_sign_mounting_height
+        lookup:
+          source: ifc_pset_fallback
+          <<: *perf_escape_sign_mounting_height
+        normalize: *normalize_escape_sign_mounting_height
 
   # Typed QuantityValue records from PropertySets (lengths in project units → metres).
   quantity_values_stair: &quantity_values_stair
@@ -1413,7 +1543,8 @@ entities:
     notes: >
       Proxies are mapped only when a pragmaticBIM Reference element definition matches
       (applicability on ObjectType in any language). Other proxies are not emitted and are
-      counted under "no reference match" in the conversion report.
+      counted under "no reference match" in the conversion report. Escape signs override
+      content_kind to physical Equipment; reserved volumes stay virtual.
     reference_element_map:
       pragmaticbim:element/architecture-maintenance-space:
         canonical_type: ReservedVolume.maintenance
@@ -1430,6 +1561,10 @@ entities:
       pragmaticbim:element/architecture-device-space:
         canonical_type: ReservedVolume.device_space
         reserved_volume_type: device_space
+      pragmaticbim:element/mep-escape-sign:
+        canonical_type: Equipment.escape_sign
+        content_kind: physical
+        equipment_type: fire_safety
     fields:
       name: *name_fallback_chain
       code_or_number:
@@ -1442,6 +1577,10 @@ entities:
       reserved_volume_type:
         source: predefined_type_map
         attribute: reserved_volume_type
+      equipment_type:
+        source: predefined_type_map
+        attribute: equipment_type
+      performance_properties: *performance_properties_escape_sign
     geometry: *geometry_body_footprint
     relations:
       - IfcRelContainedInSpatialStructure
@@ -1466,6 +1605,9 @@ entities:
       <<: *attributes_entity_base
       performance_properties: *performance_properties_space
       quantity_values: *quantity_values_escape_route_clear_width
+      escape_route_role:
+        source: ifc_pset_fallback
+        <<: *escape_route_role_pset
       space_type:
         source: ifc_attribute_heuristic
         attribute: LongName
@@ -2053,6 +2195,29 @@ entities:
       - IfcRelAssignsToSystem
       - IfcRelServicesBuildings
       - IfcRelAggregates
+      - IfcRelAssociatesClassification
+
+  # Safety / general luminaires. SECURITYLIGHTING carries ePset_SafetyLighting (VKF 17-15).
+  IfcLightFixture:
+    content_kind: physical
+    canonical_type: Equipment
+    fields:
+      name: *name_fallback_chain
+      code_or_number:
+        source: ifc_pset_fallback
+        <<: *code_equipment
+      storey: *storey_from_containment
+      classifications: *classifications_mapping
+    attributes:
+      <<: *attributes_entity_base
+      equipment_type:
+        source: constant
+        value: electrical
+      performance_properties: *performance_properties_safety_lighting
+    geometry: *geometry_body_footprint
+    relations:
+      - IfcRelContainedInSpatialStructure
+      - IfcRelAssignsToSystem
       - IfcRelAssociatesClassification
 
   IfcDistributionSystem:
