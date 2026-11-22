@@ -47,7 +47,7 @@ def serialize_value(value: Any) -> str | None:
 
 @dataclass
 class Node:
-    entity: ifcopenshell.entity_instance
+    entity: ifcopenshell.entity_instance | None
     mapping: EntityMapping
     iri: URIRef
     types: tuple[URIRef, ...]
@@ -55,11 +55,21 @@ class Node:
     inlined: dict[str, list[tuple[str, dict[str, Any]]]] = field(default_factory=dict)
     reference_elements: tuple[Any, ...] = ()
     """pragmaticBIM Reference element definitions the entity matches (best match first)."""
+    local_id: str | None = None
+    """Stable id for synthetic (non-IFC) nodes such as DerivedMeasurement."""
 
     @property
     def global_id(self) -> str:
-        return self.entity.GlobalId
+        if self.entity is not None:
+            return self.entity.GlobalId
+        if self.local_id is None:
+            raise ValueError("synthetic node requires local_id")
+        return self.local_id
 
     @property
     def contract_class(self) -> str:
         return self.mapping.contract_class
+
+    @property
+    def is_synthetic(self) -> bool:
+        return self.entity is None

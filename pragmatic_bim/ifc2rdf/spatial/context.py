@@ -2,12 +2,13 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any
+from typing import TYPE_CHECKING, Any, Iterable, Sequence
 
 import ifcopenshell.util.element
 import ifcopenshell.util.unit
 
 from pragmatic_bim.ifc2rdf.geometry import ElementGeometry, GeometryResult, SpatialIndex
+from pragmatic_bim.ifc2rdf.mapping import EntityMapping
 from pragmatic_bim.ifc2rdf.model import Node
 
 if TYPE_CHECKING:
@@ -20,6 +21,14 @@ UNIT_URIS = {
     "1": "http://qudt.org/vocab/unit/UNITLESS",
 }
 
+_MEASUREMENT_MAPPING = EntityMapping(
+    key="DerivedMeasurement",
+    block={"content_kind": "measurement", "canonical_type": "DerivedMeasurement"},
+    contract_class="DerivedMeasurement",
+    canonical_type="DerivedMeasurement",
+    predefined={},
+)
+
 
 class SpatialContext:
     def __init__(self, conv: "Converter", geometry: GeometryResult) -> None:
@@ -30,12 +39,16 @@ class SpatialContext:
         self._psets: dict[int, dict[str, dict[str, Any]]] = {}
 
     def geo(self, node: Node) -> ElementGeometry | None:
+        if node.entity is None:
+            return None
         return self.geometry.geometries.get(node.entity.id())
 
     def node_of(self, geometry: ElementGeometry) -> Node | None:
         return self.conv.nodes.get(geometry.id)
 
     def psets(self, node: Node) -> dict[str, dict[str, Any]]:
+        if node.entity is None:
+            return {}
         if node.entity.id() not in self._psets:
             self._psets[node.entity.id()] = ifcopenshell.util.element.get_psets(node.entity)
         return self._psets[node.entity.id()]
@@ -55,6 +68,8 @@ class SpatialContext:
             return False
         ifc_classes = selector.get("ifc_class")
         if ifc_classes:
+            if node.entity is None:
+                return False
             ifc_classes = [ifc_classes] if isinstance(ifc_classes, str) else ifc_classes
             if not any(node.entity.is_a(c) for c in ifc_classes):
                 return False
@@ -92,11 +107,93 @@ class SpatialContext:
             self.conv.report.computed_quantities[quantity_type] += 1
         return added
 
+    def add_measurement(
+        self,
+        subjects: Sequence[Node],
+        quantities: Sequence[tuple[str, float, str]],
+        method: str,
+        method_version: str,
+        inputs: Iterable[Node | str] = (),
+        tolerance: float | None = None,
+        line_wkt: str | None = None,
+        status: str = "measured",
+    ) -> Node | None:
+        """Write a top-level ``DerivedMeasurement``; id is deterministic from method + subjects."""
+        subject_list = list(subjects)
+        if not subject_list:
+            self.conv.report.dropped[f"DerivedMeasurement ({method}) (no subjects)"] += 1
+            return None
+        local_id = _measurement_id(method, subject_list)
+        existing = self.conv.extra_nodes.get(local_id)
+        if existing is not None:
+            return existing
+
+        node = Node(
+            entity=None,
+            mapping=_MEASUREMENT_MAPPING,
+            iri=self.conv.iri(local_id),
+            types=self.conv.schema.rdf_types("DerivedMeasurement"),
+            local_id=local_id,
+        )
+        self.conv.extra_nodes[local_id] = node
+        self.conv._by_iri = {}
+
+        self.conv.writer.set(node, "content_kind", "measurement")
+        self.conv.writer.set(node, "name", method)
+        self.conv.writer.set(node, "measurement_status", status)
+        self.conv.writer.set(node, "applies_to_entities", subject_list)
+
+        input_refs = [str(item.iri) if isinstance(item, Node) else str(item) for item in inputs]
+        derivation = {
+            "_class": "Derivation",
+            "derivation_source_kind": "ifc_geometry",
+            "derivation_method": method,
+            "derivation_method_version": method_version,
+            "derivation_tolerance": tolerance,
+            "derivation_tolerance_unit": "m" if tolerance is not None else None,
+            "derivation_inputs": input_refs or None,
+        }
+        for quantity_type, value, unit in quantities:
+            if value < 0:
+                self.conv.report.dropped[f"DerivedMeasurement.quantity_values {quantity_type} (negative)"] += 1
+                continue
+            self.conv.writer.add_inlined(
+                node,
+                "quantity_values",
+                "QuantityValue",
+                {
+                    "quantity_type": quantity_type,
+                    "quantity_value": round(float(value), 4),
+                    "quantity_unit": unit,
+                    "quantity_unit_uri": UNIT_URIS.get(unit),
+                    "derivation": derivation,
+                },
+            )
+        if line_wkt:
+            self.conv.writer.add_inlined(
+                node,
+                "geometry_representations",
+                "GeometryRepresentation",
+                {
+                    "geometry_representation": "path_3d",
+                    "geometry_reference": f"measurement#{local_id}",
+                    "geometry_format": "wkt",
+                    "geometry_wkt": line_wkt,
+                },
+            )
+        self.conv.report.computed_measurements[method] += 1
+        return node
+
     def relate(self, subject: Node, slot: str, obj: Node, method: str) -> bool:
         added = self.conv.writer.set(subject, slot, obj)
         if added:
             self.conv.report.computed_relations[f"{slot} ({method})"] += 1
         return added
+
+
+def _measurement_id(method: str, subjects: Sequence[Node]) -> str:
+    subject_ids = sorted(node.global_id for node in subjects)
+    return f"{method}__{'__'.join(subject_ids)}"
 
 
 def _equal(actual: Any, expected: Any) -> bool:

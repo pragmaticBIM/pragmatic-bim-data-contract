@@ -103,6 +103,7 @@ click MetadataEntry href "./MetadataEntry.html" _blank
 | [TimeRecord](TimeRecord.md) | [metadata](metadata.md) | range | [MetadataEntry](MetadataEntry.md) |
 | [CostRecord](CostRecord.md) | [metadata](metadata.md) | range | [MetadataEntry](MetadataEntry.md) |
 | [Material](Material.md) | [metadata](metadata.md) | range | [MetadataEntry](MetadataEntry.md) |
+| [DerivedMeasurement](DerivedMeasurement.md) | [metadata](metadata.md) | range | [MetadataEntry](MetadataEntry.md) |
 
 
 

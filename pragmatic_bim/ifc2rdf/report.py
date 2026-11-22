@@ -24,6 +24,7 @@ class ConversionReport:
     unmatched_reference_entities: Counter = field(default_factory=Counter)
     computed_relations: Counter = field(default_factory=Counter)
     computed_quantities: Counter = field(default_factory=Counter)
+    computed_measurements: Counter = field(default_factory=Counter)
     skipped_stages: list[str] = field(default_factory=list)
     geometry_output: str | None = None
     geometry_failures: Counter = field(default_factory=Counter)
@@ -49,6 +50,7 @@ class ConversionReport:
             ("no reference match", self.unmatched_reference_entities),
             ("computed relation", self.computed_relations),
             ("computed quantity", self.computed_quantities),
+            ("computed measurement", self.computed_measurements),
             ("geometry failed", self.geometry_failures),
         ):
             out += [f"  {label}: {key} ×{n}" for key, n in sorted(counter.items())]

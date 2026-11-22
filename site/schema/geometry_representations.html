@@ -58,7 +58,7 @@
     
     
   <meta name="panzoom-theme" content="material">
-<meta name="panzoom-data" content='{"selectors": [".d2", ".mermaid"], "initial_zoom_level": 1.0}'> </head>
+<meta name="panzoom-data" content='{"selectors": [".mermaid", ".d2"], "initial_zoom_level": 1.0}'> </head>
   
   
     
@@ -753,6 +753,11 @@
 <tr>
 <td><a href="Material.html">Material</a></td>
 <td>Material definition that can be associated with one or more entities.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="DerivedMeasurement.html">DerivedMeasurement</a></td>
+<td>Measurement entity with its own identity for values that involve more than one subject (for example clear width between a stair and two railings). Subjects are listed in applies_to_entities; the value and its Derivation live in quantity_values; an optional display line uses geometry_representations (typically WKT LINESTRING Z). Use measurement_status to distinguish a successful measure from not_measurable or not_applicable.</td>
 <td>no</td>
 </tr>
 </tbody>

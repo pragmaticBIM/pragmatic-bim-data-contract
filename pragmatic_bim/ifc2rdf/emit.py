@@ -42,7 +42,8 @@ def build_graph(conv: "Converter", nodes: list[Node]) -> Graph:
     for node in nodes:
         cls = node.contract_class
         conv.report.nodes_by_class[cls] += 1
-        node.values.setdefault("ifc_global_id", [Literal(node.global_id)])
+        if not node.is_synthetic:
+            node.values.setdefault("ifc_global_id", [Literal(node.global_id)])
         for rdf_type in node.types:
             graph.add((node.iri, RDF.type, rdf_type))
         for slot, terms in node.values.items():
@@ -78,13 +79,15 @@ def _emit_slot(graph: Graph, schema, subject, class_name: str, key: str, value, 
         for nested_key, nested_value in sorted((k, v) for k, v in value.items() if k != "_class"):
             _emit_slot(graph, schema, nested, nested_class, nested_key, nested_value, digest, slot, index)
         return
-    if schema.is_enum(range_name):
-        term = schema.enum_term(range_name, str(value))
-    elif schema.is_class(range_name):
-        term = URIRef(str(value))
-    else:
-        term = schema.literal(range_name, value)
-    graph.add((subject, schema.slot_uri(key), term))
+    items = value if isinstance(value, list) else [value]
+    for item in items:
+        if schema.is_enum(range_name):
+            term = schema.enum_term(range_name, str(item))
+        elif schema.is_class(range_name):
+            term = URIRef(str(item))
+        else:
+            term = schema.literal(range_name, item)
+        graph.add((subject, schema.slot_uri(key), term))
 
 
 def to_turtle(graph: Graph) -> str:

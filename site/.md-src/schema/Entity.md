@@ -55,6 +55,8 @@ Entity <|-- PhysicalElement
 click PhysicalElement href "./PhysicalElement.html" _blank
 Entity <|-- VirtualEntity
 click VirtualEntity href "./VirtualEntity.html" _blank
+Entity <|-- DerivedMeasurement
+click DerivedMeasurement href "./DerivedMeasurement.html" _blank
 click Entity href "./Entity.html" _blank
 click Classification href "./Classification.html" _blank
 click GeometryRepresentation href "./GeometryRepresentation.html" _blank
@@ -86,6 +88,7 @@ click StatusType href "./StatusType.html" _blank
     * [Requirement](Requirement.md)
     * [PhysicalElement](PhysicalElement.md)
     * [VirtualEntity](VirtualEntity.md)
+    * [DerivedMeasurement](DerivedMeasurement.md)
 
 
 ## Class Properties
@@ -189,6 +192,7 @@ click StatusType href "./StatusType.html" _blank
 | [TimeRecord](TimeRecord.md) | [applies_to_entities](applies_to_entities.md) | range | [Entity](Entity.md) |
 | [CostRecord](CostRecord.md) | [applies_to_entities](applies_to_entities.md) | range | [Entity](Entity.md) |
 | [Material](Material.md) | [applies_to_entities](applies_to_entities.md) | range | [Entity](Entity.md) |
+| [DerivedMeasurement](DerivedMeasurement.md) | [applies_to_entities](applies_to_entities.md) | range | [Entity](Entity.md) |
 | [Change](Change.md) | [affected_subject](affected_subject.md) | range | [Entity](Entity.md) |
 | [PropertyChange](PropertyChange.md) | [affected_subject](affected_subject.md) | range | [Entity](Entity.md) |
 | [GeometryChange](GeometryChange.md) | [affected_subject](affected_subject.md) | range | [Entity](Entity.md) |

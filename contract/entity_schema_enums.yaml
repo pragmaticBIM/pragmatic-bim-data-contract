@@ -141,6 +141,14 @@ enums:
           de:
             source: de
             description: Nachricht
+      measurement:
+        description: Derived multi-subject measurement entity (for example clear width between railings).
+        meaning: pbs:content_kind_measurement
+        title: Measurement
+        alt_descriptions:
+          de:
+            source: de
+            description: Messung
   ArtifactKind:
     enum_uri: pbs:ArtifactKind
     description: Kind of external project artifact referenced by storage_link.
@@ -302,6 +310,34 @@ enums:
           de:
             source: de
             description: Manuell erfasst
+  MeasurementStatus:
+    enum_uri: pbs:MeasurementStatus
+    description: Outcome of attempting a derived measurement on model entities.
+    permissible_values:
+      measured:
+        description: A value was successfully measured from the model.
+        meaning: pbs:measurement_status_measured
+        title: Measured
+        alt_descriptions:
+          de:
+            source: de
+            description: Gemessen
+      not_measurable:
+        description: The measurement could not be computed from the available model data or geometry.
+        meaning: pbs:measurement_status_not_measurable
+        title: Not measurable
+        alt_descriptions:
+          de:
+            source: de
+            description: Nicht messbar
+      not_applicable:
+        description: The measurement does not apply to these subjects in this context.
+        meaning: pbs:measurement_status_not_applicable
+        title: Not applicable
+        alt_descriptions:
+          de:
+            source: de
+            description: Nicht anwendbar
   StatusType:
     enum_uri: pbs:StatusType
     description: Lifecycle or QA gate status used for model progression and approvals.

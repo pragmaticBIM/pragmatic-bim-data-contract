@@ -109,6 +109,7 @@ click Classification href "./Classification.html" _blank
 | [TimeRecord](TimeRecord.md) | [classifications](classifications.md) | range | [Classification](Classification.md) |
 | [CostRecord](CostRecord.md) | [classifications](classifications.md) | range | [Classification](Classification.md) |
 | [Material](Material.md) | [classifications](classifications.md) | range | [Classification](Classification.md) |
+| [DerivedMeasurement](DerivedMeasurement.md) | [classifications](classifications.md) | range | [Classification](Classification.md) |
 
 
 

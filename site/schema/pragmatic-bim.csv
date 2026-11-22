@@ -23,6 +23,7 @@ DeletionChange,,Entity removed in to_revision.
 Deliverable,,Outcome or handover item produced within a project.
 DeliverableRequirement,,"Deliverable or documentation requirement (model LOD, O&M manual, export format, etc.)."
 Derivation,,"How a value or relation was obtained. Embedded on the record it describes (for example a QuantityValue measured from geometry, or a ConnectionVirtual computed by a contact test) so that every derived fact carries its source kind, method, method version, tolerance, and input entities. Lets checks distinguish values read from IFC, values computed from geometry, project parameters, and manual entries, and lets results be reproduced or recomputed when a method changes."
+DerivedMeasurement,,Measurement entity with its own identity for values that involve more than one subject (for example clear width between a stair and two railings). Subjects are listed in applies_to_entities; the value and its Derivation live in quantity_values; an optional display line uses geometry_representations (typically WKT LINESTRING Z). Use measurement_status to distinguish a successful measure from not_measurable or not_applicable.
 Entity,,"Common base class for everything in the project graph. Has identity, lifecycle, and status."
 EnvironmentalProperty,,Normalized environmental property of an element type (embodied greenhouse gas emissions and primary energy).
 Equipment,,"Endpoint or device element (for example terminal, unit, control device, sensor) located in a space and assigned to a system."

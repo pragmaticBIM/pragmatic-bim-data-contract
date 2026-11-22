@@ -152,6 +152,8 @@ click LocalizedText href "./LocalizedText.html" _blank
 | [CostRecord](CostRecord.md) | [localized_descriptions](localized_descriptions.md) | range | [LocalizedText](LocalizedText.md) |
 | [Material](Material.md) | [localized_names](localized_names.md) | range | [LocalizedText](LocalizedText.md) |
 | [Material](Material.md) | [localized_descriptions](localized_descriptions.md) | range | [LocalizedText](LocalizedText.md) |
+| [DerivedMeasurement](DerivedMeasurement.md) | [localized_names](localized_names.md) | range | [LocalizedText](LocalizedText.md) |
+| [DerivedMeasurement](DerivedMeasurement.md) | [localized_descriptions](localized_descriptions.md) | range | [LocalizedText](LocalizedText.md) |
 
 
 

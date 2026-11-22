@@ -71,6 +71,7 @@ Name: pragmatic_bim_data_contract
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ScheduleRequirement](ScheduleRequirement.md) | Schedule obligation requirement (deadline, milestone, or start/finish window). |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[CostRequirement](CostRequirement.md) | Cost or budget requirement (unit-cost cap, total budget limit, etc.). |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[MaterialRequirement](MaterialRequirement.md) | Material or product specification requirement for matching against assigned materials. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[DerivedMeasurement](DerivedMeasurement.md) | Measurement entity with its own identity for values that involve more than one subject (for example clear width between a stair and two railings). Subjects are listed in applies_to_entities; the value and its Derivation live in quantity_values; an optional display line uses geometry_representations (typically WKT LINESTRING Z). Use measurement_status to distinguish a successful measure from not_measurable or not_applicable. |
 | [Change](Change.md) | Audit record observing the project graph moving between revisions. Not an Entity and not a graph node — it watches the graph. Use change_type together with the concrete subclass for interpretation. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[PropertyChange](PropertyChange.md) | Attribute, PropertySet, schema slot, or document field change. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[GeometryChange](GeometryChange.md) | Geometry or representation change for a subject. |
@@ -258,6 +259,7 @@ Name: pragmatic_bim_data_contract
 | [materials](materials.md) | Material definitions associated with this entity. |
 | [max_distance](max_distance.md) | Maximum walking distance in metres when adjacency_kind is max_distance. |
 | [meaning_uri](meaning_uri.md) | Optional semantic URI for linking the entity instance to an external ontology concept. |
+| [measurement_status](measurement_status.md) | Whether the measurement was obtained (measured), could not be computed from the model (not_measurable), or does not apply in this context (not_applicable). |
 | [media_format](media_format.md) | Encoding or format label (for example IFC4, PDF, DWG). |
 | [message_body](message_body.md) | Human-readable message content. |
 | [message_subject](message_subject.md) | Optional subject or headline for the message. |
@@ -428,6 +430,7 @@ Name: pragmatic_bim_data_contract
 | [LawfulBasis](LawfulBasis.md) | Lawful basis for processing personal data, aligned with GDPR Article 6 and similar regimes. |
 | [MatchStatus](MatchStatus.md) | Whether an entity satisfies a related requirement at the target revision. |
 | [MaterialPropertyKey](MaterialPropertyKey.md) | Canonical material-related keys derived from IFC PropertySets and material metadata. |
+| [MeasurementStatus](MeasurementStatus.md) | Outcome of attempting a derived measurement on model entities. |
 | [PerformancePropertyValueType](PerformancePropertyValueType.md) | Type discriminator for normalized performance property values. |
 | [PersonalDataCategory](PersonalDataCategory.md) | Category of personal data covered by consent or processing scope. |
 | [PersonalDataProcessingState](PersonalDataProcessingState.md) | Privacy handling state for personal data on a Person record, orthogonal to workflow QA status. |

@@ -111,6 +111,7 @@ click QuantityType href "./QuantityType.html" _blank
 | [TimeRecord](TimeRecord.md) | [quantity_values](quantity_values.md) | range | [QuantityValue](QuantityValue.md) |
 | [CostRecord](CostRecord.md) | [quantity_values](quantity_values.md) | range | [QuantityValue](QuantityValue.md) |
 | [Material](Material.md) | [quantity_values](quantity_values.md) | range | [QuantityValue](QuantityValue.md) |
+| [DerivedMeasurement](DerivedMeasurement.md) | [quantity_values](quantity_values.md) | range | [QuantityValue](QuantityValue.md) |
 
 
 

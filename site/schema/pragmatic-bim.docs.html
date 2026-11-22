@@ -62,7 +62,7 @@
     
     
   <meta name="panzoom-theme" content="material">
-<meta name="panzoom-data" content='{"selectors": [".d2", ".mermaid"], "initial_zoom_level": 1.0}'> </head>
+<meta name="panzoom-data" content='{"selectors": [".mermaid", ".d2"], "initial_zoom_level": 1.0}'> </head>
   
   
     
@@ -840,6 +840,10 @@
 <td>Material or product specification requirement for matching against assigned materials.</td>
 </tr>
 <tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="DerivedMeasurement.html">DerivedMeasurement</a></td>
+<td>Measurement entity with its own identity for values that involve more than one subject (for example clear width between a stair and two railings). Subjects are listed in applies_to_entities; the value and its Derivation live in quantity_values; an optional display line uses geometry_representations (typically WKT LINESTRING Z). Use measurement_status to distinguish a successful measure from not_measurable or not_applicable.</td>
+</tr>
+<tr>
 <td><a href="Change.html">Change</a></td>
 <td>Audit record observing the project graph moving between revisions. Not an Entity and not a graph node — it watches the graph. Use change_type together with the concrete subclass for interpretation.</td>
 </tr>
@@ -1553,6 +1557,10 @@
 <td>Optional semantic URI for linking the entity instance to an external ontology concept.</td>
 </tr>
 <tr>
+<td><a href="measurement_status.html">measurement_status</a></td>
+<td>Whether the measurement was obtained (measured), could not be computed from the model (not_measurable), or does not apply in this context (not_applicable).</td>
+</tr>
+<tr>
 <td><a href="media_format.html">media_format</a></td>
 <td>Encoding or format label (for example IFC4, PDF, DWG).</td>
 </tr>
@@ -2218,6 +2226,10 @@
 <tr>
 <td><a href="MaterialPropertyKey.html">MaterialPropertyKey</a></td>
 <td>Canonical material-related keys derived from IFC PropertySets and material metadata.</td>
+</tr>
+<tr>
+<td><a href="MeasurementStatus.html">MeasurementStatus</a></td>
+<td>Outcome of attempting a derived measurement on model entities.</td>
 </tr>
 <tr>
 <td><a href="PerformancePropertyValueType.html">PerformancePropertyValueType</a></td>
