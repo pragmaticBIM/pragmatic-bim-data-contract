@@ -82,7 +82,7 @@ class Converter:
         self.writer = SlotWriter(schema, self.report)
         self.nodes: dict[int, Node] = {}
         self.extra_nodes: dict[str, Node] = {}
-        """Synthetic top-level entities (for example DerivedMeasurement) keyed by local id."""
+        """Synthetic top-level entities (DerivedMeasurement, ConnectionVirtual, …) keyed by local id."""
         self._by_iri: dict[URIRef, Node] = {}
         self._disciplines: dict[int, Any] = {}
 

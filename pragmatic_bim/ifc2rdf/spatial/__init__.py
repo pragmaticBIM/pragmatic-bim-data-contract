@@ -9,6 +9,7 @@ from __future__ import annotations
 from typing import TYPE_CHECKING, Callable
 
 from pragmatic_bim.ifc2rdf.geometry import GeometryResult
+from pragmatic_bim.ifc2rdf.spatial.adjacency import space_adjacency
 from pragmatic_bim.ifc2rdf.spatial.contacts import side_contact, vertical_contact
 from pragmatic_bim.ifc2rdf.spatial.context import SpatialContext
 from pragmatic_bim.ifc2rdf.spatial.door_swing import door_opens_in_escape_direction
@@ -24,6 +25,7 @@ if TYPE_CHECKING:
     from pragmatic_bim.ifc2rdf.pipeline import Converter
 
 METHODS: dict[str, Callable[[SpatialContext, dict], None]] = {
+    "space_adjacency": space_adjacency,
     "opening_in_host": opening_in_host,
     "vertical_contact": vertical_contact,
     "side_contact": side_contact,

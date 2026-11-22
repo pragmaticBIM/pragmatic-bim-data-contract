@@ -28,6 +28,12 @@ class ConversionReport:
     skipped_stages: list[str] = field(default_factory=list)
     geometry_output: str | None = None
     geometry_failures: Counter = field(default_factory=Counter)
+    adjacency_comparison: Counter = field(default_factory=Counter)
+    """``ifc_and_geometry`` / ``ifc_only`` / ``geometry_only`` element↔space pairs."""
+    adjacency_disagreements: list[str] = field(default_factory=list)
+    """Human-readable IFC vs geometry disagreements (IFC kept)."""
+    spaces_without_ifc_boundaries: int = 0
+    """Spaces that had no ``IfcRelSpaceBoundary`` (geometry may fill them)."""
 
     def lines(self) -> list[str]:
         out = [
@@ -52,7 +58,29 @@ class ConversionReport:
             ("computed quantity", self.computed_quantities),
             ("computed measurement", self.computed_measurements),
             ("geometry failed", self.geometry_failures),
+            ("space adjacency pair", self.adjacency_comparison),
         ):
             out += [f"  {label}: {key} ×{n}" for key, n in sorted(counter.items())]
+        if self.spaces_without_ifc_boundaries:
+            out.append(f"  spaces without IFC space boundaries: {self.spaces_without_ifc_boundaries}")
+        metrics = self.adjacency_metrics()
+        if metrics is not None:
+            precision, recall = metrics
+            out.append(f"  space adjacency vs IFC: precision={precision:.3f} recall={recall:.3f}")
+        out += [f"  space adjacency disagreement: {item}" for item in self.adjacency_disagreements]
         out += [f"  skipped stage: {stage}" for stage in self.skipped_stages]
         return out
+
+    def adjacency_metrics(self) -> tuple[float, float] | None:
+        """Precision and recall of geometry pairs against IFC pairs, or None when IFC is empty."""
+        both = self.adjacency_comparison.get("ifc_and_geometry", 0)
+        ifc_only = self.adjacency_comparison.get("ifc_only", 0)
+        geometry_only = self.adjacency_comparison.get("geometry_only", 0)
+        ifc_total = both + ifc_only
+        geometry_total = both + geometry_only
+        if ifc_total == 0:
+            return None
+        precision = both / geometry_total if geometry_total else 0.0
+        recall = both / ifc_total
+        return precision, recall
+
