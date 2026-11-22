@@ -81,6 +81,8 @@ class Converter:
         self.report = ConversionReport(self.source_system, self.contract_version, mapping.version)
         self.writer = SlotWriter(schema, self.report)
         self.nodes: dict[int, Node] = {}
+        self.extra_nodes: dict[str, Node] = {}
+        """Synthetic top-level entities (for example DerivedMeasurement) keyed by local id."""
         self._by_iri: dict[URIRef, Node] = {}
         self._disciplines: dict[int, Any] = {}
 
@@ -91,9 +93,13 @@ class Converter:
 
     @property
     def by_iri(self) -> dict[URIRef, Node]:
-        if len(self._by_iri) != len(self.nodes):
-            self._by_iri = {n.iri: n for n in self.nodes.values()}
+        total = len(self.nodes) + len(self.extra_nodes)
+        if len(self._by_iri) != total:
+            self._by_iri = {n.iri: n for n in (*self.nodes.values(), *self.extra_nodes.values())}
         return self._by_iri
+
+    def all_nodes(self) -> list[Node]:
+        return sorted((*self.nodes.values(), *self.extra_nodes.values()), key=lambda n: n.global_id)
 
     def systems_of(self, entity: ifcopenshell.entity_instance) -> list:
         systems = []
@@ -167,7 +173,7 @@ class Converter:
         except ImportError as exc:
             self.report.skipped_stages.append(f"geometry (install pragmatic-bim[geometry]: {exc.name})")
             return
-        products = [n.entity for n in self.sorted_nodes() if n.entity.is_a("IfcProduct")]
+        products = [n.entity for n in self.sorted_nodes() if n.entity is not None and n.entity.is_a("IfcProduct")]
         result = run_geometry_pass(self.file, products, glb_path=self.geometry_out)
         self.report.geometry_failures.update(result.failures)
         if result.glb_path is not None:
@@ -185,7 +191,7 @@ class Converter:
         self.compute_geometry()
         for node in nodes:
             derive(self, node)
-        return build_graph(self, nodes)
+        return build_graph(self, self.all_nodes())
 
 
 def detect_source_system(ifc_file: ifcopenshell.file, conventions: dict[str, Any]) -> str:

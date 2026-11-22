@@ -146,6 +146,7 @@ click PerformancePropertyValueType href "./PerformancePropertyValueType.html" _b
 | [TimeRecord](TimeRecord.md) | [performance_properties](performance_properties.md) | range | [PerformanceProperty](PerformanceProperty.md) |
 | [CostRecord](CostRecord.md) | [performance_properties](performance_properties.md) | range | [PerformanceProperty](PerformanceProperty.md) |
 | [Material](Material.md) | [performance_properties](performance_properties.md) | range | [PerformanceProperty](PerformanceProperty.md) |
+| [DerivedMeasurement](DerivedMeasurement.md) | [performance_properties](performance_properties.md) | range | [PerformanceProperty](PerformanceProperty.md) |
 
 
 

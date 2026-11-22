@@ -25,5 +25,6 @@ imports:
 - entity_physical_schema
 - entity_virtual_schema
 - entity_requirements_schema
+- entity_measurement_schema
 - changes_schema_enums
 - changes_schema

@@ -15,6 +15,7 @@ contract/
 ├── entity_performance_schema.yaml
 ├── entity_schema_enums.yaml
 ├── entity_requirements_schema.yaml
+├── entity_measurement_schema.yaml
 ├── changes_schema.yaml
 ├── changes_schema_enums.yaml
 └── mapping/                              # IFC ingestion — see mapping/README.md
@@ -29,6 +30,7 @@ contract/
 | `entity_performance_schema.yaml` | Performance property classes on `Entity.performance_properties` |
 | `entity_schema_enums.yaml` | Entity-graph enums with EN/DE labels |
 | `entity_requirements_schema.yaml` | Requirement subclasses and requirement-driver slots |
+| `entity_measurement_schema.yaml` | `DerivedMeasurement` entities for multi-subject quantities |
 | `changes_schema.yaml` | Typed change records |
 | `changes_schema_enums.yaml` | Change enums (EN/DE labels) |
 | `mapping/` | Declarative IFC → contract mapping |
@@ -39,7 +41,7 @@ Cross-cutting enums such as `ContentKind` and `StatusType` live in `entity_schem
 
 The contract has two top-level concerns:
 
-1. **Entity graph** — everything modeled, specified, or managed in the project. All graph nodes are `Entity` subclasses with uniform `id`, `content_kind`, `status`, `created_at`, and `applies_to_entities`. The `content_kind` slot discriminates branches: physical, virtual, context, project, program, product, deliverable, requirement, artifact, contract, decision, task, process, agent, and message. Normalized IFC performance values stay on `Entity.performance_properties` (not requirements).
+1. **Entity graph** — everything modeled, specified, or managed in the project. All graph nodes are `Entity` subclasses with uniform `id`, `content_kind`, `status`, `created_at`, and `applies_to_entities`. The `content_kind` slot discriminates branches: physical, virtual, context, project, program, product, deliverable, requirement, artifact, contract, decision, task, process, agent, message, and measurement. Normalized IFC performance values stay on `Entity.performance_properties` (not requirements).
 2. **Change audit** — revision diff records as `Change` subclasses (`PropertyChange`, `GeometryChange`, `RequirementChange`, `MatchChange`, `AdditionChange`, `DeletionChange`). Change observes the graph between revisions; it is not an Entity and has no `content_kind`.
 
 Full class hierarchy and reference tables: [schema documentation](https://schema.pragmaticbim.ch/schema/pragmatic-bim.docs.html).
@@ -64,6 +66,7 @@ Business scope hierarchy: `Program` (`content_kind: program`) groups `Project` r
 - `cost_category` and `material_category` are intentionally open text for now and can later be aligned with stronger classification systems.
 - Units can be carried as plain strings for operational compatibility and optionally accompanied by unit URIs (for example QUDT) for stronger semantic alignment.
 - Derived values and relations carry an embedded `Derivation` (`QuantityValue.derivation`, `ConnectionVirtual.derivation`): `derivation_source_kind` (`ifc_explicit`, `ifc_geometry`, `project_parameter`, `manual`), `derivation_method`, `derivation_method_version`, `derivation_tolerance` with unit, `derivation_inputs` (for example the reference element of a height measured above it), `derived_by`, and `derived_at`. Requirement checks use it to tell a value read from IFC from one computed from geometry, and to recompute results when a method changes.
+- A measurement that involves more than one element is a `DerivedMeasurement` entity (`content_kind: measurement`) with subjects in `applies_to_entities`, values in `quantity_values`, optional display geometry in `geometry_representations`, and `measurement_status` (`measured` / `not_measurable` / `not_applicable`). A single-element quantity stays an embedded `QuantityValue` on that element.
 
 ## IFC mapping
 
@@ -109,6 +112,7 @@ Module slug → primary class doc:
 | `entity/performance` | `FireProperty.html` |
 | `entity/enums` | `ContentKind.html`, `RequirementTargetOperator.html`, `FirePropertyKey.html` |
 | `entity/requirements` | `Requirement.html` |
+| `entity/measurement` | `DerivedMeasurement.html` |
 | `changes` | `PropertyChange.html`, `Change.html` |
 | `changes/enums` | `ChangeType.html` |
 

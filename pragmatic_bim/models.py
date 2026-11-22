@@ -80,6 +80,7 @@ linkml_meta = LinkMLMeta({'default_prefix': 'pbs',
                  'entity_physical_schema',
                  'entity_virtual_schema',
                  'entity_requirements_schema',
+                 'entity_measurement_schema',
                  'changes_schema_enums',
                  'changes_schema'],
      'license': 'MIT',
@@ -162,6 +163,10 @@ class ContentKind(str, Enum):
     Message = "message"
     """
     Message or communication entity for coordination.
+    """
+    Measurement = "measurement"
+    """
+    Derived multi-subject measurement entity (for example clear width between railings).
     """
 
 
@@ -300,6 +305,24 @@ class DerivationSourceKind(str, Enum):
     Manual = "manual"
     """
     Entered or confirmed manually by a person.
+    """
+
+
+class MeasurementStatus(str, Enum):
+    """
+    Outcome of attempting a derived measurement on model entities.
+    """
+    Measured = "measured"
+    """
+    A value was successfully measured from the model.
+    """
+    Not_measurable = "not_measurable"
+    """
+    The measurement could not be computed from the available model data or geometry.
+    """
+    Not_applicable = "not_applicable"
+    """
+    The measurement does not apply to these subjects in this context.
     """
 
 
@@ -4846,6 +4869,54 @@ class Material(VirtualEntity):
         return v
 
 
+class DerivedMeasurement(Entity):
+    """
+    Measurement entity with its own identity for values that involve more than one subject (for example clear width between a stair and two railings). Subjects are listed in applies_to_entities; the value and its Derivation live in quantity_values; an optional display line uses geometry_representations (typically WKT LINESTRING Z). Use measurement_status to distinguish a successful measure from not_measurable or not_applicable.
+    """
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'pbs:DerivedMeasurement',
+         'from_schema': 'https://schema.pragmaticbim.ch/entity/measurement',
+         'slot_usage': {'content_kind': {'equals_string': 'measurement',
+                                         'name': 'content_kind'},
+                        'measurement_status': {'ifabsent': 'measured',
+                                               'name': 'measurement_status',
+                                               'required': True}}})
+
+    measurement_status: MeasurementStatus = Field(default=MeasurementStatus.Measured, description="""Whether the measurement was obtained (measured), could not be computed from the model (not_measurable), or does not apply in this context (not_applicable).""", json_schema_extra = { "linkml_meta": {'domain_of': ['DerivedMeasurement'], 'ifabsent': 'measured'} })
+    id: str = Field(default=..., description="""Unique local identifier.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Change']} })
+    content_kind: Literal["measurement"] = Field(default=..., description="""Entity type discriminator for adapter projection and querying. Must be a ContentKind value.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity'], 'equals_string': 'measurement'} })
+    name: str = Field(default=..., description="""Default display name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
+    localized_names: Optional[list[LocalizedText]] = Field(default=None, description="""Localized variants of name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
+    description: Optional[str] = Field(default=None, description="""Default description text.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
+    meaning_uri: Optional[str] = Field(default=None, description="""Optional semantic URI for linking the entity instance to an external ontology concept.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
+    localized_descriptions: Optional[list[LocalizedText]] = Field(default=None, description="""Localized variants of description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
+    ifc_global_id: Optional[str] = Field(default=None, description="""IFC GlobalId of the mapped entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Change']} })
+    classifications: Optional[list[Classification]] = Field(default=None, description="""Classification entries from IFC and other schemes.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Artifact']} })
+    geometry_representations: Optional[list[GeometryRepresentation]] = Field(default=None, description="""Geometry references associated with the entity. A single element may link to multiple geometry representations to serve different intents (authoring, coordination, analysis, visualization) without duplicating the element itself.
+""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
+    quantity_values: Optional[list[QuantityValue]] = Field(default=None, description="""Quantities associated with the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
+    metadata: Optional[list[MetadataEntry]] = Field(default=None, description="""Generic metadata container for IFC attributes/properties and project-specific extensions.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
+    performance_properties: Optional[list[PerformanceProperty]] = Field(default=None, description="""Normalized, strongly typed domain properties (fire/acoustic/thermal/structural/ security/material) extracted from raw IFC PropertySet values.
+""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
+    applies_to_entities: Optional[list[str]] = Field(default=None, description="""Model entities this record applies to (requirements, cost items, schedule items, etc.).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'TimeRecord', 'CostRecord']} })
+    created_at: Optional[datetime ] = Field(default=None, description="""Creation timestamp for this entity record.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
+    modified_at: Optional[datetime ] = Field(default=None, description="""Last modification timestamp for this entity record.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
+    revision: Optional[int] = Field(default=None, description="""Integer revision counter for change tracking.""", ge=0, json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
+    status: Optional[StatusType] = Field(default=None, description="""Lifecycle or QA status.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
+
+    @field_validator('ifc_global_id')
+    def pattern_ifc_global_id(cls, v):
+        pattern=re.compile(r"^[0-3][0-9A-Za-z_$]{21}$")
+        if isinstance(v, list):
+            for element in v:
+                if isinstance(element, str) and not pattern.match(element):
+                    err_msg = f"Invalid ifc_global_id format: {element}"
+                    raise ValueError(err_msg)
+        elif isinstance(v, str) and not pattern.match(v):
+            err_msg = f"Invalid ifc_global_id format: {v}"
+            raise ValueError(err_msg)
+        return v
+
+
 class Change(ConfiguredBaseModel):
     """
     Audit record observing the project graph moving between revisions. Not an Entity and not a graph node — it watches the graph. Use change_type together with the concrete subclass for interpretation.
@@ -5244,6 +5315,7 @@ TimeLink.model_rebuild()
 TimeRecord.model_rebuild()
 CostRecord.model_rebuild()
 Material.model_rebuild()
+DerivedMeasurement.model_rebuild()
 Change.model_rebuild()
 PropertyChange.model_rebuild()
 GeometryChange.model_rebuild()
