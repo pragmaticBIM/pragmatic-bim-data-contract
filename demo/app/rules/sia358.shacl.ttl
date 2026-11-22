@@ -10,9 +10,10 @@
 #   - At least 1.10 m where the drop height exceeds 12 m.
 #
 # Evidence computed by ifc2rdf from geometry (contract/mapping/_computed_relations.yaml):
-#   SafetyBarrier pbs:guards_space Space, and the QuantityValue
-#   quantity_type_height_above_walking_surface = barrier top - highest guarded floor.
-# The drop height is estimated from the storey elevation of the guarded space above ±0.00
+#   SafetyBarrier pbs:guards_space Space, and a DerivedMeasurement with
+#   quantity_type_height_above_walking_surface = barrier top - highest guarded floor
+#   (applies_to_entities: barrier + worst-case space).
+# The drop height is estimated from the storey elevation of the worst-case guarded space above ±0.00
 # (conservative at façades; galleries inside the building fall less).
 # Not covered: openings (12 cm sphere), climbability, stair railings measured at the nosing.
 
@@ -33,9 +34,12 @@ rule:GuardHeight a sh:NodeShape ;
             "Absturzsicherung {?height} m über der Gehfläche; SIA 358 verlangt mindestens {?required} m (geschätzte Absturzhöhe {?drop} m)."@de ;
         sh:select """
             SELECT DISTINCT $this ?height ?required ?drop WHERE {
-                $this pbs:quantity_values ?q ; pbs:guards_space ?space .
+                ?m a pbs:DerivedMeasurement ;
+                   pbs:applies_to_entities $this , ?space ;
+                   pbs:quantity_values ?q .
                 ?q pbs:quantity_type pbs:quantity_type_height_above_walking_surface ;
                    pbs:quantity_value ?height .
+                FILTER (?space != $this)
                 OPTIONAL { ?space pbs:parent_level ?level . ?level pbs:elevation ?elevation }
                 BIND (COALESCE(?elevation, 0.0) AS ?drop)
                 BIND (IF(?drop > 12.0, 1.10, 1.00) AS ?required)
@@ -50,7 +54,9 @@ rule:GuardHeight a sh:NodeShape ;
         sh:select """
             SELECT $this WHERE {
                 FILTER NOT EXISTS {
-                    $this pbs:quantity_values ?q .
+                    ?m a pbs:DerivedMeasurement ;
+                       pbs:applies_to_entities $this ;
+                       pbs:quantity_values ?q .
                     ?q pbs:quantity_type pbs:quantity_type_height_above_walking_surface .
                 }
             }"""

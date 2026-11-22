@@ -2833,7 +2833,7 @@ ifc_mapping.merged.yaml   ← single file for adapters
 <td><code>barrier_walking_surface</code></td>
 <td><code>SafetyBarrier</code> → <code>Space</code></td>
 <td>Plan distance ≤ <code>max_plan_distance</code>; space floor between barrier base − <code>max_floor_below_base</code> and base + <code>floor_tolerance</code></td>
-<td><code>height_above_walking_surface</code> = barrier top − highest guarded floor</td>
+<td><code>guards_space</code> on the barrier; <code>DerivedMeasurement</code> with <code>height_above_walking_surface</code> (barrier + worst-case space), all guarded spaces as <code>derivation_inputs</code>, vertical <code>LINESTRING Z</code></td>
 </tr>
 <tr>
 <td><code>lit_space</code></td>
@@ -2870,7 +2870,7 @@ ifc_mapping.merged.yaml   ← single file for adapters
 <tbody>
 <tr>
 <td>Fall protection ≥ 1.10 m above the walking surface</td>
-<td><code>SafetyBarrier</code> → <code>guards_space</code>, <code>height_above_walking_surface</code></td>
+<td><code>SafetyBarrier</code> → <code>guards_space</code>; <code>DerivedMeasurement</code> <code>height_above_walking_surface</code></td>
 </tr>
 <tr>
 <td>Doors in fire-rated walls carry a fire rating</td>

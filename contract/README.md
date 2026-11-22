@@ -50,6 +50,8 @@ Full class hierarchy and reference tables: [schema documentation](https://schema
 
 `NeighbourDistance` and the `PhysicalElement.neighbours` slot are removed. Clear horizontal and vertical distances between nearby elements are emitted as `DerivedMeasurement` entities (`quantity_type` `horizontal_clear_distance` and `vertical_clear_distance`, subjects in `applies_to_entities`). Regenerate graphs from IFC; do not migrate embedded neighbour records.
 
+`SafetyBarrier` no longer embeds `height_above_walking_surface` as a `QuantityValue`. The height is a `DerivedMeasurement` on the barrier and the worst-case guarded space (`quantity_type` `height_above_walking_surface`); `guards_space` remains on the barrier. Regenerate graphs from IFC; update SHACL/SPARQL that read the embedded quantity.
+
 Documents, decisions, tasks, and messages are now top-level entity records linked via `applies_to_entities` instead of being embedded on other entities. `ContentKind.change` is removed. Change records use typed references (`affected_subject`, `affected_requirement`, `related_requirement`, `triggered_task`, `triggered_process`) instead of bare string IDs where applicable.
 
 External files are modeled as `Artifact` (`content_kind: artifact`) with `artifact_kind` (text document, model, plan) and `storage_link`, replacing `yamlDocument` / `ContentKind.document`. Requirement provenance uses `source_artifact` (was `source_document`). Change records use `artifact_storage_link` (was `document_storage_link`).

@@ -150,8 +150,35 @@ def test_reserved_volume_intersections(demo):
 def test_barrier_guards_space_and_height(demo):
     graph, _, _ = demo
     for role, height in (("railing_front", 1.10), ("railing_side", 1.00)):
+        barrier = iri(role)
         assert objects(graph, role, "guards_space") == {iri("balcony_space")}
-        assert quantity(graph, role, "height_above_walking_surface") == pytest.approx(height, abs=1e-3)
+        assert str(PBS.quantity_type_height_above_walking_surface) not in quantities(graph, role)
+        measurements = [
+            m
+            for m in graph.subjects(RDF.type, PBS.DerivedMeasurement)
+            if barrier in set(graph.objects(m, PBS.applies_to_entities))
+            and any(
+                graph.value(q, PBS.quantity_type) == PBS.quantity_type_height_above_walking_surface
+                for q in graph.objects(m, PBS.quantity_values)
+            )
+        ]
+        assert len(measurements) == 1
+        measurement = measurements[0]
+        assert set(graph.objects(measurement, PBS.applies_to_entities)) == {
+            barrier,
+            iri("balcony_space"),
+        }
+        qv = next(
+            q
+            for q in graph.objects(measurement, PBS.quantity_values)
+            if graph.value(q, PBS.quantity_type) == PBS.quantity_type_height_above_walking_surface
+        )
+        assert graph.value(qv, PBS.quantity_value).toPython() == pytest.approx(height, abs=1e-3)
+        derivation = graph.value(qv, PBS.derivation)
+        assert set(graph.objects(derivation, PBS.derivation_inputs)) == {iri("balcony_space")}
+        geom = next(graph.objects(measurement, PBS.geometry_representations))
+        assert str(graph.value(geom, PBS.geometry_wkt)).startswith("LINESTRING Z")
+
 
 
 def test_rests_on_slab_column_slab(demo):
@@ -264,9 +291,11 @@ def test_plan_region_walks_around_corners():
 BARRIERS_BELOW_MINIMUM = """
 PREFIX pbs: <https://schema.pragmaticbim.ch/>
 SELECT ?barrier WHERE {
-  ?barrier a pbs:SafetyBarrier ; pbs:guards_space ?space ;
-           pbs:quantity_values [ pbs:quantity_type pbs:quantity_type_height_above_walking_surface ;
-                                 pbs:quantity_value ?height ] .
+  ?barrier a pbs:SafetyBarrier ; pbs:guards_space ?space .
+  ?m a pbs:DerivedMeasurement ;
+     pbs:applies_to_entities ?barrier , ?space ;
+     pbs:quantity_values [ pbs:quantity_type pbs:quantity_type_height_above_walking_surface ;
+                           pbs:quantity_value ?height ] .
   FILTER (?height < 1.1 - 0.001)
 }"""
 
