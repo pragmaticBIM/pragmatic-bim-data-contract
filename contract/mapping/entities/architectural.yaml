@@ -460,7 +460,8 @@
     notes: >
       Proxies are mapped only when a pragmaticBIM Reference element definition matches
       (applicability on ObjectType in any language). Other proxies are not emitted and are
-      counted under "no reference match" in the conversion report.
+      counted under "no reference match" in the conversion report. Escape signs override
+      content_kind to physical Equipment; reserved volumes stay virtual.
     reference_element_map:
       pragmaticbim:element/architecture-maintenance-space:
         canonical_type: ReservedVolume.maintenance
@@ -477,6 +478,10 @@
       pragmaticbim:element/architecture-device-space:
         canonical_type: ReservedVolume.device_space
         reserved_volume_type: device_space
+      pragmaticbim:element/mep-escape-sign:
+        canonical_type: Equipment.escape_sign
+        content_kind: physical
+        equipment_type: fire_safety
     fields:
       name: *name_fallback_chain
       code_or_number:
@@ -489,6 +494,10 @@
       reserved_volume_type:
         source: predefined_type_map
         attribute: reserved_volume_type
+      equipment_type:
+        source: predefined_type_map
+        attribute: equipment_type
+      performance_properties: *performance_properties_escape_sign
     geometry: *geometry_body_footprint
     relations:
       - IfcRelContainedInSpatialStructure
@@ -513,6 +522,9 @@
       <<: *attributes_entity_base
       performance_properties: *performance_properties_space
       quantity_values: *quantity_values_escape_route_clear_width
+      escape_route_role:
+        source: ifc_pset_fallback
+        <<: *escape_route_role_pset
       space_type:
         source: ifc_attribute_heuristic
         attribute: LongName

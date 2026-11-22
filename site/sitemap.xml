@@ -597,6 +597,10 @@
          <lastmod>2026-11-22</lastmod>
     </url>
     <url>
+         <loc>https://schema.pragmaticbim.ch/schema/EscapeRouteRole.html</loc>
+         <lastmod>2026-11-22</lastmod>
+    </url>
+    <url>
          <loc>https://schema.pragmaticbim.ch/schema/FireProperty.html</loc>
          <lastmod>2026-11-22</lastmod>
     </url>
@@ -1378,6 +1382,10 @@
     </url>
     <url>
          <loc>https://schema.pragmaticbim.ch/schema/escape_route_next.html</loc>
+         <lastmod>2026-11-22</lastmod>
+    </url>
+    <url>
+         <loc>https://schema.pragmaticbim.ch/schema/escape_route_role.html</loc>
          <lastmod>2026-11-22</lastmod>
     </url>
     <url>

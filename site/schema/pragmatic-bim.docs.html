@@ -62,7 +62,7 @@
     
     
   <meta name="panzoom-theme" content="material">
-<meta name="panzoom-data" content='{"selectors": [".d2", ".mermaid"], "initial_zoom_level": 1.0}'> </head>
+<meta name="panzoom-data" content='{"selectors": [".mermaid", ".d2"], "initial_zoom_level": 1.0}'> </head>
   
   
     
@@ -1401,6 +1401,10 @@
 <td>Next element on the shortest horizontal escape route: the door a space is left through, or the door or stair a door leads on to. The route ends at an exit to the outside or at a stair leaving the storey; follow the slot repeatedly to read the whole route. Computed from geometry; the remaining length is the escape_route_length quantity.</td>
 </tr>
 <tr>
+<td><a href="escape_route_role.html">escape_route_role</a></td>
+<td>Role of this space on an escape route: horizontal, vertical, or exit to the open air. Unset when the space is not part of an escape route. From ePset_Space.EscapeRouteRole; shared by VKF 16-15 and 17-15 checks.</td>
+</tr>
+<tr>
 <td><a href="external_instance_uri.html">external_instance_uri</a></td>
 <td>URI of the corresponding process instance in an external workflow engine when applicable.</td>
 </tr>
@@ -2202,6 +2206,10 @@
 <tr>
 <td><a href="EquipmentType.html">EquipmentType</a></td>
 <td></td>
+</tr>
+<tr>
+<td><a href="EscapeRouteRole.html">EscapeRouteRole</a></td>
+<td>Role of a space on an escape route (VKF 16-15 / 17-15): horizontal route, vertical route, or exit to the open air. Set only on spaces that belong to an escape route.</td>
 </tr>
 <tr>
 <td><a href="FirePropertyKey.html">FirePropertyKey</a></td>

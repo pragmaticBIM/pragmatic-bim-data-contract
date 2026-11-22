@@ -422,6 +422,29 @@
       - IfcRelAggregates
       - IfcRelAssociatesClassification
 
+  # Safety / general luminaires. SECURITYLIGHTING carries ePset_SafetyLighting (VKF 17-15).
+  IfcLightFixture:
+    content_kind: physical
+    canonical_type: Equipment
+    fields:
+      name: *name_fallback_chain
+      code_or_number:
+        source: ifc_pset_fallback
+        <<: *code_equipment
+      storey: *storey_from_containment
+      classifications: *classifications_mapping
+    attributes:
+      <<: *attributes_entity_base
+      equipment_type:
+        source: constant
+        value: electrical
+      performance_properties: *performance_properties_safety_lighting
+    geometry: *geometry_body_footprint
+    relations:
+      - IfcRelContainedInSpatialStructure
+      - IfcRelAssignsToSystem
+      - IfcRelAssociatesClassification
+
   IfcDistributionSystem:
     content_kind: virtual
     canonical_type: System

@@ -1536,6 +1536,56 @@ class FirePropertyKey(str, Enum):
     resistance_rating = "resistance_rating"
     smoke_rating = "smoke_rating"
     reaction_to_fire = "reaction_to_fire"
+    safety_rated_duration = "safety_rated_duration"
+    """
+    Rated operating time of safety lighting when normal lighting fails, in minutes (VKF 17-15).
+    """
+    safety_start_up_time = "safety_start_up_time"
+    """
+    Time until safety lighting operates after general power supply failure, in seconds (VKF 17-15).
+    """
+    safety_supply_type = "safety_supply_type"
+    """
+    Safety power source type (SINGLE_BATTERY, CENTRAL_BATTERY, GENERATOR).
+    """
+    safety_floor_illuminance = "safety_floor_illuminance"
+    """
+    Planned illuminance of safety lighting at floor level of the escape route, in lx.
+    """
+    safety_not_switchable = "safety_not_switchable"
+    """
+    Whether the safety luminaire cannot be switched off by a main or room lighting switch.
+    """
+    escape_sign_lighting_type = "escape_sign_lighting_type"
+    """
+    Lighting type of an escape sign (ILLUMINATED, BACKLIT, AFTERGLOW).
+    """
+    escape_sign_supply_type = "escape_sign_supply_type"
+    """
+    Safety power source of a lit or backlit escape sign (SINGLE_BATTERY, CENTRAL_BATTERY, GENERATOR).
+    """
+    escape_sign_mounting_height = "escape_sign_mounting_height"
+    """
+    Mounting height of the lower edge of an escape sign above the finished floor, in metres.
+    """
+
+
+class EscapeRouteRole(str, Enum):
+    """
+    Role of a space on an escape route (VKF 16-15 / 17-15): horizontal route, vertical route, or exit to the open air. Set only on spaces that belong to an escape route.
+    """
+    Horizontal = "HORIZONTAL"
+    """
+    Horizontal escape route (for example a corridor or lobby on the escape path).
+    """
+    Vertical = "VERTICAL"
+    """
+    Vertical escape route (for example a stairwell).
+    """
+    Exit = "EXIT"
+    """
+    Exit to the open air or equivalent end of the escape route.
+    """
 
 
 class AcousticPropertyKey(str, Enum):
@@ -4476,6 +4526,7 @@ class Space(VirtualEntity):
     adjacent_elements: Optional[list[str]] = Field(default=None, description="""Physical elements adjacent to the space through an IFC space boundary (walls, slabs, doors, windows, coverings). Space-side view of separates_spaces, connects_spaces, and bounded_by, serialized as bot:adjacentElement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Space'], 'slot_uri': 'bot:adjacentElement'} })
     contained_entities: Optional[list[str]] = Field(default=None, description="""Generic containment for associated entities.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Space', 'System']} })
     escape_route_next: Optional[str] = Field(default=None, description="""Next element on the shortest horizontal escape route: the door a space is left through, or the door or stair a door leads on to. The route ends at an exit to the outside or at a stair leaving the storey; follow the slot repeatedly to read the whole route. Computed from geometry; the remaining length is the escape_route_length quantity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ConnectionPhysical', 'Space']} })
+    escape_route_role: Optional[EscapeRouteRole] = Field(default=None, description="""Role of this space on an escape route: horizontal, vertical, or exit to the open air. Unset when the space is not part of an escape route. From ePset_Space.EscapeRouteRole; shared by VKF 16-15 and 17-15 checks.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Space']} })
     cost_records: Optional[list[str]] = Field(default=None, description="""Cost records associated with this entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['VirtualEntity']} })
     time_records: Optional[list[str]] = Field(default=None, description="""Time records associated with this entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['VirtualEntity']} })
     materials: Optional[list[str]] = Field(default=None, description="""Material definitions associated with this entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['VirtualEntity']} })

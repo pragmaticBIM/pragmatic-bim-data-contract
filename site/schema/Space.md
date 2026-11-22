@@ -34,6 +34,7 @@ click Classification href "./Classification.html" _blank
 click Entity href "./Entity.html" _blank
 click CostRecord href "./CostRecord.html" _blank
 click PhysicalElement href "./PhysicalElement.html" _blank
+click EscapeRouteRole href "./EscapeRouteRole.html" _blank
 click GeometryRepresentation href "./GeometryRepresentation.html" _blank
 click LocalizedText href "./LocalizedText.html" _blank
 click LocalizedText href "./LocalizedText.html" _blank
@@ -83,6 +84,7 @@ click TimeRecord href "./TimeRecord.html" _blank
 | [adjacent_elements](adjacent_elements.md) | * <br/> [PhysicalElement](PhysicalElement.md) | Physical elements adjacent to the space through an IFC space boundary (walls, slabs, doors, windows, coverings). Space-side view of separates_spaces, connects_spaces, and bounded_by, serialized as bot:adjacentElement. | direct |
 | [contained_entities](contained_entities.md) | * <br/> [Entity](Entity.md) | Generic containment for associated entities. | direct |
 | [escape_route_next](escape_route_next.md) | 0..1 <br/> [PhysicalElement](PhysicalElement.md) | Next element on the shortest horizontal escape route: the door a space is left through, or the door or stair a door leads on to. The route ends at an exit to the outside or at a stair leaving the storey; follow the slot repeatedly to read the whole route. Computed from geometry; the remaining length is the escape_route_length quantity. | direct |
+| [escape_route_role](escape_route_role.md) | 0..1 <br/> [EscapeRouteRole](EscapeRouteRole.md) | Role of this space on an escape route: horizontal, vertical, or exit to the open air. Unset when the space is not part of an escape route. From ePset_Space.EscapeRouteRole; shared by VKF 16-15 and 17-15 checks. | direct |
 | [cost_records](cost_records.md) | * <br/> [CostRecord](CostRecord.md) | Cost records associated with this entity. | [VirtualEntity](VirtualEntity.md) |
 | [time_records](time_records.md) | * <br/> [TimeRecord](TimeRecord.md) | Time records associated with this entity. | [VirtualEntity](VirtualEntity.md) |
 | [materials](materials.md) | * <br/> [Material](Material.md) | Material definitions associated with this entity. | [VirtualEntity](VirtualEntity.md) |
@@ -191,6 +193,7 @@ slots:
 - adjacent_elements
 - contained_entities
 - escape_route_next
+- escape_route_role
 slot_usage:
   parent_building:
     name: parent_building
@@ -356,6 +359,17 @@ attributes:
     - ConnectionPhysical
     - Space
     range: PhysicalElement
+  escape_route_role:
+    name: escape_route_role
+    description: 'Role of this space on an escape route: horizontal, vertical, or
+      exit to the open air. Unset when the space is not part of an escape route. From
+      ePset_Space.EscapeRouteRole; shared by VKF 16-15 and 17-15 checks.'
+    from_schema: https://schema.pragmaticbim.ch
+    rank: 1000
+    owner: Space
+    domain_of:
+    - Space
+    range: EscapeRouteRole
   cost_records:
     name: cost_records
     description: Cost records associated with this entity.

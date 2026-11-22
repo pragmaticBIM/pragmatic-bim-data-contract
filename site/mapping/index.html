@@ -62,7 +62,7 @@
     
     
   <meta name="panzoom-theme" content="material">
-<meta name="panzoom-data" content='{"selectors": [".d2", ".mermaid"], "initial_zoom_level": 1.0}'> </head>
+<meta name="panzoom-data" content='{"selectors": [".mermaid", ".d2"], "initial_zoom_level": 1.0}'> </head>
   
   
     
@@ -2256,8 +2256,65 @@ ifc_mapping.merged.yaml   ← single file for adapters
 <td>number</td>
 <td><code>normalize_count</code></td>
 </tr>
+<tr>
+<td><code>ePset_SafetyLighting.SafetyRatedDuration</code></td>
+<td><code>FireProperty</code></td>
+<td><code>safety_rated_duration</code></td>
+<td>number (min)</td>
+<td><code>normalize_safety_duration_min</code></td>
+</tr>
+<tr>
+<td><code>ePset_SafetyLighting.SafetyStartUpTime</code></td>
+<td><code>FireProperty</code></td>
+<td><code>safety_start_up_time</code></td>
+<td>number (s)</td>
+<td><code>normalize_safety_start_up_s</code></td>
+</tr>
+<tr>
+<td><code>ePset_SafetyLighting.SafetySupplyType</code></td>
+<td><code>FireProperty</code></td>
+<td><code>safety_supply_type</code></td>
+<td>string</td>
+<td><code>normalize_safety_token</code></td>
+</tr>
+<tr>
+<td><code>ePset_SafetyLighting.SafetyFloorIlluminance</code></td>
+<td><code>FireProperty</code></td>
+<td><code>safety_floor_illuminance</code></td>
+<td>number (lx)</td>
+<td><code>normalize_safety_illuminance_lx</code></td>
+</tr>
+<tr>
+<td><code>ePset_SafetyLighting.SafetyNotSwitchable</code></td>
+<td><code>FireProperty</code></td>
+<td><code>safety_not_switchable</code></td>
+<td>boolean</td>
+<td><code>normalize_boolean</code></td>
+</tr>
+<tr>
+<td><code>ePset_EscapeSign.LightingType</code></td>
+<td><code>FireProperty</code></td>
+<td><code>escape_sign_lighting_type</code></td>
+<td>string</td>
+<td><code>normalize_safety_token</code></td>
+</tr>
+<tr>
+<td><code>ePset_EscapeSign.SupplyType</code></td>
+<td><code>FireProperty</code></td>
+<td><code>escape_sign_supply_type</code></td>
+<td>string</td>
+<td><code>normalize_safety_token</code></td>
+</tr>
+<tr>
+<td><code>ePset_EscapeSign.MountingHeight</code></td>
+<td><code>FireProperty</code></td>
+<td><code>escape_sign_mounting_height</code></td>
+<td>number (m)</td>
+<td><code>normalize_escape_sign_mounting_height</code></td>
+</tr>
 </tbody>
 </table>
+<p><code>ePset_Space.EscapeRouteRole</code> maps to <code>Space.escape_route_role</code> (<code>HORIZONTAL</code> / <code>VERTICAL</code> / <code>EXIT</code>). <code>IfcLightFixture</code> maps to <code>Equipment</code> with the safety-lighting properties; <code>mep-escape-sign</code> proxies map to <code>Equipment</code> with the escape-sign properties.</p>
 <h3 id="typed-quantities-from-propertysets">Typed quantities from PropertySets<a class="headerlink" href="#typed-quantities-from-propertysets" title="Permanent link">&para;</a></h3>
 <p>Rule-relevant length PropertySet values are promoted to typed <code>QuantityValue</code> records on <code>Entity.quantity_values</code> via <code>ifc_pset_quantity</code>. Lengths are converted from project units to metres. Each record carries <code>derivation</code> with <code>derivation_source_kind: ifc_explicit</code> and <code>derivation_method</code> set to <code>{pset}.{property}</code>.</p>
 <table>
@@ -2847,6 +2904,18 @@ ifc_mapping.merged.yaml   ← single file for adapters
 <tr>
 <td>Fire compartment of a space</td>
 <td><code>Space.parent_zone</code> where <code>ZoneContext.zone_type</code> is <code>fire</code></td>
+</tr>
+<tr>
+<td>Escape-route role of a space</td>
+<td><code>Space.escape_route_role</code></td>
+</tr>
+<tr>
+<td>Safety lighting duration / start-up / illuminance</td>
+<td><code>FireProperty</code> keys on <code>IfcLightFixture</code></td>
+</tr>
+<tr>
+<td>Escape sign lighting type / supply / mounting height</td>
+<td><code>FireProperty</code> keys on <code>mep-escape-sign</code></td>
 </tr>
 </tbody>
 </table>

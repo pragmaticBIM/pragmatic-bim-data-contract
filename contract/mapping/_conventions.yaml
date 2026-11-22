@@ -238,3 +238,38 @@ conventions:
     unit_uri: http://qudt.org/vocab/unit/M
     convert_length_to: m
 
+  normalize_safety_duration_min: &normalize_safety_duration_min
+    value_type: number
+    number_pattern: "[0-9]+(?:[.,][0-9]+)?"
+    accept_range: {gt: 0}
+    unit: min
+    unit_uri: http://qudt.org/vocab/unit/MIN
+
+  normalize_safety_start_up_s: &normalize_safety_start_up_s
+    value_type: number
+    number_pattern: "[0-9]+(?:[.,][0-9]+)?"
+    accept_range: {gte: 0}
+    unit: s
+    unit_uri: http://qudt.org/vocab/unit/SEC
+
+  normalize_safety_illuminance_lx: &normalize_safety_illuminance_lx
+    value_type: number
+    number_pattern: "[0-9]+(?:[.,][0-9]+)?"
+    accept_range: {gte: 0}
+    unit: lx
+    unit_uri: http://qudt.org/vocab/unit/LUX
+
+  normalize_escape_sign_mounting_height: &normalize_escape_sign_mounting_height
+    value_type: number
+    # IfcReal in metres (catalog unit), not project length measure.
+    number_pattern: "[0-9]+(?:[.,][0-9]+)?"
+    accept_range: {gt: 0}
+    unit: m
+    unit_uri: http://qudt.org/vocab/unit/M
+
+  normalize_safety_token: &normalize_safety_token
+    value_type: string
+    remove_whitespace: true
+    upper_case: true
+    accept_pattern: "^[A-Z0-9_]+$"
+
