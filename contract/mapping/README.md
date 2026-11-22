@@ -190,7 +190,7 @@ The entrypoint [`ifc_mapping.yaml`](ifc_mapping.yaml) declares version metadata 
 Merged structure:
 
 ```yaml
-mapping_version: "1.5.0"
+mapping_version: "1.6.0"
 schema_uri: https://schema.pragmaticbim.ch/
 canonical_type_version: "v0.0.7"
 
@@ -330,7 +330,7 @@ Example `attributes` JSONB fragment:
       "source_pset": "Pset_WallCommon",
       "source_property": "FireRating",
       "source_value_raw": "EI 60",
-      "mapping_version": "1.5.0"
+      "mapping_version": "1.6.0"
     }
   ],
   "metadata": [
@@ -549,6 +549,7 @@ Selectors combine with AND: `contract_class` (including subclasses), `ifc_class`
 
 | Relation | Method | Subject → object | Geometric test | Quantities |
 |----------|--------|------------------|----------------|------------|
+| `separates_spaces` / `connects_spaces` / `bounded_by` / `adjacent_elements` | `space_adjacency` | wall / slab / curtain wall / door / window / covering ↔ `Space` | Fallback when `IfcRelSpaceBoundary` is missing or incomplete: plan gap ≤ half wall thickness + `contact_tolerance` (slabs: space floor on slab top or ceiling on slab bottom, plan overlap ≥ `min_plan_overlap`); IFC pairs win; disagreements and precision/recall go into the conversion report; each kept pair emits a `ConnectionVirtual` (`connection_virtual_type: adjacency`) with `Derivation` (`ifc_explicit` or `ifc_geometry`) | — |
 | `hosted_by` | `opening_in_host` | door / window → `Separator` | Plan distance ≤ `max_plan_distance`, vertical overlap; prefers the host whose oriented plan envelope contains the opening centre | — |
 | `rests_on` | `vertical_contact` | wall / slab / column / beam / footing → same; `Equipment` → same objects | Subject bottom within the object's vertical extent (± `contact_tolerance`, above the object's bottom), subject rises above the object's top, plan overlap ≥ `min_contact_area` | — |
 | `connects_physical_elements` | `side_contact` | wall / column / beam ↔ same | Plan distance ≤ `max_plan_distance`, vertical overlap ≥ `min_overlap_height`, no `rests_on` between the pair; written on both elements | — |

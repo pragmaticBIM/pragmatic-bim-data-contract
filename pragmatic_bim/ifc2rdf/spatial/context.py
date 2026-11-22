@@ -28,6 +28,13 @@ _MEASUREMENT_MAPPING = EntityMapping(
     canonical_type="DerivedMeasurement",
     predefined={},
 )
+_CONNECTION_VIRTUAL_MAPPING = EntityMapping(
+    key="ConnectionVirtual",
+    block={"content_kind": "virtual", "canonical_type": "ConnectionVirtual"},
+    contract_class="ConnectionVirtual",
+    canonical_type="ConnectionVirtual",
+    predefined={},
+)
 
 
 class SpatialContext:
@@ -189,6 +196,52 @@ class SpatialContext:
         if added:
             self.conv.report.computed_relations[f"{slot} ({method})"] += 1
         return added
+
+    def add_adjacency_connection(
+        self,
+        element: Node,
+        space: Node,
+        *,
+        source_kind: str,
+        method: str,
+        method_version: str,
+        tolerance: float | None,
+    ) -> Node | None:
+        """Emit a ``ConnectionVirtual`` that carries Derivation for one element↔space adjacency."""
+        local_id = f"space_adjacency__{element.global_id}__{space.global_id}"
+        existing = self.conv.extra_nodes.get(local_id)
+        if existing is not None:
+            return existing
+
+        node = Node(
+            entity=None,
+            mapping=_CONNECTION_VIRTUAL_MAPPING,
+            iri=self.conv.iri(local_id),
+            types=self.conv.schema.rdf_types("ConnectionVirtual"),
+            local_id=local_id,
+        )
+        self.conv.extra_nodes[local_id] = node
+        self.conv._by_iri = {}
+
+        self.conv.writer.set(node, "content_kind", "virtual")
+        self.conv.writer.set(node, "name", f"space adjacency {element.global_id} {space.global_id}")
+        self.conv.writer.set(node, "connection_virtual_type", "adjacency")
+        self.conv.writer.set(node, "connects_physical_elements", element)
+        self.conv.writer.set(node, "connects_spaces", space)
+        self.conv.writer.add_inlined(
+            node,
+            "derivation",
+            "Derivation",
+            {
+                "derivation_source_kind": source_kind,
+                "derivation_method": method,
+                "derivation_method_version": method_version,
+                "derivation_tolerance": tolerance,
+                "derivation_tolerance_unit": "m" if tolerance is not None else None,
+            },
+        )
+        self.conv.report.computed_relations[f"ConnectionVirtual ({source_kind})"] += 1
+        return node
 
 
 def _measurement_id(method: str, subjects: Sequence[Node]) -> str:

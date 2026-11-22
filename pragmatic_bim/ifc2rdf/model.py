@@ -16,7 +16,7 @@ IRI_PATTERN = re.compile(r"^[A-Za-z][A-Za-z0-9+.\-]*:[^\s<>\"{}|\\^`]+$")
 
 
 def present(value: Any) -> bool:
-    return value is not None and value != "" and value != () and value != []
+    return value not in (None, "", (), [])
 
 
 def serialize_value(value: Any) -> str | None:
@@ -56,7 +56,7 @@ class Node:
     reference_elements: tuple[Any, ...] = ()
     """pragmaticBIM Reference element definitions the entity matches (best match first)."""
     local_id: str | None = None
-    """Stable id for synthetic (non-IFC) nodes such as DerivedMeasurement."""
+    """Stable id for synthetic (non-IFC) nodes such as DerivedMeasurement or ConnectionVirtual."""
 
     @property
     def global_id(self) -> str:
