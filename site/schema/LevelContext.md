@@ -32,6 +32,7 @@ click Classification href "./Classification.html" _blank
 click ContextType href "./ContextType.html" _blank
 click CostRecord href "./CostRecord.html" _blank
 click GeometryRepresentation href "./GeometryRepresentation.html" _blank
+click GroundReferenceSource href "./GroundReferenceSource.html" _blank
 click Entity href "./Entity.html" _blank
 click LocalizedText href "./LocalizedText.html" _blank
 click LocalizedText href "./LocalizedText.html" _blank
@@ -74,6 +75,9 @@ click ZoneType href "./ZoneType.html" _blank
 | ---  | --- | --- | --- |
 | [elevation](elevation.md) | 0..1 <br/> [Double](Double.md) | Storey elevation relative to project datum (metres). | direct |
 | [elevation_unit](elevation_unit.md) | 0..1 <br/> [String](String.md) | Unit for elevation (default m). | direct |
+| [above_ground](above_ground.md) | 0..1 <br/> [Boolean](Boolean.md) | Whether this storey is fully above ground. Resolved from IFC properties, the storey naming convention, or elevation (see ground_reference_source). | direct |
+| [is_ground_floor](is_ground_floor.md) | 0..1 <br/> [Boolean](Boolean.md) | Whether this storey is the building's ground floor (entrance level). Exactly one storey per building should be true after resolution. | direct |
+| [ground_reference_source](ground_reference_source.md) | 0..1 <br/> [GroundReferenceSource](GroundReferenceSource.md) | Which source was used to resolve above_ground and is_ground_floor for this storey (same source for all storeys of a building). | direct |
 | [context_type](context_type.md) | 1 <br/> [ContextType](ContextType.md) | Classification of context entity (perimeter, legal_site, building, civil_structure, level, zone). | [SpatialContext](SpatialContext.md) |
 | [zone_type](zone_type.md) | 0..1 <br/> [ZoneType](ZoneType.md) | Optional zone classification; intended for SpatialContext nodes where context_type is zone. | [SpatialContext](SpatialContext.md) |
 | [parent_project](parent_project.md) | 0..1 <br/> [Project](Project.md) | Parent project reference. | [SpatialContext](SpatialContext.md) |
@@ -120,6 +124,7 @@ click ZoneType href "./ZoneType.html" _blank
 | [SeparatorSlab](SeparatorSlab.md) | [parent_level](parent_level.md) | range | [LevelContext](LevelContext.md) |
 | [ConnectionPhysical](ConnectionPhysical.md) | [parent_level](parent_level.md) | range | [LevelContext](LevelContext.md) |
 | [SafetyBarrier](SafetyBarrier.md) | [parent_level](parent_level.md) | range | [LevelContext](LevelContext.md) |
+| [TerrainSurface](TerrainSurface.md) | [parent_level](parent_level.md) | range | [LevelContext](LevelContext.md) |
 | [Boundary](Boundary.md) | [parent_level](parent_level.md) | range | [LevelContext](LevelContext.md) |
 | [Equipment](Equipment.md) | [parent_level](parent_level.md) | range | [LevelContext](LevelContext.md) |
 | [SpatialContext](SpatialContext.md) | [parent_level](parent_level.md) | range | [LevelContext](LevelContext.md) |
@@ -188,6 +193,9 @@ is_a: SpatialContext
 slots:
 - elevation
 - elevation_unit
+- above_ground
+- is_ground_floor
+- ground_reference_source
 class_uri: pbs:LevelContext
 
 ```
@@ -222,6 +230,36 @@ attributes:
     domain_of:
     - LevelContext
     range: string
+  above_ground:
+    name: above_ground
+    description: Whether this storey is fully above ground. Resolved from IFC properties,
+      the storey naming convention, or elevation (see ground_reference_source).
+    from_schema: https://schema.pragmaticbim.ch
+    rank: 1000
+    owner: LevelContext
+    domain_of:
+    - LevelContext
+    range: boolean
+  is_ground_floor:
+    name: is_ground_floor
+    description: Whether this storey is the building's ground floor (entrance level).
+      Exactly one storey per building should be true after resolution.
+    from_schema: https://schema.pragmaticbim.ch
+    rank: 1000
+    owner: LevelContext
+    domain_of:
+    - LevelContext
+    range: boolean
+  ground_reference_source:
+    name: ground_reference_source
+    description: Which source was used to resolve above_ground and is_ground_floor
+      for this storey (same source for all storeys of a building).
+    from_schema: https://schema.pragmaticbim.ch
+    rank: 1000
+    owner: LevelContext
+    domain_of:
+    - LevelContext
+    range: GroundReferenceSource
   context_type:
     name: context_type
     description: Classification of context entity (perimeter, legal_site, building,

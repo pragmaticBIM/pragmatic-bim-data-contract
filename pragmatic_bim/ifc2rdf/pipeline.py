@@ -164,14 +164,20 @@ class Converter:
             self.report.ambiguous_elements[" | ".join(m.element.id for m in best)] += 1
 
     def compute_geometry(self) -> None:
-        if not self.geometry_enabled:
-            self.report.skipped_stages.append("geometry (disabled)")
-            return
         try:
-            from pragmatic_bim.ifc2rdf.geometry import run_geometry_pass
+            from pragmatic_bim.ifc2rdf.geometry import GeometryResult, run_geometry_pass
             from pragmatic_bim.ifc2rdf.spatial import compute
+            from pragmatic_bim.ifc2rdf.spatial.context import SpatialContext
+            from pragmatic_bim.ifc2rdf.spatial.ground import resolve_ground_floor
         except ImportError as exc:
             self.report.skipped_stages.append(f"geometry (install pragmatic-bim[geometry]: {exc.name})")
+            return
+        if not self.geometry_enabled:
+            self.report.skipped_stages.append("geometry (disabled)")
+            # Ground-floor flags do not need tessellation; still resolve them.
+            spec = self.mapping.computed_relations.get("ground_floor") or {}
+            if spec.get("method") == "resolve_ground_floor":
+                resolve_ground_floor(SpatialContext(self, GeometryResult()), spec)
             return
         products = [n.entity for n in self.sorted_nodes() if n.entity is not None and n.entity.is_a("IfcProduct")]
         result = run_geometry_pass(self.file, products, glb_path=self.geometry_out)

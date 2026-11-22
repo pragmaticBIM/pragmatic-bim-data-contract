@@ -71,6 +71,7 @@ SpatialRequirement,,"Spatial constraint requirement (min area, min height, adjac
 StructuralProperty,,Normalized structural-related property.
 System,,Building service system grouping that serves spaces or zones.
 Task,,Task entity for implementation and follow-up workflows. Entity.status covers lifecycle; task_status uses action status vocabulary URIs. Links to related entities via applies_to_entities.
+TerrainSurface,,Existing or projected terrain surface (survey surface) as a geographic element. Converted from IfcGeographicElement (IFC4+); IFC2x3 proxies stay generic.
 ThermalProperty,,Normalized thermal-related property.
 TimeLink,,"Inline typed precedence link from a TimeRecord to one successor. Not a VirtualEntity — no id, no mixin. Owned by the predecessor record."
 TimeRecord,,"Planned work record with baseline and actual dates, optionally linked to model entities and a time plan. — Set milestone_at to mark as a zero-duration checkpoint. — Populate component_time_items to act as a plan container."

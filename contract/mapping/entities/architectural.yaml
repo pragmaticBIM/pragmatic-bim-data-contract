@@ -617,11 +617,57 @@
       elevation_unit:
         source: constant
         value: m
+      # IFC4 Pset_BuildingStoreyCommon: AboveGround (IfcLogical), EntranceLevel (IfcBoolean).
+      # Ground-floor resolution may override or complete these; see ground_floor computed relation.
+      above_ground:
+        source: ifc_pset_fallback
+        fallbacks:
+          - pset: Pset_BuildingStoreyCommon
+            property: AboveGround
+      is_ground_floor:
+        source: ifc_pset_fallback
+        fallbacks:
+          - pset: Pset_BuildingStoreyCommon
+            property: EntranceLevel
     geometry:
       primary: footprint_2d
       secondary: point
     relations:
       - IfcRelAggregates
+      - IfcRelAssociatesClassification
+
+  # Terrain survey surface (IFC4+). PredefinedType TERRAIN; existing vs projected from ObjectType/Name.
+  IfcGeographicElement:
+    content_kind: physical
+    canonical_type_from: predefined_type_map
+    predefined_type_map:
+      TERRAIN:
+        canonical_type: TerrainSurface
+      default:
+        canonical_type: TerrainSurface
+    fields:
+      name: *name_fallback_chain
+      code_or_number:
+        source: ifc_attribute_fallback
+        fallbacks:
+          - attribute: Name
+          - attribute: LongName
+      storey: null
+      classifications: *classifications_mapping
+    attributes:
+      <<: *attributes_entity_base
+      terrain_surface_status:
+        source: ifc_attribute_heuristic
+        attribute: ObjectType
+        default: existing
+        map:
+          - match: [projected, neu, new, geplant, planned]
+            value: projected
+          - match: [existing, bestand, as-built, asbuilt, survey]
+            value: existing
+    geometry: *geometry_body_footprint
+    relations:
+      - IfcRelContainedInSpatialStructure
       - IfcRelAssociatesClassification
 
   IfcBuilding:

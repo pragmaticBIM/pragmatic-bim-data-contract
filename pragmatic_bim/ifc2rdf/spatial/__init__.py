@@ -14,7 +14,9 @@ from pragmatic_bim.ifc2rdf.spatial.contacts import side_contact, vertical_contac
 from pragmatic_bim.ifc2rdf.spatial.context import SpatialContext
 from pragmatic_bim.ifc2rdf.spatial.door_swing import door_opens_in_escape_direction
 from pragmatic_bim.ifc2rdf.spatial.escape import escape_route
+from pragmatic_bim.ifc2rdf.spatial.ground import resolve_ground_floor
 from pragmatic_bim.ifc2rdf.spatial.guards import barrier_walking_surface
+from pragmatic_bim.ifc2rdf.spatial.heights import height_above_ground_floor, height_above_terrain
 from pragmatic_bim.ifc2rdf.spatial.hosted_by import opening_in_host
 from pragmatic_bim.ifc2rdf.spatial.intersects import prism_overlap
 from pragmatic_bim.ifc2rdf.spatial.lights import window_daylight
@@ -26,6 +28,9 @@ if TYPE_CHECKING:
 
 METHODS: dict[str, Callable[[SpatialContext, dict], None]] = {
     "space_adjacency": space_adjacency,
+    "resolve_ground_floor": resolve_ground_floor,
+    "height_above_ground_floor": height_above_ground_floor,
+    "height_above_terrain": height_above_terrain,
     "opening_in_host": opening_in_host,
     "vertical_contact": vertical_contact,
     "side_contact": side_contact,

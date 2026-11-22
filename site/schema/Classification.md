@@ -91,6 +91,7 @@ click Classification href "./Classification.html" _blank
 | [SeparatorSlab](SeparatorSlab.md) | [classifications](classifications.md) | range | [Classification](Classification.md) |
 | [ConnectionPhysical](ConnectionPhysical.md) | [classifications](classifications.md) | range | [Classification](Classification.md) |
 | [SafetyBarrier](SafetyBarrier.md) | [classifications](classifications.md) | range | [Classification](Classification.md) |
+| [TerrainSurface](TerrainSurface.md) | [classifications](classifications.md) | range | [Classification](Classification.md) |
 | [Boundary](Boundary.md) | [classifications](classifications.md) | range | [Classification](Classification.md) |
 | [Equipment](Equipment.md) | [classifications](classifications.md) | range | [Classification](Classification.md) |
 | [VirtualEntity](VirtualEntity.md) | [classifications](classifications.md) | range | [Classification](Classification.md) |

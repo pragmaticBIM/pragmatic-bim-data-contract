@@ -85,6 +85,7 @@ click MetadataEntry href "./MetadataEntry.html" _blank
 | [SeparatorSlab](SeparatorSlab.md) | [metadata](metadata.md) | range | [MetadataEntry](MetadataEntry.md) |
 | [ConnectionPhysical](ConnectionPhysical.md) | [metadata](metadata.md) | range | [MetadataEntry](MetadataEntry.md) |
 | [SafetyBarrier](SafetyBarrier.md) | [metadata](metadata.md) | range | [MetadataEntry](MetadataEntry.md) |
+| [TerrainSurface](TerrainSurface.md) | [metadata](metadata.md) | range | [MetadataEntry](MetadataEntry.md) |
 | [Boundary](Boundary.md) | [metadata](metadata.md) | range | [MetadataEntry](MetadataEntry.md) |
 | [Equipment](Equipment.md) | [metadata](metadata.md) | range | [MetadataEntry](MetadataEntry.md) |
 | [VirtualEntity](VirtualEntity.md) | [metadata](metadata.md) | range | [MetadataEntry](MetadataEntry.md) |

@@ -5132,6 +5132,16 @@
             "title": "GeometryRepresentationType",
             "type": "string"
         },
+        "GroundReferenceSource": {
+            "description": "Source used to resolve LevelContext above_ground and is_ground_floor flags.",
+            "enum": [
+                "ifc_property",
+                "name_convention",
+                "elevation"
+            ],
+            "title": "GroundReferenceSource",
+            "type": "string"
+        },
         "IdentificationRequirement": {
             "additionalProperties": false,
             "description": "Identification or classification value the subject must carry (predefined type, long name, area category, interior or exterior). States what the subject is, not how it performs (PerformanceRequirement) or what it is made of (MaterialRequirement).",
@@ -5678,6 +5688,13 @@
             "additionalProperties": false,
             "description": "Spatial context node constrained to level/storey semantics.",
             "properties": {
+                "above_ground": {
+                    "description": "Whether this storey is fully above ground. Resolved from IFC properties, the storey naming convention, or elevation (see ground_reference_source).",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
                 "applies_to_entities": {
                     "description": "Model entities this record applies to (requirements, cost items, schedule items, etc.).",
                     "items": {
@@ -5756,6 +5773,10 @@
                         "null"
                     ]
                 },
+                "ground_reference_source": {
+                    "$ref": "#/$defs/GroundReferenceSource",
+                    "description": "Which source was used to resolve above_ground and is_ground_floor for this storey (same source for all storeys of a building)."
+                },
                 "group_members": {
                     "description": "Zone members; may include spaces, separations, systems, etc.",
                     "items": {
@@ -5775,6 +5796,13 @@
                     "pattern": "^[0-3][0-9A-Za-z_$]{21}$",
                     "type": [
                         "string",
+                        "null"
+                    ]
+                },
+                "is_ground_floor": {
+                    "description": "Whether this storey is the building's ground floor (entrance level). Exactly one storey per building should be true after resolution.",
+                    "type": [
+                        "boolean",
                         "null"
                     ]
                 },
@@ -8889,7 +8917,9 @@
                 "tread_length_at_inner_side",
                 "escape_route_clear_width",
                 "horizontal_clear_distance",
-                "vertical_clear_distance"
+                "vertical_clear_distance",
+                "height_above_ground_floor",
+                "height_above_terrain"
             ],
             "title": "QuantityType",
             "type": "string"
@@ -12530,6 +12560,210 @@
             ],
             "title": "Task",
             "type": "object"
+        },
+        "TerrainSurface": {
+            "additionalProperties": false,
+            "description": "Existing or projected terrain surface (survey surface) as a geographic element. Converted from IfcGeographicElement (IFC4+); IFC2x3 proxies stay generic.",
+            "properties": {
+                "applies_to_entities": {
+                    "description": "Model entities this record applies to (requirements, cost items, schedule items, etc.).",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "classifications": {
+                    "description": "Classification entries from IFC and other schemes.",
+                    "items": {
+                        "$ref": "#/$defs/Classification"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "connects_physical_elements": {
+                    "description": "Physical elements connected to this one side by side (for example wall-wall junction, beam framing into a column). On a physical element the relation is symmetric and stated on both elements. From IfcRelConnectsElements / IfcRelConnectsPathElements, or computed from geometric contact. Bearing contact is rests_on.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "content_kind": {
+                    "const": "physical",
+                    "description": "Entity type discriminator for adapter projection and querying. Must be a ContentKind value.",
+                    "type": "string"
+                },
+                "created_at": {
+                    "description": "Creation timestamp for this entity record.",
+                    "format": "date-time",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "Default description text.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "geometry_representations": {
+                    "description": "Geometry references associated with the entity. A single element may link to multiple geometry representations to serve different intents (authoring, coordination, analysis, visualization) without duplicating the element itself.\n",
+                    "items": {
+                        "$ref": "#/$defs/GeometryRepresentation"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "description": "Unique local identifier.",
+                    "type": "string"
+                },
+                "ifc_global_id": {
+                    "description": "IFC GlobalId of the mapped entity.",
+                    "pattern": "^[0-3][0-9A-Za-z_$]{21}$",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "localized_descriptions": {
+                    "description": "Localized variants of description.",
+                    "items": {
+                        "$ref": "#/$defs/LocalizedText"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "localized_names": {
+                    "description": "Localized variants of name.",
+                    "items": {
+                        "$ref": "#/$defs/LocalizedText"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "meaning_uri": {
+                    "description": "Optional semantic URI for linking the entity instance to an external ontology concept.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "metadata": {
+                    "description": "Generic metadata container for IFC attributes/properties and project-specific extensions.",
+                    "items": {
+                        "$ref": "#/$defs/MetadataEntry"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "modified_at": {
+                    "description": "Last modification timestamp for this entity record.",
+                    "format": "date-time",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "description": "Default display name.",
+                    "type": "string"
+                },
+                "parent_building": {
+                    "description": "Parent building context reference.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "parent_level": {
+                    "description": "Parent level/storey context reference.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "performance_properties": {
+                    "description": "Normalized, strongly typed domain properties (fire/acoustic/thermal/structural/ security/material) extracted from raw IFC PropertySet values.\n",
+                    "items": {
+                        "$ref": "#/$defs/PerformanceProperty"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "quantity_values": {
+                    "description": "Quantities associated with the entity.",
+                    "items": {
+                        "$ref": "#/$defs/QuantityValue"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "rests_on": {
+                    "description": "Elements this element sits on: its underside bears on their top (for example wall on slab, column on slab, slab on wall or column, equipment on a plinth). Computed from geometric contact; it records contact, not a structural analysis result. The inverse (supports) is read by querying the slot from the other side.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "revision": {
+                    "description": "Integer revision counter for change tracking.",
+                    "minimum": 0,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "status": {
+                    "$ref": "#/$defs/StatusType",
+                    "description": "Lifecycle or QA status."
+                },
+                "terrain_surface_status": {
+                    "$ref": "#/$defs/TerrainSurfaceStatus",
+                    "description": "Whether the terrain surface represents the existing or the projected site."
+                }
+            },
+            "required": [
+                "terrain_surface_status",
+                "id",
+                "content_kind",
+                "name"
+            ],
+            "title": "TerrainSurface",
+            "type": "object"
+        },
+        "TerrainSurfaceStatus": {
+            "description": "Whether a terrain surface describes the existing or the projected site.",
+            "enum": [
+                "existing",
+                "projected"
+            ],
+            "title": "TerrainSurfaceStatus",
+            "type": "string"
         },
         "ThermalProperty": {
             "additionalProperties": false,

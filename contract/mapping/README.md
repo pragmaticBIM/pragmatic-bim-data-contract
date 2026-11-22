@@ -569,6 +569,9 @@ Selectors combine with AND: `contract_class` (including subclasses), `ifc_class`
 | `lit_space` | `window_daylight` | exterior window → interior `Space` | `connects_spaces` from IFC space boundaries, else the nearest space within `max_plan_distance` with vertical overlap | `lit_space` and `area_glazed` on the window; `DerivedMeasurement` with `glazing_ratio` (space + contributing windows, those windows as `derivation_inputs`); no measurement without floor area or windows |
 | `escape_route_next` | `escape_route` | interior `Space`, door → door / stair | Walking distance in plan around the corners of each space; spaces whose outlines touch along ≥ `min_open_width` form one open zone; doors join zones (`connects_spaces`, else spaces within `max_door_distance`); the route ends at an external door no more than `max_exit_above_lowest` above the lowest one, or, on storeys without one, at a stair that leaves the storey; spaces are measured from the most remote point of their outline | `escape_route_next` on doors and spaces; `DerivedMeasurement` with `escape_route_length` (space + first portal, or door + exit; route portals as `derivation_inputs`; route `LINESTRING Z`); exit portals write none |
 | `opens_in_escape_direction` | `door_opens_in_escape_direction` | swing door → boolean | After `escape_route`: travel direction through the door (centre → next portal, or outward for exits) vs the door's local +Y from `ObjectPlacement`; only for swing `OperationType` values | — |
+| `ground_floor` | `resolve_ground_floor` | `LevelContext` | Per building, in order: `Pset_BuildingStoreyCommon.AboveGround`/`EntranceLevel`, storey name convention (`EG`/`00`, `U##`, `FD`, `##`, `{base}.Z`), then lowest elevation ≥ 0. Exactly one `is_ground_floor`; ambiguous candidates pick the lowest elevation and are reported | `above_ground`, `is_ground_floor`, `ground_reference_source` |
+| `height_above_ground_floor` | `height_above_ground_floor` | window / space / `SafetyBarrier` + ground-floor `LevelContext` | Reference height (`bottom` sill/floor or `top` barrier) minus ground-floor elevation; negative values kept; `not_measurable` without a resolved ground floor | `DerivedMeasurement` `height_above_ground_floor` with vertical `LINESTRING Z` |
+| `height_above_terrain` | `height_above_terrain` | window / space / `SafetyBarrier` + `TerrainSurface` | Sample terrain (`lowest_outside` within `outside_buffer`, or `under_footprint`); prefer projected surface; no ground-floor fallback; negative values kept | `DerivedMeasurement` `height_above_terrain` with vertical `LINESTRING Z` |
 
 Quantities are `pbs:QuantityValue` records (`quantity_type`, `quantity_value`, `quantity_unit`, QUDT `quantity_unit_uri`). Area and floor-area sources are read in the IFC area unit; dimensions in the IFC length unit.
 
@@ -577,6 +580,7 @@ The relations are evidence for rules evaluated outside this repository, for exam
 | Rule | Evidence |
 |------|----------|
 | Fall protection ≥ 1.10 m above the walking surface | `SafetyBarrier` → `guards_space`; `DerivedMeasurement` `height_above_walking_surface` |
+| Height above ground / terrain | `DerivedMeasurement` `height_above_ground_floor` or `height_above_terrain` on windows, spaces and barriers |
 | Doors in fire-rated walls carry a fire rating | `ConnectionPhysical` → `hosted_by` → `Separator` with `FireProperty` |
 | Fire-rated walls reach the slab above | a `SeparatorSlab` `rests_on` the wall |
 | Load path: slab → column → slab, no floating load-bearing elements | chains of `rests_on`; load-bearing element without a `rests_on` target |
@@ -650,6 +654,26 @@ relations:
 | `transport_medium` | Coarser bootstrap medium kept alongside functional types for ingestion |
 
 Physical type (`connection_physical_type`) remains IFC-derived and single-valued. See `classification/mapping/connection-functional-to-physical-type.mapping.ttl` for compatible physical forms per functional type.
+
+### IfcBuildingStorey → LevelContext (ground floor)
+
+| Contract slot | IFC source |
+|---------------|------------|
+| `elevation` | `IfcBuildingStorey.Elevation` (metres) |
+| `above_ground` | `Pset_BuildingStoreyCommon.AboveGround` when present (`UNKNOWN` left unset) |
+| `is_ground_floor` | `Pset_BuildingStoreyCommon.EntranceLevel` when present |
+| `ground_reference_source` | Set by `resolve_ground_floor` (`ifc_property` / `name_convention` / `elevation`) |
+
+When IFC properties are missing, the naming convention (`EG`/`00` ground, `U##`/`FD` below, `01`–`99` above, `{base}.Z` inherits the base storey) is tried; otherwise the lowest storey with elevation ≥ 0 is the ground floor.
+
+### IfcGeographicElement → TerrainSurface
+
+| Contract slot | IFC source |
+|---------------|------------|
+| class | `IfcGeographicElement` (`PredefinedType` `TERRAIN` preferred) |
+| `terrain_surface_status` | `ObjectType` heuristic: `projected` / `neu` / `new` → `projected`, else `existing` |
+
+Terrain body meshes support `terrain_height_at(x, y)` and stay out of the plan-outline spatial index used for other elements.
 
 ### IfcSpace → Space (conditioning and above-ground)
 

@@ -32,6 +32,48 @@ computed_relations:
     min_overlap_height: 0.05
     min_plan_overlap: 0.01
 
+  # Resolve LevelContext.above_ground / is_ground_floor / ground_reference_source per building.
+  # Priority: Pset_BuildingStoreyCommon → storey name convention → elevation ≥ 0. Runs before
+  # height_above_ground_floor. Exactly one ground floor; ambiguous candidates are reported.
+  ground_floor:
+    method: resolve_ground_floor
+    subject:
+      contract_class: LevelContext
+
+  # Height of windows, spaces and safety barriers above the building's ground-floor elevation.
+  # Subjects are the element and the ground-floor LevelContext; negative values are kept.
+  height_above_ground_floor:
+    method: height_above_ground_floor
+    subjects:
+      - contract_class: ConnectionPhysical
+        ifc_class: [IfcWindow]
+        reference: bottom
+      - contract_class: Space
+        reference: bottom
+      - contract_class: SafetyBarrier
+        reference: top
+    quantities:
+      height_above_ground_floor: {unit: m}
+
+  # Height of windows, spaces and safety barriers above a TerrainSurface sample.
+  # Prefer projected terrain when present; otherwise existing. No ground-floor fallback.
+  height_above_terrain:
+    method: height_above_terrain
+    subjects:
+      - contract_class: ConnectionPhysical
+        ifc_class: [IfcWindow]
+        reference: bottom
+        sample: lowest_outside
+      - contract_class: SafetyBarrier
+        reference: top
+        sample: lowest_outside
+      - contract_class: Space
+        reference: bottom
+        sample: under_footprint
+    outside_buffer: 1.0
+    quantities:
+      height_above_terrain: {unit: m}
+
   hosted_by:
     method: opening_in_host
     subject:

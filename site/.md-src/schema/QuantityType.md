@@ -39,6 +39,8 @@ URI: [pbs:QuantityType](https://schema.pragmaticbim.ch/QuantityType)
 | escape_route_clear_width | pbs:quantity_type_escape_route_clear_width | Planned clear width of the horizontal escape route in a space at its narrowest point. ||
 | horizontal_clear_distance | pbs:quantity_type_horizontal_clear_distance | Horizontal clear distance in metres between the plan outlines of two elements; 0 where they overlap or touch. | Title: Horizontal clear distance<br>|
 | vertical_clear_distance | pbs:quantity_type_vertical_clear_distance | Vertical clear distance in metres between the height ranges of two elements; 0 where they overlap or touch. | Title: Vertical clear distance<br>|
+| height_above_ground_floor | pbs:quantity_type_height_above_ground_floor | Vertical distance from the building's ground-floor storey elevation to a reference point on a window, space or safety barrier. Approximates height above terrain when no terrain surface is present; negative when the reference lies below the ground floor. | Title: Height above ground floor<br>|
+| height_above_terrain | pbs:quantity_type_height_above_terrain | Vertical distance from a sampled terrain surface height to a reference point on a window, space or safety barrier. Negative when the reference lies below the terrain. | Title: Height above terrain<br>|
 
 
 
@@ -190,6 +192,29 @@ permissible_values:
         source: de
         description: Lichter Abstand vertikal
     title: Vertical clear distance
+  height_above_ground_floor:
+    text: height_above_ground_floor
+    description: Vertical distance from the building's ground-floor storey elevation
+      to a reference point on a window, space or safety barrier. Approximates height
+      above terrain when no terrain surface is present; negative when the reference
+      lies below the ground floor.
+    meaning: pbs:quantity_type_height_above_ground_floor
+    alt_descriptions:
+      de:
+        source: de
+        description: Hoehe ueber Erdgeschoss
+    title: Height above ground floor
+  height_above_terrain:
+    text: height_above_terrain
+    description: Vertical distance from a sampled terrain surface height to a reference
+      point on a window, space or safety barrier. Negative when the reference lies
+      below the terrain.
+    meaning: pbs:quantity_type_height_above_terrain
+    alt_descriptions:
+      de:
+        source: de
+        description: Hoehe ueber Gelaende
+    title: Height above terrain
 
 ```
 </details>

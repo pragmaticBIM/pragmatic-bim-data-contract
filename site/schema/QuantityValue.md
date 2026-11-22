@@ -93,6 +93,7 @@ click QuantityType href "./QuantityType.html" _blank
 | [SeparatorSlab](SeparatorSlab.md) | [quantity_values](quantity_values.md) | range | [QuantityValue](QuantityValue.md) |
 | [ConnectionPhysical](ConnectionPhysical.md) | [quantity_values](quantity_values.md) | range | [QuantityValue](QuantityValue.md) |
 | [SafetyBarrier](SafetyBarrier.md) | [quantity_values](quantity_values.md) | range | [QuantityValue](QuantityValue.md) |
+| [TerrainSurface](TerrainSurface.md) | [quantity_values](quantity_values.md) | range | [QuantityValue](QuantityValue.md) |
 | [Boundary](Boundary.md) | [quantity_values](quantity_values.md) | range | [QuantityValue](QuantityValue.md) |
 | [Equipment](Equipment.md) | [quantity_values](quantity_values.md) | range | [QuantityValue](QuantityValue.md) |
 | [VirtualEntity](VirtualEntity.md) | [quantity_values](quantity_values.md) | range | [QuantityValue](QuantityValue.md) |

@@ -804,6 +804,28 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#ifcbuildingstorey-levelcontext-ground-floor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IfcBuildingStorey → LevelContext (ground floor)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ifcgeographicelement-terrainsurface" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IfcGeographicElement → TerrainSurface
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#ifcspace-space-conditioning-and-above-ground" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1401,6 +1423,28 @@
     <span class="md-ellipsis">
       
         Connection functional types
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ifcbuildingstorey-levelcontext-ground-floor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IfcBuildingStorey → LevelContext (ground floor)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ifcgeographicelement-terrainsurface" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IfcGeographicElement → TerrainSurface
       
     </span>
   </a>
@@ -2856,6 +2900,27 @@ ifc_mapping.merged.yaml   ← single file for adapters
 <td>After <code>escape_route</code>: travel direction through the door (centre → next portal, or outward for exits) vs the door's local +Y from <code>ObjectPlacement</code>; only for swing <code>OperationType</code> values</td>
 <td>—</td>
 </tr>
+<tr>
+<td><code>ground_floor</code></td>
+<td><code>resolve_ground_floor</code></td>
+<td><code>LevelContext</code></td>
+<td>Per building, in order: <code>Pset_BuildingStoreyCommon.AboveGround</code>/<code>EntranceLevel</code>, storey name convention (<code>EG</code>/<code>00</code>, <code>U##</code>, <code>FD</code>, <code>##</code>, <code>{base}.Z</code>), then lowest elevation ≥ 0. Exactly one <code>is_ground_floor</code>; ambiguous candidates pick the lowest elevation and are reported</td>
+<td><code>above_ground</code>, <code>is_ground_floor</code>, <code>ground_reference_source</code></td>
+</tr>
+<tr>
+<td><code>height_above_ground_floor</code></td>
+<td><code>height_above_ground_floor</code></td>
+<td>window / space / <code>SafetyBarrier</code> + ground-floor <code>LevelContext</code></td>
+<td>Reference height (<code>bottom</code> sill/floor or <code>top</code> barrier) minus ground-floor elevation; negative values kept; <code>not_measurable</code> without a resolved ground floor</td>
+<td><code>DerivedMeasurement</code> <code>height_above_ground_floor</code> with vertical <code>LINESTRING Z</code></td>
+</tr>
+<tr>
+<td><code>height_above_terrain</code></td>
+<td><code>height_above_terrain</code></td>
+<td>window / space / <code>SafetyBarrier</code> + <code>TerrainSurface</code></td>
+<td>Sample terrain (<code>lowest_outside</code> within <code>outside_buffer</code>, or <code>under_footprint</code>); prefer projected surface; no ground-floor fallback; negative values kept</td>
+<td><code>DerivedMeasurement</code> <code>height_above_terrain</code> with vertical <code>LINESTRING Z</code></td>
+</tr>
 </tbody>
 </table>
 <p>Quantities are <code>pbs:QuantityValue</code> records (<code>quantity_type</code>, <code>quantity_value</code>, <code>quantity_unit</code>, QUDT <code>quantity_unit_uri</code>). Area and floor-area sources are read in the IFC area unit; dimensions in the IFC length unit.</p>
@@ -2871,6 +2936,10 @@ ifc_mapping.merged.yaml   ← single file for adapters
 <tr>
 <td>Fall protection ≥ 1.10 m above the walking surface</td>
 <td><code>SafetyBarrier</code> → <code>guards_space</code>; <code>DerivedMeasurement</code> <code>height_above_walking_surface</code></td>
+</tr>
+<tr>
+<td>Height above ground / terrain</td>
+<td><code>DerivedMeasurement</code> <code>height_above_ground_floor</code> or <code>height_above_terrain</code> on windows, spaces and barriers</td>
 </tr>
 <tr>
 <td>Doors in fire-rated walls carry a fire rating</td>
@@ -2997,6 +3066,54 @@ ifc_mapping.merged.yaml   ← single file for adapters
 </tbody>
 </table>
 <p>Physical type (<code>connection_physical_type</code>) remains IFC-derived and single-valued. See <code>classification/mapping/connection-functional-to-physical-type.mapping.ttl</code> for compatible physical forms per functional type.</p>
+<h3 id="ifcbuildingstorey-levelcontext-ground-floor">IfcBuildingStorey → LevelContext (ground floor)<a class="headerlink" href="#ifcbuildingstorey-levelcontext-ground-floor" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Contract slot</th>
+<th>IFC source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>elevation</code></td>
+<td><code>IfcBuildingStorey.Elevation</code> (metres)</td>
+</tr>
+<tr>
+<td><code>above_ground</code></td>
+<td><code>Pset_BuildingStoreyCommon.AboveGround</code> when present (<code>UNKNOWN</code> left unset)</td>
+</tr>
+<tr>
+<td><code>is_ground_floor</code></td>
+<td><code>Pset_BuildingStoreyCommon.EntranceLevel</code> when present</td>
+</tr>
+<tr>
+<td><code>ground_reference_source</code></td>
+<td>Set by <code>resolve_ground_floor</code> (<code>ifc_property</code> / <code>name_convention</code> / <code>elevation</code>)</td>
+</tr>
+</tbody>
+</table>
+<p>When IFC properties are missing, the naming convention (<code>EG</code>/<code>00</code> ground, <code>U##</code>/<code>FD</code> below, <code>01</code>–<code>99</code> above, <code>{base}.Z</code> inherits the base storey) is tried; otherwise the lowest storey with elevation ≥ 0 is the ground floor.</p>
+<h3 id="ifcgeographicelement-terrainsurface">IfcGeographicElement → TerrainSurface<a class="headerlink" href="#ifcgeographicelement-terrainsurface" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Contract slot</th>
+<th>IFC source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>class</td>
+<td><code>IfcGeographicElement</code> (<code>PredefinedType</code> <code>TERRAIN</code> preferred)</td>
+</tr>
+<tr>
+<td><code>terrain_surface_status</code></td>
+<td><code>ObjectType</code> heuristic: <code>projected</code> / <code>neu</code> / <code>new</code> → <code>projected</code>, else <code>existing</code></td>
+</tr>
+</tbody>
+</table>
+<p>Terrain body meshes support <code>terrain_height_at(x, y)</code> and stay out of the plan-outline spatial index used for other elements.</p>
 <h3 id="ifcspace-space-conditioning-and-above-ground">IfcSpace → Space (conditioning and above-ground)<a class="headerlink" href="#ifcspace-space-conditioning-and-above-ground" title="Permanent link">&para;</a></h3>
 <p>Space carries optional design-state booleans as typed PBS slots (not requirements):</p>
 <table>

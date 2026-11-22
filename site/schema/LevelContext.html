@@ -552,6 +552,7 @@ click Classification href "./Classification.html" _blank
 click ContextType href "./ContextType.html" _blank
 click CostRecord href "./CostRecord.html" _blank
 click GeometryRepresentation href "./GeometryRepresentation.html" _blank
+click GroundReferenceSource href "./GroundReferenceSource.html" _blank
 click Entity href "./Entity.html" _blank
 click LocalizedText href "./LocalizedText.html" _blank
 click LocalizedText href "./LocalizedText.html" _blank
@@ -621,6 +622,24 @@ Hold "Alt" / "Option" to enable pan &amp; zoom
 <td><a href="elevation_unit.html">elevation_unit</a></td>
 <td>0..1 <br/> <a href="String.html">String</a></td>
 <td>Unit for elevation (default m).</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="above_ground.html">above_ground</a></td>
+<td>0..1 <br/> <a href="Boolean.html">Boolean</a></td>
+<td>Whether this storey is fully above ground. Resolved from IFC properties, the storey naming convention, or elevation (see ground_reference_source).</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="is_ground_floor.html">is_ground_floor</a></td>
+<td>0..1 <br/> <a href="Boolean.html">Boolean</a></td>
+<td>Whether this storey is the building's ground floor (entrance level). Exactly one storey per building should be true after resolution.</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="ground_reference_source.html">ground_reference_source</a></td>
+<td>0..1 <br/> <a href="GroundReferenceSource.html">GroundReferenceSource</a></td>
+<td>Which source was used to resolve above_ground and is_ground_floor for this storey (same source for all storeys of a building).</td>
 <td>direct</td>
 </tr>
 <tr>
@@ -859,6 +878,12 @@ Hold "Alt" / "Option" to enable pan &amp; zoom
 <td><a href="LevelContext.html">LevelContext</a></td>
 </tr>
 <tr>
+<td><a href="TerrainSurface.html">TerrainSurface</a></td>
+<td><a href="parent_level.html">parent_level</a></td>
+<td>range</td>
+<td><a href="LevelContext.html">LevelContext</a></td>
+</tr>
+<tr>
 <td><a href="Boundary.html">Boundary</a></td>
 <td><a href="parent_level.html">parent_level</a></td>
 <td>range</td>
@@ -973,6 +998,9 @@ Hold "Alt" / "Option" to enable pan &amp; zoom
 <span class="nt">slots</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">elevation</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">elevation_unit</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">above_ground</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">is_ground_floor</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ground_reference_source</span>
 <span class="nt">class_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pbs:LevelContext</span>
 </code></pre></div>
 </details>
@@ -1003,6 +1031,36 @@ Hold "Alt" / "Option" to enable pan &amp; zoom
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">LevelContext</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
+<span class="w">  </span><span class="nt">above_ground</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">above_ground</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Whether this storey is fully above ground. Resolved from IFC properties,</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">the storey naming convention, or elevation (see ground_reference_source).</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://schema.pragmaticbim.ch</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">LevelContext</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">LevelContext</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">boolean</span>
+<span class="w">  </span><span class="nt">is_ground_floor</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">is_ground_floor</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Whether this storey is the building&#39;s ground floor (entrance level).</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">Exactly one storey per building should be true after resolution.</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://schema.pragmaticbim.ch</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">LevelContext</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">LevelContext</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">boolean</span>
+<span class="w">  </span><span class="nt">ground_reference_source</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ground_reference_source</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Which source was used to resolve above_ground and is_ground_floor</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">for this storey (same source for all storeys of a building).</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://schema.pragmaticbim.ch</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">LevelContext</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">LevelContext</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GroundReferenceSource</span>
 <span class="w">  </span><span class="nt">context_type</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">context_type</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Classification of context entity (perimeter, legal_site, building,</span>

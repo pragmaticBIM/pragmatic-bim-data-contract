@@ -735,6 +735,48 @@ computed_relations:
     min_overlap_height: 0.05
     min_plan_overlap: 0.01
 
+  # Resolve LevelContext.above_ground / is_ground_floor / ground_reference_source per building.
+  # Priority: Pset_BuildingStoreyCommon → storey name convention → elevation ≥ 0. Runs before
+  # height_above_ground_floor. Exactly one ground floor; ambiguous candidates are reported.
+  ground_floor:
+    method: resolve_ground_floor
+    subject:
+      contract_class: LevelContext
+
+  # Height of windows, spaces and safety barriers above the building's ground-floor elevation.
+  # Subjects are the element and the ground-floor LevelContext; negative values are kept.
+  height_above_ground_floor:
+    method: height_above_ground_floor
+    subjects:
+      - contract_class: ConnectionPhysical
+        ifc_class: [IfcWindow]
+        reference: bottom
+      - contract_class: Space
+        reference: bottom
+      - contract_class: SafetyBarrier
+        reference: top
+    quantities:
+      height_above_ground_floor: {unit: m}
+
+  # Height of windows, spaces and safety barriers above a TerrainSurface sample.
+  # Prefer projected terrain when present; otherwise existing. No ground-floor fallback.
+  height_above_terrain:
+    method: height_above_terrain
+    subjects:
+      - contract_class: ConnectionPhysical
+        ifc_class: [IfcWindow]
+        reference: bottom
+        sample: lowest_outside
+      - contract_class: SafetyBarrier
+        reference: top
+        sample: lowest_outside
+      - contract_class: Space
+        reference: bottom
+        sample: under_footprint
+    outside_buffer: 1.0
+    quantities:
+      height_above_terrain: {unit: m}
+
   hosted_by:
     method: opening_in_host
     subject:
@@ -1723,11 +1765,57 @@ entities:
       elevation_unit:
         source: constant
         value: m
+      # IFC4 Pset_BuildingStoreyCommon: AboveGround (IfcLogical), EntranceLevel (IfcBoolean).
+      # Ground-floor resolution may override or complete these; see ground_floor computed relation.
+      above_ground:
+        source: ifc_pset_fallback
+        fallbacks:
+          - pset: Pset_BuildingStoreyCommon
+            property: AboveGround
+      is_ground_floor:
+        source: ifc_pset_fallback
+        fallbacks:
+          - pset: Pset_BuildingStoreyCommon
+            property: EntranceLevel
     geometry:
       primary: footprint_2d
       secondary: point
     relations:
       - IfcRelAggregates
+      - IfcRelAssociatesClassification
+
+  # Terrain survey surface (IFC4+). PredefinedType TERRAIN; existing vs projected from ObjectType/Name.
+  IfcGeographicElement:
+    content_kind: physical
+    canonical_type_from: predefined_type_map
+    predefined_type_map:
+      TERRAIN:
+        canonical_type: TerrainSurface
+      default:
+        canonical_type: TerrainSurface
+    fields:
+      name: *name_fallback_chain
+      code_or_number:
+        source: ifc_attribute_fallback
+        fallbacks:
+          - attribute: Name
+          - attribute: LongName
+      storey: null
+      classifications: *classifications_mapping
+    attributes:
+      <<: *attributes_entity_base
+      terrain_surface_status:
+        source: ifc_attribute_heuristic
+        attribute: ObjectType
+        default: existing
+        map:
+          - match: [projected, neu, new, geplant, planned]
+            value: projected
+          - match: [existing, bestand, as-built, asbuilt, survey]
+            value: existing
+    geometry: *geometry_body_footprint
+    relations:
+      - IfcRelContainedInSpatialStructure
       - IfcRelAssociatesClassification
 
   IfcBuilding:
