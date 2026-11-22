@@ -161,8 +161,11 @@ def test_versions_recorded(synthetic_ifc):
 
 def test_every_node_has_global_id(synthetic):
     graph, _ = synthetic
-    # Synthetic adjacency ConnectionVirtuals have no IFC GlobalId.
-    entities = set(graph.subjects(RDF.type, PBS.Entity)) - set(graph.subjects(RDF.type, PBS.ConnectionVirtual))
+    # Synthetic Entity subclasses (DerivedMeasurement, ConnectionVirtual, …) have no IFC GlobalId.
+    synthetic_types = (PBS.DerivedMeasurement, PBS.ConnectionVirtual)
+    entities = set(graph.subjects(RDF.type, PBS.Entity))
+    for rdf_type in synthetic_types:
+        entities -= set(graph.subjects(RDF.type, rdf_type))
     assert entities
     assert all(graph.value(node, PBS.ifc_global_id) is not None for node in entities)
     assert {str(graph.value(node, PBS.ifc_global_id)) for node in entities} == set(GLOBAL_IDS.values())
