@@ -2840,14 +2840,14 @@ ifc_mapping.merged.yaml   ← single file for adapters
 <td><code>window_daylight</code></td>
 <td>exterior window → interior <code>Space</code></td>
 <td><code>connects_spaces</code> from IFC space boundaries, else the nearest space within <code>max_plan_distance</code> with vertical overlap</td>
-<td><code>area_glazed</code> on the window; <code>glazing_ratio</code> (glazed area ÷ floor area) on every selected space</td>
+<td><code>lit_space</code> and <code>area_glazed</code> on the window; <code>DerivedMeasurement</code> with <code>glazing_ratio</code> (space + contributing windows, those windows as <code>derivation_inputs</code>); no measurement without floor area or windows</td>
 </tr>
 <tr>
 <td><code>escape_route_next</code></td>
 <td><code>escape_route</code></td>
 <td>interior <code>Space</code>, door → door / stair</td>
 <td>Walking distance in plan around the corners of each space; spaces whose outlines touch along ≥ <code>min_open_width</code> form one open zone; doors join zones (<code>connects_spaces</code>, else spaces within <code>max_door_distance</code>); the route ends at an external door no more than <code>max_exit_above_lowest</code> above the lowest one, or, on storeys without one, at a stair that leaves the storey; spaces are measured from the most remote point of their outline</td>
-<td><code>escape_route_length</code> on doors (remaining route) and spaces (from the most remote point)</td>
+<td><code>escape_route_next</code> on doors and spaces; <code>DerivedMeasurement</code> with <code>escape_route_length</code> (space + first portal, or door + exit; route portals as <code>derivation_inputs</code>; route <code>LINESTRING Z</code>); exit portals write none</td>
 </tr>
 <tr>
 <td><code>opens_in_escape_direction</code></td>
@@ -2894,11 +2894,11 @@ ifc_mapping.merged.yaml   ← single file for adapters
 </tr>
 <tr>
 <td>Minimum glazing ratio of habitable rooms</td>
-<td><code>Space</code> <code>glazing_ratio</code>, <code>lit_space</code></td>
+<td><code>lit_space</code>; <code>DerivedMeasurement</code> <code>glazing_ratio</code></td>
 </tr>
 <tr>
 <td>Maximum horizontal escape route length</td>
-<td><code>Space</code> <code>escape_route_length</code>; follow <code>escape_route_next</code> for the route</td>
+<td><code>escape_route_next</code>; <code>DerivedMeasurement</code> <code>escape_route_length</code></td>
 </tr>
 <tr>
 <td>Clear stair / escape-route width</td>

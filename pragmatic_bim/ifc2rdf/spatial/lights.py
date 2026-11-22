@@ -2,7 +2,9 @@
 
 The space comes from the window's ``connects_spaces`` (IFC space boundaries) when one
 matches the object selector, otherwise from the nearest matching space within
-``max_plan_distance`` that overlaps the window vertically.
+``max_plan_distance`` that overlaps the window vertically. Glazed area stays an
+embedded quantity on the window; the glazing ratio is a ``DerivedMeasurement`` on
+the space and its contributing windows.
 """
 
 from __future__ import annotations
@@ -15,6 +17,9 @@ import shapely
 from pragmatic_bim.ifc2rdf.model import Node
 from pragmatic_bim.ifc2rdf.spatial.context import SpatialContext
 
+_METHOD = "window_daylight"
+_METHOD_VERSION = "0.1"
+
 
 def window_daylight(ctx: SpatialContext, spec: dict[str, Any]) -> None:
     slot = spec["target_slot"]
@@ -23,6 +28,7 @@ def window_daylight(ctx: SpatialContext, spec: dict[str, Any]) -> None:
     area_spec = quantities.get("area_glazed")
     ratio_spec = quantities.get("glazing_ratio")
     glazed_by_space: dict[int, float] = defaultdict(float)
+    windows_by_space: dict[int, list[Node]] = defaultdict(list)
     spaces = ctx.nodes_matching(spec["object"])
     space_by_iri = {n.iri: n for n in spaces}
 
@@ -42,13 +48,22 @@ def window_daylight(ctx: SpatialContext, spec: dict[str, Any]) -> None:
         ctx.add_quantity(window, "area_glazed", area, area_spec["unit"])
         for space in lit:
             glazed_by_space[space.entity.id()] += area / len(lit)
+            windows_by_space[space.entity.id()].append(window)
 
     if ratio_spec is None:
         return
     for space in spaces:
         floor_area = _floor_area(ctx, space, ratio_spec)
-        if floor_area:
-            ctx.add_quantity(space, "glazing_ratio", glazed_by_space[space.entity.id()] / floor_area, ratio_spec["unit"])
+        windows = windows_by_space.get(space.entity.id()) or []
+        if not floor_area or not windows:
+            continue
+        ctx.add_measurement(
+            [space, *windows],
+            [("glazing_ratio", glazed_by_space[space.entity.id()] / floor_area, ratio_spec["unit"])],
+            method=_METHOD,
+            method_version=_METHOD_VERSION,
+            inputs=windows,
+        )
 
 
 def _nearest_space(ctx: SpatialContext, window: Node, selector: dict[str, Any], max_distance: float) -> list[Node]:

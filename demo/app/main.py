@@ -185,20 +185,95 @@ def _rule_connections(
                     frontier.append(other)
         points = _path_points(elements[guid], view["path"]) if view.get("path") else None
         if points:
-            paths.append({"guid": guid, "points": points, "failed": bad, "label": _label(elements[guid], quantity)})
+            paths.append(
+                {
+                    "guid": guid,
+                    "points": points,
+                    "failed": bad,
+                    "label": _label(elements[guid], quantity, elements),
+                }
+            )
     edge_list = [
-        {"s": s, "t": t, "p": p, "failed": bad, "label": _label(elements[s], quantity)}
+        {"s": s, "t": t, "p": p, "failed": bad, "label": _label(elements[s], quantity, elements)}
         for (s, t, p), bad in sorted(edges.items())
     ]
     return edge_list, paths
 
 
-def _label(element: dict[str, Any], quantity: str | None) -> str | None:
-    """``"12.3 m"`` for the element's ``quantity`` record, if it has one."""
-    for record in element["records"].get("pbs:quantity_values", []) if quantity else ():
+def _quantity_on(element: dict[str, Any], quantity: str) -> tuple[float, str] | None:
+    for record in element["records"].get("pbs:quantity_values", []):
         if record.get("pbs:quantity_type") == quantity:
-            return f'{record["pbs:quantity_value"]:.1f} {record.get("pbs:quantity_unit", "")}'.strip()
+            return record["pbs:quantity_value"], record.get("pbs:quantity_unit", "")
     return None
+
+
+def _escape_next_guid(element: dict[str, Any]) -> str | None:
+    return next(
+        (
+            link["guid"]
+            for link in element["links"]
+            if link["predicate"] == "pbs:escape_route_next" and link["direction"] == "out"
+        ),
+        None,
+    )
+
+
+def _quantity_via_measurement(
+    element: dict[str, Any], elements: dict[str, dict[str, Any]], quantity: str
+) -> tuple[float, str] | None:
+    """Embedded quantity, else a ``DerivedMeasurement`` that applies to ``element``.
+
+    For ``escape_route_length``, prefer the measurement whose other subject is this
+    element's ``escape_route_next`` (a door is also a co-subject of the space it leaves).
+    Route termini (no next) have no measurement; return ``0`` so the panel can tag exits.
+    """
+    found = _quantity_on(element, quantity)
+    if found is not None:
+        return found
+    next_guid = _escape_next_guid(element) if quantity == "pbs:quantity_type_escape_route_length" else None
+    fallback: tuple[float, str] | None = None
+    for link in element["links"]:
+        if link["predicate"] != "pbs:applies_to_entities" or link["direction"] != "in":
+            continue
+        measurement = elements.get(link["guid"])
+        if measurement is None or measurement.get("cls") != "DerivedMeasurement":
+            continue
+        found = _quantity_on(measurement, quantity)
+        if found is None:
+            continue
+        if next_guid is None:
+            fallback = found
+            continue
+        subjects = {
+            item["guid"]
+            for item in measurement["links"]
+            if item["predicate"] == "pbs:applies_to_entities" and item["direction"] == "out"
+        }
+        if next_guid in subjects:
+            return found
+        fallback = fallback or found
+    if quantity == "pbs:quantity_type_escape_route_length" and next_guid is None:
+        return 0.0, "m"
+    return fallback
+
+
+def _label(
+    element: dict[str, Any],
+    quantity: str | None,
+    elements: dict[str, dict[str, Any]] | None = None,
+) -> str | None:
+    """``"12.3 m"`` for the element's ``quantity`` record (embedded or via ``DerivedMeasurement``)."""
+    if not quantity:
+        return None
+    found = (
+        _quantity_via_measurement(element, elements, quantity)
+        if elements is not None
+        else _quantity_on(element, quantity)
+    )
+    if found is None:
+        return None
+    value, unit = found
+    return f"{value:.1f} {unit}".strip()
 
 
 def _path_points(element: dict[str, Any], representation: str) -> list[list[float]] | None:
@@ -208,11 +283,9 @@ def _path_points(element: dict[str, Any], representation: str) -> list[list[floa
     return None
 
 
-def _route_length(element: dict[str, Any]) -> float | None:
-    for record in element["records"].get("pbs:quantity_values", []):
-        if record.get("pbs:quantity_type") == "pbs:quantity_type_escape_route_length":
-            return record.get("pbs:quantity_value")
-    return None
+def _route_length(element: dict[str, Any], elements: dict[str, dict[str, Any]]) -> float | None:
+    found = _quantity_via_measurement(element, elements, "pbs:quantity_type_escape_route_length")
+    return found[0] if found is not None else None
 
 
 def _escape_route(element: dict[str, Any], elements: dict[str, dict[str, Any]]) -> list[dict[str, Any]]:
@@ -221,7 +294,7 @@ def _escape_route(element: dict[str, Any], elements: dict[str, dict[str, Any]]) 
     guid: str | None = element["guid"]
     while guid in elements and all(hop["guid"] != guid for hop in hops):
         current = elements[guid]
-        hops.append({"guid": guid, "element": current, "length": _route_length(current)})
+        hops.append({"guid": guid, "element": current, "length": _route_length(current, elements)})
         guid = next(
             (
                 link["guid"]

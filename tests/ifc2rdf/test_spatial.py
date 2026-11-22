@@ -231,29 +231,103 @@ def test_side_contact_is_symmetric(demo):
     assert not objects(graph, "column", "connects_physical_elements")
 
 
+def _measurement_for(graph, subject, quantity_type: str, *, subjects: set | None = None):
+    """``DerivedMeasurement`` that applies to ``subject`` and carries ``quantity_type``.
+
+    When ``subjects`` is set, the measurement's ``applies_to_entities`` must equal that set
+    (needed when an entity is both a measured door and a space's first portal).
+    """
+    qtype = PBS[f"quantity_type_{quantity_type}"]
+    matches = [
+        m
+        for m in graph.subjects(RDF.type, PBS.DerivedMeasurement)
+        if subject in set(graph.objects(m, PBS.applies_to_entities))
+        and (subjects is None or set(graph.objects(m, PBS.applies_to_entities)) == subjects)
+        and any(graph.value(q, PBS.quantity_type) == qtype for q in graph.objects(m, PBS.quantity_values))
+    ]
+    assert len(matches) == 1
+    return matches[0]
+
+
+def _measurement_value(graph, measurement, quantity_type: str) -> float:
+    qtype = PBS[f"quantity_type_{quantity_type}"]
+    qv = next(q for q in graph.objects(measurement, PBS.quantity_values) if graph.value(q, PBS.quantity_type) == qtype)
+    return graph.value(qv, PBS.quantity_value).toPython()
+
+
 def test_window_lights_interior_space(demo):
     graph, _, _ = demo
     assert objects(graph, "window", "lit_space") == {iri("office")}
     assert quantity(graph, "window", "area_glazed") == pytest.approx(2.0 * 1.2 * 0.75)
-    assert quantity(graph, "office", "glazing_ratio") == pytest.approx(1.8 / 20.0)
+    assert str(PBS.quantity_type_glazing_ratio) not in quantities(graph, "office")
     assert str(PBS.quantity_type_glazing_ratio) not in quantities(graph, "balcony_space")
+    office = iri("office")
+    window = iri("window")
+    measurement = _measurement_for(graph, office, "glazing_ratio")
+    assert set(graph.objects(measurement, PBS.applies_to_entities)) == {office, window}
+    assert _measurement_value(graph, measurement, "glazing_ratio") == pytest.approx(1.8 / 20.0)
+    derivation = graph.value(
+        next(
+            q
+            for q in graph.objects(measurement, PBS.quantity_values)
+            if graph.value(q, PBS.quantity_type) == PBS.quantity_type_glazing_ratio
+        ),
+        PBS.derivation,
+    )
+    assert set(graph.objects(derivation, PBS.derivation_inputs)) == {window}
+    assert not any(
+        office in set(graph.objects(m, PBS.applies_to_entities))
+        and any(
+            graph.value(q, PBS.quantity_type) == PBS.quantity_type_glazing_ratio
+            for q in graph.objects(m, PBS.quantity_values)
+        )
+        for m in graph.subjects(RDF.type, PBS.DerivedMeasurement)
+        if iri("balcony_space") in set(graph.objects(m, PBS.applies_to_entities))
+    )
 
 
 def test_escape_route_through_doors_to_exit(demo):
     graph, _, _ = demo
+    exit_door = iri("exit_door")
     assert objects(graph, "exit_door", "escape_route_next") == set()
-    assert quantity(graph, "exit_door", "escape_route_length") == 0
+    assert str(PBS.quantity_type_escape_route_length) not in quantities(graph, "exit_door")
+    # Exit portals write no measurement of their own (remaining length 0). They may still
+    # appear as the route-end co-subject of other doors' / spaces' DerivedMeasurements.
+    assert not any(
+        set(graph.objects(m, PBS.applies_to_entities)) <= {exit_door}
+        and any(
+            graph.value(q, PBS.quantity_type) == PBS.quantity_type_escape_route_length
+            for q in graph.objects(m, PBS.quantity_values)
+        )
+        for m in graph.subjects(RDF.type, PBS.DerivedMeasurement)
+    )
     # Door centre to corridor edge (0.1), across the corridor, corridor edge to exit centre (0.15).
+    door_lengths = {}
     for door, x in (("door_geometry", 3.5), ("door_ifc", 1.5)):
-        assert objects(graph, door, "escape_route_next") == {iri("exit_door")}
+        assert objects(graph, door, "escape_route_next") == {exit_door}
         expected = 0.1 + ((8 - x) ** 2 + 1) ** 0.5 + 0.15
-        assert quantity(graph, door, "escape_route_length") == pytest.approx(expected, abs=1e-3)
-    assert objects(graph, "corridor", "escape_route_next") == {iri("exit_door")}
-    assert quantity(graph, "corridor", "escape_route_length") == pytest.approx(65**0.5 + 0.15, abs=1e-3)
+        assert str(PBS.quantity_type_escape_route_length) not in quantities(graph, door)
+        measurement = _measurement_for(
+            graph, iri(door), "escape_route_length", subjects={iri(door), exit_door}
+        )
+        assert _measurement_value(graph, measurement, "escape_route_length") == pytest.approx(expected, abs=1e-3)
+        geom = next(graph.objects(measurement, PBS.geometry_representations))
+        assert str(graph.value(geom, PBS.geometry_wkt)).startswith("LINESTRING Z")
+        door_lengths[door] = _measurement_value(graph, measurement, "escape_route_length")
+    assert objects(graph, "corridor", "escape_route_next") == {exit_door}
+    corridor = _measurement_for(
+        graph, iri("corridor"), "escape_route_length", subjects={iri("corridor"), exit_door}
+    )
+    assert _measurement_value(graph, corridor, "escape_route_length") == pytest.approx(65**0.5 + 0.15, abs=1e-3)
     # Most remote office corner (0, 0), through the nearer door_geometry.
     assert objects(graph, "office", "escape_route_next") == {iri("door_geometry")}
-    office = 28.25**0.5 + 0.1 + quantity(graph, "door_geometry", "escape_route_length")
-    assert quantity(graph, "office", "escape_route_length") == pytest.approx(office, abs=1e-3)
+    office_expected = 28.25**0.5 + 0.1 + door_lengths["door_geometry"]
+    office = _measurement_for(
+        graph, iri("office"), "escape_route_length", subjects={iri("office"), iri("door_geometry")}
+    )
+    assert _measurement_value(graph, office, "escape_route_length") == pytest.approx(office_expected, abs=1e-3)
+    geom = next(graph.objects(office, PBS.geometry_representations))
+    assert str(graph.value(geom, PBS.geometry_wkt)).startswith("LINESTRING Z")
     assert not objects(graph, "balcony_space", "escape_route_next")
 
 

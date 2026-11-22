@@ -44,7 +44,14 @@ def plain(term: Any) -> Any:
 
 
 def entity_ids(graph: Graph) -> dict[URIRef, str]:
-    return {s: str(g) for s, g in graph.subject_objects(PBS.ifc_global_id) if isinstance(s, URIRef)}
+    """Map entity IRIs to viewer ids (IFC GlobalId, else the IRI's last path segment)."""
+    ids = {s: str(g) for s, g in graph.subject_objects(PBS.ifc_global_id) if isinstance(s, URIRef)}
+    # DerivedMeasurement and other synthetic nodes have no ifc_global_id; index them so
+    # applies_to_entities links and quantity labels resolve in the demo viewer.
+    for subject in graph.subjects(RDF.type, PBS.DerivedMeasurement):
+        if isinstance(subject, URIRef) and subject not in ids:
+            ids[subject] = str(subject).rsplit("/", 1)[-1]
+    return ids
 
 
 def primary_class(graph: Graph, node: URIRef, schema: ContractSchema) -> str:
@@ -99,13 +106,20 @@ def project(graph: Graph, schema: ContractSchema | None = None) -> tuple[dict, d
         element["records"] = {slot: sorted(rows, key=_record_order) for slot, rows in sorted(element["records"].items())}
         element["links"].sort(key=lambda link: (link["direction"], link["predicate"], elements[link["guid"]]["name"]))
 
+    # Measurements stay in ``elements`` for quantity labels; keep the graph viewer on IFC entities.
     nodes = [
         {"id": e["guid"], "label": e["name"], "cls": e["cls"], "level": e["level"]}
         for e in sorted(elements.values(), key=lambda e: e["guid"])
+        if e["cls"] != "DerivedMeasurement"
     ]
+    node_ids = {n["id"] for n in nodes}
     view = {
         "nodes": nodes,
-        "edges": [{"s": s, "t": t, "p": sorted(set(p))} for (s, t), p in sorted(edges.items())],
+        "edges": [
+            {"s": s, "t": t, "p": sorted(set(p))}
+            for (s, t), p in sorted(edges.items())
+            if s in node_ids and t in node_ids
+        ],
     }
     return view, elements
 

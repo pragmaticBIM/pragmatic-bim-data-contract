@@ -122,6 +122,9 @@ computed_relations:
     quantities:
       height_above_walking_surface: {unit: m}
 
+  # lit_space and area_glazed stay on the window; glazing_ratio is a DerivedMeasurement on the
+  # space and its contributing windows (derivation_inputs = those windows). No measurement when
+  # the space has no floor area or no contributing window.
   lit_space:
     method: window_daylight
     subject:
@@ -143,17 +146,16 @@ computed_relations:
         dimension_attributes: [OverallWidth, OverallHeight]
         glazing_fraction:
           - {pset: Pset_WindowCommon, property: GlazingAreaFraction}
-      # Written on every selected space with a floor area (0 when no window lights it).
       glazing_ratio:
         unit: "1"
-        on: object
         floor_area_sources:
           - {pset: Qto_SpaceBaseQuantities, property: NetFloorArea}
 
   # Shortest horizontal escape route, walking in plan around the corners of each space and
   # through its doors. It ends at an exit (external door) or, on storeys without an exit, at a
   # stair leaving the storey. Doors get the next door or stair on their route; spaces get the
-  # door they are left through, measured from the most remote point of their outline.
+  # door they are left through. escape_route_length is a DerivedMeasurement (exit portals write
+  # none); spaces keep a duplicate path_3d geometry_representations for the route.
   escape_route:
     method: escape_route
     subject:

@@ -9,8 +9,9 @@
 # to adjust the share.
 #
 # Evidence computed by ifc2rdf from geometry (contract/mapping/_computed_relations.yaml):
-#   window pbs:lit_space Space, the window QuantityValue quantity_type_area_glazed, and the
-#   space QuantityValue quantity_type_glazing_ratio = glazed area of its windows / floor area.
+#   window pbs:lit_space Space, the window QuantityValue quantity_type_area_glazed, and a
+#   DerivedMeasurement with quantity_type_glazing_ratio = glazed area / floor area
+#   (applies_to_entities: space + contributing windows).
 # Checked: interior rooms lit by at least one window, except circulation and secondary spaces
 # (BuildingSpaceActivityClassification code S-…). Rooms without any window are not checked.
 # Not covered: room depth, window height above floor, obstruction by neighbouring buildings.
@@ -30,7 +31,10 @@ rule:WindowArea a sh:NodeShape ;
         sh:prefixes rule:prefixes ;
         sh:select """
             SELECT DISTINCT ?this WHERE {
-                ?this a pbs:Space ; pbs:quantity_values ?q .
+                ?this a pbs:Space .
+                ?m a pbs:DerivedMeasurement ;
+                   pbs:applies_to_entities ?this ;
+                   pbs:quantity_values ?q .
                 ?q pbs:quantity_type pbs:quantity_type_glazing_ratio .
                 ?window pbs:lit_space ?this .
                 FILTER NOT EXISTS {
@@ -54,7 +58,9 @@ rule:WindowArea a sh:NodeShape ;
                    (ROUND(SUM(?area) / ?ratio * ?min * 100) / 100 AS ?required)
                    (xsd:integer(ROUND(?min * 100)) AS ?minPercent)
             WHERE {
-                $this pbs:quantity_values ?q .
+                ?m a pbs:DerivedMeasurement ;
+                   pbs:applies_to_entities $this ;
+                   pbs:quantity_values ?q .
                 ?q pbs:quantity_type pbs:quantity_type_glazing_ratio ;
                    pbs:quantity_value ?ratio .
                 ?window pbs:lit_space $this ; pbs:quantity_values ?wq .
