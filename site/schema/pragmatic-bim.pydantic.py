@@ -284,6 +284,14 @@ class QuantityType(str, Enum):
     """
     Planned clear width of the horizontal escape route in a space at its narrowest point.
     """
+    Horizontal_clear_distance = "horizontal_clear_distance"
+    """
+    Horizontal clear distance in metres between the plan outlines of two elements; 0 where they overlap or touch.
+    """
+    Vertical_clear_distance = "vertical_clear_distance"
+    """
+    Vertical clear distance in metres between the height ranges of two elements; 0 where they overlap or touch.
+    """
 
 
 class DerivationSourceKind(str, Enum):
@@ -3517,7 +3525,6 @@ class PhysicalElement(Entity):
     parent_level: Optional[str] = Field(default=None, description="""Parent level/storey context reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement', 'SpatialContext', 'Space', 'ReservedVolume']} })
     rests_on: Optional[list[str]] = Field(default=None, description="""Elements this element sits on: its underside bears on their top (for example wall on slab, column on slab, slab on wall or column, equipment on a plinth). Computed from geometric contact; it records contact, not a structural analysis result. The inverse (supports) is read by querying the slot from the other side.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement']} })
     connects_physical_elements: Optional[list[str]] = Field(default=None, description="""Physical elements connected to this one side by side (for example wall-wall junction, beam framing into a column). On a physical element the relation is symmetric and stated on both elements. From IfcRelConnectsElements / IfcRelConnectsPathElements, or computed from geometric contact. Bearing contact is rests_on.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement', 'ConnectionVirtual']} })
-    neighbours: Optional[list[NeighbourDistance]] = Field(default=None, description="""Clear distances to the neighbouring physical elements within the measurement range configured for the conversion. Computed from geometry; elements farther away have no record.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement']} })
     id: str = Field(default=..., description="""Unique local identifier.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Change']} })
     content_kind: Literal["physical"] = Field(default=..., description="""Entity type discriminator for adapter projection and querying. Must be a ContentKind value.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity'], 'equals_string': 'physical'} })
     name: str = Field(default=..., description="""Default display name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
@@ -3553,18 +3560,6 @@ class PhysicalElement(Entity):
         return v
 
 
-class NeighbourDistance(ConfiguredBaseModel):
-    """
-    Clear distance from an element to a neighbouring physical element, measured from geometry: the horizontal gap between their plan outlines and the vertical gap between their height ranges. Both are 0 where the elements overlap in that direction, so 0 and 0 means touching or intersecting.
-    """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'pbs:NeighbourDistance',
-         'from_schema': 'https://schema.pragmaticbim.ch/entity/physical'})
-
-    neighbour: str = Field(default=..., description="""The neighbouring element the distances are measured to.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NeighbourDistance']} })
-    horizontal_clear_distance: float = Field(default=..., description="""Horizontal clear distance in metres between the plan outlines; 0 where they overlap or touch.""", ge=0, json_schema_extra = { "linkml_meta": {'domain_of': ['NeighbourDistance']} })
-    vertical_clear_distance: float = Field(default=..., description="""Vertical clear distance in metres between the height ranges; 0 where they overlap or touch.""", ge=0, json_schema_extra = { "linkml_meta": {'domain_of': ['NeighbourDistance']} })
-
-
 class Separator(PhysicalElement):
     """
     Abstract base class for elements that separate spaces or zones.
@@ -3585,7 +3580,6 @@ class Separator(PhysicalElement):
     parent_level: Optional[str] = Field(default=None, description="""Parent level/storey context reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement', 'SpatialContext', 'Space', 'ReservedVolume']} })
     rests_on: Optional[list[str]] = Field(default=None, description="""Elements this element sits on: its underside bears on their top (for example wall on slab, column on slab, slab on wall or column, equipment on a plinth). Computed from geometric contact; it records contact, not a structural analysis result. The inverse (supports) is read by querying the slot from the other side.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement']} })
     connects_physical_elements: Optional[list[str]] = Field(default=None, description="""Physical elements connected to this one side by side (for example wall-wall junction, beam framing into a column). On a physical element the relation is symmetric and stated on both elements. From IfcRelConnectsElements / IfcRelConnectsPathElements, or computed from geometric contact. Bearing contact is rests_on.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement', 'ConnectionVirtual']} })
-    neighbours: Optional[list[NeighbourDistance]] = Field(default=None, description="""Clear distances to the neighbouring physical elements within the measurement range configured for the conversion. Computed from geometry; elements farther away have no record.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement']} })
     id: str = Field(default=..., description="""Unique local identifier.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Change']} })
     content_kind: Literal["physical"] = Field(default=..., description="""Entity type discriminator for adapter projection and querying. Must be a ContentKind value.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity'], 'equals_string': 'physical'} })
     name: str = Field(default=..., description="""Default display name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
@@ -3641,7 +3635,6 @@ class SeparatorWall(Separator):
     parent_level: Optional[str] = Field(default=None, description="""Parent level/storey context reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement', 'SpatialContext', 'Space', 'ReservedVolume']} })
     rests_on: Optional[list[str]] = Field(default=None, description="""Elements this element sits on: its underside bears on their top (for example wall on slab, column on slab, slab on wall or column, equipment on a plinth). Computed from geometric contact; it records contact, not a structural analysis result. The inverse (supports) is read by querying the slot from the other side.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement']} })
     connects_physical_elements: Optional[list[str]] = Field(default=None, description="""Physical elements connected to this one side by side (for example wall-wall junction, beam framing into a column). On a physical element the relation is symmetric and stated on both elements. From IfcRelConnectsElements / IfcRelConnectsPathElements, or computed from geometric contact. Bearing contact is rests_on.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement', 'ConnectionVirtual']} })
-    neighbours: Optional[list[NeighbourDistance]] = Field(default=None, description="""Clear distances to the neighbouring physical elements within the measurement range configured for the conversion. Computed from geometry; elements farther away have no record.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement']} })
     id: str = Field(default=..., description="""Unique local identifier.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Change']} })
     content_kind: Literal["physical"] = Field(default=..., description="""Entity type discriminator for adapter projection and querying. Must be a ContentKind value.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity'], 'equals_string': 'physical'} })
     name: str = Field(default=..., description="""Default display name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
@@ -3698,7 +3691,6 @@ class SeparatorSlab(Separator):
     parent_level: Optional[str] = Field(default=None, description="""Parent level/storey context reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement', 'SpatialContext', 'Space', 'ReservedVolume']} })
     rests_on: Optional[list[str]] = Field(default=None, description="""Elements this element sits on: its underside bears on their top (for example wall on slab, column on slab, slab on wall or column, equipment on a plinth). Computed from geometric contact; it records contact, not a structural analysis result. The inverse (supports) is read by querying the slot from the other side.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement']} })
     connects_physical_elements: Optional[list[str]] = Field(default=None, description="""Physical elements connected to this one side by side (for example wall-wall junction, beam framing into a column). On a physical element the relation is symmetric and stated on both elements. From IfcRelConnectsElements / IfcRelConnectsPathElements, or computed from geometric contact. Bearing contact is rests_on.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement', 'ConnectionVirtual']} })
-    neighbours: Optional[list[NeighbourDistance]] = Field(default=None, description="""Clear distances to the neighbouring physical elements within the measurement range configured for the conversion. Computed from geometry; elements farther away have no record.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement']} })
     id: str = Field(default=..., description="""Unique local identifier.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Change']} })
     content_kind: Literal["physical"] = Field(default=..., description="""Entity type discriminator for adapter projection and querying. Must be a ContentKind value.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity'], 'equals_string': 'physical'} })
     name: str = Field(default=..., description="""Default display name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
@@ -3767,7 +3759,6 @@ class ConnectionPhysical(PhysicalElement):
     parent_level: Optional[str] = Field(default=None, description="""Parent level/storey context reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement', 'SpatialContext', 'Space', 'ReservedVolume']} })
     rests_on: Optional[list[str]] = Field(default=None, description="""Elements this element sits on: its underside bears on their top (for example wall on slab, column on slab, slab on wall or column, equipment on a plinth). Computed from geometric contact; it records contact, not a structural analysis result. The inverse (supports) is read by querying the slot from the other side.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement']} })
     connects_physical_elements: Optional[list[str]] = Field(default=None, description="""Physical elements connected to this one side by side (for example wall-wall junction, beam framing into a column). On a physical element the relation is symmetric and stated on both elements. From IfcRelConnectsElements / IfcRelConnectsPathElements, or computed from geometric contact. Bearing contact is rests_on.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement', 'ConnectionVirtual']} })
-    neighbours: Optional[list[NeighbourDistance]] = Field(default=None, description="""Clear distances to the neighbouring physical elements within the measurement range configured for the conversion. Computed from geometry; elements farther away have no record.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement']} })
     id: str = Field(default=..., description="""Unique local identifier.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Change']} })
     content_kind: Literal["physical"] = Field(default=..., description="""Entity type discriminator for adapter projection and querying. Must be a ContentKind value.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity'], 'equals_string': 'physical'} })
     name: str = Field(default=..., description="""Default display name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
@@ -3821,7 +3812,6 @@ class SafetyBarrier(PhysicalElement):
     parent_level: Optional[str] = Field(default=None, description="""Parent level/storey context reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement', 'SpatialContext', 'Space', 'ReservedVolume']} })
     rests_on: Optional[list[str]] = Field(default=None, description="""Elements this element sits on: its underside bears on their top (for example wall on slab, column on slab, slab on wall or column, equipment on a plinth). Computed from geometric contact; it records contact, not a structural analysis result. The inverse (supports) is read by querying the slot from the other side.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement']} })
     connects_physical_elements: Optional[list[str]] = Field(default=None, description="""Physical elements connected to this one side by side (for example wall-wall junction, beam framing into a column). On a physical element the relation is symmetric and stated on both elements. From IfcRelConnectsElements / IfcRelConnectsPathElements, or computed from geometric contact. Bearing contact is rests_on.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement', 'ConnectionVirtual']} })
-    neighbours: Optional[list[NeighbourDistance]] = Field(default=None, description="""Clear distances to the neighbouring physical elements within the measurement range configured for the conversion. Computed from geometry; elements farther away have no record.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement']} })
     id: str = Field(default=..., description="""Unique local identifier.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Change']} })
     content_kind: Literal["physical"] = Field(default=..., description="""Entity type discriminator for adapter projection and querying. Must be a ContentKind value.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity'], 'equals_string': 'physical'} })
     name: str = Field(default=..., description="""Default display name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
@@ -3875,7 +3865,6 @@ class Boundary(PhysicalElement):
     parent_level: Optional[str] = Field(default=None, description="""Parent level/storey context reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement', 'SpatialContext', 'Space', 'ReservedVolume']} })
     rests_on: Optional[list[str]] = Field(default=None, description="""Elements this element sits on: its underside bears on their top (for example wall on slab, column on slab, slab on wall or column, equipment on a plinth). Computed from geometric contact; it records contact, not a structural analysis result. The inverse (supports) is read by querying the slot from the other side.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement']} })
     connects_physical_elements: Optional[list[str]] = Field(default=None, description="""Physical elements connected to this one side by side (for example wall-wall junction, beam framing into a column). On a physical element the relation is symmetric and stated on both elements. From IfcRelConnectsElements / IfcRelConnectsPathElements, or computed from geometric contact. Bearing contact is rests_on.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement', 'ConnectionVirtual']} })
-    neighbours: Optional[list[NeighbourDistance]] = Field(default=None, description="""Clear distances to the neighbouring physical elements within the measurement range configured for the conversion. Computed from geometry; elements farther away have no record.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement']} })
     id: str = Field(default=..., description="""Unique local identifier.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Change']} })
     content_kind: Literal["physical"] = Field(default=..., description="""Entity type discriminator for adapter projection and querying. Must be a ContentKind value.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity'], 'equals_string': 'physical'} })
     name: str = Field(default=..., description="""Default display name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
@@ -3930,7 +3919,6 @@ class Equipment(PhysicalElement):
     parent_level: Optional[str] = Field(default=None, description="""Parent level/storey context reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement', 'SpatialContext', 'Space', 'ReservedVolume']} })
     rests_on: Optional[list[str]] = Field(default=None, description="""Elements this element sits on: its underside bears on their top (for example wall on slab, column on slab, slab on wall or column, equipment on a plinth). Computed from geometric contact; it records contact, not a structural analysis result. The inverse (supports) is read by querying the slot from the other side.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement']} })
     connects_physical_elements: Optional[list[str]] = Field(default=None, description="""Physical elements connected to this one side by side (for example wall-wall junction, beam framing into a column). On a physical element the relation is symmetric and stated on both elements. From IfcRelConnectsElements / IfcRelConnectsPathElements, or computed from geometric contact. Bearing contact is rests_on.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement', 'ConnectionVirtual']} })
-    neighbours: Optional[list[NeighbourDistance]] = Field(default=None, description="""Clear distances to the neighbouring physical elements within the measurement range configured for the conversion. Computed from geometry; elements farther away have no record.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement']} })
     id: str = Field(default=..., description="""Unique local identifier.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Change']} })
     content_kind: Literal["physical"] = Field(default=..., description="""Entity type discriminator for adapter projection and querying. Must be a ContentKind value.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity'], 'equals_string': 'physical'} })
     name: str = Field(default=..., description="""Default display name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
@@ -5341,7 +5329,6 @@ ScheduleRequirement.model_rebuild()
 CostRequirement.model_rebuild()
 MaterialRequirement.model_rebuild()
 PhysicalElement.model_rebuild()
-NeighbourDistance.model_rebuild()
 Separator.model_rebuild()
 SeparatorWall.model_rebuild()
 SeparatorSlab.model_rebuild()

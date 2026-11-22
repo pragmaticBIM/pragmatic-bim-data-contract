@@ -705,10 +705,6 @@
          <lastmod>2026-11-22</lastmod>
     </url>
     <url>
-         <loc>https://schema.pragmaticbim.ch/schema/NeighbourDistance.html</loc>
-         <lastmod>2026-11-22</lastmod>
-    </url>
-    <url>
          <loc>https://schema.pragmaticbim.ch/schema/Nodeidentifier.html</loc>
          <lastmod>2026-11-22</lastmod>
     </url>
@@ -1437,10 +1433,6 @@
          <lastmod>2026-11-22</lastmod>
     </url>
     <url>
-         <loc>https://schema.pragmaticbim.ch/schema/horizontal_clear_distance.html</loc>
-         <lastmod>2026-11-22</lastmod>
-    </url>
-    <url>
          <loc>https://schema.pragmaticbim.ch/schema/hosted_by.html</loc>
          <lastmod>2026-11-22</lastmod>
     </url>
@@ -1610,14 +1602,6 @@
     </url>
     <url>
          <loc>https://schema.pragmaticbim.ch/schema/name.html</loc>
-         <lastmod>2026-11-22</lastmod>
-    </url>
-    <url>
-         <loc>https://schema.pragmaticbim.ch/schema/neighbour.html</loc>
-         <lastmod>2026-11-22</lastmod>
-    </url>
-    <url>
-         <loc>https://schema.pragmaticbim.ch/schema/neighbours.html</loc>
          <lastmod>2026-11-22</lastmod>
     </url>
     <url>
@@ -2102,10 +2086,6 @@
     </url>
     <url>
          <loc>https://schema.pragmaticbim.ch/schema/vendor.html</loc>
-         <lastmod>2026-11-22</lastmod>
-    </url>
-    <url>
-         <loc>https://schema.pragmaticbim.ch/schema/vertical_clear_distance.html</loc>
          <lastmod>2026-11-22</lastmod>
     </url>
     <url>

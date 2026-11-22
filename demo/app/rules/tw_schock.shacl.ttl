@@ -54,9 +54,10 @@
 #
 # Already in the contract and used: ZoneContext / zone_type / parent_zone, Equipment / parent_space,
 # Boundary ceiling / bounded_space, quantity_values, performance_properties, rests_on (equipment on a
-# plinth or slab), neighbours (NeighbourDistance: clear horizontal and vertical distance to nearby
-# elements), quantity_type_volume_net, material_property_density, body_3d bounding boxes, ReservedVolume
-# movement_clearance / intersects_elements, Artifact classifications (KBOB B18002 Montageanleitung, B07 Nachweise).
+# plinth or slab), DerivedMeasurement neighbour distances (horizontal_clear_distance /
+# vertical_clear_distance), quantity_type_volume_net, material_property_density, body_3d bounding boxes,
+# ReservedVolume movement_clearance / intersects_elements, Artifact classifications (KBOB B18002
+# Montageanleitung, B07 Nachweise).
 #
 # Missing in the IFC mapping (not the contract): IfcFurniture -> Equipment(furniture); Qto GrossWeight -> mass.
 #
@@ -509,12 +510,17 @@ rule:ShockClearance a sh:NodeShape ;
             "{?otherName} liegt horizontal {?h} m und vertikal {?v} m entfernt; Schwingweg {?deflection} m."@de ;
         sh:select """
             SELECT DISTINCT $this ?otherName ?h ?v ?deflection WHERE {
-                $this pbs:performance_properties ?d ; pbs:neighbours ?n .
+                $this pbs:performance_properties ?d .
                 ?d pbs:property_key missing:structural_property_shock_deflection ;
                    pbs:property_value_number ?deflection .
-                ?n pbs:neighbour ?other ;
-                   pbs:horizontal_clear_distance ?dh ;
-                   pbs:vertical_clear_distance ?dv .
+                ?m a pbs:DerivedMeasurement ;
+                   pbs:applies_to_entities $this , ?other ;
+                   pbs:quantity_values ?qh , ?qv .
+                ?qh pbs:quantity_type pbs:quantity_type_horizontal_clear_distance ;
+                    pbs:quantity_value ?dh .
+                ?qv pbs:quantity_type pbs:quantity_type_vertical_clear_distance ;
+                    pbs:quantity_value ?dv .
+                FILTER (?other != $this)
                 FILTER NOT EXISTS { $this pbs:rests_on ?other }
                 FILTER (?dh * ?dh + ?dv * ?dv < ?deflection * ?deflection)
                 OPTIONAL { ?other pbs:name ?name }

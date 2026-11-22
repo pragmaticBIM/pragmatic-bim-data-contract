@@ -93,14 +93,14 @@ computed_relations:
 
   # Clear distance to every physical element nearby: horizontal gap between the plan outlines and
   # vertical gap between the height ranges (each 0 where they overlap). The limits only bound the
-  # measurement; pairs beyond either get no record. Written on the subject as NeighbourDistance records.
+  # measurement; pairs beyond either get no record. Written as a DerivedMeasurement with both
+  # quantity types and a display LINESTRING Z between the nearest plan points.
   neighbours:
     method: neighbour_distance
     subject:
       contract_class: Equipment
     object:
       contract_class: PhysicalElement
-    target_slot: neighbours
     max_horizontal_distance: 1.0
     max_vertical_distance: 1.0
 

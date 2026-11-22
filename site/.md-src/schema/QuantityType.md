@@ -16,27 +16,29 @@ URI: [pbs:QuantityType](https://schema.pragmaticbim.ch/QuantityType)
 
 
 ## Permissible Values
-| Value | Meaning | Description |
-| --- | --- | --- |
-| area_net_horizontal | ifcowl:IfcQuantityArea | Net horizontal area, typically usable floor area excluding non-net parts. |
-| area_gross_horizontal | ifcowl:IfcQuantityArea | Gross horizontal area, typically measured to outer boundaries. |
-| area_net_vertical | ifcowl:IfcQuantityArea | Net vertical area, typically wall or facade area excluding deductions. |
-| area_gross_vertical | ifcowl:IfcQuantityArea | Gross vertical area, typically full wall or facade area including non-net portions. |
-| volume_net | ifcowl:IfcQuantityVolume | Net enclosed volume after subtracting non-counted voids or deductions. |
-| volume_gross | ifcowl:IfcQuantityVolume | Gross enclosed volume measured to external or gross boundaries. |
-| length | ifcowl:IfcQuantityLength | Linear extent of an element or feature. |
-| width | ifcowl:IfcQuantityLength | Width dimension of an element, opening, or space proxy. |
-| height | ifcowl:IfcQuantityLength | Height dimension of an element, opening, or space proxy. |
-| perimeter | ifcowl:IfcQuantityLength | Boundary length around a 2D shape or footprint. |
-| count | pbs:quantity_type_count | Discrete count of items, storeys, or occurrences. |
-| ratio | pbs:quantity_type_ratio | Dimensionless quotient of two measured quantities. |
-| height_above_walking_surface | pbs:quantity_type_height_above_walking_surface | Vertical distance from the guarded walking surface (space floor) to the top of a safety barrier, measured from geometry against the highest guarded floor. |
-| area_glazed | pbs:quantity_type_area_glazed | Projected glazed (transparent) area of a window or glazed door. |
-| glazing_ratio | pbs:quantity_type_glazing_ratio | Sum of the glazed areas of the windows lighting a space divided by the net floor area of the space. |
-| escape_route_length | pbs:quantity_type_escape_route_length | Walking distance in plan along the shortest horizontal escape route to an exit to the outside or a stair leaving the storey; on a space measured from its most remote point, on a door from the door. |
-| clear_width | pbs:quantity_type_clear_width | Clear usable width of a stair flight or stair (lichte Laufbreite), typically for escape-route checks. |
-| tread_length_at_inner_side | pbs:quantity_type_tread_length_at_inner_side | Tread length at the inner edge of a winder stair flight; given for winder flights only. |
-| escape_route_clear_width | pbs:quantity_type_escape_route_clear_width | Planned clear width of the horizontal escape route in a space at its narrowest point. |
+| Value | Meaning | Description | Additional Info |
+| --- | --- | --- | --- |
+| area_net_horizontal | ifcowl:IfcQuantityArea | Net horizontal area, typically usable floor area excluding non-net parts. ||
+| area_gross_horizontal | ifcowl:IfcQuantityArea | Gross horizontal area, typically measured to outer boundaries. ||
+| area_net_vertical | ifcowl:IfcQuantityArea | Net vertical area, typically wall or facade area excluding deductions. ||
+| area_gross_vertical | ifcowl:IfcQuantityArea | Gross vertical area, typically full wall or facade area including non-net portions. ||
+| volume_net | ifcowl:IfcQuantityVolume | Net enclosed volume after subtracting non-counted voids or deductions. ||
+| volume_gross | ifcowl:IfcQuantityVolume | Gross enclosed volume measured to external or gross boundaries. ||
+| length | ifcowl:IfcQuantityLength | Linear extent of an element or feature. ||
+| width | ifcowl:IfcQuantityLength | Width dimension of an element, opening, or space proxy. ||
+| height | ifcowl:IfcQuantityLength | Height dimension of an element, opening, or space proxy. ||
+| perimeter | ifcowl:IfcQuantityLength | Boundary length around a 2D shape or footprint. ||
+| count | pbs:quantity_type_count | Discrete count of items, storeys, or occurrences. ||
+| ratio | pbs:quantity_type_ratio | Dimensionless quotient of two measured quantities. ||
+| height_above_walking_surface | pbs:quantity_type_height_above_walking_surface | Vertical distance from the guarded walking surface (space floor) to the top of a safety barrier, measured from geometry against the highest guarded floor. ||
+| area_glazed | pbs:quantity_type_area_glazed | Projected glazed (transparent) area of a window or glazed door. ||
+| glazing_ratio | pbs:quantity_type_glazing_ratio | Sum of the glazed areas of the windows lighting a space divided by the net floor area of the space. ||
+| escape_route_length | pbs:quantity_type_escape_route_length | Walking distance in plan along the shortest horizontal escape route to an exit to the outside or a stair leaving the storey; on a space measured from its most remote point, on a door from the door. ||
+| clear_width | pbs:quantity_type_clear_width | Clear usable width of a stair flight or stair (lichte Laufbreite), typically for escape-route checks. ||
+| tread_length_at_inner_side | pbs:quantity_type_tread_length_at_inner_side | Tread length at the inner edge of a winder stair flight; given for winder flights only. ||
+| escape_route_clear_width | pbs:quantity_type_escape_route_clear_width | Planned clear width of the horizontal escape route in a space at its narrowest point. ||
+| horizontal_clear_distance | pbs:quantity_type_horizontal_clear_distance | Horizontal clear distance in metres between the plan outlines of two elements; 0 where they overlap or touch. | Title: Horizontal clear distance<br>|
+| vertical_clear_distance | pbs:quantity_type_vertical_clear_distance | Vertical clear distance in metres between the height ranges of two elements; 0 where they overlap or touch. | Title: Vertical clear distance<br>|
 
 
 
@@ -168,6 +170,26 @@ permissible_values:
     description: Planned clear width of the horizontal escape route in a space at
       its narrowest point.
     meaning: pbs:quantity_type_escape_route_clear_width
+  horizontal_clear_distance:
+    text: horizontal_clear_distance
+    description: Horizontal clear distance in metres between the plan outlines of
+      two elements; 0 where they overlap or touch.
+    meaning: pbs:quantity_type_horizontal_clear_distance
+    alt_descriptions:
+      de:
+        source: de
+        description: Lichter Abstand horizontal
+    title: Horizontal clear distance
+  vertical_clear_distance:
+    text: vertical_clear_distance
+    description: Vertical clear distance in metres between the height ranges of two
+      elements; 0 where they overlap or touch.
+    meaning: pbs:quantity_type_vertical_clear_distance
+    alt_descriptions:
+      de:
+        source: de
+        description: Lichter Abstand vertikal
+    title: Vertical clear distance
 
 ```
 </details>

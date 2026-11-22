@@ -108,7 +108,7 @@ classes:
   GeometryRepresentation: Geometrie
   QuantityValue: Menge
   MetadataEntry: Metadaten
-  NeighbourDistance: Abstand zum Nachbarbauteil
+  DerivedMeasurement: Abgeleitete Messung
   PerformanceProperty: Leistungseigenschaft
   Decision: Entscheid
   Task: Aufgabe
@@ -239,10 +239,8 @@ slots:
   pbs:quantity_value: Wert
   pbs:quantity_unit: Einheit
   pbs:quantity_unit_uri: Einheit (URI)
-  pbs:neighbours: Nachbarbauteile
-  pbs:neighbour: Nachbarbauteil
-  pbs:horizontal_clear_distance: Abstand horizontal
-  pbs:vertical_clear_distance: Abstand vertikal
+  pbs:quantity_type_horizontal_clear_distance: Abstand horizontal
+  pbs:quantity_type_vertical_clear_distance: Abstand vertikal
   pbs:metadata_key: Schlüssel
   pbs:metadata_value: Wert
   pbs:property_key: Eigenschaft

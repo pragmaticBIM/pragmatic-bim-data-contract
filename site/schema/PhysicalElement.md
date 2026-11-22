@@ -46,7 +46,6 @@ click GeometryRepresentation href "./GeometryRepresentation.html" _blank
 click LocalizedText href "./LocalizedText.html" _blank
 click LocalizedText href "./LocalizedText.html" _blank
 click MetadataEntry href "./MetadataEntry.html" _blank
-click NeighbourDistance href "./NeighbourDistance.html" _blank
 click BuiltAssetContext href "./BuiltAssetContext.html" _blank
 click LevelContext href "./LevelContext.html" _blank
 click PerformanceProperty href "./PerformanceProperty.html" _blank
@@ -84,7 +83,6 @@ click StatusType href "./StatusType.html" _blank
 | [parent_level](parent_level.md) | 0..1 <br/> [LevelContext](LevelContext.md) | Parent level/storey context reference. | direct |
 | [rests_on](rests_on.md) | * <br/> [PhysicalElement](PhysicalElement.md) | Elements this element sits on: its underside bears on their top (for example wall on slab, column on slab, slab on wall or column, equipment on a plinth). Computed from geometric contact; it records contact, not a structural analysis result. The inverse (supports) is read by querying the slot from the other side. | direct |
 | [connects_physical_elements](connects_physical_elements.md) | * <br/> [PhysicalElement](PhysicalElement.md) | Physical elements connected to this one side by side (for example wall-wall junction, beam framing into a column). On a physical element the relation is symmetric and stated on both elements. From IfcRelConnectsElements / IfcRelConnectsPathElements, or computed from geometric contact. Bearing contact is rests_on. | direct |
-| [neighbours](neighbours.md) | * <br/> [NeighbourDistance](NeighbourDistance.md) | Clear distances to the neighbouring physical elements within the measurement range configured for the conversion. Computed from geometry; elements farther away have no record. | direct |
 | [id](id.md) | 1 <br/> [String](String.md) | Unique local identifier. | [Entity](Entity.md) |
 | [content_kind](content_kind.md) | 1 <br/> [String](String.md) | Entity type discriminator for adapter projection and querying. Must be a ContentKind value. | [Entity](Entity.md) |
 | [name](name.md) | 1 <br/> [String](String.md) | Default display name. | [Entity](Entity.md) |
@@ -114,7 +112,6 @@ click StatusType href "./StatusType.html" _blank
 | ---  | --- | --- | --- |
 | [PhysicalElement](PhysicalElement.md) | [rests_on](rests_on.md) | range | [PhysicalElement](PhysicalElement.md) |
 | [PhysicalElement](PhysicalElement.md) | [connects_physical_elements](connects_physical_elements.md) | range | [PhysicalElement](PhysicalElement.md) |
-| [NeighbourDistance](NeighbourDistance.md) | [neighbour](neighbour.md) | range | [PhysicalElement](PhysicalElement.md) |
 | [Separator](Separator.md) | [rests_on](rests_on.md) | range | [PhysicalElement](PhysicalElement.md) |
 | [Separator](Separator.md) | [connects_physical_elements](connects_physical_elements.md) | range | [PhysicalElement](PhysicalElement.md) |
 | [SeparatorWall](SeparatorWall.md) | [rests_on](rests_on.md) | range | [PhysicalElement](PhysicalElement.md) |
@@ -197,7 +194,6 @@ slots:
 - parent_level
 - rests_on
 - connects_physical_elements
-- neighbours
 slot_usage:
   content_kind:
     name: content_kind
@@ -290,19 +286,6 @@ attributes:
     - ConnectionVirtual
     range: PhysicalElement
     multivalued: true
-  neighbours:
-    name: neighbours
-    description: Clear distances to the neighbouring physical elements within the
-      measurement range configured for the conversion. Computed from geometry; elements
-      farther away have no record.
-    from_schema: https://schema.pragmaticbim.ch
-    rank: 1000
-    owner: PhysicalElement
-    domain_of:
-    - PhysicalElement
-    range: NeighbourDistance
-    multivalued: true
-    inlined: true
   id:
     name: id
     description: Unique local identifier.
