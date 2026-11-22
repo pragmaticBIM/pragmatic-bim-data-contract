@@ -101,6 +101,16 @@ classes:
     slots:
     - barrier_type
     - guards_space
+  TerrainSurface:
+    is_a: PhysicalElement
+    class_uri: pbs:TerrainSurface
+    exact_mappings:
+    - ifcowl:IfcGeographicElement
+    description: >-
+      Existing or projected terrain surface (survey surface) as a geographic element.
+      Converted from IfcGeographicElement (IFC4+); IFC2x3 proxies stay generic.
+    slots:
+    - terrain_surface_status
   Boundary:
     is_a: PhysicalElement
     class_uri: pbs:Boundary
@@ -208,6 +218,10 @@ slots:
     range: BarrierType
     required: true
     description: Classification of the safety barrier (balustrade, guardrail, handrail).
+  terrain_surface_status:
+    range: TerrainSurfaceStatus
+    required: true
+    description: Whether the terrain surface represents the existing or the projected site.
   guards_space:
     multivalued: true
     range: Space

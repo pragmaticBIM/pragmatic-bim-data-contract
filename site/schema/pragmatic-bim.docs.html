@@ -62,7 +62,7 @@
     
     
   <meta name="panzoom-theme" content="material">
-<meta name="panzoom-data" content='{"selectors": [".mermaid", ".d2"], "initial_zoom_level": 1.0}'> </head>
+<meta name="panzoom-data" content='{"selectors": [".d2", ".mermaid"], "initial_zoom_level": 1.0}'> </head>
   
   
     
@@ -728,6 +728,10 @@
 <td>Linear fall protection or guiding element (balustrade, guardrail, handrail) along slab, balcony, roof, landing, stair, or ramp edges.</td>
 </tr>
 <tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="TerrainSurface.html">TerrainSurface</a></td>
+<td>Existing or projected terrain surface (survey surface) as a geographic element. Converted from IfcGeographicElement (IFC4+); IFC2x3 proxies stay generic.</td>
+</tr>
+<tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="Boundary.html">Boundary</a></td>
 <td>Physical element acting as a boundary treatment (for example covering).</td>
 </tr>
@@ -976,6 +980,10 @@
 </tr>
 </thead>
 <tbody>
+<tr>
+<td><a href="above_ground.html">above_ground</a></td>
+<td>Whether this storey is fully above ground. Resolved from IFC properties, the storey naming convention, or elevation (see ground_reference_source).</td>
+</tr>
 <tr>
 <td><a href="acceptance_criteria.html">acceptance_criteria</a></td>
 <td>Criteria that define when the deliverable is accepted.</td>
@@ -1441,6 +1449,10 @@
 <td>Timestamp when consent was given. Required when lawful_basis is consent.</td>
 </tr>
 <tr>
+<td><a href="ground_reference_source.html">ground_reference_source</a></td>
+<td>Which source was used to resolve above_ground and is_ground_floor for this storey (same source for all storeys of a building).</td>
+</tr>
+<tr>
 <td><a href="group_members.html">group_members</a></td>
 <td>Zone members; may include spaces, separations, systems, etc.</td>
 </tr>
@@ -1483,6 +1495,10 @@
 <tr>
 <td><a href="is_cooled.html">is_cooled</a></td>
 <td>Whether the space is designed to receive cooling (air conditioning).</td>
+</tr>
+<tr>
+<td><a href="is_ground_floor.html">is_ground_floor</a></td>
+<td>Whether this storey is the building's ground floor (entrance level). Exactly one storey per building should be true after resolution.</td>
 </tr>
 <tr>
 <td><a href="is_heated.html">is_heated</a></td>
@@ -1798,7 +1814,7 @@
 </tr>
 <tr>
 <td><a href="quantity_value.html">quantity_value</a></td>
-<td>Numeric quantity value.</td>
+<td>Numeric quantity value. Most QuantityTypes are non-negative; signed types such as height_above_ground_floor and height_above_terrain may be negative when the reference lies below the datum.</td>
 </tr>
 <tr>
 <td><a href="quantity_values.html">quantity_values</a></td>
@@ -2045,6 +2061,10 @@
 <td>Task type expressed as a URI/CURIE from a controlled vocabulary.</td>
 </tr>
 <tr>
+<td><a href="terrain_surface_status.html">terrain_surface_status</a></td>
+<td>Whether the terrain surface represents the existing or the projected site.</td>
+</tr>
+<tr>
 <td><a href="text_value.html">text_value</a></td>
 <td>Localized text value.</td>
 </tr>
@@ -2200,6 +2220,10 @@
 <td>Classification of geometric representation dimension/style.</td>
 </tr>
 <tr>
+<td><a href="GroundReferenceSource.html">GroundReferenceSource</a></td>
+<td>Source used to resolve LevelContext above_ground and is_ground_floor flags.</td>
+</tr>
+<tr>
 <td><a href="IndoorEnvironmentPropertyKey.html">IndoorEnvironmentPropertyKey</a></td>
 <td>Canonical indoor environment keys for spaces (temperature, humidity, air, light, occupancy).</td>
 </tr>
@@ -2294,6 +2318,10 @@
 <tr>
 <td><a href="SystemType.html">SystemType</a></td>
 <td>Role of an MEP-related element or grouping in the service chain.</td>
+</tr>
+<tr>
+<td><a href="TerrainSurfaceStatus.html">TerrainSurfaceStatus</a></td>
+<td>Whether a terrain surface describes the existing or the projected site.</td>
 </tr>
 <tr>
 <td><a href="ThermalPropertyKey.html">ThermalPropertyKey</a></td>

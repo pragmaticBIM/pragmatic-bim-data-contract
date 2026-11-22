@@ -125,6 +125,7 @@ click ZoneType href "./ZoneType.html" _blank
 | [SeparatorSlab](SeparatorSlab.md) | [parent_building](parent_building.md) | range | [BuiltAssetContext](BuiltAssetContext.md) |
 | [ConnectionPhysical](ConnectionPhysical.md) | [parent_building](parent_building.md) | range | [BuiltAssetContext](BuiltAssetContext.md) |
 | [SafetyBarrier](SafetyBarrier.md) | [parent_building](parent_building.md) | range | [BuiltAssetContext](BuiltAssetContext.md) |
+| [TerrainSurface](TerrainSurface.md) | [parent_building](parent_building.md) | range | [BuiltAssetContext](BuiltAssetContext.md) |
 | [Boundary](Boundary.md) | [parent_building](parent_building.md) | range | [BuiltAssetContext](BuiltAssetContext.md) |
 | [Equipment](Equipment.md) | [parent_building](parent_building.md) | range | [BuiltAssetContext](BuiltAssetContext.md) |
 | [SpatialContext](SpatialContext.md) | [parent_building](parent_building.md) | range | [BuiltAssetContext](BuiltAssetContext.md) |

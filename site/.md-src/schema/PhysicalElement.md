@@ -35,6 +35,8 @@ PhysicalElement <|-- ConnectionPhysical
 click ConnectionPhysical href "./ConnectionPhysical.html" _blank
 PhysicalElement <|-- SafetyBarrier
 click SafetyBarrier href "./SafetyBarrier.html" _blank
+PhysicalElement <|-- TerrainSurface
+click TerrainSurface href "./TerrainSurface.html" _blank
 PhysicalElement <|-- Boundary
 click Boundary href "./Boundary.html" _blank
 PhysicalElement <|-- Equipment
@@ -64,6 +66,7 @@ click StatusType href "./StatusType.html" _blank
         * [Separator](Separator.md)
         * [ConnectionPhysical](ConnectionPhysical.md)
         * [SafetyBarrier](SafetyBarrier.md)
+        * [TerrainSurface](TerrainSurface.md)
         * [Boundary](Boundary.md)
         * [Equipment](Equipment.md)
 
@@ -124,6 +127,8 @@ click StatusType href "./StatusType.html" _blank
 | [ConnectionPhysical](ConnectionPhysical.md) | [connects_physical_elements](connects_physical_elements.md) | range | [PhysicalElement](PhysicalElement.md) |
 | [SafetyBarrier](SafetyBarrier.md) | [rests_on](rests_on.md) | range | [PhysicalElement](PhysicalElement.md) |
 | [SafetyBarrier](SafetyBarrier.md) | [connects_physical_elements](connects_physical_elements.md) | range | [PhysicalElement](PhysicalElement.md) |
+| [TerrainSurface](TerrainSurface.md) | [rests_on](rests_on.md) | range | [PhysicalElement](PhysicalElement.md) |
+| [TerrainSurface](TerrainSurface.md) | [connects_physical_elements](connects_physical_elements.md) | range | [PhysicalElement](PhysicalElement.md) |
 | [Boundary](Boundary.md) | [rests_on](rests_on.md) | range | [PhysicalElement](PhysicalElement.md) |
 | [Boundary](Boundary.md) | [connects_physical_elements](connects_physical_elements.md) | range | [PhysicalElement](PhysicalElement.md) |
 | [Equipment](Equipment.md) | [rests_on](rests_on.md) | range | [PhysicalElement](PhysicalElement.md) |

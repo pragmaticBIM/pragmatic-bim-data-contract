@@ -625,6 +625,10 @@
          <lastmod>2026-11-22</lastmod>
     </url>
     <url>
+         <loc>https://schema.pragmaticbim.ch/schema/GroundReferenceSource.html</loc>
+         <lastmod>2026-11-22</lastmod>
+    </url>
+    <url>
          <loc>https://schema.pragmaticbim.ch/schema/IdentificationRequirement.html</loc>
          <lastmod>2026-11-22</lastmod>
     </url>
@@ -917,6 +921,14 @@
          <lastmod>2026-11-22</lastmod>
     </url>
     <url>
+         <loc>https://schema.pragmaticbim.ch/schema/TerrainSurface.html</loc>
+         <lastmod>2026-11-22</lastmod>
+    </url>
+    <url>
+         <loc>https://schema.pragmaticbim.ch/schema/TerrainSurfaceStatus.html</loc>
+         <lastmod>2026-11-22</lastmod>
+    </url>
+    <url>
          <loc>https://schema.pragmaticbim.ch/schema/ThermalProperty.html</loc>
          <lastmod>2026-11-22</lastmod>
     </url>
@@ -958,6 +970,10 @@
     </url>
     <url>
          <loc>https://schema.pragmaticbim.ch/schema/ZoneType.html</loc>
+         <lastmod>2026-11-22</lastmod>
+    </url>
+    <url>
+         <loc>https://schema.pragmaticbim.ch/schema/above_ground.html</loc>
          <lastmod>2026-11-22</lastmod>
     </url>
     <url>
@@ -1425,6 +1441,10 @@
          <lastmod>2026-11-22</lastmod>
     </url>
     <url>
+         <loc>https://schema.pragmaticbim.ch/schema/ground_reference_source.html</loc>
+         <lastmod>2026-11-22</lastmod>
+    </url>
+    <url>
          <loc>https://schema.pragmaticbim.ch/schema/group_members.html</loc>
          <lastmod>2026-11-22</lastmod>
     </url>
@@ -1466,6 +1486,10 @@
     </url>
     <url>
          <loc>https://schema.pragmaticbim.ch/schema/is_cooled.html</loc>
+         <lastmod>2026-11-22</lastmod>
+    </url>
+    <url>
+         <loc>https://schema.pragmaticbim.ch/schema/is_ground_floor.html</loc>
          <lastmod>2026-11-22</lastmod>
     </url>
     <url>
@@ -2034,6 +2058,10 @@
     </url>
     <url>
          <loc>https://schema.pragmaticbim.ch/schema/task_type.html</loc>
+         <lastmod>2026-11-22</lastmod>
+    </url>
+    <url>
+         <loc>https://schema.pragmaticbim.ch/schema/terrain_surface_status.html</loc>
          <lastmod>2026-11-22</lastmod>
     </url>
     <url>

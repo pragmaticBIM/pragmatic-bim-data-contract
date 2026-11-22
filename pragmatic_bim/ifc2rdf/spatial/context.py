@@ -41,7 +41,13 @@ class SpatialContext:
     def __init__(self, conv: "Converter", geometry: GeometryResult) -> None:
         self.conv = conv
         self.geometry = geometry
-        self.index = SpatialIndex(geometry.geometries.values())
+        # Terrain meshes stay out of the plan-outline index used for other elements.
+        indexed = [
+            geo
+            for geo in geometry.geometries.values()
+            if not _is_terrain(conv, geo.id)
+        ]
+        self.index = SpatialIndex(indexed)
         self.area_scale = ifcopenshell.util.unit.calculate_unit_scale(conv.file, "AREAUNIT")
         self._psets: dict[int, dict[str, dict[str, Any]]] = {}
 
@@ -124,6 +130,7 @@ class SpatialContext:
         tolerance: float | None = None,
         line_wkt: str | None = None,
         status: str = "measured",
+        allow_negative: bool = False,
     ) -> Node | None:
         """Write a top-level ``DerivedMeasurement``; id is deterministic from method + subjects."""
         subject_list = list(subjects)
@@ -161,7 +168,7 @@ class SpatialContext:
             "derivation_inputs": input_refs or None,
         }
         for quantity_type, value, unit in quantities:
-            if value < 0:
+            if value < 0 and not allow_negative:
                 self.conv.report.dropped[f"DerivedMeasurement.quantity_values {quantity_type} (negative)"] += 1
                 continue
             self.conv.writer.add_inlined(
@@ -247,6 +254,11 @@ class SpatialContext:
 def _measurement_id(method: str, subjects: Sequence[Node]) -> str:
     subject_ids = sorted(node.global_id for node in subjects)
     return f"{method}__{'__'.join(subject_ids)}"
+
+
+def _is_terrain(conv: "Converter", entity_id: int) -> bool:
+    node = conv.nodes.get(entity_id)
+    return node is not None and node.contract_class == "TerrainSurface"
 
 
 def _equal(actual: Any, expected: Any) -> bool:

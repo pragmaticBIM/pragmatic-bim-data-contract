@@ -96,6 +96,9 @@ classes:
     slots:
     - elevation
     - elevation_unit
+    - above_ground
+    - is_ground_floor
+    - ground_reference_source
   ZoneContext:
     is_a: SpatialContext
     class_uri: pbs:ZoneContext
@@ -305,6 +308,21 @@ slots:
   elevation_unit:
     range: string
     description: Unit for elevation (default m).
+  above_ground:
+    range: boolean
+    description: >-
+      Whether this storey is fully above ground. Resolved from IFC properties, the storey
+      naming convention, or elevation (see ground_reference_source).
+  is_ground_floor:
+    range: boolean
+    description: >-
+      Whether this storey is the building's ground floor (entrance level). Exactly one
+      storey per building should be true after resolution.
+  ground_reference_source:
+    range: GroundReferenceSource
+    description: >-
+      Which source was used to resolve above_ground and is_ground_floor for this storey
+      (same source for all storeys of a building).
   system_type:
     range: SystemType
     required: true

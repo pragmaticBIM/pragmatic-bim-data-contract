@@ -292,6 +292,46 @@ class QuantityType(str, Enum):
     """
     Vertical clear distance in metres between the height ranges of two elements; 0 where they overlap or touch.
     """
+    Height_above_ground_floor = "height_above_ground_floor"
+    """
+    Vertical distance from the building's ground-floor storey elevation to a reference point on a window, space or safety barrier. Approximates height above terrain when no terrain surface is present; negative when the reference lies below the ground floor.
+    """
+    Height_above_terrain = "height_above_terrain"
+    """
+    Vertical distance from a sampled terrain surface height to a reference point on a window, space or safety barrier. Negative when the reference lies below the terrain.
+    """
+
+
+class GroundReferenceSource(str, Enum):
+    """
+    Source used to resolve LevelContext above_ground and is_ground_floor flags.
+    """
+    IFC_property = "ifc_property"
+    """
+    Flags taken from Pset_BuildingStoreyCommon.AboveGround and EntranceLevel.
+    """
+    Name_convention = "name_convention"
+    """
+    Flags taken from the storey naming convention (EG/00 ground, U## and FD below, ## above, .Z intermediate inherits the base storey).
+    """
+    Elevation = "elevation"
+    """
+    Ground floor is the lowest storey with elevation at or above 0; storeys at or above that elevation are above ground.
+    """
+
+
+class TerrainSurfaceStatus(str, Enum):
+    """
+    Whether a terrain surface describes the existing or the projected site.
+    """
+    Existing = "existing"
+    """
+    Existing (as-built or survey) terrain surface.
+    """
+    Projected = "projected"
+    """
+    Projected (planned or new) terrain surface.
+    """
 
 
 class DerivationSourceKind(str, Enum):
@@ -2178,7 +2218,7 @@ class QuantityValue(ConfiguredBaseModel):
          'from_schema': 'https://schema.pragmaticbim.ch/entity/core'})
 
     quantity_type: QuantityType = Field(default=..., description="""Controlled quantity type.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantityValue']} })
-    quantity_value: float = Field(default=..., description="""Numeric quantity value.""", ge=0, json_schema_extra = { "linkml_meta": {'domain_of': ['QuantityValue']} })
+    quantity_value: float = Field(default=..., description="""Numeric quantity value. Most QuantityTypes are non-negative; signed types such as height_above_ground_floor and height_above_terrain may be negative when the reference lies below the datum.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantityValue']} })
     quantity_unit: str = Field(default=..., description="""Unit of the quantity value.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantityValue']} })
     quantity_unit_uri: Optional[str] = Field(default=None, description="""Optional URI that identifies the quantity unit in an external vocabulary such as QUDT.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantityValue']} })
     metric_scheme: Optional[str] = Field(default=None, description="""Vocabulary scheme identifier for the measured concept: AbstractBuildingMetric or AbstractBuildingRatio.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantityValue']} })
@@ -3847,6 +3887,58 @@ class SafetyBarrier(PhysicalElement):
         return v
 
 
+class TerrainSurface(PhysicalElement):
+    """
+    Existing or projected terrain surface (survey surface) as a geographic element. Converted from IfcGeographicElement (IFC4+); IFC2x3 proxies stay generic.
+    """
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'pbs:TerrainSurface',
+         'exact_mappings': ['ifcowl:IfcGeographicElement'],
+         'from_schema': 'https://schema.pragmaticbim.ch/entity/physical'})
+
+    terrain_surface_status: TerrainSurfaceStatus = Field(default=..., description="""Whether the terrain surface represents the existing or the projected site.""", json_schema_extra = { "linkml_meta": {'domain_of': ['TerrainSurface']} })
+    parent_building: Optional[str] = Field(default=None, description="""Parent building context reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement',
+                       'SpatialContext',
+                       'Space',
+                       'ReservedVolume',
+                       'System']} })
+    parent_level: Optional[str] = Field(default=None, description="""Parent level/storey context reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement', 'SpatialContext', 'Space', 'ReservedVolume']} })
+    rests_on: Optional[list[str]] = Field(default=None, description="""Elements this element sits on: its underside bears on their top (for example wall on slab, column on slab, slab on wall or column, equipment on a plinth). Computed from geometric contact; it records contact, not a structural analysis result. The inverse (supports) is read by querying the slot from the other side.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement']} })
+    connects_physical_elements: Optional[list[str]] = Field(default=None, description="""Physical elements connected to this one side by side (for example wall-wall junction, beam framing into a column). On a physical element the relation is symmetric and stated on both elements. From IfcRelConnectsElements / IfcRelConnectsPathElements, or computed from geometric contact. Bearing contact is rests_on.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhysicalElement', 'ConnectionVirtual']} })
+    id: str = Field(default=..., description="""Unique local identifier.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Change']} })
+    content_kind: Literal["physical"] = Field(default=..., description="""Entity type discriminator for adapter projection and querying. Must be a ContentKind value.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity'], 'equals_string': 'physical'} })
+    name: str = Field(default=..., description="""Default display name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
+    localized_names: Optional[list[LocalizedText]] = Field(default=None, description="""Localized variants of name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
+    description: Optional[str] = Field(default=None, description="""Default description text.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
+    meaning_uri: Optional[str] = Field(default=None, description="""Optional semantic URI for linking the entity instance to an external ontology concept.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
+    localized_descriptions: Optional[list[LocalizedText]] = Field(default=None, description="""Localized variants of description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
+    ifc_global_id: Optional[str] = Field(default=None, description="""IFC GlobalId of the mapped entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Change']} })
+    classifications: Optional[list[Classification]] = Field(default=None, description="""Classification entries from IFC and other schemes.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Artifact']} })
+    geometry_representations: Optional[list[GeometryRepresentation]] = Field(default=None, description="""Geometry references associated with the entity. A single element may link to multiple geometry representations to serve different intents (authoring, coordination, analysis, visualization) without duplicating the element itself.
+""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
+    quantity_values: Optional[list[QuantityValue]] = Field(default=None, description="""Quantities associated with the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
+    metadata: Optional[list[MetadataEntry]] = Field(default=None, description="""Generic metadata container for IFC attributes/properties and project-specific extensions.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
+    performance_properties: Optional[list[PerformanceProperty]] = Field(default=None, description="""Normalized, strongly typed domain properties (fire/acoustic/thermal/structural/ security/material) extracted from raw IFC PropertySet values.
+""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
+    applies_to_entities: Optional[list[str]] = Field(default=None, description="""Model entities this record applies to (requirements, cost items, schedule items, etc.).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'TimeRecord', 'CostRecord']} })
+    created_at: Optional[datetime ] = Field(default=None, description="""Creation timestamp for this entity record.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
+    modified_at: Optional[datetime ] = Field(default=None, description="""Last modification timestamp for this entity record.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
+    revision: Optional[int] = Field(default=None, description="""Integer revision counter for change tracking.""", ge=0, json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
+    status: Optional[StatusType] = Field(default=None, description="""Lifecycle or QA status.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
+
+    @field_validator('ifc_global_id')
+    def pattern_ifc_global_id(cls, v):
+        pattern=re.compile(r"^[0-3][0-9A-Za-z_$]{21}$")
+        if isinstance(v, list):
+            for element in v:
+                if isinstance(element, str) and not pattern.match(element):
+                    err_msg = f"Invalid ifc_global_id format: {element}"
+                    raise ValueError(err_msg)
+        elif isinstance(v, str) and not pattern.match(v):
+            err_msg = f"Invalid ifc_global_id format: {v}"
+            raise ValueError(err_msg)
+        return v
+
+
 class Boundary(PhysicalElement):
     """
     Physical element acting as a boundary treatment (for example covering).
@@ -4377,6 +4469,9 @@ class LevelContext(SpatialContext):
 
     elevation: Optional[float] = Field(default=None, description="""Storey elevation relative to project datum (metres).""", json_schema_extra = { "linkml_meta": {'domain_of': ['LevelContext']} })
     elevation_unit: Optional[str] = Field(default=None, description="""Unit for elevation (default m).""", json_schema_extra = { "linkml_meta": {'domain_of': ['LevelContext']} })
+    above_ground: Optional[bool] = Field(default=None, description="""Whether this storey is fully above ground. Resolved from IFC properties, the storey naming convention, or elevation (see ground_reference_source).""", json_schema_extra = { "linkml_meta": {'domain_of': ['LevelContext']} })
+    is_ground_floor: Optional[bool] = Field(default=None, description="""Whether this storey is the building's ground floor (entrance level). Exactly one storey per building should be true after resolution.""", json_schema_extra = { "linkml_meta": {'domain_of': ['LevelContext']} })
+    ground_reference_source: Optional[GroundReferenceSource] = Field(default=None, description="""Which source was used to resolve above_ground and is_ground_floor for this storey (same source for all storeys of a building).""", json_schema_extra = { "linkml_meta": {'domain_of': ['LevelContext']} })
     context_type: ContextType = Field(default=..., description="""Classification of context entity (perimeter, legal_site, building, civil_structure, level, zone).""", json_schema_extra = { "linkml_meta": {'domain_of': ['SpatialContext']} })
     zone_type: Optional[ZoneType] = Field(default=None, description="""Optional zone classification; intended for SpatialContext nodes where context_type is zone.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SpatialContext']} })
     parent_project: Optional[str] = Field(default=None, description="""Parent project reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Process', 'Deliverable', 'SpatialContext', 'System']} })
@@ -5334,6 +5429,7 @@ SeparatorWall.model_rebuild()
 SeparatorSlab.model_rebuild()
 ConnectionPhysical.model_rebuild()
 SafetyBarrier.model_rebuild()
+TerrainSurface.model_rebuild()
 Boundary.model_rebuild()
 Equipment.model_rebuild()
 VirtualEntity.model_rebuild()

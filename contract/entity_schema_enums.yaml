@@ -292,6 +292,79 @@ enums:
           de:
             source: de
             description: Lichter Abstand vertikal
+      height_above_ground_floor:
+        description: >-
+          Vertical distance from the building's ground-floor storey elevation to a reference point on a
+          window, space or safety barrier. Approximates height above terrain when no terrain surface is
+          present; negative when the reference lies below the ground floor.
+        meaning: pbs:quantity_type_height_above_ground_floor
+        title: Height above ground floor
+        alt_descriptions:
+          de:
+            source: de
+            description: Hoehe ueber Erdgeschoss
+      height_above_terrain:
+        description: >-
+          Vertical distance from a sampled terrain surface height to a reference point on a window, space
+          or safety barrier. Negative when the reference lies below the terrain.
+        meaning: pbs:quantity_type_height_above_terrain
+        title: Height above terrain
+        alt_descriptions:
+          de:
+            source: de
+            description: Hoehe ueber Gelaende
+  GroundReferenceSource:
+    enum_uri: pbs:GroundReferenceSource
+    description: Source used to resolve LevelContext above_ground and is_ground_floor flags.
+    permissible_values:
+      ifc_property:
+        description: Flags taken from Pset_BuildingStoreyCommon.AboveGround and EntranceLevel.
+        meaning: pbs:ground_reference_source_ifc_property
+        title: IFC property
+        alt_descriptions:
+          de:
+            source: de
+            description: IFC-Merkmal
+      name_convention:
+        description: >-
+          Flags taken from the storey naming convention (EG/00 ground, U## and FD below, ## above,
+          .Z intermediate inherits the base storey).
+        meaning: pbs:ground_reference_source_name_convention
+        title: Name convention
+        alt_descriptions:
+          de:
+            source: de
+            description: Namenskonvention
+      elevation:
+        description: >-
+          Ground floor is the lowest storey with elevation at or above 0; storeys at or above that
+          elevation are above ground.
+        meaning: pbs:ground_reference_source_elevation
+        title: Elevation
+        alt_descriptions:
+          de:
+            source: de
+            description: Hoehenkote
+  TerrainSurfaceStatus:
+    enum_uri: pbs:TerrainSurfaceStatus
+    description: Whether a terrain surface describes the existing or the projected site.
+    permissible_values:
+      existing:
+        description: Existing (as-built or survey) terrain surface.
+        meaning: pbs:terrain_surface_status_existing
+        title: Existing
+        alt_descriptions:
+          de:
+            source: de
+            description: Bestand
+      projected:
+        description: Projected (planned or new) terrain surface.
+        meaning: pbs:terrain_surface_status_projected
+        title: Projected
+        alt_descriptions:
+          de:
+            source: de
+            description: Neu
   DerivationSourceKind:
     enum_uri: pbs:DerivationSourceKind
     description: Kind of source a derived value or relation comes from. Used by Derivation.derivation_source_kind.

@@ -25,7 +25,7 @@ contract/
 |------|------|
 | `00_pragmatic_bim_data_contract.yaml` | Root entrypoint importing all modules |
 | `entity_core_schema.yaml` | `Entity` base, agents, artifacts, contracts, programs, projects, products, deliverables, decisions, tasks, processes, messages |
-| `entity_physical_schema.yaml` | Physical element hierarchy |
+| `entity_physical_schema.yaml` | Physical element hierarchy (including `TerrainSurface`) |
 | `entity_virtual_schema.yaml` | Virtual entities (`Space`, `System`, `TimeRecord`, …) |
 | `entity_performance_schema.yaml` | Performance property classes on `Entity.performance_properties` |
 | `entity_schema_enums.yaml` | Entity-graph enums with EN/DE labels |

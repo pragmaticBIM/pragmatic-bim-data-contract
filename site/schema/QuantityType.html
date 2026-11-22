@@ -58,7 +58,7 @@
     
     
   <meta name="panzoom-theme" content="material">
-<meta name="panzoom-data" content='{"selectors": [".mermaid", ".d2"], "initial_zoom_level": 1.0}'> </head>
+<meta name="panzoom-data" content='{"selectors": [".d2", ".mermaid"], "initial_zoom_level": 1.0}'> </head>
   
   
     
@@ -596,6 +596,18 @@
 <td>Vertical clear distance in metres between the height ranges of two elements; 0 where they overlap or touch.</td>
 <td>Title: Vertical clear distance<br></td>
 </tr>
+<tr>
+<td>height_above_ground_floor</td>
+<td>pbs:quantity_type_height_above_ground_floor</td>
+<td>Vertical distance from the building's ground-floor storey elevation to a reference point on a window, space or safety barrier. Approximates height above terrain when no terrain surface is present; negative when the reference lies below the ground floor.</td>
+<td>Title: Height above ground floor<br></td>
+</tr>
+<tr>
+<td>height_above_terrain</td>
+<td>pbs:quantity_type_height_above_terrain</td>
+<td>Vertical distance from a sampled terrain surface height to a reference point on a window, space or safety barrier. Negative when the reference lies below the terrain.</td>
+<td>Title: Height above terrain<br></td>
+</tr>
 </tbody>
 </table>
 <h2 id="slots">Slots<a class="headerlink" href="#slots" title="Permanent link">&para;</a></h2>
@@ -735,6 +747,29 @@
 <span class="w">        </span><span class="nt">source</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">de</span>
 <span class="w">        </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Lichter Abstand vertikal</span>
 <span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Vertical clear distance</span>
+<span class="w">  </span><span class="nt">height_above_ground_floor</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">height_above_ground_floor</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Vertical distance from the building&#39;s ground-floor storey elevation</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">to a reference point on a window, space or safety barrier. Approximates height</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">above terrain when no terrain surface is present; negative when the reference</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">lies below the ground floor.</span>
+<span class="w">    </span><span class="nt">meaning</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pbs:quantity_type_height_above_ground_floor</span>
+<span class="w">    </span><span class="nt">alt_descriptions</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">de</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">source</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">de</span>
+<span class="w">        </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Hoehe ueber Erdgeschoss</span>
+<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Height above ground floor</span>
+<span class="w">  </span><span class="nt">height_above_terrain</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">height_above_terrain</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Vertical distance from a sampled terrain surface height to a reference</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">point on a window, space or safety barrier. Negative when the reference lies</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">below the terrain.</span>
+<span class="w">    </span><span class="nt">meaning</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pbs:quantity_type_height_above_terrain</span>
+<span class="w">    </span><span class="nt">alt_descriptions</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">de</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">source</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">de</span>
+<span class="w">        </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Hoehe ueber Gelaende</span>
+<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Height above terrain</span>
 </code></pre></div>
 </details>
 </div>

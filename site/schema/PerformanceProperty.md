@@ -128,6 +128,7 @@ click PerformancePropertyValueType href "./PerformancePropertyValueType.html" _b
 | [SeparatorSlab](SeparatorSlab.md) | [performance_properties](performance_properties.md) | range | [PerformanceProperty](PerformanceProperty.md) |
 | [ConnectionPhysical](ConnectionPhysical.md) | [performance_properties](performance_properties.md) | range | [PerformanceProperty](PerformanceProperty.md) |
 | [SafetyBarrier](SafetyBarrier.md) | [performance_properties](performance_properties.md) | range | [PerformanceProperty](PerformanceProperty.md) |
+| [TerrainSurface](TerrainSurface.md) | [performance_properties](performance_properties.md) | range | [PerformanceProperty](PerformanceProperty.md) |
 | [Boundary](Boundary.md) | [performance_properties](performance_properties.md) | range | [PerformanceProperty](PerformanceProperty.md) |
 | [Equipment](Equipment.md) | [performance_properties](performance_properties.md) | range | [PerformanceProperty](PerformanceProperty.md) |
 | [VirtualEntity](VirtualEntity.md) | [performance_properties](performance_properties.md) | range | [PerformanceProperty](PerformanceProperty.md) |

@@ -164,6 +164,7 @@ click StatusType href "./StatusType.html" _blank
 | [SeparatorSlab](SeparatorSlab.md) | [applies_to_entities](applies_to_entities.md) | range | [Entity](Entity.md) |
 | [ConnectionPhysical](ConnectionPhysical.md) | [applies_to_entities](applies_to_entities.md) | range | [Entity](Entity.md) |
 | [SafetyBarrier](SafetyBarrier.md) | [applies_to_entities](applies_to_entities.md) | range | [Entity](Entity.md) |
+| [TerrainSurface](TerrainSurface.md) | [applies_to_entities](applies_to_entities.md) | range | [Entity](Entity.md) |
 | [Boundary](Boundary.md) | [applies_to_entities](applies_to_entities.md) | range | [Entity](Entity.md) |
 | [Equipment](Equipment.md) | [applies_to_entities](applies_to_entities.md) | range | [Entity](Entity.md) |
 | [VirtualEntity](VirtualEntity.md) | [applies_to_entities](applies_to_entities.md) | range | [Entity](Entity.md) |

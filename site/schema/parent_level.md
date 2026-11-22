@@ -34,6 +34,7 @@ URI: [pbs:parent_level](https://schema.pragmaticbim.ch/parent_level)
 | [SeparatorSlab](SeparatorSlab.md) | Slab-based separating element (for example floor/roof/base slab separators). |  no  |
 | [ConnectionPhysical](ConnectionPhysical.md) | Physical connector providing functional connection between spaces (for example door, window, duct, pipe, cable) or carrying loads between elements (column, beam). |  no  |
 | [SafetyBarrier](SafetyBarrier.md) | Linear fall protection or guiding element (balustrade, guardrail, handrail) along slab, balcony, roof, landing, stair, or ramp edges. |  no  |
+| [TerrainSurface](TerrainSurface.md) | Existing or projected terrain surface (survey surface) as a geographic element. Converted from IfcGeographicElement (IFC4+); IFC2x3 proxies stay generic. |  no  |
 | [Boundary](Boundary.md) | Physical element acting as a boundary treatment (for example covering). |  no  |
 | [Equipment](Equipment.md) | Endpoint or device element (for example terminal, unit, control device, sensor) located in a space and assigned to a system. |  no  |
 | [PerimeterContext](PerimeterContext.md) | Spatial context node constrained to perimeter semantics. |  no  |

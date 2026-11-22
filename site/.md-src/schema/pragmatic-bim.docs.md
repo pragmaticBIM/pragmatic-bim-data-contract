@@ -43,6 +43,7 @@ Name: pragmatic_bim_data_contract
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[SeparatorSlab](SeparatorSlab.md) | Slab-based separating element (for example floor/roof/base slab separators). |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ConnectionPhysical](ConnectionPhysical.md) | Physical connector providing functional connection between spaces (for example door, window, duct, pipe, cable) or carrying loads between elements (column, beam). |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[SafetyBarrier](SafetyBarrier.md) | Linear fall protection or guiding element (balustrade, guardrail, handrail) along slab, balcony, roof, landing, stair, or ramp edges. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[TerrainSurface](TerrainSurface.md) | Existing or projected terrain surface (survey surface) as a geographic element. Converted from IfcGeographicElement (IFC4+); IFC2x3 proxies stay generic. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Boundary](Boundary.md) | Physical element acting as a boundary treatment (for example covering). |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Equipment](Equipment.md) | Endpoint or device element (for example terminal, unit, control device, sensor) located in a space and assigned to a system. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[VirtualEntity](VirtualEntity.md) | Abstract base class for non-physical, conceptual, or informational entities. |
@@ -114,6 +115,7 @@ Name: pragmatic_bim_data_contract
 
 | Slot | Description |
 | --- | --- |
+| [above_ground](above_ground.md) | Whether this storey is fully above ground. Resolved from IFC properties, the storey naming convention, or elevation (see ground_reference_source). |
 | [acceptance_criteria](acceptance_criteria.md) | Criteria that define when the deliverable is accepted. |
 | [actual_finish_at](actual_finish_at.md) | Actual finish timestamp for the time record where known. |
 | [actual_start_at](actual_start_at.md) | Actual start timestamp for the time record where known. |
@@ -230,6 +232,7 @@ Name: pragmatic_bim_data_contract
 | [geometry_representations](geometry_representations.md) | Geometry references associated with the entity. A single element may link to multiple geometry representations to serve different intents (authoring, coordination, analysis, visualization) without duplicating the element itself. |
 | [geometry_wkt](geometry_wkt.md) | Inline WKT payload for small representations (for example a footprint_2d polygon or a path_3d line in project coordinates, metres). |
 | [granted_at](granted_at.md) | Timestamp when consent was given. Required when lawful_basis is consent. |
+| [ground_reference_source](ground_reference_source.md) | Which source was used to resolve above_ground and is_ground_floor for this storey (same source for all storeys of a building). |
 | [group_members](group_members.md) | Zone members; may include spaces, separations, systems, etc. |
 | [guards_space](guards_space.md) | Spaces whose walking surface this barrier protects against falls. Computed from geometry: the barrier footprint lies within a tolerance of the space footprint and the space floor is at or below the barrier base. |
 | [hosted_by](hosted_by.md) | Host element whose opening this connector fills (for example the wall a door or window sits in). From IfcRelFillsElement and IfcRelVoidsElement, or computed from geometry when the IFC chain is missing. |
@@ -241,6 +244,7 @@ Name: pragmatic_bim_data_contract
 | [intersects_elements](intersects_elements.md) | Physical elements whose body overlaps this reserved volume beyond the configured tolerance. Computed from geometry; an empty value means the volume is clear. |
 | [is_above_ground](is_above_ground.md) | Whether the space is above ground level. When unset, consumers may derive from parent_level elevation relative to project datum. |
 | [is_cooled](is_cooled.md) | Whether the space is designed to receive cooling (air conditioning). |
+| [is_ground_floor](is_ground_floor.md) | Whether this storey is the building's ground floor (entrance level). Exactly one storey per building should be true after resolution. |
 | [is_heated](is_heated.md) | Whether the space is designed to receive heating. |
 | [is_preferred](is_preferred.md) | Indicates whether this is the preferred contact point. |
 | [jurisdiction](jurisdiction.md) | Jurisdiction or authority scope for the regulatory requirement. |
@@ -319,7 +323,7 @@ Name: pragmatic_bim_data_contract
 | [quantity_type](quantity_type.md) | Controlled quantity type. |
 | [quantity_unit](quantity_unit.md) | Unit of the quantity value. |
 | [quantity_unit_uri](quantity_unit_uri.md) | Optional URI that identifies the quantity unit in an external vocabulary such as QUDT. |
-| [quantity_value](quantity_value.md) | Numeric quantity value. |
+| [quantity_value](quantity_value.md) | Numeric quantity value. Most QuantityTypes are non-negative; signed types such as height_above_ground_floor and height_above_terrain may be negative when the reference lies below the datum. |
 | [quantity_values](quantity_values.md) | Quantities associated with the entity. |
 | [rationale](rationale.md) | Human-readable rationale that explains why the decision was made. |
 | [recipients](recipients.md) | Agents that received the message. |
@@ -381,6 +385,7 @@ Name: pragmatic_bim_data_contract
 | [task_notes](task_notes.md) | Additional notes or implementation details for the task. |
 | [task_status](task_status.md) | Task status URI/CURIE aligned with action status vocabularies. |
 | [task_type](task_type.md) | Task type expressed as a URI/CURIE from a controlled vocabulary. |
+| [terrain_surface_status](terrain_surface_status.md) | Whether the terrain surface represents the existing or the projected site. |
 | [text_value](text_value.md) | Localized text value. |
 | [time_plan](time_plan.md) | Parent time plan this record belongs to. |
 | [time_records](time_records.md) | Time records associated with this entity. |
@@ -423,6 +428,7 @@ Name: pragmatic_bim_data_contract
 | [EscapeRouteRole](EscapeRouteRole.md) | Role of a space on an escape route (VKF 16-15 / 17-15): horizontal route, vertical route, or exit to the open air. Set only on spaces that belong to an escape route. |
 | [FirePropertyKey](FirePropertyKey.md) | Canonical fire-related keys derived from IFC PropertySets. |
 | [GeometryRepresentationType](GeometryRepresentationType.md) | Classification of geometric representation dimension/style. |
+| [GroundReferenceSource](GroundReferenceSource.md) | Source used to resolve LevelContext above_ground and is_ground_floor flags. |
 | [IndoorEnvironmentPropertyKey](IndoorEnvironmentPropertyKey.md) | Canonical indoor environment keys for spaces (temperature, humidity, air, light, occupancy). |
 | [LawfulBasis](LawfulBasis.md) | Lawful basis for processing personal data, aligned with GDPR Article 6 and similar regimes. |
 | [MatchStatus](MatchStatus.md) | Whether an entity satisfies a related requirement at the target revision. |
@@ -447,6 +453,7 @@ Name: pragmatic_bim_data_contract
 | [StructuralPropertyKey](StructuralPropertyKey.md) | Canonical structural-related keys derived from IFC PropertySets. |
 | [SystemDiscipline](SystemDiscipline.md) | Discipline of a building service system. |
 | [SystemType](SystemType.md) | Role of an MEP-related element or grouping in the service chain. |
+| [TerrainSurfaceStatus](TerrainSurfaceStatus.md) | Whether a terrain surface describes the existing or the projected site. |
 | [ThermalPropertyKey](ThermalPropertyKey.md) | Canonical thermal-related keys derived from IFC PropertySets. |
 | [TransportMedium](TransportMedium.md) | Primary medium transported through or enabled by a physical connector. |
 | [ZoneType](ZoneType.md) | Classification of zone purpose and organizational intent. |
