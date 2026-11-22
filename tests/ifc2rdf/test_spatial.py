@@ -173,13 +173,23 @@ def test_equipment_rests_on_slab(demo):
 
 def test_neighbour_distances(demo):
     graph, _, _ = demo
-    records = {
-        graph.value(r, PBS.neighbour): (
-            graph.value(r, PBS.horizontal_clear_distance).toPython(),
-            graph.value(r, PBS.vertical_clear_distance).toPython(),
+    air_handler = iri("air_handler")
+    records = {}
+    for measurement in graph.subjects(RDF.type, PBS.DerivedMeasurement):
+        subjects = set(graph.objects(measurement, PBS.applies_to_entities))
+        if air_handler not in subjects or len(subjects) != 2:
+            continue
+        other = next(iter(subjects - {air_handler}))
+        quantities = {
+            str(graph.value(q, PBS.quantity_type)): graph.value(q, PBS.quantity_value).toPython()
+            for q in graph.objects(measurement, PBS.quantity_values)
+        }
+        records[other] = (
+            quantities[str(PBS.quantity_type_horizontal_clear_distance)],
+            quantities[str(PBS.quantity_type_vertical_clear_distance)],
         )
-        for r in objects(graph, "air_handler", "neighbours")
-    }
+        geom = next(graph.objects(measurement, PBS.geometry_representations))
+        assert str(graph.value(geom, PBS.geometry_wkt)).startswith("LINESTRING Z")
     assert set(records) == {iri("floor_slab"), iri("wall_exterior"), iri("balcony_slab")}
     assert records[iri("floor_slab")] == pytest.approx((0.0, 0.0), abs=1e-3)
     assert records[iri("wall_exterior")] == pytest.approx((0.1, 0.0), abs=1e-3)

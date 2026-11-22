@@ -105,7 +105,6 @@ Name: pragmatic_bim_data_contract
 | [ConsentRecord](ConsentRecord.md) | Record of lawful basis, scope, and lifecycle for processing personal data on a Person. |
 | [PersonRelationship](PersonRelationship.md) | Typed link from a person to another agent or to a topic concept. The predicate is expressed as a Classification referencing AbstractPersonRelationshipType. Exactly one of related_person, related_company, or related_topic must be set; see the target-kind mapping for predicate-to-slot rules. |
 | [LocalizedText](LocalizedText.md) | Localized text value for a specific language tag. |
-| [NeighbourDistance](NeighbourDistance.md) | Clear distance from an element to a neighbouring physical element, measured from geometry: the horizontal gap between their plan outlines and the vertical gap between their height ranges. Both are 0 where the elements overlap in that direction, so 0 and 0 means touching or intersecting. |
 | [TimeLink](TimeLink.md) | Inline typed precedence link from a TimeRecord to one successor. Not a VirtualEntity — no id, no mixin. Owned by the predecessor record. |
 
 
@@ -233,7 +232,6 @@ Name: pragmatic_bim_data_contract
 | [granted_at](granted_at.md) | Timestamp when consent was given. Required when lawful_basis is consent. |
 | [group_members](group_members.md) | Zone members; may include spaces, separations, systems, etc. |
 | [guards_space](guards_space.md) | Spaces whose walking surface this barrier protects against falls. Computed from geometry: the barrier footprint lies within a tolerance of the space footprint and the space floor is at or below the barrier base. |
-| [horizontal_clear_distance](horizontal_clear_distance.md) | Horizontal clear distance in metres between the plan outlines; 0 where they overlap or touch. |
 | [hosted_by](hosted_by.md) | Host element whose opening this connector fills (for example the wall a door or window sits in). From IfcRelFillsElement and IfcRelVoidsElement, or computed from geometry when the IFC chain is missing. |
 | [id](id.md) | Unique local identifier. |
 | [ifc_attribute_name](ifc_attribute_name.md) | IFC attribute name when property_path_kind is ifc_attribute (for example Name, GlobalId). |
@@ -277,8 +275,6 @@ Name: pragmatic_bim_data_contract
 | [min_height](min_height.md) | Minimum required height or clear height in metres. |
 | [modified_at](modified_at.md) | Last modification timestamp for this entity record. |
 | [name](name.md) | Default display name. |
-| [neighbour](neighbour.md) | The neighbouring element the distances are measured to. |
-| [neighbours](neighbours.md) | Clear distances to the neighbouring physical elements within the measurement range configured for the conversion. Computed from geometry; elements farther away have no record. |
 | [norm_uri](norm_uri.md) | URI identifying the norm, standard, or building code. |
 | [opens_in_escape_direction](opens_in_escape_direction.md) | Whether a swing door leaf opens in the direction of the shortest horizontal escape route through the door. Computed from door OperationType and local placement against escape_route_next; unset when the door is not on a route or the operation type is not a swing. |
 | [operated_by](operated_by.md) | Organization accountable for this software agent. |
@@ -398,7 +394,6 @@ Name: pragmatic_bim_data_contract
 | [valid_from](valid_from.md) | Optional start of the relationship period (for example employment start for worked_at). |
 | [valid_to](valid_to.md) | Optional end of the relationship period (for example employment end for worked_at). |
 | [vendor](vendor.md) | Company that sells or offers this product. |
-| [vertical_clear_distance](vertical_clear_distance.md) | Vertical clear distance in metres between the height ranges; 0 where they overlap or touch. |
 | [withdrawn_at](withdrawn_at.md) | Timestamp when consent was withdrawn, if applicable. |
 | [zone_type](zone_type.md) | Optional zone classification; intended for SpatialContext nodes where context_type is zone. |
 

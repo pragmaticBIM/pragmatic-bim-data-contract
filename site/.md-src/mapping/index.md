@@ -190,7 +190,7 @@ The entrypoint [`ifc_mapping.yaml`](ifc_mapping.yaml) declares version metadata 
 Merged structure:
 
 ```yaml
-mapping_version: "1.5.0"
+mapping_version: "1.6.0"
 schema_uri: https://schema.pragmaticbim.ch/
 canonical_type_version: "v0.0.7"
 
@@ -330,7 +330,7 @@ Example `attributes` JSONB fragment:
       "source_pset": "Pset_WallCommon",
       "source_property": "FireRating",
       "source_value_raw": "EI 60",
-      "mapping_version": "1.5.0"
+      "mapping_version": "1.6.0"
     }
   ],
   "metadata": [
@@ -553,17 +553,18 @@ Without a reference checkout the stage is skipped (`skipped stage` in the report
 
 ## Computed relations
 
-[`_computed_relations.yaml`](_computed_relations.yaml) configures relations and quantities derived from geometry. Entries run in file order after the IFC relationships, so a geometric fallback (`only_when_unset`) only fills what IFC did not state. Each entry names a `method`, a `subject` and an `object` selector, and the `target_slot` on the subject.
+[`_computed_relations.yaml`](_computed_relations.yaml) configures relations and quantities derived from geometry. Entries run in file order after the IFC relationships, so a geometric fallback (`only_when_unset`) only fills what IFC did not state. Each entry names a `method`, a `subject` and an `object` selector, and usually the `target_slot` on the subject (neighbour distances omit `target_slot` and write `DerivedMeasurement` entities instead).
 
 Selectors combine with AND: `contract_class` (including subclasses), `ifc_class`, `property` (`Pset.Property: value`), `exclude_property`.
 
 | Relation | Method | Subject → object | Geometric test | Quantities |
 |----------|--------|------------------|----------------|------------|
+| `separates_spaces` / `connects_spaces` / `bounded_by` / `adjacent_elements` | `space_adjacency` | wall / slab / curtain wall / door / window / covering ↔ `Space` | Fallback when `IfcRelSpaceBoundary` is missing or incomplete: plan gap ≤ half wall thickness + `contact_tolerance` (slabs: space floor on slab top or ceiling on slab bottom, plan overlap ≥ `min_plan_overlap`); IFC pairs win; disagreements and precision/recall go into the conversion report; each kept pair emits a `ConnectionVirtual` (`connection_virtual_type: adjacency`) with `Derivation` (`ifc_explicit` or `ifc_geometry`) | — |
 | `hosted_by` | `opening_in_host` | door / window → `Separator` | Plan distance ≤ `max_plan_distance`, vertical overlap; prefers the host whose oriented plan envelope contains the opening centre | — |
 | `rests_on` | `vertical_contact` | wall / slab / column / beam / footing → same; `Equipment` → same objects | Subject bottom within the object's vertical extent (± `contact_tolerance`, above the object's bottom), subject rises above the object's top, plan overlap ≥ `min_contact_area` | — |
 | `connects_physical_elements` | `side_contact` | wall / column / beam ↔ same | Plan distance ≤ `max_plan_distance`, vertical overlap ≥ `min_overlap_height`, no `rests_on` between the pair; written on both elements | — |
 | `intersects_elements` | `prism_overlap` | `ReservedVolume` → `PhysicalElement` | Plan overlap ≥ `min_overlap_area` and vertical overlap ≥ `min_overlap_height` (touching does not count); the product the volume belongs to is skipped | — |
-| `neighbours` | `neighbour_distance` | `Equipment` → `PhysicalElement` | Horizontal gap between the plan outlines ≤ `max_horizontal_distance` and vertical gap between the height ranges ≤ `max_vertical_distance`; each gap is 0 where the elements overlap | `NeighbourDistance` records (`neighbour`, `horizontal_clear_distance`, `vertical_clear_distance`) instead of quantities |
+| `neighbours` | `neighbour_distance` | `Equipment` → `PhysicalElement` | Horizontal gap between the plan outlines ≤ `max_horizontal_distance` and vertical gap between the height ranges ≤ `max_vertical_distance`; each gap is 0 where the elements overlap | `DerivedMeasurement` with `horizontal_clear_distance` and `vertical_clear_distance` plus a display `LINESTRING Z` (no `target_slot`) |
 | `guards_space` | `barrier_walking_surface` | `SafetyBarrier` → `Space` | Plan distance ≤ `max_plan_distance`; space floor between barrier base − `max_floor_below_base` and base + `floor_tolerance` | `height_above_walking_surface` = barrier top − highest guarded floor |
 | `lit_space` | `window_daylight` | exterior window → interior `Space` | `connects_spaces` from IFC space boundaries, else the nearest space within `max_plan_distance` with vertical overlap | `area_glazed` on the window; `glazing_ratio` (glazed area ÷ floor area) on every selected space |
 | `escape_route_next` | `escape_route` | interior `Space`, door → door / stair | Walking distance in plan around the corners of each space; spaces whose outlines touch along ≥ `min_open_width` form one open zone; doors join zones (`connects_spaces`, else spaces within `max_door_distance`); the route ends at an external door no more than `max_exit_above_lowest` above the lowest one, or, on storeys without one, at a stair that leaves the storey; spaces are measured from the most remote point of their outline | `escape_route_length` on doors (remaining route) and spaces (from the most remote point) |
@@ -580,7 +581,7 @@ The relations are evidence for rules evaluated outside this repository, for exam
 | Fire-rated walls reach the slab above | a `SeparatorSlab` `rests_on` the wall |
 | Load path: slab → column → slab, no floating load-bearing elements | chains of `rests_on`; load-bearing element without a `rests_on` target |
 | Maintenance and clearance volumes stay free | `ReservedVolume` → `intersects_elements` (should be empty) |
-| Swing path of components on dampers is clear | `neighbours` of the component: clear distance (horizontal and vertical) ≥ swing path, except the elements it `rests_on` |
+| Swing path of components on dampers is clear | `DerivedMeasurement` neighbour distances on the component: clear distance (horizontal and vertical) ≥ swing path, except the elements it `rests_on` |
 | Minimum glazing ratio of habitable rooms | `Space` `glazing_ratio`, `lit_space` |
 | Maximum horizontal escape route length | `Space` `escape_route_length`; follow `escape_route_next` for the route |
 | Clear stair / escape-route width | `clear_width`, `tread_length_at_inner_side`, `escape_route_clear_width` quantities |

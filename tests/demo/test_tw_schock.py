@@ -48,11 +48,6 @@ e:ceiling a pbs:Boundary ; pbs:ifc_global_id "ceiling" ;
 
 e:pump a pbs:Equipment ; pbs:ifc_global_id "pump" ; pbs:name "Abwasserpumpe" ; pbs:parent_space e:space ;
     pbs:rests_on e:plinth ;
-    pbs:neighbours
-        [ pbs:neighbour e:plinth ; pbs:horizontal_clear_distance 0.0e0 ; pbs:vertical_clear_distance 0.0e0 ] ,
-        [ pbs:neighbour e:wall ; pbs:horizontal_clear_distance 3.0e-2 ; pbs:vertical_clear_distance 0.0e0 ] ,
-        [ pbs:neighbour e:duct ; pbs:horizontal_clear_distance 0.0e0 ; pbs:vertical_clear_distance 8.0e-2 ] ,
-        [ pbs:neighbour e:pipe ; pbs:horizontal_clear_distance 3.0e-2 ; pbs:vertical_clear_distance 3.0e-2 ] ;
     pbs:performance_properties
         [ pbs:property_key missing:structural_property_shock_function_category ; pbs:property_value_string "living" ] ,
         [ pbs:property_key missing:structural_property_shock_fixing_type ; pbs:property_value_string "plinth_post_cast" ] ,
@@ -64,6 +59,22 @@ e:plinth a pbs:SeparatorSlab ; pbs:ifc_global_id "plinth" ; pbs:name "Sockel" .
 e:wall a pbs:SeparatorWall ; pbs:ifc_global_id "wall" ; pbs:name "Wand" .
 e:duct a pbs:Equipment ; pbs:ifc_global_id "duct" ; pbs:name "Lüftungskanal" .
 e:pipe a pbs:Equipment ; pbs:ifc_global_id "pipe" ; pbs:name "Rohr" .
+e:m_plinth a pbs:DerivedMeasurement ; pbs:applies_to_entities e:pump , e:plinth ;
+    pbs:quantity_values
+        [ pbs:quantity_type pbs:quantity_type_horizontal_clear_distance ; pbs:quantity_value 0.0e0 ] ,
+        [ pbs:quantity_type pbs:quantity_type_vertical_clear_distance ; pbs:quantity_value 0.0e0 ] .
+e:m_wall a pbs:DerivedMeasurement ; pbs:applies_to_entities e:pump , e:wall ;
+    pbs:quantity_values
+        [ pbs:quantity_type pbs:quantity_type_horizontal_clear_distance ; pbs:quantity_value 3.0e-2 ] ,
+        [ pbs:quantity_type pbs:quantity_type_vertical_clear_distance ; pbs:quantity_value 0.0e0 ] .
+e:m_duct a pbs:DerivedMeasurement ; pbs:applies_to_entities e:pump , e:duct ;
+    pbs:quantity_values
+        [ pbs:quantity_type pbs:quantity_type_horizontal_clear_distance ; pbs:quantity_value 0.0e0 ] ,
+        [ pbs:quantity_type pbs:quantity_type_vertical_clear_distance ; pbs:quantity_value 8.0e-2 ] .
+e:m_pipe a pbs:DerivedMeasurement ; pbs:applies_to_entities e:pump , e:pipe ;
+    pbs:quantity_values
+        [ pbs:quantity_type pbs:quantity_type_horizontal_clear_distance ; pbs:quantity_value 3.0e-2 ] ,
+        [ pbs:quantity_type pbs:quantity_type_vertical_clear_distance ; pbs:quantity_value 3.0e-2 ] .
 e:clearance a pbs:ReservedVolume ; pbs:ifc_global_id "clearance" ;
     pbs:reserved_volume_type pbs:reserved_volume_type_movement_clearance ;
     pbs:intersects_elements e:pump , e:shelf .

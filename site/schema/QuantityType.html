@@ -466,6 +466,7 @@
 <th>Value</th>
 <th>Meaning</th>
 <th>Description</th>
+<th>Additional Info</th>
 </tr>
 </thead>
 <tbody>
@@ -473,96 +474,127 @@
 <td>area_net_horizontal</td>
 <td>ifcowl:IfcQuantityArea</td>
 <td>Net horizontal area, typically usable floor area excluding non-net parts.</td>
+<td></td>
 </tr>
 <tr>
 <td>area_gross_horizontal</td>
 <td>ifcowl:IfcQuantityArea</td>
 <td>Gross horizontal area, typically measured to outer boundaries.</td>
+<td></td>
 </tr>
 <tr>
 <td>area_net_vertical</td>
 <td>ifcowl:IfcQuantityArea</td>
 <td>Net vertical area, typically wall or facade area excluding deductions.</td>
+<td></td>
 </tr>
 <tr>
 <td>area_gross_vertical</td>
 <td>ifcowl:IfcQuantityArea</td>
 <td>Gross vertical area, typically full wall or facade area including non-net portions.</td>
+<td></td>
 </tr>
 <tr>
 <td>volume_net</td>
 <td>ifcowl:IfcQuantityVolume</td>
 <td>Net enclosed volume after subtracting non-counted voids or deductions.</td>
+<td></td>
 </tr>
 <tr>
 <td>volume_gross</td>
 <td>ifcowl:IfcQuantityVolume</td>
 <td>Gross enclosed volume measured to external or gross boundaries.</td>
+<td></td>
 </tr>
 <tr>
 <td>length</td>
 <td>ifcowl:IfcQuantityLength</td>
 <td>Linear extent of an element or feature.</td>
+<td></td>
 </tr>
 <tr>
 <td>width</td>
 <td>ifcowl:IfcQuantityLength</td>
 <td>Width dimension of an element, opening, or space proxy.</td>
+<td></td>
 </tr>
 <tr>
 <td>height</td>
 <td>ifcowl:IfcQuantityLength</td>
 <td>Height dimension of an element, opening, or space proxy.</td>
+<td></td>
 </tr>
 <tr>
 <td>perimeter</td>
 <td>ifcowl:IfcQuantityLength</td>
 <td>Boundary length around a 2D shape or footprint.</td>
+<td></td>
 </tr>
 <tr>
 <td>count</td>
 <td>pbs:quantity_type_count</td>
 <td>Discrete count of items, storeys, or occurrences.</td>
+<td></td>
 </tr>
 <tr>
 <td>ratio</td>
 <td>pbs:quantity_type_ratio</td>
 <td>Dimensionless quotient of two measured quantities.</td>
+<td></td>
 </tr>
 <tr>
 <td>height_above_walking_surface</td>
 <td>pbs:quantity_type_height_above_walking_surface</td>
 <td>Vertical distance from the guarded walking surface (space floor) to the top of a safety barrier, measured from geometry against the highest guarded floor.</td>
+<td></td>
 </tr>
 <tr>
 <td>area_glazed</td>
 <td>pbs:quantity_type_area_glazed</td>
 <td>Projected glazed (transparent) area of a window or glazed door.</td>
+<td></td>
 </tr>
 <tr>
 <td>glazing_ratio</td>
 <td>pbs:quantity_type_glazing_ratio</td>
 <td>Sum of the glazed areas of the windows lighting a space divided by the net floor area of the space.</td>
+<td></td>
 </tr>
 <tr>
 <td>escape_route_length</td>
 <td>pbs:quantity_type_escape_route_length</td>
 <td>Walking distance in plan along the shortest horizontal escape route to an exit to the outside or a stair leaving the storey; on a space measured from its most remote point, on a door from the door.</td>
+<td></td>
 </tr>
 <tr>
 <td>clear_width</td>
 <td>pbs:quantity_type_clear_width</td>
 <td>Clear usable width of a stair flight or stair (lichte Laufbreite), typically for escape-route checks.</td>
+<td></td>
 </tr>
 <tr>
 <td>tread_length_at_inner_side</td>
 <td>pbs:quantity_type_tread_length_at_inner_side</td>
 <td>Tread length at the inner edge of a winder stair flight; given for winder flights only.</td>
+<td></td>
 </tr>
 <tr>
 <td>escape_route_clear_width</td>
 <td>pbs:quantity_type_escape_route_clear_width</td>
 <td>Planned clear width of the horizontal escape route in a space at its narrowest point.</td>
+<td></td>
+</tr>
+<tr>
+<td>horizontal_clear_distance</td>
+<td>pbs:quantity_type_horizontal_clear_distance</td>
+<td>Horizontal clear distance in metres between the plan outlines of two elements; 0 where they overlap or touch.</td>
+<td>Title: Horizontal clear distance<br></td>
+</tr>
+<tr>
+<td>vertical_clear_distance</td>
+<td>pbs:quantity_type_vertical_clear_distance</td>
+<td>Vertical clear distance in metres between the height ranges of two elements; 0 where they overlap or touch.</td>
+<td>Title: Vertical clear distance<br></td>
 </tr>
 </tbody>
 </table>
@@ -683,6 +715,26 @@
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Planned clear width of the horizontal escape route in a space at</span>
 <span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">its narrowest point.</span>
 <span class="w">    </span><span class="nt">meaning</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pbs:quantity_type_escape_route_clear_width</span>
+<span class="w">  </span><span class="nt">horizontal_clear_distance</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">horizontal_clear_distance</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Horizontal clear distance in metres between the plan outlines of</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">two elements; 0 where they overlap or touch.</span>
+<span class="w">    </span><span class="nt">meaning</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pbs:quantity_type_horizontal_clear_distance</span>
+<span class="w">    </span><span class="nt">alt_descriptions</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">de</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">source</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">de</span>
+<span class="w">        </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Lichter Abstand horizontal</span>
+<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Horizontal clear distance</span>
+<span class="w">  </span><span class="nt">vertical_clear_distance</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">vertical_clear_distance</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Vertical clear distance in metres between the height ranges of two</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">elements; 0 where they overlap or touch.</span>
+<span class="w">    </span><span class="nt">meaning</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pbs:quantity_type_vertical_clear_distance</span>
+<span class="w">    </span><span class="nt">alt_descriptions</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">de</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">source</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">de</span>
+<span class="w">        </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Lichter Abstand vertikal</span>
+<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Vertical clear distance</span>
 </code></pre></div>
 </details>
 </div>

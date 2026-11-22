@@ -1919,7 +1919,7 @@ ifc_mapping.merged.yaml   ← single file for adapters
 <h2 id="yaml-file-structure">YAML file structure<a class="headerlink" href="#yaml-file-structure" title="Permanent link">&para;</a></h2>
 <p>The entrypoint <a href="ifc_mapping.yaml"><code>ifc_mapping.yaml</code></a> declares version metadata and an <code>imports</code> list. Split modules compose the full mapping (see <strong>File layout and merge workflow</strong> above). Adapters typically load <a href="ifc_mapping.merged.yaml"><code>ifc_mapping.merged.yaml</code></a>.</p>
 <p>Merged structure:</p>
-<div class="highlight"><pre><span></span><code><span class="nt">mapping_version</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;1.5.0&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="nt">mapping_version</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;1.6.0&quot;</span>
 <span class="nt">schema_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://schema.pragmaticbim.ch/</span>
 <span class="nt">canonical_type_version</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;v0.0.7&quot;</span>
 
@@ -2175,7 +2175,7 @@ ifc_mapping.merged.yaml   ← single file for adapters
 <span class="w">      </span><span class="nt">&quot;source_pset&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Pset_WallCommon&quot;</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;source_property&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;FireRating&quot;</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;source_value_raw&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;EI 60&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;mapping_version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.5.0&quot;</span>
+<span class="w">      </span><span class="nt">&quot;mapping_version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.6.0&quot;</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">  </span><span class="p">],</span>
 <span class="w">  </span><span class="nt">&quot;metadata&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
@@ -2773,7 +2773,7 @@ ifc_mapping.merged.yaml   ← single file for adapters
 <p>Without a reference checkout the stage is skipped (<code>skipped stage</code> in the report) and reference-mapped classes are not converted.</p>
 <hr />
 <h2 id="computed-relations">Computed relations<a class="headerlink" href="#computed-relations" title="Permanent link">&para;</a></h2>
-<p><a href="_computed_relations.yaml"><code>_computed_relations.yaml</code></a> configures relations and quantities derived from geometry. Entries run in file order after the IFC relationships, so a geometric fallback (<code>only_when_unset</code>) only fills what IFC did not state. Each entry names a <code>method</code>, a <code>subject</code> and an <code>object</code> selector, and the <code>target_slot</code> on the subject.</p>
+<p><a href="_computed_relations.yaml"><code>_computed_relations.yaml</code></a> configures relations and quantities derived from geometry. Entries run in file order after the IFC relationships, so a geometric fallback (<code>only_when_unset</code>) only fills what IFC did not state. Each entry names a <code>method</code>, a <code>subject</code> and an <code>object</code> selector, and usually the <code>target_slot</code> on the subject (neighbour distances omit <code>target_slot</code> and write <code>DerivedMeasurement</code> entities instead).</p>
 <p>Selectors combine with AND: <code>contract_class</code> (including subclasses), <code>ifc_class</code>, <code>property</code> (<code>Pset.Property: value</code>), <code>exclude_property</code>.</p>
 <table>
 <thead>
@@ -2786,6 +2786,13 @@ ifc_mapping.merged.yaml   ← single file for adapters
 </tr>
 </thead>
 <tbody>
+<tr>
+<td><code>separates_spaces</code> / <code>connects_spaces</code> / <code>bounded_by</code> / <code>adjacent_elements</code></td>
+<td><code>space_adjacency</code></td>
+<td>wall / slab / curtain wall / door / window / covering ↔ <code>Space</code></td>
+<td>Fallback when <code>IfcRelSpaceBoundary</code> is missing or incomplete: plan gap ≤ half wall thickness + <code>contact_tolerance</code> (slabs: space floor on slab top or ceiling on slab bottom, plan overlap ≥ <code>min_plan_overlap</code>); IFC pairs win; disagreements and precision/recall go into the conversion report; each kept pair emits a <code>ConnectionVirtual</code> (<code>connection_virtual_type: adjacency</code>) with <code>Derivation</code> (<code>ifc_explicit</code> or <code>ifc_geometry</code>)</td>
+<td>—</td>
+</tr>
 <tr>
 <td><code>hosted_by</code></td>
 <td><code>opening_in_host</code></td>
@@ -2819,7 +2826,7 @@ ifc_mapping.merged.yaml   ← single file for adapters
 <td><code>neighbour_distance</code></td>
 <td><code>Equipment</code> → <code>PhysicalElement</code></td>
 <td>Horizontal gap between the plan outlines ≤ <code>max_horizontal_distance</code> and vertical gap between the height ranges ≤ <code>max_vertical_distance</code>; each gap is 0 where the elements overlap</td>
-<td><code>NeighbourDistance</code> records (<code>neighbour</code>, <code>horizontal_clear_distance</code>, <code>vertical_clear_distance</code>) instead of quantities</td>
+<td><code>DerivedMeasurement</code> with <code>horizontal_clear_distance</code> and <code>vertical_clear_distance</code> plus a display <code>LINESTRING Z</code> (no <code>target_slot</code>)</td>
 </tr>
 <tr>
 <td><code>guards_space</code></td>
@@ -2883,7 +2890,7 @@ ifc_mapping.merged.yaml   ← single file for adapters
 </tr>
 <tr>
 <td>Swing path of components on dampers is clear</td>
-<td><code>neighbours</code> of the component: clear distance (horizontal and vertical) ≥ swing path, except the elements it <code>rests_on</code></td>
+<td><code>DerivedMeasurement</code> neighbour distances on the component: clear distance (horizontal and vertical) ≥ swing path, except the elements it <code>rests_on</code></td>
 </tr>
 <tr>
 <td>Minimum glazing ratio of habitable rooms</td>

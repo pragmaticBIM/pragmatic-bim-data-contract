@@ -687,16 +687,6 @@
                     "description": "Default display name.",
                     "type": "string"
                 },
-                "neighbours": {
-                    "description": "Clear distances to the neighbouring physical elements within the measurement range configured for the conversion. Computed from geometry; elements farther away have no record.",
-                    "items": {
-                        "$ref": "#/$defs/NeighbourDistance"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
                 "parent_building": {
                     "description": "Parent building context reference.",
                     "type": [
@@ -2268,16 +2258,6 @@
                 "name": {
                     "description": "Default display name.",
                     "type": "string"
-                },
-                "neighbours": {
-                    "description": "Clear distances to the neighbouring physical elements within the measurement range configured for the conversion. Computed from geometry; elements farther away have no record.",
-                    "items": {
-                        "$ref": "#/$defs/NeighbourDistance"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
                 },
                 "opens_in_escape_direction": {
                     "description": "Whether a swing door leaf opens in the direction of the shortest horizontal escape route through the door. Computed from door OperationType and local placement against escape_route_next; unset when the door is not on a route or the operation type is not a swing.",
@@ -4744,16 +4724,6 @@
                     "description": "Default display name.",
                     "type": "string"
                 },
-                "neighbours": {
-                    "description": "Clear distances to the neighbouring physical elements within the measurement range configured for the conversion. Computed from geometry; elements farther away have no record.",
-                    "items": {
-                        "$ref": "#/$defs/NeighbourDistance"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
                 "parent_building": {
                     "description": "Parent building context reference.",
                     "type": [
@@ -6832,33 +6802,6 @@
             "title": "MetadataEntry",
             "type": "object"
         },
-        "NeighbourDistance": {
-            "additionalProperties": false,
-            "description": "Clear distance from an element to a neighbouring physical element, measured from geometry: the horizontal gap between their plan outlines and the vertical gap between their height ranges. Both are 0 where the elements overlap in that direction, so 0 and 0 means touching or intersecting.",
-            "properties": {
-                "horizontal_clear_distance": {
-                    "description": "Horizontal clear distance in metres between the plan outlines; 0 where they overlap or touch.",
-                    "minimum": 0,
-                    "type": "number"
-                },
-                "neighbour": {
-                    "description": "The neighbouring element the distances are measured to.",
-                    "type": "string"
-                },
-                "vertical_clear_distance": {
-                    "description": "Vertical clear distance in metres between the height ranges; 0 where they overlap or touch.",
-                    "minimum": 0,
-                    "type": "number"
-                }
-            },
-            "required": [
-                "neighbour",
-                "horizontal_clear_distance",
-                "vertical_clear_distance"
-            ],
-            "title": "NeighbourDistance",
-            "type": "object"
-        },
         "PerformanceProperty": {
             "additionalProperties": false,
             "description": "Normalized performance/property record derived from raw IFC PropertySet values with source traceability and strong typing through domain-specific subclasses.",
@@ -7900,16 +7843,6 @@
                 "name": {
                     "description": "Default display name.",
                     "type": "string"
-                },
-                "neighbours": {
-                    "description": "Clear distances to the neighbouring physical elements within the measurement range configured for the conversion. Computed from geometry; elements farther away have no record.",
-                    "items": {
-                        "$ref": "#/$defs/NeighbourDistance"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
                 },
                 "parent_building": {
                     "description": "Parent building context reference.",
@@ -8954,7 +8887,9 @@
                 "escape_route_length",
                 "clear_width",
                 "tread_length_at_inner_side",
-                "escape_route_clear_width"
+                "escape_route_clear_width",
+                "horizontal_clear_distance",
+                "vertical_clear_distance"
             ],
             "title": "QuantityType",
             "type": "string"
@@ -9894,16 +9829,6 @@
                     "description": "Default display name.",
                     "type": "string"
                 },
-                "neighbours": {
-                    "description": "Clear distances to the neighbouring physical elements within the measurement range configured for the conversion. Computed from geometry; elements farther away have no record.",
-                    "items": {
-                        "$ref": "#/$defs/NeighbourDistance"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
                 "parent_building": {
                     "description": "Parent building context reference.",
                     "type": [
@@ -10374,16 +10299,6 @@
                     "description": "Default display name.",
                     "type": "string"
                 },
-                "neighbours": {
-                    "description": "Clear distances to the neighbouring physical elements within the measurement range configured for the conversion. Computed from geometry; elements farther away have no record.",
-                    "items": {
-                        "$ref": "#/$defs/NeighbourDistance"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
                 "parent_building": {
                     "description": "Parent building context reference.",
                     "type": [
@@ -10606,16 +10521,6 @@
                 "name": {
                     "description": "Default display name.",
                     "type": "string"
-                },
-                "neighbours": {
-                    "description": "Clear distances to the neighbouring physical elements within the measurement range configured for the conversion. Computed from geometry; elements farther away have no record.",
-                    "items": {
-                        "$ref": "#/$defs/NeighbourDistance"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
                 },
                 "parent_building": {
                     "description": "Parent building context reference.",
@@ -10852,16 +10757,6 @@
                 "name": {
                     "description": "Default display name.",
                     "type": "string"
-                },
-                "neighbours": {
-                    "description": "Clear distances to the neighbouring physical elements within the measurement range configured for the conversion. Computed from geometry; elements farther away have no record.",
-                    "items": {
-                        "$ref": "#/$defs/NeighbourDistance"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
                 },
                 "parent_building": {
                     "description": "Parent building context reference.",
