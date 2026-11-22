@@ -2463,7 +2463,7 @@ enums:
     permissible_values:
       occupancy_unit:
         description: Occupancy unit zone (for example apartment, office suite, or retail unit).
-        meaning: ifcowl:IfcSpatialZone
+        meaning: pbs:zone_type_occupancy_unit
         title: Occupancy Unit
         alt_descriptions:
           de:
@@ -2471,7 +2471,7 @@ enums:
             description: Nutzungseinheit
       tenant:
         description: Tenant area zone used for leasing and occupancy boundaries.
-        meaning: ifcowl:IfcSpatialZone
+        meaning: pbs:zone_type_tenant
         title: Tenant
         alt_descriptions:
           de:
@@ -2479,7 +2479,7 @@ enums:
             description: Mieter
       functional:
         description: Functional grouping zone (for example clinical, retail, office support).
-        meaning: ifcowl:IfcSpatialZone
+        meaning: pbs:zone_type_functional
         title: Functional
         alt_descriptions:
           de:
@@ -2487,7 +2487,7 @@ enums:
             description: Funktional
       cost:
         description: Cost grouping zone for estimation and controlling.
-        meaning: ifcowl:IfcGroup
+        meaning: pbs:zone_type_cost
         title: Cost
         alt_descriptions:
           de:
@@ -2495,7 +2495,7 @@ enums:
             description: Kosten
       fire:
         description: Fire compartment or fire strategy grouping zone.
-        meaning: ifcowl:IfcSpatialZone
+        meaning: pbs:zone_type_fire
         title: Fire
         alt_descriptions:
           de:
@@ -2503,7 +2503,7 @@ enums:
             description: Brandschutz
       security:
         description: Security management zone for access control and surveillance planning.
-        meaning: ifcowl:IfcSpatialZone
+        meaning: pbs:zone_type_security
         title: Security
         alt_descriptions:
           de:

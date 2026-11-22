@@ -58,7 +58,7 @@
     
     
   <meta name="panzoom-theme" content="material">
-<meta name="panzoom-data" content='{"selectors": [".mermaid", ".d2"], "initial_zoom_level": 1.0}'> </head>
+<meta name="panzoom-data" content='{"selectors": [".d2", ".mermaid"], "initial_zoom_level": 1.0}'> </head>
   
   
     
@@ -473,37 +473,37 @@
 <tbody>
 <tr>
 <td>occupancy_unit</td>
-<td>ifcowl:IfcSpatialZone</td>
+<td>pbs:zone_type_occupancy_unit</td>
 <td>Occupancy unit zone (for example apartment, office suite, or retail unit).</td>
 <td>Title: Occupancy Unit<br></td>
 </tr>
 <tr>
 <td>tenant</td>
-<td>ifcowl:IfcSpatialZone</td>
+<td>pbs:zone_type_tenant</td>
 <td>Tenant area zone used for leasing and occupancy boundaries.</td>
 <td>Title: Tenant<br></td>
 </tr>
 <tr>
 <td>functional</td>
-<td>ifcowl:IfcSpatialZone</td>
+<td>pbs:zone_type_functional</td>
 <td>Functional grouping zone (for example clinical, retail, office support).</td>
 <td>Title: Functional<br></td>
 </tr>
 <tr>
 <td>cost</td>
-<td>ifcowl:IfcGroup</td>
+<td>pbs:zone_type_cost</td>
 <td>Cost grouping zone for estimation and controlling.</td>
 <td>Title: Cost<br></td>
 </tr>
 <tr>
 <td>fire</td>
-<td>ifcowl:IfcSpatialZone</td>
+<td>pbs:zone_type_fire</td>
 <td>Fire compartment or fire strategy grouping zone.</td>
 <td>Title: Fire<br></td>
 </tr>
 <tr>
 <td>security</td>
-<td>ifcowl:IfcSpatialZone</td>
+<td>pbs:zone_type_security</td>
 <td>Security management zone for access control and surveillance planning.</td>
 <td>Title: Security<br></td>
 </tr>
@@ -541,7 +541,7 @@
 <span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">occupancy_unit</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Occupancy unit zone (for example apartment, office suite, or retail</span>
 <span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">unit).</span>
-<span class="w">    </span><span class="nt">meaning</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ifcowl:IfcSpatialZone</span>
+<span class="w">    </span><span class="nt">meaning</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pbs:zone_type_occupancy_unit</span>
 <span class="w">    </span><span class="nt">alt_descriptions</span><span class="p">:</span>
 <span class="w">      </span><span class="nt">de</span><span class="p">:</span>
 <span class="w">        </span><span class="nt">source</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">de</span>
@@ -550,7 +550,7 @@
 <span class="w">  </span><span class="nt">tenant</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tenant</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Tenant area zone used for leasing and occupancy boundaries.</span>
-<span class="w">    </span><span class="nt">meaning</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ifcowl:IfcSpatialZone</span>
+<span class="w">    </span><span class="nt">meaning</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pbs:zone_type_tenant</span>
 <span class="w">    </span><span class="nt">alt_descriptions</span><span class="p">:</span>
 <span class="w">      </span><span class="nt">de</span><span class="p">:</span>
 <span class="w">        </span><span class="nt">source</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">de</span>
@@ -559,7 +559,7 @@
 <span class="w">  </span><span class="nt">functional</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">functional</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Functional grouping zone (for example clinical, retail, office support).</span>
-<span class="w">    </span><span class="nt">meaning</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ifcowl:IfcSpatialZone</span>
+<span class="w">    </span><span class="nt">meaning</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pbs:zone_type_functional</span>
 <span class="w">    </span><span class="nt">alt_descriptions</span><span class="p">:</span>
 <span class="w">      </span><span class="nt">de</span><span class="p">:</span>
 <span class="w">        </span><span class="nt">source</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">de</span>
@@ -568,7 +568,7 @@
 <span class="w">  </span><span class="nt">cost</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cost</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Cost grouping zone for estimation and controlling.</span>
-<span class="w">    </span><span class="nt">meaning</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ifcowl:IfcGroup</span>
+<span class="w">    </span><span class="nt">meaning</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pbs:zone_type_cost</span>
 <span class="w">    </span><span class="nt">alt_descriptions</span><span class="p">:</span>
 <span class="w">      </span><span class="nt">de</span><span class="p">:</span>
 <span class="w">        </span><span class="nt">source</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">de</span>
@@ -577,7 +577,7 @@
 <span class="w">  </span><span class="nt">fire</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">fire</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Fire compartment or fire strategy grouping zone.</span>
-<span class="w">    </span><span class="nt">meaning</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ifcowl:IfcSpatialZone</span>
+<span class="w">    </span><span class="nt">meaning</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pbs:zone_type_fire</span>
 <span class="w">    </span><span class="nt">alt_descriptions</span><span class="p">:</span>
 <span class="w">      </span><span class="nt">de</span><span class="p">:</span>
 <span class="w">        </span><span class="nt">source</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">de</span>
@@ -586,7 +586,7 @@
 <span class="w">  </span><span class="nt">security</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">security</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Security management zone for access control and surveillance planning.</span>
-<span class="w">    </span><span class="nt">meaning</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ifcowl:IfcSpatialZone</span>
+<span class="w">    </span><span class="nt">meaning</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pbs:zone_type_security</span>
 <span class="w">    </span><span class="nt">alt_descriptions</span><span class="p">:</span>
 <span class="w">      </span><span class="nt">de</span><span class="p">:</span>
 <span class="w">        </span><span class="nt">source</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">de</span>
