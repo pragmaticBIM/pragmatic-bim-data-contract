@@ -17,6 +17,12 @@ map:abstractConnectorProductsToMaterialMapping a dcterms:Dataset ;
 
 dcp:DCP-WOOD skos:closeMatch mat:MAT-WOD .
 
+dcp:DCP-WOOD-INTERIOR skos:closeMatch mat:MAT-WOD .
+
+dcp:DCP-WOOD-RATED skos:closeMatch mat:MAT-WOD .
+
+dcp:DCP-WOOD-ENTRANCE skos:closeMatch mat:MAT-WOD .
+
 dcp:DCP-METAL skos:closeMatch mat:MAT-MET-STL ;
   skos:relatedMatch mat:MAT-MET-ALU .
 
@@ -28,7 +34,31 @@ dcp:DCP-PVC skos:closeMatch mat:MAT-PLA .
 dcp:DCP-GLASS skos:closeMatch mat:MAT-GLS ;
   skos:relatedMatch mat:MAT-MET-ALU, mat:MAT-MET-STL .
 
+dcp:DCP-GLASS-FRAMELESS skos:closeMatch mat:MAT-GLS ;
+  skos:relatedMatch mat:MAT-MET-ALU, mat:MAT-MET-STL .
+
+dcp:DCP-GLASS-FRAMED skos:closeMatch mat:MAT-GLS ;
+  skos:relatedMatch mat:MAT-MET-ALU, mat:MAT-MET-STL .
+
+dcp:DCP-GLASS-AUTOMATIC skos:closeMatch mat:MAT-GLS ;
+  skos:relatedMatch mat:MAT-MET-ALU, mat:MAT-MET-STL .
+
 dcp:DCP-GATE skos:closeMatch mat:MAT-MET-STL ;
+  skos:relatedMatch mat:MAT-MET-ALU, mat:MAT-WOD, mat:MAT-PLA .
+
+dcp:DCP-GATE-SECTIONAL skos:closeMatch mat:MAT-MET-STL ;
+  skos:relatedMatch mat:MAT-MET-ALU, mat:MAT-WOD, mat:MAT-PLA .
+
+dcp:DCP-GATE-ROLLING skos:closeMatch mat:MAT-MET-STL ;
+  skos:relatedMatch mat:MAT-MET-ALU, mat:MAT-WOD, mat:MAT-PLA .
+
+dcp:DCP-GATE-SLIDING skos:closeMatch mat:MAT-MET-STL ;
+  skos:relatedMatch mat:MAT-MET-ALU, mat:MAT-WOD, mat:MAT-PLA .
+
+dcp:DCP-GATE-FOLDING skos:closeMatch mat:MAT-MET-STL ;
+  skos:relatedMatch mat:MAT-MET-ALU, mat:MAT-WOD, mat:MAT-PLA .
+
+dcp:DCP-GATE-UP-OVER skos:closeMatch mat:MAT-MET-STL ;
   skos:relatedMatch mat:MAT-MET-ALU, mat:MAT-WOD, mat:MAT-PLA .
 
 dcp:DCP-SPECIAL skos:closeMatch mat:MAT-CMP ;
@@ -78,6 +108,15 @@ wicp:WICP-SPECIAL skos:closeMatch mat:MAT-GLS ;
   skos:relatedMatch mat:MAT-MET-ALU, mat:MAT-CMP .
 
 wicp:WICP-SKYLIGHT skos:closeMatch mat:MAT-GLS ;
+  skos:relatedMatch mat:MAT-MET-ALU, mat:MAT-WOD, mat:MAT-PLA .
+
+wicp:WICP-ROOF-WINDOW skos:closeMatch mat:MAT-GLS ;
+  skos:relatedMatch mat:MAT-MET-ALU, mat:MAT-WOD, mat:MAT-PLA .
+
+wicp:WICP-ROOF-DOME skos:closeMatch mat:MAT-GLS ;
+  skos:relatedMatch mat:MAT-MET-ALU, mat:MAT-WOD, mat:MAT-PLA .
+
+wicp:WICP-ROOFLIGHT-BAND skos:closeMatch mat:MAT-GLS ;
   skos:relatedMatch mat:MAT-MET-ALU, mat:MAT-WOD, mat:MAT-PLA .
 
 wicp:WICP-FACADE-UNIT skos:closeMatch mat:MAT-GLS ;

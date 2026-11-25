@@ -18,6 +18,15 @@ map:abstractConnectorProductsToBkpMapping a dcterms:Dataset ;
 dcp:DCP-WOOD skos:closeMatch bkp:221_5 ;
   skos:relatedMatch bkp:273 .
 
+dcp:DCP-WOOD-INTERIOR skos:closeMatch bkp:221_5 ;
+  skos:relatedMatch bkp:273 .
+
+dcp:DCP-WOOD-RATED skos:closeMatch bkp:221_5 ;
+  skos:relatedMatch bkp:273 .
+
+dcp:DCP-WOOD-ENTRANCE skos:closeMatch bkp:221_5 ;
+  skos:relatedMatch bkp:273 .
+
 dcp:DCP-METAL skos:closeMatch bkp:221_6 ;
   skos:relatedMatch bkp:272 .
 
@@ -30,7 +39,31 @@ dcp:DCP-PVC skos:closeMatch bkp:221_6 ;
 dcp:DCP-GLASS skos:closeMatch bkp:221_6 ;
   skos:relatedMatch bkp:272, bkp:221_8 .
 
+dcp:DCP-GLASS-FRAMELESS skos:closeMatch bkp:221_6 ;
+  skos:relatedMatch bkp:272, bkp:221_8 .
+
+dcp:DCP-GLASS-FRAMED skos:closeMatch bkp:221_6 ;
+  skos:relatedMatch bkp:272, bkp:221_8 .
+
+dcp:DCP-GLASS-AUTOMATIC skos:closeMatch bkp:221_6 ;
+  skos:relatedMatch bkp:272, bkp:221_8 .
+
 dcp:DCP-GATE skos:closeMatch bkp:221_6 ;
+  skos:relatedMatch bkp:272, bkp:221_9 .
+
+dcp:DCP-GATE-SECTIONAL skos:closeMatch bkp:221_6 ;
+  skos:relatedMatch bkp:272, bkp:221_9 .
+
+dcp:DCP-GATE-ROLLING skos:closeMatch bkp:221_6 ;
+  skos:relatedMatch bkp:272, bkp:221_9 .
+
+dcp:DCP-GATE-SLIDING skos:closeMatch bkp:221_6 ;
+  skos:relatedMatch bkp:272, bkp:221_9 .
+
+dcp:DCP-GATE-FOLDING skos:closeMatch bkp:221_6 ;
+  skos:relatedMatch bkp:272, bkp:221_9 .
+
+dcp:DCP-GATE-UP-OVER skos:closeMatch bkp:221_6 ;
   skos:relatedMatch bkp:272, bkp:221_9 .
 
 dcp:DCP-SPECIAL skos:closeMatch bkp:221_8 ;
@@ -57,6 +90,15 @@ wicp:WICP-SPECIAL skos:closeMatch bkp:221_8 ;
   skos:relatedMatch bkp:221_4, bkp:272 .
 
 wicp:WICP-SKYLIGHT skos:closeMatch bkp:224_3, bkp:221_8 ;
+  skos:relatedMatch bkp:224_2 .
+
+wicp:WICP-ROOF-WINDOW skos:closeMatch bkp:224_3, bkp:221_8 ;
+  skos:relatedMatch bkp:224_2 .
+
+wicp:WICP-ROOF-DOME skos:closeMatch bkp:224_3, bkp:221_8 ;
+  skos:relatedMatch bkp:224_2 .
+
+wicp:WICP-ROOFLIGHT-BAND skos:closeMatch bkp:224_3, bkp:221_8 ;
   skos:relatedMatch bkp:224_2 .
 
 wicp:WICP-FACADE-UNIT skos:closeMatch bkp:221_8 ;
