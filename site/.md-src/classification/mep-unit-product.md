@@ -198,6 +198,39 @@ Source: [`mep-unit-products.skos.ttl`](sources/mep-unit-product.ttl)
 <td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
 </tr>
 <tr>
+<td>MUP-HEAT-HP-AIR</td>
+<td></td>
+<td><a href="https://github.com/pragmaticBIM/pragmaticbim-reference/blob/main/products/mup-heat-hp-air.yaml">Reference</a></td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Luft-Wasser-Wärmepumpe</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Wärmepumpe, die der Aussenluft Wärme entzieht.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Air-source heat pump</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Heat pump that extracts heat from the outdoor air.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>MUP-HEAT-HP-GROUND</td>
+<td></td>
+<td><a href="https://github.com/pragmaticBIM/pragmaticbim-reference/blob/main/products/mup-heat-hp-ground.yaml">Reference</a></td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Sole-Wasser-Wärmepumpe</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Wärmepumpe mit Erdwärmesonden oder Erdregister als Quelle.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Ground-source heat pump</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Heat pump with borehole heat exchangers or ground collectors as source.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>MUP-HEAT-HP-WATER</td>
+<td></td>
+<td><a href="https://github.com/pragmaticBIM/pragmaticbim-reference/blob/main/products/mup-heat-hp-water.yaml">Reference</a></td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Wasser-Wasser-Wärmepumpe</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Wärmepumpe mit Grund-, Oberflächen- oder Abwasser oder Abwärme als Quelle.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Water-source heat pump</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Heat pump with ground, surface, or waste water or waste heat as source.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
 <td>MUP-SM-COMPRESSOR</td>
 <td></td>
 <td><a href="https://github.com/pragmaticBIM/pragmaticbim-reference/blob/main/products/mup-sm-compressor.yaml">Reference</a></td>

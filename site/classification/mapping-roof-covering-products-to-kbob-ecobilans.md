@@ -43,6 +43,12 @@ External target labels are not shipped in this repository; only codes and IRIs a
 | `rcp:RCP-OTH` | `closeMatch` | `kbobbm:09-003` |
 | `rcp:RCP-OTH` | `relatedMatch` | `kbobbm:06-001` |
 | `rcp:RCP-OTH` | `relatedMatch` | `kbobbm:10-008` |
+| `rcp:RCP-PV-INTEGRATED` | `closeMatch` | `kbobbm:05-008` |
+| `rcp:RCP-PV-INTEGRATED` | `relatedMatch` | `kbobbm:06-001` |
+| `rcp:RCP-PV-INTEGRATED` | `relatedMatch` | `kbobbm:09-003` |
+| `rcp:RCP-PV-MOUNTED` | `closeMatch` | `kbobbm:05-008` |
+| `rcp:RCP-PV-MOUNTED` | `relatedMatch` | `kbobbm:06-001` |
+| `rcp:RCP-PV-MOUNTED` | `relatedMatch` | `kbobbm:09-003` |
 | `rcp:RCP-PV-ROOF` | `closeMatch` | `kbobbm:05-008` |
 | `rcp:RCP-PV-ROOF` | `relatedMatch` | `kbobbm:06-001` |
 | `rcp:RCP-PV-ROOF` | `relatedMatch` | `kbobbm:09-003` |

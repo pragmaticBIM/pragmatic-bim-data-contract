@@ -33,6 +33,17 @@ Source: [`floor-covering-products.skos.ttl`](sources/floor-covering-product.ttl)
 </thead>
 <tbody>
 <tr>
+<td>FCP-ACCESS-FLOOR</td>
+<td></td>
+<td><a href="https://github.com/pragmaticBIM/pragmaticbim-reference/blob/main/products/fcp-access-floor.yaml">Reference</a></td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Doppelboden</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Systemboden aus herausnehmbaren Platten auf höhenverstellbaren Stützen.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Access floor</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Raised floor of removable panels on height-adjustable pedestals.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
 <td>FCP-ARTIFICIAL-STONE</td>
 <td></td>
 <td><a href="https://github.com/pragmaticBIM/pragmaticbim-reference/blob/main/products/fcp-artificial-stone.yaml">Reference</a></td>
@@ -52,6 +63,17 @@ Source: [`floor-covering-products.skos.ttl`](sources/floor-covering-product.ttl)
 <td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
 <td class="pbs-lang-col" data-lang="en" data-field="label">Textile carpet</td>
 <td class="pbs-lang-col" data-lang="en" data-field="definition">Installed textile carpet, carpet tile, or broadloom floor covering.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>FCP-CAVITY-FLOOR</td>
+<td></td>
+<td><a href="https://github.com/pragmaticBIM/pragmaticbim-reference/blob/main/products/fcp-cavity-floor.yaml">Reference</a></td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Hohlboden</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Systemboden mit fugenloser Tragschicht über einem Hohlraum, nur über Revisionsöffnungen zugänglich.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Cavity floor</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Raised floor with a jointless load-bearing layer over a cavity, accessible only through access openings.</td>
 <td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
 </tr>
 <tr>
@@ -140,6 +162,39 @@ Source: [`floor-covering-products.skos.ttl`](sources/floor-covering-product.ttl)
 <td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
 <td class="pbs-lang-col" data-lang="en" data-field="label">Raised / access floor</td>
 <td class="pbs-lang-col" data-lang="en" data-field="definition">Raised access floor system with pedestals and removable panels.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>FCP-SCREED-BONDED</td>
+<td></td>
+<td><a href="https://github.com/pragmaticBIM/pragmaticbim-reference/blob/main/products/fcp-screed-bonded.yaml">Reference</a></td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Verbundener Unterlagsboden</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Unterlagsboden, der vollflächig mit der Rohdecke verbunden ist.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Bonded screed</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Screed bonded over its full area to the structural slab.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>FCP-SCREED-FLOATING</td>
+<td></td>
+<td><a href="https://github.com/pragmaticBIM/pragmaticbim-reference/blob/main/products/fcp-screed-floating.yaml">Reference</a></td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Schwimmender Unterlagsboden</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Unterlagsboden auf Trittschall- und Wärmedämmschicht, ohne Verbindung zur Rohdecke und zu den Wänden.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Floating screed</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Screed on impact-sound and thermal insulation, separated from the slab and the walls.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>FCP-SCREED-HEATED</td>
+<td></td>
+<td><a href="https://github.com/pragmaticBIM/pragmaticbim-reference/blob/main/products/fcp-screed-heated.yaml">Reference</a></td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Heizunterlagsboden</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Schwimmender Unterlagsboden mit eingebetteten Heiz- oder Kühlrohren.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Heated screed</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Floating screed with embedded heating or cooling pipes.</td>
 <td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
 </tr>
 <tr>

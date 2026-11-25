@@ -66,6 +66,28 @@ n_SSP_STEEL_COMPOSITE <|-- n_SSP_STEEL_COMPOSITE_STL
 <td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
 </tr>
 <tr>
+<td>SSP-COMPOSITE-BEAM</td>
+<td></td>
+<td><a href="https://github.com/pragmaticBIM/pragmaticbim-reference/blob/main/products/ssp-composite-beam.yaml">Reference</a></td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Verbundträgerdecke</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Betondecke, die über Kopfbolzen mit Stahlträgern im Verbund wirkt.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Composite beam slab</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Concrete slab acting compositely with steel beams through shear studs.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>SSP-COMPOSITE-DECK</td>
+<td></td>
+<td><a href="https://github.com/pragmaticBIM/pragmaticbim-reference/blob/main/products/ssp-composite-deck.yaml">Reference</a></td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Profilblech-Verbunddecke</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Decke aus Profilblech als verlorene Schalung und Ortbeton, die im Verbund wirken.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Composite slab on steel decking</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Slab of profiled steel decking as permanent formwork and in-situ concrete acting compositely.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
 <td>SSP-HBV</td>
 <td></td>
 <td><a href="https://github.com/pragmaticBIM/pragmaticbim-reference/blob/main/products/ssp-hbv.yaml">Reference</a></td>
@@ -97,6 +119,28 @@ n_SSP_STEEL_COMPOSITE <|-- n_SSP_STEEL_COMPOSITE_STL
 <td class="pbs-lang-col" data-lang="en" data-field="label">HBV timber base layer</td>
 <td class="pbs-lang-col" data-lang="en" data-field="definition">Timber base layer of an HBV slab (block timber, CLT, rib deck, or similar engineered-wood structure).</td>
 <td class="pbs-lang-col" data-lang="en" data-field="scope_note">LCA layer component of SSP-HBV. Used for ecobilans decomposition and carbon calculation; not a standalone slab product classification.</td>
+</tr>
+<tr>
+<td>SSP-HBV-INSITU</td>
+<td></td>
+<td><a href="https://github.com/pragmaticBIM/pragmaticbim-reference/blob/main/products/ssp-hbv-insitu.yaml">Reference</a></td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Holz-Beton-Verbunddecke mit Ortbeton</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Holztragwerk, auf das die Betonschicht vor Ort schubfest aufbetoniert wird.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">In-situ timber-concrete composite slab</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Timber structure onto which the concrete layer is cast in place with shear connection.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>SSP-HBV-PRECAST</td>
+<td></td>
+<td><a href="https://github.com/pragmaticBIM/pragmaticbim-reference/blob/main/products/ssp-hbv-precast.yaml">Reference</a></td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Holz-Beton-Verbundelement</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Im Werk hergestelltes Deckenelement aus Holz und Beton im Verbund.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Precast timber-concrete composite element</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Floor element of timber and concrete in composite action, produced in the factory.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
 </tr>
 <tr>
 <td>SSP-HOLZ-LEHM</td>

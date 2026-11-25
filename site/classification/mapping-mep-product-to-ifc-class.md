@@ -15,6 +15,8 @@ External target labels are not shipped in this repository; only codes and IRIs a
 
 | Source | Relation | Targets |
 | --- | --- | --- |
+| `mtp:MTP-COOL-CEILING-PANEL` | `closeMatch` | `ifcowl:IfcCooledBeam` |
+| `mtp:MTP-COOL-CHILLED-BEAM` | `closeMatch` | `ifcowl:IfcCooledBeam` |
 | `mtp:MTP-COOL-CHILLED-CEILING` | `closeMatch` | `ifcowl:IfcCooledBeam` |
 | `mtp:MTP-COOL-FAN-COIL` | `closeMatch` | `ifcowl:IfcUnitaryEquipment` |
 | `mtp:MTP-DATA-DATA-OUTLET` | `closeMatch` | `ifcowl:IfcCommunicationsAppliance` |
@@ -59,6 +61,9 @@ External target labels are not shipped in this repository; only codes and IRIs a
 | `mup:MUP-HEAT-BOILER` | `closeMatch` | `ifcowl:IfcBoiler` |
 | `mup:MUP-HEAT-DISTRICT-HEAT-SUBSTATION` | `closeMatch` | `ifcowl:IfcHeatExchanger` |
 | `mup:MUP-HEAT-HEAT-PUMP` | `closeMatch` | `ifcowl:IfcUnitaryEquipment` |
+| `mup:MUP-HEAT-HP-AIR` | `closeMatch` | `ifcowl:IfcUnitaryEquipment` |
+| `mup:MUP-HEAT-HP-GROUND` | `closeMatch` | `ifcowl:IfcUnitaryEquipment` |
+| `mup:MUP-HEAT-HP-WATER` | `closeMatch` | `ifcowl:IfcUnitaryEquipment` |
 | `mup:MUP-SM-COMPRESSOR` | `closeMatch` | `ifcowl:IfcCompressor` |
 | `mup:MUP-SM-FIRE-PUMP` | `closeMatch` | `ifcowl:IfcPump` |
 | `mup:MUP-SM-GAS-REGULATOR` | `closeMatch` | `ifcowl:IfcFlowMeter` |

@@ -1,6 +1,34 @@
 {
   "AbstractBuildingMetric": {
     "concepts": {
+      "total_circulation_area": {
+        "broader": null,
+        "definition": {
+          "en": "Sum of circulation area (Verkehrsflaeche, VF per SIA 416) derived from spaces classified as circulation area: floor area for horizontal and vertical access such as corridors, stairs, and lift shafts."
+        },
+        "labels": {
+          "de": "Gesamte Verkehrsflaeche",
+          "en": "Total circulation area"
+        }
+      },
+      "total_circulation_area_above_ground": {
+        "broader": "total_circulation_area",
+        "definition": {
+          "en": "Circulation area (SIA 416 VF) of spaces above ground level."
+        },
+        "labels": {
+          "en": "Total circulation area above ground"
+        }
+      },
+      "total_circulation_area_below_ground": {
+        "broader": "total_circulation_area",
+        "definition": {
+          "en": "Circulation area (SIA 416 VF) of spaces below ground level."
+        },
+        "labels": {
+          "en": "Total circulation area below ground"
+        }
+      },
       "total_construction_floor_area": {
         "broader": null,
         "definition": {
@@ -140,6 +168,34 @@
           "en": "Total gross floor area below ground"
         }
       },
+      "total_main_usable_area": {
+        "broader": null,
+        "definition": {
+          "en": "Sum of main usable area (Hauptnutzflaeche, HNF per SIA 416) derived from spaces classified as main usable area: floor area serving the primary purpose of use of the building."
+        },
+        "labels": {
+          "de": "Gesamte Hauptnutzflaeche",
+          "en": "Total main usable area"
+        }
+      },
+      "total_main_usable_area_above_ground": {
+        "broader": "total_main_usable_area",
+        "definition": {
+          "en": "Main usable area (SIA 416 HNF) of spaces above ground level."
+        },
+        "labels": {
+          "en": "Total main usable area above ground"
+        }
+      },
+      "total_main_usable_area_below_ground": {
+        "broader": "total_main_usable_area",
+        "definition": {
+          "en": "Main usable area (SIA 416 HNF) of spaces below ground level."
+        },
+        "labels": {
+          "en": "Total main usable area below ground"
+        }
+      },
       "total_net_building_volume": {
         "broader": null,
         "definition": {
@@ -214,6 +270,34 @@
           "en": "Total roof area below ground"
         }
       },
+      "total_secondary_usable_area": {
+        "broader": null,
+        "definition": {
+          "en": "Sum of secondary usable area (Nebennutzflaeche, NNF per SIA 416) derived from spaces classified as secondary usable area: floor area supporting but not serving the primary purpose of use, such as storage, cellar, and bicycle rooms."
+        },
+        "labels": {
+          "de": "Gesamte Nebennutzflaeche",
+          "en": "Total secondary usable area"
+        }
+      },
+      "total_secondary_usable_area_above_ground": {
+        "broader": "total_secondary_usable_area",
+        "definition": {
+          "en": "Secondary usable area (SIA 416 NNF) of spaces above ground level."
+        },
+        "labels": {
+          "en": "Total secondary usable area above ground"
+        }
+      },
+      "total_secondary_usable_area_below_ground": {
+        "broader": "total_secondary_usable_area",
+        "definition": {
+          "en": "Secondary usable area (SIA 416 NNF) of spaces below ground level."
+        },
+        "labels": {
+          "en": "Total secondary usable area below ground"
+        }
+      },
       "total_soffit_area": {
         "broader": null,
         "definition": {
@@ -258,6 +342,34 @@
         "definition": {},
         "labels": {
           "en": "Total storey count below ground"
+        }
+      },
+      "total_technical_area": {
+        "broader": null,
+        "definition": {
+          "en": "Sum of technical area (Funktionsflaeche, FF per SIA 416) derived from spaces classified as technical area: floor area for building services installations and plant rooms."
+        },
+        "labels": {
+          "de": "Gesamte Funktionsflaeche",
+          "en": "Total technical area"
+        }
+      },
+      "total_technical_area_above_ground": {
+        "broader": "total_technical_area",
+        "definition": {
+          "en": "Technical area (SIA 416 FF) of spaces above ground level."
+        },
+        "labels": {
+          "en": "Total technical area above ground"
+        }
+      },
+      "total_technical_area_below_ground": {
+        "broader": "total_technical_area",
+        "definition": {
+          "en": "Technical area (SIA 416 FF) of spaces below ground level."
+        },
+        "labels": {
+          "en": "Total technical area below ground"
         }
       },
       "total_vertical_facade_area": {
@@ -312,6 +424,16 @@
           "en": "Building volume to gross floor area ratio above ground"
         }
       },
+      "ratio_circulation_area_to_gross_floor_area": {
+        "broader": null,
+        "definition": {
+          "en": "Quotient of circulation area (SIA 416 VF) and gross floor area (SIA 416 GF); ratio VF/GF."
+        },
+        "labels": {
+          "de": "Verkehrsflaeche zu Bruttogeschossflaeche",
+          "en": "Circulation area to gross floor area ratio"
+        }
+      },
       "ratio_construction_floor_area_to_gross_floor_area": {
         "broader": null,
         "definition": {
@@ -321,6 +443,16 @@
           "en": "Construction floor area to gross floor area ratio"
         }
       },
+      "ratio_envelope_area_to_energy_reference_area": {
+        "broader": null,
+        "definition": {
+          "en": "Quotient of total envelope area and energy reference area (Energiebezugsflaeche, EBF per SIA 380/1); Gebaeudehuellzahl. Until a heated flag exists on spaces, EBF is approximated by the heated gross floor area (GF); the operand is therefore met:total_gross_floor_area."
+        },
+        "labels": {
+          "de": "Gebaeudehuellzahl",
+          "en": "Envelope area to energy reference area ratio"
+        }
+      },
       "ratio_envelope_area_to_gross_floor_area": {
         "broader": null,
         "definition": {
@@ -328,6 +460,16 @@
         },
         "labels": {
           "en": "Envelope area to gross floor area ratio"
+        }
+      },
+      "ratio_envelope_area_to_gross_volume": {
+        "broader": null,
+        "definition": {
+          "en": "Quotient of total envelope area and gross building volume (SIA 416 GV); surface-to-volume ratio A/V. Dimensionally 1/m; the unit follows the sibling ratio convention."
+        },
+        "labels": {
+          "de": "Gebaeudehuellflaeche zu Gebaeudevolumen",
+          "en": "Envelope area to gross volume ratio"
         }
       },
       "ratio_facade_area_to_gross_floor_area": {
@@ -346,6 +488,16 @@
         },
         "labels": {
           "en": "Facade area to gross volume ratio"
+        }
+      },
+      "ratio_main_usable_area_to_gross_floor_area": {
+        "broader": null,
+        "definition": {
+          "en": "Quotient of main usable area (SIA 416 HNF) and gross floor area (SIA 416 GF); compactness / space-efficiency ratio HNF/GF."
+        },
+        "labels": {
+          "de": "Hauptnutzflaeche zu Bruttogeschossflaeche",
+          "en": "Main usable area to gross floor area ratio"
         }
       },
       "ratio_window_area_to_gross_floor_area": {
@@ -385,6 +537,28 @@
         "labels": {
           "de": "Gipskarton-Decke",
           "en": "Gypsum board ceiling"
+        }
+      },
+      "CCP-GYPSUM-DIRECT": {
+        "broader": null,
+        "definition": {
+          "de": "Gipsplattenbekleidung, direkt oder auf Lattung an der Rohdecke befestigt.",
+          "en": "Gypsum board lining fixed directly or on battens to the slab."
+        },
+        "labels": {
+          "de": "Direkt befestigte Gipsplattendecke",
+          "en": "Direct-fixed gypsum board ceiling"
+        }
+      },
+      "CCP-GYPSUM-SUSPENDED": {
+        "broader": null,
+        "definition": {
+          "de": "Gipsplattendecke auf abgeh\u00e4ngter Unterkonstruktion mit Deckenhohlraum.",
+          "en": "Gypsum board ceiling on a suspended substructure with a ceiling void."
+        },
+        "labels": {
+          "de": "Abgeh\u00e4ngte Gipsplattendecke",
+          "en": "Suspended gypsum board ceiling"
         }
       },
       "CCP-METAL-GRID": {
@@ -442,6 +616,17 @@
           "en": "Other / unknown ceiling covering"
         }
       },
+      "CCP-STRETCH-MEMBRANE": {
+        "broader": null,
+        "definition": {
+          "de": "Decke aus Folie oder Gewebe, in Randprofile gespannt.",
+          "en": "Ceiling of foil or fabric tensioned into perimeter profiles."
+        },
+        "labels": {
+          "de": "Spanndecke",
+          "en": "Stretch membrane ceiling"
+        }
+      },
       "CCP-SYNTHETIC": {
         "broader": null,
         "definition": {
@@ -451,6 +636,17 @@
         "labels": {
           "de": "Kunststoff-Deckenbekleidung",
           "en": "Synthetic ceiling lining"
+        }
+      },
+      "CCP-SYNTHETIC-PANEL": {
+        "broader": null,
+        "definition": {
+          "de": "Deckenbekleidung aus Kunststoffpaneelen auf leichter Unterkonstruktion.",
+          "en": "Ceiling lining of synthetic panels on a light substructure."
+        },
+        "labels": {
+          "de": "Kunststoffpaneeldecke",
+          "en": "Synthetic panel ceiling"
         }
       },
       "CCP-WOOD": {
@@ -584,6 +780,14 @@
         "labels": {
           "de": "Architektur",
           "en": "Architecture"
+        }
+      },
+      "SEC-BAU-PLN-ENG": {
+        "broader": "SEC-BAU-PLN",
+        "definition": {},
+        "labels": {
+          "de": "Ingenieur",
+          "en": "Engineering"
         }
       },
       "SEC-BAU-PLN-EXP": {
@@ -941,6 +1145,3095 @@
     },
     "source": "classification/abstract-company-sector-classification/company-sector-classification.skos.ttl"
   },
+  "AbstractCostGroup": {
+    "concepts": {
+      "CG-1": {
+        "broader": null,
+        "definition": {
+          "de": "Kosten f\u00fcr die Sicherung des Grundst\u00fccks sowie f\u00fcr Verwaltung, Finanzierung, Recht und Vermarktung durch die Bauherrschaft.",
+          "en": "Costs of securing the site and of the client's administration, finance, legal and marketing activities."
+        },
+        "labels": {
+          "de": "Erwerb",
+          "en": "Acquisition"
+        }
+      },
+      "CG-1-01": {
+        "broader": "CG-1",
+        "definition": {
+          "de": "Preis und Nebenkosten f\u00fcr den Erwerb von Land, Baurechten oder bestehenden Liegenschaften.",
+          "en": "Price and associated costs of securing land, building rights or existing property."
+        },
+        "labels": {
+          "de": "Grundst\u00fcckserwerb",
+          "en": "Site acquisition"
+        }
+      },
+      "CG-1-01-010": {
+        "broader": "CG-1-01",
+        "definition": {
+          "de": "Preis f\u00fcr Land, Baurechte oder bestehende Liegenschaften.",
+          "en": "Price paid for land, building rights or existing property."
+        },
+        "labels": {
+          "de": "Kauf von Land und Rechten",
+          "en": "Land and rights purchase"
+        }
+      },
+      "CG-1-01-020": {
+        "broader": "CG-1-01",
+        "definition": {
+          "de": "Zahlungen an bisherige Nutzende oder Berechtigte.",
+          "en": "Payments to existing occupiers or holders of rights."
+        },
+        "labels": {
+          "de": "Entsch\u00e4digung von Nutzenden",
+          "en": "Compensation to occupiers"
+        }
+      },
+      "CG-1-01-030": {
+        "broader": "CG-1-01",
+        "definition": {
+          "de": "Zahlungen an Voreigent\u00fcmer f\u00fcr R\u00fcckbau oder Anpassungen anstelle der Ausf\u00fchrung.",
+          "en": "Payments to previous owners for demolition or modification instead of carrying out the work."
+        },
+        "labels": {
+          "de": "Abgeltung statt Bauleistung",
+          "en": "Payment in lieu of site works"
+        }
+      },
+      "CG-1-01-040": {
+        "broader": "CG-1-01",
+        "definition": {
+          "de": "Beitr\u00e4ge zur Erhaltung von Denkm\u00e4lern, Kultur oder Umwelt.",
+          "en": "Contributions required to preserve heritage, culture or environment."
+        },
+        "labels": {
+          "de": "Beitr\u00e4ge an Denkmal- und Umweltschutz",
+          "en": "Heritage and environment contributions"
+        }
+      },
+      "CG-1-01-050": {
+        "broader": "CG-1-01",
+        "definition": {
+          "de": "Vermittlungs-, Notariats-, Grundbuch-, Vermessungs- und Anwaltskosten f\u00fcr den Erwerb.",
+          "en": "Agent, notary, land registry, survey and legal fees for the acquisition."
+        },
+        "labels": {
+          "de": "Nebenkosten Erwerb",
+          "en": "Acquisition fees"
+        }
+      },
+      "CG-1-01-060": {
+        "broader": "CG-1-01",
+        "definition": {
+          "de": "Hand\u00e4nderungs- und Gewinnsteuern sowie Abgaben auf den Erwerb.",
+          "en": "Transfer and gains taxes and statutory charges on the acquisition."
+        },
+        "labels": {
+          "de": "Steuern Erwerb",
+          "en": "Acquisition taxes"
+        }
+      },
+      "CG-1-02": {
+        "broader": "CG-1",
+        "definition": {
+          "de": "Gemeinkosten der Bauherrschaft, Zinsen, Rechts-, Buchhaltungs-, Verkaufs- und Vermietungskosten.",
+          "en": "Client-side overheads, interest, legal, accounting, sales and leasing costs."
+        },
+        "labels": {
+          "de": "Verwaltung, Finanzierung, Recht und Vermarktung der Bauherrschaft",
+          "en": "Client administration, finance, legal and marketing"
+        }
+      },
+      "CG-1-02-010": {
+        "broader": "CG-1-02",
+        "definition": {
+          "de": "Anteil der allgemeinen B\u00fcrokosten der Bauherrschaft.",
+          "en": "Share of the client's general office costs."
+        },
+        "labels": {
+          "de": "Allgemeine Gemeinkosten Bauherrschaft",
+          "en": "Client general overheads"
+        }
+      },
+      "CG-1-02-020": {
+        "broader": "CG-1-02",
+        "definition": {
+          "de": "Internes Projektteam, Projektb\u00fcro und zugeh\u00f6rige Aufwendungen der Bauherrschaft.",
+          "en": "Client's in-house project team, project office and related expenses."
+        },
+        "labels": {
+          "de": "Projektadministration Bauherrschaft",
+          "en": "Client project administration"
+        }
+      },
+      "CG-1-02-030": {
+        "broader": "CG-1-02",
+        "definition": {
+          "de": "Zinsen und Finanzierungskosten w\u00e4hrend des Projekts.",
+          "en": "Interest and financing charges during the project."
+        },
+        "labels": {
+          "de": "Zinsen und Finanzierung",
+          "en": "Interest and finance"
+        }
+      },
+      "CG-1-02-040": {
+        "broader": "CG-1-02",
+        "definition": {
+          "de": "Rechtskosten, die nicht den Erwerb betreffen.",
+          "en": "Legal costs not related to the acquisition."
+        },
+        "labels": {
+          "de": "Rechtskosten Bauherrschaft",
+          "en": "Client legal expenses"
+        }
+      },
+      "CG-1-02-050": {
+        "broader": "CG-1-02",
+        "definition": {
+          "de": "Buchhaltungs- und Revisionskosten des Projekts.",
+          "en": "Accounting and audit costs of the project."
+        },
+        "labels": {
+          "de": "Buchhaltung",
+          "en": "Accounting"
+        }
+      },
+      "CG-1-02-060": {
+        "broader": "CG-1-02",
+        "definition": {
+          "de": "Kosten f\u00fcr Verkauf, Vermietung, Werbung und Vermarktung des Bauwerks.",
+          "en": "Costs of selling, letting, advertising and promoting the asset."
+        },
+        "labels": {
+          "de": "Verkauf, Vermietung und Vermarktung",
+          "en": "Sales, leasing and marketing"
+        }
+      },
+      "CG-1-02-070": {
+        "broader": "CG-1-02",
+        "definition": {
+          "de": "Steuern und Abgaben auf Verkauf oder Vermietung.",
+          "en": "Taxes and charges on sale or lease."
+        },
+        "labels": {
+          "de": "Steuern auf Verkauf und Vermietung",
+          "en": "Sales and leasing taxes"
+        }
+      },
+      "CG-1-02-080": {
+        "broader": "CG-1-02",
+        "definition": {
+          "de": "Bewilligungen f\u00fcr Nutzung oder Betrieb des Bauwerks.",
+          "en": "Licences and permits required to use or operate the asset."
+        },
+        "labels": {
+          "de": "Betriebsbewilligungen",
+          "en": "Operating licences and permits"
+        }
+      },
+      "CG-2": {
+        "broader": null,
+        "definition": {
+          "de": "Kosten f\u00fcr die Erstellung des Bauwerks von der Baustellenvorbereitung bis zur \u00dcbergabe, einschliesslich Planung und Bauleitung.",
+          "en": "Costs of creating the constructed asset from site preparation to handover, including design and supervision."
+        },
+        "labels": {
+          "de": "Erstellung",
+          "en": "Construction"
+        }
+      },
+      "CG-2-01": {
+        "broader": "CG-2",
+        "definition": {
+          "de": "Untersuchung, R\u00e4umung, R\u00fcckbau, Sanierung und Formung des Gel\u00e4ndes vor den dauerhaften Arbeiten.",
+          "en": "Investigation, clearance, demolition, remediation and forming of the site before the permanent works."
+        },
+        "labels": {
+          "de": "R\u00fcckbau, Baustellenvorbereitung und Gel\u00e4ndeformung",
+          "en": "Demolition, site preparation and formation"
+        }
+      },
+      "CG-2-01-B010": {
+        "broader": "CG-2-01",
+        "definition": {
+          "de": "Baugrunduntersuchungen, Gel\u00e4ndeaufnahmen und Zustandsaufnahmen.",
+          "en": "Ground investigation, topographic and condition surveys."
+        },
+        "labels": {
+          "de": "Baugrunduntersuchung und Bestandsaufnahme",
+          "en": "Site investigation and survey"
+        }
+      },
+      "CG-2-01-B020": {
+        "broader": "CG-2-01",
+        "definition": {
+          "de": "Behandlung oder Entfernung von belastetem Untergrund.",
+          "en": "Treatment or removal of contaminated ground."
+        },
+        "labels": {
+          "de": "Altlastensanierung",
+          "en": "Environmental remediation"
+        }
+      },
+      "CG-2-01-B030": {
+        "broader": "CG-2-01",
+        "definition": {
+          "de": "Beprobung und Pr\u00fcfung auf Schadstoffe oder verwertbare Materialien.",
+          "en": "Sampling and testing for hazardous or useful materials."
+        },
+        "labels": {
+          "de": "Schadstoffbeprobung",
+          "en": "Hazardous material sampling"
+        }
+      },
+      "CG-2-01-B040": {
+        "broader": "CG-2-01",
+        "definition": {
+          "de": "Provisorische Abschrankungen vor den Hauptarbeiten.",
+          "en": "Temporary fencing and hoarding before the main works."
+        },
+        "labels": {
+          "de": "Provisorische Bauabschrankung",
+          "en": "Temporary site fencing"
+        }
+      },
+      "CG-2-01-B050": {
+        "broader": "CG-2-01",
+        "definition": {
+          "de": "R\u00fcckbau bestehender Geb\u00e4ude und Sicherung angrenzender Bauwerke.",
+          "en": "Demolition of existing buildings and temporary support to neighbours."
+        },
+        "labels": {
+          "de": "R\u00fcckbau und Sicherung angrenzender Bauwerke",
+          "en": "Demolition and support of adjacent structures"
+        }
+      },
+      "CG-2-01-B060": {
+        "broader": "CG-2-01",
+        "definition": {
+          "de": "R\u00e4umen, Roden, Oberbodenabtrag und Baumf\u00e4llung.",
+          "en": "Clearing, grubbing, topsoil stripping and tree felling."
+        },
+        "labels": {
+          "de": "Baufeldr\u00e4umung",
+          "en": "Site clearance"
+        }
+      },
+      "CG-2-01-B070": {
+        "broader": "CG-2-01",
+        "definition": {
+          "de": "Ausheben und Verpflanzen bestehender B\u00e4ume.",
+          "en": "Lifting and replanting existing trees."
+        },
+        "labels": {
+          "de": "Baumverpflanzung",
+          "en": "Tree transplanting"
+        }
+      },
+      "CG-2-01-B080": {
+        "broader": "CG-2-01",
+        "definition": {
+          "de": "Formung des Gel\u00e4ndes und Sicherung von B\u00f6schungen.",
+          "en": "Shaping of the site and stabilisation of slopes."
+        },
+        "labels": {
+          "de": "Gel\u00e4ndeformung und B\u00f6schungssicherung",
+          "en": "Site formation and slope treatment"
+        }
+      },
+      "CG-2-01-B090": {
+        "broader": "CG-2-01",
+        "definition": {
+          "de": "Provisorische Oberfl\u00e4chenentw\u00e4sserung und Wasserhaltung.",
+          "en": "Temporary surface drainage and groundwater control."
+        },
+        "labels": {
+          "de": "Provisorische Entw\u00e4sserung und Wasserhaltung",
+          "en": "Temporary drainage and dewatering"
+        }
+      },
+      "CG-2-01-B100": {
+        "broader": "CG-2-01",
+        "definition": {
+          "de": "Sichern, Umlegen oder Verlegen bestehender Werkleitungen.",
+          "en": "Protecting, diverting or relocating existing utilities."
+        },
+        "labels": {
+          "de": "Provisorische Sicherung und Umlegung von Werkleitungen",
+          "en": "Temporary utility protection and diversion"
+        }
+      },
+      "CG-2-01-B110": {
+        "broader": "CG-2-01",
+        "definition": {
+          "de": "Massnahmen gegen Bodenerosion w\u00e4hrend der Arbeiten.",
+          "en": "Measures preventing soil erosion during works."
+        },
+        "labels": {
+          "de": "Erosionsschutz",
+          "en": "Erosion control"
+        }
+      },
+      "CG-2-01-C010": {
+        "broader": "CG-2-01",
+        "definition": {
+          "de": "Baugrunduntersuchung, Vermessung und Zustandsaufnahmen.",
+          "en": "Ground investigation, surveys and condition records."
+        },
+        "labels": {
+          "de": "Untersuchung und Vermessung",
+          "en": "Site investigation and survey"
+        }
+      },
+      "CG-2-01-C020": {
+        "broader": "CG-2-01",
+        "definition": {
+          "de": "Behandlung oder Entfernung von belastetem Untergrund.",
+          "en": "Treatment or removal of contaminated ground."
+        },
+        "labels": {
+          "de": "Altlastensanierung",
+          "en": "Environmental remediation"
+        }
+      },
+      "CG-2-01-C030": {
+        "broader": "CG-2-01",
+        "definition": {
+          "de": "Beprobung und Pr\u00fcfung auf Schadstoffe oder verwertbare Materialien.",
+          "en": "Sampling and testing for hazardous or useful materials."
+        },
+        "labels": {
+          "de": "Schadstoffbeprobung",
+          "en": "Hazardous material sampling"
+        }
+      },
+      "CG-2-01-C040": {
+        "broader": "CG-2-01",
+        "definition": {
+          "de": "Provisorische Abschrankungen vor den Hauptarbeiten.",
+          "en": "Temporary fencing before the main works."
+        },
+        "labels": {
+          "de": "Provisorische Abschrankung",
+          "en": "Temporary fencing"
+        }
+      },
+      "CG-2-01-C050": {
+        "broader": "CG-2-01",
+        "definition": {
+          "de": "R\u00fcckbau und Sicherung angrenzender Bauwerke.",
+          "en": "Demolition and support to adjacent structures."
+        },
+        "labels": {
+          "de": "R\u00fcckbau bestehender Bauwerke",
+          "en": "Demolition of existing structures"
+        }
+      },
+      "CG-2-01-C060": {
+        "broader": "CG-2-01",
+        "definition": {
+          "de": "R\u00e4umen, Roden, Oberbodenabtrag und Baumf\u00e4llung.",
+          "en": "Clearing, grubbing, topsoil stripping and tree felling."
+        },
+        "labels": {
+          "de": "Baufeldr\u00e4umung",
+          "en": "Site clearance"
+        }
+      },
+      "CG-2-01-C070": {
+        "broader": "CG-2-01",
+        "definition": {
+          "de": "Ausheben und Verpflanzen bestehender B\u00e4ume.",
+          "en": "Lifting and replanting existing trees."
+        },
+        "labels": {
+          "de": "Baumverpflanzung",
+          "en": "Tree transplanting"
+        }
+      },
+      "CG-2-01-C080": {
+        "broader": "CG-2-01",
+        "definition": {
+          "de": "Abtrag, Sch\u00fcttung und B\u00f6schungssicherung f\u00fcr mehrere Teilprojekte.",
+          "en": "Cut, fill and slope treatment serving more than one sub-project."
+        },
+        "labels": {
+          "de": "Allgemeine Erdarbeiten und B\u00f6schungssicherung",
+          "en": "General earthworks and slope treatment"
+        }
+      },
+      "CG-2-01-C090": {
+        "broader": "CG-2-01",
+        "definition": {
+          "de": "Provisorische Oberfl\u00e4chenentw\u00e4sserung und Wasserhaltung.",
+          "en": "Temporary surface drainage and groundwater control."
+        },
+        "labels": {
+          "de": "Provisorische Entw\u00e4sserung und Wasserhaltung",
+          "en": "Temporary drainage and dewatering"
+        }
+      },
+      "CG-2-01-C100": {
+        "broader": "CG-2-01",
+        "definition": {
+          "de": "Provisorische Zufahrten und Lagerfl\u00e4chen aus einem Vorabvertrag.",
+          "en": "Temporary roads and laydown areas let under an advance contract."
+        },
+        "labels": {
+          "de": "Provisorische Zufahrten und Lagerfl\u00e4chen",
+          "en": "Temporary access roads and storage areas"
+        }
+      },
+      "CG-2-01-C110": {
+        "broader": "CG-2-01",
+        "definition": {
+          "de": "Sichern, Umlegen oder Verlegen bestehender Werkleitungen.",
+          "en": "Protecting, diverting or relocating existing utilities."
+        },
+        "labels": {
+          "de": "Provisorische Sicherung und Umlegung von Werkleitungen",
+          "en": "Temporary utility protection and diversion"
+        }
+      },
+      "CG-2-01-C120": {
+        "broader": "CG-2-01",
+        "definition": {
+          "de": "Massnahmen gegen Bodenerosion w\u00e4hrend der Arbeiten.",
+          "en": "Measures preventing soil erosion during works."
+        },
+        "labels": {
+          "de": "Erosionsschutz",
+          "en": "Erosion control"
+        }
+      },
+      "CG-2-01-C650": {
+        "broader": "CG-2-01",
+        "definition": {
+          "de": "Baggerung von Sedimenten und Fels einschliesslich Transport und Ablagerung.",
+          "en": "Dredging of sediments and rock including transport and disposal."
+        },
+        "labels": {
+          "de": "Nassbaggerung",
+          "en": "Dredging"
+        }
+      },
+      "CG-2-02": {
+        "broader": "CG-2",
+        "definition": {
+          "de": "Erdber\u00fchrte Arbeiten, die Lasten in den Baugrund abtragen, bis Oberkante der untersten Bodenplatte bzw. des Planums.",
+          "en": "Ground-related works that transfer loads into the ground, up to the top of the lowest floor or formation level."
+        },
+        "labels": {
+          "de": "Unterbau",
+          "en": "Substructure"
+        }
+      },
+      "CG-2-02-B010": {
+        "broader": "CG-2-02",
+        "definition": {
+          "de": "Pf\u00e4hle, Senkk\u00e4sten, Pfahlpr\u00fcfungen und Unterfangungen des Geb\u00e4udes.",
+          "en": "Piles, caissons, pile testing and underpinning of the building."
+        },
+        "labels": {
+          "de": "Pf\u00e4hlung und Unterfangung",
+          "en": "Piling and underpinning"
+        }
+      },
+      "CG-2-02-B020": {
+        "broader": "CG-2-02",
+        "definition": {
+          "de": "Fundamente, Pfahlkopfbalken, Fundamentbalken, unterste Bodenplatte und Liftunterfahrten, einschliesslich Aushub.",
+          "en": "Footings, pile caps, ground beams, lowest floor slab and lift pits, including excavation."
+        },
+        "labels": {
+          "de": "Fundamente und unterste Bodenplatte",
+          "en": "Foundations and lowest floor"
+        }
+      },
+      "CG-2-02-B030": {
+        "broader": "CG-2-02",
+        "definition": {
+          "de": "Erdber\u00fchrte Untergeschossw\u00e4nde, Bodenplatten, Abdichtung, Sickerschicht und W\u00e4rmed\u00e4mmung.",
+          "en": "Basement retaining walls, bottom slabs, tanking, drainage blanket and insulation."
+        },
+        "labels": {
+          "de": "Untergeschossw\u00e4nde und -boden",
+          "en": "Basement walls and bottom"
+        }
+      },
+      "CG-2-02-C010": {
+        "broader": "CG-2-02",
+        "definition": {
+          "de": "Erdarbeiten zur Ausbildung des Trassees eines Teilprojekts.",
+          "en": "Earthworks forming the route of a specific sub-project."
+        },
+        "labels": {
+          "de": "D\u00e4mme und Einschnitte",
+          "en": "Embankments and cuttings"
+        }
+      },
+      "CG-2-02-C020": {
+        "broader": "CG-2-02",
+        "definition": {
+          "de": "Aushub, Abtransport und Baugrubensicherung f\u00fcr Bauwerke.",
+          "en": "Excavation, disposal and temporary support to receive structures."
+        },
+        "labels": {
+          "de": "Aushub und Baugrubensicherung",
+          "en": "Excavation and lateral support"
+        }
+      },
+      "CG-2-02-C025": {
+        "broader": "CG-2-02",
+        "definition": {
+          "de": "Trenn-, Filter- und Dichtungslagen im Baugrund.",
+          "en": "Separation, filter and sealing layers in the ground."
+        },
+        "labels": {
+          "de": "Geotextilien und Geomembranen",
+          "en": "Geotextiles and geomembranes"
+        }
+      },
+      "CG-2-02-C030": {
+        "broader": "CG-2-02",
+        "definition": {
+          "de": "Leitungs- und Sammelgr\u00e4ben einschliesslich Verf\u00fcllung.",
+          "en": "Utility and common trenches including backfill."
+        },
+        "labels": {
+          "de": "Gr\u00e4ben",
+          "en": "Trenches"
+        }
+      },
+      "CG-2-02-C040": {
+        "broader": "CG-2-02",
+        "definition": {
+          "de": "Bohrarbeiten einschliesslich grabenlosem Leitungsbau.",
+          "en": "Drilled and bored works including trenchless installation."
+        },
+        "labels": {
+          "de": "Bohrungen",
+          "en": "Drilling and boring"
+        }
+      },
+      "CG-2-02-C050": {
+        "broader": "CG-2-02",
+        "definition": {
+          "de": "Pf\u00e4hle, Anker und deren Pr\u00fcfung.",
+          "en": "Piles, ground anchors and their testing."
+        },
+        "labels": {
+          "de": "Pf\u00e4hlung und Verankerung",
+          "en": "Piling and anchoring"
+        }
+      },
+      "CG-2-02-C060": {
+        "broader": "CG-2-02",
+        "definition": {
+          "de": "Hinterf\u00fcllung von Bauwerken und Verbesserung des Baugrunds.",
+          "en": "Backfill to structures and improvement of the ground."
+        },
+        "labels": {
+          "de": "Hinterf\u00fcllung und Baugrundverbesserung",
+          "en": "Structural backfill and ground improvement"
+        }
+      },
+      "CG-2-02-C070": {
+        "broader": "CG-2-02",
+        "definition": {
+          "de": "Dauerhafte St\u00fctzmauern und Hangsicherungen.",
+          "en": "Permanent retaining walls and slope securing."
+        },
+        "labels": {
+          "de": "St\u00fctzbauwerke",
+          "en": "Earth-retaining structures"
+        }
+      },
+      "CG-2-02-C080": {
+        "broader": "CG-2-02",
+        "definition": {
+          "de": "Endauflager und Fl\u00fcgelmauern von Br\u00fccken.",
+          "en": "End supports and wing walls of bridges."
+        },
+        "labels": {
+          "de": "Widerlager und Fl\u00fcgelmauern",
+          "en": "Abutments and wing walls"
+        }
+      },
+      "CG-2-02-C090": {
+        "broader": "CG-2-02",
+        "definition": {
+          "de": "Fundamente nahe der Gel\u00e4nde- oder Wasseroberfl\u00e4che.",
+          "en": "Foundations nearest to ground or water level."
+        },
+        "labels": {
+          "de": "Fundamente und Pfahlkopfplatten",
+          "en": "Footings and pile caps"
+        }
+      },
+      "CG-2-02-C100": {
+        "broader": "CG-2-02",
+        "definition": {
+          "de": "Ungebundene oder gebundene Schichten unter Strassenbel\u00e4gen und Gleisen.",
+          "en": "Unbound or bound layers beneath road pavements and rail track."
+        },
+        "labels": {
+          "de": "Fundationsschicht Fahrbahn",
+          "en": "Sub-base to pavements and track"
+        }
+      },
+      "CG-2-02-C110": {
+        "broader": "CG-2-02",
+        "definition": {
+          "de": "Fundamente f\u00fcr Beh\u00e4lter, Rohrauflager und Brunnen.",
+          "en": "Foundation bases for tanks, pipe supports and wells."
+        },
+        "labels": {
+          "de": "Fundamente f\u00fcr Beh\u00e4lter, Rohre und Brunnen",
+          "en": "Bases for tanks, pipes and wells"
+        }
+      },
+      "CG-2-02-C120": {
+        "broader": "CG-2-02",
+        "definition": {
+          "de": "Bettung, Auflager und Umh\u00fcllung erdverlegter Rohre und Kabel.",
+          "en": "Bedding, haunching and surround to buried pipes and cables."
+        },
+        "labels": {
+          "de": "Bettung und Umh\u00fcllung erdverlegter Leitungen",
+          "en": "Beds and surrounds to buried pipes"
+        }
+      },
+      "CG-2-02-C660": {
+        "broader": "CG-2-02",
+        "definition": {
+          "de": "Blockwurf, Steinsch\u00fcttungen und Drahtschotterk\u00f6rbe.",
+          "en": "Rock armour, riprap and gabion protection."
+        },
+        "labels": {
+          "de": "Blockwurf und Drahtschotterk\u00f6rbe",
+          "en": "Rock revetments and gabions"
+        }
+      },
+      "CG-2-02-C680": {
+        "broader": "CG-2-02",
+        "definition": {
+          "de": "Schutz von Fluss- und Seeufern.",
+          "en": "Protection of river and lake banks."
+        },
+        "labels": {
+          "de": "Uferschutz",
+          "en": "Bank protection"
+        }
+      },
+      "CG-2-03": {
+        "broader": "CG-2",
+        "definition": {
+          "de": "Tragende Konstruktion oberhalb des Unterbaus.",
+          "en": "Load-bearing construction above the substructure."
+        },
+        "labels": {
+          "de": "Tragwerk",
+          "en": "Structure"
+        }
+      },
+      "CG-2-03-B010": {
+        "broader": "CG-2-03",
+        "definition": {
+          "de": "R\u00fcckbau und Anpassung bestehender tragender Konstruktion.",
+          "en": "Removal and alteration of existing load-bearing construction."
+        },
+        "labels": {
+          "de": "Tragwerksanpassungen",
+          "en": "Structural alterations"
+        }
+      },
+      "CG-2-03-B020": {
+        "broader": "CG-2-03",
+        "definition": {
+          "de": "W\u00e4nde, St\u00fctzen, Decken und Treppen zwischen unterster Bodenplatte und Erdgeschoss.",
+          "en": "Walls, columns, suspended slabs and stairs between lowest floor and ground floor."
+        },
+        "labels": {
+          "de": "Tragwerk unter Terrain",
+          "en": "Below-ground suspended structure"
+        }
+      },
+      "CG-2-03-B030": {
+        "broader": "CG-2-03",
+        "definition": {
+          "de": "Tragende W\u00e4nde, St\u00fctzen, Decken, Dachkonstruktion und Treppen oberhalb des Erdgeschosses.",
+          "en": "Load-bearing walls, columns, floors, roof structure and stairs above ground floor."
+        },
+        "labels": {
+          "de": "Tragwerk \u00fcber Terrain",
+          "en": "Frame and floors above ground"
+        }
+      },
+      "CG-2-03-B040": {
+        "broader": "CG-2-03",
+        "definition": {
+          "de": "Tragende Becken, Sockel und kleinere tragende Bauteile.",
+          "en": "Structural tanks, pools, plinths and minor structural items."
+        },
+        "labels": {
+          "de": "Tragende Becken und Erg\u00e4nzungen",
+          "en": "Structural tanks, pools and sundries"
+        }
+      },
+      "CG-2-03-B050": {
+        "broader": "CG-2-03",
+        "definition": {
+          "de": "Tragwerk als vorgefertigtes oder Verbundsystem geliefert.",
+          "en": "Structure supplied as prefabricated or composite systems."
+        },
+        "labels": {
+          "de": "Vorgefertigtes oder Verbundtragwerk",
+          "en": "Prefabricated or composite structure"
+        }
+      },
+      "CG-2-03-C010": {
+        "broader": "CG-2-03",
+        "definition": {
+          "de": "Zwischenst\u00fctzen und Pylone von Br\u00fccken.",
+          "en": "Intermediate supports and towers of bridges."
+        },
+        "labels": {
+          "de": "Pfeiler und Pylone",
+          "en": "Piers and pylons"
+        }
+      },
+      "CG-2-03-C020": {
+        "broader": "CG-2-03",
+        "definition": {
+          "de": "Tragseile, Schr\u00e4gseile und H\u00e4nger.",
+          "en": "Main cables, stays and hangers."
+        },
+        "labels": {
+          "de": "Seil- und H\u00e4ngesysteme",
+          "en": "Suspension and cable systems"
+        }
+      },
+      "CG-2-03-C030": {
+        "broader": "CG-2-03",
+        "definition": {
+          "de": "\u00dcberbau zwischen den Auflagern.",
+          "en": "Deck structure spanning between supports."
+        },
+        "labels": {
+          "de": "Br\u00fccken\u00fcberbau",
+          "en": "Bridge decks"
+        }
+      },
+      "CG-2-03-C040": {
+        "broader": "CG-2-03",
+        "definition": {
+          "de": "Lager zur \u00dcbertragung der \u00dcberbaulasten auf die St\u00fctzen.",
+          "en": "Bearings transferring deck loads to supports."
+        },
+        "labels": {
+          "de": "Br\u00fcckenlager",
+          "en": "Bearings"
+        }
+      },
+      "CG-2-03-C050": {
+        "broader": "CG-2-03",
+        "definition": {
+          "de": "Sicherung und Ausbau von Hohlr\u00e4umen im Untertagbau.",
+          "en": "Primary support and final lining of underground excavations."
+        },
+        "labels": {
+          "de": "Tunnelsicherung und -ausbau",
+          "en": "Tunnel support and lining"
+        }
+      },
+      "CG-2-03-C060": {
+        "broader": "CG-2-03",
+        "definition": {
+          "de": "Tragschichten von Strassen und Gleisen.",
+          "en": "Structural base layers of roads and track."
+        },
+        "labels": {
+          "de": "Tragschichten Strasse und Gleis",
+          "en": "Road and track bases"
+        }
+      },
+      "CG-2-03-C070": {
+        "broader": "CG-2-03",
+        "definition": {
+          "de": "Tragende Belagsschichten von Strassen und Pisten.",
+          "en": "Structural pavement layers of roads and runways."
+        },
+        "labels": {
+          "de": "Tragende Bel\u00e4ge",
+          "en": "Structural pavements"
+        }
+      },
+      "CG-2-03-C080": {
+        "broader": "CG-2-03",
+        "definition": {
+          "de": "Zufahrten und Dienststrassen zum Bauwerk.",
+          "en": "Approach roads and service roads to the structure."
+        },
+        "labels": {
+          "de": "Nebenstrassen und Zufahrten",
+          "en": "Service roads and approaches"
+        }
+      },
+      "CG-2-03-C090": {
+        "broader": "CG-2-03",
+        "definition": {
+          "de": "Randbalken, Br\u00fcstungen und Randabschl\u00fcsse.",
+          "en": "Edge beams, parapets and edge treatment."
+        },
+        "labels": {
+          "de": "Br\u00fcstungen und Randabschl\u00fcsse",
+          "en": "Parapets and edge details"
+        }
+      },
+      "CG-2-03-C100": {
+        "broader": "CG-2-03",
+        "definition": {
+          "de": "Prim\u00e4re W\u00e4nde, Platten, Rahmen und Spezialkonstruktionen.",
+          "en": "Primary walls, slabs, frames and special structures."
+        },
+        "labels": {
+          "de": "Hauptbauwerke",
+          "en": "Main structures"
+        }
+      },
+      "CG-2-03-C105": {
+        "broader": "CG-2-03",
+        "definition": {
+          "de": "Kleinbauten f\u00fcr Werkleitungsanlagen.",
+          "en": "Small buildings housing utility plant."
+        },
+        "labels": {
+          "de": "Betriebsgeb\u00e4ude f\u00fcr Werkleitungen",
+          "en": "Utility service buildings"
+        }
+      },
+      "CG-2-03-C110": {
+        "broader": "CG-2-03",
+        "definition": {
+          "de": "Beh\u00e4lter, Becken und Speicherbauwerke.",
+          "en": "Tanks, basins and storage containers."
+        },
+        "labels": {
+          "de": "Beh\u00e4lter und Speicherbauwerke",
+          "en": "Tanks and storage structures"
+        }
+      },
+      "CG-2-03-C120": {
+        "broader": "CG-2-03",
+        "definition": {
+          "de": "Tragende Auflager f\u00fcr Beh\u00e4lter und Rohrleitungen.",
+          "en": "Structural supports for tanks and pipework."
+        },
+        "labels": {
+          "de": "Auflager f\u00fcr Beh\u00e4lter und Rohre",
+          "en": "Supports for tanks and pipes"
+        }
+      },
+      "CG-2-03-C130": {
+        "broader": "CG-2-03",
+        "definition": {
+          "de": "Rohrleitungen als Hauptbestandteil der Anlage.",
+          "en": "Pipework forming the main asset."
+        },
+        "labels": {
+          "de": "Rohrleitungen",
+          "en": "Civil pipework"
+        }
+      },
+      "CG-2-03-C140": {
+        "broader": "CG-2-03",
+        "definition": {
+          "de": "Armaturen und Formst\u00fccke in Rohrleitungen.",
+          "en": "Valves and fittings in pipework."
+        },
+        "labels": {
+          "de": "Armaturen und Formst\u00fccke",
+          "en": "Valves and fittings"
+        }
+      },
+      "CG-2-03-C700": {
+        "broader": "CG-2-03",
+        "definition": {
+          "de": "Schiffsschleusen und Leitwerke.",
+          "en": "Navigation locks and guiding structures."
+        },
+        "labels": {
+          "de": "Schleusen und Leitwerke",
+          "en": "Locks and guide structures"
+        }
+      },
+      "CG-2-03-C720": {
+        "broader": "CG-2-03",
+        "definition": {
+          "de": "D\u00e4mme, Hochwasserschutzmauern und Sperrwerke.",
+          "en": "Dykes, flood walls and barriers."
+        },
+        "labels": {
+          "de": "Hochwasserschutzbauten",
+          "en": "Flood defences"
+        }
+      },
+      "CG-2-03-C750": {
+        "broader": "CG-2-03",
+        "definition": {
+          "de": "Feste und bewegliche Wehre.",
+          "en": "Fixed and movable weirs."
+        },
+        "labels": {
+          "de": "Wehre",
+          "en": "Weirs"
+        }
+      },
+      "CG-2-04": {
+        "broader": "CG-2",
+        "definition": {
+          "de": "Geb\u00e4udeh\u00fclle, Trennw\u00e4nde, Bel\u00e4ge, Einbauten und weitere nichttragende Konstruktionen.",
+          "en": "Envelope, partitions, finishes, fittings and other non-load-bearing construction."
+        },
+        "labels": {
+          "de": "Ausbau und nichttragende Arbeiten",
+          "en": "Architectural and non-structural works"
+        }
+      },
+      "CG-2-04-B010": {
+        "broader": "CG-2-04",
+        "definition": {
+          "de": "R\u00fcckbau und Anpassung bestehender nichttragender Bauteile.",
+          "en": "Removal and alteration of existing non-load-bearing construction."
+        },
+        "labels": {
+          "de": "Anpassungen nichttragender Bauteile",
+          "en": "Non-structural alterations"
+        }
+      },
+      "CG-2-04-B020": {
+        "broader": "CG-2-04",
+        "definition": {
+          "de": "\u00c4ussere Wandbekleidungen, Fassadenbekleidungen, Vorhangfassaden, Fenster, Aussent\u00fcren und Abschl\u00fcsse.",
+          "en": "External wall finishes, cladding, curtain walls, windows, external doors and shutters."
+        },
+        "labels": {
+          "de": "Geb\u00e4udeh\u00fclle Fassade",
+          "en": "External envelope"
+        }
+      },
+      "CG-2-04-B030": {
+        "broader": "CG-2-04",
+        "definition": {
+          "de": "Dachhaut, Abdichtung, D\u00e4mmung, Oblichter und Dachbegr\u00fcnung.",
+          "en": "Roof finishes, waterproofing, insulation, skylights and roof landscaping."
+        },
+        "labels": {
+          "de": "Bedachung und Oblichter",
+          "en": "Roof coverings and rooflights"
+        }
+      },
+      "CG-2-04-B040": {
+        "broader": "CG-2-04",
+        "definition": {
+          "de": "Nichttragende Trennw\u00e4nde, Innent\u00fcren, Innenfenster und Abschl\u00fcsse.",
+          "en": "Non-load-bearing partitions, internal doors, windows and shutters."
+        },
+        "labels": {
+          "de": "Innenw\u00e4nde und Innent\u00fcren",
+          "en": "Internal divisions"
+        }
+      },
+      "CG-2-04-B050": {
+        "broader": "CG-2-04",
+        "definition": {
+          "de": "Gel\u00e4nder, Einbauschr\u00e4nke, Beschriftungen und weitere feste Einbauten.",
+          "en": "Balustrades, built-in cabinets, signs and other fixed fittings."
+        },
+        "labels": {
+          "de": "Einbauten und Erg\u00e4nzungen",
+          "en": "Fittings and sundries"
+        }
+      },
+      "CG-2-04-B060": {
+        "broader": "CG-2-04",
+        "definition": {
+          "de": "Boden-, Wand- und Deckenbel\u00e4ge in \u00fcberdeckten Bereichen.",
+          "en": "Floor, wall and ceiling finishes under cover."
+        },
+        "labels": {
+          "de": "Innenbel\u00e4ge und -bekleidungen",
+          "en": "Internal finishes"
+        }
+      },
+      "CG-2-04-B070": {
+        "broader": "CG-2-04",
+        "definition": {
+          "de": "Sockel, Durchbr\u00fcche, H\u00fclsen, Verkleidungen und Abschottungen f\u00fcr Installationen.",
+          "en": "Plinths, openings, sleeves, enclosures and fire stopping for services."
+        },
+        "labels": {
+          "de": "Baumeisterarbeiten f\u00fcr Installationen",
+          "en": "Builder's work for services"
+        }
+      },
+      "CG-2-04-B080": {
+        "broader": "CG-2-04",
+        "definition": {
+          "de": "H\u00fclle oder Ausbau als vorgefertigte Systeme geliefert.",
+          "en": "Envelope or fit-out supplied as prefabricated systems."
+        },
+        "labels": {
+          "de": "Vorgefertigte nichttragende Systeme",
+          "en": "Prefabricated or composite non-structural work"
+        }
+      },
+      "CG-2-04-C010": {
+        "broader": "CG-2-04",
+        "definition": {
+          "de": "R\u00fcckbau und Anpassung bestehender nichttragender Bauteile.",
+          "en": "Removal and alteration of existing non-structural parts."
+        },
+        "labels": {
+          "de": "Anpassungen nichttragender Bauteile",
+          "en": "Non-structural alterations"
+        }
+      },
+      "CG-2-04-C020": {
+        "broader": "CG-2-04",
+        "definition": {
+          "de": "Beschichtungen, Verkleidungen, Bekleidungen und Einbauten.",
+          "en": "Coatings, linings, cladding and built-in parts."
+        },
+        "labels": {
+          "de": "Nichttragende Bauteile und Oberfl\u00e4chen",
+          "en": "Non-structural construction and finishes"
+        }
+      },
+      "CG-2-04-C030": {
+        "broader": "CG-2-04",
+        "definition": {
+          "de": "Deckschicht von Strassen und Fahrfl\u00e4che von Gleisen.",
+          "en": "Wearing course of roads and running surface of track."
+        },
+        "labels": {
+          "de": "Fahrbahnoberfl\u00e4che",
+          "en": "Running surface"
+        }
+      },
+      "CG-2-04-C040": {
+        "broader": "CG-2-04",
+        "definition": {
+          "de": "Signale, Markierungen und dergleichen.",
+          "en": "Road signs, markings and similar."
+        },
+        "labels": {
+          "de": "Signalisation und Markierung",
+          "en": "Signs and markings"
+        }
+      },
+      "CG-2-04-C050": {
+        "broader": "CG-2-04",
+        "definition": {
+          "de": "Signal- und Ausr\u00fcstungsportale.",
+          "en": "Sign and equipment gantries."
+        },
+        "labels": {
+          "de": "Signalportale",
+          "en": "Gantries"
+        }
+      },
+      "CG-2-04-C060": {
+        "broader": "CG-2-04",
+        "definition": {
+          "de": "Sicherheitseinrichtungen f\u00fcr Nutzende und Personal.",
+          "en": "Safety installations for users and staff."
+        },
+        "labels": {
+          "de": "Sicherheitseinrichtungen",
+          "en": "Safety facilities"
+        }
+      },
+      "CG-2-04-C070": {
+        "broader": "CG-2-04",
+        "definition": {
+          "de": "Fahrzeugr\u00fcckhaltesysteme, Handl\u00e4ufe, Leitern und Stege.",
+          "en": "Vehicle restraint, handrails, ladders and walkways."
+        },
+        "labels": {
+          "de": "R\u00fcckhaltesysteme und Zug\u00e4nge",
+          "en": "Barriers, rails and access"
+        }
+      },
+      "CG-2-04-C080": {
+        "broader": "CG-2-04",
+        "definition": {
+          "de": "Trassenspezifische Ausr\u00fcstung, die nicht anderweitig erfasst ist.",
+          "en": "Route-specific fittings not covered elsewhere."
+        },
+        "labels": {
+          "de": "Spezielle Ausr\u00fcstung",
+          "en": "Special equipment and fittings"
+        }
+      },
+      "CG-2-04-C090": {
+        "broader": "CG-2-04",
+        "definition": {
+          "de": "Begr\u00fcnung innerhalb geschlossener Tiefbauwerke.",
+          "en": "Planting within enclosed civil structures."
+        },
+        "labels": {
+          "de": "Innenbegr\u00fcnung",
+          "en": "Interior landscaping"
+        }
+      },
+      "CG-2-04-C100": {
+        "broader": "CG-2-04",
+        "definition": {
+          "de": "Durchbr\u00fcche, Sockel und Verkleidungen f\u00fcr Ausr\u00fcstung.",
+          "en": "Openings, plinths and enclosures for equipment."
+        },
+        "labels": {
+          "de": "Baumeisterarbeiten f\u00fcr Installationen",
+          "en": "Builder's work for services"
+        }
+      },
+      "CG-2-05": {
+        "broader": "CG-2",
+        "definition": {
+          "de": "Haustechnische, elektrische, sanit\u00e4re, f\u00f6rdertechnische und spezielle Anlagen.",
+          "en": "Mechanical, electrical, plumbing, transport and specialist installations."
+        },
+        "labels": {
+          "de": "Technische Anlagen und Ausr\u00fcstung",
+          "en": "Services and equipment"
+        }
+      },
+      "CG-2-05-B010": {
+        "broader": "CG-2-05",
+        "definition": {
+          "de": "W\u00e4rme- und K\u00e4lteerzeugung, -verteilung und -abgabe sowie Lufttechnik.",
+          "en": "Heat and cold generation, distribution and emission, and air handling."
+        },
+        "labels": {
+          "de": "Heizung, L\u00fcftung und Klima",
+          "en": "Heating, ventilation and air conditioning"
+        }
+      },
+      "CG-2-05-B020": {
+        "broader": "CG-2-05",
+        "definition": {
+          "de": "Einspeisung, Transformierung, Speicherung, Verteilung und Anschl\u00fcsse Starkstrom.",
+          "en": "Incoming supply, transformation, storage, distribution and power outlets."
+        },
+        "labels": {
+          "de": "Starkstromanlagen",
+          "en": "Electrical power"
+        }
+      },
+      "CG-2-05-B030": {
+        "broader": "CG-2-05",
+        "definition": {
+          "de": "Lieferung und Montage von Leuchten.",
+          "en": "Supply and installation of light fittings."
+        },
+        "labels": {
+          "de": "Leuchten",
+          "en": "Lighting fittings"
+        }
+      },
+      "CG-2-05-B040": {
+        "broader": "CG-2-05",
+        "definition": {
+          "de": "IKT-Verkabelung, Geb\u00e4udeautomation, Sicherheits- und Alarmanlagen.",
+          "en": "ICT cabling, building automation, security and alarm systems."
+        },
+        "labels": {
+          "de": "Schwachstrom, Kommunikation und Automation",
+          "en": "Low-voltage, communication and automation"
+        }
+      },
+      "CG-2-05-B050": {
+        "broader": "CG-2-05",
+        "definition": {
+          "de": "Kalt- und Warmwasser, Grauwasser sowie interne Schmutz- und Regenwasserableitung.",
+          "en": "Cold and hot water, grey water and internal waste and rainwater drainage."
+        },
+        "labels": {
+          "de": "Wasserversorgung und Entw\u00e4sserung im Geb\u00e4ude",
+          "en": "Water supply and drainage in the building"
+        }
+      },
+      "CG-2-05-B060": {
+        "broader": "CG-2-05",
+        "definition": {
+          "de": "Lieferung von Sanit\u00e4rapparaten und -ausstattung.",
+          "en": "Supply of sanitary appliances and fixtures."
+        },
+        "labels": {
+          "de": "Sanit\u00e4rapparate",
+          "en": "Sanitary fittings"
+        }
+      },
+      "CG-2-05-B070": {
+        "broader": "CG-2-05",
+        "definition": {
+          "de": "Anlagen f\u00fcr Kehricht-, Labor- und Industrieabf\u00e4lle.",
+          "en": "Refuse, laboratory and industrial waste systems."
+        },
+        "labels": {
+          "de": "Abfallentsorgungsanlagen",
+          "en": "Waste disposal systems"
+        }
+      },
+      "CG-2-05-B080": {
+        "broader": "CG-2-05",
+        "definition": {
+          "de": "Sprinkler, Hydranten, L\u00f6schanlagen, Brandmelde- und Alarmanlagen.",
+          "en": "Sprinklers, hydrants, extinguishing, detection and alarm systems."
+        },
+        "labels": {
+          "de": "Brandschutzanlagen",
+          "en": "Fire protection systems"
+        }
+      },
+      "CG-2-05-B090": {
+        "broader": "CG-2-05",
+        "definition": {
+          "de": "Brenngas, medizinische, Labor- und Industriegase, Druckluft und Vakuum.",
+          "en": "Fuel gas, medical, laboratory and industrial gases, compressed air and vacuum."
+        },
+        "labels": {
+          "de": "Gas und Spezialmedien",
+          "en": "Gas and special media"
+        }
+      },
+      "CG-2-05-B100": {
+        "broader": "CG-2-05",
+        "definition": {
+          "de": "Aufz\u00fcge, Plattformlifte, Fahrtreppen, Fahrsteige und F\u00f6rderanlagen.",
+          "en": "Lifts, platform lifts, escalators, moving walks and conveyors."
+        },
+        "labels": {
+          "de": "Aufz\u00fcge und F\u00f6rderanlagen",
+          "en": "Lifts and conveyors"
+        }
+      },
+      "CG-2-05-B110": {
+        "broader": "CG-2-05",
+        "definition": {
+          "de": "Fassadenbefahranlagen und Gondeln.",
+          "en": "Gondolas and building maintenance units."
+        },
+        "labels": {
+          "de": "Fassadenbefahranlagen",
+          "en": "Facade access equipment"
+        }
+      },
+      "CG-2-05-B120": {
+        "broader": "CG-2-05",
+        "definition": {
+          "de": "Drehscheiben f\u00fcr Fahrzeuge und B\u00fchnen.",
+          "en": "Vehicle and stage turntables."
+        },
+        "labels": {
+          "de": "Drehscheiben",
+          "en": "Turntables"
+        }
+      },
+      "CG-2-05-B130": {
+        "broader": "CG-2-05",
+        "definition": {
+          "de": "Ersatz- und Notstromaggregate.",
+          "en": "Standby and emergency generators."
+        },
+        "labels": {
+          "de": "Notstromaggregate",
+          "en": "Generators"
+        }
+      },
+      "CG-2-05-B140": {
+        "broader": "CG-2-05",
+        "definition": {
+          "de": "Photovoltaik, W\u00e4rmer\u00fcckgewinnung und \u00e4hnliche energiesparende Anlagen.",
+          "en": "Photovoltaics, heat recovery and similar energy-saving features."
+        },
+        "labels": {
+          "de": "Energiesparende und erneuerbare Anlagen",
+          "en": "Energy-saving and renewable systems"
+        }
+      },
+      "CG-2-05-B150": {
+        "broader": "CG-2-05",
+        "definition": {
+          "de": "Behandlungsanlagen f\u00fcr das Geb\u00e4ude.",
+          "en": "Treatment plant serving the building."
+        },
+        "labels": {
+          "de": "Wasser- und Abwasserbehandlungsanlagen",
+          "en": "Water and wastewater treatment equipment"
+        }
+      },
+      "CG-2-05-B160": {
+        "broader": "CG-2-05",
+        "definition": {
+          "de": "Filtration und Technik f\u00fcr Brunnen und Becken.",
+          "en": "Filtration and plant for fountains and pools."
+        },
+        "labels": {
+          "de": "Brunnen- und Beckentechnik",
+          "en": "Fountains and pool plant"
+        }
+      },
+      "CG-2-05-B170": {
+        "broader": "CG-2-05",
+        "definition": {
+          "de": "Beleuchtete und elektronische Beschriftungen.",
+          "en": "Illuminated and electronic signs."
+        },
+        "labels": {
+          "de": "Elektrische Beschriftung",
+          "en": "Powered signage"
+        }
+      },
+      "CG-2-05-B175": {
+        "broader": "CG-2-05",
+        "definition": {
+          "de": "Audiovisuelle und Unterhaltungsanlagen.",
+          "en": "Audio-visual and entertainment systems."
+        },
+        "labels": {
+          "de": "Audiovisuelle Anlagen",
+          "en": "Audio-visual systems"
+        }
+      },
+      "CG-2-05-B180": {
+        "broader": "CG-2-05",
+        "definition": {
+          "de": "Grossk\u00fcchentechnik und -ger\u00e4te.",
+          "en": "Catering kitchen plant and appliances."
+        },
+        "labels": {
+          "de": "Grossk\u00fcchenanlagen",
+          "en": "Commercial kitchen equipment"
+        }
+      },
+      "CG-2-05-B190": {
+        "broader": "CG-2-05",
+        "definition": {
+          "de": "K\u00fchl- und Tiefk\u00fchlzellen.",
+          "en": "Cold and freezer rooms."
+        },
+        "labels": {
+          "de": "K\u00fchlzellen",
+          "en": "Cold room equipment"
+        }
+      },
+      "CG-2-05-B200": {
+        "broader": "CG-2-05",
+        "definition": {
+          "de": "Feste Laborinstallationen.",
+          "en": "Fixed laboratory installations."
+        },
+        "labels": {
+          "de": "Laboreinrichtungen",
+          "en": "Laboratory equipment"
+        }
+      },
+      "CG-2-05-B210": {
+        "broader": "CG-2-05",
+        "definition": {
+          "de": "Feste medizinische Installationen.",
+          "en": "Fixed medical installations."
+        },
+        "labels": {
+          "de": "Medizinische Einrichtungen",
+          "en": "Medical equipment"
+        }
+      },
+      "CG-2-05-B220": {
+        "broader": "CG-2-05",
+        "definition": {
+          "de": "Feste hotelspezifische Einrichtungen.",
+          "en": "Fixed hotel-specific equipment."
+        },
+        "labels": {
+          "de": "Hoteleinrichtungen",
+          "en": "Hotel equipment"
+        }
+      },
+      "CG-2-05-B230": {
+        "broader": "CG-2-05",
+        "definition": {
+          "de": "Schranken-, Ticket- und Zutrittskontrollsysteme.",
+          "en": "Barrier, ticketing and entrance control systems."
+        },
+        "labels": {
+          "de": "Park- und Zutrittskontrolle",
+          "en": "Parking and entrance access control"
+        }
+      },
+      "CG-2-05-B240": {
+        "broader": "CG-2-05",
+        "definition": {
+          "de": "Eingebaute Haushaltger\u00e4te.",
+          "en": "Built-in household appliances."
+        },
+        "labels": {
+          "de": "Haushaltger\u00e4te",
+          "en": "Domestic appliances"
+        }
+      },
+      "CG-2-05-B250": {
+        "broader": "CG-2-05",
+        "definition": {
+          "de": "Nutzungsspezifische Anlagen, die nicht anderweitig erfasst sind.",
+          "en": "Use-specific installations not listed elsewhere."
+        },
+        "labels": {
+          "de": "Weitere Spezialanlagen",
+          "en": "Other specialist installations"
+        }
+      },
+      "CG-2-05-B260": {
+        "broader": "CG-2-05",
+        "definition": {
+          "de": "Zuschl\u00e4ge und Hilfeleistungen des Hauptunternehmers f\u00fcr Installationsgewerke.",
+          "en": "Main contractor's profit and attendance on services trades."
+        },
+        "labels": {
+          "de": "Unternehmerleistungen f\u00fcr Installationen",
+          "en": "Main contractor attendance on services"
+        }
+      },
+      "CG-2-05-C005": {
+        "broader": "CG-2-05",
+        "definition": {
+          "de": "Fernw\u00e4rme- und Fernk\u00e4ltenetze.",
+          "en": "District heating and cooling networks."
+        },
+        "labels": {
+          "de": "Fernw\u00e4rme und Fernk\u00e4lte",
+          "en": "District heating and cooling"
+        }
+      },
+      "CG-2-05-C010": {
+        "broader": "CG-2-05",
+        "definition": {
+          "de": "L\u00fcftungs-, Heiz-, K\u00fchl- und Pumpanlagen.",
+          "en": "Ventilation, heating, cooling and pumping plant."
+        },
+        "labels": {
+          "de": "Mechanische Anlagen",
+          "en": "Mechanical systems"
+        }
+      },
+      "CG-2-05-C020": {
+        "broader": "CG-2-05",
+        "definition": {
+          "de": "Strassen-, Tunnel- und Fl\u00e4chenbeleuchtung.",
+          "en": "Route, tunnel and area lighting."
+        },
+        "labels": {
+          "de": "Beleuchtung",
+          "en": "Lighting systems"
+        }
+      },
+      "CG-2-05-C030": {
+        "broader": "CG-2-05",
+        "definition": {
+          "de": "Dekorative und architektonische Beleuchtung.",
+          "en": "Decorative and architectural illumination."
+        },
+        "labels": {
+          "de": "Effektbeleuchtung",
+          "en": "Feature lighting"
+        }
+      },
+      "CG-2-05-C040": {
+        "broader": "CG-2-05",
+        "definition": {
+          "de": "Energieversorgung und -verteilung f\u00fcr Ausr\u00fcstung.",
+          "en": "Power supply and distribution for equipment."
+        },
+        "labels": {
+          "de": "Energieversorgung",
+          "en": "Low-voltage power supply"
+        }
+      },
+      "CG-2-05-C050": {
+        "broader": "CG-2-05",
+        "definition": {
+          "de": "Kabel, Kabeltrassen, Rohrbl\u00f6cke und Kabelsch\u00e4chte.",
+          "en": "Cables, cable trays, duct banks and cable chambers."
+        },
+        "labels": {
+          "de": "Kabel und Kabelanlagen",
+          "en": "Cables and cable routes"
+        }
+      },
+      "CG-2-05-C060": {
+        "broader": "CG-2-05",
+        "definition": {
+          "de": "Elektrische Anlagen, die nicht anderweitig erfasst sind.",
+          "en": "Electrical installations not listed elsewhere."
+        },
+        "labels": {
+          "de": "Weitere elektrische Anlagen",
+          "en": "Other electrical services"
+        }
+      },
+      "CG-2-05-C070": {
+        "broader": "CG-2-05",
+        "definition": {
+          "de": "Automations-, Kommunikations- und Leitsysteme.",
+          "en": "Automation, communication and control systems."
+        },
+        "labels": {
+          "de": "Steuerung und Messtechnik",
+          "en": "Control and instrumentation"
+        }
+      },
+      "CG-2-05-C080": {
+        "broader": "CG-2-05",
+        "definition": {
+          "de": "Lokale Auflager f\u00fcr Leitungen.",
+          "en": "Local supports for service pipes."
+        },
+        "labels": {
+          "de": "Rohrbr\u00fccken",
+          "en": "Pipe racks"
+        }
+      },
+      "CG-2-05-C090": {
+        "broader": "CG-2-05",
+        "definition": {
+          "de": "Wasser- und Entw\u00e4sserungsinstallationen in Tiefbauwerken.",
+          "en": "Water and drainage installations inside civil structures."
+        },
+        "labels": {
+          "de": "Wasser und Entw\u00e4sserung im Bauwerk",
+          "en": "Water supply and drainage in structures"
+        }
+      },
+      "CG-2-05-C100": {
+        "broader": "CG-2-05",
+        "definition": {
+          "de": "Anlagen zur Sammlung und Entsorgung von Abf\u00e4llen.",
+          "en": "Systems for collecting and removing refuse."
+        },
+        "labels": {
+          "de": "Abfallentsorgungsanlagen",
+          "en": "Refuse disposal systems"
+        }
+      },
+      "CG-2-05-C110": {
+        "broader": "CG-2-05",
+        "definition": {
+          "de": "Melde-, Alarm- und L\u00f6schanlagen.",
+          "en": "Detection, alarm and extinguishing systems."
+        },
+        "labels": {
+          "de": "Brandschutzanlagen",
+          "en": "Fire services"
+        }
+      },
+      "CG-2-05-C115": {
+        "broader": "CG-2-05",
+        "definition": {
+          "de": "Gasinstallationen in Bauwerken.",
+          "en": "Gas installations within structures."
+        },
+        "labels": {
+          "de": "Gasanlagen",
+          "en": "Gas services"
+        }
+      },
+      "CG-2-05-C120": {
+        "broader": "CG-2-05",
+        "definition": {
+          "de": "Aufz\u00fcge, Fahrtreppen und Fahrsteige.",
+          "en": "Lifts, escalators and moving walks."
+        },
+        "labels": {
+          "de": "Aufz\u00fcge und Fahrtreppen",
+          "en": "Lifts and escalators"
+        }
+      },
+      "CG-2-05-C800": {
+        "broader": "CG-2-05",
+        "definition": {
+          "de": "Fahrleitung und Bahnstromversorgung.",
+          "en": "Overhead contact line and traction power supply."
+        },
+        "labels": {
+          "de": "Bahnstrom und Fahrleitung",
+          "en": "Traction power and overhead line"
+        }
+      },
+      "CG-2-05-C810": {
+        "broader": "CG-2-05",
+        "definition": {
+          "de": "Stellwerke, Signale und Zugbeeinflussung.",
+          "en": "Interlocking, signalling and train protection."
+        },
+        "labels": {
+          "de": "Bahnsicherungsanlagen",
+          "en": "Rail signalling and train control"
+        }
+      },
+      "CG-2-06": {
+        "broader": "CG-2",
+        "definition": {
+          "de": "Ableitung von Oberfl\u00e4chen-, Regen- und Schmutzwasser ausserhalb des Bauwerks, einschliesslich Anschl\u00fcssen.",
+          "en": "Drainage of surface, storm and foul water outside the structure, including connections."
+        },
+        "labels": {
+          "de": "Oberfl\u00e4chen- und Untergrundentw\u00e4sserung",
+          "en": "Surface and underground drainage"
+        }
+      },
+      "CG-2-06-B010": {
+        "broader": "CG-2-06",
+        "definition": {
+          "de": "Entw\u00e4sserung befestigter und begr\u00fcnter Fl\u00e4chen.",
+          "en": "Drainage of paved and landscaped surfaces."
+        },
+        "labels": {
+          "de": "Oberfl\u00e4chenentw\u00e4sserung",
+          "en": "Surface water drainage"
+        }
+      },
+      "CG-2-06-B020": {
+        "broader": "CG-2-06",
+        "definition": {
+          "de": "Erdverlegte Regenwasserleitungen und -bauwerke.",
+          "en": "Below-ground storm water pipes and structures."
+        },
+        "labels": {
+          "de": "Regenwasserableitung",
+          "en": "Storm water drainage"
+        }
+      },
+      "CG-2-06-B030": {
+        "broader": "CG-2-06",
+        "definition": {
+          "de": "Erdverlegte Schmutzwasserleitungen und -bauwerke.",
+          "en": "Below-ground foul water pipes and structures."
+        },
+        "labels": {
+          "de": "Schmutzwasserableitung",
+          "en": "Foul and wastewater drainage"
+        }
+      },
+      "CG-2-06-B040": {
+        "broader": "CG-2-06",
+        "definition": {
+          "de": "Trennungen und Anschl\u00fcsse an die Kanalisation.",
+          "en": "Disconnections and connections to drains."
+        },
+        "labels": {
+          "de": "Kanalisationsanschl\u00fcsse",
+          "en": "Drainage connections"
+        }
+      },
+      "CG-2-06-B050": {
+        "broader": "CG-2-06",
+        "definition": {
+          "de": "Kamerainspektion bestehender oder neuer Leitungen.",
+          "en": "Camera inspection of existing or new drains."
+        },
+        "labels": {
+          "de": "Kanalinspektion",
+          "en": "Drain inspection"
+        }
+      },
+      "CG-2-06-B060": {
+        "broader": "CG-2-06",
+        "definition": {
+          "de": "Erdverlegte Leitungen f\u00fcr Prozessmedien.",
+          "en": "Buried pipework for process media."
+        },
+        "labels": {
+          "de": "Erdverlegte Prozessleitungen",
+          "en": "Buried process pipes"
+        }
+      },
+      "CG-2-06-C010": {
+        "broader": "CG-2-06",
+        "definition": {
+          "de": "Entw\u00e4sserung von Fahrbahn- und Gel\u00e4ndeoberfl\u00e4chen.",
+          "en": "Drainage of route and site surfaces."
+        },
+        "labels": {
+          "de": "Oberfl\u00e4chenentw\u00e4sserung",
+          "en": "Surface water drainage"
+        }
+      },
+      "CG-2-06-C020": {
+        "broader": "CG-2-06",
+        "definition": {
+          "de": "Regenwasserleitungen, Retention und Einleitungen.",
+          "en": "Storm water pipes, retention and outfalls."
+        },
+        "labels": {
+          "de": "Regenwasserableitung",
+          "en": "Storm water drainage"
+        }
+      },
+      "CG-2-06-C030": {
+        "broader": "CG-2-06",
+        "definition": {
+          "de": "Schmutzwasserkan\u00e4le und Abwasserleitungen.",
+          "en": "Foul sewers and wastewater pipes."
+        },
+        "labels": {
+          "de": "Schmutzwasserableitung",
+          "en": "Foul and wastewater drainage"
+        }
+      },
+      "CG-2-06-C040": {
+        "broader": "CG-2-06",
+        "definition": {
+          "de": "Entw\u00e4sserungspumpwerke.",
+          "en": "Drainage pumping stations."
+        },
+        "labels": {
+          "de": "Pumpanlagen",
+          "en": "Pumping systems"
+        }
+      },
+      "CG-2-06-C050": {
+        "broader": "CG-2-06",
+        "definition": {
+          "de": "Anschl\u00fcsse an bestehende Kanalisation.",
+          "en": "Connections to existing drainage."
+        },
+        "labels": {
+          "de": "Kanalisationsanschl\u00fcsse",
+          "en": "Drainage connections"
+        }
+      },
+      "CG-2-07": {
+        "broader": "CG-2",
+        "definition": {
+          "de": "St\u00fctzbauwerke, Einfriedungen, Bel\u00e4ge, Begr\u00fcnung und Werkleitungen auf dem Grundst\u00fcck ausserhalb des Hauptbauwerks.",
+          "en": "Retaining structures, enclosures, paving, landscaping and services within the site but outside the main structure."
+        },
+        "labels": {
+          "de": "Umgebungs- und Nebenarbeiten",
+          "en": "External and ancillary works"
+        }
+      },
+      "CG-2-07-B010": {
+        "broader": "CG-2-07",
+        "definition": {
+          "de": "Dauerhafte St\u00fctzmauern und B\u00f6schungsverbau auf dem Grundst\u00fcck.",
+          "en": "Permanent retaining walls and slope protection in the site."
+        },
+        "labels": {
+          "de": "St\u00fctzbauwerke",
+          "en": "Retaining structures"
+        }
+      },
+      "CG-2-07-B020": {
+        "broader": "CG-2-07",
+        "definition": {
+          "de": "Z\u00e4une, Mauern und Tore um und auf dem Grundst\u00fcck.",
+          "en": "Fences, walls and gates around and within the site."
+        },
+        "labels": {
+          "de": "Einfriedungen",
+          "en": "Site enclosures and divisions"
+        }
+      },
+      "CG-2-07-B030": {
+        "broader": "CG-2-07",
+        "definition": {
+          "de": "Kleinbauten und unterirdische Bauwerke auf dem Grundst\u00fcck.",
+          "en": "Small detached and underground structures in the site."
+        },
+        "labels": {
+          "de": "Nebenbauten",
+          "en": "Ancillary structures"
+        }
+      },
+      "CG-2-07-B040": {
+        "broader": "CG-2-07",
+        "definition": {
+          "de": "Hartfl\u00e4chen, Wege und Zufahrten auf dem Grundst\u00fcck.",
+          "en": "Hard surfaces, paths and site roads."
+        },
+        "labels": {
+          "de": "Verkehrsfl\u00e4chen und Bel\u00e4ge",
+          "en": "Roads and paving"
+        }
+      },
+      "CG-2-07-B050": {
+        "broader": "CG-2-07",
+        "definition": {
+          "de": "Gr\u00fcnfl\u00e4chen, Gestaltung und Gel\u00e4ndemodellierung.",
+          "en": "Soft and hard landscaping and ground modelling."
+        },
+        "labels": {
+          "de": "Begr\u00fcnung und Gel\u00e4ndegestaltung",
+          "en": "Landscaping"
+        }
+      },
+      "CG-2-07-B060": {
+        "broader": "CG-2-07",
+        "definition": {
+          "de": "Mobiliar, Spielger\u00e4te und Entsorgungsstellen im Aussenraum.",
+          "en": "Furniture, play equipment and waste stations outside."
+        },
+        "labels": {
+          "de": "Ausstattung Umgebung",
+          "en": "External fittings and equipment"
+        }
+      },
+      "CG-2-07-B070": {
+        "broader": "CG-2-07",
+        "definition": {
+          "de": "Wasser, Gas, Strom, Kommunikation und Beleuchtung auf dem Grundst\u00fcck.",
+          "en": "Water, gas, power, communications and lighting in the site."
+        },
+        "labels": {
+          "de": "Werkleitungen Umgebung",
+          "en": "External services"
+        }
+      },
+      "CG-2-07-C010": {
+        "broader": "CG-2-07",
+        "definition": {
+          "de": "Z\u00e4une, Mauern und Tore entlang der Trasse oder des Areals.",
+          "en": "Fences, walls and gates along the route or site."
+        },
+        "labels": {
+          "de": "Einfriedungen",
+          "en": "Site enclosures and divisions"
+        }
+      },
+      "CG-2-07-C020": {
+        "broader": "CG-2-07",
+        "definition": {
+          "de": "Kleinere Bauwerke zur Erg\u00e4nzung der Hauptanlage.",
+          "en": "Minor structures supporting the main asset."
+        },
+        "labels": {
+          "de": "Nebenbauwerke",
+          "en": "Ancillary structures"
+        }
+      },
+      "CG-2-07-C030": {
+        "broader": "CG-2-07",
+        "definition": {
+          "de": "Bel\u00e4ge, die kein eigenes Teilprojekt bilden.",
+          "en": "Paving not forming a separate sub-project."
+        },
+        "labels": {
+          "de": "Kleinere Verkehrsfl\u00e4chen",
+          "en": "Minor roads and paving"
+        }
+      },
+      "CG-2-07-C040": {
+        "broader": "CG-2-07",
+        "definition": {
+          "de": "Gr\u00fcnfl\u00e4chen und Gestaltung.",
+          "en": "Soft and hard landscaping."
+        },
+        "labels": {
+          "de": "Landschaftsgestaltung",
+          "en": "Landscaping"
+        }
+      },
+      "CG-2-07-C050": {
+        "broader": "CG-2-07",
+        "definition": {
+          "de": "Mobiliar und Ausstattung entlang der Trasse.",
+          "en": "Furniture and equipment along the route."
+        },
+        "labels": {
+          "de": "Ausstattung Umgebung",
+          "en": "External fittings and equipment"
+        }
+      },
+      "CG-2-07-C800": {
+        "broader": "CG-2-07",
+        "definition": {
+          "de": "F\u00fcr das Bauwerk beauftragte Kunstwerke.",
+          "en": "Artworks commissioned for the asset."
+        },
+        "labels": {
+          "de": "Kunst am Bau",
+          "en": "Art in public works"
+        }
+      },
+      "CG-2-08": {
+        "broader": "CG-2",
+        "definition": {
+          "de": "Baustellenf\u00fchrung, provisorische Einrichtungen, gemeinsame Ger\u00e4te und allgemeine Pflichten des Unternehmers, die keinem Element zugeordnet sind.",
+          "en": "Constructor's site management, temporary facilities, shared plant and general obligations not allocated to elements."
+        },
+        "labels": {
+          "de": "Baustellengemeinkosten",
+          "en": "Preliminaries and site overheads"
+        }
+      },
+      "CG-2-08-010": {
+        "broader": "CG-2-08",
+        "definition": {
+          "de": "Bauf\u00fchrungspersonal und Hilfskr\u00e4fte des Unternehmers.",
+          "en": "Constructor's site management staff and support labour."
+        },
+        "labels": {
+          "de": "Bauf\u00fchrung",
+          "en": "Site management"
+        }
+      },
+      "CG-2-08-020": {
+        "broader": "CG-2-08",
+        "definition": {
+          "de": "Provisorische Zufahrten, Lagerfl\u00e4chen und Verkehrsf\u00fchrung nach Wahl des Unternehmers.",
+          "en": "Temporary access, storage and traffic management at the constructor's discretion."
+        },
+        "labels": {
+          "de": "Provisorische Zufahrten und Lagerfl\u00e4chen",
+          "en": "Temporary access and storage areas"
+        }
+      },
+      "CG-2-08-030": {
+        "broader": "CG-2-08",
+        "definition": {
+          "de": "Abschrankung und Bewachung der Baustelle w\u00e4hrend der Arbeiten.",
+          "en": "Fencing and security of the site during works."
+        },
+        "labels": {
+          "de": "Bauabschrankung und Bewachung",
+          "en": "Site fencing and security"
+        }
+      },
+      "CG-2-08-040": {
+        "broader": "CG-2-08",
+        "definition": {
+          "de": "Krane, Bauaufz\u00fcge und weitere gemeinsam genutzte Ger\u00e4te.",
+          "en": "Cranes, hoists and other plant shared between trades."
+        },
+        "labels": {
+          "de": "Gemeinsame Bauger\u00e4te",
+          "en": "Shared construction plant"
+        }
+      },
+      "CG-2-08-050": {
+        "broader": "CG-2-08",
+        "definition": {
+          "de": "Gemeinsam genutzte Ger\u00fcste.",
+          "en": "Scaffolding shared between trades."
+        },
+        "labels": {
+          "de": "Gemeinsame Ger\u00fcste",
+          "en": "Shared scaffolding"
+        }
+      },
+      "CG-2-08-060": {
+        "broader": "CG-2-08",
+        "definition": {
+          "de": "Unterk\u00fcnfte, provisorische Versorgung und Aufbereitungseinrichtungen.",
+          "en": "Site accommodation, temporary supplies and processing facilities."
+        },
+        "labels": {
+          "de": "Weitere provisorische Einrichtungen",
+          "en": "Other temporary facilities and services"
+        }
+      },
+      "CG-2-08-070": {
+        "broader": "CG-2-08",
+        "definition": {
+          "de": "Telefon, Netzwerk, Hard- und Software auf der Baustelle.",
+          "en": "Telephone, network, hardware and software on site."
+        },
+        "labels": {
+          "de": "Baustellen-IT und Kommunikation",
+          "en": "Site technology and communications"
+        }
+      },
+      "CG-2-08-080": {
+        "broader": "CG-2-08",
+        "definition": {
+          "de": "Eingaben, Berichte und Revisionsunterlagen.",
+          "en": "Submissions, reports and as-built records."
+        },
+        "labels": {
+          "de": "Dokumentation des Unternehmers",
+          "en": "Constructor's documentation"
+        }
+      },
+      "CG-2-08-090": {
+        "broader": "CG-2-08",
+        "definition": {
+          "de": "\u00dcberwachung, Aufzeichnung und Pr\u00fcfungen w\u00e4hrend der Arbeiten.",
+          "en": "Monitoring, recording and inspections during works."
+        },
+        "labels": {
+          "de": "Qualit\u00e4ts\u00fcberwachung und Pr\u00fcfungen",
+          "en": "Quality monitoring and inspection"
+        }
+      },
+      "CG-2-08-100": {
+        "broader": "CG-2-08",
+        "definition": {
+          "de": "Arbeitssicherheit, Gesundheitsschutz und Umweltmanagement auf der Baustelle.",
+          "en": "Safety, health and environmental management on site."
+        },
+        "labels": {
+          "de": "Arbeitssicherheit und Umweltschutz",
+          "en": "Health, safety and environment"
+        }
+      },
+      "CG-2-08-110": {
+        "broader": "CG-2-08",
+        "definition": {
+          "de": "Versicherungen, B\u00fcrgschaften und Garantien des Unternehmers.",
+          "en": "Insurances, bonds, guarantees and warranties of the constructor."
+        },
+        "labels": {
+          "de": "Versicherungen und Garantien des Unternehmers",
+          "en": "Constructor's insurances and guarantees"
+        }
+      },
+      "CG-2-08-120": {
+        "broader": "CG-2-08",
+        "definition": {
+          "de": "Geb\u00fchren und Abgaben zulasten des Unternehmers.",
+          "en": "Statutory fees and charges borne by the constructor."
+        },
+        "labels": {
+          "de": "Geb\u00fchren des Unternehmers",
+          "en": "Constructor's statutory fees"
+        }
+      },
+      "CG-2-08-130": {
+        "broader": "CG-2-08",
+        "definition": {
+          "de": "Pr\u00fcfung und Inbetriebnahme der fertiggestellten Arbeiten.",
+          "en": "Testing and commissioning of the completed works."
+        },
+        "labels": {
+          "de": "Pr\u00fcfung und Inbetriebnahme",
+          "en": "Testing and commissioning"
+        }
+      },
+      "CG-2-08-140": {
+        "broader": "CG-2-08",
+        "definition": {
+          "de": "Zus\u00e4tzliche Massnahmen bei extremer Witterung oder erschwerten Bedingungen.",
+          "en": "Extra measures for extreme weather or working conditions."
+        },
+        "labels": {
+          "de": "Erschwerte Witterungs- und Arbeitsbedingungen",
+          "en": "Extreme climate and working conditions"
+        }
+      },
+      "CG-2-08-C025": {
+        "broader": "CG-2-08",
+        "definition": {
+          "de": "Provisorische Betonmischanlagen und Aufbereitungspl\u00e4tze.",
+          "en": "Temporary concrete batching and material processing yards."
+        },
+        "labels": {
+          "de": "Provisorische Misch- und Aufbereitungsanlagen",
+          "en": "Temporary batching and processing plant"
+        }
+      },
+      "CG-2-08-C045": {
+        "broader": "CG-2-08",
+        "definition": {
+          "de": "Schwimmende Ger\u00e4te f\u00fcr Arbeiten auf dem Wasser.",
+          "en": "Floating and marine plant for waterborne works."
+        },
+        "labels": {
+          "de": "Schwimmende Ger\u00e4te",
+          "en": "Marine plant and equipment"
+        }
+      },
+      "CG-2-08-C055": {
+        "broader": "CG-2-08",
+        "definition": {
+          "de": "Wohnunterk\u00fcnfte f\u00fcr Arbeitskr\u00e4fte.",
+          "en": "Living accommodation for the workforce."
+        },
+        "labels": {
+          "de": "Unterk\u00fcnfte f\u00fcr Arbeitskr\u00e4fte",
+          "en": "Workforce accommodation"
+        }
+      },
+      "CG-2-08-C065": {
+        "broader": "CG-2-08",
+        "definition": {
+          "de": "Installation und R\u00e4umung von Grossger\u00e4ten.",
+          "en": "Mobilisation and demobilisation of major plant."
+        },
+        "labels": {
+          "de": "Installation und R\u00e4umung",
+          "en": "Mobilisation and demobilisation"
+        }
+      },
+      "CG-2-09": {
+        "broader": "CG-2",
+        "definition": {
+          "de": "Reserven f\u00fcr Projektentwicklung, Unvorhergesehenes, Teuerung und Wechselkurs\u00e4nderungen.",
+          "en": "Allowances for design development, contingencies, price level and exchange rate changes."
+        },
+        "labels": {
+          "de": "Reserven und Teuerung",
+          "en": "Risk allowances"
+        }
+      },
+      "CG-2-09-010": {
+        "broader": "CG-2-09",
+        "definition": {
+          "de": "Reserve f\u00fcr \u00c4nderungen im Zuge der Projektentwicklung.",
+          "en": "Allowance for changes as the design develops."
+        },
+        "labels": {
+          "de": "Reserve Projektentwicklung",
+          "en": "Design development allowance"
+        }
+      },
+      "CG-2-09-020": {
+        "broader": "CG-2-09",
+        "definition": {
+          "de": "Reserve f\u00fcr unvorhergesehene Ereignisse w\u00e4hrend der Ausf\u00fchrung.",
+          "en": "Allowance for unforeseen events during construction."
+        },
+        "labels": {
+          "de": "Reserve Unvorhergesehenes",
+          "en": "Construction contingency"
+        }
+      },
+      "CG-2-09-030": {
+        "broader": "CG-2-09",
+        "definition": {
+          "de": "Preis\u00e4nderungen bis zur Ausschreibung und w\u00e4hrend der Ausf\u00fchrung.",
+          "en": "Price changes until tender and during construction."
+        },
+        "labels": {
+          "de": "Teuerung",
+          "en": "Price level adjustment"
+        }
+      },
+      "CG-2-09-040": {
+        "broader": "CG-2-09",
+        "definition": {
+          "de": "Auswirkung von Wechselkursschwankungen auf die Kosten.",
+          "en": "Effect of currency fluctuation on costs."
+        },
+        "labels": {
+          "de": "Wechselkurs\u00e4nderungen",
+          "en": "Exchange rate adjustment"
+        }
+      },
+      "CG-2-10": {
+        "broader": "CG-2",
+        "definition": {
+          "de": "Steuern und Abgaben auf Zahlungen f\u00fcr die Erstellung.",
+          "en": "Taxes and levies on construction payments."
+        },
+        "labels": {
+          "de": "Steuern und Abgaben",
+          "en": "Taxes and levies"
+        }
+      },
+      "CG-2-10-010": {
+        "broader": "CG-2-10",
+        "definition": {
+          "de": "Steuern und Abgaben zulasten des Unternehmers.",
+          "en": "Taxes and levies borne by the constructor."
+        },
+        "labels": {
+          "de": "Steuern zulasten Unternehmer",
+          "en": "Taxes paid by the constructor"
+        }
+      },
+      "CG-2-10-020": {
+        "broader": "CG-2-10",
+        "definition": {
+          "de": "Mehrwertsteuer und Abgaben der Bauherrschaft auf Vertragszahlungen.",
+          "en": "Value added tax and levies paid by the client on contract payments."
+        },
+        "labels": {
+          "de": "Steuern auf Vertragszahlungen",
+          "en": "Taxes on contract payments"
+        }
+      },
+      "CG-2-11": {
+        "broader": "CG-2",
+        "definition": {
+          "de": "Werkleitungsanschl\u00fcsse und \u00f6ffentliche Zufahrten ausserhalb der Grundst\u00fccksgrenze.",
+          "en": "Utility connections and public access works outside the site boundary."
+        },
+        "labels": {
+          "de": "Arbeiten und Werkleitungen ausserhalb des Grundst\u00fccks",
+          "en": "Off-site works and utilities"
+        }
+      },
+      "CG-2-11-010": {
+        "broader": "CG-2-11",
+        "definition": {
+          "de": "Anschl\u00fcsse, Umlegungen und Kapazit\u00e4tserweiterungen \u00f6ffentlicher Werkleitungen bis zum Grundst\u00fcck.",
+          "en": "Connections, diversions and capacity upgrades of public utilities up to the site."
+        },
+        "labels": {
+          "de": "Werkleitungsanschl\u00fcsse ausserhalb",
+          "en": "Off-site utility connections"
+        }
+      },
+      "CG-2-11-020": {
+        "broader": "CG-2-11",
+        "definition": {
+          "de": "\u00d6ffentliche Strassen und Fusswege ausserhalb des Grundst\u00fccks.",
+          "en": "Public roads and footpaths outside the site."
+        },
+        "labels": {
+          "de": "\u00d6ffentliche Zufahrten und Fusswege",
+          "en": "Public access roads and footpaths"
+        }
+      },
+      "CG-2-12": {
+        "broader": "CG-2",
+        "definition": {
+          "de": "Produktions- und Prozesseinrichtungen, Mobiliar und lose Ausstattung f\u00fcr die Nutzung des Bauwerks.",
+          "en": "Production and process equipment, furniture and loose items supplied for the use of the asset."
+        },
+        "labels": {
+          "de": "Betriebseinrichtungen, Mobiliar und Ausstattung",
+          "en": "Production equipment, furniture and loose fittings"
+        }
+      },
+      "CG-2-12-010": {
+        "broader": "CG-2-12",
+        "definition": {
+          "de": "Lose Ausstattung, die \u00fcblicherweise nach Fertigstellung geliefert wird.",
+          "en": "Loose items normally supplied after completion."
+        },
+        "labels": {
+          "de": "Mobiliar und lose Ausstattung",
+          "en": "Loose furniture, fittings and equipment"
+        }
+      },
+      "CG-2-12-020": {
+        "broader": "CG-2-12",
+        "definition": {
+          "de": "Vor Fertigstellung installierte Produktions- und Prozessanlagen.",
+          "en": "Production and process plant installed before completion."
+        },
+        "labels": {
+          "de": "Feste Produktions- und Prozesseinrichtungen",
+          "en": "Fixed production and process equipment"
+        }
+      },
+      "CG-2-12-800": {
+        "broader": "CG-2-12",
+        "definition": {
+          "de": "Kunstwerke und k\u00fcnstlerisch gestaltete Bauteile.",
+          "en": "Artworks and artistically designed building parts."
+        },
+        "labels": {
+          "de": "Kunst am Bau",
+          "en": "Art in architecture"
+        }
+      },
+      "CG-2-13": {
+        "broader": "CG-2",
+        "definition": {
+          "de": "Honorare von Planenden und Beratenden, beh\u00f6rdliche Bewilligungsgeb\u00fchren, Bauleitung und Pr\u00fcfstellen.",
+          "en": "Fees of designers and advisers, statutory approval charges, site supervision and testing authorities."
+        },
+        "labels": {
+          "de": "Planung, Beratung und Bauleitung",
+          "en": "Consultancy and supervision"
+        }
+      },
+      "CG-2-13-010": {
+        "broader": "CG-2-13",
+        "definition": {
+          "de": "Honorare und Nebenkosten von Architektur, Ingenieurwesen, Vermessung und Fachplanung.",
+          "en": "Fees and expenses of architects, engineers, surveyors and specialists."
+        },
+        "labels": {
+          "de": "Planungs- und Beratungshonorare",
+          "en": "Design and consultancy fees"
+        }
+      },
+      "CG-2-13-020": {
+        "broader": "CG-2-13",
+        "definition": {
+          "de": "Geb\u00fchren an Beh\u00f6rden f\u00fcr Bewilligungen und Abnahmen.",
+          "en": "Charges payable to authorities for approvals and inspections."
+        },
+        "labels": {
+          "de": "Bewilligungsgeb\u00fchren",
+          "en": "Statutory approval charges"
+        }
+      },
+      "CG-2-13-030": {
+        "broader": "CG-2-13",
+        "definition": {
+          "de": "Bauleitung einschliesslich Unterkunft und Reisen.",
+          "en": "Site supervision including accommodation and travel."
+        },
+        "labels": {
+          "de": "Bauleitung",
+          "en": "Site supervision"
+        }
+      },
+      "CG-2-13-040": {
+        "broader": "CG-2-13",
+        "definition": {
+          "de": "Zahlungen an Pr\u00fcfstellen und Labore.",
+          "en": "Payments to testing authorities and laboratories."
+        },
+        "labels": {
+          "de": "Pr\u00fcfstellen",
+          "en": "Testing authorities"
+        }
+      },
+      "CG-2-13-800": {
+        "broader": "CG-2-13",
+        "definition": {
+          "de": "Auswahlverfahren, Vertretung von Eigent\u00fcmer, Betreiber und Nutzenden, Beratung und Projektplattformen.",
+          "en": "Competitions, owner, operator and user representatives, advisers and project platforms."
+        },
+        "labels": {
+          "de": "Beratung und Projektplattformen der Bauherrschaft",
+          "en": "Client-side advisers and project platforms"
+        }
+      },
+      "CG-3": {
+        "broader": null,
+        "definition": {
+          "de": "Kosten f\u00fcr den Ersatz wesentlicher Bauteile am Ende ihrer Nutzungsdauer nach der \u00dcbergabe.",
+          "en": "Costs of replacing major components at the end of their service life after handover."
+        },
+        "labels": {
+          "de": "Erneuerung",
+          "en": "Renewal"
+        }
+      },
+      "CG-3-01": {
+        "broader": "CG-3",
+        "definition": {
+          "de": "Untersuchung, R\u00e4umung, R\u00fcckbau, Sanierung und Formung des Gel\u00e4ndes vor den dauerhaften Arbeiten.",
+          "en": "Investigation, clearance, demolition, remediation and forming of the site before the permanent works."
+        },
+        "labels": {
+          "de": "Erneuerung: R\u00fcckbau, Baustellenvorbereitung und Gel\u00e4ndeformung",
+          "en": "Renewal: demolition, site preparation and formation"
+        }
+      },
+      "CG-3-02": {
+        "broader": "CG-3",
+        "definition": {
+          "de": "Erdber\u00fchrte Arbeiten, die Lasten in den Baugrund abtragen, bis Oberkante der untersten Bodenplatte bzw. des Planums.",
+          "en": "Ground-related works that transfer loads into the ground, up to the top of the lowest floor or formation level."
+        },
+        "labels": {
+          "de": "Erneuerung: Unterbau",
+          "en": "Renewal: substructure"
+        }
+      },
+      "CG-3-03": {
+        "broader": "CG-3",
+        "definition": {
+          "de": "Tragende Konstruktion oberhalb des Unterbaus.",
+          "en": "Load-bearing construction above the substructure."
+        },
+        "labels": {
+          "de": "Erneuerung: Tragwerk",
+          "en": "Renewal: structure"
+        }
+      },
+      "CG-3-04": {
+        "broader": "CG-3",
+        "definition": {
+          "de": "Geb\u00e4udeh\u00fclle, Trennw\u00e4nde, Bel\u00e4ge, Einbauten und weitere nichttragende Konstruktionen.",
+          "en": "Envelope, partitions, finishes, fittings and other non-load-bearing construction."
+        },
+        "labels": {
+          "de": "Erneuerung: Ausbau und nichttragende Arbeiten",
+          "en": "Renewal: architectural and non-structural works"
+        }
+      },
+      "CG-3-05": {
+        "broader": "CG-3",
+        "definition": {
+          "de": "Haustechnische, elektrische, sanit\u00e4re, f\u00f6rdertechnische und spezielle Anlagen.",
+          "en": "Mechanical, electrical, plumbing, transport and specialist installations."
+        },
+        "labels": {
+          "de": "Erneuerung: Technische Anlagen und Ausr\u00fcstung",
+          "en": "Renewal: services and equipment"
+        }
+      },
+      "CG-3-06": {
+        "broader": "CG-3",
+        "definition": {
+          "de": "Ableitung von Oberfl\u00e4chen-, Regen- und Schmutzwasser ausserhalb des Bauwerks, einschliesslich Anschl\u00fcssen.",
+          "en": "Drainage of surface, storm and foul water outside the structure, including connections."
+        },
+        "labels": {
+          "de": "Erneuerung: Oberfl\u00e4chen- und Untergrundentw\u00e4sserung",
+          "en": "Renewal: surface and underground drainage"
+        }
+      },
+      "CG-3-07": {
+        "broader": "CG-3",
+        "definition": {
+          "de": "St\u00fctzbauwerke, Einfriedungen, Bel\u00e4ge, Begr\u00fcnung und Werkleitungen auf dem Grundst\u00fcck ausserhalb des Hauptbauwerks.",
+          "en": "Retaining structures, enclosures, paving, landscaping and services within the site but outside the main structure."
+        },
+        "labels": {
+          "de": "Erneuerung: Umgebungs- und Nebenarbeiten",
+          "en": "Renewal: external and ancillary works"
+        }
+      },
+      "CG-3-08": {
+        "broader": "CG-3",
+        "definition": {
+          "de": "Baustellenf\u00fchrung, provisorische Einrichtungen, gemeinsame Ger\u00e4te und allgemeine Pflichten des Unternehmers, die keinem Element zugeordnet sind.",
+          "en": "Constructor's site management, temporary facilities, shared plant and general obligations not allocated to elements."
+        },
+        "labels": {
+          "de": "Erneuerung: Baustellengemeinkosten",
+          "en": "Renewal: preliminaries and site overheads"
+        }
+      },
+      "CG-3-09": {
+        "broader": "CG-3",
+        "definition": {
+          "de": "Reserven f\u00fcr Projektentwicklung, Unvorhergesehenes, Teuerung und Wechselkurs\u00e4nderungen.",
+          "en": "Allowances for design development, contingencies, price level and exchange rate changes."
+        },
+        "labels": {
+          "de": "Erneuerung: Reserven und Teuerung",
+          "en": "Renewal: risk allowances"
+        }
+      },
+      "CG-3-10": {
+        "broader": "CG-3",
+        "definition": {
+          "de": "Steuern und Abgaben auf Zahlungen f\u00fcr die Erstellung.",
+          "en": "Taxes and levies on construction payments."
+        },
+        "labels": {
+          "de": "Erneuerung: Steuern und Abgaben",
+          "en": "Renewal: taxes and levies"
+        }
+      },
+      "CG-3-11": {
+        "broader": "CG-3",
+        "definition": {
+          "de": "Werkleitungsanschl\u00fcsse und \u00f6ffentliche Zufahrten ausserhalb der Grundst\u00fccksgrenze.",
+          "en": "Utility connections and public access works outside the site boundary."
+        },
+        "labels": {
+          "de": "Erneuerung: Arbeiten und Werkleitungen ausserhalb des Grundst\u00fccks",
+          "en": "Renewal: off-site works and utilities"
+        }
+      },
+      "CG-3-12": {
+        "broader": "CG-3",
+        "definition": {
+          "de": "Produktions- und Prozesseinrichtungen, Mobiliar und lose Ausstattung f\u00fcr die Nutzung des Bauwerks.",
+          "en": "Production and process equipment, furniture and loose items supplied for the use of the asset."
+        },
+        "labels": {
+          "de": "Erneuerung: Betriebseinrichtungen, Mobiliar und Ausstattung",
+          "en": "Renewal: production equipment, furniture and loose fittings"
+        }
+      },
+      "CG-3-13": {
+        "broader": "CG-3",
+        "definition": {
+          "de": "Honorare von Planenden und Beratenden, beh\u00f6rdliche Bewilligungsgeb\u00fchren, Bauleitung und Pr\u00fcfstellen.",
+          "en": "Fees of designers and advisers, statutory approval charges, site supervision and testing authorities."
+        },
+        "labels": {
+          "de": "Erneuerung: Planung, Beratung und Bauleitung",
+          "en": "Renewal: consultancy and supervision"
+        }
+      },
+      "CG-4": {
+        "broader": null,
+        "definition": {
+          "de": "Wiederkehrende Kosten f\u00fcr den Betrieb des Bauwerks w\u00e4hrend der Nutzung.",
+          "en": "Recurring costs of running the asset during use."
+        },
+        "labels": {
+          "de": "Betrieb",
+          "en": "Operation"
+        }
+      },
+      "CG-4-01": {
+        "broader": "CG-4",
+        "definition": {
+          "de": "Unterhalts- und periodische Reinigung des Bauwerks.",
+          "en": "Routine and periodic cleaning of the asset."
+        },
+        "labels": {
+          "de": "Reinigung",
+          "en": "Cleaning"
+        }
+      },
+      "CG-4-02": {
+        "broader": "CG-4",
+        "definition": {
+          "de": "Im Betrieb bezogene Energie, Wasser und weitere Medien.",
+          "en": "Energy, water and other supplied media consumed in use."
+        },
+        "labels": {
+          "de": "Ver- und Entsorgungsmedien",
+          "en": "Utilities"
+        }
+      },
+      "CG-4-03": {
+        "broader": "CG-4",
+        "definition": {
+          "de": "Sammlung, Trennung und Entsorgung von Betriebsabf\u00e4llen.",
+          "en": "Collection, sorting and disposal of operational waste."
+        },
+        "labels": {
+          "de": "Abfallentsorgung",
+          "en": "Waste management"
+        }
+      },
+      "CG-4-04": {
+        "broader": "CG-4",
+        "definition": {
+          "de": "Bewachung, Zutrittskontrolle und Sicherheitsdienste im Betrieb.",
+          "en": "Guarding, access control and security services in use."
+        },
+        "labels": {
+          "de": "Sicherheit und Bewachung",
+          "en": "Security"
+        }
+      },
+      "CG-4-05": {
+        "broader": "CG-4",
+        "definition": {
+          "de": "Betriebskosten von IKT-Diensten und Netzwerken.",
+          "en": "Running costs of ICT services and networks."
+        },
+        "labels": {
+          "de": "Informations- und Kommunikationstechnik",
+          "en": "Information and communication technology"
+        }
+      },
+      "CG-4-06": {
+        "broader": "CG-4",
+        "definition": {
+          "de": "F\u00fchrung, Personal und allgemeine Pflichten der Betreiberin.",
+          "en": "Operator's management, staff and general obligations."
+        },
+        "labels": {
+          "de": "Betreibergemeinkosten",
+          "en": "Operator overheads"
+        }
+      },
+      "CG-4-07": {
+        "broader": "CG-4",
+        "definition": {
+          "de": "Reserven f\u00fcr Unsicherheiten der Betriebskosten.",
+          "en": "Allowances for uncertainty in operation costs."
+        },
+        "labels": {
+          "de": "Reserven Betrieb",
+          "en": "Operation risk allowances"
+        }
+      },
+      "CG-4-08": {
+        "broader": "CG-4",
+        "definition": {
+          "de": "Steuern und Abgaben auf den Betrieb.",
+          "en": "Taxes and levies on operation."
+        },
+        "labels": {
+          "de": "Steuern und Abgaben Betrieb",
+          "en": "Operation taxes and levies"
+        }
+      },
+      "CG-5": {
+        "broader": null,
+        "definition": {
+          "de": "Kosten f\u00fcr den Erhalt der Funktionsf\u00e4higkeit durch Inspektion, Wartung und Reparatur.",
+          "en": "Costs of keeping the asset in working condition through inspection, servicing and repair."
+        },
+        "labels": {
+          "de": "Instandhaltung",
+          "en": "Maintenance"
+        }
+      },
+      "CG-5-01": {
+        "broader": "CG-5",
+        "definition": {
+          "de": "Untersuchung, R\u00e4umung, R\u00fcckbau, Sanierung und Formung des Gel\u00e4ndes vor den dauerhaften Arbeiten.",
+          "en": "Investigation, clearance, demolition, remediation and forming of the site before the permanent works."
+        },
+        "labels": {
+          "de": "Instandhaltung: R\u00fcckbau, Baustellenvorbereitung und Gel\u00e4ndeformung",
+          "en": "Maintenance: demolition, site preparation and formation"
+        }
+      },
+      "CG-5-02": {
+        "broader": "CG-5",
+        "definition": {
+          "de": "Erdber\u00fchrte Arbeiten, die Lasten in den Baugrund abtragen, bis Oberkante der untersten Bodenplatte bzw. des Planums.",
+          "en": "Ground-related works that transfer loads into the ground, up to the top of the lowest floor or formation level."
+        },
+        "labels": {
+          "de": "Instandhaltung: Unterbau",
+          "en": "Maintenance: substructure"
+        }
+      },
+      "CG-5-03": {
+        "broader": "CG-5",
+        "definition": {
+          "de": "Tragende Konstruktion oberhalb des Unterbaus.",
+          "en": "Load-bearing construction above the substructure."
+        },
+        "labels": {
+          "de": "Instandhaltung: Tragwerk",
+          "en": "Maintenance: structure"
+        }
+      },
+      "CG-5-04": {
+        "broader": "CG-5",
+        "definition": {
+          "de": "Geb\u00e4udeh\u00fclle, Trennw\u00e4nde, Bel\u00e4ge, Einbauten und weitere nichttragende Konstruktionen.",
+          "en": "Envelope, partitions, finishes, fittings and other non-load-bearing construction."
+        },
+        "labels": {
+          "de": "Instandhaltung: Ausbau und nichttragende Arbeiten",
+          "en": "Maintenance: architectural and non-structural works"
+        }
+      },
+      "CG-5-05": {
+        "broader": "CG-5",
+        "definition": {
+          "de": "Haustechnische, elektrische, sanit\u00e4re, f\u00f6rdertechnische und spezielle Anlagen.",
+          "en": "Mechanical, electrical, plumbing, transport and specialist installations."
+        },
+        "labels": {
+          "de": "Instandhaltung: Technische Anlagen und Ausr\u00fcstung",
+          "en": "Maintenance: services and equipment"
+        }
+      },
+      "CG-5-06": {
+        "broader": "CG-5",
+        "definition": {
+          "de": "Ableitung von Oberfl\u00e4chen-, Regen- und Schmutzwasser ausserhalb des Bauwerks, einschliesslich Anschl\u00fcssen.",
+          "en": "Drainage of surface, storm and foul water outside the structure, including connections."
+        },
+        "labels": {
+          "de": "Instandhaltung: Oberfl\u00e4chen- und Untergrundentw\u00e4sserung",
+          "en": "Maintenance: surface and underground drainage"
+        }
+      },
+      "CG-5-07": {
+        "broader": "CG-5",
+        "definition": {
+          "de": "St\u00fctzbauwerke, Einfriedungen, Bel\u00e4ge, Begr\u00fcnung und Werkleitungen auf dem Grundst\u00fcck ausserhalb des Hauptbauwerks.",
+          "en": "Retaining structures, enclosures, paving, landscaping and services within the site but outside the main structure."
+        },
+        "labels": {
+          "de": "Instandhaltung: Umgebungs- und Nebenarbeiten",
+          "en": "Maintenance: external and ancillary works"
+        }
+      },
+      "CG-5-08": {
+        "broader": "CG-5",
+        "definition": {
+          "de": "Baustellenf\u00fchrung, provisorische Einrichtungen, gemeinsame Ger\u00e4te und allgemeine Pflichten des Unternehmers, die keinem Element zugeordnet sind.",
+          "en": "Constructor's site management, temporary facilities, shared plant and general obligations not allocated to elements."
+        },
+        "labels": {
+          "de": "Instandhaltung: Baustellengemeinkosten",
+          "en": "Maintenance: preliminaries and site overheads"
+        }
+      },
+      "CG-5-09": {
+        "broader": "CG-5",
+        "definition": {
+          "de": "Reserven f\u00fcr Projektentwicklung, Unvorhergesehenes, Teuerung und Wechselkurs\u00e4nderungen.",
+          "en": "Allowances for design development, contingencies, price level and exchange rate changes."
+        },
+        "labels": {
+          "de": "Instandhaltung: Reserven und Teuerung",
+          "en": "Maintenance: risk allowances"
+        }
+      },
+      "CG-5-10": {
+        "broader": "CG-5",
+        "definition": {
+          "de": "Steuern und Abgaben auf Zahlungen f\u00fcr die Erstellung.",
+          "en": "Taxes and levies on construction payments."
+        },
+        "labels": {
+          "de": "Instandhaltung: Steuern und Abgaben",
+          "en": "Maintenance: taxes and levies"
+        }
+      },
+      "CG-5-11": {
+        "broader": "CG-5",
+        "definition": {
+          "de": "Werkleitungsanschl\u00fcsse und \u00f6ffentliche Zufahrten ausserhalb der Grundst\u00fccksgrenze.",
+          "en": "Utility connections and public access works outside the site boundary."
+        },
+        "labels": {
+          "de": "Instandhaltung: Arbeiten und Werkleitungen ausserhalb des Grundst\u00fccks",
+          "en": "Maintenance: off-site works and utilities"
+        }
+      },
+      "CG-5-12": {
+        "broader": "CG-5",
+        "definition": {
+          "de": "Produktions- und Prozesseinrichtungen, Mobiliar und lose Ausstattung f\u00fcr die Nutzung des Bauwerks.",
+          "en": "Production and process equipment, furniture and loose items supplied for the use of the asset."
+        },
+        "labels": {
+          "de": "Instandhaltung: Betriebseinrichtungen, Mobiliar und Ausstattung",
+          "en": "Maintenance: production equipment, furniture and loose fittings"
+        }
+      },
+      "CG-5-13": {
+        "broader": "CG-5",
+        "definition": {
+          "de": "Honorare von Planenden und Beratenden, beh\u00f6rdliche Bewilligungsgeb\u00fchren, Bauleitung und Pr\u00fcfstellen.",
+          "en": "Fees of designers and advisers, statutory approval charges, site supervision and testing authorities."
+        },
+        "labels": {
+          "de": "Instandhaltung: Planung, Beratung und Bauleitung",
+          "en": "Maintenance: consultancy and supervision"
+        }
+      },
+      "CG-6": {
+        "broader": null,
+        "definition": {
+          "de": "Kosten f\u00fcr Ausserbetriebnahme, R\u00fcckbau und Wiederherstellung am Ende der Lebensdauer.",
+          "en": "Costs of decommissioning, demolishing and reinstating at the end of the asset's life."
+        },
+        "labels": {
+          "de": "Lebensende",
+          "en": "End of life"
+        }
+      },
+      "CG-6-01": {
+        "broader": "CG-6",
+        "definition": {
+          "de": "Aufnahme des Bauwerks und der Schadstoffe vor dem R\u00fcckbau.",
+          "en": "Survey of the asset and hazardous materials before disposal."
+        },
+        "labels": {
+          "de": "Zustandsaufnahme vor R\u00fcckbau",
+          "en": "Disposal inspection"
+        }
+      },
+      "CG-6-02": {
+        "broader": "CG-6",
+        "definition": {
+          "de": "Ausserbetriebnahme des Bauwerks und Entfernen von Schadstoffen.",
+          "en": "Taking the asset out of service and removing contaminants."
+        },
+        "labels": {
+          "de": "Ausserbetriebnahme und Dekontamination",
+          "en": "Decommissioning and decontamination"
+        }
+      },
+      "CG-6-03": {
+        "broader": "CG-6",
+        "definition": {
+          "de": "Abbruch, Demontage und R\u00fcckgewinnung wiederverwendbarer oder rezyklierbarer Materialien.",
+          "en": "Demolition, dismantling and recovery of reusable or recyclable material."
+        },
+        "labels": {
+          "de": "R\u00fcckbau und Materialr\u00fcckgewinnung",
+          "en": "Demolition and material recovery"
+        }
+      },
+      "CG-6-04": {
+        "broader": "CG-6",
+        "definition": {
+          "de": "Wiederherstellung des Gel\u00e4ndes nach dem R\u00fcckbau.",
+          "en": "Restoring the site after demolition."
+        },
+        "labels": {
+          "de": "Wiederherstellung",
+          "en": "Reinstatement"
+        }
+      },
+      "CG-6-05": {
+        "broader": "CG-6",
+        "definition": {
+          "de": "Baustellengemeinkosten des Unternehmers f\u00fcr R\u00fcckbauarbeiten.",
+          "en": "Constructor's site overheads for end-of-life works."
+        },
+        "labels": {
+          "de": "Baustellengemeinkosten R\u00fcckbau",
+          "en": "End-of-life site overheads"
+        }
+      },
+      "CG-6-06": {
+        "broader": "CG-6",
+        "definition": {
+          "de": "Reserven f\u00fcr Unsicherheiten der R\u00fcckbaukosten.",
+          "en": "Allowances for uncertainty in end-of-life costs."
+        },
+        "labels": {
+          "de": "Reserven R\u00fcckbau",
+          "en": "End-of-life risk allowances"
+        }
+      },
+      "CG-6-07": {
+        "broader": "CG-6",
+        "definition": {
+          "de": "Steuern und Abgaben auf R\u00fcckbauarbeiten.",
+          "en": "Taxes and levies on end-of-life works."
+        },
+        "labels": {
+          "de": "Steuern und Abgaben R\u00fcckbau",
+          "en": "End-of-life taxes and levies"
+        }
+      }
+    },
+    "description": {},
+    "labels": {
+      "de": "Abstrakte Kostengruppen",
+      "en": "Abstract cost groups"
+    },
+    "source": "classification/abstract-cost-classification/cost-groups.skos.ttl"
+  },
+  "AbstractCostProjectType": {
+    "concepts": {
+      "CPT-01": {
+        "broader": null,
+        "definition": {
+          "de": "Umschlossene Bauwerke, die Personen oder G\u00fctern Schutz bieten, einschliesslich Umgebungsarbeiten.",
+          "en": "Enclosed constructions providing shelter for occupants or contents, including their site works."
+        },
+        "labels": {
+          "de": "Geb\u00e4ude",
+          "en": "Buildings"
+        }
+      },
+      "CPT-02": {
+        "broader": null,
+        "definition": {
+          "de": "Strassen, Autobahnen sowie Start- und Landebahnen, Rollwege und Vorfelder von Flugpl\u00e4tzen.",
+          "en": "Road carriageways, highways, airfield runways, taxiways and aprons."
+        },
+        "labels": {
+          "de": "Strassen und Pisten",
+          "en": "Roads and runways"
+        }
+      },
+      "CPT-03": {
+        "broader": null,
+        "definition": {
+          "de": "Eisenbahn-, Stadtbahn-, Tram- und Metrolinien einschliesslich Fahrbahn, Bahnstromversorgung und Sicherungsanlagen.",
+          "en": "Heavy rail, light rail, tram and metro lines including track, power supply and signalling."
+        },
+        "labels": {
+          "de": "Bahnanlagen",
+          "en": "Railways"
+        }
+      },
+      "CPT-04": {
+        "broader": null,
+        "definition": {
+          "de": "Bauwerke, die einen Verkehrsweg oder eine Leitung \u00fcber ein Hindernis f\u00fchren.",
+          "en": "Structures carrying a traffic route or utility across an obstacle."
+        },
+        "labels": {
+          "de": "Br\u00fccken",
+          "en": "Bridges"
+        }
+      },
+      "CPT-05": {
+        "broader": null,
+        "definition": {
+          "de": "Unterirdische Bauwerke f\u00fcr Verkehr, Leitungen oder Wasser, im Vortrieb oder im Tagbau erstellt.",
+          "en": "Underground passages for traffic, utilities or water, bored, mined or cut-and-cover."
+        },
+        "labels": {
+          "de": "Tunnel",
+          "en": "Tunnels"
+        }
+      },
+      "CPT-06": {
+        "broader": null,
+        "definition": {
+          "de": "Anlagen zur Sammlung, Reinigung und Ableitung von kommunalem und industriellem Abwasser.",
+          "en": "Plants that collect, treat and discharge sewage and industrial wastewater."
+        },
+        "labels": {
+          "de": "Abwasserreinigungsanlagen",
+          "en": "Wastewater treatment works"
+        }
+      },
+      "CPT-07": {
+        "broader": null,
+        "definition": {
+          "de": "Anlagen zur Fassung, Aufbereitung und Speicherung von Trink- oder Brauchwasser.",
+          "en": "Plants that abstract, treat and store drinking or process water."
+        },
+        "labels": {
+          "de": "Wasseraufbereitungsanlagen",
+          "en": "Water treatment works"
+        }
+      },
+      "CPT-08": {
+        "broader": null,
+        "definition": {
+          "de": "Fern- und Verteilleitungen sowie Kabeltrassen f\u00fcr Wasser, Gas, \u00d6l, W\u00e4rme oder Energie.",
+          "en": "Long-distance and distribution pipelines and cable routes for water, gas, oil, heat or energy."
+        },
+        "labels": {
+          "de": "Rohrleitungen",
+          "en": "Pipelines"
+        }
+      },
+      "CPT-09": {
+        "broader": null,
+        "definition": {
+          "de": "Gebohrte oder gegrabene Brunnen und Bohrungen f\u00fcr Wasser, Energie oder Rohstoffe.",
+          "en": "Drilled or dug wells and boreholes for water, energy or resources."
+        },
+        "labels": {
+          "de": "Brunnen und Bohrungen",
+          "en": "Wells and boreholes"
+        }
+      },
+      "CPT-10": {
+        "broader": null,
+        "definition": {
+          "de": "Anlagen zur Erzeugung von Strom oder W\u00e4rme aus beliebigen Energietr\u00e4gern.",
+          "en": "Plants that generate electricity or heat from any energy source."
+        },
+        "labels": {
+          "de": "Kraftwerke",
+          "en": "Power generation plants"
+        }
+      },
+      "CPT-11": {
+        "broader": null,
+        "definition": {
+          "de": "Prozessanlagen zur Herstellung chemischer Stoffe.",
+          "en": "Process plants producing chemical substances."
+        },
+        "labels": {
+          "de": "Chemieanlagen",
+          "en": "Chemical plants"
+        }
+      },
+      "CPT-12": {
+        "broader": null,
+        "definition": {
+          "de": "Prozessanlagen zur Raffination von Roh\u00f6l oder anderen Rohstoffen.",
+          "en": "Process plants refining crude oil or other raw materials."
+        },
+        "labels": {
+          "de": "Raffinerien",
+          "en": "Refineries"
+        }
+      },
+      "CPT-13": {
+        "broader": null,
+        "definition": {
+          "de": "Sperrenbauwerke und Becken zum Aufstauen oder Speichern von Wasser.",
+          "en": "Barriers and basins that impound or store water."
+        },
+        "labels": {
+          "de": "Talsperren und Speicherbecken",
+          "en": "Dams and reservoirs"
+        }
+      },
+      "CPT-14": {
+        "broader": null,
+        "definition": {
+          "de": "Ober- oder untert\u00e4giger Abbau von Mineralien und Gestein.",
+          "en": "Surface or underground extraction of minerals and rock."
+        },
+        "labels": {
+          "de": "Bergwerke und Steinbr\u00fcche",
+          "en": "Mines and quarries"
+        }
+      },
+      "CPT-15": {
+        "broader": null,
+        "definition": {
+          "de": "Bauwerke auf offener See wie Plattformen und Fundamente von Windparks.",
+          "en": "Structures in open sea such as platforms and wind farm foundations."
+        },
+        "labels": {
+          "de": "Offshore-Bauwerke",
+          "en": "Offshore works"
+        }
+      },
+      "CPT-16": {
+        "broader": null,
+        "definition": {
+          "de": "Bauwerke im K\u00fcstenbereich wie Ufermauern, Wellenbrecher und Auslaufbauwerke.",
+          "en": "Coastal structures such as seawalls, breakwaters and outfalls."
+        },
+        "labels": {
+          "de": "K\u00fcstennahe Bauwerke",
+          "en": "Near-shore works"
+        }
+      },
+      "CPT-17": {
+        "broader": null,
+        "definition": {
+          "de": "Hafenanlagen einschliesslich Kais, Liegepl\u00e4tzen, Terminals und landseitiger Fl\u00e4chen.",
+          "en": "Harbour facilities including quays, berths, terminals and their land side."
+        },
+        "labels": {
+          "de": "H\u00e4fen",
+          "en": "Ports"
+        }
+      },
+      "CPT-18": {
+        "broader": null,
+        "definition": {
+          "de": "Bauwerke an Fl\u00fcssen, Kan\u00e4len und Seen wie Schleusen, Wehre, Uferschutz und Hochwasserschutz.",
+          "en": "Works on rivers, canals and lakes such as locks, weirs, bank protection and flood defence."
+        },
+        "labels": {
+          "de": "Wasserbau an Gew\u00e4ssern",
+          "en": "Waterway works"
+        }
+      },
+      "CPT-19": {
+        "broader": null,
+        "definition": {
+          "de": "Schaffung neuer Landfl\u00e4chen durch Aufsch\u00fcttung, Baggerung oder Konsolidierung.",
+          "en": "Creation of new land by filling, dredging or consolidation."
+        },
+        "labels": {
+          "de": "Landgewinnung und Gel\u00e4ndeaufbau",
+          "en": "Land formation and reclamation"
+        }
+      }
+    },
+    "description": {},
+    "labels": {
+      "de": "Abstrakte Kosten-Projektarten",
+      "en": "Abstract cost project types"
+    },
+    "source": "classification/abstract-cost-classification/cost-project-types.skos.ttl"
+  },
   "AbstractDomainClassification": {
     "concepts": {
       "ARC": {
@@ -1016,6 +4309,61 @@
           "en": "Gate / industrial door"
         }
       },
+      "DCP-GATE-FOLDING": {
+        "broader": null,
+        "definition": {
+          "de": "Tor aus gelenkig verbundenen Fl\u00fcgeln, die seitlich zusammengefaltet werden.",
+          "en": "Gate of hinged leaves that fold to the side."
+        },
+        "labels": {
+          "de": "Falttor",
+          "en": "Folding gate"
+        }
+      },
+      "DCP-GATE-ROLLING": {
+        "broader": null,
+        "definition": {
+          "de": "Tor aus Lamellen oder Behang, der \u00fcber dem Sturz aufgewickelt wird.",
+          "en": "Gate of slats or curtain that coils above the lintel."
+        },
+        "labels": {
+          "de": "Rolltor",
+          "en": "Rolling gate"
+        }
+      },
+      "DCP-GATE-SECTIONAL": {
+        "broader": null,
+        "definition": {
+          "de": "Tor aus gelenkig verbundenen Paneelen, die unter die Decke laufen.",
+          "en": "Gate of hinged panels that run up under the ceiling."
+        },
+        "labels": {
+          "de": "Sektionaltor",
+          "en": "Sectional gate"
+        }
+      },
+      "DCP-GATE-SLIDING": {
+        "broader": null,
+        "definition": {
+          "de": "Tor mit einem oder mehreren Fl\u00fcgeln, die seitlich vor der Wand verschoben werden.",
+          "en": "Gate with one or more leaves that slide sideways along the wall."
+        },
+        "labels": {
+          "de": "Schiebetor",
+          "en": "Sliding gate"
+        }
+      },
+      "DCP-GATE-UP-OVER": {
+        "broader": null,
+        "definition": {
+          "de": "Tor mit einem starren Fl\u00fcgel, der nach aussen und oben ausschwingt.",
+          "en": "Gate with a single rigid leaf that swings out and up."
+        },
+        "labels": {
+          "de": "Schwingtor",
+          "en": "Up-and-over gate"
+        }
+      },
       "DCP-GLASS": {
         "broader": null,
         "definition": {
@@ -1025,6 +4373,39 @@
         "labels": {
           "de": "Glas- / Verglasungstuer",
           "en": "Glazed door system"
+        }
+      },
+      "DCP-GLASS-AUTOMATIC": {
+        "broader": null,
+        "definition": {
+          "de": "Motorisch betriebene Schiebe-, Dreh- oder Karussellt\u00fcr mit Glasfl\u00fcgeln.",
+          "en": "Motor-operated sliding, swing, or revolving door with glazed leaves."
+        },
+        "labels": {
+          "de": "Automatische Glast\u00fcranlage",
+          "en": "Automatic glazed door system"
+        }
+      },
+      "DCP-GLASS-FRAMED": {
+        "broader": null,
+        "definition": {
+          "de": "T\u00fcrblatt mit \u00fcberwiegender Verglasung in schmalem Metallrahmen.",
+          "en": "Door leaf mostly glazed, in a narrow metal frame."
+        },
+        "labels": {
+          "de": "Glasrahment\u00fcr",
+          "en": "Framed glazed door"
+        }
+      },
+      "DCP-GLASS-FRAMELESS": {
+        "broader": null,
+        "definition": {
+          "de": "T\u00fcrblatt aus Sicherheitsglas ohne Rahmen, mit Klemmbeschl\u00e4gen.",
+          "en": "Door leaf of safety glass without frame, with clamp fittings."
+        },
+        "labels": {
+          "de": "Ganzglast\u00fcr",
+          "en": "Frameless glass door"
         }
       },
       "DCP-METAL": {
@@ -1082,6 +4463,28 @@
           "en": "Wood door system"
         }
       },
+      "DCP-WOOD-ENTRANCE": {
+        "broader": null,
+        "definition": {
+          "de": "Eingangst\u00fcr aus Holz an der Geb\u00e4udeh\u00fclle oder zu Wohnungen, mit Anforderungen an Klima, Einbruch- und W\u00e4rmeschutz.",
+          "en": "Timber entrance door in the building envelope or to dwellings, with climate, burglary, and thermal requirements."
+        },
+        "labels": {
+          "de": "Holz-Eingangst\u00fcr",
+          "en": "Wood entrance door"
+        }
+      },
+      "DCP-WOOD-INTERIOR": {
+        "broader": null,
+        "definition": {
+          "de": "Innent\u00fcr mit Blatt aus Holz oder Holzwerkstoff in Zarge, ohne Brand-, Rauch- oder erh\u00f6hte Schallschutzanforderung.",
+          "en": "Interior door with timber or wood-based leaf in a frame, without fire, smoke, or increased acoustic duty."
+        },
+        "labels": {
+          "de": "Holz-Innent\u00fcr",
+          "en": "Interior wood door"
+        }
+      },
       "DCP-WOOD-METAL": {
         "broader": null,
         "definition": {
@@ -1091,6 +4494,17 @@
         "labels": {
           "de": "Holz-Metall-Tuer",
           "en": "Wood\u2013metal composite door"
+        }
+      },
+      "DCP-WOOD-RATED": {
+        "broader": null,
+        "definition": {
+          "de": "Gepr\u00fcftes T\u00fcrelement aus Holz mit nachgewiesenem Brand-, Rauch- oder Schallschutz.",
+          "en": "Tested timber door assembly with certified fire, smoke, or acoustic performance."
+        },
+        "labels": {
+          "de": "Holzt\u00fcr mit Brand-, Rauch- oder Schallschutz",
+          "en": "Fire, smoke or acoustic rated wood door"
         }
       }
     },
@@ -1103,6 +4517,17 @@
   },
   "AbstractFloorCoveringProduct": {
     "concepts": {
+      "FCP-ACCESS-FLOOR": {
+        "broader": null,
+        "definition": {
+          "de": "Systemboden aus herausnehmbaren Platten auf h\u00f6henverstellbaren St\u00fctzen.",
+          "en": "Raised floor of removable panels on height-adjustable pedestals."
+        },
+        "labels": {
+          "de": "Doppelboden",
+          "en": "Access floor"
+        }
+      },
       "FCP-ARTIFICIAL-STONE": {
         "broader": null,
         "definition": {
@@ -1123,6 +4548,17 @@
         "labels": {
           "de": "Textiler Teppichbelag",
           "en": "Textile carpet"
+        }
+      },
+      "FCP-CAVITY-FLOOR": {
+        "broader": null,
+        "definition": {
+          "de": "Systemboden mit fugenloser Tragschicht \u00fcber einem Hohlraum, nur \u00fcber Revisions\u00f6ffnungen zug\u00e4nglich.",
+          "en": "Raised floor with a jointless load-bearing layer over a cavity, accessible only through access openings."
+        },
+        "labels": {
+          "de": "Hohlboden",
+          "en": "Cavity floor"
         }
       },
       "FCP-CERAMIC-TILE": {
@@ -1213,6 +4649,39 @@
           "en": "Raised / access floor"
         }
       },
+      "FCP-SCREED-BONDED": {
+        "broader": null,
+        "definition": {
+          "de": "Unterlagsboden, der vollfl\u00e4chig mit der Rohdecke verbunden ist.",
+          "en": "Screed bonded over its full area to the structural slab."
+        },
+        "labels": {
+          "de": "Verbundener Unterlagsboden",
+          "en": "Bonded screed"
+        }
+      },
+      "FCP-SCREED-FLOATING": {
+        "broader": null,
+        "definition": {
+          "de": "Unterlagsboden auf Trittschall- und W\u00e4rmed\u00e4mmschicht, ohne Verbindung zur Rohdecke und zu den W\u00e4nden.",
+          "en": "Screed on impact-sound and thermal insulation, separated from the slab and the walls."
+        },
+        "labels": {
+          "de": "Schwimmender Unterlagsboden",
+          "en": "Floating screed"
+        }
+      },
+      "FCP-SCREED-HEATED": {
+        "broader": null,
+        "definition": {
+          "de": "Schwimmender Unterlagsboden mit eingebetteten Heiz- oder K\u00fchlrohren.",
+          "en": "Floating screed with embedded heating or cooling pipes."
+        },
+        "labels": {
+          "de": "Heizunterlagsboden",
+          "en": "Heated screed"
+        }
+      },
       "FCP-SEAMLESS-RESIN": {
         "broader": null,
         "definition": {
@@ -1256,6 +4725,17 @@
           "en": "Foundation drainage and protection"
         }
       },
+      "FDP-GROUND-INJECTION": {
+        "broader": null,
+        "definition": {
+          "de": "Verbesserung des Baugrunds durch Injektion von Bindemitteln.",
+          "en": "Improvement of the ground by injecting binders."
+        },
+        "labels": {
+          "de": "Baugrundinjektion",
+          "en": "Ground injection"
+        }
+      },
       "FDP-MICRO-PILE": {
         "broader": null,
         "definition": {
@@ -1265,6 +4745,17 @@
         "labels": {
           "de": "Mikropfahl / Bodenverbesserung",
           "en": "Micropile / ground improvement"
+        }
+      },
+      "FDP-MICRO-PILE-GROUTED": {
+        "broader": null,
+        "definition": {
+          "de": "Pfahl kleinen Durchmessers mit verpresstem Stahltragglied.",
+          "en": "Small-diameter pile with a grouted steel tendon."
+        },
+        "labels": {
+          "de": "Mikropfahl",
+          "en": "Micropile"
         }
       },
       "FDP-OTH": {
@@ -1298,6 +4789,28 @@
         "labels": {
           "de": "Pfahlgruendung",
           "en": "Driven / bored pile foundation"
+        }
+      },
+      "FDP-PILE-BORED": {
+        "broader": null,
+        "definition": {
+          "de": "Im Baugrund gebohrter und vor Ort betonierter Pfahl.",
+          "en": "Pile bored into the ground and cast in place."
+        },
+        "labels": {
+          "de": "Bohrpfahl",
+          "en": "Bored pile"
+        }
+      },
+      "FDP-PILE-DRIVEN": {
+        "broader": null,
+        "definition": {
+          "de": "Vorgefertigter Pfahl, der in den Baugrund gerammt oder ger\u00fcttelt wird.",
+          "en": "Prefabricated pile driven or vibrated into the ground."
+        },
+        "labels": {
+          "de": "Rammpfahl",
+          "en": "Driven pile"
         }
       },
       "FDP-RAFT": {
@@ -1344,6 +4857,50 @@
           "en": "Basement / retaining wall insulation layer"
         }
       },
+      "FDP-RETAINING-INSITU": {
+        "broader": null,
+        "definition": {
+          "de": "Vor Ort betonierte erdber\u00fchrte Wand, die Erd- und Wasserdruck aufnimmt.",
+          "en": "Below-grade wall cast in place, resisting earth and water pressure."
+        },
+        "labels": {
+          "de": "Ortbeton-Untergeschosswand",
+          "en": "In-situ basement wall"
+        }
+      },
+      "FDP-RETAINING-PRECAST": {
+        "broader": null,
+        "definition": {
+          "de": "Erdber\u00fchrte Wand aus Betonfertigteilen oder Doppelwandelementen.",
+          "en": "Below-grade wall of precast concrete or double-wall elements."
+        },
+        "labels": {
+          "de": "Fertigteil-Untergeschosswand",
+          "en": "Precast basement wall"
+        }
+      },
+      "FDP-RETAINING-SHORING": {
+        "broader": null,
+        "definition": {
+          "de": "Baugrubenabschluss wie Bohrpfahl- oder Schlitzwand, der als definitive Wand im Bauwerk verbleibt.",
+          "en": "Excavation support such as a bored-pile or diaphragm wall that remains as a permanent wall."
+        },
+        "labels": {
+          "de": "Definitiver Baugrubenabschluss",
+          "en": "Permanent excavation support wall"
+        }
+      },
+      "FDP-SOIL-REPLACEMENT": {
+        "broader": null,
+        "definition": {
+          "de": "Ersatz nicht tragf\u00e4higen Bodens durch verdichtetes, geeignetes Material.",
+          "en": "Replacement of unsuitable soil with compacted suitable material."
+        },
+        "labels": {
+          "de": "Bodenersatz",
+          "en": "Soil replacement"
+        }
+      },
       "FDP-STRIP": {
         "broader": null,
         "definition": {
@@ -1364,6 +4921,28 @@
         "labels": {
           "de": "Fundament- / Kellerabdichtung",
           "en": "Foundation waterproofing / tanking"
+        }
+      },
+      "FDP-WATERPROOF-CONCRETE": {
+        "broader": null,
+        "definition": {
+          "de": "Erdber\u00fchrte Konstruktion, bei der der Beton selbst die Abdichtung \u00fcbernimmt.",
+          "en": "Buried construction in which the concrete itself provides the sealing."
+        },
+        "labels": {
+          "de": "Wasserdichte Betonkonstruktion",
+          "en": "Watertight concrete construction"
+        }
+      },
+      "FDP-WATERPROOF-MEMBRANE": {
+        "broader": null,
+        "definition": {
+          "de": "Abdichtung erdber\u00fchrter Bauteile mit verklebten oder lose verlegten Bahnen.",
+          "en": "Sealing of buried components with bonded or loose-laid membranes."
+        },
+        "labels": {
+          "de": "Abdichtung mit Bahnen",
+          "en": "Membrane tanking"
         }
       }
     },
@@ -1584,6 +5163,28 @@
   },
   "AbstractMepTerminalProduct": {
     "concepts": {
+      "MTP-COOL-CEILING-PANEL": {
+        "broader": null,
+        "definition": {
+          "de": "Deckenfl\u00e4che mit wasserdurchflossenen Registern, die W\u00e4rme vorwiegend durch Strahlung aufnimmt.",
+          "en": "Ceiling surface with water-carrying registers that absorbs heat mainly by radiation."
+        },
+        "labels": {
+          "de": "K\u00fchldecke",
+          "en": "Chilled ceiling"
+        }
+      },
+      "MTP-COOL-CHILLED-BEAM": {
+        "broader": null,
+        "definition": {
+          "de": "Konvektives K\u00fchlelement an der Decke, passiv oder mit Prim\u00e4rluft.",
+          "en": "Convective cooling unit at ceiling level, passive or with primary air."
+        },
+        "labels": {
+          "de": "K\u00fchlbalken",
+          "en": "Chilled beam"
+        }
+      },
       "MTP-COOL-CHILLED-CEILING": {
         "broader": null,
         "definition": {
@@ -2032,6 +5633,39 @@
         "labels": {
           "de": "Waermepumpe",
           "en": "Heat pump"
+        }
+      },
+      "MUP-HEAT-HP-AIR": {
+        "broader": null,
+        "definition": {
+          "de": "W\u00e4rmepumpe, die der Aussenluft W\u00e4rme entzieht.",
+          "en": "Heat pump that extracts heat from the outdoor air."
+        },
+        "labels": {
+          "de": "Luft-Wasser-W\u00e4rmepumpe",
+          "en": "Air-source heat pump"
+        }
+      },
+      "MUP-HEAT-HP-GROUND": {
+        "broader": null,
+        "definition": {
+          "de": "W\u00e4rmepumpe mit Erdw\u00e4rmesonden oder Erdregister als Quelle.",
+          "en": "Heat pump with borehole heat exchangers or ground collectors as source."
+        },
+        "labels": {
+          "de": "Sole-Wasser-W\u00e4rmepumpe",
+          "en": "Ground-source heat pump"
+        }
+      },
+      "MUP-HEAT-HP-WATER": {
+        "broader": null,
+        "definition": {
+          "de": "W\u00e4rmepumpe mit Grund-, Oberfl\u00e4chen- oder Abwasser oder Abw\u00e4rme als Quelle.",
+          "en": "Heat pump with ground, surface, or waste water or waste heat as source."
+        },
+        "labels": {
+          "de": "Wasser-Wasser-W\u00e4rmepumpe",
+          "en": "Water-source heat pump"
         }
       },
       "MUP-SM-COMPRESSOR": {
@@ -3304,6 +6938,28 @@
           "en": "Other / unknown roof covering"
         }
       },
+      "RCP-PV-INTEGRATED": {
+        "broader": null,
+        "definition": {
+          "de": "Photovoltaikmodule, die als wasserf\u00fchrende Dachhaut die Eindeckung ersetzen.",
+          "en": "Photovoltaic modules that replace the roof covering as the weatherproof layer."
+        },
+        "labels": {
+          "de": "Indach-Photovoltaikanlage",
+          "en": "Roof-integrated photovoltaic system"
+        }
+      },
+      "RCP-PV-MOUNTED": {
+        "broader": null,
+        "definition": {
+          "de": "Photovoltaikmodule auf einer Unterkonstruktion \u00fcber der bestehenden Dacheindeckung oder Abdichtung.",
+          "en": "Photovoltaic modules on a mounting frame above the existing roof covering or membrane."
+        },
+        "labels": {
+          "de": "Aufdach-Photovoltaikanlage",
+          "en": "Rack-mounted roof photovoltaic system"
+        }
+      },
       "RCP-PV-ROOF": {
         "broader": null,
         "definition": {
@@ -3367,6 +7023,500 @@
     },
     "source": "classification/abstract-covering-product-classification/roof-covering-products.skos.ttl"
   },
+  "AbstractSiteCondition": {
+    "concepts": {
+      "SC-ACC": {
+        "broader": null,
+        "definition": {
+          "de": "Wo Personen und Fahrzeuge das Grundst\u00fcck im Betrieb erreichen.",
+          "en": "Where people and vehicles reach the site in operation."
+        },
+        "labels": {
+          "de": "Erschliessung",
+          "en": "Access"
+        }
+      },
+      "SC-ACC-BIKE": {
+        "broader": "SC-ACC",
+        "definition": {
+          "de": "Zufahrt f\u00fcr Velos.",
+          "en": "Access for bicycles."
+        },
+        "labels": {
+          "de": "Zufahrt Velo",
+          "en": "Bicycle access"
+        }
+      },
+      "SC-ACC-CAR": {
+        "broader": "SC-ACC",
+        "definition": {
+          "de": "Zufahrt f\u00fcr Personenwagen, einschliesslich der Einfahrt in eine Einstellhalle.",
+          "en": "Access for passenger cars, including the entrance to a car park."
+        },
+        "labels": {
+          "de": "Zufahrt Personenwagen",
+          "en": "Car access"
+        }
+      },
+      "SC-ACC-DELIVERY": {
+        "broader": "SC-ACC",
+        "definition": {
+          "de": "Zufahrt f\u00fcr Lastwagen und Lieferwagen im Betrieb.",
+          "en": "Access for delivery trucks and vans in operation."
+        },
+        "labels": {
+          "de": "Anlieferung",
+          "en": "Delivery access"
+        }
+      },
+      "SC-ACC-PEDESTRIAN": {
+        "broader": "SC-ACC",
+        "definition": {
+          "de": "Zugang zu Fuss, einschliesslich des Hauptzugangs.",
+          "en": "Access on foot, including the main entrance route."
+        },
+        "labels": {
+          "de": "Zugang Fussg\u00e4nger",
+          "en": "Pedestrian access"
+        }
+      },
+      "SC-CON": {
+        "broader": null,
+        "definition": {
+          "de": "Bedingung f\u00fcr die Bauphase, die die Bestellung festlegt, bevor die Baustelleneinrichtung geplant ist.",
+          "en": "Condition for the construction phase that the brief fixes before site facilities are planned."
+        },
+        "labels": {
+          "de": "Bauablauf",
+          "en": "Construction condition"
+        }
+      },
+      "SC-CON-ACCESS": {
+        "broader": "SC-CON",
+        "definition": {
+          "de": "Weg, auf dem der Bauverkehr das Grundst\u00fcck vom \u00f6ffentlichen Strassennetz erreicht.",
+          "en": "Route by which construction traffic reaches the site from the public road network."
+        },
+        "labels": {
+          "de": "Baustellenzufahrt",
+          "en": "Construction access"
+        }
+      },
+      "SC-CON-LOGISTICS": {
+        "broader": "SC-CON",
+        "definition": {
+          "de": "Teil des Grundst\u00fccks oder angrenzender Fl\u00e4chen, der w\u00e4hrend des Baus f\u00fcr Baustelleneinrichtung, Lager und Umschlag reserviert ist.",
+          "en": "Part of the site or adjoining land reserved for site facilities, storage, and handling during construction."
+        },
+        "labels": {
+          "de": "Baustelleninstallationsfl\u00e4che",
+          "en": "Construction logistics area"
+        }
+      },
+      "SC-DES": {
+        "broader": null,
+        "definition": {
+          "de": "R\u00e4umliche Absicht f\u00fcr das Grundst\u00fcck, die den Entwurf ohne rechtliche Grundlage lenkt.",
+          "en": "Spatial intent for the site that guides the design without a legal basis."
+        },
+        "labels": {
+          "de": "Entwurfsabsicht",
+          "en": "Design intent"
+        }
+      },
+      "SC-DES-OPEN-SPACE": {
+        "broader": "SC-DES",
+        "definition": {
+          "de": "Teil des Grundst\u00fccks, der frei von Bauten bleiben soll.",
+          "en": "Part of the site that should stay free of buildings."
+        },
+        "labels": {
+          "de": "Bevorzugter Freiraum",
+          "en": "Preferred open space"
+        }
+      },
+      "SC-DES-OPEN-SPACE-GREEN": {
+        "broader": "SC-DES-OPEN-SPACE",
+        "definition": {
+          "de": "Freiraum, der bepflanzt werden soll.",
+          "en": "Open space intended to be planted."
+        },
+        "labels": {
+          "de": "Gr\u00fcner Freiraum",
+          "en": "Green open space"
+        }
+      },
+      "SC-DES-OPEN-SPACE-PAVED": {
+        "broader": "SC-DES-OPEN-SPACE",
+        "definition": {
+          "de": "Freiraum, der befestigt werden soll, wie ein Platz oder Vorplatz.",
+          "en": "Open space intended to be paved, such as a square or forecourt."
+        },
+        "labels": {
+          "de": "Befestigter Freiraum",
+          "en": "Paved open space"
+        }
+      },
+      "SC-DES-SENSITIVE-EDGE": {
+        "broader": "SC-DES",
+        "definition": {
+          "de": "Rand des Grundst\u00fccks, an dem der Entwurf auf die Nachbarschaft reagieren muss, zum Beispiel mit geringerer H\u00f6he, weniger \u00d6ffnungen oder einem Puffer.",
+          "en": "Edge of the site where the design must respond to neighbours, for example with lower height, fewer openings, or a buffer."
+        },
+        "labels": {
+          "de": "Sensibler Rand",
+          "en": "Sensitive edge"
+        }
+      },
+      "SC-DES-SIGHTLINE": {
+        "broader": "SC-DES",
+        "definition": {
+          "de": "Sicht zum oder vom Grundst\u00fcck, die der Entwurf freihalten soll.",
+          "en": "View to or from the site that the design should keep open."
+        },
+        "labels": {
+          "de": "Sichtbezug",
+          "en": "Sightline"
+        }
+      },
+      "SC-EXI": {
+        "broader": null,
+        "definition": {
+          "de": "Physisches Element auf oder unter dem Grundst\u00fcck vor Projektbeginn.",
+          "en": "Physical feature on or below the site before the project starts."
+        },
+        "labels": {
+          "de": "Bestand",
+          "en": "Existing condition"
+        }
+      },
+      "SC-EXI-BUILDING": {
+        "broader": "SC-EXI",
+        "definition": {
+          "de": "Geb\u00e4ude oder Bauwerk, das auf dem Grundst\u00fcck steht.",
+          "en": "Building or structure that stands on the site."
+        },
+        "labels": {
+          "de": "Bestandsgeb\u00e4ude",
+          "en": "Existing building"
+        }
+      },
+      "SC-EXI-BUILDING-DEMOLISH": {
+        "broader": "SC-EXI-BUILDING",
+        "definition": {
+          "de": "Bestandsgeb\u00e4ude, das f\u00fcr das Projekt r\u00fcckgebaut wird.",
+          "en": "Existing building that is removed for the project."
+        },
+        "labels": {
+          "de": "Geb\u00e4ude abbrechen",
+          "en": "Building to demolish"
+        }
+      },
+      "SC-EXI-BUILDING-KEEP": {
+        "broader": "SC-EXI-BUILDING",
+        "definition": {
+          "de": "Bestandsgeb\u00e4ude, das bestehen bleibt.",
+          "en": "Existing building that stays."
+        },
+        "labels": {
+          "de": "Geb\u00e4ude erhalten",
+          "en": "Building to keep"
+        }
+      },
+      "SC-EXI-TERRAIN": {
+        "broader": "SC-EXI",
+        "definition": {
+          "de": "Aufgenommene Gel\u00e4ndeh\u00f6hen des Grundst\u00fccks, als H\u00f6henkurven oder H\u00f6henkoten.",
+          "en": "Surveyed ground levels of the site, as contour lines or spot heights."
+        },
+        "labels": {
+          "de": "Bestehendes Terrain",
+          "en": "Existing terrain"
+        }
+      },
+      "SC-EXI-TREE": {
+        "broader": "SC-EXI",
+        "definition": {
+          "de": "Baum, der auf dem Grundst\u00fcck steht oder in es hineinragt.",
+          "en": "Tree that stands on the site or overhangs it."
+        },
+        "labels": {
+          "de": "Bestandsbaum",
+          "en": "Existing tree"
+        }
+      },
+      "SC-EXI-TREE-FELL": {
+        "broader": "SC-EXI-TREE",
+        "definition": {
+          "de": "Bestandsbaum, der f\u00fcr das Projekt entfernt wird.",
+          "en": "Existing tree that is removed for the project."
+        },
+        "labels": {
+          "de": "Baum f\u00e4llen",
+          "en": "Tree to fell"
+        }
+      },
+      "SC-EXI-TREE-KEEP": {
+        "broader": "SC-EXI-TREE",
+        "definition": {
+          "de": "Bestandsbaum, der bestehen bleibt und w\u00e4hrend des Baus gesch\u00fctzt wird.",
+          "en": "Existing tree that stays and is protected during construction."
+        },
+        "labels": {
+          "de": "Baum erhalten",
+          "en": "Tree to keep"
+        }
+      },
+      "SC-EXI-UTILITY": {
+        "broader": "SC-EXI",
+        "definition": {
+          "de": "Leitung im oder durch das Grundst\u00fcck, wie Wasser, Abwasser, Gas, Strom oder Telekommunikation.",
+          "en": "Pipe or cable in or across the site, such as water, sewage, gas, power, or telecom."
+        },
+        "labels": {
+          "de": "Bestehende Werkleitung",
+          "en": "Existing utility line"
+        }
+      },
+      "SC-LEG": {
+        "broader": null,
+        "definition": {
+          "de": "Beschr\u00e4nkung, wo und wie auf dem Grundst\u00fcck gebaut werden darf, aus Grundeigentum, Planungsrecht oder privaten Rechten.",
+          "en": "Limit on where and how the site may be built on, set by land law, planning law, or private rights."
+        },
+        "labels": {
+          "de": "Rechtliche Vorgabe",
+          "en": "Legal limit"
+        }
+      },
+      "SC-LEG-BUILDING-LINE": {
+        "broader": "SC-LEG",
+        "definition": {
+          "de": "In einem Plan festgelegte Linie, die Bauten nicht \u00fcberschreiten d\u00fcrfen, typischerweise entlang von Strassen, Bahnen oder Gew\u00e4ssern.",
+          "en": "Line fixed in a plan that buildings may not cross, typically along roads, railways, or watercourses."
+        },
+        "labels": {
+          "de": "Baulinie",
+          "en": "Building line"
+        }
+      },
+      "SC-LEG-EASEMENT": {
+        "broader": "SC-LEG",
+        "definition": {
+          "de": "Recht eines Dritten an einem Teil des Grundst\u00fccks, im Grundbuch eingetragen.",
+          "en": "Right of a third party over part of the parcel, recorded in the land register."
+        },
+        "labels": {
+          "de": "Dienstbarkeit",
+          "en": "Easement"
+        }
+      },
+      "SC-LEG-EASEMENT-RESTRICTION": {
+        "broader": "SC-LEG-EASEMENT",
+        "definition": {
+          "de": "Privates Recht, das das Bauen auf einem Teil des Grundst\u00fccks verbietet oder beschr\u00e4nkt oder die Abstandsregeln zwischen Nachbarn \u00e4ndert.",
+          "en": "Private right that forbids or limits building on part of the parcel, or changes the distance rules between neighbours."
+        },
+        "labels": {
+          "de": "Baubeschr\u00e4nkung",
+          "en": "Building restriction"
+        }
+      },
+      "SC-LEG-EASEMENT-ROW": {
+        "broader": "SC-LEG-EASEMENT",
+        "definition": {
+          "de": "Recht eines Dritten, einen Teil des Grundst\u00fccks zu Fuss oder mit Fahrzeugen zu queren.",
+          "en": "Right of a third party to pass over part of the parcel on foot or by vehicle."
+        },
+        "labels": {
+          "de": "Wegrecht",
+          "en": "Right of way"
+        }
+      },
+      "SC-LEG-EASEMENT-UTILITY": {
+        "broader": "SC-LEG-EASEMENT",
+        "definition": {
+          "de": "Recht eines Dritten, eine Leitung durch das Grundst\u00fcck zu f\u00fchren und zu unterhalten.",
+          "en": "Right of a third party to run and maintain a pipe or cable through the parcel."
+        },
+        "labels": {
+          "de": "Leitungsrecht",
+          "en": "Utility line right"
+        }
+      },
+      "SC-LEG-HERITAGE": {
+        "broader": "SC-LEG",
+        "definition": {
+          "de": "Schutz eines Geb\u00e4udes, Objekts oder Ortsbildbereichs, der Ver\u00e4nderungen, Abbruch oder Neubau beschr\u00e4nkt.",
+          "en": "Protection of a building, object, or townscape area that limits changes, demolition, or new construction."
+        },
+        "labels": {
+          "de": "Denkmal- und Ortsbildschutz",
+          "en": "Heritage protection"
+        }
+      },
+      "SC-LEG-PARCEL": {
+        "broader": "SC-LEG",
+        "definition": {
+          "de": "Grenze des Grundst\u00fccks gem\u00e4ss Amtlicher Vermessung.",
+          "en": "Boundary of the land parcel as recorded in the cadastral survey."
+        },
+        "labels": {
+          "de": "Parzellengrenze",
+          "en": "Parcel boundary"
+        }
+      },
+      "SC-LEG-SETBACK": {
+        "broader": "SC-LEG",
+        "definition": {
+          "de": "Linie im Mindestabstand zu einer Grenze oder einem gesch\u00fctzten Element, den Bauten einhalten m\u00fcssen.",
+          "en": "Line at a minimum distance from a boundary or a protected feature that buildings must keep."
+        },
+        "labels": {
+          "de": "Abstandslinie",
+          "en": "Setback line"
+        }
+      },
+      "SC-LEG-SETBACK-BOUNDARY": {
+        "broader": "SC-LEG-SETBACK",
+        "definition": {
+          "de": "Mindestabstand von Bauten zur Parzellengrenze gem\u00e4ss Bauvorschriften.",
+          "en": "Minimum distance of buildings from the parcel boundary set by the building regulations."
+        },
+        "labels": {
+          "de": "Grenzabstand",
+          "en": "Boundary setback"
+        }
+      },
+      "SC-LEG-SETBACK-FOREST": {
+        "broader": "SC-LEG-SETBACK",
+        "definition": {
+          "de": "Mindestabstand von Bauten zum Waldrand.",
+          "en": "Minimum distance of buildings from the forest edge."
+        },
+        "labels": {
+          "de": "Waldabstand",
+          "en": "Forest setback"
+        }
+      },
+      "SC-LEG-SETBACK-WATER": {
+        "broader": "SC-LEG-SETBACK",
+        "definition": {
+          "de": "Mindestabstand von Bauten zu einem Fliess- oder stehenden Gew\u00e4sser, oder Rand des daf\u00fcr freigehaltenen Raums.",
+          "en": "Minimum distance of buildings from a watercourse or lake, or the edge of the space reserved for it."
+        },
+        "labels": {
+          "de": "Gew\u00e4sserabstand",
+          "en": "Watercourse setback"
+        }
+      },
+      "SC-LEG-ZONE": {
+        "broader": "SC-LEG",
+        "definition": {
+          "de": "Fl\u00e4che des Nutzungsplans mit einheitlichen Bauvorschriften wie zul\u00e4ssiger Nutzung, Dichte, H\u00f6he und Geschosszahl.",
+          "en": "Area of the land-use plan with one set of building regulations, such as permitted use, density, height, and number of storeys."
+        },
+        "labels": {
+          "de": "Nutzungszone",
+          "en": "Land-use zone"
+        }
+      },
+      "SC-UTL": {
+        "broader": null,
+        "definition": {
+          "de": "Punkt, an dem das Grundst\u00fcck an ein \u00f6ffentliches oder gemeinsames Versorgungs- oder Entsorgungsnetz angeschlossen ist oder werden soll.",
+          "en": "Point where the site connects, or is to connect, to a public or shared utility network."
+        },
+        "labels": {
+          "de": "Werkanschluss",
+          "en": "Utility connection"
+        }
+      },
+      "SC-UTL-ELECTRICITY": {
+        "broader": "SC-UTL",
+        "definition": {
+          "de": "Anschluss an das Stromnetz, f\u00fcr den Bezug und f\u00fcr die Einspeisung von vor Ort erzeugtem Strom.",
+          "en": "Connection to the electricity grid, for supply and for feeding in power generated on site."
+        },
+        "labels": {
+          "de": "Elektroanschluss",
+          "en": "Electricity connection"
+        }
+      },
+      "SC-UTL-GAS": {
+        "broader": "SC-UTL",
+        "definition": {
+          "de": "Anschluss an das \u00f6ffentliche Gasnetz.",
+          "en": "Connection to the public gas network."
+        },
+        "labels": {
+          "de": "Gasanschluss",
+          "en": "Gas connection"
+        }
+      },
+      "SC-UTL-STORMWATER": {
+        "broader": "SC-UTL",
+        "definition": {
+          "de": "Punkt, an dem Regenwasser das Grundst\u00fcck in eine getrennte Meteorwasserleitung oder ein Gew\u00e4sser verl\u00e4sst.",
+          "en": "Point where rainwater leaves the site into a separate stormwater sewer or a watercourse."
+        },
+        "labels": {
+          "de": "Meteorwasserableitung",
+          "en": "Stormwater discharge"
+        }
+      },
+      "SC-UTL-TELECOM": {
+        "broader": "SC-UTL",
+        "definition": {
+          "de": "Anschluss an ein Telekommunikationsnetz: Glasfaser, Kupfer oder Kabelnetz.",
+          "en": "Connection to a telecom network: fibre, copper, or cable."
+        },
+        "labels": {
+          "de": "Telekommunikationsanschluss",
+          "en": "Telecom connection"
+        }
+      },
+      "SC-UTL-THERMAL": {
+        "broader": "SC-UTL",
+        "definition": {
+          "de": "Anschluss an ein Fernw\u00e4rme-, Fernk\u00e4lte- oder Niedertemperaturnetz (Anergienetz).",
+          "en": "Connection to a district heating, district cooling, or low-temperature (anergy) network."
+        },
+        "labels": {
+          "de": "Anschluss thermisches Netz",
+          "en": "Thermal network connection"
+        }
+      },
+      "SC-UTL-WASTEWATER": {
+        "broader": "SC-UTL",
+        "definition": {
+          "de": "Anschluss an die \u00f6ffentliche Kanalisation f\u00fcr Schmutzwasser oder an eine Mischwasserleitung.",
+          "en": "Connection to the public sewer for foul water, or to a combined sewer."
+        },
+        "labels": {
+          "de": "Schmutzwasseranschluss",
+          "en": "Wastewater connection"
+        }
+      },
+      "SC-UTL-WATER": {
+        "broader": "SC-UTL",
+        "definition": {
+          "de": "Anschluss an das \u00f6ffentliche Trinkwassernetz, einschliesslich der Versorgung f\u00fcr Hydranten und Sprinkler.",
+          "en": "Connection to the public drinking water network, including the supply for fire hydrants and sprinklers."
+        },
+        "labels": {
+          "de": "Wasseranschluss",
+          "en": "Water supply connection"
+        }
+      }
+    },
+    "description": {},
+    "labels": {
+      "de": "Abstrakte Standortbedingungen",
+      "en": "Abstract site conditions"
+    },
+    "source": "classification/abstract-site-condition-classification/site-conditions.skos.ttl"
+  },
   "AbstractSlabSeparatorProduct": {
     "concepts": {
       "SSP-CLT": {
@@ -3378,6 +7528,28 @@
         "labels": {
           "de": "Brettsperrholz-Decke / -Platte (CLT)",
           "en": "Cross-laminated timber (CLT) slab"
+        }
+      },
+      "SSP-COMPOSITE-BEAM": {
+        "broader": null,
+        "definition": {
+          "de": "Betondecke, die \u00fcber Kopfbolzen mit Stahltr\u00e4gern im Verbund wirkt.",
+          "en": "Concrete slab acting compositely with steel beams through shear studs."
+        },
+        "labels": {
+          "de": "Verbundtr\u00e4gerdecke",
+          "en": "Composite beam slab"
+        }
+      },
+      "SSP-COMPOSITE-DECK": {
+        "broader": null,
+        "definition": {
+          "de": "Decke aus Profilblech als verlorene Schalung und Ortbeton, die im Verbund wirken.",
+          "en": "Slab of profiled steel decking as permanent formwork and in-situ concrete acting compositely."
+        },
+        "labels": {
+          "de": "Profilblech-Verbunddecke",
+          "en": "Composite slab on steel decking"
         }
       },
       "SSP-HBV": {
@@ -3400,6 +7572,28 @@
         "labels": {
           "de": "HBV Betonauflage-Schicht",
           "en": "HBV concrete topping layer"
+        }
+      },
+      "SSP-HBV-INSITU": {
+        "broader": null,
+        "definition": {
+          "de": "Holztragwerk, auf das die Betonschicht vor Ort schubfest aufbetoniert wird.",
+          "en": "Timber structure onto which the concrete layer is cast in place with shear connection."
+        },
+        "labels": {
+          "de": "Holz-Beton-Verbunddecke mit Ortbeton",
+          "en": "In-situ timber-concrete composite slab"
+        }
+      },
+      "SSP-HBV-PRECAST": {
+        "broader": null,
+        "definition": {
+          "de": "Im Werk hergestelltes Deckenelement aus Holz und Beton im Verbund.",
+          "en": "Floor element of timber and concrete in composite action, produced in the factory."
+        },
+        "labels": {
+          "de": "Holz-Beton-Verbundelement",
+          "en": "Precast timber-concrete composite element"
         }
       },
       "SSP-HBV-WOD": {
@@ -4099,6 +8293,278 @@
     },
     "source": "classification/abstract-topic-classification/topic-classification.skos.ttl"
   },
+  "AbstractUseClassification": {
+    "concepts": {
+      "USE-BH": {
+        "broader": null,
+        "definition": {
+          "de": "Vor\u00fcbergehendes \u00dcbernachten von G\u00e4sten, etwa in Hotels.",
+          "en": "Temporary overnight stay of guests, for example in hotels.",
+          "fr": "H\u00e9bergement temporaire d'h\u00f4tes, par exemple dans des h\u00f4tels.",
+          "it": "Alloggio temporaneo di ospiti, ad esempio in alberghi."
+        },
+        "labels": {
+          "de": "Beherbergung",
+          "en": "Accommodation",
+          "fr": "H\u00e9bergement",
+          "it": "Alloggio"
+        }
+      },
+      "USE-BI": {
+        "broader": null,
+        "definition": {
+          "de": "Unterricht und Lernen von Sch\u00fclerinnen, Sch\u00fclern und Studierenden, etwa in Schulen und Hochschulen.",
+          "en": "Teaching and learning of pupils and students, for example in schools and universities.",
+          "fr": "Enseignement et apprentissage d'\u00e9l\u00e8ves et d'\u00e9tudiants, par exemple dans les \u00e9coles et hautes \u00e9coles.",
+          "it": "Insegnamento e apprendimento di allievi e studenti, ad esempio in scuole e scuole universitarie."
+        },
+        "labels": {
+          "de": "Bildung",
+          "en": "Education",
+          "fr": "Formation",
+          "it": "Formazione"
+        }
+      },
+      "USE-GA": {
+        "broader": null,
+        "definition": {
+          "de": "Zubereitung und Ausgabe von Speisen und Getr\u00e4nken an G\u00e4ste.",
+          "en": "Preparing and serving food and drink to guests.",
+          "fr": "Pr\u00e9paration et service de mets et boissons aux h\u00f4tes.",
+          "it": "Preparazione e servizio di cibi e bevande agli ospiti."
+        },
+        "labels": {
+          "de": "Gastronomie",
+          "en": "Food service",
+          "fr": "Restauration",
+          "it": "Ristorazione"
+        }
+      },
+      "USE-HE": {
+        "broader": null,
+        "definition": {
+          "de": "Untersuchung, Behandlung und Pflege von Patientinnen und Patienten.",
+          "en": "Examination, treatment and care of patients.",
+          "fr": "Examen, traitement et soins des patients.",
+          "it": "Esame, cura e assistenza dei pazienti."
+        },
+        "labels": {
+          "de": "Gesundheit",
+          "en": "Healthcare",
+          "fr": "Sant\u00e9",
+          "it": "Salute"
+        }
+      },
+      "USE-KL": {
+        "broader": null,
+        "definition": {
+          "de": "Abstell- und Lagerr\u00e4ume f\u00fcr die Nutzerinnen und Nutzer.",
+          "en": "Storage rooms for the occupants.",
+          "fr": "Locaux de rangement et de stockage pour les usagers.",
+          "it": "Locali di deposito e ripostiglio per gli utenti."
+        },
+        "labels": {
+          "de": "Keller und Lager",
+          "en": "Cellar and storage",
+          "fr": "Caves et d\u00e9p\u00f4ts",
+          "it": "Cantine e depositi"
+        }
+      },
+      "USE-LA": {
+        "broader": null,
+        "definition": {
+          "de": "Experimentelle Forschung und Analytik in Laboren.",
+          "en": "Experimental research and analysis in laboratories.",
+          "fr": "Recherche exp\u00e9rimentale et analyses en laboratoire.",
+          "it": "Ricerca sperimentale e analisi in laboratorio."
+        },
+        "labels": {
+          "de": "Labor und Forschung",
+          "en": "Laboratory and research",
+          "fr": "Laboratoire et recherche",
+          "it": "Laboratorio e ricerca"
+        }
+      },
+      "USE-LO": {
+        "broader": null,
+        "definition": {
+          "de": "Lagerung, Umschlag und Verteilung von G\u00fctern.",
+          "en": "Storage, handling and distribution of goods.",
+          "fr": "Stockage, transbordement et distribution de biens.",
+          "it": "Stoccaggio, trasbordo e distribuzione di beni."
+        },
+        "labels": {
+          "de": "Lager und Logistik",
+          "en": "Warehousing and logistics",
+          "fr": "Entrep\u00f4t et logistique",
+          "it": "Deposito e logistica"
+        }
+      },
+      "USE-PK": {
+        "broader": null,
+        "definition": {
+          "de": "Abstellen von Fahrzeugen in Einstellhallen und auf Parkpl\u00e4tzen.",
+          "en": "Parking of vehicles in garages and on parking spaces.",
+          "fr": "Stationnement de v\u00e9hicules dans des garages et sur des places de parc.",
+          "it": "Parcheggio di veicoli in autorimesse e su posteggi."
+        },
+        "labels": {
+          "de": "Parkierung",
+          "en": "Parking",
+          "fr": "Stationnement",
+          "it": "Parcheggio"
+        }
+      },
+      "USE-PR": {
+        "broader": null,
+        "definition": {
+          "de": "Herstellung und Verarbeitung von G\u00fctern.",
+          "en": "Manufacturing and processing of goods.",
+          "fr": "Fabrication et transformation de biens.",
+          "it": "Fabbricazione e lavorazione di beni."
+        },
+        "labels": {
+          "de": "Produktion",
+          "en": "Production",
+          "fr": "Production",
+          "it": "Produzione"
+        }
+      },
+      "USE-RZ": {
+        "broader": null,
+        "definition": {
+          "de": "Betrieb von IT-Infrastruktur mit gesicherter Strom- und K\u00e4lteversorgung.",
+          "en": "Operation of IT infrastructure with secured power and cooling.",
+          "fr": "Exploitation d'infrastructures informatiques avec alimentation \u00e9lectrique et refroidissement s\u00e9curis\u00e9s.",
+          "it": "Esercizio di infrastrutture IT con alimentazione elettrica e raffreddamento garantiti."
+        },
+        "labels": {
+          "de": "Rechenzentrum",
+          "en": "Data centre",
+          "fr": "Centre de donn\u00e9es",
+          "it": "Centro dati"
+        }
+      },
+      "USE-SP": {
+        "broader": null,
+        "definition": {
+          "de": "Sportliche Bet\u00e4tigung in Hallen, B\u00e4dern und auf Anlagen.",
+          "en": "Sports in halls, pools and facilities.",
+          "fr": "Activit\u00e9 sportive en salles, piscines et installations.",
+          "it": "Attivit\u00e0 sportiva in palestre, piscine e impianti."
+        },
+        "labels": {
+          "de": "Sport",
+          "en": "Sport",
+          "fr": "Sport",
+          "it": "Sport"
+        }
+      },
+      "USE-TE": {
+        "broader": null,
+        "definition": {
+          "de": "R\u00e4ume f\u00fcr Haustechnik, Energie und Anschl\u00fcsse.",
+          "en": "Rooms for building services, energy and utility connections.",
+          "fr": "Locaux pour les installations techniques, l'\u00e9nergie et les raccordements.",
+          "it": "Locali per impianti tecnici, energia e allacciamenti."
+        },
+        "labels": {
+          "de": "Technik",
+          "en": "Building services",
+          "fr": "Technique",
+          "it": "Tecnica"
+        }
+      },
+      "USE-VE": {
+        "broader": null,
+        "definition": {
+          "de": "Abfertigung und Aufenthalt von Reisenden, etwa in Bahnhofshallen, Terminals und Wartebereichen.",
+          "en": "Handling and waiting of travellers, for example in station halls, terminals and waiting areas.",
+          "fr": "Prise en charge et s\u00e9jour de voyageurs, p. ex. dans les halls de gare, terminaux et zones d'attente.",
+          "it": "Accoglienza e permanenza di viaggiatori, ad es. in atri di stazione, terminal e zone d'attesa."
+        },
+        "labels": {
+          "de": "Personenverkehr",
+          "en": "Passenger transport",
+          "fr": "Transport de voyageurs",
+          "it": "Trasporto passeggeri"
+        }
+      },
+      "USE-VK": {
+        "broader": null,
+        "definition": {
+          "de": "Verkauf von Waren an Kundinnen und Kunden.",
+          "en": "Sale of goods to customers.",
+          "fr": "Vente de marchandises \u00e0 la client\u00e8le.",
+          "it": "Vendita di merci alla clientela."
+        },
+        "labels": {
+          "de": "Verkauf",
+          "en": "Retail",
+          "fr": "Vente",
+          "it": "Vendita"
+        }
+      },
+      "USE-VS": {
+        "broader": null,
+        "definition": {
+          "de": "Versammlung von Publikum f\u00fcr Veranstaltungen, Kultur und Kultus.",
+          "en": "Gathering of audiences for events, culture and worship.",
+          "fr": "Rassemblement de public pour des manifestations, la culture et le culte.",
+          "it": "Riunione di pubblico per manifestazioni, cultura e culto."
+        },
+        "labels": {
+          "de": "Versammlung und Kultur",
+          "en": "Assembly and culture",
+          "fr": "Rassemblement et culture",
+          "it": "Riunione e cultura"
+        }
+      },
+      "USE-WH": {
+        "broader": null,
+        "definition": {
+          "de": "Dauerhaftes Wohnen von Haushalten.",
+          "en": "Permanent residence of households.",
+          "fr": "Logement permanent de m\u00e9nages.",
+          "it": "Abitazione permanente di nuclei domestici."
+        },
+        "labels": {
+          "de": "Wohnen",
+          "en": "Housing",
+          "fr": "Habitation",
+          "it": "Abitazione"
+        }
+      },
+      "USE-WR": {
+        "broader": null,
+        "definition": {
+          "de": "B\u00fcro- und Verwaltungsarbeit von Mitarbeitenden.",
+          "en": "Office and administrative work by staff.",
+          "fr": "Travail de bureau et d'administration des collaboratrices et collaborateurs.",
+          "it": "Lavoro d'ufficio e amministrativo di collaboratrici e collaboratori."
+        },
+        "labels": {
+          "de": "Arbeit",
+          "en": "Work",
+          "fr": "Travail",
+          "it": "Lavoro"
+        }
+      }
+    },
+    "description": {
+      "de": "Nutzungen eines Geb\u00e4udes oder Geb\u00e4udeteils. Jedes Bruttovolumen tr\u00e4gt genau eine Nutzung; Nutzungen \u00fcberschneiden sich nicht. Die Zuordnungen zu Raumaktivit\u00e4t, SIA 416 und SIA 380/1 stehen in den Nutzungs-Mappings.",
+      "en": "Uses of a building or part of a building. Each gross volume carries exactly one use; uses do not overlap. Links to space activity, SIA 416 and SIA 380/1 are in the use mappings.",
+      "fr": "Usages d'un b\u00e2timent ou d'une partie de b\u00e2timent. Chaque volume brut porte exactement un usage ; les usages ne se recoupent pas. Les correspondances avec l'activit\u00e9 des locaux, la SIA 416 et la SIA 380/1 figurent dans les mappings d'usage.",
+      "it": "Usi di un edificio o di una sua parte. Ogni volume lordo porta esattamente un uso; gli usi non si sovrappongono. Le corrispondenze con l'attivit\u00e0 dei locali, la SIA 416 e la SIA 380/1 sono nei mapping degli usi."
+    },
+    "labels": {
+      "de": "Abstrakte Nutzungsklassifikation",
+      "en": "Abstract use classification",
+      "fr": "Classification abstraite des usages",
+      "it": "Classificazione astratta degli usi"
+    },
+    "source": "classification/abstract-use-classification/use-classification.skos.ttl"
+  },
   "AbstractUsecaseClassification": {
     "concepts": {
       "BES": {
@@ -4234,6 +8700,28 @@
           "en": "Artificial stone wall cladding"
         }
       },
+      "WCP-ARTIFICIAL-STONE-ANCHORED": {
+        "broader": null,
+        "definition": {
+          "de": "Grossformatige Kunststeinplatten, mechanisch auf Unterkonstruktion befestigt.",
+          "en": "Large artificial stone slabs mechanically fixed on a substructure."
+        },
+        "labels": {
+          "de": "Verankerte Kunststeinwandbekleidung",
+          "en": "Anchored artificial stone wall cladding"
+        }
+      },
+      "WCP-ARTIFICIAL-STONE-BONDED": {
+        "broader": null,
+        "definition": {
+          "de": "Kunst- oder Agglomeratsteinplatten, auf einen ebenen Untergrund geklebt.",
+          "en": "Engineered or agglomerate stone slabs bonded to a level substrate."
+        },
+        "labels": {
+          "de": "Geklebte Kunststeinwandbekleidung",
+          "en": "Bonded artificial stone wall cladding"
+        }
+      },
       "WCP-CERAMIC-TILE": {
         "broader": null,
         "definition": {
@@ -4245,6 +8733,17 @@
           "en": "Ceramic / porcelain wall tile"
         }
       },
+      "WCP-FABRIC-STRETCHED": {
+        "broader": null,
+        "definition": {
+          "de": "Stoff, in Randprofile gespannt, meist mit schallabsorbierender Hinterlage.",
+          "en": "Fabric tensioned into edge profiles, usually with a sound-absorbing backing."
+        },
+        "labels": {
+          "de": "Gespannte Stoffwandbekleidung",
+          "en": "Stretched fabric wall system"
+        }
+      },
       "WCP-NATURAL-STONE": {
         "broader": null,
         "definition": {
@@ -4254,6 +8753,28 @@
         "labels": {
           "de": "Naturstein-Wandverkleidung",
           "en": "Natural stone wall cladding"
+        }
+      },
+      "WCP-NATURAL-STONE-ANCHORED": {
+        "broader": null,
+        "definition": {
+          "de": "Grossformatige Natursteinplatten, mechanisch mit Hinterl\u00fcftung oder Hohlraum verankert.",
+          "en": "Large natural stone slabs mechanically anchored in front of a cavity."
+        },
+        "labels": {
+          "de": "Verankerte Natursteinwandbekleidung",
+          "en": "Anchored natural stone wall cladding"
+        }
+      },
+      "WCP-NATURAL-STONE-BONDED": {
+        "broader": null,
+        "definition": {
+          "de": "D\u00fcnnformatige Natursteinplatten, im Kleber oder M\u00f6rtel an der Wand angesetzt.",
+          "en": "Thin natural stone slabs set in adhesive or mortar on the wall."
+        },
+        "labels": {
+          "de": "Geklebte Natursteinwandbekleidung",
+          "en": "Bonded natural stone wall cladding"
         }
       },
       "WCP-OTH": {
@@ -4311,6 +8832,17 @@
           "en": "Textile wall covering"
         }
       },
+      "WCP-TEXTILE-BONDED": {
+        "broader": null,
+        "definition": {
+          "de": "Textiler Wandbelag, vollfl\u00e4chig auf den Untergrund geklebt.",
+          "en": "Textile wall covering fully bonded to the substrate."
+        },
+        "labels": {
+          "de": "Geklebter Textilwandbelag",
+          "en": "Bonded textile wall covering"
+        }
+      },
       "WCP-WALLPAPER": {
         "broader": null,
         "definition": {
@@ -4354,6 +8886,17 @@
           "en": "Lightweight concrete panel (BLT) wall"
         }
       },
+      "SWP-BLT-PANEL": {
+        "broader": null,
+        "definition": {
+          "de": "Wand aus geschosshohen Leichtbetonelementen, im Werk hergestellt.",
+          "en": "Wall of storey-height lightweight concrete panels produced in the factory."
+        },
+        "labels": {
+          "de": "Leichtbeton-Elementwand",
+          "en": "Lightweight concrete panel wall"
+        }
+      },
       "SWP-CURTAIN-WALL": {
         "broader": null,
         "definition": {
@@ -4363,6 +8906,39 @@
         "labels": {
           "de": "Vorhangfassade",
           "en": "Curtain wall / facade system"
+        }
+      },
+      "SWP-CURTAIN-WALL-STICK": {
+        "broader": null,
+        "definition": {
+          "de": "Vorhangfassade aus vor Ort montierten Pfosten und Riegeln mit F\u00fcllungen.",
+          "en": "Curtain wall of mullions and transoms assembled on site with infills."
+        },
+        "labels": {
+          "de": "Pfosten-Riegel-Fassade",
+          "en": "Stick curtain wall"
+        }
+      },
+      "SWP-CURTAIN-WALL-UNITISED": {
+        "broader": null,
+        "definition": {
+          "de": "Vorhangfassade aus geschosshohen, im Werk vorgefertigten Elementen.",
+          "en": "Curtain wall of storey-high elements prefabricated in the factory."
+        },
+        "labels": {
+          "de": "Elementfassade",
+          "en": "Unitised curtain wall"
+        }
+      },
+      "SWP-DRYWALL": {
+        "broader": null,
+        "definition": {
+          "de": "Nichttragende Innenwand aus Metall- oder Holzst\u00e4ndern mit Plattenbeplankung, vor Ort erstellt.",
+          "en": "Non-load-bearing interior wall of metal or timber studs with board sheathing, built on site."
+        },
+        "labels": {
+          "de": "St\u00e4nderwand in Trockenbau",
+          "en": "Stud drywall partition"
         }
       },
       "SWP-ELEMENT-WALL": {
@@ -4453,6 +9029,17 @@
           "en": "Steel frame wall"
         }
       },
+      "SWP-SYSTEM-PARTITION": {
+        "broader": null,
+        "definition": {
+          "de": "Nichttragende Innenwand aus vorgefertigten, demontierbaren Elementen.",
+          "en": "Non-load-bearing interior wall of prefabricated, demountable elements."
+        },
+        "labels": {
+          "de": "Systemtrennwand",
+          "en": "Demountable system partition"
+        }
+      },
       "SWP-TIMBER": {
         "broader": null,
         "definition": {
@@ -4462,6 +9049,28 @@
         "labels": {
           "de": "Holz-Wand",
           "en": "Timber frame wall"
+        }
+      },
+      "SWP-TIMBER-FRAME": {
+        "broader": null,
+        "definition": {
+          "de": "Wand aus Holzst\u00e4ndern und Beplankung mit D\u00e4mmung im Gefach.",
+          "en": "Wall of timber studs and sheathing with insulation between the studs."
+        },
+        "labels": {
+          "de": "Holzrahmenbauwand",
+          "en": "Timber stud frame wall"
+        }
+      },
+      "SWP-TIMBER-SOLID": {
+        "broader": null,
+        "definition": {
+          "de": "Wand aus fl\u00e4chigen Massivholzelementen wie Brettsperrholz oder Brettstapel.",
+          "en": "Wall of solid timber panels such as cross-laminated or dowel-laminated timber."
+        },
+        "labels": {
+          "de": "Holzmassivwand",
+          "en": "Solid timber wall"
         }
       }
     },
@@ -4560,6 +9169,39 @@
         "labels": {
           "de": "PVC-Fenster 2-fach Verglasung-Schicht",
           "en": "PVC window 2-pane glazing layer"
+        }
+      },
+      "WICP-ROOF-DOME": {
+        "broader": null,
+        "definition": {
+          "de": "Einzelnes Oberlicht im Flachdach auf einem Aufsetzkranz.",
+          "en": "Single rooflight in a flat roof on an upstand kerb."
+        },
+        "labels": {
+          "de": "Lichtkuppel",
+          "en": "Flat-roof dome"
+        }
+      },
+      "WICP-ROOF-WINDOW": {
+        "broader": null,
+        "definition": {
+          "de": "Fenster in der Dachfl\u00e4che eines Steildachs, mit Eindeckrahmen.",
+          "en": "Window in the surface of a pitched roof, with flashing kit."
+        },
+        "labels": {
+          "de": "Dachfl\u00e4chenfenster",
+          "en": "Pitched roof window"
+        }
+      },
+      "WICP-ROOFLIGHT-BAND": {
+        "broader": null,
+        "definition": {
+          "de": "Durchgehendes Oberlichtband im Flachdach oder flach geneigten Dach.",
+          "en": "Continuous rooflight band in a flat or low-pitch roof."
+        },
+        "labels": {
+          "de": "Lichtband",
+          "en": "Continuous rooflight"
         }
       },
       "WICP-SKYLIGHT": {
@@ -4713,6 +9355,28 @@
         "labels": {
           "de": "Stahlbetontr\u00e4ger",
           "en": "Reinforced concrete beam"
+        }
+      },
+      "BMP-RC-INSITU": {
+        "broader": null,
+        "definition": {
+          "de": "Vor Ort geschalter, bewehrter und betonierter Stahlbetontr\u00e4ger. Preis pro Laufmeter bei Nennquerschnitt 300 x 600 mm.",
+          "en": "Reinforced concrete beam formed, reinforced, and cast on site. Priced per running metre on a nominal 300 x 600 mm section."
+        },
+        "labels": {
+          "de": "Ortbeton-Unterzug",
+          "en": "In-situ concrete beam"
+        }
+      },
+      "BMP-RC-PRECAST": {
+        "broader": null,
+        "definition": {
+          "de": "Im Werk hergestellter Stahlbetontr\u00e4ger, der versetzt und angeschlossen wird. Preis pro Laufmeter bei Nennquerschnitt 300 x 600 mm.",
+          "en": "Reinforced concrete beam produced in the factory, set, and connected on site. Priced per running metre on a nominal 300 x 600 mm section."
+        },
+        "labels": {
+          "de": "Fertigteil-Unterzug",
+          "en": "Precast concrete beam"
         }
       },
       "BMP-STEEL": {
@@ -5770,8 +10434,8 @@
       "RN-02-20": {
         "broader": "RN-02",
         "definition": {
-          "de": "Besprechungs- und informelle Teamr\u00e4ume.",
-          "en": "Meeting and informal collaboration spaces."
+          "de": "Besprechungs-, informelle Team- und Kopierr\u00e4ume.",
+          "en": "Meeting, informal collaboration, and copy spaces."
         },
         "labels": {
           "de": "Zusammenarbeit",
@@ -5820,6 +10484,17 @@
         "labels": {
           "de": "Gemeinschaftsb\u00fcro",
           "en": "Community Office"
+        }
+      },
+      "RN-02-20-05": {
+        "broader": "RN-02-20",
+        "definition": {
+          "de": "Gemeinsam genutzter Raum f\u00fcr Drucken, Kopieren und B\u00fcromaterial.",
+          "en": "Shared room for printing, copying, and office supplies."
+        },
+        "labels": {
+          "de": "Kopierraum",
+          "en": "Copy Room"
         }
       },
       "RN-02-30": {
@@ -5913,8 +10588,8 @@
       "RN-03-20": {
         "broader": "RN-03",
         "definition": {
-          "de": "Treppen, Rampen und Aufz\u00fcge.",
-          "en": "Stairs, ramps, and lifts."
+          "de": "Treppen, Rampen sowie Personen-, Waren- und Bettenaufz\u00fcge.",
+          "en": "Stairs, ramps, and passenger, service, and bed lifts."
         },
         "labels": {
           "de": "Vertikale Erschliessung",
@@ -5952,6 +10627,61 @@
         "labels": {
           "de": "Rampe",
           "en": "Ramp"
+        }
+      },
+      "RN-03-20-04": {
+        "broader": "RN-03-20",
+        "definition": {
+          "de": "Aufzug f\u00fcr Waren, Personal und Servicewege, getrennt von \u00f6ffentlichen Aufz\u00fcgen.",
+          "en": "Lift for goods, staff, and service routes, separate from public lifts."
+        },
+        "labels": {
+          "de": "Warenaufzug",
+          "en": "Service Lift"
+        }
+      },
+      "RN-03-20-05": {
+        "broader": "RN-03-20",
+        "definition": {
+          "de": "Aufzug f\u00fcr den Transport von Patientinnen und Patienten im Bett.",
+          "en": "Lift sized for transporting patients in beds."
+        },
+        "labels": {
+          "de": "Bettenaufzug",
+          "en": "Bed Lift"
+        }
+      },
+      "RN-03-30": {
+        "broader": "RN-03",
+        "definition": {
+          "de": "Perrons und Schalterhallen im Personenverkehr.",
+          "en": "Platforms and ticket halls for passenger transport."
+        },
+        "labels": {
+          "de": "\u00d6ffentlicher Verkehr",
+          "en": "Public transport"
+        }
+      },
+      "RN-03-30-01": {
+        "broader": "RN-03-30",
+        "definition": {
+          "de": "Plattform zum Ein- und Aussteigen in Z\u00fcge, Trams oder Busse.",
+          "en": "Platform for boarding and alighting trains, trams, or buses."
+        },
+        "labels": {
+          "de": "Perron",
+          "en": "Platform"
+        }
+      },
+      "RN-03-30-02": {
+        "broader": "RN-03-30",
+        "definition": {
+          "de": "Halle mit Billettschaltern und -automaten im Personenverkehr.",
+          "en": "Hall with ticket counters and machines for passenger transport."
+        },
+        "labels": {
+          "de": "Schalterhalle",
+          "en": "Ticket Hall"
         }
       },
       "RN-04": {
@@ -6430,8 +11160,8 @@
       "RN-07-10": {
         "broader": "RN-07",
         "definition": {
-          "de": "Cafeterias, Restaurants, Bars und Food-Courts.",
-          "en": "Cafeterias, restaurants, bars, and food courts."
+          "de": "Cafeterias, Restaurants, Bars, Food-Courts und Gewerbek\u00fcchen.",
+          "en": "Cafeterias, restaurants, bars, food courts, and commercial kitchens."
         },
         "labels": {
           "de": "Gastronomie",
@@ -6482,11 +11212,33 @@
           "en": "Food Court"
         }
       },
+      "RN-07-10-05": {
+        "broader": "RN-07-10",
+        "definition": {
+          "de": "K\u00fcche f\u00fcr die gewerbliche Zubereitung von Speisen.",
+          "en": "Kitchen for commercial food preparation."
+        },
+        "labels": {
+          "de": "Gewerbek\u00fcche",
+          "en": "Commercial Kitchen"
+        }
+      },
+      "RN-07-10-06": {
+        "broader": "RN-07-10",
+        "definition": {
+          "de": "Raum f\u00fcr R\u00fcckgabe, Reinigung und Bereitstellung von Geschirr.",
+          "en": "Room for returning, cleaning, and staging tableware."
+        },
+        "labels": {
+          "de": "Sp\u00fclk\u00fcche",
+          "en": "Dishwashing Area"
+        }
+      },
       "RN-07-20": {
         "broader": "RN-07",
         "definition": {
-          "de": "Verkaufs-, Ausstellungs- und Kioskbereiche.",
-          "en": "Retail, sales, kiosk, and exhibition spaces."
+          "de": "Verkaufs-, Kiosk-, Abhol- und Ausstellungsbereiche.",
+          "en": "Retail, sales, kiosk, pickup, and exhibition spaces."
         },
         "labels": {
           "de": "Verkauf und Ausstellung",
@@ -6548,6 +11300,17 @@
           "en": "Exhibition Space"
         }
       },
+      "RN-07-20-06": {
+        "broader": "RN-07-20",
+        "definition": {
+          "de": "Theke oder Bereich, an dem Kundschaft bestellte oder gekaufte Waren abholt.",
+          "en": "Counter or area where customers collect goods ordered or bought in advance."
+        },
+        "labels": {
+          "de": "Abholstation",
+          "en": "Pickup Point"
+        }
+      },
       "RN-07-30": {
         "broader": "RN-07",
         "definition": {
@@ -6568,6 +11331,72 @@
         "labels": {
           "de": "Hotelzimmer",
           "en": "Hotel Room"
+        }
+      },
+      "RN-07-40": {
+        "broader": "RN-07",
+        "definition": {
+          "de": "B\u00fchnen, Trib\u00fcnen und Garderoben f\u00fcr Veranstaltungen.",
+          "en": "Stages, spectator stands, and cloakrooms for events."
+        },
+        "labels": {
+          "de": "Versammlung und Kultur",
+          "en": "Assembly and culture"
+        }
+      },
+      "RN-07-40-01": {
+        "broader": "RN-07-40",
+        "definition": {
+          "de": "Fl\u00e4che f\u00fcr Auff\u00fchrungen einschliesslich Hinterb\u00fchne.",
+          "en": "Area for performances, including its backstage zone."
+        },
+        "labels": {
+          "de": "B\u00fchne",
+          "en": "Stage"
+        }
+      },
+      "RN-07-40-02": {
+        "broader": "RN-07-40",
+        "definition": {
+          "de": "Gestufte Sitz- oder Stehfl\u00e4che f\u00fcr Zuschauende.",
+          "en": "Tiered seating or standing area for spectators."
+        },
+        "labels": {
+          "de": "Trib\u00fcne",
+          "en": "Spectator Stand"
+        }
+      },
+      "RN-07-40-03": {
+        "broader": "RN-07-40",
+        "definition": {
+          "de": "Raum f\u00fcr die Abgabe von M\u00e4nteln und Taschen der Besuchenden.",
+          "en": "Room for depositing visitors' coats and bags."
+        },
+        "labels": {
+          "de": "Garderobe",
+          "en": "Cloakroom"
+        }
+      },
+      "RN-07-50": {
+        "broader": "RN-07",
+        "definition": {
+          "de": "Sporthallen.",
+          "en": "Indoor sports halls."
+        },
+        "labels": {
+          "de": "Sport",
+          "en": "Sport"
+        }
+      },
+      "RN-07-50-01": {
+        "broader": "RN-07-50",
+        "definition": {
+          "de": "Halle f\u00fcr Hallensport und Sportunterricht.",
+          "en": "Hall for indoor sports and physical education."
+        },
+        "labels": {
+          "de": "Sporthalle",
+          "en": "Sports Hall"
         }
       },
       "RN-08": {
@@ -6804,8 +11633,8 @@
       "RN-09-20": {
         "broader": "RN-09",
         "definition": {
-          "de": "Elektro-, Generator-, Transformator-, Server- und Kommunikationsr\u00e4ume.",
-          "en": "Electrical, generator, transformer, server, and telecom rooms."
+          "de": "Elektro-, Generator-, Transformator-, Server- und Kommunikationsr\u00e4ume sowie Leitst\u00e4nde.",
+          "en": "Electrical, generator, transformer, server, telecom, and control rooms."
         },
         "labels": {
           "de": "Elektro- und IT-Technik",
@@ -6865,6 +11694,17 @@
         "labels": {
           "de": "Kommunikationsraum",
           "en": "Communications Room"
+        }
+      },
+      "RN-09-20-06": {
+        "broader": "RN-09-20",
+        "definition": {
+          "de": "Besetzter Raum f\u00fcr \u00dcberwachung und Steuerung von Geb\u00e4ude- oder IT-Anlagen.",
+          "en": "Staffed room for monitoring and operating building or IT systems."
+        },
+        "labels": {
+          "de": "Leitstand",
+          "en": "Control Room"
         }
       },
       "RN-09-30": {
@@ -7647,6 +12487,28 @@
           "en": "Reinforced concrete column"
         }
       },
+      "CLP-RC-INSITU": {
+        "broader": null,
+        "definition": {
+          "de": "Vor Ort geschalte, bewehrte und betonierte Stahlbetonst\u00fctze. Preis pro m3 Bruttovolumen.",
+          "en": "Reinforced concrete column formed, reinforced, and cast on site. Priced per m3 of gross member volume."
+        },
+        "labels": {
+          "de": "Ortbetonst\u00fctze",
+          "en": "In-situ concrete column"
+        }
+      },
+      "CLP-RC-PRECAST": {
+        "broader": null,
+        "definition": {
+          "de": "Im Werk hergestellte Stahlbetonst\u00fctze, die versetzt und vergossen wird. Preis pro m3 Bruttovolumen.",
+          "en": "Reinforced concrete column produced in the factory, set, and grouted on site. Priced per m3 of gross member volume."
+        },
+        "labels": {
+          "de": "Fertigteilst\u00fctze",
+          "en": "Precast concrete column"
+        }
+      },
       "CLP-STEEL": {
         "broader": null,
         "definition": {
@@ -7754,6 +12616,17 @@
         "labels": {
           "de": "Heizung",
           "en": "Heating"
+        }
+      },
+      "load_transfer": {
+        "broader": null,
+        "definition": {
+          "de": "Tragende Verbindung, die Lasten zwischen Bauteilen abtraegt, etwa eine Stuetze zwischen Decken oder ein Traeger auf Stuetzen oder Waende.",
+          "en": "Structural connection carrying loads between elements, such as a column between slabs or a beam onto columns or walls."
+        },
+        "labels": {
+          "de": "Lastabtragung",
+          "en": "Load Transfer"
         }
       },
       "special_media": {
@@ -8664,6 +13537,28 @@
         "labels": {
           "de": "Ziegelriemchen- / Klinker-Vorhangfassade",
           "en": "Brick slip / tile-hung ventilated facade"
+        }
+      },
+      "FaCP-BRICK-SLIP-BONDED": {
+        "broader": null,
+        "definition": {
+          "de": "Riemchen, die auf den Armierungsputz eines W\u00e4rmed\u00e4mmverbundsystems geklebt werden.",
+          "en": "Brick slips bonded onto the base coat of an ETICS."
+        },
+        "labels": {
+          "de": "Verklebte Riemchenfassade auf W\u00e4rmed\u00e4mmverbundsystem",
+          "en": "Brick slips bonded on ETICS"
+        }
+      },
+      "FaCP-BRICK-SLIP-VENTILATED": {
+        "broader": null,
+        "definition": {
+          "de": "Riemchen oder Kleinformatfliesen auf Tr\u00e4gerschienen oder -platten vor einer Hinterl\u00fcftung.",
+          "en": "Brick slips or small tiles on carrier rails or boards in front of a ventilated cavity."
+        },
+        "labels": {
+          "de": "Hinterl\u00fcftete Riemchenfassade",
+          "en": "Ventilated brick slip facade"
         }
       },
       "FaCP-CERAMIC-VENTILATED": {
@@ -18459,6 +23354,39 @@
           "en": "Other or unknown railing"
         }
       },
+      "RAP-PARAPET-INSITU": {
+        "broader": null,
+        "definition": {
+          "de": "Absturzsicherung als vor Ort betonierte Br\u00fcstung. Preis pro m Br\u00fcstungsl\u00e4nge.",
+          "en": "Fall protection as a parapet cast in place. Priced per m of parapet length."
+        },
+        "labels": {
+          "de": "Ortbetonbr\u00fcstung",
+          "en": "In-situ concrete parapet"
+        }
+      },
+      "RAP-PARAPET-MASONRY": {
+        "broader": null,
+        "definition": {
+          "de": "Absturzsicherung als gemauerte Br\u00fcstung mit Abdeckung. Preis pro m Br\u00fcstungsl\u00e4nge.",
+          "en": "Fall protection as a masonry parapet with coping. Priced per m of parapet length."
+        },
+        "labels": {
+          "de": "Gemauerte Br\u00fcstung",
+          "en": "Masonry parapet"
+        }
+      },
+      "RAP-PARAPET-PRECAST": {
+        "broader": null,
+        "definition": {
+          "de": "Absturzsicherung aus im Werk hergestellten Betonelementen. Preis pro m Br\u00fcstungsl\u00e4nge.",
+          "en": "Fall protection of factory-made concrete elements. Priced per m of parapet length."
+        },
+        "labels": {
+          "de": "Fertigteilbr\u00fcstung",
+          "en": "Precast parapet"
+        }
+      },
       "RAP-PARAPET-SOLID": {
         "broader": null,
         "definition": {
@@ -18851,6 +23779,28 @@
         "labels": {
           "de": "Stahlbetontreppe",
           "en": "Reinforced concrete stair"
+        }
+      },
+      "SRP-RC-INSITU": {
+        "broader": null,
+        "definition": {
+          "de": "Vor Ort geschalter, bewehrter und betonierter Treppenlauf aus Stahlbeton. Preis pro m3 Bruttovolumen des Laufs.",
+          "en": "Reinforced concrete stair flight formed, reinforced, and cast on site. Priced per m3 of gross flight volume."
+        },
+        "labels": {
+          "de": "Ortbetontreppe",
+          "en": "In-situ concrete stair"
+        }
+      },
+      "SRP-RC-PRECAST": {
+        "broader": null,
+        "definition": {
+          "de": "Im Werk hergestellter Treppenlauf aus Stahlbeton, auf Schalld\u00e4mmlager versetzt. Preis pro m3 Bruttovolumen des Laufs.",
+          "en": "Reinforced concrete stair flight produced in the factory and set on acoustic bearings. Priced per m3 of gross flight volume."
+        },
+        "labels": {
+          "de": "Fertigteiltreppe",
+          "en": "Precast concrete stair"
         }
       },
       "SRP-STEEL": {

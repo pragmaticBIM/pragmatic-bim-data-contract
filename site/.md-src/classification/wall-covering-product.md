@@ -44,6 +44,28 @@ Source: [`wall-covering-products.skos.ttl`](sources/wall-covering-product.ttl)
 <td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
 </tr>
 <tr>
+<td>WCP-ARTIFICIAL-STONE-ANCHORED</td>
+<td></td>
+<td><a href="https://github.com/pragmaticBIM/pragmaticbim-reference/blob/main/products/wcp-artificial-stone-anchored.yaml">Reference</a></td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Verankerte Kunststeinwandbekleidung</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Grossformatige Kunststeinplatten, mechanisch auf Unterkonstruktion befestigt.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Anchored artificial stone wall cladding</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Large artificial stone slabs mechanically fixed on a substructure.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>WCP-ARTIFICIAL-STONE-BONDED</td>
+<td></td>
+<td><a href="https://github.com/pragmaticBIM/pragmaticbim-reference/blob/main/products/wcp-artificial-stone-bonded.yaml">Reference</a></td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Geklebte Kunststeinwandbekleidung</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Kunst- oder Agglomeratsteinplatten, auf einen ebenen Untergrund geklebt.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Bonded artificial stone wall cladding</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Engineered or agglomerate stone slabs bonded to a level substrate.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
 <td>WCP-CERAMIC-TILE</td>
 <td></td>
 <td><a href="https://github.com/pragmaticBIM/pragmaticbim-reference/blob/main/products/wcp-ceramic-tile.yaml">Reference</a></td>
@@ -55,6 +77,17 @@ Source: [`wall-covering-products.skos.ttl`](sources/wall-covering-product.ttl)
 <td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
 </tr>
 <tr>
+<td>WCP-FABRIC-STRETCHED</td>
+<td></td>
+<td><a href="https://github.com/pragmaticBIM/pragmaticbim-reference/blob/main/products/wcp-fabric-stretched.yaml">Reference</a></td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Gespannte Stoffwandbekleidung</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Stoff, in Randprofile gespannt, meist mit schallabsorbierender Hinterlage.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Stretched fabric wall system</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Fabric tensioned into edge profiles, usually with a sound-absorbing backing.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
 <td>WCP-NATURAL-STONE</td>
 <td></td>
 <td><a href="https://github.com/pragmaticBIM/pragmaticbim-reference/blob/main/products/wcp-natural-stone.yaml">Reference</a></td>
@@ -63,6 +96,28 @@ Source: [`wall-covering-products.skos.ttl`](sources/wall-covering-product.ttl)
 <td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
 <td class="pbs-lang-col" data-lang="en" data-field="label">Natural stone wall cladding</td>
 <td class="pbs-lang-col" data-lang="en" data-field="definition">Installed natural stone slab or tile wall cladding.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>WCP-NATURAL-STONE-ANCHORED</td>
+<td></td>
+<td><a href="https://github.com/pragmaticBIM/pragmaticbim-reference/blob/main/products/wcp-natural-stone-anchored.yaml">Reference</a></td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Verankerte Natursteinwandbekleidung</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Grossformatige Natursteinplatten, mechanisch mit Hinterlüftung oder Hohlraum verankert.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Anchored natural stone wall cladding</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Large natural stone slabs mechanically anchored in front of a cavity.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>WCP-NATURAL-STONE-BONDED</td>
+<td></td>
+<td><a href="https://github.com/pragmaticBIM/pragmaticbim-reference/blob/main/products/wcp-natural-stone-bonded.yaml">Reference</a></td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Geklebte Natursteinwandbekleidung</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Dünnformatige Natursteinplatten, im Kleber oder Mörtel an der Wand angesetzt.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Bonded natural stone wall cladding</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Thin natural stone slabs set in adhesive or mortar on the wall.</td>
 <td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
 </tr>
 <tr>
@@ -118,6 +173,17 @@ Source: [`wall-covering-products.skos.ttl`](sources/wall-covering-product.ttl)
 <td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
 <td class="pbs-lang-col" data-lang="en" data-field="label">Textile wall covering</td>
 <td class="pbs-lang-col" data-lang="en" data-field="definition">Installed textile or fabric wall covering system.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>WCP-TEXTILE-BONDED</td>
+<td></td>
+<td><a href="https://github.com/pragmaticBIM/pragmaticbim-reference/blob/main/products/wcp-textile-bonded.yaml">Reference</a></td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Geklebter Textilwandbelag</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Textiler Wandbelag, vollflächig auf den Untergrund geklebt.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Bonded textile wall covering</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Textile wall covering fully bonded to the substrate.</td>
 <td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
 </tr>
 <tr>

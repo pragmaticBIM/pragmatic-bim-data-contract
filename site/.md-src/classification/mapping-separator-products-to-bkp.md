@@ -16,8 +16,14 @@ External target labels are not shipped in this repository; only codes and IRIs a
 | Source | Relation | Targets |
 | --- | --- | --- |
 | `ssp:SSP-CLT` | `closeMatch` | `bkp:214` |
+| `ssp:SSP-COMPOSITE-BEAM` | `closeMatch` | `bkp:213` |
+| `ssp:SSP-COMPOSITE-DECK` | `closeMatch` | `bkp:213` |
 | `ssp:SSP-HBV` | `closeMatch` | `bkp:214` |
 | `ssp:SSP-HBV` | `relatedMatch` | `bkp:211` |
+| `ssp:SSP-HBV-INSITU` | `closeMatch` | `bkp:214` |
+| `ssp:SSP-HBV-INSITU` | `relatedMatch` | `bkp:211` |
+| `ssp:SSP-HBV-PRECAST` | `closeMatch` | `bkp:214` |
+| `ssp:SSP-HBV-PRECAST` | `relatedMatch` | `bkp:211` |
 | `ssp:SSP-HOLZ-LEHM` | `closeMatch` | `bkp:214` |
 | `ssp:SSP-INSITU` | `closeMatch` | `bkp:211` |
 | `ssp:SSP-LIGHTWEIGHT` | `closeMatch` | `bkp:215` |
@@ -25,7 +31,11 @@ External target labels are not shipped in this repository; only codes and IRIs a
 | `ssp:SSP-STEEL-COMPOSITE` | `closeMatch` | `bkp:213` |
 | `ssp:SSP-TIMBER` | `closeMatch` | `bkp:214` |
 | `swp:SWP-BLT` | `closeMatch` | `bkp:212` |
+| `swp:SWP-BLT-PANEL` | `closeMatch` | `bkp:212` |
 | `swp:SWP-CURTAIN-WALL` | `closeMatch` | `bkp:215` |
+| `swp:SWP-CURTAIN-WALL-STICK` | `closeMatch` | `bkp:215` |
+| `swp:SWP-CURTAIN-WALL-UNITISED` | `closeMatch` | `bkp:215` |
+| `swp:SWP-DRYWALL` | `closeMatch` | `bkp:277` |
 | `swp:SWP-ELEMENT-WALL` | `closeMatch` | `bkp:277` |
 | `swp:SWP-LEICHTBAU` | `closeMatch` | `bkp:215` |
 | `swp:SWP-MASONRY` | `closeMatch` | `bkp:211` |
@@ -33,4 +43,7 @@ External target labels are not shipped in this repository; only codes and IRIs a
 | `swp:SWP-PREFAB-CONC` | `closeMatch` | `bkp:212` |
 | `swp:SWP-RAMMED-EARTH` | `closeMatch` | `bkp:211` |
 | `swp:SWP-STEEL` | `closeMatch` | `bkp:213` |
+| `swp:SWP-SYSTEM-PARTITION` | `closeMatch` | `bkp:277` |
 | `swp:SWP-TIMBER` | `closeMatch` | `bkp:214` |
+| `swp:SWP-TIMBER-FRAME` | `closeMatch` | `bkp:214` |
+| `swp:SWP-TIMBER-SOLID` | `closeMatch` | `bkp:214` |

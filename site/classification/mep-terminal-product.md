@@ -33,6 +33,28 @@ Source: [`mep-terminal-products.skos.ttl`](sources/mep-terminal-product.ttl)
 </thead>
 <tbody>
 <tr>
+<td>MTP-COOL-CEILING-PANEL</td>
+<td></td>
+<td><a href="https://github.com/pragmaticBIM/pragmaticbim-reference/blob/main/products/mtp-cool-ceiling-panel.yaml">Reference</a></td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Kühldecke</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Deckenfläche mit wasserdurchflossenen Registern, die Wärme vorwiegend durch Strahlung aufnimmt.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Chilled ceiling</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Ceiling surface with water-carrying registers that absorbs heat mainly by radiation.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>MTP-COOL-CHILLED-BEAM</td>
+<td></td>
+<td><a href="https://github.com/pragmaticBIM/pragmaticbim-reference/blob/main/products/mtp-cool-chilled-beam.yaml">Reference</a></td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Kühlbalken</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Konvektives Kühlelement an der Decke, passiv oder mit Primärluft.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Chilled beam</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Convective cooling unit at ceiling level, passive or with primary air.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
 <td>MTP-COOL-CHILLED-CEILING</td>
 <td></td>
 <td><a href="https://github.com/pragmaticBIM/pragmaticbim-reference/blob/main/products/mtp-cool-chilled-ceiling.yaml">Reference</a></td>
