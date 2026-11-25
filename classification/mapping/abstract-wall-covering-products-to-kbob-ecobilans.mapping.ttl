@@ -21,7 +21,17 @@ wcp:WCP-WALLPAPER skos:closeMatch kbobbm:14_001 ;
 wcp:WCP-NATURAL-STONE skos:closeMatch kbobbm:11_015 ;
   skos:relatedMatch kbobbm:03_017 .
 
+wcp:WCP-NATURAL-STONE-BONDED skos:closeMatch kbobbm:11_015 ;
+  skos:relatedMatch kbobbm:03_017 .
+
+wcp:WCP-NATURAL-STONE-ANCHORED skos:closeMatch kbobbm:11_015 ;
+  skos:relatedMatch kbobbm:03_017 .
+
 wcp:WCP-ARTIFICIAL-STONE skos:closeMatch kbobbm:11_012 .
+
+wcp:WCP-ARTIFICIAL-STONE-BONDED skos:closeMatch kbobbm:11_012 .
+
+wcp:WCP-ARTIFICIAL-STONE-ANCHORED skos:closeMatch kbobbm:11_012 .
 
 wcp:WCP-CERAMIC-TILE skos:closeMatch kbobbm:11_008 ;
   skos:relatedMatch kbobbm:03_010 .
@@ -30,6 +40,12 @@ wcp:WCP-WOOD-PANEL skos:closeMatch kbobbm:07_014 ;
   skos:relatedMatch kbobbm:07_016 .
 
 wcp:WCP-TEXTILE skos:closeMatch kbobbm:11_024 ;
+  skos:relatedMatch kbobbm:11_026 .
+
+wcp:WCP-TEXTILE-BONDED skos:closeMatch kbobbm:11_024 ;
+  skos:relatedMatch kbobbm:11_026 .
+
+wcp:WCP-FABRIC-STRETCHED skos:closeMatch kbobbm:11_024 ;
   skos:relatedMatch kbobbm:11_026 .
 
 wcp:WCP-SYNTHETIC-PANEL skos:closeMatch kbobbm:05_020 ;

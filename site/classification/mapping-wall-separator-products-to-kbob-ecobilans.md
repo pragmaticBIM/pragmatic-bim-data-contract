@@ -17,7 +17,14 @@ External target labels are not shipped in this repository; only codes and IRIs a
 | --- | --- | --- |
 | `swp:SWP-BLT` | `closeMatch` | `kbobbm:02-006` |
 | `swp:SWP-BLT` | `relatedMatch` | `kbobbm:01-041` |
+| `swp:SWP-BLT-PANEL` | `closeMatch` | `kbobbm:02-006` |
+| `swp:SWP-BLT-PANEL` | `relatedMatch` | `kbobbm:01-041` |
 | `swp:SWP-CURTAIN-WALL` | `closeMatch` | `kbobbm:05-008` |
+| `swp:SWP-CURTAIN-WALL-STICK` | `closeMatch` | `kbobbm:05-008` |
+| `swp:SWP-CURTAIN-WALL-UNITISED` | `closeMatch` | `kbobbm:05-008` |
+| `swp:SWP-DRYWALL` | `closeMatch` | `kbobbm:05-021` |
+| `swp:SWP-DRYWALL` | `relatedMatch` | `kbobbm:03-008` |
+| `swp:SWP-DRYWALL` | `relatedMatch` | `kbobbm:07-014` |
 | `swp:SWP-ELEMENT-WALL` | `closeMatch` | `kbobbm:05-021` |
 | `swp:SWP-ELEMENT-WALL` | `relatedMatch` | `kbobbm:03-008` |
 | `swp:SWP-ELEMENT-WALL` | `relatedMatch` | `kbobbm:07-014` |
@@ -36,5 +43,12 @@ External target labels are not shipped in this repository; only codes and IRIs a
 | `swp:SWP-RAMMED-EARTH` | `relatedMatch` | `kbobbm:10-015` |
 | `swp:SWP-STEEL` | `closeMatch` | `kbobbm:06-012` |
 | `swp:SWP-STEEL` | `relatedMatch` | `kbobbm:06-001` |
+| `swp:SWP-SYSTEM-PARTITION` | `closeMatch` | `kbobbm:05-021` |
+| `swp:SWP-SYSTEM-PARTITION` | `relatedMatch` | `kbobbm:03-008` |
+| `swp:SWP-SYSTEM-PARTITION` | `relatedMatch` | `kbobbm:07-014` |
 | `swp:SWP-TIMBER` | `closeMatch` | `kbobbm:07-003` |
 | `swp:SWP-TIMBER` | `relatedMatch` | `kbobbm:07-023` |
+| `swp:SWP-TIMBER-FRAME` | `closeMatch` | `kbobbm:07-003` |
+| `swp:SWP-TIMBER-FRAME` | `relatedMatch` | `kbobbm:07-023` |
+| `swp:SWP-TIMBER-SOLID` | `closeMatch` | `kbobbm:07-003` |
+| `swp:SWP-TIMBER-SOLID` | `relatedMatch` | `kbobbm:07-023` |

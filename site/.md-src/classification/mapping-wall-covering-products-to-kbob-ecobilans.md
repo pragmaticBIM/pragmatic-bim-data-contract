@@ -16,10 +16,18 @@ External target labels are not shipped in this repository; only codes and IRIs a
 | Source | Relation | Targets |
 | --- | --- | --- |
 | `wcp:WCP-ARTIFICIAL-STONE` | `closeMatch` | `kbobbm:11-012` |
+| `wcp:WCP-ARTIFICIAL-STONE-ANCHORED` | `closeMatch` | `kbobbm:11-012` |
+| `wcp:WCP-ARTIFICIAL-STONE-BONDED` | `closeMatch` | `kbobbm:11-012` |
 | `wcp:WCP-CERAMIC-TILE` | `closeMatch` | `kbobbm:11-008` |
 | `wcp:WCP-CERAMIC-TILE` | `relatedMatch` | `kbobbm:03-010` |
+| `wcp:WCP-FABRIC-STRETCHED` | `closeMatch` | `kbobbm:11-024` |
+| `wcp:WCP-FABRIC-STRETCHED` | `relatedMatch` | `kbobbm:11-026` |
 | `wcp:WCP-NATURAL-STONE` | `closeMatch` | `kbobbm:11-015` |
 | `wcp:WCP-NATURAL-STONE` | `relatedMatch` | `kbobbm:03-017` |
+| `wcp:WCP-NATURAL-STONE-ANCHORED` | `closeMatch` | `kbobbm:11-015` |
+| `wcp:WCP-NATURAL-STONE-ANCHORED` | `relatedMatch` | `kbobbm:03-017` |
+| `wcp:WCP-NATURAL-STONE-BONDED` | `closeMatch` | `kbobbm:11-015` |
+| `wcp:WCP-NATURAL-STONE-BONDED` | `relatedMatch` | `kbobbm:03-017` |
 | `wcp:WCP-OTH` | `closeMatch` | `kbobbm:14-001` |
 | `wcp:WCP-OTH` | `relatedMatch` | `kbobbm:04-007` |
 | `wcp:WCP-PAINT` | `closeMatch` | `kbobbm:14-001` |
@@ -29,6 +37,8 @@ External target labels are not shipped in this repository; only codes and IRIs a
 | `wcp:WCP-SYNTHETIC-PANEL` | `relatedMatch` | `kbobbm:05-023` |
 | `wcp:WCP-TEXTILE` | `closeMatch` | `kbobbm:11-024` |
 | `wcp:WCP-TEXTILE` | `relatedMatch` | `kbobbm:11-026` |
+| `wcp:WCP-TEXTILE-BONDED` | `closeMatch` | `kbobbm:11-024` |
+| `wcp:WCP-TEXTILE-BONDED` | `relatedMatch` | `kbobbm:11-026` |
 | `wcp:WCP-WALLPAPER` | `closeMatch` | `kbobbm:14-001` |
 | `wcp:WCP-WALLPAPER` | `relatedMatch` | `kbobbm:14-002` |
 | `wcp:WCP-WOOD-PANEL` | `closeMatch` | `kbobbm:07-014` |

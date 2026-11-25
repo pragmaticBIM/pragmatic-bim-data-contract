@@ -29,5 +29,9 @@ External target labels are not shipped in this repository; only codes and IRIs a
 | `rcp:RCP-GREEN-INTENSIVE` | `relatedMatch` | `rn:RN-OUT-GDN` |
 | `rcp:RCP-GREEN-INTENSIVE` | `relatedMatch` | `rn:RN-OUT-GRN` |
 | `rcp:RCP-GREEN-INTENSIVE` | `relatedMatch` | `rn:RN-OUT-RTR` |
+| `rcp:RCP-PV-INTEGRATED` | `relatedMatch` | `rn:RN-OUT-RWM` |
+| `rcp:RCP-PV-INTEGRATED` | `relatedMatch` | `rn:RN-OUT-TEQ` |
+| `rcp:RCP-PV-MOUNTED` | `relatedMatch` | `rn:RN-OUT-RWM` |
+| `rcp:RCP-PV-MOUNTED` | `relatedMatch` | `rn:RN-OUT-TEQ` |
 | `rcp:RCP-PV-ROOF` | `relatedMatch` | `rn:RN-OUT-RWM` |
 | `rcp:RCP-PV-ROOF` | `relatedMatch` | `rn:RN-OUT-TEQ` |

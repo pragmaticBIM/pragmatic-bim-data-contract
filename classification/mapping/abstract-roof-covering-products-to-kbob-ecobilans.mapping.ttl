@@ -59,5 +59,11 @@ rcp:RCP-GREEN-INTENSIVE skos:closeMatch kbobbm:10_008 ;
 rcp:RCP-PV-ROOF skos:closeMatch kbobbm:05_008 ;
   skos:relatedMatch kbobbm:06_001, kbobbm:09_003 .
 
+rcp:RCP-PV-MOUNTED skos:closeMatch kbobbm:05_008 ;
+  skos:relatedMatch kbobbm:06_001, kbobbm:09_003 .
+
+rcp:RCP-PV-INTEGRATED skos:closeMatch kbobbm:05_008 ;
+  skos:relatedMatch kbobbm:06_001, kbobbm:09_003 .
+
 rcp:RCP-OTH skos:closeMatch kbobbm:09_003 ;
   skos:relatedMatch kbobbm:06_001, kbobbm:10_008 .

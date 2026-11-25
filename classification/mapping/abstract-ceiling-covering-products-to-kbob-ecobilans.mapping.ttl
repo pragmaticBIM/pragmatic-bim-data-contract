@@ -18,6 +18,12 @@ ccp:CCP-METAL-SHEET skos:closeMatch kbobbm:06_001 ;
 ccp:CCP-GYPSUM-BOARD skos:closeMatch kbobbm:05_021 ;
   skos:relatedMatch kbobbm:03_008 .
 
+ccp:CCP-GYPSUM-DIRECT skos:closeMatch kbobbm:05_021 ;
+  skos:relatedMatch kbobbm:03_008 .
+
+ccp:CCP-GYPSUM-SUSPENDED skos:closeMatch kbobbm:05_021 ;
+  skos:relatedMatch kbobbm:03_008 .
+
 ccp:CCP-MINERAL-FIBRE skos:closeMatch kbobbm:10_008 ;
   skos:relatedMatch kbobbm:10_001, kbobbm:10_009 .
 
@@ -25,6 +31,12 @@ ccp:CCP-WOOD skos:closeMatch kbobbm:07_014 ;
   skos:relatedMatch kbobbm:07_016 .
 
 ccp:CCP-SYNTHETIC skos:closeMatch kbobbm:05_023 ;
+  skos:relatedMatch kbobbm:05_020 .
+
+ccp:CCP-SYNTHETIC-PANEL skos:closeMatch kbobbm:05_023 ;
+  skos:relatedMatch kbobbm:05_020 .
+
+ccp:CCP-STRETCH-MEMBRANE skos:closeMatch kbobbm:05_023 ;
   skos:relatedMatch kbobbm:05_020 .
 
 ccp:CCP-METAL-PANEL skos:closeMatch kbobbm:06_002 ;

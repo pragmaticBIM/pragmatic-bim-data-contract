@@ -62,5 +62,11 @@ facp:FaCP-HPL-PANEL skos:closeMatch kbobbm:05_020 ;
 facp:FaCP-BRICK-SLIP skos:closeMatch kbobbm:02_001 ;
   skos:relatedMatch kbobbm:03_010 .
 
+facp:FaCP-BRICK-SLIP-VENTILATED skos:closeMatch kbobbm:02_001 ;
+  skos:relatedMatch kbobbm:03_010 .
+
+facp:FaCP-BRICK-SLIP-BONDED skos:closeMatch kbobbm:02_001 ;
+  skos:relatedMatch kbobbm:03_010 .
+
 facp:FaCP-OTHER skos:closeMatch kbobbm:05_023 ;
   skos:relatedMatch kbobbm:05_022, kbobbm:04_007 .

@@ -3,6 +3,7 @@
 @prefix map: <https://example.org/mapping/> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
 
 :scheme a skos:ConceptScheme ;
   skos:prefLabel "Abstract floor covering products"@en ;
@@ -22,6 +23,9 @@
   skos:scopeNote "Standard-PBS-Entitaet ist Boundary mit boundary_type flooring (IfcCovering FLOORING). Kennzeichnet Produkt- oder Systemtyp, nicht allein dominante Substanz."@de ;
   skos:hasTopConcept
     :FCP-SUBFLOOR,
+    :FCP-SCREED-BONDED,
+    :FCP-SCREED-FLOATING,
+    :FCP-SCREED-HEATED,
     :FCP-SEAMLESS-RESIN,
     :FCP-CARPET,
     :FCP-LVT,
@@ -32,18 +36,57 @@
     :FCP-PARQUET,
     :FCP-LAMINATE,
     :FCP-RAISED-FLOOR,
+    :FCP-ACCESS-FLOOR,
+    :FCP-CAVITY-FLOOR,
     :FCP-OTH .
 
 :FCP-SUBFLOOR a skos:Concept ;
   skos:inScheme :scheme ;
   skos:topConceptOf :scheme ;
   skos:notation "FCP-SUBFLOOR" ;
+  owl:deprecated true ;
+  dcterms:isReplacedBy :FCP-SCREED-BONDED, :FCP-SCREED-FLOATING, :FCP-SCREED-HEATED ;
+  skos:historyNote "Deprecated: combined several construction systems with different price logic. Replaced by the classes in dcterms:isReplacedBy."@en ;
+  skos:historyNote "Veraltet: fasste mehrere Bausysteme mit unterschiedlicher Preisbildung zusammen. Ersetzt durch die Klassen unter dcterms:isReplacedBy."@de ;
   skos:prefLabel "Subfloor / leveling layer"@en ;
   skos:prefLabel "Unterlagsboden / Ausgleichsschicht"@de ;
   skos:definition "Subfloor preparation or leveling screed layer beneath the visible floor finish."@en ;
   skos:definition "Unterlagsvorbereitung oder Ausgleichsestrich unter dem sichtbaren Bodenbelag."@de ;
   dcterms:subject "IfcCovering" ;
   dcterms:identifier "subfloor" .
+
+:FCP-SCREED-BONDED a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:topConceptOf :scheme ;
+  skos:notation "FCP-SCREED-BONDED" ;
+  skos:prefLabel "Bonded screed"@en ;
+  skos:prefLabel "Verbundener Unterlagsboden"@de ;
+  skos:definition "Screed bonded over its full area to the structural slab."@en ;
+  skos:definition "Unterlagsboden, der vollflächig mit der Rohdecke verbunden ist."@de ;
+  dcterms:subject "IfcCovering" ;
+  dcterms:identifier "screed-bonded" .
+
+:FCP-SCREED-FLOATING a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:topConceptOf :scheme ;
+  skos:notation "FCP-SCREED-FLOATING" ;
+  skos:prefLabel "Floating screed"@en ;
+  skos:prefLabel "Schwimmender Unterlagsboden"@de ;
+  skos:definition "Screed on impact-sound and thermal insulation, separated from the slab and the walls."@en ;
+  skos:definition "Unterlagsboden auf Trittschall- und Wärmedämmschicht, ohne Verbindung zur Rohdecke und zu den Wänden."@de ;
+  dcterms:subject "IfcCovering" ;
+  dcterms:identifier "screed-floating" .
+
+:FCP-SCREED-HEATED a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:topConceptOf :scheme ;
+  skos:notation "FCP-SCREED-HEATED" ;
+  skos:prefLabel "Heated screed"@en ;
+  skos:prefLabel "Heizunterlagsboden"@de ;
+  skos:definition "Floating screed with embedded heating or cooling pipes."@en ;
+  skos:definition "Schwimmender Unterlagsboden mit eingebetteten Heiz- oder Kühlrohren."@de ;
+  dcterms:subject "IfcCovering" ;
+  dcterms:identifier "screed-heated" .
 
 :FCP-SEAMLESS-RESIN a skos:Concept ;
   skos:inScheme :scheme ;
@@ -148,12 +191,38 @@
   skos:inScheme :scheme ;
   skos:topConceptOf :scheme ;
   skos:notation "FCP-RAISED-FLOOR" ;
+  owl:deprecated true ;
+  dcterms:isReplacedBy :FCP-ACCESS-FLOOR, :FCP-CAVITY-FLOOR ;
+  skos:historyNote "Deprecated: combined several construction systems with different price logic. Replaced by the classes in dcterms:isReplacedBy."@en ;
+  skos:historyNote "Veraltet: fasste mehrere Bausysteme mit unterschiedlicher Preisbildung zusammen. Ersetzt durch die Klassen unter dcterms:isReplacedBy."@de ;
   skos:prefLabel "Raised / access floor"@en ;
   skos:prefLabel "Doppelboden / Hohlraumboden"@de ;
   skos:definition "Raised access floor system with pedestals and removable panels."@en ;
   skos:definition "Hohlraumboden- oder Doppelbodensystem mit Stuetzen und abnehmbaren Paneelen."@de ;
   dcterms:subject "IfcCovering" ;
   dcterms:identifier "raised-floor" .
+
+:FCP-ACCESS-FLOOR a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:topConceptOf :scheme ;
+  skos:notation "FCP-ACCESS-FLOOR" ;
+  skos:prefLabel "Access floor"@en ;
+  skos:prefLabel "Doppelboden"@de ;
+  skos:definition "Raised floor of removable panels on height-adjustable pedestals."@en ;
+  skos:definition "Systemboden aus herausnehmbaren Platten auf höhenverstellbaren Stützen."@de ;
+  dcterms:subject "IfcCovering" ;
+  dcterms:identifier "access-floor" .
+
+:FCP-CAVITY-FLOOR a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:topConceptOf :scheme ;
+  skos:notation "FCP-CAVITY-FLOOR" ;
+  skos:prefLabel "Cavity floor"@en ;
+  skos:prefLabel "Hohlboden"@de ;
+  skos:definition "Raised floor with a jointless load-bearing layer over a cavity, accessible only through access openings."@en ;
+  skos:definition "Systemboden mit fugenloser Tragschicht über einem Hohlraum, nur über Revisionsöffnungen zugänglich."@de ;
+  dcterms:subject "IfcCovering" ;
+  dcterms:identifier "cavity-floor" .
 
 :FCP-OTH a skos:Concept ;
   skos:inScheme :scheme ;

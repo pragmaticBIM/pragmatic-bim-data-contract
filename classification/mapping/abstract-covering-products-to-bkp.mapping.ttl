@@ -19,6 +19,12 @@ map:abstractCoveringProductsToBkpMapping a dcterms:Dataset ;
 
 fcp:FCP-SUBFLOOR skos:closeMatch bkp:281_0 .
 
+fcp:FCP-SCREED-BONDED skos:closeMatch bkp:281_0 .
+
+fcp:FCP-SCREED-FLOATING skos:closeMatch bkp:281_0 .
+
+fcp:FCP-SCREED-HEATED skos:closeMatch bkp:281_0 .
+
 fcp:FCP-SEAMLESS-RESIN skos:closeMatch bkp:281_1 .
 
 fcp:FCP-CARPET skos:closeMatch bkp:281_2 .
@@ -39,6 +45,10 @@ fcp:FCP-LAMINATE skos:closeMatch bkp:281_7 .
 
 fcp:FCP-RAISED-FLOOR skos:closeMatch bkp:281_8 .
 
+fcp:FCP-ACCESS-FLOOR skos:closeMatch bkp:281_8 .
+
+fcp:FCP-CAVITY-FLOOR skos:closeMatch bkp:281_8 .
+
 # --- Wall covering products (BKP 282.x) ---
 
 wcp:WCP-SEAMLESS-COATING skos:closeMatch bkp:282_0 .
@@ -47,13 +57,25 @@ wcp:WCP-WALLPAPER skos:closeMatch bkp:282_1 .
 
 wcp:WCP-NATURAL-STONE skos:closeMatch bkp:282_2 .
 
+wcp:WCP-NATURAL-STONE-BONDED skos:closeMatch bkp:282_2 .
+
+wcp:WCP-NATURAL-STONE-ANCHORED skos:closeMatch bkp:282_2 .
+
 wcp:WCP-ARTIFICIAL-STONE skos:closeMatch bkp:282_3 .
+
+wcp:WCP-ARTIFICIAL-STONE-BONDED skos:closeMatch bkp:282_3 .
+
+wcp:WCP-ARTIFICIAL-STONE-ANCHORED skos:closeMatch bkp:282_3 .
 
 wcp:WCP-CERAMIC-TILE skos:closeMatch bkp:282_4 .
 
 wcp:WCP-WOOD-PANEL skos:closeMatch bkp:282_5 .
 
 wcp:WCP-TEXTILE skos:closeMatch bkp:282_6 .
+
+wcp:WCP-TEXTILE-BONDED skos:closeMatch bkp:282_6 .
+
+wcp:WCP-FABRIC-STRETCHED skos:closeMatch bkp:282_6 .
 
 wcp:WCP-SYNTHETIC-PANEL skos:closeMatch bkp:282_6 .
 
@@ -65,11 +87,19 @@ ccp:CCP-METAL-SHEET skos:closeMatch bkp:283_1 .
 
 ccp:CCP-GYPSUM-BOARD skos:closeMatch bkp:283_2 .
 
+ccp:CCP-GYPSUM-DIRECT skos:closeMatch bkp:283_2 .
+
+ccp:CCP-GYPSUM-SUSPENDED skos:closeMatch bkp:283_2 .
+
 ccp:CCP-MINERAL-FIBRE skos:closeMatch bkp:283_3 .
 
 ccp:CCP-WOOD skos:closeMatch bkp:283_4 .
 
 ccp:CCP-SYNTHETIC skos:closeMatch bkp:283_5 .
+
+ccp:CCP-SYNTHETIC-PANEL skos:closeMatch bkp:283_5 .
+
+ccp:CCP-STRETCH-MEMBRANE skos:closeMatch bkp:283_5 .
 
 ccp:CCP-METAL-PANEL skos:closeMatch bkp:283_6 .
 
@@ -112,4 +142,12 @@ facp:FaCP-HPL-PANEL skos:closeMatch bkp:215_5 ;
   skos:relatedMatch bkp:215_2 .
 
 facp:FaCP-BRICK-SLIP skos:closeMatch bkp:215_5 ;
+  skos:relatedMatch bkp:211_6 .
+
+
+facp:FaCP-BRICK-SLIP-VENTILATED skos:closeMatch bkp:215_5 ;
+  skos:relatedMatch bkp:211_6 .
+
+
+facp:FaCP-BRICK-SLIP-BONDED skos:closeMatch bkp:215_5 ;
   skos:relatedMatch bkp:211_6 .

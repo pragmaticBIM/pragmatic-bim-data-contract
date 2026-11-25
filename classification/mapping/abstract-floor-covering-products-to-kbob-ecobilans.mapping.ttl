@@ -14,6 +14,12 @@ map:abstractFloorCoveringProductsToKbobEcobilansMapping a dcterms:Dataset ;
 
 fcp:FCP-SUBFLOOR skos:closeMatch kbobbm:11_005 .
 
+fcp:FCP-SCREED-BONDED skos:closeMatch kbobbm:11_005 .
+
+fcp:FCP-SCREED-FLOATING skos:closeMatch kbobbm:11_005 .
+
+fcp:FCP-SCREED-HEATED skos:closeMatch kbobbm:11_005 .
+
 fcp:FCP-SEAMLESS-RESIN skos:closeMatch kbobbm:11_002 ;
   skos:relatedMatch kbobbm:11_001 .
 
@@ -39,6 +45,12 @@ fcp:FCP-PARQUET skos:closeMatch kbobbm:11_018 ;
 fcp:FCP-LAMINATE skos:closeMatch kbobbm:11_013 .
 
 fcp:FCP-RAISED-FLOOR skos:closeMatch kbobbm:11_005 ;
+  skos:relatedMatch kbobbm:07_014 .
+
+fcp:FCP-ACCESS-FLOOR skos:closeMatch kbobbm:11_005 ;
+  skos:relatedMatch kbobbm:07_014 .
+
+fcp:FCP-CAVITY-FLOOR skos:closeMatch kbobbm:11_005 ;
   skos:relatedMatch kbobbm:07_014 .
 
 fcp:FCP-OTH skos:closeMatch kbobbm:11_002 ;

@@ -23,6 +23,7 @@ class MemberProduct:
     label_de: str
     definition_en: str
     definition_de: str
+    replaced_by: tuple[str, ...] = ()
 
 
 @dataclass(frozen=True)
@@ -74,6 +75,21 @@ COLUMN_PRODUCTS: list[MemberProduct] = [
         "Priced per m3 of gross member volume.",
         "Ortbeton- oder Fertigteil-Stahlbetonstütze inklusive Schalung und Bewehrung. Preis pro m3 "
         "Bruttovolumen.",
+        replaced_by=("CLP-RC-INSITU", "CLP-RC-PRECAST",),
+    ),
+    MemberProduct(
+        "CLP-RC-INSITU",
+        "In-situ concrete column",
+        "Ortbetonstütze",
+        "Reinforced concrete column formed, reinforced, and cast on site. Priced per m3 of gross member volume.",
+        "Vor Ort geschalte, bewehrte und betonierte Stahlbetonstütze. Preis pro m3 Bruttovolumen.",
+    ),
+    MemberProduct(
+        "CLP-RC-PRECAST",
+        "Precast concrete column",
+        "Fertigteilstütze",
+        "Reinforced concrete column produced in the factory, set, and grouted on site. Priced per m3 of gross member volume.",
+        "Im Werk hergestellte Stahlbetonstütze, die versetzt und vergossen wird. Preis pro m3 Bruttovolumen.",
     ),
     MemberProduct(
         "CLP-OTH",
@@ -113,6 +129,21 @@ BEAM_PRODUCTS: list[MemberProduct] = [
         "reinforcement. Priced per running metre on a nominal 300 x 600 mm section.",
         "Ortbeton- oder Fertigteil-Stahlbetonträger als Unterzug oder Überzug inklusive Schalung und "
         "Bewehrung. Preis pro Laufmeter bei Nennquerschnitt 300 x 600 mm.",
+        replaced_by=("BMP-RC-INSITU", "BMP-RC-PRECAST",),
+    ),
+    MemberProduct(
+        "BMP-RC-INSITU",
+        "In-situ concrete beam",
+        "Ortbeton-Unterzug",
+        "Reinforced concrete beam formed, reinforced, and cast on site. Priced per running metre on a nominal 300 x 600 mm section.",
+        "Vor Ort geschalter, bewehrter und betonierter Stahlbetonträger. Preis pro Laufmeter bei Nennquerschnitt 300 x 600 mm.",
+    ),
+    MemberProduct(
+        "BMP-RC-PRECAST",
+        "Precast concrete beam",
+        "Fertigteil-Unterzug",
+        "Reinforced concrete beam produced in the factory, set, and connected on site. Priced per running metre on a nominal 300 x 600 mm section.",
+        "Im Werk hergestellter Stahlbetonträger, der versetzt und angeschlossen wird. Preis pro Laufmeter bei Nennquerschnitt 300 x 600 mm.",
     ),
     MemberProduct(
         "BMP-OTH",
@@ -152,6 +183,21 @@ STAIR_PRODUCTS: list[MemberProduct] = [
         "and acoustic bearings. Priced per m3 of gross flight volume.",
         "Ortbeton- oder Fertigteil-Stahlbetontreppenlauf inklusive Schalung, Bewehrung und "
         "Schallschutzlager. Preis pro m3 Bruttovolumen des Laufs.",
+        replaced_by=("SRP-RC-INSITU", "SRP-RC-PRECAST",),
+    ),
+    MemberProduct(
+        "SRP-RC-INSITU",
+        "In-situ concrete stair",
+        "Ortbetontreppe",
+        "Reinforced concrete stair flight formed, reinforced, and cast on site. Priced per m3 of gross flight volume.",
+        "Vor Ort geschalter, bewehrter und betonierter Treppenlauf aus Stahlbeton. Preis pro m3 Bruttovolumen des Laufs.",
+    ),
+    MemberProduct(
+        "SRP-RC-PRECAST",
+        "Precast concrete stair",
+        "Fertigteiltreppe",
+        "Reinforced concrete stair flight produced in the factory and set on acoustic bearings. Priced per m3 of gross flight volume.",
+        "Im Werk hergestellter Treppenlauf aus Stahlbeton, auf Schalldämmlager versetzt. Preis pro m3 Bruttovolumen des Laufs.",
     ),
     MemberProduct(
         "SRP-OTH",
@@ -226,6 +272,28 @@ RAILING_PRODUCTS: list[MemberProduct] = [
         "guarding element. Priced per m of parapet length.",
         "Absturzsicherung als massive Beton- oder Mauerwerksbrüstung mit Abdeckung, die die "
         "Schutzfunktion übernimmt. Preis pro m Brüstungslänge.",
+        replaced_by=("RAP-PARAPET-INSITU", "RAP-PARAPET-PRECAST", "RAP-PARAPET-MASONRY",),
+    ),
+    MemberProduct(
+        "RAP-PARAPET-INSITU",
+        "In-situ concrete parapet",
+        "Ortbetonbrüstung",
+        "Fall protection as a parapet cast in place. Priced per m of parapet length.",
+        "Absturzsicherung als vor Ort betonierte Brüstung. Preis pro m Brüstungslänge.",
+    ),
+    MemberProduct(
+        "RAP-PARAPET-PRECAST",
+        "Precast parapet",
+        "Fertigteilbrüstung",
+        "Fall protection of factory-made concrete elements. Priced per m of parapet length.",
+        "Absturzsicherung aus im Werk hergestellten Betonelementen. Preis pro m Brüstungslänge.",
+    ),
+    MemberProduct(
+        "RAP-PARAPET-MASONRY",
+        "Masonry parapet",
+        "Gemauerte Brüstung",
+        "Fall protection as a masonry parapet with coping. Priced per m of parapet length.",
+        "Absturzsicherung als gemauerte Brüstung mit Abdeckung. Preis pro m Brüstungslänge.",
     ),
     MemberProduct(
         "RAP-HANDRAIL",

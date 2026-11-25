@@ -15,6 +15,15 @@ map:abstractDoorConnectorProductsToKbobEcobilansMapping a dcterms:Dataset ;
 dcp:DCP-WOOD skos:closeMatch kbobbm:12_003 ;
   skos:relatedMatch kbobbm:12_008, kbobbm:12_010 .
 
+dcp:DCP-WOOD-INTERIOR skos:closeMatch kbobbm:12_003 ;
+  skos:relatedMatch kbobbm:12_008, kbobbm:12_010 .
+
+dcp:DCP-WOOD-RATED skos:closeMatch kbobbm:12_003 ;
+  skos:relatedMatch kbobbm:12_008, kbobbm:12_010 .
+
+dcp:DCP-WOOD-ENTRANCE skos:closeMatch kbobbm:12_003 ;
+  skos:relatedMatch kbobbm:12_008, kbobbm:12_010 .
+
 dcp:DCP-METAL skos:closeMatch kbobbm:12_012 ;
   skos:relatedMatch kbobbm:12_007, kbobbm:12_009 .
 
@@ -27,7 +36,31 @@ dcp:DCP-PVC skos:closeMatch kbobbm:13_004 ;
 dcp:DCP-GLASS skos:closeMatch kbobbm:12_002 ;
   skos:relatedMatch kbobbm:12_007, kbobbm:05_001 .
 
+dcp:DCP-GLASS-FRAMELESS skos:closeMatch kbobbm:12_002 ;
+  skos:relatedMatch kbobbm:12_007, kbobbm:05_001 .
+
+dcp:DCP-GLASS-FRAMED skos:closeMatch kbobbm:12_002 ;
+  skos:relatedMatch kbobbm:12_007, kbobbm:05_001 .
+
+dcp:DCP-GLASS-AUTOMATIC skos:closeMatch kbobbm:12_002 ;
+  skos:relatedMatch kbobbm:12_007, kbobbm:05_001 .
+
 dcp:DCP-GATE skos:closeMatch kbobbm:12_006 ;
+  skos:relatedMatch kbobbm:06_012, kbobbm:12_009 .
+
+dcp:DCP-GATE-SECTIONAL skos:closeMatch kbobbm:12_006 ;
+  skos:relatedMatch kbobbm:06_012, kbobbm:12_009 .
+
+dcp:DCP-GATE-ROLLING skos:closeMatch kbobbm:12_006 ;
+  skos:relatedMatch kbobbm:06_012, kbobbm:12_009 .
+
+dcp:DCP-GATE-SLIDING skos:closeMatch kbobbm:12_006 ;
+  skos:relatedMatch kbobbm:06_012, kbobbm:12_009 .
+
+dcp:DCP-GATE-FOLDING skos:closeMatch kbobbm:12_006 ;
+  skos:relatedMatch kbobbm:06_012, kbobbm:12_009 .
+
+dcp:DCP-GATE-UP-OVER skos:closeMatch kbobbm:12_006 ;
   skos:relatedMatch kbobbm:06_012, kbobbm:12_009 .
 
 dcp:DCP-SPECIAL skos:closeMatch kbobbm:12_009 ;

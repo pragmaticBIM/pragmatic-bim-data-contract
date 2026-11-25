@@ -61,6 +61,15 @@ wicp:WICP-FACADE-UNIT skos:closeMatch kbobbm:05_008 .
 wicp:WICP-SKYLIGHT skos:closeMatch kbobbm:05_005 ;
   skos:relatedMatch kbobbm:05_012 .
 
+wicp:WICP-ROOF-WINDOW skos:closeMatch kbobbm:05_005 ;
+  skos:relatedMatch kbobbm:05_012 .
+
+wicp:WICP-ROOF-DOME skos:closeMatch kbobbm:05_005 ;
+  skos:relatedMatch kbobbm:05_012 .
+
+wicp:WICP-ROOFLIGHT-BAND skos:closeMatch kbobbm:05_005 ;
+  skos:relatedMatch kbobbm:05_012 .
+
 # --- Special / fallback ---
 
 wicp:WICP-SPECIAL skos:closeMatch kbobbm:05_012 ;

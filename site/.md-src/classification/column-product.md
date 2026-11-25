@@ -56,6 +56,28 @@ Source: [`column-products.skos.ttl`](sources/column-product.ttl)
 <td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
 </tr>
 <tr>
+<td>CLP-RC-INSITU</td>
+<td></td>
+<td><a href="https://github.com/pragmaticBIM/pragmaticbim-reference/blob/main/products/clp-rc-insitu.yaml">Reference</a></td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Ortbetonstütze</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Vor Ort geschalte, bewehrte und betonierte Stahlbetonstütze. Preis pro m3 Bruttovolumen.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">In-situ concrete column</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Reinforced concrete column formed, reinforced, and cast on site. Priced per m3 of gross member volume.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>CLP-RC-PRECAST</td>
+<td></td>
+<td><a href="https://github.com/pragmaticBIM/pragmaticbim-reference/blob/main/products/clp-rc-precast.yaml">Reference</a></td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Fertigteilstütze</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Im Werk hergestellte Stahlbetonstütze, die versetzt und vergossen wird. Preis pro m3 Bruttovolumen.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Precast concrete column</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Reinforced concrete column produced in the factory, set, and grouted on site. Priced per m3 of gross member volume.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
 <td>CLP-STEEL</td>
 <td></td>
 <td><a href="https://github.com/pragmaticBIM/pragmaticbim-reference/blob/main/products/clp-steel.yaml">Reference</a></td>

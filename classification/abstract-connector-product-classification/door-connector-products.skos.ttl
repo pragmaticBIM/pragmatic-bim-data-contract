@@ -1,6 +1,7 @@
 @prefix : <https://example.org/abstract/door-connector-product/> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
 
 :scheme a skos:ConceptScheme ;
   skos:prefLabel "Abstract door connector products"@en ;
@@ -17,11 +18,22 @@
   skos:scopeNote "Standard-PBS-Entitaet ist ConnectionPhysical. Innen- vs Aussenlage ist hier nicht kodiert; BKP-Mappings mit closeMatch fuer Rohbau 221.x (aussen) und relatedMatch fuer Ausbau 272/273 (innen) wo zutreffend."@de ;
   skos:hasTopConcept
     :DCP-WOOD,
+    :DCP-WOOD-INTERIOR,
+    :DCP-WOOD-RATED,
+    :DCP-WOOD-ENTRANCE,
     :DCP-METAL,
     :DCP-WOOD-METAL,
     :DCP-PVC,
     :DCP-GLASS,
+    :DCP-GLASS-FRAMELESS,
+    :DCP-GLASS-FRAMED,
+    :DCP-GLASS-AUTOMATIC,
     :DCP-GATE,
+    :DCP-GATE-SECTIONAL,
+    :DCP-GATE-ROLLING,
+    :DCP-GATE-SLIDING,
+    :DCP-GATE-FOLDING,
+    :DCP-GATE-UP-OVER,
     :DCP-SPECIAL,
     :DCP-OTH .
 
@@ -29,12 +41,49 @@
   skos:inScheme :scheme ;
   skos:topConceptOf :scheme ;
   skos:notation "DCP-WOOD" ;
+  owl:deprecated true ;
+  dcterms:isReplacedBy :DCP-WOOD-INTERIOR, :DCP-WOOD-RATED, :DCP-WOOD-ENTRANCE ;
+  skos:historyNote "Deprecated: combined several construction systems with different price logic. Replaced by the classes in dcterms:isReplacedBy."@en ;
+  skos:historyNote "Veraltet: fasste mehrere Bausysteme mit unterschiedlicher Preisbildung zusammen. Ersetzt durch die Klassen unter dcterms:isReplacedBy."@de ;
   skos:prefLabel "Wood door system"@en ;
   skos:prefLabel "Holztuer"@de ;
   skos:definition "Door with primary wood frame and leaf, including solid wood and engineered-wood door systems."@en ;
   skos:definition "Tuer mit primaerem Holzrahmen und -blatt, einschliesslich Massivholz- und Holzwerkstoff-Tuersystemen."@de ;
   dcterms:subject "IfcDoor" ;
   dcterms:identifier "wood-door" .
+
+:DCP-WOOD-INTERIOR a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:topConceptOf :scheme ;
+  skos:notation "DCP-WOOD-INTERIOR" ;
+  skos:prefLabel "Interior wood door"@en ;
+  skos:prefLabel "Holz-Innentür"@de ;
+  skos:definition "Interior door with timber or wood-based leaf in a frame, without fire, smoke, or increased acoustic duty."@en ;
+  skos:definition "Innentür mit Blatt aus Holz oder Holzwerkstoff in Zarge, ohne Brand-, Rauch- oder erhöhte Schallschutzanforderung."@de ;
+  dcterms:subject "IfcDoor" ;
+  dcterms:identifier "wood-interior" .
+
+:DCP-WOOD-RATED a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:topConceptOf :scheme ;
+  skos:notation "DCP-WOOD-RATED" ;
+  skos:prefLabel "Fire, smoke or acoustic rated wood door"@en ;
+  skos:prefLabel "Holztür mit Brand-, Rauch- oder Schallschutz"@de ;
+  skos:definition "Tested timber door assembly with certified fire, smoke, or acoustic performance."@en ;
+  skos:definition "Geprüftes Türelement aus Holz mit nachgewiesenem Brand-, Rauch- oder Schallschutz."@de ;
+  dcterms:subject "IfcDoor" ;
+  dcterms:identifier "wood-rated" .
+
+:DCP-WOOD-ENTRANCE a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:topConceptOf :scheme ;
+  skos:notation "DCP-WOOD-ENTRANCE" ;
+  skos:prefLabel "Wood entrance door"@en ;
+  skos:prefLabel "Holz-Eingangstür"@de ;
+  skos:definition "Timber entrance door in the building envelope or to dwellings, with climate, burglary, and thermal requirements."@en ;
+  skos:definition "Eingangstür aus Holz an der Gebäudehülle oder zu Wohnungen, mit Anforderungen an Klima, Einbruch- und Wärmeschutz."@de ;
+  dcterms:subject "IfcDoor" ;
+  dcterms:identifier "wood-entrance" .
 
 :DCP-METAL a skos:Concept ;
   skos:inScheme :scheme ;
@@ -73,6 +122,10 @@
   skos:inScheme :scheme ;
   skos:topConceptOf :scheme ;
   skos:notation "DCP-GLASS" ;
+  owl:deprecated true ;
+  dcterms:isReplacedBy :DCP-GLASS-FRAMELESS, :DCP-GLASS-FRAMED, :DCP-GLASS-AUTOMATIC ;
+  skos:historyNote "Deprecated: combined several construction systems with different price logic. Replaced by the classes in dcterms:isReplacedBy."@en ;
+  skos:historyNote "Veraltet: fasste mehrere Bausysteme mit unterschiedlicher Preisbildung zusammen. Ersetzt durch die Klassen unter dcterms:isReplacedBy."@de ;
   skos:prefLabel "Glazed door system"@en ;
   skos:prefLabel "Glas- / Verglasungstuer"@de ;
   skos:definition "Door predominantly glazed with minimal frame, including automatic sliding glass doors and full-height glazed entrances."@en ;
@@ -80,16 +133,108 @@
   dcterms:subject "IfcDoor" ;
   dcterms:identifier "glass-door" .
 
+:DCP-GLASS-FRAMELESS a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:topConceptOf :scheme ;
+  skos:notation "DCP-GLASS-FRAMELESS" ;
+  skos:prefLabel "Frameless glass door"@en ;
+  skos:prefLabel "Ganzglastür"@de ;
+  skos:definition "Door leaf of safety glass without frame, with clamp fittings."@en ;
+  skos:definition "Türblatt aus Sicherheitsglas ohne Rahmen, mit Klemmbeschlägen."@de ;
+  dcterms:subject "IfcDoor" ;
+  dcterms:identifier "glass-frameless" .
+
+:DCP-GLASS-FRAMED a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:topConceptOf :scheme ;
+  skos:notation "DCP-GLASS-FRAMED" ;
+  skos:prefLabel "Framed glazed door"@en ;
+  skos:prefLabel "Glasrahmentür"@de ;
+  skos:definition "Door leaf mostly glazed, in a narrow metal frame."@en ;
+  skos:definition "Türblatt mit überwiegender Verglasung in schmalem Metallrahmen."@de ;
+  dcterms:subject "IfcDoor" ;
+  dcterms:identifier "glass-framed" .
+
+:DCP-GLASS-AUTOMATIC a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:topConceptOf :scheme ;
+  skos:notation "DCP-GLASS-AUTOMATIC" ;
+  skos:prefLabel "Automatic glazed door system"@en ;
+  skos:prefLabel "Automatische Glastüranlage"@de ;
+  skos:definition "Motor-operated sliding, swing, or revolving door with glazed leaves."@en ;
+  skos:definition "Motorisch betriebene Schiebe-, Dreh- oder Karusselltür mit Glasflügeln."@de ;
+  dcterms:subject "IfcDoor" ;
+  dcterms:identifier "glass-automatic" .
+
 :DCP-GATE a skos:Concept ;
   skos:inScheme :scheme ;
   skos:topConceptOf :scheme ;
   skos:notation "DCP-GATE" ;
+  owl:deprecated true ;
+  dcterms:isReplacedBy :DCP-GATE-SECTIONAL, :DCP-GATE-ROLLING, :DCP-GATE-SLIDING, :DCP-GATE-FOLDING, :DCP-GATE-UP-OVER ;
+  skos:historyNote "Deprecated: combined several construction systems with different price logic. Replaced by the classes in dcterms:isReplacedBy."@en ;
+  skos:historyNote "Veraltet: fasste mehrere Bausysteme mit unterschiedlicher Preisbildung zusammen. Ersetzt durch die Klassen unter dcterms:isReplacedBy."@de ;
   skos:prefLabel "Gate / industrial door"@en ;
   skos:prefLabel "Tor / Industrietuer"@de ;
   skos:definition "Large-format gate, sectional door, rolling shutter, or industrial door system."@en ;
   skos:definition "Grossformat-Tor, Sektionaltor, Rolltor oder Industrietuer-System."@de ;
   dcterms:subject "IfcDoor" ;
   dcterms:identifier "gate-door" .
+
+:DCP-GATE-SECTIONAL a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:topConceptOf :scheme ;
+  skos:notation "DCP-GATE-SECTIONAL" ;
+  skos:prefLabel "Sectional gate"@en ;
+  skos:prefLabel "Sektionaltor"@de ;
+  skos:definition "Gate of hinged panels that run up under the ceiling."@en ;
+  skos:definition "Tor aus gelenkig verbundenen Paneelen, die unter die Decke laufen."@de ;
+  dcterms:subject "IfcDoor" ;
+  dcterms:identifier "gate-sectional" .
+
+:DCP-GATE-ROLLING a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:topConceptOf :scheme ;
+  skos:notation "DCP-GATE-ROLLING" ;
+  skos:prefLabel "Rolling gate"@en ;
+  skos:prefLabel "Rolltor"@de ;
+  skos:definition "Gate of slats or curtain that coils above the lintel."@en ;
+  skos:definition "Tor aus Lamellen oder Behang, der über dem Sturz aufgewickelt wird."@de ;
+  dcterms:subject "IfcDoor" ;
+  dcterms:identifier "gate-rolling" .
+
+:DCP-GATE-SLIDING a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:topConceptOf :scheme ;
+  skos:notation "DCP-GATE-SLIDING" ;
+  skos:prefLabel "Sliding gate"@en ;
+  skos:prefLabel "Schiebetor"@de ;
+  skos:definition "Gate with one or more leaves that slide sideways along the wall."@en ;
+  skos:definition "Tor mit einem oder mehreren Flügeln, die seitlich vor der Wand verschoben werden."@de ;
+  dcterms:subject "IfcDoor" ;
+  dcterms:identifier "gate-sliding" .
+
+:DCP-GATE-FOLDING a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:topConceptOf :scheme ;
+  skos:notation "DCP-GATE-FOLDING" ;
+  skos:prefLabel "Folding gate"@en ;
+  skos:prefLabel "Falttor"@de ;
+  skos:definition "Gate of hinged leaves that fold to the side."@en ;
+  skos:definition "Tor aus gelenkig verbundenen Flügeln, die seitlich zusammengefaltet werden."@de ;
+  dcterms:subject "IfcDoor" ;
+  dcterms:identifier "gate-folding" .
+
+:DCP-GATE-UP-OVER a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:topConceptOf :scheme ;
+  skos:notation "DCP-GATE-UP-OVER" ;
+  skos:prefLabel "Up-and-over gate"@en ;
+  skos:prefLabel "Schwingtor"@de ;
+  skos:definition "Gate with a single rigid leaf that swings out and up."@en ;
+  skos:definition "Tor mit einem starren Flügel, der nach aussen und oben ausschwingt."@de ;
+  dcterms:subject "IfcDoor" ;
+  dcterms:identifier "gate-up-over" .
 
 :DCP-SPECIAL a skos:Concept ;
   skos:inScheme :scheme ;

@@ -35,6 +35,9 @@ mup:MUP-VENT-FAN skos:broader func:ventilation .
 
 mup:MUP-HEAT-BOILER skos:broader func:heating .
 mup:MUP-HEAT-HEAT-PUMP skos:broader func:heating .
+mup:MUP-HEAT-HP-AIR skos:broader func:heating .
+mup:MUP-HEAT-HP-GROUND skos:broader func:heating .
+mup:MUP-HEAT-HP-WATER skos:broader func:heating .
 mup:MUP-HEAT-DISTRICT-HEAT-SUBSTATION skos:broader func:heating .
 
 # --- MUP cooling ---
@@ -85,6 +88,8 @@ mtp:MTP-HEAT-FAN-COIL skos:broader func:heating .
 
 mtp:MTP-COOL-FAN-COIL skos:broader func:cooling .
 mtp:MTP-COOL-CHILLED-CEILING skos:broader func:cooling .
+mtp:MTP-COOL-CEILING-PANEL skos:broader func:cooling .
+mtp:MTP-COOL-CHILLED-BEAM skos:broader func:cooling .
 
 # --- MTP fresh water ---
 

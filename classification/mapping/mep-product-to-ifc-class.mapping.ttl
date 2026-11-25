@@ -35,6 +35,9 @@ mup:MUP-VENT-FAN skos:closeMatch ifcowl:IfcFan .
 
 mup:MUP-HEAT-BOILER skos:closeMatch ifcowl:IfcBoiler .
 mup:MUP-HEAT-HEAT-PUMP skos:closeMatch ifcowl:IfcUnitaryEquipment .
+mup:MUP-HEAT-HP-AIR skos:closeMatch ifcowl:IfcUnitaryEquipment .
+mup:MUP-HEAT-HP-GROUND skos:closeMatch ifcowl:IfcUnitaryEquipment .
+mup:MUP-HEAT-HP-WATER skos:closeMatch ifcowl:IfcUnitaryEquipment .
 mup:MUP-HEAT-DISTRICT-HEAT-SUBSTATION skos:closeMatch ifcowl:IfcHeatExchanger .
 
 # --- MUP cooling ---
@@ -88,6 +91,8 @@ mtp:MTP-HEAT-FAN-COIL skos:closeMatch ifcowl:IfcUnitaryEquipment .
 
 mtp:MTP-COOL-FAN-COIL skos:closeMatch ifcowl:IfcUnitaryEquipment .
 mtp:MTP-COOL-CHILLED-CEILING skos:closeMatch ifcowl:IfcCooledBeam .
+mtp:MTP-COOL-CEILING-PANEL skos:closeMatch ifcowl:IfcCooledBeam .
+mtp:MTP-COOL-CHILLED-BEAM skos:closeMatch ifcowl:IfcCooledBeam .
 
 # --- MTP fresh water ---
 

@@ -3,6 +3,7 @@
 @prefix map: <https://example.org/mapping/> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
 
 :scheme a skos:ConceptScheme ;
   skos:prefLabel "Abstract wall covering products"@en ;
@@ -24,10 +25,16 @@
     :WCP-SEAMLESS-COATING,
     :WCP-WALLPAPER,
     :WCP-NATURAL-STONE,
+    :WCP-NATURAL-STONE-BONDED,
+    :WCP-NATURAL-STONE-ANCHORED,
     :WCP-ARTIFICIAL-STONE,
+    :WCP-ARTIFICIAL-STONE-BONDED,
+    :WCP-ARTIFICIAL-STONE-ANCHORED,
     :WCP-CERAMIC-TILE,
     :WCP-WOOD-PANEL,
     :WCP-TEXTILE,
+    :WCP-TEXTILE-BONDED,
+    :WCP-FABRIC-STRETCHED,
     :WCP-SYNTHETIC-PANEL,
     :WCP-PAINT,
     :WCP-OTH .
@@ -58,6 +65,10 @@
   skos:inScheme :scheme ;
   skos:topConceptOf :scheme ;
   skos:notation "WCP-NATURAL-STONE" ;
+  owl:deprecated true ;
+  dcterms:isReplacedBy :WCP-NATURAL-STONE-BONDED, :WCP-NATURAL-STONE-ANCHORED ;
+  skos:historyNote "Deprecated: combined several construction systems with different price logic. Replaced by the classes in dcterms:isReplacedBy."@en ;
+  skos:historyNote "Veraltet: fasste mehrere Bausysteme mit unterschiedlicher Preisbildung zusammen. Ersetzt durch die Klassen unter dcterms:isReplacedBy."@de ;
   skos:prefLabel "Natural stone wall cladding"@en ;
   skos:prefLabel "Naturstein-Wandverkleidung"@de ;
   skos:definition "Installed natural stone slab or tile wall cladding."@en ;
@@ -65,16 +76,64 @@
   dcterms:subject "IfcCovering" ;
   dcterms:identifier "natural-stone-wall" .
 
+:WCP-NATURAL-STONE-BONDED a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:topConceptOf :scheme ;
+  skos:notation "WCP-NATURAL-STONE-BONDED" ;
+  skos:prefLabel "Bonded natural stone wall cladding"@en ;
+  skos:prefLabel "Geklebte Natursteinwandbekleidung"@de ;
+  skos:definition "Thin natural stone slabs set in adhesive or mortar on the wall."@en ;
+  skos:definition "Dünnformatige Natursteinplatten, im Kleber oder Mörtel an der Wand angesetzt."@de ;
+  dcterms:subject "IfcCovering" ;
+  dcterms:identifier "natural-stone-bonded" .
+
+:WCP-NATURAL-STONE-ANCHORED a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:topConceptOf :scheme ;
+  skos:notation "WCP-NATURAL-STONE-ANCHORED" ;
+  skos:prefLabel "Anchored natural stone wall cladding"@en ;
+  skos:prefLabel "Verankerte Natursteinwandbekleidung"@de ;
+  skos:definition "Large natural stone slabs mechanically anchored in front of a cavity."@en ;
+  skos:definition "Grossformatige Natursteinplatten, mechanisch mit Hinterlüftung oder Hohlraum verankert."@de ;
+  dcterms:subject "IfcCovering" ;
+  dcterms:identifier "natural-stone-anchored" .
+
 :WCP-ARTIFICIAL-STONE a skos:Concept ;
   skos:inScheme :scheme ;
   skos:topConceptOf :scheme ;
   skos:notation "WCP-ARTIFICIAL-STONE" ;
+  owl:deprecated true ;
+  dcterms:isReplacedBy :WCP-ARTIFICIAL-STONE-BONDED, :WCP-ARTIFICIAL-STONE-ANCHORED ;
+  skos:historyNote "Deprecated: combined several construction systems with different price logic. Replaced by the classes in dcterms:isReplacedBy."@en ;
+  skos:historyNote "Veraltet: fasste mehrere Bausysteme mit unterschiedlicher Preisbildung zusammen. Ersetzt durch die Klassen unter dcterms:isReplacedBy."@de ;
   skos:prefLabel "Artificial stone wall cladding"@en ;
   skos:prefLabel "Kunststein-Wandverkleidung"@de ;
   skos:definition "Installed artificial or agglomerate stone wall cladding."@en ;
   skos:definition "Eingebaute Kunst- oder Agglomeratstein-Wandverkleidung."@de ;
   dcterms:subject "IfcCovering" ;
   dcterms:identifier "artificial-stone-wall" .
+
+:WCP-ARTIFICIAL-STONE-BONDED a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:topConceptOf :scheme ;
+  skos:notation "WCP-ARTIFICIAL-STONE-BONDED" ;
+  skos:prefLabel "Bonded artificial stone wall cladding"@en ;
+  skos:prefLabel "Geklebte Kunststeinwandbekleidung"@de ;
+  skos:definition "Engineered or agglomerate stone slabs bonded to a level substrate."@en ;
+  skos:definition "Kunst- oder Agglomeratsteinplatten, auf einen ebenen Untergrund geklebt."@de ;
+  dcterms:subject "IfcCovering" ;
+  dcterms:identifier "artificial-stone-bonded" .
+
+:WCP-ARTIFICIAL-STONE-ANCHORED a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:topConceptOf :scheme ;
+  skos:notation "WCP-ARTIFICIAL-STONE-ANCHORED" ;
+  skos:prefLabel "Anchored artificial stone wall cladding"@en ;
+  skos:prefLabel "Verankerte Kunststeinwandbekleidung"@de ;
+  skos:definition "Large artificial stone slabs mechanically fixed on a substructure."@en ;
+  skos:definition "Grossformatige Kunststeinplatten, mechanisch auf Unterkonstruktion befestigt."@de ;
+  dcterms:subject "IfcCovering" ;
+  dcterms:identifier "artificial-stone-anchored" .
 
 :WCP-CERAMIC-TILE a skos:Concept ;
   skos:inScheme :scheme ;
@@ -102,12 +161,38 @@
   skos:inScheme :scheme ;
   skos:topConceptOf :scheme ;
   skos:notation "WCP-TEXTILE" ;
+  owl:deprecated true ;
+  dcterms:isReplacedBy :WCP-TEXTILE-BONDED, :WCP-FABRIC-STRETCHED ;
+  skos:historyNote "Deprecated: combined several construction systems with different price logic. Replaced by the classes in dcterms:isReplacedBy."@en ;
+  skos:historyNote "Veraltet: fasste mehrere Bausysteme mit unterschiedlicher Preisbildung zusammen. Ersetzt durch die Klassen unter dcterms:isReplacedBy."@de ;
   skos:prefLabel "Textile wall covering"@en ;
   skos:prefLabel "Textile Wandbekleidung"@de ;
   skos:definition "Installed textile or fabric wall covering system."@en ;
   skos:definition "Eingebautes textiles oder Stoff-Wandbekleidungssystem."@de ;
   dcterms:subject "IfcCovering" ;
   dcterms:identifier "textile-wall" .
+
+:WCP-TEXTILE-BONDED a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:topConceptOf :scheme ;
+  skos:notation "WCP-TEXTILE-BONDED" ;
+  skos:prefLabel "Bonded textile wall covering"@en ;
+  skos:prefLabel "Geklebter Textilwandbelag"@de ;
+  skos:definition "Textile wall covering fully bonded to the substrate."@en ;
+  skos:definition "Textiler Wandbelag, vollflächig auf den Untergrund geklebt."@de ;
+  dcterms:subject "IfcCovering" ;
+  dcterms:identifier "textile-bonded" .
+
+:WCP-FABRIC-STRETCHED a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:topConceptOf :scheme ;
+  skos:notation "WCP-FABRIC-STRETCHED" ;
+  skos:prefLabel "Stretched fabric wall system"@en ;
+  skos:prefLabel "Gespannte Stoffwandbekleidung"@de ;
+  skos:definition "Fabric tensioned into edge profiles, usually with a sound-absorbing backing."@en ;
+  skos:definition "Stoff, in Randprofile gespannt, meist mit schallabsorbierender Hinterlage."@de ;
+  dcterms:subject "IfcCovering" ;
+  dcterms:identifier "fabric-stretched" .
 
 :WCP-SYNTHETIC-PANEL a skos:Concept ;
   skos:inScheme :scheme ;

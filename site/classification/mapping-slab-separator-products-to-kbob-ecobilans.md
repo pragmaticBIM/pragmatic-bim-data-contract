@@ -17,9 +17,17 @@ External target labels are not shipped in this repository; only codes and IRIs a
 | --- | --- | --- |
 | `ssp:SSP-CLT` | `closeMatch` | `kbobbm:07-023` |
 | `ssp:SSP-CLT` | `relatedMatch` | `kbobbm:07-003` |
+| `ssp:SSP-COMPOSITE-BEAM` | `relatedMatch` | `kbobbm:01-002` |
+| `ssp:SSP-COMPOSITE-BEAM` | `relatedMatch` | `kbobbm:06-012` |
+| `ssp:SSP-COMPOSITE-DECK` | `relatedMatch` | `kbobbm:01-002` |
+| `ssp:SSP-COMPOSITE-DECK` | `relatedMatch` | `kbobbm:06-012` |
 | `ssp:SSP-HBV` | `relatedMatch` | `kbobbm:01-002` |
 | `ssp:SSP-HBV` | `relatedMatch` | `kbobbm:07-003` |
 | `ssp:SSP-HBV-CONC` | `closeMatch` | `kbobbm:01-002` |
+| `ssp:SSP-HBV-INSITU` | `relatedMatch` | `kbobbm:01-002` |
+| `ssp:SSP-HBV-INSITU` | `relatedMatch` | `kbobbm:07-003` |
+| `ssp:SSP-HBV-PRECAST` | `relatedMatch` | `kbobbm:01-002` |
+| `ssp:SSP-HBV-PRECAST` | `relatedMatch` | `kbobbm:07-003` |
 | `ssp:SSP-HBV-WOD` | `closeMatch` | `kbobbm:07-003` |
 | `ssp:SSP-HOLZ-LEHM` | `relatedMatch` | `kbobbm:03-020` |
 | `ssp:SSP-HOLZ-LEHM` | `relatedMatch` | `kbobbm:07-003` |

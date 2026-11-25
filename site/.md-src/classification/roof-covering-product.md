@@ -171,6 +171,28 @@ n_RCP_FLAT_SINGLE_PLY <|-- n_RCP_FLAT_SINGLE_PLY_MEM
 <td class="pbs-lang-col" data-lang="en" data-field="scope_note">Fallback for early design stages or missing data.</td>
 </tr>
 <tr>
+<td>RCP-PV-INTEGRATED</td>
+<td></td>
+<td><a href="https://github.com/pragmaticBIM/pragmaticbim-reference/blob/main/products/rcp-pv-integrated.yaml">Reference</a></td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Indach-Photovoltaikanlage</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Photovoltaikmodule, die als wasserführende Dachhaut die Eindeckung ersetzen.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Roof-integrated photovoltaic system</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Photovoltaic modules that replace the roof covering as the weatherproof layer.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>RCP-PV-MOUNTED</td>
+<td></td>
+<td><a href="https://github.com/pragmaticBIM/pragmaticbim-reference/blob/main/products/rcp-pv-mounted.yaml">Reference</a></td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Aufdach-Photovoltaikanlage</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Photovoltaikmodule auf einer Unterkonstruktion über der bestehenden Dacheindeckung oder Abdichtung.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Rack-mounted roof photovoltaic system</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Photovoltaic modules on a mounting frame above the existing roof covering or membrane.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
 <td>RCP-PV-ROOF</td>
 <td></td>
 <td><a href="https://github.com/pragmaticBIM/pragmaticbim-reference/blob/main/products/rcp-pv-roof.yaml">Reference</a></td>

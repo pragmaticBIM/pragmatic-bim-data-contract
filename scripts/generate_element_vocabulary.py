@@ -29,7 +29,16 @@ from element_data import (  # noqa: E402
     ttl_escape,
     used_scheme_prefixes,
 )
-from member_product_data import SCHEMES, MemberProductScheme  # noqa: E402
+from member_product_data import SCHEMES, MemberProduct, MemberProductScheme  # noqa: E402
+
+DEPRECATED_NOTE_EN = (
+    "Deprecated: combined several construction systems with different price logic. "
+    "Replaced by the classes in dcterms:isReplacedBy."
+)
+DEPRECATED_NOTE_DE = (
+    "Veraltet: fasste mehrere Bausysteme mit unterschiedlicher Preisbildung zusammen. "
+    "Ersetzt durch die Klassen unter dcterms:isReplacedBy."
+)
 
 ELEMENT_OUT = (
     REPO_ROOT
@@ -176,6 +185,17 @@ def render_element_skos() -> str:
     return "\n".join(lines).rstrip() + "\n"
 
 
+def _deprecation_lines(product: MemberProduct) -> list[str]:
+    if not product.replaced_by:
+        return []
+    return [
+        "  owl:deprecated true ;",
+        "  dcterms:isReplacedBy " + ", ".join(f":{code}" for code in product.replaced_by) + " ;",
+        f'  skos:historyNote "{DEPRECATED_NOTE_EN}"@en ;',
+        f'  skos:historyNote "{DEPRECATED_NOTE_DE}"@de ;',
+    ]
+
+
 def render_product_skos(scheme: MemberProductScheme) -> str:
     lines = [
         f"@prefix : <{scheme.ns}> .",
@@ -184,6 +204,7 @@ def render_product_skos(scheme: MemberProductScheme) -> str:
         "@prefix skos: <http://www.w3.org/2004/02/skos/core#> .",
         "@prefix dcterms: <http://purl.org/dc/terms/> .",
         "@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .",
+        "@prefix owl: <http://www.w3.org/2002/07/owl#> .",
         "",
     ]
     lines.extend(
@@ -206,6 +227,7 @@ def render_product_skos(scheme: MemberProductScheme) -> str:
                 "  skos:inScheme :scheme ;",
                 "  skos:topConceptOf :scheme ;",
                 f'  skos:notation "{product.notation}" ;',
+                *_deprecation_lines(product),
                 f'  skos:prefLabel "{ttl_escape(product.label_en)}"@en ;',
                 f'  skos:prefLabel "{ttl_escape(product.label_de)}"@de ;',
                 f'  skos:definition "{ttl_escape(product.definition_en)}"@en ;',

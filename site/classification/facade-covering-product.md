@@ -70,6 +70,28 @@ n_FaCP_RENDER_ETICS_WDVS <|-- n_FaCP_RENDER_ETICS_WDVS_RENDER
 <td class="pbs-lang-col" data-lang="en" data-field="scope_note">Distinct from load-bearing masonry walls (SWP-MASONRY) and large-format ceramic ventilated tiles (FaCP-CERAMIC-VENTILATED). Typical for retrofit over existing substrates.</td>
 </tr>
 <tr>
+<td>FaCP-BRICK-SLIP-BONDED</td>
+<td></td>
+<td><a href="https://github.com/pragmaticBIM/pragmaticbim-reference/blob/main/products/facp-brick-slip-bonded.yaml">Reference</a></td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Verklebte Riemchenfassade auf Wärmedämmverbundsystem</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Riemchen, die auf den Armierungsputz eines Wärmedämmverbundsystems geklebt werden.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Brick slips bonded on ETICS</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Brick slips bonded onto the base coat of an ETICS.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>FaCP-BRICK-SLIP-VENTILATED</td>
+<td></td>
+<td><a href="https://github.com/pragmaticBIM/pragmaticbim-reference/blob/main/products/facp-brick-slip-ventilated.yaml">Reference</a></td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Hinterlüftete Riemchenfassade</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Riemchen oder Kleinformatfliesen auf Trägerschienen oder -platten vor einer Hinterlüftung.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Ventilated brick slip facade</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Brick slips or small tiles on carrier rails or boards in front of a ventilated cavity.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
 <td>FaCP-CERAMIC-VENTILATED</td>
 <td></td>
 <td><a href="https://github.com/pragmaticBIM/pragmaticbim-reference/blob/main/products/facp-ceramic-ventilated.yaml">Reference</a></td>

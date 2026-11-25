@@ -35,6 +35,10 @@ ssp:SSP-HBV-CONC skos:closeMatch kbobbm:01_002 .
 
 ssp:SSP-HBV skos:relatedMatch kbobbm:07_003, kbobbm:01_002 .
 
+ssp:SSP-HBV-INSITU skos:relatedMatch kbobbm:07_003, kbobbm:01_002 .
+
+ssp:SSP-HBV-PRECAST skos:relatedMatch kbobbm:07_003, kbobbm:01_002 .
+
 # --- Steel composite (layer decomposition) ---
 
 ssp:SSP-STEEL-COMPOSITE-STL skos:closeMatch kbobbm:06_012 .
@@ -42,6 +46,10 @@ ssp:SSP-STEEL-COMPOSITE-STL skos:closeMatch kbobbm:06_012 .
 ssp:SSP-STEEL-COMPOSITE-CONC skos:closeMatch kbobbm:01_002 .
 
 ssp:SSP-STEEL-COMPOSITE skos:relatedMatch kbobbm:06_012, kbobbm:01_002 .
+
+ssp:SSP-COMPOSITE-DECK skos:relatedMatch kbobbm:06_012, kbobbm:01_002 .
+
+ssp:SSP-COMPOSITE-BEAM skos:relatedMatch kbobbm:06_012, kbobbm:01_002 .
 
 # --- Timber–clay composite (layer decomposition) ---
 

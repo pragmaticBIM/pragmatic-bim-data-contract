@@ -4,6 +4,7 @@
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
 
 :scheme a skos:ConceptScheme ;
   skos:prefLabel "Abstract beam products"@en ;
@@ -25,6 +26,8 @@
     :BMP-STEEL,
     :BMP-TIMBER,
     :BMP-RC,
+    :BMP-RC-INSITU,
+    :BMP-RC-PRECAST,
     :BMP-OTH .
 
 :BMP-STEEL a skos:Concept ;
@@ -53,12 +56,38 @@
   skos:inScheme :scheme ;
   skos:topConceptOf :scheme ;
   skos:notation "BMP-RC" ;
+  owl:deprecated true ;
+  dcterms:isReplacedBy :BMP-RC-INSITU, :BMP-RC-PRECAST ;
+  skos:historyNote "Deprecated: combined several construction systems with different price logic. Replaced by the classes in dcterms:isReplacedBy."@en ;
+  skos:historyNote "Veraltet: fasste mehrere Bausysteme mit unterschiedlicher Preisbildung zusammen. Ersetzt durch die Klassen unter dcterms:isReplacedBy."@de ;
   skos:prefLabel "Reinforced concrete beam"@en ;
   skos:prefLabel "Stahlbetonträger"@de ;
   skos:definition "Cast-in-situ or precast reinforced concrete downstand or upstand beam including formwork and reinforcement. Priced per running metre on a nominal 300 x 600 mm section."@en ;
   skos:definition "Ortbeton- oder Fertigteil-Stahlbetonträger als Unterzug oder Überzug inklusive Schalung und Bewehrung. Preis pro Laufmeter bei Nennquerschnitt 300 x 600 mm."@de ;
   pbs:priceUnit "m" ;
   dcterms:identifier "BMP-RC" .
+
+:BMP-RC-INSITU a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:topConceptOf :scheme ;
+  skos:notation "BMP-RC-INSITU" ;
+  skos:prefLabel "In-situ concrete beam"@en ;
+  skos:prefLabel "Ortbeton-Unterzug"@de ;
+  skos:definition "Reinforced concrete beam formed, reinforced, and cast on site. Priced per running metre on a nominal 300 x 600 mm section."@en ;
+  skos:definition "Vor Ort geschalter, bewehrter und betonierter Stahlbetonträger. Preis pro Laufmeter bei Nennquerschnitt 300 x 600 mm."@de ;
+  pbs:priceUnit "m" ;
+  dcterms:identifier "BMP-RC-INSITU" .
+
+:BMP-RC-PRECAST a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:topConceptOf :scheme ;
+  skos:notation "BMP-RC-PRECAST" ;
+  skos:prefLabel "Precast concrete beam"@en ;
+  skos:prefLabel "Fertigteil-Unterzug"@de ;
+  skos:definition "Reinforced concrete beam produced in the factory, set, and connected on site. Priced per running metre on a nominal 300 x 600 mm section."@en ;
+  skos:definition "Im Werk hergestellter Stahlbetonträger, der versetzt und angeschlossen wird. Preis pro Laufmeter bei Nennquerschnitt 300 x 600 mm."@de ;
+  pbs:priceUnit "m" ;
+  dcterms:identifier "BMP-RC-PRECAST" .
 
 :BMP-OTH a skos:Concept ;
   skos:inScheme :scheme ;

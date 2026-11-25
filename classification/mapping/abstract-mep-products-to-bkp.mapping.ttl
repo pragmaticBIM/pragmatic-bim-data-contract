@@ -41,6 +41,12 @@ mup:MUP-HEAT-BOILER skos:closeMatch bkp:242 ;
 
 mup:MUP-HEAT-HEAT-PUMP skos:closeMatch bkp:242 .
 
+mup:MUP-HEAT-HP-AIR skos:closeMatch bkp:242 .
+
+mup:MUP-HEAT-HP-GROUND skos:closeMatch bkp:242 .
+
+mup:MUP-HEAT-HP-WATER skos:closeMatch bkp:242 .
+
 mup:MUP-HEAT-DISTRICT-HEAT-SUBSTATION skos:closeMatch bkp:242 ;
   skos:relatedMatch bkp:241 .
 
@@ -103,6 +109,12 @@ mtp:MTP-VENT-AIR-VALVE skos:closeMatch bkp:244 .
 mtp:MTP-VENT-GRILLE skos:closeMatch bkp:244 .
 
 mtp:MTP-COOL-CHILLED-CEILING skos:closeMatch bkp:245 ;
+  skos:relatedMatch bkp:283_1 .
+
+mtp:MTP-COOL-CEILING-PANEL skos:closeMatch bkp:245 ;
+  skos:relatedMatch bkp:283_1 .
+
+mtp:MTP-COOL-CHILLED-BEAM skos:closeMatch bkp:245 ;
   skos:relatedMatch bkp:283_1 .
 
 mtp:MTP-COOL-FAN-COIL skos:closeMatch bkp:245 ;
