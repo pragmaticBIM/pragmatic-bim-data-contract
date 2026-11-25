@@ -29,3 +29,9 @@ rcp:RCP-GREEN-INTENSIVE skos:relatedMatch rn:RN_OUT_GRN, rn:RN_OUT_RTR, rn:RN_OU
 # --- PV roof ---
 
 rcp:RCP-PV-ROOF skos:relatedMatch rn:RN_OUT_TEQ, rn:RN_OUT_RWM .
+
+
+rcp:RCP-PV-MOUNTED skos:relatedMatch rn:RN_OUT_TEQ, rn:RN_OUT_RWM .
+
+
+rcp:RCP-PV-INTEGRATED skos:relatedMatch rn:RN_OUT_TEQ, rn:RN_OUT_RWM .

@@ -41,3 +41,11 @@ rcp:RCP-GREEN-INTENSIVE skos:closeMatch bkp:224_1, bkp:421 .
 
 rcp:RCP-PV-ROOF skos:closeMatch bkp:231, bkp:224_1 ;
   skos:relatedMatch bkp:232 .
+
+
+rcp:RCP-PV-MOUNTED skos:closeMatch bkp:231, bkp:224_1 ;
+  skos:relatedMatch bkp:232 .
+
+
+rcp:RCP-PV-INTEGRATED skos:closeMatch bkp:231, bkp:224_1 ;
+  skos:relatedMatch bkp:232 .

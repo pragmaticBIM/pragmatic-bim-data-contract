@@ -3,6 +3,7 @@
 @prefix map: <https://example.org/mapping/> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
 
 :scheme a skos:ConceptScheme ;
   skos:prefLabel "Abstract ceiling covering products"@en ;
@@ -23,9 +24,13 @@
   skos:hasTopConcept
     :CCP-METAL-SHEET,
     :CCP-GYPSUM-BOARD,
+    :CCP-GYPSUM-DIRECT,
+    :CCP-GYPSUM-SUSPENDED,
     :CCP-MINERAL-FIBRE,
     :CCP-WOOD,
     :CCP-SYNTHETIC,
+    :CCP-SYNTHETIC-PANEL,
+    :CCP-STRETCH-MEMBRANE,
     :CCP-METAL-PANEL,
     :CCP-METAL-GRID,
     :CCP-OTH .
@@ -45,12 +50,38 @@
   skos:inScheme :scheme ;
   skos:topConceptOf :scheme ;
   skos:notation "CCP-GYPSUM-BOARD" ;
+  owl:deprecated true ;
+  dcterms:isReplacedBy :CCP-GYPSUM-DIRECT, :CCP-GYPSUM-SUSPENDED ;
+  skos:historyNote "Deprecated: combined several construction systems with different price logic. Replaced by the classes in dcterms:isReplacedBy."@en ;
+  skos:historyNote "Veraltet: fasste mehrere Bausysteme mit unterschiedlicher Preisbildung zusammen. Ersetzt durch die Klassen unter dcterms:isReplacedBy."@de ;
   skos:prefLabel "Gypsum board ceiling"@en ;
   skos:prefLabel "Gipskarton-Decke"@de ;
   skos:definition "Gypsum board or plasterboard ceiling lining or suspended ceiling."@en ;
   skos:definition "Gipskarton-Deckenbekleidung oder abgehaengte GK-Decke."@de ;
   dcterms:subject "IfcCovering" ;
   dcterms:identifier "gypsum-board-ceiling" .
+
+:CCP-GYPSUM-DIRECT a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:topConceptOf :scheme ;
+  skos:notation "CCP-GYPSUM-DIRECT" ;
+  skos:prefLabel "Direct-fixed gypsum board ceiling"@en ;
+  skos:prefLabel "Direkt befestigte Gipsplattendecke"@de ;
+  skos:definition "Gypsum board lining fixed directly or on battens to the slab."@en ;
+  skos:definition "Gipsplattenbekleidung, direkt oder auf Lattung an der Rohdecke befestigt."@de ;
+  dcterms:subject "IfcCovering" ;
+  dcterms:identifier "gypsum-direct" .
+
+:CCP-GYPSUM-SUSPENDED a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:topConceptOf :scheme ;
+  skos:notation "CCP-GYPSUM-SUSPENDED" ;
+  skos:prefLabel "Suspended gypsum board ceiling"@en ;
+  skos:prefLabel "Abgehängte Gipsplattendecke"@de ;
+  skos:definition "Gypsum board ceiling on a suspended substructure with a ceiling void."@en ;
+  skos:definition "Gipsplattendecke auf abgehängter Unterkonstruktion mit Deckenhohlraum."@de ;
+  dcterms:subject "IfcCovering" ;
+  dcterms:identifier "gypsum-suspended" .
 
 :CCP-MINERAL-FIBRE a skos:Concept ;
   skos:inScheme :scheme ;
@@ -78,12 +109,38 @@
   skos:inScheme :scheme ;
   skos:topConceptOf :scheme ;
   skos:notation "CCP-SYNTHETIC" ;
+  owl:deprecated true ;
+  dcterms:isReplacedBy :CCP-SYNTHETIC-PANEL, :CCP-STRETCH-MEMBRANE ;
+  skos:historyNote "Deprecated: combined several construction systems with different price logic. Replaced by the classes in dcterms:isReplacedBy."@en ;
+  skos:historyNote "Veraltet: fasste mehrere Bausysteme mit unterschiedlicher Preisbildung zusammen. Ersetzt durch die Klassen unter dcterms:isReplacedBy."@de ;
   skos:prefLabel "Synthetic ceiling lining"@en ;
   skos:prefLabel "Kunststoff-Deckenbekleidung"@de ;
   skos:definition "Plastic, textile, or synthetic ceiling lining or membrane."@en ;
   skos:definition "Kunststoff-, Textil- oder synthetische Deckenbekleidung oder Membran."@de ;
   dcterms:subject "IfcCovering" ;
   dcterms:identifier "synthetic-ceiling" .
+
+:CCP-SYNTHETIC-PANEL a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:topConceptOf :scheme ;
+  skos:notation "CCP-SYNTHETIC-PANEL" ;
+  skos:prefLabel "Synthetic panel ceiling"@en ;
+  skos:prefLabel "Kunststoffpaneeldecke"@de ;
+  skos:definition "Ceiling lining of synthetic panels on a light substructure."@en ;
+  skos:definition "Deckenbekleidung aus Kunststoffpaneelen auf leichter Unterkonstruktion."@de ;
+  dcterms:subject "IfcCovering" ;
+  dcterms:identifier "synthetic-panel" .
+
+:CCP-STRETCH-MEMBRANE a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:topConceptOf :scheme ;
+  skos:notation "CCP-STRETCH-MEMBRANE" ;
+  skos:prefLabel "Stretch membrane ceiling"@en ;
+  skos:prefLabel "Spanndecke"@de ;
+  skos:definition "Ceiling of foil or fabric tensioned into perimeter profiles."@en ;
+  skos:definition "Decke aus Folie oder Gewebe, in Randprofile gespannt."@de ;
+  dcterms:subject "IfcCovering" ;
+  dcterms:identifier "stretch-membrane" .
 
 :CCP-METAL-PANEL a skos:Concept ;
   skos:inScheme :scheme ;

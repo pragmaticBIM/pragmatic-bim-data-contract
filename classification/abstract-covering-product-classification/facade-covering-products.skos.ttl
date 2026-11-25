@@ -45,6 +45,8 @@
     :FaCP-RETROFIT-OVERCLADDING,
     :FaCP-HPL-PANEL,
     :FaCP-BRICK-SLIP,
+    :FaCP-BRICK-SLIP-VENTILATED,
+    :FaCP-BRICK-SLIP-BONDED,
     :FaCP-OTHER .
 
 # PRIMARY EUROPEAN CLADDING SYSTEMS
@@ -335,6 +337,10 @@
   skos:inScheme :scheme ;
   skos:topConceptOf :scheme ;
   skos:notation "FaCP-RETROFIT-OVERCLADDING" ;
+  owl:deprecated true ;
+  dcterms:isReplacedBy :FaCP-RENDER-ETICS-WDVS, :FaCP-FIBER-CEMENT-BOARD, :FaCP-TIMBER-VENTILATED, :FaCP-METAL-COMPOSITE-PANEL ;
+  skos:historyNote "Deprecated: combined several construction systems with different price logic. Replaced by the classes in dcterms:isReplacedBy."@en ;
+  skos:historyNote "Veraltet: fasste mehrere Bausysteme mit unterschiedlicher Preisbildung zusammen. Ersetzt durch die Klassen unter dcterms:isReplacedBy."@de ;
   skos:prefLabel "Retrofit overcladding system (composite)"@en ;
   skos:prefLabel "Sanierungsüberkleidungssystem (Verbund)"@de ;
   skos:definition "Non-structural facade overlay or wrapper applied over existing facade on retrofit/renovation projects. Combines cladding layer (typically ETICS, ventilated panel, or prefab module) anchored to existing substrate with mechanical fixings and/or adhesive. Primary application: EU Fit-for-55 deep energy retrofits on residential/commercial stock."@en ;
@@ -370,6 +376,10 @@
   skos:inScheme :scheme ;
   skos:topConceptOf :scheme ;
   skos:notation "FaCP-BRICK-SLIP" ;
+  owl:deprecated true ;
+  dcterms:isReplacedBy :FaCP-BRICK-SLIP-VENTILATED, :FaCP-BRICK-SLIP-BONDED ;
+  skos:historyNote "Deprecated: combined several construction systems with different price logic. Replaced by the classes in dcterms:isReplacedBy."@en ;
+  skos:historyNote "Veraltet: fasste mehrere Bausysteme mit unterschiedlicher Preisbildung zusammen. Ersetzt durch die Klassen unter dcterms:isReplacedBy."@de ;
   skos:prefLabel "Brick slip / tile-hung ventilated facade"@en ;
   skos:prefLabel "Ziegelriemchen- / Klinker-Vorhangfassade"@de ;
   skos:definition "Thin brick slip, tile, or masonry-unit ventilated rainscreen cladding on subframe, including retrofit tile-hung systems over insulation."@en ;
@@ -378,6 +388,28 @@
   skos:scopeNote "Unterscheidet sich von tragendem Mauerwerk (SWP-MASONRY) und grossformatigen Keramik-Vorhangfassaden (FaCP-CERAMIC-VENTILATED). Typisch für Sanierung über bestehendem Untergrund."@de ;
   dcterms:subject "IfcCovering" ;
   dcterms:identifier "brick-slip-ventilated-facade" .
+
+:FaCP-BRICK-SLIP-VENTILATED a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:topConceptOf :scheme ;
+  skos:notation "FaCP-BRICK-SLIP-VENTILATED" ;
+  skos:prefLabel "Ventilated brick slip facade"@en ;
+  skos:prefLabel "Hinterlüftete Riemchenfassade"@de ;
+  skos:definition "Brick slips or small tiles on carrier rails or boards in front of a ventilated cavity."@en ;
+  skos:definition "Riemchen oder Kleinformatfliesen auf Trägerschienen oder -platten vor einer Hinterlüftung."@de ;
+  dcterms:subject "IfcCovering" ;
+  dcterms:identifier "brick-slip-ventilated" .
+
+:FaCP-BRICK-SLIP-BONDED a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:topConceptOf :scheme ;
+  skos:notation "FaCP-BRICK-SLIP-BONDED" ;
+  skos:prefLabel "Brick slips bonded on ETICS"@en ;
+  skos:prefLabel "Verklebte Riemchenfassade auf Wärmedämmverbundsystem"@de ;
+  skos:definition "Brick slips bonded onto the base coat of an ETICS."@en ;
+  skos:definition "Riemchen, die auf den Armierungsputz eines Wärmedämmverbundsystems geklebt werden."@de ;
+  dcterms:subject "IfcCovering" ;
+  dcterms:identifier "brick-slip-bonded" .
 
 # FALLBACK & UNCLASSIFIED
 

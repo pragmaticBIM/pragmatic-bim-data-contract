@@ -23,6 +23,15 @@ map:abstractCoveringProductsToMaterialMapping a dcterms:Dataset ;
 fcp:FCP-SUBFLOOR skos:closeMatch mat:MAT-CONC ;
   skos:relatedMatch mat:MAT-CMP .
 
+fcp:FCP-SCREED-BONDED skos:closeMatch mat:MAT-CONC ;
+  skos:relatedMatch mat:MAT-CMP .
+
+fcp:FCP-SCREED-FLOATING skos:closeMatch mat:MAT-CONC ;
+  skos:relatedMatch mat:MAT-CMP .
+
+fcp:FCP-SCREED-HEATED skos:closeMatch mat:MAT-CONC ;
+  skos:relatedMatch mat:MAT-CMP .
+
 fcp:FCP-SEAMLESS-RESIN skos:closeMatch mat:MAT-PLA .
 
 fcp:FCP-CARPET skos:closeMatch mat:MAT-PLA ;
@@ -46,6 +55,10 @@ fcp:FCP-LAMINATE skos:closeMatch mat:MAT-WOD ;
 
 fcp:FCP-RAISED-FLOOR skos:closeMatch mat:MAT-CMP .
 
+fcp:FCP-ACCESS-FLOOR skos:closeMatch mat:MAT-CMP .
+
+fcp:FCP-CAVITY-FLOOR skos:closeMatch mat:MAT-CMP .
+
 fcp:FCP-OTH skos:closeMatch mat:MAT-OTH .
 
 # --- Wall covering products ---
@@ -58,7 +71,17 @@ wcp:WCP-WALLPAPER skos:closeMatch mat:MAT-PLA ;
 
 wcp:WCP-NATURAL-STONE skos:closeMatch mat:MAT-MSN .
 
+wcp:WCP-NATURAL-STONE-BONDED skos:closeMatch mat:MAT-MSN .
+
+wcp:WCP-NATURAL-STONE-ANCHORED skos:closeMatch mat:MAT-MSN .
+
 wcp:WCP-ARTIFICIAL-STONE skos:closeMatch mat:MAT-CONC ;
+  skos:relatedMatch mat:MAT-CMP .
+
+wcp:WCP-ARTIFICIAL-STONE-BONDED skos:closeMatch mat:MAT-CONC ;
+  skos:relatedMatch mat:MAT-CMP .
+
+wcp:WCP-ARTIFICIAL-STONE-ANCHORED skos:closeMatch mat:MAT-CONC ;
   skos:relatedMatch mat:MAT-CMP .
 
 wcp:WCP-CERAMIC-TILE skos:closeMatch mat:MAT-MSN-CLY .
@@ -66,6 +89,10 @@ wcp:WCP-CERAMIC-TILE skos:closeMatch mat:MAT-MSN-CLY .
 wcp:WCP-WOOD-PANEL skos:closeMatch mat:MAT-WOD .
 
 wcp:WCP-TEXTILE skos:closeMatch mat:MAT-PLA .
+
+wcp:WCP-TEXTILE-BONDED skos:closeMatch mat:MAT-PLA .
+
+wcp:WCP-FABRIC-STRETCHED skos:closeMatch mat:MAT-PLA .
 
 wcp:WCP-SYNTHETIC-PANEL skos:closeMatch mat:MAT-PLA .
 
@@ -80,11 +107,19 @@ ccp:CCP-METAL-SHEET skos:closeMatch mat:MAT-MET .
 
 ccp:CCP-GYPSUM-BOARD skos:closeMatch mat:MAT-GYP .
 
+ccp:CCP-GYPSUM-DIRECT skos:closeMatch mat:MAT-GYP .
+
+ccp:CCP-GYPSUM-SUSPENDED skos:closeMatch mat:MAT-GYP .
+
 ccp:CCP-MINERAL-FIBRE skos:closeMatch mat:MAT-INS-MWO .
 
 ccp:CCP-WOOD skos:closeMatch mat:MAT-WOD .
 
 ccp:CCP-SYNTHETIC skos:closeMatch mat:MAT-PLA .
+
+ccp:CCP-SYNTHETIC-PANEL skos:closeMatch mat:MAT-PLA .
+
+ccp:CCP-STRETCH-MEMBRANE skos:closeMatch mat:MAT-PLA .
 
 ccp:CCP-METAL-PANEL skos:closeMatch mat:MAT-MET .
 
@@ -140,6 +175,12 @@ facp:FaCP-HPL-PANEL skos:closeMatch mat:MAT-PLA ;
 facp:FaCP-BRICK-SLIP skos:closeMatch mat:MAT-MSN ;
   skos:relatedMatch mat:MAT-MSN-CLY .
 
+facp:FaCP-BRICK-SLIP-VENTILATED skos:closeMatch mat:MAT-MSN ;
+  skos:relatedMatch mat:MAT-MSN-CLY .
+
+facp:FaCP-BRICK-SLIP-BONDED skos:closeMatch mat:MAT-MSN ;
+  skos:relatedMatch mat:MAT-MSN-CLY .
+
 facp:FaCP-OTHER skos:closeMatch mat:MAT-OTH .
 
 # --- Roof covering products ---
@@ -184,6 +225,12 @@ rcp:RCP-GREEN-INTENSIVE skos:closeMatch mat:MAT-CMP ;
 rcp:RCP-PV-ROOF skos:closeMatch mat:MAT-MET ;
   skos:relatedMatch mat:MAT-GLS .
 
+rcp:RCP-PV-MOUNTED skos:closeMatch mat:MAT-MET ;
+  skos:relatedMatch mat:MAT-GLS .
+
+rcp:RCP-PV-INTEGRATED skos:closeMatch mat:MAT-MET ;
+  skos:relatedMatch mat:MAT-GLS .
+
 rcp:RCP-OTH skos:closeMatch mat:MAT-OTH .
 
 # --- Foundation products ---
@@ -200,16 +247,44 @@ fdp:FDP-PAD skos:closeMatch mat:MAT-CONC .
 
 fdp:FDP-PILE skos:closeMatch mat:MAT-CONC .
 
+fdp:FDP-PILE-DRIVEN skos:closeMatch mat:MAT-CONC .
+
+fdp:FDP-PILE-BORED skos:closeMatch mat:MAT-CONC .
+
 fdp:FDP-MICRO-PILE skos:closeMatch mat:MAT-CONC ;
   skos:relatedMatch mat:MAT-MSN .
 
+fdp:FDP-MICRO-PILE-GROUTED skos:closeMatch mat:MAT-CONC ;
+  skos:relatedMatch mat:MAT-MSN .
+
+fdp:FDP-GROUND-INJECTION skos:closeMatch mat:MAT-CONC ;
+  skos:relatedMatch mat:MAT-MSN .
+
+fdp:FDP-SOIL-REPLACEMENT skos:closeMatch mat:MAT-CONC ;
+  skos:relatedMatch mat:MAT-MSN .
+
 fdp:FDP-RETAINING skos:closeMatch mat:MAT-CONC ;
+  skos:relatedMatch mat:MAT-INS .
+
+fdp:FDP-RETAINING-INSITU skos:closeMatch mat:MAT-CONC ;
+  skos:relatedMatch mat:MAT-INS .
+
+fdp:FDP-RETAINING-PRECAST skos:closeMatch mat:MAT-CONC ;
+  skos:relatedMatch mat:MAT-INS .
+
+fdp:FDP-RETAINING-SHORING skos:closeMatch mat:MAT-CONC ;
   skos:relatedMatch mat:MAT-INS .
 
 fdp:FDP-RETAINING-INS skos:closeMatch mat:MAT-INS-MWO ;
   skos:relatedMatch mat:MAT-PLA .
 
 fdp:FDP-WATERPROOF skos:closeMatch mat:MAT-ASP ;
+  skos:relatedMatch mat:MAT-PLA .
+
+fdp:FDP-WATERPROOF-MEMBRANE skos:closeMatch mat:MAT-ASP ;
+  skos:relatedMatch mat:MAT-PLA .
+
+fdp:FDP-WATERPROOF-CONCRETE skos:closeMatch mat:MAT-ASP ;
   skos:relatedMatch mat:MAT-PLA .
 
 fdp:FDP-DRAINAGE skos:closeMatch mat:MAT-PLA ;
