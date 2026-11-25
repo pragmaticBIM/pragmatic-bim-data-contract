@@ -35,7 +35,7 @@ MAPPING = REPO_ROOT / "classification/mapping/elementplan-elements-to-products.m
 CATALOG = REPO_ROOT / "classification/catalog.yaml"
 
 EXPECTED_ELEMENT_COUNT = 22
-EXPECTED_PRODUCT_COUNT = 21
+EXPECTED_PRODUCT_COUNT = 30
 VALID_PRICE_UNITS = {"m", "m2", "m3", "pcs"}
 
 

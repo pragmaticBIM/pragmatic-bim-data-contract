@@ -4,6 +4,7 @@
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
 
 :scheme a skos:ConceptScheme ;
   skos:prefLabel "Abstract railing products"@en ;
@@ -29,6 +30,9 @@
     :RAP-CABLE-MESH,
     :RAP-TIMBER,
     :RAP-PARAPET-SOLID,
+    :RAP-PARAPET-INSITU,
+    :RAP-PARAPET-PRECAST,
+    :RAP-PARAPET-MASONRY,
     :RAP-HANDRAIL,
     :RAP-OTH .
 
@@ -102,12 +106,49 @@
   skos:inScheme :scheme ;
   skos:topConceptOf :scheme ;
   skos:notation "RAP-PARAPET-SOLID" ;
+  owl:deprecated true ;
+  dcterms:isReplacedBy :RAP-PARAPET-INSITU, :RAP-PARAPET-PRECAST, :RAP-PARAPET-MASONRY ;
+  skos:historyNote "Deprecated: combined several construction systems with different price logic. Replaced by the classes in dcterms:isReplacedBy."@en ;
+  skos:historyNote "Veraltet: fasste mehrere Bausysteme mit unterschiedlicher Preisbildung zusammen. Ersetzt durch die Klassen unter dcterms:isReplacedBy."@de ;
   skos:prefLabel "Solid parapet"@en ;
   skos:prefLabel "Massive Brüstung"@de ;
   skos:definition "Fall protection formed by a solid concrete or masonry parapet with coping, acting as the guarding element. Priced per m of parapet length."@en ;
   skos:definition "Absturzsicherung als massive Beton- oder Mauerwerksbrüstung mit Abdeckung, die die Schutzfunktion übernimmt. Preis pro m Brüstungslänge."@de ;
   pbs:priceUnit "m" ;
   dcterms:identifier "RAP-PARAPET-SOLID" .
+
+:RAP-PARAPET-INSITU a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:topConceptOf :scheme ;
+  skos:notation "RAP-PARAPET-INSITU" ;
+  skos:prefLabel "In-situ concrete parapet"@en ;
+  skos:prefLabel "Ortbetonbrüstung"@de ;
+  skos:definition "Fall protection as a parapet cast in place. Priced per m of parapet length."@en ;
+  skos:definition "Absturzsicherung als vor Ort betonierte Brüstung. Preis pro m Brüstungslänge."@de ;
+  pbs:priceUnit "m" ;
+  dcterms:identifier "RAP-PARAPET-INSITU" .
+
+:RAP-PARAPET-PRECAST a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:topConceptOf :scheme ;
+  skos:notation "RAP-PARAPET-PRECAST" ;
+  skos:prefLabel "Precast parapet"@en ;
+  skos:prefLabel "Fertigteilbrüstung"@de ;
+  skos:definition "Fall protection of factory-made concrete elements. Priced per m of parapet length."@en ;
+  skos:definition "Absturzsicherung aus im Werk hergestellten Betonelementen. Preis pro m Brüstungslänge."@de ;
+  pbs:priceUnit "m" ;
+  dcterms:identifier "RAP-PARAPET-PRECAST" .
+
+:RAP-PARAPET-MASONRY a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:topConceptOf :scheme ;
+  skos:notation "RAP-PARAPET-MASONRY" ;
+  skos:prefLabel "Masonry parapet"@en ;
+  skos:prefLabel "Gemauerte Brüstung"@de ;
+  skos:definition "Fall protection as a masonry parapet with coping. Priced per m of parapet length."@en ;
+  skos:definition "Absturzsicherung als gemauerte Brüstung mit Abdeckung. Preis pro m Brüstungslänge."@de ;
+  pbs:priceUnit "m" ;
+  dcterms:identifier "RAP-PARAPET-MASONRY" .
 
 :RAP-HANDRAIL a skos:Concept ;
   skos:inScheme :scheme ;
