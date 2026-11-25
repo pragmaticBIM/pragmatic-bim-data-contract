@@ -26,6 +26,9 @@ swp:SWP-RAMMED-EARTH skos:closeMatch mat:MAT-MSN ;
 swp:SWP-BLT skos:closeMatch mat:MAT-CONC ;
   skos:relatedMatch mat:MAT-CMP .
 
+swp:SWP-BLT-PANEL skos:closeMatch mat:MAT-CONC ;
+  skos:relatedMatch mat:MAT-CMP .
+
 swp:SWP-PREFAB-CONC skos:closeMatch mat:MAT-CONC ;
   skos:relatedMatch mat:MAT-CMP .
 
@@ -34,13 +37,31 @@ swp:SWP-STEEL skos:closeMatch mat:MAT-MET-STL .
 swp:SWP-TIMBER skos:closeMatch mat:MAT-WOD ;
   skos:relatedMatch mat:MAT-CMP .
 
+swp:SWP-TIMBER-FRAME skos:closeMatch mat:MAT-WOD ;
+  skos:relatedMatch mat:MAT-CMP .
+
+swp:SWP-TIMBER-SOLID skos:closeMatch mat:MAT-WOD ;
+  skos:relatedMatch mat:MAT-CMP .
+
 swp:SWP-LEICHTBAU skos:closeMatch mat:MAT-CMP ;
   skos:relatedMatch mat:MAT-GYP, mat:MAT-PLA .
 
 swp:SWP-CURTAIN-WALL skos:closeMatch mat:MAT-MET-ALU ;
   skos:relatedMatch mat:MAT-GLS, mat:MAT-PLA .
 
+swp:SWP-CURTAIN-WALL-STICK skos:closeMatch mat:MAT-MET-ALU ;
+  skos:relatedMatch mat:MAT-GLS, mat:MAT-PLA .
+
+swp:SWP-CURTAIN-WALL-UNITISED skos:closeMatch mat:MAT-MET-ALU ;
+  skos:relatedMatch mat:MAT-GLS, mat:MAT-PLA .
+
 swp:SWP-ELEMENT-WALL skos:closeMatch mat:MAT-GYP ;
+  skos:relatedMatch mat:MAT-CMP, mat:MAT-MET-STL .
+
+swp:SWP-DRYWALL skos:closeMatch mat:MAT-GYP ;
+  skos:relatedMatch mat:MAT-CMP, mat:MAT-MET-STL .
+
+swp:SWP-SYSTEM-PARTITION skos:closeMatch mat:MAT-GYP ;
   skos:relatedMatch mat:MAT-CMP, mat:MAT-MET-STL .
 
 swp:SWP-OTH skos:closeMatch mat:MAT-OTH .
@@ -55,6 +76,12 @@ ssp:SSP-PREFAB-CONC skos:closeMatch mat:MAT-CONC ;
 ssp:SSP-STEEL-COMPOSITE skos:closeMatch mat:MAT-MET-STL ;
   skos:relatedMatch mat:MAT-CONC .
 
+ssp:SSP-COMPOSITE-DECK skos:closeMatch mat:MAT-MET-STL ;
+  skos:relatedMatch mat:MAT-CONC .
+
+ssp:SSP-COMPOSITE-BEAM skos:closeMatch mat:MAT-MET-STL ;
+  skos:relatedMatch mat:MAT-CONC .
+
 ssp:SSP-TIMBER skos:closeMatch mat:MAT-WOD ;
   skos:relatedMatch mat:MAT-CMP .
 
@@ -62,6 +89,12 @@ ssp:SSP-CLT skos:closeMatch mat:MAT-WOD ;
   skos:relatedMatch mat:MAT-CMP .
 
 ssp:SSP-HBV skos:closeMatch mat:MAT-CMP ;
+  skos:relatedMatch mat:MAT-WOD, mat:MAT-CONC .
+
+ssp:SSP-HBV-INSITU skos:closeMatch mat:MAT-CMP ;
+  skos:relatedMatch mat:MAT-WOD, mat:MAT-CONC .
+
+ssp:SSP-HBV-PRECAST skos:closeMatch mat:MAT-CMP ;
   skos:relatedMatch mat:MAT-WOD, mat:MAT-CONC .
 
 ssp:SSP-HBV-WOD skos:closeMatch mat:MAT-WOD .
@@ -79,6 +112,12 @@ ssp:SSP-LIGHTWEIGHT skos:closeMatch mat:MAT-CMP ;
   skos:relatedMatch mat:MAT-INS .
 
 ssp:SSP-STEEL-COMPOSITE skos:closeMatch mat:MAT-MET-STL ;
+  skos:relatedMatch mat:MAT-CONC .
+
+ssp:SSP-COMPOSITE-DECK skos:closeMatch mat:MAT-MET-STL ;
+  skos:relatedMatch mat:MAT-CONC .
+
+ssp:SSP-COMPOSITE-BEAM skos:closeMatch mat:MAT-MET-STL ;
   skos:relatedMatch mat:MAT-CONC .
 
 ssp:SSP-STEEL-COMPOSITE-STL skos:closeMatch mat:MAT-MET-STL .

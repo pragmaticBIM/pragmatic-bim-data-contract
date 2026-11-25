@@ -23,6 +23,9 @@ swp:SWP-RAMMED-EARTH skos:closeMatch kbobbm:03_020 ;
 swp:SWP-BLT skos:closeMatch kbobbm:02_006 ;
   skos:relatedMatch kbobbm:01_041 .
 
+swp:SWP-BLT-PANEL skos:closeMatch kbobbm:02_006 ;
+  skos:relatedMatch kbobbm:01_041 .
+
 swp:SWP-PREFAB-CONC skos:closeMatch kbobbm:01_042 ;
   skos:relatedMatch kbobbm:01_041 .
 
@@ -32,12 +35,28 @@ swp:SWP-STEEL skos:closeMatch kbobbm:06_012 ;
 swp:SWP-TIMBER skos:closeMatch kbobbm:07_003 ;
   skos:relatedMatch kbobbm:07_023 .
 
+swp:SWP-TIMBER-FRAME skos:closeMatch kbobbm:07_003 ;
+  skos:relatedMatch kbobbm:07_023 .
+
+swp:SWP-TIMBER-SOLID skos:closeMatch kbobbm:07_003 ;
+  skos:relatedMatch kbobbm:07_023 .
+
 swp:SWP-LEICHTBAU skos:closeMatch kbobbm:07_005 ;
   skos:relatedMatch kbobbm:07_004 .
 
 swp:SWP-CURTAIN-WALL skos:closeMatch kbobbm:05_008 .
 
+swp:SWP-CURTAIN-WALL-STICK skos:closeMatch kbobbm:05_008 .
+
+swp:SWP-CURTAIN-WALL-UNITISED skos:closeMatch kbobbm:05_008 .
+
 swp:SWP-ELEMENT-WALL skos:closeMatch kbobbm:05_021 ;
+  skos:relatedMatch kbobbm:03_008, kbobbm:07_014 .
+
+swp:SWP-DRYWALL skos:closeMatch kbobbm:05_021 ;
+  skos:relatedMatch kbobbm:03_008, kbobbm:07_014 .
+
+swp:SWP-SYSTEM-PARTITION skos:closeMatch kbobbm:05_021 ;
   skos:relatedMatch kbobbm:03_008, kbobbm:07_014 .
 
 swp:SWP-OTH skos:closeMatch kbobbm:01_002 ;

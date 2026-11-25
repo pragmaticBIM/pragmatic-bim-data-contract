@@ -23,17 +23,31 @@ swp:SWP-RAMMED-EARTH skos:closeMatch bkp:211 .
 
 swp:SWP-BLT skos:closeMatch bkp:212 .
 
+swp:SWP-BLT-PANEL skos:closeMatch bkp:212 .
+
 swp:SWP-PREFAB-CONC skos:closeMatch bkp:212 .
 
 swp:SWP-STEEL skos:closeMatch bkp:213 .
 
 swp:SWP-TIMBER skos:closeMatch bkp:214 .
 
+swp:SWP-TIMBER-FRAME skos:closeMatch bkp:214 .
+
+swp:SWP-TIMBER-SOLID skos:closeMatch bkp:214 .
+
 swp:SWP-LEICHTBAU skos:closeMatch bkp:215 .
 
 swp:SWP-CURTAIN-WALL skos:closeMatch bkp:215 .
 
+swp:SWP-CURTAIN-WALL-STICK skos:closeMatch bkp:215 .
+
+swp:SWP-CURTAIN-WALL-UNITISED skos:closeMatch bkp:215 .
+
 swp:SWP-ELEMENT-WALL skos:closeMatch bkp:277 .
+
+swp:SWP-DRYWALL skos:closeMatch bkp:277 .
+
+swp:SWP-SYSTEM-PARTITION skos:closeMatch bkp:277 .
 
 # --- Slab separator products (BKP 211–215) ---
 
@@ -43,11 +57,21 @@ ssp:SSP-PREFAB-CONC skos:closeMatch bkp:212 .
 
 ssp:SSP-STEEL-COMPOSITE skos:closeMatch bkp:213 .
 
+ssp:SSP-COMPOSITE-DECK skos:closeMatch bkp:213 .
+
+ssp:SSP-COMPOSITE-BEAM skos:closeMatch bkp:213 .
+
 ssp:SSP-TIMBER skos:closeMatch bkp:214 .
 
 ssp:SSP-CLT skos:closeMatch bkp:214 .
 
 ssp:SSP-HBV skos:closeMatch bkp:214 ;
+  skos:relatedMatch bkp:211 .
+
+ssp:SSP-HBV-INSITU skos:closeMatch bkp:214 ;
+  skos:relatedMatch bkp:211 .
+
+ssp:SSP-HBV-PRECAST skos:closeMatch bkp:214 ;
   skos:relatedMatch bkp:211 .
 
 ssp:SSP-HOLZ-LEHM skos:closeMatch bkp:214 .
