@@ -25,16 +25,39 @@ fdp:FDP-PAD skos:closeMatch bkp:211_5 ;
 
 fdp:FDP-RETAINING skos:closeMatch bkp:211_5, bkp:172 .
 
+fdp:FDP-RETAINING-INSITU skos:closeMatch bkp:211_5, bkp:172 .
+
+fdp:FDP-RETAINING-PRECAST skos:closeMatch bkp:211_5, bkp:172 .
+
+fdp:FDP-RETAINING-SHORING skos:closeMatch bkp:211_5, bkp:172 .
+
 # --- Deep foundations and ground improvement (BKP 171, 177) ---
 
 fdp:FDP-PILE skos:closeMatch bkp:171, bkp:211_5 .
 
+fdp:FDP-PILE-DRIVEN skos:closeMatch bkp:171, bkp:211_5 .
+
+fdp:FDP-PILE-BORED skos:closeMatch bkp:171, bkp:211_5 .
+
 fdp:FDP-MICRO-PILE skos:closeMatch bkp:171, bkp:177 ;
+  skos:relatedMatch bkp:123_2 .
+
+fdp:FDP-MICRO-PILE-GROUTED skos:closeMatch bkp:171, bkp:177 ;
+  skos:relatedMatch bkp:123_2 .
+
+fdp:FDP-GROUND-INJECTION skos:closeMatch bkp:171, bkp:177 ;
+  skos:relatedMatch bkp:123_2 .
+
+fdp:FDP-SOIL-REPLACEMENT skos:closeMatch bkp:171, bkp:177 ;
   skos:relatedMatch bkp:123_2 .
 
 # --- Sealing, drainage and insulation layers (BKP 175, 211.4, 225.2) ---
 
 fdp:FDP-WATERPROOF skos:closeMatch bkp:175, bkp:225_3 .
+
+fdp:FDP-WATERPROOF-MEMBRANE skos:closeMatch bkp:175, bkp:225_3 .
+
+fdp:FDP-WATERPROOF-CONCRETE skos:closeMatch bkp:175, bkp:225_3 .
 
 fdp:FDP-DRAINAGE skos:closeMatch bkp:211_4 ;
   skos:relatedMatch bkp:175 .
