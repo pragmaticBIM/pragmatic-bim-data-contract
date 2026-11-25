@@ -25,6 +25,7 @@ classDiagram
 direction TB
 class QuantityValue
 click QuantityValue href "./QuantityValue.html" _blank
+click Derivation href "./Derivation.html" _blank
 click QuantityType href "./QuantityType.html" _blank
 ```
 
@@ -45,12 +46,13 @@ click QuantityType href "./QuantityType.html" _blank
 | Name | Cardinality and Range | Description | Inheritance |
 | ---  | --- | --- | --- |
 | [quantity_type](quantity_type.md) | 1 <br/> [QuantityType](QuantityType.md) | Controlled quantity type. | direct |
-| [quantity_value](quantity_value.md) | 1 <br/> [Double](Double.md) | Numeric quantity value. | direct |
+| [quantity_value](quantity_value.md) | 1 <br/> [Double](Double.md) | Numeric quantity value. Most QuantityTypes are non-negative; signed types such as height_above_ground_floor and height_above_terrain may be negative when the reference lies below the datum. | direct |
 | [quantity_unit](quantity_unit.md) | 1 <br/> [String](String.md) | Unit of the quantity value. | direct |
 | [quantity_unit_uri](quantity_unit_uri.md) | 0..1 <br/> [Uriorcurie](Uriorcurie.md) | Optional URI that identifies the quantity unit in an external vocabulary such as QUDT. | direct |
 | [metric_scheme](metric_scheme.md) | 0..1 <br/> [String](String.md) | Vocabulary scheme identifier for the measured concept: AbstractBuildingMetric or AbstractBuildingRatio. | direct |
 | [metric_code](metric_code.md) | 0..1 <br/> [String](String.md) | skos:notation of the concept in the matching abstract metric or ratio scheme. | direct |
 | [metric_uri](metric_uri.md) | 0..1 <br/> [Uriorcurie](Uriorcurie.md) | Concept URI from building-metrics.skos.ttl or building-ratios.skos.ttl. | direct |
+| [derivation](derivation.md) | 0..1 <br/> [Derivation](Derivation.md) | How this value or relation was obtained (source kind, method, version, tolerance, inputs). Omit only when the record is copied unchanged from its source and no further traceability is needed. | direct |
 
 
 
@@ -90,6 +92,8 @@ click QuantityType href "./QuantityType.html" _blank
 | [SeparatorWall](SeparatorWall.md) | [quantity_values](quantity_values.md) | range | [QuantityValue](QuantityValue.md) |
 | [SeparatorSlab](SeparatorSlab.md) | [quantity_values](quantity_values.md) | range | [QuantityValue](QuantityValue.md) |
 | [ConnectionPhysical](ConnectionPhysical.md) | [quantity_values](quantity_values.md) | range | [QuantityValue](QuantityValue.md) |
+| [SafetyBarrier](SafetyBarrier.md) | [quantity_values](quantity_values.md) | range | [QuantityValue](QuantityValue.md) |
+| [TerrainSurface](TerrainSurface.md) | [quantity_values](quantity_values.md) | range | [QuantityValue](QuantityValue.md) |
 | [Boundary](Boundary.md) | [quantity_values](quantity_values.md) | range | [QuantityValue](QuantityValue.md) |
 | [Equipment](Equipment.md) | [quantity_values](quantity_values.md) | range | [QuantityValue](QuantityValue.md) |
 | [VirtualEntity](VirtualEntity.md) | [quantity_values](quantity_values.md) | range | [QuantityValue](QuantityValue.md) |
@@ -102,11 +106,13 @@ click QuantityType href "./QuantityType.html" _blank
 | [LevelContext](LevelContext.md) | [quantity_values](quantity_values.md) | range | [QuantityValue](QuantityValue.md) |
 | [ZoneContext](ZoneContext.md) | [quantity_values](quantity_values.md) | range | [QuantityValue](QuantityValue.md) |
 | [Space](Space.md) | [quantity_values](quantity_values.md) | range | [QuantityValue](QuantityValue.md) |
+| [ReservedVolume](ReservedVolume.md) | [quantity_values](quantity_values.md) | range | [QuantityValue](QuantityValue.md) |
 | [System](System.md) | [quantity_values](quantity_values.md) | range | [QuantityValue](QuantityValue.md) |
 | [ConnectionVirtual](ConnectionVirtual.md) | [quantity_values](quantity_values.md) | range | [QuantityValue](QuantityValue.md) |
 | [TimeRecord](TimeRecord.md) | [quantity_values](quantity_values.md) | range | [QuantityValue](QuantityValue.md) |
 | [CostRecord](CostRecord.md) | [quantity_values](quantity_values.md) | range | [QuantityValue](QuantityValue.md) |
 | [Material](Material.md) | [quantity_values](quantity_values.md) | range | [QuantityValue](QuantityValue.md) |
+| [DerivedMeasurement](DerivedMeasurement.md) | [quantity_values](quantity_values.md) | range | [QuantityValue](QuantityValue.md) |
 
 
 
@@ -164,6 +170,7 @@ slots:
 - metric_scheme
 - metric_code
 - metric_uri
+- derivation
 class_uri: pbs:QuantityValue
 
 ```
@@ -189,7 +196,9 @@ attributes:
     required: true
   quantity_value:
     name: quantity_value
-    description: Numeric quantity value.
+    description: Numeric quantity value. Most QuantityTypes are non-negative; signed
+      types such as height_above_ground_floor and height_above_terrain may be negative
+      when the reference lies below the datum.
     from_schema: https://schema.pragmaticbim.ch
     rank: 1000
     owner: QuantityValue
@@ -197,7 +206,6 @@ attributes:
     - QuantityValue
     range: double
     required: true
-    minimum_value: 0
   quantity_unit:
     name: quantity_unit
     description: Unit of the quantity value.
@@ -247,6 +255,19 @@ attributes:
     domain_of:
     - QuantityValue
     range: uriorcurie
+  derivation:
+    name: derivation
+    description: How this value or relation was obtained (source kind, method, version,
+      tolerance, inputs). Omit only when the record is copied unchanged from its source
+      and no further traceability is needed.
+    from_schema: https://schema.pragmaticbim.ch
+    rank: 1000
+    owner: QuantityValue
+    domain_of:
+    - QuantityValue
+    - ConnectionVirtual
+    range: Derivation
+    inlined: true
 class_uri: pbs:QuantityValue
 
 ```

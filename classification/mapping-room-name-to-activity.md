@@ -58,8 +58,12 @@ External target labels are not shipped in this repository; only codes and IRIs a
 | `rn:RN-HYG-SHW` | `mapsToActivity` | `abs:S-HYG-SHW` |
 | `rn:RN-HYG-WC-F` | `mapsToActivity` | `abs:S-HYG-WC-F` |
 | `rn:RN-HYG-WC-IV` | `mapsToActivity` | `abs:S-HYG-WC-IV` |
+| `rn:RN-HYG-WC-LRN` | `mapsToActivity` | `abs:S-HYG-WC-LRN` |
 | `rn:RN-HYG-WC-M` | `mapsToActivity` | `abs:S-HYG-WC-M` |
 | `rn:RN-HYG-WC-MIX` | `mapsToActivity` | `abs:S-HYG-WC-MIX` |
+| `rn:RN-HYG-WC-STF` | `mapsToActivity` | `abs:S-HYG-WC-STF` |
+| `rn:RN-HYG-WC-TCH` | `mapsToActivity` | `abs:S-HYG-WC-TCH` |
+| `rn:RN-HYG-WC-VIS` | `mapsToActivity` | `abs:S-HYG-WC-VIS` |
 | `rn:RN-IND-ASM` | `mapsToActivity` | `abs:M-WRK-PRD` |
 | `rn:RN-IND-CLN` | `mapsToActivity` | `abs:M-WRK-PRD` |
 | `rn:RN-IND-LDK` | `mapsToActivity` | `abs:S-PRK-SVC` |

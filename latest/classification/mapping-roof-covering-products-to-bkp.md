@@ -24,6 +24,12 @@ External target labels are not shipped in this repository; only codes and IRIs a
 | `rcp:RCP-GREEN-INTENSIVE` | `closeMatch` | `bkp:421` |
 | `rcp:RCP-METAL-SHEET` | `closeMatch` | `bkp:222` |
 | `rcp:RCP-METAL-SHEET` | `closeMatch` | `bkp:224-0` |
+| `rcp:RCP-PV-INTEGRATED` | `closeMatch` | `bkp:224-1` |
+| `rcp:RCP-PV-INTEGRATED` | `closeMatch` | `bkp:231` |
+| `rcp:RCP-PV-INTEGRATED` | `relatedMatch` | `bkp:232` |
+| `rcp:RCP-PV-MOUNTED` | `closeMatch` | `bkp:224-1` |
+| `rcp:RCP-PV-MOUNTED` | `closeMatch` | `bkp:231` |
+| `rcp:RCP-PV-MOUNTED` | `relatedMatch` | `bkp:232` |
 | `rcp:RCP-PV-ROOF` | `closeMatch` | `bkp:224-1` |
 | `rcp:RCP-PV-ROOF` | `closeMatch` | `bkp:231` |
 | `rcp:RCP-PV-ROOF` | `relatedMatch` | `bkp:232` |

@@ -16,6 +16,12 @@
       "descriptor": "https://schema.pragmaticbim.ch/entity/core/descriptor.json"
     },
     {
+      "slug": "entity/measurement",
+      "id": "https://schema.pragmaticbim.ch/entity/measurement",
+      "title": "Pragmatic BIM Data Contract - Entity Measurement",
+      "descriptor": "https://schema.pragmaticbim.ch/entity/measurement/descriptor.json"
+    },
+    {
       "slug": "entity/performance",
       "id": "https://schema.pragmaticbim.ch/entity/performance",
       "title": "Pragmatic BIM Data Contract - Entity Performance",

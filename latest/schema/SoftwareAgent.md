@@ -86,6 +86,13 @@ click StatusType href "./StatusType.html" _blank
 
 
 
+## Usages
+
+| used by | used in | type | used |
+| ---  | --- | --- | --- |
+| [Derivation](Derivation.md) | [derived_by](derived_by.md) | range | [SoftwareAgent](SoftwareAgent.md) |
+
+
 
 
 

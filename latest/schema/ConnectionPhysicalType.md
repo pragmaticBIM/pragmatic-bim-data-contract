@@ -9,7 +9,7 @@ search:
 
 
 
-_Classification of physical connector elements that connect spaces._
+_Classification of physical connector elements that connect spaces or carry loads between elements._
 
 
 
@@ -31,6 +31,8 @@ URI: [pbs:ConnectionPhysicalType](https://schema.pragmaticbim.ch/ConnectionPhysi
 | conduit | ifcowl:IfcConduitSegment | Electrical/data conduit connector segment. | Title: Conduit<br>|
 | opening_other | ifcowl:IfcOpeningElement | Other opening-style connector not covered by door/window. | Title: Opening Other<br>|
 | network_other | ifcowl:IfcFlowSegment | Other network connector segment not covered by controlled values. | Title: Network Other<br>|
+| column | ifcowl:IfcColumn | Vertical load-carrying member transferring loads between slabs, beams, and foundations. | Title: Column<br>|
+| beam | ifcowl:IfcBeam | Horizontal or inclined load-carrying member transferring loads to columns or walls. | Title: Beam<br>|
 
 
 
@@ -71,7 +73,8 @@ URI: [pbs:ConnectionPhysicalType](https://schema.pragmaticbim.ch/ConnectionPhysi
 <details>
 ```yaml
 name: ConnectionPhysicalType
-description: Classification of physical connector elements that connect spaces.
+description: Classification of physical connector elements that connect spaces or
+  carry loads between elements.
 from_schema: https://schema.pragmaticbim.ch
 rank: 1000
 enum_uri: pbs:ConnectionPhysicalType
@@ -148,6 +151,26 @@ permissible_values:
         source: de
         description: Sonstiges Netz
     title: Network Other
+  column:
+    text: column
+    description: Vertical load-carrying member transferring loads between slabs, beams,
+      and foundations.
+    meaning: ifcowl:IfcColumn
+    alt_descriptions:
+      de:
+        source: de
+        description: Stuetze
+    title: Column
+  beam:
+    text: beam
+    description: Horizontal or inclined load-carrying member transferring loads to
+      columns or walls.
+    meaning: ifcowl:IfcBeam
+    alt_descriptions:
+      de:
+        source: de
+        description: Traeger
+    title: Beam
 
 ```
 </details>

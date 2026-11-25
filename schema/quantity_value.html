@@ -58,7 +58,7 @@
     
     
   <meta name="panzoom-theme" content="material">
-<meta name="panzoom-data" content='{"selectors": [".d2", ".mermaid"], "initial_zoom_level": 1.0}'> </head>
+<meta name="panzoom-data" content='{"selectors": [".mermaid", ".d2"], "initial_zoom_level": 1.0}'> </head>
   
   
     
@@ -495,7 +495,7 @@
 
 
 <h1 id="slot-quantity_value">Slot: quantity_value<a class="headerlink" href="#slot-quantity_value" title="Permanent link">&para;</a></h1>
-<p><em>Numeric quantity value.</em></p>
+<p><em>Numeric quantity value. Most QuantityTypes are non-negative; signed types such as height_above_ground_floor and height_above_terrain may be negative when the reference lies below the datum.</em></p>
 <div>
 <p>URI: <a href="https://schema.pragmaticbim.ch/quantity_value">pbs:quantity_value</a></p>
 <!-- no inheritance hierarchy -->
@@ -549,24 +549,6 @@
 <td>Required</td>
 <td>Yes</td>
 </tr>
-<tr>
-<td>### Value Constraints</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<table>
-<thead>
-<tr>
-<th>Property</th>
-<th>Value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Minimum Value</td>
-<td>0</td>
-</tr>
 </tbody>
 </table>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information<a class="headerlink" href="#identifier-and-mapping-information" title="Permanent link">&para;</a></h2>
@@ -596,14 +578,15 @@
 <h2 id="linkml-source">LinkML Source<a class="headerlink" href="#linkml-source" title="Permanent link">&para;</a></h2>
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">quantity_value</span>
-<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Numeric quantity value.</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Numeric quantity value. Most QuantityTypes are non-negative; signed types</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">such as height_above_ground_floor and height_above_terrain may be negative when</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">the reference lies below the datum.</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://schema.pragmaticbim.ch</span>
 <span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="nt">domain_of</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">QuantityValue</span>
 <span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">double</span>
 <span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="nt">minimum_value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
 </code></pre></div>
 </details>
 </div>

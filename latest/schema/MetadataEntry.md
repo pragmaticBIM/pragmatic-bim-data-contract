@@ -84,6 +84,8 @@ click MetadataEntry href "./MetadataEntry.html" _blank
 | [SeparatorWall](SeparatorWall.md) | [metadata](metadata.md) | range | [MetadataEntry](MetadataEntry.md) |
 | [SeparatorSlab](SeparatorSlab.md) | [metadata](metadata.md) | range | [MetadataEntry](MetadataEntry.md) |
 | [ConnectionPhysical](ConnectionPhysical.md) | [metadata](metadata.md) | range | [MetadataEntry](MetadataEntry.md) |
+| [SafetyBarrier](SafetyBarrier.md) | [metadata](metadata.md) | range | [MetadataEntry](MetadataEntry.md) |
+| [TerrainSurface](TerrainSurface.md) | [metadata](metadata.md) | range | [MetadataEntry](MetadataEntry.md) |
 | [Boundary](Boundary.md) | [metadata](metadata.md) | range | [MetadataEntry](MetadataEntry.md) |
 | [Equipment](Equipment.md) | [metadata](metadata.md) | range | [MetadataEntry](MetadataEntry.md) |
 | [VirtualEntity](VirtualEntity.md) | [metadata](metadata.md) | range | [MetadataEntry](MetadataEntry.md) |
@@ -96,11 +98,13 @@ click MetadataEntry href "./MetadataEntry.html" _blank
 | [LevelContext](LevelContext.md) | [metadata](metadata.md) | range | [MetadataEntry](MetadataEntry.md) |
 | [ZoneContext](ZoneContext.md) | [metadata](metadata.md) | range | [MetadataEntry](MetadataEntry.md) |
 | [Space](Space.md) | [metadata](metadata.md) | range | [MetadataEntry](MetadataEntry.md) |
+| [ReservedVolume](ReservedVolume.md) | [metadata](metadata.md) | range | [MetadataEntry](MetadataEntry.md) |
 | [System](System.md) | [metadata](metadata.md) | range | [MetadataEntry](MetadataEntry.md) |
 | [ConnectionVirtual](ConnectionVirtual.md) | [metadata](metadata.md) | range | [MetadataEntry](MetadataEntry.md) |
 | [TimeRecord](TimeRecord.md) | [metadata](metadata.md) | range | [MetadataEntry](MetadataEntry.md) |
 | [CostRecord](CostRecord.md) | [metadata](metadata.md) | range | [MetadataEntry](MetadataEntry.md) |
 | [Material](Material.md) | [metadata](metadata.md) | range | [MetadataEntry](MetadataEntry.md) |
+| [DerivedMeasurement](DerivedMeasurement.md) | [metadata](metadata.md) | range | [MetadataEntry](MetadataEntry.md) |
 
 
 

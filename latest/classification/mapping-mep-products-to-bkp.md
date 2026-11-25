@@ -15,6 +15,10 @@ External target labels are not shipped in this repository; only codes and IRIs a
 
 | Source | Relation | Targets |
 | --- | --- | --- |
+| `mtp:MTP-COOL-CEILING-PANEL` | `closeMatch` | `bkp:245` |
+| `mtp:MTP-COOL-CEILING-PANEL` | `relatedMatch` | `bkp:283-1` |
+| `mtp:MTP-COOL-CHILLED-BEAM` | `closeMatch` | `bkp:245` |
+| `mtp:MTP-COOL-CHILLED-BEAM` | `relatedMatch` | `bkp:283-1` |
 | `mtp:MTP-COOL-CHILLED-CEILING` | `closeMatch` | `bkp:245` |
 | `mtp:MTP-COOL-CHILLED-CEILING` | `relatedMatch` | `bkp:283-1` |
 | `mtp:MTP-COOL-FAN-COIL` | `closeMatch` | `bkp:245` |
@@ -72,6 +76,9 @@ External target labels are not shipped in this repository; only codes and IRIs a
 | `mup:MUP-HEAT-DISTRICT-HEAT-SUBSTATION` | `closeMatch` | `bkp:242` |
 | `mup:MUP-HEAT-DISTRICT-HEAT-SUBSTATION` | `relatedMatch` | `bkp:241` |
 | `mup:MUP-HEAT-HEAT-PUMP` | `closeMatch` | `bkp:242` |
+| `mup:MUP-HEAT-HP-AIR` | `closeMatch` | `bkp:242` |
+| `mup:MUP-HEAT-HP-GROUND` | `closeMatch` | `bkp:242` |
+| `mup:MUP-HEAT-HP-WATER` | `closeMatch` | `bkp:242` |
 | `mup:MUP-SM-COMPRESSOR` | `closeMatch` | `bkp:247` |
 | `mup:MUP-SM-COMPRESSOR` | `relatedMatch` | `bkp:247-1` |
 | `mup:MUP-SM-FIRE-PUMP` | `closeMatch` | `bkp:252` |

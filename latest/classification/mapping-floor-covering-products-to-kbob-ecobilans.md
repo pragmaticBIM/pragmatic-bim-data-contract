@@ -15,11 +15,15 @@ External target labels are not shipped in this repository; only codes and IRIs a
 
 | Source | Relation | Targets |
 | --- | --- | --- |
+| `fcp:FCP-ACCESS-FLOOR` | `closeMatch` | `kbobbm:11-005` |
+| `fcp:FCP-ACCESS-FLOOR` | `relatedMatch` | `kbobbm:07-014` |
 | `fcp:FCP-ARTIFICIAL-STONE` | `closeMatch` | `kbobbm:11-012` |
 | `fcp:FCP-ARTIFICIAL-STONE` | `relatedMatch` | `kbobbm:11-027` |
 | `fcp:FCP-CARPET` | `closeMatch` | `kbobbm:11-024` |
 | `fcp:FCP-CARPET` | `relatedMatch` | `kbobbm:11-025` |
 | `fcp:FCP-CARPET` | `relatedMatch` | `kbobbm:11-026` |
+| `fcp:FCP-CAVITY-FLOOR` | `closeMatch` | `kbobbm:11-005` |
+| `fcp:FCP-CAVITY-FLOOR` | `relatedMatch` | `kbobbm:07-014` |
 | `fcp:FCP-CERAMIC-TILE` | `closeMatch` | `kbobbm:11-008` |
 | `fcp:FCP-LAMINATE` | `closeMatch` | `kbobbm:11-013` |
 | `fcp:FCP-LINOLIUM` | `closeMatch` | `kbobbm:11-014` |
@@ -35,6 +39,9 @@ External target labels are not shipped in this repository; only codes and IRIs a
 | `fcp:FCP-PARQUET` | `relatedMatch` | `kbobbm:11-020` |
 | `fcp:FCP-RAISED-FLOOR` | `closeMatch` | `kbobbm:11-005` |
 | `fcp:FCP-RAISED-FLOOR` | `relatedMatch` | `kbobbm:07-014` |
+| `fcp:FCP-SCREED-BONDED` | `closeMatch` | `kbobbm:11-005` |
+| `fcp:FCP-SCREED-FLOATING` | `closeMatch` | `kbobbm:11-005` |
+| `fcp:FCP-SCREED-HEATED` | `closeMatch` | `kbobbm:11-005` |
 | `fcp:FCP-SEAMLESS-RESIN` | `closeMatch` | `kbobbm:11-002` |
 | `fcp:FCP-SEAMLESS-RESIN` | `relatedMatch` | `kbobbm:11-001` |
 | `fcp:FCP-SUBFLOOR` | `closeMatch` | `kbobbm:11-005` |

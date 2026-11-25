@@ -30,6 +30,7 @@ URI: [pbs:TransportMedium](https://schema.pragmaticbim.ch/TransportMedium)
 | gas | pbs:transport_medium_gas | Gas medium. | Title: Gas<br>|
 | electricity | pbs:transport_medium_electricity | Electrical energy medium. | Title: Electricity<br>|
 | data | pbs:transport_medium_data | Data/signal medium. | Title: Data<br>|
+| structural_load | pbs:transport_medium_structural_load | Structural forces (dead, live, wind, seismic loads). | Title: Structural Load<br>|
 
 
 
@@ -138,6 +139,15 @@ permissible_values:
         source: de
         description: Daten
     title: Data
+  structural_load:
+    text: structural_load
+    description: Structural forces (dead, live, wind, seismic loads).
+    meaning: pbs:transport_medium_structural_load
+    alt_descriptions:
+      de:
+        source: de
+        description: Tragwerkslasten
+    title: Structural Load
 
 ```
 </details>

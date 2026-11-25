@@ -38,6 +38,7 @@ URI: [pbs:ContentKind](https://schema.pragmaticbim.ch/ContentKind)
 | process | pbs:content_kind_process | Running BPMN process instance for workflow orchestration. | Title: Process<br>|
 | agent | pbs:content_kind_agent | Person, organization, or software actor in the project. | Title: Agent<br>|
 | message | pbs:content_kind_message | Message or communication entity for coordination. | Title: Message<br>|
+| measurement | pbs:content_kind_measurement | Derived multi-subject measurement entity (for example clear width between railings). | Title: Measurement<br>|
 
 
 
@@ -214,6 +215,16 @@ permissible_values:
         source: de
         description: Nachricht
     title: Message
+  measurement:
+    text: measurement
+    description: Derived multi-subject measurement entity (for example clear width
+      between railings).
+    meaning: pbs:content_kind_measurement
+    alt_descriptions:
+      de:
+        source: de
+        description: Messung
+    title: Measurement
 
 ```
 </details>

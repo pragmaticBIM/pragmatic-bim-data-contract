@@ -62,7 +62,7 @@
     
     
   <meta name="panzoom-theme" content="material">
-<meta name="panzoom-data" content='{"selectors": [".d2", ".mermaid"], "initial_zoom_level": 1.0}'> </head>
+<meta name="panzoom-data" content='{"selectors": [".mermaid", ".d2"], "initial_zoom_level": 1.0}'> </head>
   
   
     
@@ -721,7 +721,15 @@
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ConnectionPhysical.html">ConnectionPhysical</a></td>
-<td>Physical connector providing functional connection between spaces (for example door, window, duct, pipe, cable).</td>
+<td>Physical connector providing functional connection between spaces (for example door, window, duct, pipe, cable) or carrying loads between elements (column, beam).</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="SafetyBarrier.html">SafetyBarrier</a></td>
+<td>Linear fall protection or guiding element (balustrade, guardrail, handrail) along slab, balcony, roof, landing, stair, or ramp edges.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="TerrainSurface.html">TerrainSurface</a></td>
+<td>Existing or projected terrain surface (survey surface) as a geographic element. Converted from IfcGeographicElement (IFC4+); IFC2x3 proxies stay generic.</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="Boundary.html">Boundary</a></td>
@@ -772,12 +780,16 @@
 <td>Spatial container used for occupancy, circulation, service, or analysis.</td>
 </tr>
 <tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ReservedVolume.html">ReservedVolume</a></td>
+<td>Volume that must stay clear of building elements (maintenance space, installation path, structural exclusion zone, movement clearance, device space). Modelled as a proxy volume and identified through the pragmaticBIM Reference element definition.</td>
+</tr>
+<tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="System.html">System</a></td>
 <td>Building service system grouping that serves spaces or zones.</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ConnectionVirtual.html">ConnectionVirtual</a></td>
-<td>Logical or topological connection between spaces and/or physical elements.</td>
+<td>Logical or topological connection between spaces and/or physical elements. Connections read from IFC relationships and connections computed from geometry (for example a contact test) use the same class; derivation records which of the two applies and how the connection was computed.</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="TimeRecord.html">TimeRecord</a></td>
@@ -832,6 +844,10 @@
 <td>Material or product specification requirement for matching against assigned materials.</td>
 </tr>
 <tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="DerivedMeasurement.html">DerivedMeasurement</a></td>
+<td>Measurement entity with its own identity for values that involve more than one subject (for example clear width between a stair and two railings). Subjects are listed in applies_to_entities; the value and its Derivation live in quantity_values; an optional display line uses geometry_representations (typically WKT LINESTRING Z). Use measurement_status to distinguish a successful measure from not_measurable or not_applicable.</td>
+</tr>
+<tr>
 <td><a href="Change.html">Change</a></td>
 <td>Audit record observing the project graph moving between revisions. Not an Entity and not a graph node — it watches the graph. Use change_type together with the concrete subclass for interpretation.</td>
 </tr>
@@ -884,6 +900,10 @@
 <tr>
 <td><a href="QuantityValue.html">QuantityValue</a></td>
 <td>Minimal quantity record for costing and analysis.</td>
+</tr>
+<tr>
+<td><a href="Derivation.html">Derivation</a></td>
+<td>How a value or relation was obtained. Embedded on the record it describes (for example a QuantityValue measured from geometry, or a ConnectionVirtual computed by a contact test) so that every derived fact carries its source kind, method, method version, tolerance, and input entities. Lets checks distinguish values read from IFC, values computed from geometry, project parameters, and manual entries, and lets results be reproduced or recomputed when a method changes.</td>
 </tr>
 <tr>
 <td><a href="MetadataEntry.html">MetadataEntry</a></td>
@@ -960,6 +980,10 @@
 </tr>
 </thead>
 <tbody>
+<tr>
+<td><a href="above_ground.html">above_ground</a></td>
+<td>Whether this storey is fully above ground. Resolved from IFC properties, the storey naming convention, or elevation (see ground_reference_source).</td>
+</tr>
 <tr>
 <td><a href="acceptance_criteria.html">acceptance_criteria</a></td>
 <td>Criteria that define when the deliverable is accepted.</td>
@@ -1039,6 +1063,34 @@
 <tr>
 <td><a href="availability_notes.html">availability_notes</a></td>
 <td>Optional notes about availability, office hours, or response expectations.</td>
+</tr>
+<tr>
+<td><a href="barrier_type.html">barrier_type</a></td>
+<td>Classification of the safety barrier (balustrade, guardrail, handrail).</td>
+</tr>
+<tr>
+<td><a href="bbox_max_x.html">bbox_max_x</a></td>
+<td>Axis-aligned bounding box maximum X in project coordinates (metres).</td>
+</tr>
+<tr>
+<td><a href="bbox_max_y.html">bbox_max_y</a></td>
+<td>Axis-aligned bounding box maximum Y in project coordinates (metres).</td>
+</tr>
+<tr>
+<td><a href="bbox_max_z.html">bbox_max_z</a></td>
+<td>Axis-aligned bounding box maximum Z (top elevation) in project coordinates (metres).</td>
+</tr>
+<tr>
+<td><a href="bbox_min_x.html">bbox_min_x</a></td>
+<td>Axis-aligned bounding box minimum X in project coordinates (metres).</td>
+</tr>
+<tr>
+<td><a href="bbox_min_y.html">bbox_min_y</a></td>
+<td>Axis-aligned bounding box minimum Y in project coordinates (metres).</td>
+</tr>
+<tr>
+<td><a href="bbox_min_z.html">bbox_min_z</a></td>
+<td>Axis-aligned bounding box minimum Z (bottom elevation) in project coordinates (metres).</td>
 </tr>
 <tr>
 <td><a href="belongs_to_company.html">belongs_to_company</a></td>
@@ -1146,7 +1198,7 @@
 </tr>
 <tr>
 <td><a href="connects_physical_elements.html">connects_physical_elements</a></td>
-<td>Physical elements connected by this virtual connection (for example wall-wall, wall-slab).</td>
+<td>Physical elements connected to this one side by side (for example wall-wall junction, beam framing into a column). On a physical element the relation is symmetric and stated on both elements. From IfcRelConnectsElements / IfcRelConnectsPathElements, or computed from geometric contact. Bearing contact is rests_on.</td>
 </tr>
 <tr>
 <td><a href="connects_spaces.html">connects_spaces</a></td>
@@ -1277,6 +1329,42 @@
 <td>FS</td>
 </tr>
 <tr>
+<td><a href="derivation.html">derivation</a></td>
+<td>How this value or relation was obtained (source kind, method, version, tolerance, inputs). Omit only when the record is copied unchanged from its source and no further traceability is needed.</td>
+</tr>
+<tr>
+<td><a href="derivation_inputs.html">derivation_inputs</a></td>
+<td>Entities whose data or geometry were used, beyond the subject itself. For a height measured above a reference surface this includes the reference element (for example the pavement course).</td>
+</tr>
+<tr>
+<td><a href="derivation_method.html">derivation_method</a></td>
+<td>Identifier of the method or algorithm that produced the value, for example contact_test, height_above_reference_surface, spacing_along_axis, or the IFC relationship class for ifc_explicit sources.</td>
+</tr>
+<tr>
+<td><a href="derivation_method_version.html">derivation_method_version</a></td>
+<td>Version of the method implementation, so results can be reproduced and recomputed when the method changes.</td>
+</tr>
+<tr>
+<td><a href="derivation_source_kind.html">derivation_source_kind</a></td>
+<td>Kind of source the value or relation comes from (IFC relationship or property, geometry computation, project parameter, manual entry).</td>
+</tr>
+<tr>
+<td><a href="derivation_tolerance.html">derivation_tolerance</a></td>
+<td>Geometric or numeric tolerance applied by the method (for example the maximum gap still counted as contact).</td>
+</tr>
+<tr>
+<td><a href="derivation_tolerance_unit.html">derivation_tolerance_unit</a></td>
+<td>Unit of derivation_tolerance (for example m, mm, deg).</td>
+</tr>
+<tr>
+<td><a href="derived_at.html">derived_at</a></td>
+<td>Timestamp when the value or relation was derived.</td>
+</tr>
+<tr>
+<td><a href="derived_by.html">derived_by</a></td>
+<td>Software agent (pipeline, service) that executed the method.</td>
+</tr>
+<tr>
 <td><a href="description.html">description</a></td>
 <td>Default description text.</td>
 </tr>
@@ -1313,6 +1401,14 @@
 <td>Classification of equipment (for example HVAC, electrical, plumbing).</td>
 </tr>
 <tr>
+<td><a href="escape_route_next.html">escape_route_next</a></td>
+<td>Next element on the shortest horizontal escape route: the door a space is left through, or the door or stair a door leads on to. The route ends at an exit to the outside or at a stair leaving the storey; follow the slot repeatedly to read the whole route. Computed from geometry; the remaining length is the escape_route_length quantity.</td>
+</tr>
+<tr>
+<td><a href="escape_route_role.html">escape_route_role</a></td>
+<td>Role of this space on an escape route: horizontal, vertical, or exit to the open air. Unset when the space is not part of an escape route. From ePset_Space.EscapeRouteRole; shared by VKF 16-15 and 17-15 checks.</td>
+</tr>
+<tr>
 <td><a href="external_instance_uri.html">external_instance_uri</a></td>
 <td>URI of the corresponding process instance in an external workflow engine when applicable.</td>
 </tr>
@@ -1345,12 +1441,28 @@
 <td>Geometry references associated with the entity. A single element may link to multiple geometry representations to serve different intents (authoring, coordination, analysis, visualization) without duplicating the element itself.</td>
 </tr>
 <tr>
+<td><a href="geometry_wkt.html">geometry_wkt</a></td>
+<td>Inline WKT payload for small representations (for example a footprint_2d polygon or a path_3d line in project coordinates, metres).</td>
+</tr>
+<tr>
 <td><a href="granted_at.html">granted_at</a></td>
 <td>Timestamp when consent was given. Required when lawful_basis is consent.</td>
 </tr>
 <tr>
+<td><a href="ground_reference_source.html">ground_reference_source</a></td>
+<td>Which source was used to resolve above_ground and is_ground_floor for this storey (same source for all storeys of a building).</td>
+</tr>
+<tr>
 <td><a href="group_members.html">group_members</a></td>
 <td>Zone members; may include spaces, separations, systems, etc.</td>
+</tr>
+<tr>
+<td><a href="guards_space.html">guards_space</a></td>
+<td>Spaces whose walking surface this barrier protects against falls. Computed from geometry: the barrier footprint lies within a tolerance of the space footprint and the space floor is at or below the barrier base.</td>
+</tr>
+<tr>
+<td><a href="hosted_by.html">hosted_by</a></td>
+<td>Host element whose opening this connector fills (for example the wall a door or window sits in). From IfcRelFillsElement and IfcRelVoidsElement, or computed from geometry when the IFC chain is missing.</td>
 </tr>
 <tr>
 <td><a href="id.html">id</a></td>
@@ -1373,12 +1485,20 @@
 <td>Intent stability verdict from an automated judge (for example iterthink STABLE/NEW).</td>
 </tr>
 <tr>
+<td><a href="intersects_elements.html">intersects_elements</a></td>
+<td>Physical elements whose body overlaps this reserved volume beyond the configured tolerance. Computed from geometry; an empty value means the volume is clear.</td>
+</tr>
+<tr>
 <td><a href="is_above_ground.html">is_above_ground</a></td>
 <td>Whether the space is above ground level. When unset, consumers may derive from parent_level elevation relative to project datum.</td>
 </tr>
 <tr>
 <td><a href="is_cooled.html">is_cooled</a></td>
 <td>Whether the space is designed to receive cooling (air conditioning).</td>
+</tr>
+<tr>
+<td><a href="is_ground_floor.html">is_ground_floor</a></td>
+<td>Whether this storey is the building's ground floor (entrance level). Exactly one storey per building should be true after resolution.</td>
 </tr>
 <tr>
 <td><a href="is_heated.html">is_heated</a></td>
@@ -1407,6 +1527,10 @@
 <tr>
 <td><a href="lifecycle_status.html">lifecycle_status</a></td>
 <td>Whether the person is active, retired, or deceased. Orthogonal to privacy processing state and workflow QA status.</td>
+</tr>
+<tr>
+<td><a href="lit_space.html">lit_space</a></td>
+<td>Interior spaces that receive daylight through this window. From space boundaries or computed from geometry (adjacent or nearest interior space).</td>
 </tr>
 <tr>
 <td><a href="localized_descriptions.html">localized_descriptions</a></td>
@@ -1443,6 +1567,10 @@
 <tr>
 <td><a href="meaning_uri.html">meaning_uri</a></td>
 <td>Optional semantic URI for linking the entity instance to an external ontology concept.</td>
+</tr>
+<tr>
+<td><a href="measurement_status.html">measurement_status</a></td>
+<td>Whether the measurement was obtained (measured), could not be computed from the model (not_measurable), or does not apply in this context (not_applicable).</td>
 </tr>
 <tr>
 <td><a href="media_format.html">media_format</a></td>
@@ -1511,6 +1639,10 @@
 <tr>
 <td><a href="norm_uri.html">norm_uri</a></td>
 <td>URI identifying the norm, standard, or building code.</td>
+</tr>
+<tr>
+<td><a href="opens_in_escape_direction.html">opens_in_escape_direction</a></td>
+<td>Whether a swing door leaf opens in the direction of the shortest horizontal escape route through the door. Computed from door OperationType and local placement against escape_route_next; unset when the door is not on a route or the operation type is not a swing.</td>
 </tr>
 <tr>
 <td><a href="operated_by.html">operated_by</a></td>
@@ -1682,7 +1814,7 @@
 </tr>
 <tr>
 <td><a href="quantity_value.html">quantity_value</a></td>
-<td>Numeric quantity value.</td>
+<td>Numeric quantity value. Most QuantityTypes are non-negative; signed types such as height_above_ground_floor and height_above_terrain may be negative when the reference lies below the datum.</td>
 </tr>
 <tr>
 <td><a href="quantity_values.html">quantity_values</a></td>
@@ -1755,6 +1887,14 @@
 <tr>
 <td><a href="requirement_property_key.html">requirement_property_key</a></td>
 <td>Canonical performance key for the target (for example u_value, resistance_rating, airborne_sound_rating_db, seismic_structure_class, gwp_embodied). Either a permissible value of a PerformanceProperty key enum, matched against Entity.performance_properties property_key, or an entity slot name such as is_heated.</td>
+</tr>
+<tr>
+<td><a href="reserved_volume_type.html">reserved_volume_type</a></td>
+<td>Purpose of the reserved volume.</td>
+</tr>
+<tr>
+<td><a href="rests_on.html">rests_on</a></td>
+<td>Elements this element sits on: its underside bears on their top (for example wall on slab, column on slab, slab on wall or column, equipment on a plinth). Computed from geometric contact; it records contact, not a structural analysis result. The inverse (supports) is read by querying the slot from the other side.</td>
 </tr>
 <tr>
 <td><a href="retain_until.html">retain_until</a></td>
@@ -1921,6 +2061,10 @@
 <td>Task type expressed as a URI/CURIE from a controlled vocabulary.</td>
 </tr>
 <tr>
+<td><a href="terrain_surface_status.html">terrain_surface_status</a></td>
+<td>Whether the terrain surface represents the existing or the projected site.</td>
+</tr>
+<tr>
 <td><a href="text_value.html">text_value</a></td>
 <td>Localized text value.</td>
 </tr>
@@ -2000,6 +2144,10 @@
 <td>Kind of external project artifact referenced by storage_link.</td>
 </tr>
 <tr>
+<td><a href="BarrierType.html">BarrierType</a></td>
+<td>Classification of safety barriers (fall protection and guiding elements).</td>
+</tr>
+<tr>
 <td><a href="BoundaryType.html">BoundaryType</a></td>
 <td></td>
 </tr>
@@ -2021,7 +2169,7 @@
 </tr>
 <tr>
 <td><a href="ConnectionPhysicalType.html">ConnectionPhysicalType</a></td>
-<td>Classification of physical connector elements that connect spaces.</td>
+<td>Classification of physical connector elements that connect spaces or carry loads between elements.</td>
 </tr>
 <tr>
 <td><a href="ConnectionRequirementDriver.html">ConnectionRequirementDriver</a></td>
@@ -2048,6 +2196,10 @@
 <td>Precedence logic between two time records (FS finish-to-start, SS start-to-start, FF finish-to-finish, SF start-to-finish).</td>
 </tr>
 <tr>
+<td><a href="DerivationSourceKind.html">DerivationSourceKind</a></td>
+<td>Kind of source a derived value or relation comes from. Used by Derivation.derivation_source_kind.</td>
+</tr>
+<tr>
 <td><a href="EnvironmentalPropertyKey.html">EnvironmentalPropertyKey</a></td>
 <td>Canonical environmental keys for embodied impacts of an element type, per square metre of element area.</td>
 </tr>
@@ -2056,12 +2208,20 @@
 <td></td>
 </tr>
 <tr>
+<td><a href="EscapeRouteRole.html">EscapeRouteRole</a></td>
+<td>Role of a space on an escape route (VKF 16-15 / 17-15): horizontal route, vertical route, or exit to the open air. Set only on spaces that belong to an escape route.</td>
+</tr>
+<tr>
 <td><a href="FirePropertyKey.html">FirePropertyKey</a></td>
 <td>Canonical fire-related keys derived from IFC PropertySets.</td>
 </tr>
 <tr>
 <td><a href="GeometryRepresentationType.html">GeometryRepresentationType</a></td>
 <td>Classification of geometric representation dimension/style.</td>
+</tr>
+<tr>
+<td><a href="GroundReferenceSource.html">GroundReferenceSource</a></td>
+<td>Source used to resolve LevelContext above_ground and is_ground_floor flags.</td>
 </tr>
 <tr>
 <td><a href="IndoorEnvironmentPropertyKey.html">IndoorEnvironmentPropertyKey</a></td>
@@ -2078,6 +2238,10 @@
 <tr>
 <td><a href="MaterialPropertyKey.html">MaterialPropertyKey</a></td>
 <td>Canonical material-related keys derived from IFC PropertySets and material metadata.</td>
+</tr>
+<tr>
+<td><a href="MeasurementStatus.html">MeasurementStatus</a></td>
+<td>Outcome of attempting a derived measurement on model entities.</td>
 </tr>
 <tr>
 <td><a href="PerformancePropertyValueType.html">PerformancePropertyValueType</a></td>
@@ -2106,6 +2270,10 @@
 <tr>
 <td><a href="RequirementTargetOperator.html">RequirementTargetOperator</a></td>
 <td>Comparison operator for numeric or textual requirement targets.</td>
+</tr>
+<tr>
+<td><a href="ReservedVolumeType.html">ReservedVolumeType</a></td>
+<td>Purpose of a reserved volume that must stay clear of building elements.</td>
 </tr>
 <tr>
 <td><a href="SecurityPropertyKey.html">SecurityPropertyKey</a></td>
@@ -2150,6 +2318,10 @@
 <tr>
 <td><a href="SystemType.html">SystemType</a></td>
 <td>Role of an MEP-related element or grouping in the service chain.</td>
+</tr>
+<tr>
+<td><a href="TerrainSurfaceStatus.html">TerrainSurfaceStatus</a></td>
+<td>Whether a terrain surface describes the existing or the projected site.</td>
 </tr>
 <tr>
 <td><a href="ThermalPropertyKey.html">ThermalPropertyKey</a></td>

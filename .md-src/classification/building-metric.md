@@ -14,6 +14,9 @@ Source: [`building-metrics.skos.ttl`](sources/building-metric.ttl)
 ```mermaid
 classDiagram
 direction TB
+class n_total_circulation_area["total_circulation_area: Total circulation area"]
+class n_total_circulation_area_above_ground["total_circulation_area_above_ground: Total circulation area above ground"]
+class n_total_circulation_area_below_ground["total_circulation_area_below_ground: Total circulation area below ground"]
 class n_total_construction_floor_area["total_construction_floor_area: Total construction floor area"]
 class n_total_construction_floor_area_above_ground["total_construction_floor_area_above_ground: Total construction floor area above ground"]
 class n_total_construction_floor_area_below_ground["total_construction_floor_area_below_ground: Total construction floor area below ground"]
@@ -29,6 +32,9 @@ class n_total_gross_building_volume_below_ground["total_gross_building_volume_be
 class n_total_gross_floor_area["total_gross_floor_area: Total gross floor area"]
 class n_total_gross_floor_area_above_ground["total_gross_floor_area_above_ground: Total gross floor area above ground"]
 class n_total_gross_floor_area_below_ground["total_gross_floor_area_below_ground: Total gross floor area below ground"]
+class n_total_main_usable_area["total_main_usable_area: Total main usable area"]
+class n_total_main_usable_area_above_ground["total_main_usable_area_above_ground: Total main usable area above ground"]
+class n_total_main_usable_area_below_ground["total_main_usable_area_below_ground: Total main usable area below ground"]
 class n_total_net_building_volume["total_net_building_volume: Total net building volume"]
 class n_total_net_building_volume_above_ground["total_net_building_volume_above_ground: Total net building volume above ground"]
 class n_total_net_building_volume_below_ground["total_net_building_volume_below_ground: Total net building volume below ground"]
@@ -38,15 +44,23 @@ class n_total_net_floor_area_below_ground["total_net_floor_area_below_ground: To
 class n_total_roof_area["total_roof_area: Total roof area"]
 class n_total_roof_area_above_ground["total_roof_area_above_ground: Total roof area above ground"]
 class n_total_roof_area_below_ground["total_roof_area_below_ground: Total roof area below ground"]
+class n_total_secondary_usable_area["total_secondary_usable_area: Total secondary usable area"]
+class n_total_secondary_usable_area_above_ground["total_secondary_usable_area_above_ground: Total secondary usable area above ground"]
+class n_total_secondary_usable_area_below_ground["total_secondary_usable_area_below_ground: Total secondary usable area below ground"]
 class n_total_soffit_area["total_soffit_area: Total soffit area"]
 class n_total_soffit_area_above_ground["total_soffit_area_above_ground: Total soffit area above ground"]
 class n_total_soffit_area_below_ground["total_soffit_area_below_ground: Total soffit area below ground"]
 class n_total_storey_count["total_storey_count: Total storey count"]
 class n_total_storey_count_above_ground["total_storey_count_above_ground: Total storey count above ground"]
 class n_total_storey_count_below_ground["total_storey_count_below_ground: Total storey count below ground"]
+class n_total_technical_area["total_technical_area: Total technical area"]
+class n_total_technical_area_above_ground["total_technical_area_above_ground: Total technical area above ground"]
+class n_total_technical_area_below_ground["total_technical_area_below_ground: Total technical area below ground"]
 class n_total_vertical_facade_area["total_vertical_facade_area: Total vertical facade area"]
 class n_total_vertical_facade_area_above_ground["total_vertical_facade_area_above_ground: Total vertical facade area above ground"]
 class n_total_vertical_facade_area_below_ground["total_vertical_facade_area_below_ground: Total vertical facade area below ground"]
+n_total_circulation_area <|-- n_total_circulation_area_above_ground
+n_total_circulation_area <|-- n_total_circulation_area_below_ground
 n_total_construction_floor_area <|-- n_total_construction_floor_area_above_ground
 n_total_construction_floor_area <|-- n_total_construction_floor_area_below_ground
 n_total_exterior_door_area <|-- n_total_exterior_door_area_above_ground
@@ -57,16 +71,22 @@ n_total_gross_building_volume <|-- n_total_gross_building_volume_above_ground
 n_total_gross_building_volume <|-- n_total_gross_building_volume_below_ground
 n_total_gross_floor_area <|-- n_total_gross_floor_area_above_ground
 n_total_gross_floor_area <|-- n_total_gross_floor_area_below_ground
+n_total_main_usable_area <|-- n_total_main_usable_area_above_ground
+n_total_main_usable_area <|-- n_total_main_usable_area_below_ground
 n_total_net_building_volume <|-- n_total_net_building_volume_above_ground
 n_total_net_building_volume <|-- n_total_net_building_volume_below_ground
 n_total_net_floor_area <|-- n_total_net_floor_area_above_ground
 n_total_net_floor_area <|-- n_total_net_floor_area_below_ground
 n_total_roof_area <|-- n_total_roof_area_above_ground
 n_total_roof_area <|-- n_total_roof_area_below_ground
+n_total_secondary_usable_area <|-- n_total_secondary_usable_area_above_ground
+n_total_secondary_usable_area <|-- n_total_secondary_usable_area_below_ground
 n_total_soffit_area <|-- n_total_soffit_area_above_ground
 n_total_soffit_area <|-- n_total_soffit_area_below_ground
 n_total_storey_count <|-- n_total_storey_count_above_ground
 n_total_storey_count <|-- n_total_storey_count_below_ground
+n_total_technical_area <|-- n_total_technical_area_above_ground
+n_total_technical_area <|-- n_total_technical_area_below_ground
 n_total_vertical_facade_area <|-- n_total_vertical_facade_area_above_ground
 n_total_vertical_facade_area <|-- n_total_vertical_facade_area_below_ground
 ```
@@ -94,6 +114,42 @@ n_total_vertical_facade_area <|-- n_total_vertical_facade_area_below_ground
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>total_circulation_area</td>
+<td></td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Gesamte Verkehrsflaeche</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition"></td>
+<td class="pbs-lang-col" data-lang="de" data-field="description"></td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Total circulation area</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Sum of circulation area (Verkehrsflaeche, VF per SIA 416) derived from spaces classified as circulation area: floor area for horizontal and vertical access such as corridors, stairs, and lift shafts.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="description">Equals SIA 416 VF. Derived from spaces by SIA 416 class; calculation logic lives in application pipelines.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>total_circulation_area_above_ground</td>
+<td>total_circulation_area</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label"></td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition"></td>
+<td class="pbs-lang-col" data-lang="de" data-field="description"></td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Total circulation area above ground</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Circulation area (SIA 416 VF) of spaces above ground level.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="description"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>total_circulation_area_below_ground</td>
+<td>total_circulation_area</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label"></td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition"></td>
+<td class="pbs-lang-col" data-lang="de" data-field="description"></td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Total circulation area below ground</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Circulation area (SIA 416 VF) of spaces below ground level.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="description"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
 <tr>
 <td>total_construction_floor_area</td>
 <td></td>
@@ -299,6 +355,42 @@ n_total_vertical_facade_area <|-- n_total_vertical_facade_area_below_ground
 <td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
 </tr>
 <tr>
+<td>total_main_usable_area</td>
+<td></td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Gesamte Hauptnutzflaeche</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition"></td>
+<td class="pbs-lang-col" data-lang="de" data-field="description"></td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Total main usable area</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Sum of main usable area (Hauptnutzflaeche, HNF per SIA 416) derived from spaces classified as main usable area: floor area serving the primary purpose of use of the building.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="description">Equals SIA 416 HNF. Derived from spaces by SIA 416 class; calculation logic lives in application pipelines.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>total_main_usable_area_above_ground</td>
+<td>total_main_usable_area</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label"></td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition"></td>
+<td class="pbs-lang-col" data-lang="de" data-field="description"></td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Total main usable area above ground</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Main usable area (SIA 416 HNF) of spaces above ground level.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="description"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>total_main_usable_area_below_ground</td>
+<td>total_main_usable_area</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label"></td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition"></td>
+<td class="pbs-lang-col" data-lang="de" data-field="description"></td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Total main usable area below ground</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Main usable area (SIA 416 HNF) of spaces below ground level.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="description"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
 <td>total_net_building_volume</td>
 <td></td>
 <td class="pbs-lang-col" data-lang="de" data-field="label"></td>
@@ -407,6 +499,42 @@ n_total_vertical_facade_area <|-- n_total_vertical_facade_area_below_ground
 <td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
 </tr>
 <tr>
+<td>total_secondary_usable_area</td>
+<td></td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Gesamte Nebennutzflaeche</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition"></td>
+<td class="pbs-lang-col" data-lang="de" data-field="description"></td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Total secondary usable area</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Sum of secondary usable area (Nebennutzflaeche, NNF per SIA 416) derived from spaces classified as secondary usable area: floor area supporting but not serving the primary purpose of use, such as storage, cellar, and bicycle rooms.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="description">Equals SIA 416 NNF. Derived from spaces by SIA 416 class; calculation logic lives in application pipelines.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>total_secondary_usable_area_above_ground</td>
+<td>total_secondary_usable_area</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label"></td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition"></td>
+<td class="pbs-lang-col" data-lang="de" data-field="description"></td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Total secondary usable area above ground</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Secondary usable area (SIA 416 NNF) of spaces above ground level.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="description"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>total_secondary_usable_area_below_ground</td>
+<td>total_secondary_usable_area</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label"></td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition"></td>
+<td class="pbs-lang-col" data-lang="de" data-field="description"></td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Total secondary usable area below ground</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Secondary usable area (SIA 416 NNF) of spaces below ground level.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="description"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
 <td>total_soffit_area</td>
 <td></td>
 <td class="pbs-lang-col" data-lang="de" data-field="label"></td>
@@ -475,6 +603,42 @@ n_total_vertical_facade_area <|-- n_total_vertical_facade_area_below_ground
 <td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
 <td class="pbs-lang-col" data-lang="en" data-field="label">Total storey count below ground</td>
 <td class="pbs-lang-col" data-lang="en" data-field="definition"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="description"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>total_technical_area</td>
+<td></td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Gesamte Funktionsflaeche</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition"></td>
+<td class="pbs-lang-col" data-lang="de" data-field="description"></td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Total technical area</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Sum of technical area (Funktionsflaeche, FF per SIA 416) derived from spaces classified as technical area: floor area for building services installations and plant rooms.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="description">Equals SIA 416 FF. Derived from spaces by SIA 416 class; calculation logic lives in application pipelines.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>total_technical_area_above_ground</td>
+<td>total_technical_area</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label"></td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition"></td>
+<td class="pbs-lang-col" data-lang="de" data-field="description"></td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Total technical area above ground</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Technical area (SIA 416 FF) of spaces above ground level.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="description"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>total_technical_area_below_ground</td>
+<td>total_technical_area</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label"></td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition"></td>
+<td class="pbs-lang-col" data-lang="de" data-field="description"></td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Total technical area below ground</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Technical area (SIA 416 FF) of spaces below ground level.</td>
 <td class="pbs-lang-col" data-lang="en" data-field="description"></td>
 <td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
 </tr>

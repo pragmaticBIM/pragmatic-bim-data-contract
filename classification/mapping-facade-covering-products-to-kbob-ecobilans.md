@@ -20,6 +20,10 @@ External target labels are not shipped in this repository; only codes and IRIs a
 | `facp:FaCP-BIPV-INTEGRATED` | `relatedMatch` | `kbobbm:06-001` |
 | `facp:FaCP-BRICK-SLIP` | `closeMatch` | `kbobbm:02-001` |
 | `facp:FaCP-BRICK-SLIP` | `relatedMatch` | `kbobbm:03-010` |
+| `facp:FaCP-BRICK-SLIP-BONDED` | `closeMatch` | `kbobbm:02-001` |
+| `facp:FaCP-BRICK-SLIP-BONDED` | `relatedMatch` | `kbobbm:03-010` |
+| `facp:FaCP-BRICK-SLIP-VENTILATED` | `closeMatch` | `kbobbm:02-001` |
+| `facp:FaCP-BRICK-SLIP-VENTILATED` | `relatedMatch` | `kbobbm:03-010` |
 | `facp:FaCP-CERAMIC-VENTILATED` | `closeMatch` | `kbobbm:03-010` |
 | `facp:FaCP-CERAMIC-VENTILATED` | `relatedMatch` | `kbobbm:11-008` |
 | `facp:FaCP-EXTERIOR-PAINT-COATING` | `closeMatch` | `kbobbm:14-001` |

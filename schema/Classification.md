@@ -90,6 +90,8 @@ click Classification href "./Classification.html" _blank
 | [SeparatorWall](SeparatorWall.md) | [classifications](classifications.md) | range | [Classification](Classification.md) |
 | [SeparatorSlab](SeparatorSlab.md) | [classifications](classifications.md) | range | [Classification](Classification.md) |
 | [ConnectionPhysical](ConnectionPhysical.md) | [classifications](classifications.md) | range | [Classification](Classification.md) |
+| [SafetyBarrier](SafetyBarrier.md) | [classifications](classifications.md) | range | [Classification](Classification.md) |
+| [TerrainSurface](TerrainSurface.md) | [classifications](classifications.md) | range | [Classification](Classification.md) |
 | [Boundary](Boundary.md) | [classifications](classifications.md) | range | [Classification](Classification.md) |
 | [Equipment](Equipment.md) | [classifications](classifications.md) | range | [Classification](Classification.md) |
 | [VirtualEntity](VirtualEntity.md) | [classifications](classifications.md) | range | [Classification](Classification.md) |
@@ -102,11 +104,13 @@ click Classification href "./Classification.html" _blank
 | [LevelContext](LevelContext.md) | [classifications](classifications.md) | range | [Classification](Classification.md) |
 | [ZoneContext](ZoneContext.md) | [classifications](classifications.md) | range | [Classification](Classification.md) |
 | [Space](Space.md) | [classifications](classifications.md) | range | [Classification](Classification.md) |
+| [ReservedVolume](ReservedVolume.md) | [classifications](classifications.md) | range | [Classification](Classification.md) |
 | [System](System.md) | [classifications](classifications.md) | range | [Classification](Classification.md) |
 | [ConnectionVirtual](ConnectionVirtual.md) | [classifications](classifications.md) | range | [Classification](Classification.md) |
 | [TimeRecord](TimeRecord.md) | [classifications](classifications.md) | range | [Classification](Classification.md) |
 | [CostRecord](CostRecord.md) | [classifications](classifications.md) | range | [Classification](Classification.md) |
 | [Material](Material.md) | [classifications](classifications.md) | range | [Classification](Classification.md) |
+| [DerivedMeasurement](DerivedMeasurement.md) | [classifications](classifications.md) | range | [Classification](Classification.md) |
 
 
 

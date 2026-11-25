@@ -28,6 +28,12 @@ External target labels are not shipped in this repository; only codes and IRIs a
 | `wicp:WICP-PVC` | `relatedMatch` | `kbobbm:05-007` |
 | `wicp:WICP-PVC-FRAME` | `closeMatch` | `kbobbm:05-007` |
 | `wicp:WICP-PVC-GLZ-2P` | `closeMatch` | `kbobbm:05-001` |
+| `wicp:WICP-ROOF-DOME` | `closeMatch` | `kbobbm:05-005` |
+| `wicp:WICP-ROOF-DOME` | `relatedMatch` | `kbobbm:05-012` |
+| `wicp:WICP-ROOF-WINDOW` | `closeMatch` | `kbobbm:05-005` |
+| `wicp:WICP-ROOF-WINDOW` | `relatedMatch` | `kbobbm:05-012` |
+| `wicp:WICP-ROOFLIGHT-BAND` | `closeMatch` | `kbobbm:05-005` |
+| `wicp:WICP-ROOFLIGHT-BAND` | `relatedMatch` | `kbobbm:05-012` |
 | `wicp:WICP-SKYLIGHT` | `closeMatch` | `kbobbm:05-005` |
 | `wicp:WICP-SKYLIGHT` | `relatedMatch` | `kbobbm:05-012` |
 | `wicp:WICP-SPECIAL` | `closeMatch` | `kbobbm:05-012` |

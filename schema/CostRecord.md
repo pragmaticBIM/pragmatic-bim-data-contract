@@ -118,6 +118,7 @@ click TimeRecord href "./TimeRecord.html" _blank
 | [LevelContext](LevelContext.md) | [cost_records](cost_records.md) | range | [CostRecord](CostRecord.md) |
 | [ZoneContext](ZoneContext.md) | [cost_records](cost_records.md) | range | [CostRecord](CostRecord.md) |
 | [Space](Space.md) | [cost_records](cost_records.md) | range | [CostRecord](CostRecord.md) |
+| [ReservedVolume](ReservedVolume.md) | [cost_records](cost_records.md) | range | [CostRecord](CostRecord.md) |
 | [System](System.md) | [cost_records](cost_records.md) | range | [CostRecord](CostRecord.md) |
 | [ConnectionVirtual](ConnectionVirtual.md) | [cost_records](cost_records.md) | range | [CostRecord](CostRecord.md) |
 | [TimeRecord](TimeRecord.md) | [cost_records](cost_records.md) | range | [CostRecord](CostRecord.md) |

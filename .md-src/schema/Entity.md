@@ -55,6 +55,8 @@ Entity <|-- PhysicalElement
 click PhysicalElement href "./PhysicalElement.html" _blank
 Entity <|-- VirtualEntity
 click VirtualEntity href "./VirtualEntity.html" _blank
+Entity <|-- DerivedMeasurement
+click DerivedMeasurement href "./DerivedMeasurement.html" _blank
 click Entity href "./Entity.html" _blank
 click Classification href "./Classification.html" _blank
 click GeometryRepresentation href "./GeometryRepresentation.html" _blank
@@ -86,6 +88,7 @@ click StatusType href "./StatusType.html" _blank
     * [Requirement](Requirement.md)
     * [PhysicalElement](PhysicalElement.md)
     * [VirtualEntity](VirtualEntity.md)
+    * [DerivedMeasurement](DerivedMeasurement.md)
 
 
 ## Class Properties
@@ -131,6 +134,7 @@ click StatusType href "./StatusType.html" _blank
 | [Person](Person.md) | [applies_to_entities](applies_to_entities.md) | range | [Entity](Entity.md) |
 | [Company](Company.md) | [applies_to_entities](applies_to_entities.md) | range | [Entity](Entity.md) |
 | [SoftwareAgent](SoftwareAgent.md) | [applies_to_entities](applies_to_entities.md) | range | [Entity](Entity.md) |
+| [Derivation](Derivation.md) | [derivation_inputs](derivation_inputs.md) | range | [Entity](Entity.md) |
 | [Decision](Decision.md) | [applies_to_entities](applies_to_entities.md) | range | [Entity](Entity.md) |
 | [Task](Task.md) | [applies_to_entities](applies_to_entities.md) | range | [Entity](Entity.md) |
 | [Process](Process.md) | [applies_to_entities](applies_to_entities.md) | range | [Entity](Entity.md) |
@@ -159,6 +163,8 @@ click StatusType href "./StatusType.html" _blank
 | [SeparatorWall](SeparatorWall.md) | [applies_to_entities](applies_to_entities.md) | range | [Entity](Entity.md) |
 | [SeparatorSlab](SeparatorSlab.md) | [applies_to_entities](applies_to_entities.md) | range | [Entity](Entity.md) |
 | [ConnectionPhysical](ConnectionPhysical.md) | [applies_to_entities](applies_to_entities.md) | range | [Entity](Entity.md) |
+| [SafetyBarrier](SafetyBarrier.md) | [applies_to_entities](applies_to_entities.md) | range | [Entity](Entity.md) |
+| [TerrainSurface](TerrainSurface.md) | [applies_to_entities](applies_to_entities.md) | range | [Entity](Entity.md) |
 | [Boundary](Boundary.md) | [applies_to_entities](applies_to_entities.md) | range | [Entity](Entity.md) |
 | [Equipment](Equipment.md) | [applies_to_entities](applies_to_entities.md) | range | [Entity](Entity.md) |
 | [VirtualEntity](VirtualEntity.md) | [applies_to_entities](applies_to_entities.md) | range | [Entity](Entity.md) |
@@ -180,12 +186,14 @@ click StatusType href "./StatusType.html" _blank
 | [ZoneContext](ZoneContext.md) | [applies_to_entities](applies_to_entities.md) | range | [Entity](Entity.md) |
 | [Space](Space.md) | [contained_entities](contained_entities.md) | range | [Entity](Entity.md) |
 | [Space](Space.md) | [applies_to_entities](applies_to_entities.md) | range | [Entity](Entity.md) |
+| [ReservedVolume](ReservedVolume.md) | [applies_to_entities](applies_to_entities.md) | range | [Entity](Entity.md) |
 | [System](System.md) | [contained_entities](contained_entities.md) | range | [Entity](Entity.md) |
 | [System](System.md) | [applies_to_entities](applies_to_entities.md) | range | [Entity](Entity.md) |
 | [ConnectionVirtual](ConnectionVirtual.md) | [applies_to_entities](applies_to_entities.md) | range | [Entity](Entity.md) |
 | [TimeRecord](TimeRecord.md) | [applies_to_entities](applies_to_entities.md) | range | [Entity](Entity.md) |
 | [CostRecord](CostRecord.md) | [applies_to_entities](applies_to_entities.md) | range | [Entity](Entity.md) |
 | [Material](Material.md) | [applies_to_entities](applies_to_entities.md) | range | [Entity](Entity.md) |
+| [DerivedMeasurement](DerivedMeasurement.md) | [applies_to_entities](applies_to_entities.md) | range | [Entity](Entity.md) |
 | [Change](Change.md) | [affected_subject](affected_subject.md) | range | [Entity](Entity.md) |
 | [PropertyChange](PropertyChange.md) | [affected_subject](affected_subject.md) | range | [Entity](Entity.md) |
 | [GeometryChange](GeometryChange.md) | [affected_subject](affected_subject.md) | range | [Entity](Entity.md) |

@@ -54,7 +54,9 @@ URI: [pbs:quantity_values](https://schema.pragmaticbim.ch/quantity_values)
 | [Separator](Separator.md) | Abstract base class for elements that separate spaces or zones. |  no  |
 | [SeparatorWall](SeparatorWall.md) | Wall-based separating element. |  no  |
 | [SeparatorSlab](SeparatorSlab.md) | Slab-based separating element (for example floor/roof/base slab separators). |  no  |
-| [ConnectionPhysical](ConnectionPhysical.md) | Physical connector providing functional connection between spaces (for example door, window, duct, pipe, cable). |  no  |
+| [ConnectionPhysical](ConnectionPhysical.md) | Physical connector providing functional connection between spaces (for example door, window, duct, pipe, cable) or carrying loads between elements (column, beam). |  no  |
+| [SafetyBarrier](SafetyBarrier.md) | Linear fall protection or guiding element (balustrade, guardrail, handrail) along slab, balcony, roof, landing, stair, or ramp edges. |  no  |
+| [TerrainSurface](TerrainSurface.md) | Existing or projected terrain surface (survey surface) as a geographic element. Converted from IfcGeographicElement (IFC4+); IFC2x3 proxies stay generic. |  no  |
 | [Boundary](Boundary.md) | Physical element acting as a boundary treatment (for example covering). |  no  |
 | [Equipment](Equipment.md) | Endpoint or device element (for example terminal, unit, control device, sensor) located in a space and assigned to a system. |  no  |
 | [VirtualEntity](VirtualEntity.md) | Abstract base class for non-physical, conceptual, or informational entities. |  no  |
@@ -67,11 +69,13 @@ URI: [pbs:quantity_values](https://schema.pragmaticbim.ch/quantity_values)
 | [LevelContext](LevelContext.md) | Spatial context node constrained to level/storey semantics. |  no  |
 | [ZoneContext](ZoneContext.md) | Spatial context node constrained to zone semantics. |  no  |
 | [Space](Space.md) | Spatial container used for occupancy, circulation, service, or analysis. |  no  |
+| [ReservedVolume](ReservedVolume.md) | Volume that must stay clear of building elements (maintenance space, installation path, structural exclusion zone, movement clearance, device space). Modelled as a proxy volume and identified through the pragmaticBIM Reference element definition. |  no  |
 | [System](System.md) | Building service system grouping that serves spaces or zones. |  no  |
-| [ConnectionVirtual](ConnectionVirtual.md) | Logical or topological connection between spaces and/or physical elements. |  no  |
+| [ConnectionVirtual](ConnectionVirtual.md) | Logical or topological connection between spaces and/or physical elements. Connections read from IFC relationships and connections computed from geometry (for example a contact test) use the same class; derivation records which of the two applies and how the connection was computed. |  no  |
 | [TimeRecord](TimeRecord.md) | Planned work record with baseline and actual dates, optionally linked to model entities and a time plan. — Set milestone_at to mark as a zero-duration checkpoint. — Populate component_time_items to act as a plan container. |  no  |
 | [CostRecord](CostRecord.md) | Cost record for estimation, catalog pricing, and calculation. Use cost_record_role to distinguish catalog cost/price (on Product) from project estimate/actual lines. Populate component_cost_items to act as an assembly (aggregated unit price). |  no  |
 | [Material](Material.md) | Material definition that can be associated with one or more entities. |  no  |
+| [DerivedMeasurement](DerivedMeasurement.md) | Measurement entity with its own identity for values that involve more than one subject (for example clear width between a stair and two railings). Subjects are listed in applies_to_entities; the value and its Derivation live in quantity_values; an optional display line uses geometry_representations (typically WKT LINESTRING Z). Use measurement_status to distinguish a successful measure from not_measurable or not_applicable. |  no  |
 
 
 

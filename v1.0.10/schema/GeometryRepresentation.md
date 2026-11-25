@@ -1,0 +1,292 @@
+---
+search:
+  boost: 2.0
+---
+
+# Class: GeometryRepresentation 
+
+
+_Minimal geometry reference for an entity, separating representation from encoding format._
+
+> **Embedded value type** — nested inside a parent record, not a graph node.
+
+<div data-search-exclude markdown="1">
+
+
+
+URI: [pbs:GeometryRepresentation](https://schema.pragmaticbim.ch/GeometryRepresentation)
+
+
+
+
+
+```mermaid
+classDiagram
+direction TB
+class GeometryRepresentation
+click GeometryRepresentation href "./GeometryRepresentation.html" _blank
+click GeometryRepresentationType href "./GeometryRepresentationType.html" _blank
+```
+
+
+
+
+<!-- no inheritance hierarchy -->
+
+## Class Properties
+
+| Property | Value |
+| --- | --- |
+| Class URI | [pbs:GeometryRepresentation](https://schema.pragmaticbim.ch/GeometryRepresentation) |
+
+
+## Slots
+
+| Name | Cardinality and Range | Description | Inheritance |
+| ---  | --- | --- | --- |
+| [geometry_reference](geometry_reference.md) | 1 <br/> [String](String.md) | URI/path/hash/pointer to geometry payload. | direct |
+| [geometry_representation](geometry_representation.md) | 1 <br/> [GeometryRepresentationType](GeometryRepresentationType.md) | Representation kind/dimension (for example body_3d, footprint_2d, point), independent of file format. | direct |
+| [geometry_format](geometry_format.md) | 0..1 <br/> [String](String.md) | Optional serialization/encoding format (for example ifc, gltf, wkt, geojson), independent of representation kind. | direct |
+| [geometry_wkt](geometry_wkt.md) | 0..1 <br/> [String](String.md) | Inline WKT payload for small representations (for example a footprint_2d polygon or a path_3d line in project coordinates, metres). | direct |
+| [bbox_min_x](bbox_min_x.md) | 0..1 <br/> [Double](Double.md) | Axis-aligned bounding box minimum X in project coordinates (metres). | direct |
+| [bbox_min_y](bbox_min_y.md) | 0..1 <br/> [Double](Double.md) | Axis-aligned bounding box minimum Y in project coordinates (metres). | direct |
+| [bbox_min_z](bbox_min_z.md) | 0..1 <br/> [Double](Double.md) | Axis-aligned bounding box minimum Z (bottom elevation) in project coordinates (metres). | direct |
+| [bbox_max_x](bbox_max_x.md) | 0..1 <br/> [Double](Double.md) | Axis-aligned bounding box maximum X in project coordinates (metres). | direct |
+| [bbox_max_y](bbox_max_y.md) | 0..1 <br/> [Double](Double.md) | Axis-aligned bounding box maximum Y in project coordinates (metres). | direct |
+| [bbox_max_z](bbox_max_z.md) | 0..1 <br/> [Double](Double.md) | Axis-aligned bounding box maximum Z (top elevation) in project coordinates (metres). | direct |
+
+
+
+
+
+## Usages
+
+| used by | used in | type | used |
+| ---  | --- | --- | --- |
+| [Entity](Entity.md) | [geometry_representations](geometry_representations.md) | range | [GeometryRepresentation](GeometryRepresentation.md) |
+| [Agent](Agent.md) | [geometry_representations](geometry_representations.md) | range | [GeometryRepresentation](GeometryRepresentation.md) |
+| [Person](Person.md) | [geometry_representations](geometry_representations.md) | range | [GeometryRepresentation](GeometryRepresentation.md) |
+| [Company](Company.md) | [geometry_representations](geometry_representations.md) | range | [GeometryRepresentation](GeometryRepresentation.md) |
+| [SoftwareAgent](SoftwareAgent.md) | [geometry_representations](geometry_representations.md) | range | [GeometryRepresentation](GeometryRepresentation.md) |
+| [Decision](Decision.md) | [geometry_representations](geometry_representations.md) | range | [GeometryRepresentation](GeometryRepresentation.md) |
+| [Task](Task.md) | [geometry_representations](geometry_representations.md) | range | [GeometryRepresentation](GeometryRepresentation.md) |
+| [Process](Process.md) | [geometry_representations](geometry_representations.md) | range | [GeometryRepresentation](GeometryRepresentation.md) |
+| [Message](Message.md) | [geometry_representations](geometry_representations.md) | range | [GeometryRepresentation](GeometryRepresentation.md) |
+| [Artifact](Artifact.md) | [geometry_representations](geometry_representations.md) | range | [GeometryRepresentation](GeometryRepresentation.md) |
+| [Contract](Contract.md) | [geometry_representations](geometry_representations.md) | range | [GeometryRepresentation](GeometryRepresentation.md) |
+| [Project](Project.md) | [geometry_representations](geometry_representations.md) | range | [GeometryRepresentation](GeometryRepresentation.md) |
+| [Program](Program.md) | [geometry_representations](geometry_representations.md) | range | [GeometryRepresentation](GeometryRepresentation.md) |
+| [Product](Product.md) | [geometry_representations](geometry_representations.md) | range | [GeometryRepresentation](GeometryRepresentation.md) |
+| [Deliverable](Deliverable.md) | [geometry_representations](geometry_representations.md) | range | [GeometryRepresentation](GeometryRepresentation.md) |
+| [Requirement](Requirement.md) | [geometry_representations](geometry_representations.md) | range | [GeometryRepresentation](GeometryRepresentation.md) |
+| [PerformanceRequirement](PerformanceRequirement.md) | [geometry_representations](geometry_representations.md) | range | [GeometryRepresentation](GeometryRepresentation.md) |
+| [SpatialRequirement](SpatialRequirement.md) | [geometry_representations](geometry_representations.md) | range | [GeometryRepresentation](GeometryRepresentation.md) |
+| [IdentificationRequirement](IdentificationRequirement.md) | [geometry_representations](geometry_representations.md) | range | [GeometryRepresentation](GeometryRepresentation.md) |
+| [RegulatoryRequirement](RegulatoryRequirement.md) | [geometry_representations](geometry_representations.md) | range | [GeometryRepresentation](GeometryRepresentation.md) |
+| [BriefRequirement](BriefRequirement.md) | [geometry_representations](geometry_representations.md) | range | [GeometryRepresentation](GeometryRepresentation.md) |
+| [DeliverableRequirement](DeliverableRequirement.md) | [geometry_representations](geometry_representations.md) | range | [GeometryRepresentation](GeometryRepresentation.md) |
+| [ScheduleRequirement](ScheduleRequirement.md) | [geometry_representations](geometry_representations.md) | range | [GeometryRepresentation](GeometryRepresentation.md) |
+| [CostRequirement](CostRequirement.md) | [geometry_representations](geometry_representations.md) | range | [GeometryRepresentation](GeometryRepresentation.md) |
+| [MaterialRequirement](MaterialRequirement.md) | [geometry_representations](geometry_representations.md) | range | [GeometryRepresentation](GeometryRepresentation.md) |
+| [PhysicalElement](PhysicalElement.md) | [geometry_representations](geometry_representations.md) | range | [GeometryRepresentation](GeometryRepresentation.md) |
+| [Separator](Separator.md) | [geometry_representations](geometry_representations.md) | range | [GeometryRepresentation](GeometryRepresentation.md) |
+| [SeparatorWall](SeparatorWall.md) | [geometry_representations](geometry_representations.md) | range | [GeometryRepresentation](GeometryRepresentation.md) |
+| [SeparatorSlab](SeparatorSlab.md) | [geometry_representations](geometry_representations.md) | range | [GeometryRepresentation](GeometryRepresentation.md) |
+| [ConnectionPhysical](ConnectionPhysical.md) | [geometry_representations](geometry_representations.md) | range | [GeometryRepresentation](GeometryRepresentation.md) |
+| [SafetyBarrier](SafetyBarrier.md) | [geometry_representations](geometry_representations.md) | range | [GeometryRepresentation](GeometryRepresentation.md) |
+| [TerrainSurface](TerrainSurface.md) | [geometry_representations](geometry_representations.md) | range | [GeometryRepresentation](GeometryRepresentation.md) |
+| [Boundary](Boundary.md) | [geometry_representations](geometry_representations.md) | range | [GeometryRepresentation](GeometryRepresentation.md) |
+| [Equipment](Equipment.md) | [geometry_representations](geometry_representations.md) | range | [GeometryRepresentation](GeometryRepresentation.md) |
+| [VirtualEntity](VirtualEntity.md) | [geometry_representations](geometry_representations.md) | range | [GeometryRepresentation](GeometryRepresentation.md) |
+| [SpatialContext](SpatialContext.md) | [geometry_representations](geometry_representations.md) | range | [GeometryRepresentation](GeometryRepresentation.md) |
+| [PerimeterContext](PerimeterContext.md) | [geometry_representations](geometry_representations.md) | range | [GeometryRepresentation](GeometryRepresentation.md) |
+| [LegalSiteContext](LegalSiteContext.md) | [geometry_representations](geometry_representations.md) | range | [GeometryRepresentation](GeometryRepresentation.md) |
+| [BuiltAssetContext](BuiltAssetContext.md) | [geometry_representations](geometry_representations.md) | range | [GeometryRepresentation](GeometryRepresentation.md) |
+| [BuildingContext](BuildingContext.md) | [geometry_representations](geometry_representations.md) | range | [GeometryRepresentation](GeometryRepresentation.md) |
+| [CivilStructureContext](CivilStructureContext.md) | [geometry_representations](geometry_representations.md) | range | [GeometryRepresentation](GeometryRepresentation.md) |
+| [LevelContext](LevelContext.md) | [geometry_representations](geometry_representations.md) | range | [GeometryRepresentation](GeometryRepresentation.md) |
+| [ZoneContext](ZoneContext.md) | [geometry_representations](geometry_representations.md) | range | [GeometryRepresentation](GeometryRepresentation.md) |
+| [Space](Space.md) | [geometry_representations](geometry_representations.md) | range | [GeometryRepresentation](GeometryRepresentation.md) |
+| [ReservedVolume](ReservedVolume.md) | [geometry_representations](geometry_representations.md) | range | [GeometryRepresentation](GeometryRepresentation.md) |
+| [System](System.md) | [geometry_representations](geometry_representations.md) | range | [GeometryRepresentation](GeometryRepresentation.md) |
+| [ConnectionVirtual](ConnectionVirtual.md) | [geometry_representations](geometry_representations.md) | range | [GeometryRepresentation](GeometryRepresentation.md) |
+| [TimeRecord](TimeRecord.md) | [geometry_representations](geometry_representations.md) | range | [GeometryRepresentation](GeometryRepresentation.md) |
+| [CostRecord](CostRecord.md) | [geometry_representations](geometry_representations.md) | range | [GeometryRepresentation](GeometryRepresentation.md) |
+| [Material](Material.md) | [geometry_representations](geometry_representations.md) | range | [GeometryRepresentation](GeometryRepresentation.md) |
+| [DerivedMeasurement](DerivedMeasurement.md) | [geometry_representations](geometry_representations.md) | range | [GeometryRepresentation](GeometryRepresentation.md) |
+
+
+
+
+
+
+
+
+
+
+
+
+## Identifier and Mapping Information
+
+
+
+
+
+### Schema Source
+
+
+* from schema: https://schema.pragmaticbim.ch
+
+
+
+
+## Mappings
+
+| Mapping Type | Mapped Value |
+| ---  | ---  |
+| self | pbs:GeometryRepresentation |
+| native | pbs:GeometryRepresentation |
+
+
+
+
+
+
+## LinkML Source
+
+<!-- TODO: investigate https://stackoverflow.com/questions/37606292/how-to-create-tabbed-code-blocks-in-mkdocs-or-sphinx -->
+
+### Direct
+
+<details>
+```yaml
+name: GeometryRepresentation
+description: Minimal geometry reference for an entity, separating representation from
+  encoding format.
+from_schema: https://schema.pragmaticbim.ch
+slots:
+- geometry_reference
+- geometry_representation
+- geometry_format
+- geometry_wkt
+- bbox_min_x
+- bbox_min_y
+- bbox_min_z
+- bbox_max_x
+- bbox_max_y
+- bbox_max_z
+class_uri: pbs:GeometryRepresentation
+
+```
+</details>
+
+### Induced
+
+<details>
+```yaml
+name: GeometryRepresentation
+description: Minimal geometry reference for an entity, separating representation from
+  encoding format.
+from_schema: https://schema.pragmaticbim.ch
+attributes:
+  geometry_reference:
+    name: geometry_reference
+    description: URI/path/hash/pointer to geometry payload.
+    from_schema: https://schema.pragmaticbim.ch
+    rank: 1000
+    owner: GeometryRepresentation
+    domain_of:
+    - GeometryRepresentation
+    range: string
+    required: true
+  geometry_representation:
+    name: geometry_representation
+    description: Representation kind/dimension (for example body_3d, footprint_2d,
+      point), independent of file format.
+    from_schema: https://schema.pragmaticbim.ch
+    rank: 1000
+    owner: GeometryRepresentation
+    domain_of:
+    - GeometryRepresentation
+    range: GeometryRepresentationType
+    required: true
+  geometry_format:
+    name: geometry_format
+    description: Optional serialization/encoding format (for example ifc, gltf, wkt,
+      geojson), independent of representation kind.
+    from_schema: https://schema.pragmaticbim.ch
+    rank: 1000
+    owner: GeometryRepresentation
+    domain_of:
+    - GeometryRepresentation
+    range: string
+  geometry_wkt:
+    name: geometry_wkt
+    description: Inline WKT payload for small representations (for example a footprint_2d
+      polygon or a path_3d line in project coordinates, metres).
+    from_schema: https://schema.pragmaticbim.ch
+    rank: 1000
+    owner: GeometryRepresentation
+    domain_of:
+    - GeometryRepresentation
+    range: string
+  bbox_min_x:
+    name: bbox_min_x
+    description: Axis-aligned bounding box minimum X in project coordinates (metres).
+    from_schema: https://schema.pragmaticbim.ch
+    rank: 1000
+    owner: GeometryRepresentation
+    domain_of:
+    - GeometryRepresentation
+    range: double
+  bbox_min_y:
+    name: bbox_min_y
+    description: Axis-aligned bounding box minimum Y in project coordinates (metres).
+    from_schema: https://schema.pragmaticbim.ch
+    rank: 1000
+    owner: GeometryRepresentation
+    domain_of:
+    - GeometryRepresentation
+    range: double
+  bbox_min_z:
+    name: bbox_min_z
+    description: Axis-aligned bounding box minimum Z (bottom elevation) in project
+      coordinates (metres).
+    from_schema: https://schema.pragmaticbim.ch
+    rank: 1000
+    owner: GeometryRepresentation
+    domain_of:
+    - GeometryRepresentation
+    range: double
+  bbox_max_x:
+    name: bbox_max_x
+    description: Axis-aligned bounding box maximum X in project coordinates (metres).
+    from_schema: https://schema.pragmaticbim.ch
+    rank: 1000
+    owner: GeometryRepresentation
+    domain_of:
+    - GeometryRepresentation
+    range: double
+  bbox_max_y:
+    name: bbox_max_y
+    description: Axis-aligned bounding box maximum Y in project coordinates (metres).
+    from_schema: https://schema.pragmaticbim.ch
+    rank: 1000
+    owner: GeometryRepresentation
+    domain_of:
+    - GeometryRepresentation
+    range: double
+  bbox_max_z:
+    name: bbox_max_z
+    description: Axis-aligned bounding box maximum Z (top elevation) in project coordinates
+      (metres).
+    from_schema: https://schema.pragmaticbim.ch
+    rank: 1000
+    owner: GeometryRepresentation
+    domain_of:
+    - GeometryRepresentation
+    range: double
+class_uri: pbs:GeometryRepresentation
+
+```
+</details></div>

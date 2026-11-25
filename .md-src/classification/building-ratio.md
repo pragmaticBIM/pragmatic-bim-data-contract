@@ -51,6 +51,16 @@ Source: [`building-ratios.skos.ttl`](sources/building-ratio.ttl)
 <td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
 </tr>
 <tr>
+<td>ratio_circulation_area_to_gross_floor_area</td>
+<td></td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Verkehrsflaeche zu Bruttogeschossflaeche</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition"></td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Circulation area to gross floor area ratio</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Quotient of circulation area (SIA 416 VF) and gross floor area (SIA 416 GF); ratio VF/GF.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
 <td>ratio_construction_floor_area_to_gross_floor_area</td>
 <td></td>
 <td class="pbs-lang-col" data-lang="de" data-field="label"></td>
@@ -61,6 +71,16 @@ Source: [`building-ratios.skos.ttl`](sources/building-ratio.ttl)
 <td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
 </tr>
 <tr>
+<td>ratio_envelope_area_to_energy_reference_area</td>
+<td></td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Gebaeudehuellzahl</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition"></td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Envelope area to energy reference area ratio</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Quotient of total envelope area and energy reference area (Energiebezugsflaeche, EBF per SIA 380/1); Gebaeudehuellzahl. Until a heated flag exists on spaces, EBF is approximated by the heated gross floor area (GF); the operand is therefore met:total_gross_floor_area.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
 <td>ratio_envelope_area_to_gross_floor_area</td>
 <td></td>
 <td class="pbs-lang-col" data-lang="de" data-field="label"></td>
@@ -68,6 +88,16 @@ Source: [`building-ratios.skos.ttl`](sources/building-ratio.ttl)
 <td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
 <td class="pbs-lang-col" data-lang="en" data-field="label">Envelope area to gross floor area ratio</td>
 <td class="pbs-lang-col" data-lang="en" data-field="definition">Quotient of total envelope area and gross floor area.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>ratio_envelope_area_to_gross_volume</td>
+<td></td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Gebaeudehuellflaeche zu Gebaeudevolumen</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition"></td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Envelope area to gross volume ratio</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Quotient of total envelope area and gross building volume (SIA 416 GV); surface-to-volume ratio A/V. Dimensionally 1/m; the unit follows the sibling ratio convention.</td>
 <td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
 </tr>
 <tr>
@@ -88,6 +118,16 @@ Source: [`building-ratios.skos.ttl`](sources/building-ratio.ttl)
 <td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
 <td class="pbs-lang-col" data-lang="en" data-field="label">Facade area to gross volume ratio</td>
 <td class="pbs-lang-col" data-lang="en" data-field="definition">Quotient of vertical facade area and gross building volume.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>ratio_main_usable_area_to_gross_floor_area</td>
+<td></td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Hauptnutzflaeche zu Bruttogeschossflaeche</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition"></td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Main usable area to gross floor area ratio</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Quotient of main usable area (SIA 416 HNF) and gross floor area (SIA 416 GF); compactness / space-efficiency ratio HNF/GF.</td>
 <td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
 </tr>
 <tr>

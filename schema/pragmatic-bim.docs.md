@@ -41,7 +41,9 @@ Name: pragmatic_bim_data_contract
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Separator](Separator.md) | Abstract base class for elements that separate spaces or zones. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[SeparatorWall](SeparatorWall.md) | Wall-based separating element. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[SeparatorSlab](SeparatorSlab.md) | Slab-based separating element (for example floor/roof/base slab separators). |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ConnectionPhysical](ConnectionPhysical.md) | Physical connector providing functional connection between spaces (for example door, window, duct, pipe, cable). |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ConnectionPhysical](ConnectionPhysical.md) | Physical connector providing functional connection between spaces (for example door, window, duct, pipe, cable) or carrying loads between elements (column, beam). |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[SafetyBarrier](SafetyBarrier.md) | Linear fall protection or guiding element (balustrade, guardrail, handrail) along slab, balcony, roof, landing, stair, or ramp edges. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[TerrainSurface](TerrainSurface.md) | Existing or projected terrain surface (survey surface) as a geographic element. Converted from IfcGeographicElement (IFC4+); IFC2x3 proxies stay generic. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Boundary](Boundary.md) | Physical element acting as a boundary treatment (for example covering). |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Equipment](Equipment.md) | Endpoint or device element (for example terminal, unit, control device, sensor) located in a space and assigned to a system. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[VirtualEntity](VirtualEntity.md) | Abstract base class for non-physical, conceptual, or informational entities. |
@@ -54,8 +56,9 @@ Name: pragmatic_bim_data_contract
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[LevelContext](LevelContext.md) | Spatial context node constrained to level/storey semantics. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ZoneContext](ZoneContext.md) | Spatial context node constrained to zone semantics. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Space](Space.md) | Spatial container used for occupancy, circulation, service, or analysis. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ReservedVolume](ReservedVolume.md) | Volume that must stay clear of building elements (maintenance space, installation path, structural exclusion zone, movement clearance, device space). Modelled as a proxy volume and identified through the pragmaticBIM Reference element definition. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[System](System.md) | Building service system grouping that serves spaces or zones. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ConnectionVirtual](ConnectionVirtual.md) | Logical or topological connection between spaces and/or physical elements. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ConnectionVirtual](ConnectionVirtual.md) | Logical or topological connection between spaces and/or physical elements. Connections read from IFC relationships and connections computed from geometry (for example a contact test) use the same class; derivation records which of the two applies and how the connection was computed. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[TimeRecord](TimeRecord.md) | Planned work record with baseline and actual dates, optionally linked to model entities and a time plan. — Set milestone_at to mark as a zero-duration checkpoint. — Populate component_time_items to act as a plan container. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[CostRecord](CostRecord.md) | Cost record for estimation, catalog pricing, and calculation. Use cost_record_role to distinguish catalog cost/price (on Product) from project estimate/actual lines. Populate component_cost_items to act as an assembly (aggregated unit price). |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Material](Material.md) | Material definition that can be associated with one or more entities. |
@@ -69,6 +72,7 @@ Name: pragmatic_bim_data_contract
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ScheduleRequirement](ScheduleRequirement.md) | Schedule obligation requirement (deadline, milestone, or start/finish window). |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[CostRequirement](CostRequirement.md) | Cost or budget requirement (unit-cost cap, total budget limit, etc.). |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[MaterialRequirement](MaterialRequirement.md) | Material or product specification requirement for matching against assigned materials. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[DerivedMeasurement](DerivedMeasurement.md) | Measurement entity with its own identity for values that involve more than one subject (for example clear width between a stair and two railings). Subjects are listed in applies_to_entities; the value and its Derivation live in quantity_values; an optional display line uses geometry_representations (typically WKT LINESTRING Z). Use measurement_status to distinguish a successful measure from not_measurable or not_applicable. |
 | [Change](Change.md) | Audit record observing the project graph moving between revisions. Not an Entity and not a graph node — it watches the graph. Use change_type together with the concrete subclass for interpretation. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[PropertyChange](PropertyChange.md) | Attribute, PropertySet, schema slot, or document field change. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[GeometryChange](GeometryChange.md) | Geometry or representation change for a subject. |
@@ -86,6 +90,7 @@ Name: pragmatic_bim_data_contract
 | [Classification](Classification.md) | Generic classification entry from any scheme (for example IFC, Uniclass, OmniClass, custom). |
 | [GeometryRepresentation](GeometryRepresentation.md) | Minimal geometry reference for an entity, separating representation from encoding format. |
 | [QuantityValue](QuantityValue.md) | Minimal quantity record for costing and analysis. |
+| [Derivation](Derivation.md) | How a value or relation was obtained. Embedded on the record it describes (for example a QuantityValue measured from geometry, or a ConnectionVirtual computed by a contact test) so that every derived fact carries its source kind, method, method version, tolerance, and input entities. Lets checks distinguish values read from IFC, values computed from geometry, project parameters, and manual entries, and lets results be reproduced or recomputed when a method changes. |
 | [MetadataEntry](MetadataEntry.md) | Generic metadata entry for storing IFC attributes, PropertySet fields, or project-specific key-value data. |
 | [PerformanceProperty](PerformanceProperty.md) | Normalized performance/property record derived from raw IFC PropertySet values with source traceability and strong typing through domain-specific subclasses. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[FireProperty](FireProperty.md) | Normalized fire-related property. |
@@ -110,6 +115,7 @@ Name: pragmatic_bim_data_contract
 
 | Slot | Description |
 | --- | --- |
+| [above_ground](above_ground.md) | Whether this storey is fully above ground. Resolved from IFC properties, the storey naming convention, or elevation (see ground_reference_source). |
 | [acceptance_criteria](acceptance_criteria.md) | Criteria that define when the deliverable is accepted. |
 | [actual_finish_at](actual_finish_at.md) | Actual finish timestamp for the time record where known. |
 | [actual_start_at](actual_start_at.md) | Actual start timestamp for the time record where known. |
@@ -130,6 +136,13 @@ Name: pragmatic_bim_data_contract
 | [artifact_storage_link](artifact_storage_link.md) | Artifact location when the subject is an Artifact entity or embedded field diff. |
 | [assignee](assignee.md) | Responsible agent. |
 | [availability_notes](availability_notes.md) | Optional notes about availability, office hours, or response expectations. |
+| [barrier_type](barrier_type.md) | Classification of the safety barrier (balustrade, guardrail, handrail). |
+| [bbox_max_x](bbox_max_x.md) | Axis-aligned bounding box maximum X in project coordinates (metres). |
+| [bbox_max_y](bbox_max_y.md) | Axis-aligned bounding box maximum Y in project coordinates (metres). |
+| [bbox_max_z](bbox_max_z.md) | Axis-aligned bounding box maximum Z (top elevation) in project coordinates (metres). |
+| [bbox_min_x](bbox_min_x.md) | Axis-aligned bounding box minimum X in project coordinates (metres). |
+| [bbox_min_y](bbox_min_y.md) | Axis-aligned bounding box minimum Y in project coordinates (metres). |
+| [bbox_min_z](bbox_min_z.md) | Axis-aligned bounding box minimum Z (bottom elevation) in project coordinates (metres). |
 | [belongs_to_company](belongs_to_company.md) | Optional company that the person belongs to. |
 | [birthday](birthday.md) | Date of birth. Personal data; governed by personal_data_processing_state, consent_records, and retain_until. |
 | [boundary_type](boundary_type.md) | Classification of boundary element (e.g., covering). |
@@ -156,7 +169,7 @@ Name: pragmatic_bim_data_contract
 | [connection_physical_type](connection_physical_type.md) | IFC-derived physical connector form (for example door, window, duct, pipe, cable). Semantic role is expressed via connection_functional_types. |
 | [connection_virtual_requirement_drivers](connection_virtual_requirement_drivers.md) | Main requirement drivers for this virtual connection. |
 | [connection_virtual_type](connection_virtual_type.md) | Classification of virtual connection semantics (for example structural_joint, adjacency, access). |
-| [connects_physical_elements](connects_physical_elements.md) | Physical elements connected by this virtual connection (for example wall-wall, wall-slab). |
+| [connects_physical_elements](connects_physical_elements.md) | Physical elements connected to this one side by side (for example wall-wall junction, beam framing into a column). On a physical element the relation is symmetric and stated on both elements. From IfcRelConnectsElements / IfcRelConnectsPathElements, or computed from geometric contact. Bearing contact is rests_on. |
 | [connects_spaces](connects_spaces.md) | Spaces connected by this connection (for example the two spaces on either side of a door). |
 | [consent_notes](consent_notes.md) | Optional notes about how or where consent was captured. |
 | [consent_records](consent_records.md) | Audit trail of lawful basis and consent for processing personal data. When lawful_basis is consent and state is active, at least one non-withdrawn record should be present. |
@@ -189,6 +202,15 @@ Name: pragmatic_bim_data_contract
 | [deliverable_format](deliverable_format.md) | Required deliverable format or encoding (for example IFC4, PDF, COBie). |
 | [deliverable_kind](deliverable_kind.md) | Deliverable type label (for example coordination model, O&M manual, as-built record). |
 | [dependency_type](dependency_type.md) | FS | SS | FF | SF |
+| [derivation](derivation.md) | How this value or relation was obtained (source kind, method, version, tolerance, inputs). Omit only when the record is copied unchanged from its source and no further traceability is needed. |
+| [derivation_inputs](derivation_inputs.md) | Entities whose data or geometry were used, beyond the subject itself. For a height measured above a reference surface this includes the reference element (for example the pavement course). |
+| [derivation_method](derivation_method.md) | Identifier of the method or algorithm that produced the value, for example contact_test, height_above_reference_surface, spacing_along_axis, or the IFC relationship class for ifc_explicit sources. |
+| [derivation_method_version](derivation_method_version.md) | Version of the method implementation, so results can be reproduced and recomputed when the method changes. |
+| [derivation_source_kind](derivation_source_kind.md) | Kind of source the value or relation comes from (IFC relationship or property, geometry computation, project parameter, manual entry). |
+| [derivation_tolerance](derivation_tolerance.md) | Geometric or numeric tolerance applied by the method (for example the maximum gap still counted as contact). |
+| [derivation_tolerance_unit](derivation_tolerance_unit.md) | Unit of derivation_tolerance (for example m, mm, deg). |
+| [derived_at](derived_at.md) | Timestamp when the value or relation was derived. |
+| [derived_by](derived_by.md) | Software agent (pipeline, service) that executed the method. |
 | [description](description.md) | Default description text. |
 | [detected_at](detected_at.md) | Timestamp when this change was detected. |
 | [due_at](due_at.md) | Due timestamp for task completion. |
@@ -198,6 +220,8 @@ Name: pragmatic_bim_data_contract
 | [elevation](elevation.md) | Storey elevation relative to project datum (metres). |
 | [elevation_unit](elevation_unit.md) | Unit for elevation (default m). |
 | [equipment_type](equipment_type.md) | Classification of equipment (for example HVAC, electrical, plumbing). |
+| [escape_route_next](escape_route_next.md) | Next element on the shortest horizontal escape route: the door a space is left through, or the door or stair a door leads on to. The route ends at an exit to the outside or at a stair leaving the storey; follow the slot repeatedly to read the whole route. Computed from geometry; the remaining length is the escape_route_length quantity. |
+| [escape_route_role](escape_route_role.md) | Role of this space on an escape route: horizontal, vertical, or exit to the open air. Unset when the space is not part of an escape route. From ePset_Space.EscapeRouteRole; shared by VKF 16-15 and 17-15 checks. |
 | [external_instance_uri](external_instance_uri.md) | URI of the corresponding process instance in an external workflow engine when applicable. |
 | [frame_material](frame_material.md) | Material of the frame or casing surrounding the opening. Applies to opening-type connectors (door, window). |
 | [from_revision](from_revision.md) | Source revision number for this change. |
@@ -206,15 +230,21 @@ Name: pragmatic_bim_data_contract
 | [geometry_reference](geometry_reference.md) | URI/path/hash/pointer to geometry payload. |
 | [geometry_representation](geometry_representation.md) | Representation kind/dimension (for example body_3d, footprint_2d, point), independent of file format. |
 | [geometry_representations](geometry_representations.md) | Geometry references associated with the entity. A single element may link to multiple geometry representations to serve different intents (authoring, coordination, analysis, visualization) without duplicating the element itself. |
+| [geometry_wkt](geometry_wkt.md) | Inline WKT payload for small representations (for example a footprint_2d polygon or a path_3d line in project coordinates, metres). |
 | [granted_at](granted_at.md) | Timestamp when consent was given. Required when lawful_basis is consent. |
+| [ground_reference_source](ground_reference_source.md) | Which source was used to resolve above_ground and is_ground_floor for this storey (same source for all storeys of a building). |
 | [group_members](group_members.md) | Zone members; may include spaces, separations, systems, etc. |
+| [guards_space](guards_space.md) | Spaces whose walking surface this barrier protects against falls. Computed from geometry: the barrier footprint lies within a tolerance of the space footprint and the space floor is at or below the barrier base. |
+| [hosted_by](hosted_by.md) | Host element whose opening this connector fills (for example the wall a door or window sits in). From IfcRelFillsElement and IfcRelVoidsElement, or computed from geometry when the IFC chain is missing. |
 | [id](id.md) | Unique local identifier. |
 | [ifc_attribute_name](ifc_attribute_name.md) | IFC attribute name when property_path_kind is ifc_attribute (for example Name, GlobalId). |
 | [ifc_global_id](ifc_global_id.md) | IFC GlobalId of the mapped entity. |
 | [infill_material](infill_material.md) | Material of the opening infill within the frame (for example glazing for windows, door leaf or panel for doors). Applies to opening-type connectors (door, window). |
 | [intent_verdict](intent_verdict.md) | Intent stability verdict from an automated judge (for example iterthink STABLE/NEW). |
+| [intersects_elements](intersects_elements.md) | Physical elements whose body overlaps this reserved volume beyond the configured tolerance. Computed from geometry; an empty value means the volume is clear. |
 | [is_above_ground](is_above_ground.md) | Whether the space is above ground level. When unset, consumers may derive from parent_level elevation relative to project datum. |
 | [is_cooled](is_cooled.md) | Whether the space is designed to receive cooling (air conditioning). |
+| [is_ground_floor](is_ground_floor.md) | Whether this storey is the building's ground floor (entrance level). Exactly one storey per building should be true after resolution. |
 | [is_heated](is_heated.md) | Whether the space is designed to receive heating. |
 | [is_preferred](is_preferred.md) | Indicates whether this is the preferred contact point. |
 | [jurisdiction](jurisdiction.md) | Jurisdiction or authority scope for the regulatory requirement. |
@@ -222,6 +252,7 @@ Name: pragmatic_bim_data_contract
 | [language_tag](language_tag.md) | IETF BCP 47 language tag (for example en, de, pt-BR). |
 | [lawful_basis](lawful_basis.md) | Lawful basis for processing the scoped personal data categories. |
 | [lifecycle_status](lifecycle_status.md) | Whether the person is active, retired, or deceased. Orthogonal to privacy processing state and workflow QA status. |
+| [lit_space](lit_space.md) | Interior spaces that receive daylight through this window. From space boundaries or computed from geometry (adjacent or nearest interior space). |
 | [localized_descriptions](localized_descriptions.md) | Localized variants of description. |
 | [localized_names](localized_names.md) | Localized variants of name. |
 | [mapping_version](mapping_version.md) | Mapping specification version used to derive the normalized property. |
@@ -231,6 +262,7 @@ Name: pragmatic_bim_data_contract
 | [materials](materials.md) | Material definitions associated with this entity. |
 | [max_distance](max_distance.md) | Maximum walking distance in metres when adjacency_kind is max_distance. |
 | [meaning_uri](meaning_uri.md) | Optional semantic URI for linking the entity instance to an external ontology concept. |
+| [measurement_status](measurement_status.md) | Whether the measurement was obtained (measured), could not be computed from the model (not_measurable), or does not apply in this context (not_applicable). |
 | [media_format](media_format.md) | Encoding or format label (for example IFC4, PDF, DWG). |
 | [message_body](message_body.md) | Human-readable message content. |
 | [message_subject](message_subject.md) | Optional subject or headline for the message. |
@@ -248,6 +280,7 @@ Name: pragmatic_bim_data_contract
 | [modified_at](modified_at.md) | Last modification timestamp for this entity record. |
 | [name](name.md) | Default display name. |
 | [norm_uri](norm_uri.md) | URI identifying the norm, standard, or building code. |
+| [opens_in_escape_direction](opens_in_escape_direction.md) | Whether a swing door leaf opens in the direction of the shortest horizontal escape route through the door. Computed from door OperationType and local placement against escape_route_next; unset when the door is not on a route or the operation type is not a swing. |
 | [operated_by](operated_by.md) | Organization accountable for this software agent. |
 | [parent_building](parent_building.md) | Parent building context reference. |
 | [parent_legal_site](parent_legal_site.md) | Parent legal site context reference. |
@@ -290,7 +323,7 @@ Name: pragmatic_bim_data_contract
 | [quantity_type](quantity_type.md) | Controlled quantity type. |
 | [quantity_unit](quantity_unit.md) | Unit of the quantity value. |
 | [quantity_unit_uri](quantity_unit_uri.md) | Optional URI that identifies the quantity unit in an external vocabulary such as QUDT. |
-| [quantity_value](quantity_value.md) | Numeric quantity value. |
+| [quantity_value](quantity_value.md) | Numeric quantity value. Most QuantityTypes are non-negative; signed types such as height_above_ground_floor and height_above_terrain may be negative when the reference lies below the datum. |
 | [quantity_values](quantity_values.md) | Quantities associated with the entity. |
 | [rationale](rationale.md) | Human-readable rationale that explains why the decision was made. |
 | [recipients](recipients.md) | Agents that received the message. |
@@ -309,6 +342,8 @@ Name: pragmatic_bim_data_contract
 | [relationship_source](relationship_source.md) | Optional provenance label (for example manual, crm:manual, llm:story-msg-0042, LinkedIn). |
 | [relationship_type](relationship_type.md) | Relationship predicate. classification_scheme must be AbstractPersonRelationshipType; classification_code and classification_uri reference the SKOS concept. |
 | [requirement_property_key](requirement_property_key.md) | Canonical performance key for the target (for example u_value, resistance_rating, airborne_sound_rating_db, seismic_structure_class, gwp_embodied). Either a permissible value of a PerformanceProperty key enum, matched against Entity.performance_properties property_key, or an entity slot name such as is_heated. |
+| [reserved_volume_type](reserved_volume_type.md) | Purpose of the reserved volume. |
+| [rests_on](rests_on.md) | Elements this element sits on: its underside bears on their top (for example wall on slab, column on slab, slab on wall or column, equipment on a plinth). Computed from geometric contact; it records contact, not a structural analysis result. The inverse (supports) is read by querying the slot from the other side. |
 | [retain_until](retain_until.md) | Storage-limit deadline after which personal data should be deleted or redacted. |
 | [revision](revision.md) | Integer revision counter for change tracking. |
 | [sender](sender.md) | Agent that sent the message. |
@@ -350,6 +385,7 @@ Name: pragmatic_bim_data_contract
 | [task_notes](task_notes.md) | Additional notes or implementation details for the task. |
 | [task_status](task_status.md) | Task status URI/CURIE aligned with action status vocabularies. |
 | [task_type](task_type.md) | Task type expressed as a URI/CURIE from a controlled vocabulary. |
+| [terrain_surface_status](terrain_surface_status.md) | Whether the terrain surface represents the existing or the projected site. |
 | [text_value](text_value.md) | Localized text value. |
 | [time_plan](time_plan.md) | Parent time plan this record belongs to. |
 | [time_records](time_records.md) | Time records associated with this entity. |
@@ -373,26 +409,31 @@ Name: pragmatic_bim_data_contract
 | --- | --- |
 | [AcousticPropertyKey](AcousticPropertyKey.md) | Canonical acoustic-related keys derived from IFC PropertySets. |
 | [ArtifactKind](ArtifactKind.md) | Kind of external project artifact referenced by storage_link. |
+| [BarrierType](BarrierType.md) | Classification of safety barriers (fall protection and guiding elements). |
 | [BoundaryType](BoundaryType.md) |  |
 | [ChangeIntentVerdict](ChangeIntentVerdict.md) | Intent stability verdict from an automated judge (for example iterthink STABLE/NEW). |
 | [ChangeSeverity](ChangeSeverity.md) | Optional severity of a change independent of change type. |
 | [ChangeType](ChangeType.md) | Category of change detected between two revisions. |
 | [ConnectionFunctionalType](ConnectionFunctionalType.md) | Functional classification of physical connections between spaces by transported medium or passage role. |
-| [ConnectionPhysicalType](ConnectionPhysicalType.md) | Classification of physical connector elements that connect spaces. |
+| [ConnectionPhysicalType](ConnectionPhysicalType.md) | Classification of physical connector elements that connect spaces or carry loads between elements. |
 | [ConnectionRequirementDriver](ConnectionRequirementDriver.md) | Main requirement drivers for connection element performance. |
 | [ConnectionVirtualType](ConnectionVirtualType.md) | Classification of virtual connection semantics using schema-internal meanings because no stable 1:1 IFC mapping exists for these concepts. |
 | [ContentKind](ContentKind.md) | Entity type discriminator for adapter projection and querying — not a module router. |
 | [ContextType](ContextType.md) |  |
 | [CostRecordRole](CostRecordRole.md) |  |
 | [DependencyType](DependencyType.md) | Precedence logic between two time records (FS finish-to-start, SS start-to-start, FF finish-to-finish, SF start-to-finish). |
+| [DerivationSourceKind](DerivationSourceKind.md) | Kind of source a derived value or relation comes from. Used by Derivation.derivation_source_kind. |
 | [EnvironmentalPropertyKey](EnvironmentalPropertyKey.md) | Canonical environmental keys for embodied impacts of an element type, per square metre of element area. |
 | [EquipmentType](EquipmentType.md) |  |
+| [EscapeRouteRole](EscapeRouteRole.md) | Role of a space on an escape route (VKF 16-15 / 17-15): horizontal route, vertical route, or exit to the open air. Set only on spaces that belong to an escape route. |
 | [FirePropertyKey](FirePropertyKey.md) | Canonical fire-related keys derived from IFC PropertySets. |
 | [GeometryRepresentationType](GeometryRepresentationType.md) | Classification of geometric representation dimension/style. |
+| [GroundReferenceSource](GroundReferenceSource.md) | Source used to resolve LevelContext above_ground and is_ground_floor flags. |
 | [IndoorEnvironmentPropertyKey](IndoorEnvironmentPropertyKey.md) | Canonical indoor environment keys for spaces (temperature, humidity, air, light, occupancy). |
 | [LawfulBasis](LawfulBasis.md) | Lawful basis for processing personal data, aligned with GDPR Article 6 and similar regimes. |
 | [MatchStatus](MatchStatus.md) | Whether an entity satisfies a related requirement at the target revision. |
 | [MaterialPropertyKey](MaterialPropertyKey.md) | Canonical material-related keys derived from IFC PropertySets and material metadata. |
+| [MeasurementStatus](MeasurementStatus.md) | Outcome of attempting a derived measurement on model entities. |
 | [PerformancePropertyValueType](PerformancePropertyValueType.md) | Type discriminator for normalized performance property values. |
 | [PersonalDataCategory](PersonalDataCategory.md) | Category of personal data covered by consent or processing scope. |
 | [PersonalDataProcessingState](PersonalDataProcessingState.md) | Privacy handling state for personal data on a Person record, orthogonal to workflow QA status. |
@@ -400,6 +441,7 @@ Name: pragmatic_bim_data_contract
 | [PropertyPathKind](PropertyPathKind.md) | Classification of a property path for diff interpretation across IFC and text sources. |
 | [QuantityType](QuantityType.md) |  |
 | [RequirementTargetOperator](RequirementTargetOperator.md) | Comparison operator for numeric or textual requirement targets. |
+| [ReservedVolumeType](ReservedVolumeType.md) | Purpose of a reserved volume that must stay clear of building elements. |
 | [SecurityPropertyKey](SecurityPropertyKey.md) | Canonical security-related keys derived from IFC PropertySets. |
 | [SeparatorRequirementDriver](SeparatorRequirementDriver.md) | Main requirement drivers for separator performance. |
 | [SeparatorSlabType](SeparatorSlabType.md) | Classification of slab-based separator elements. |
@@ -411,6 +453,7 @@ Name: pragmatic_bim_data_contract
 | [StructuralPropertyKey](StructuralPropertyKey.md) | Canonical structural-related keys derived from IFC PropertySets. |
 | [SystemDiscipline](SystemDiscipline.md) | Discipline of a building service system. |
 | [SystemType](SystemType.md) | Role of an MEP-related element or grouping in the service chain. |
+| [TerrainSurfaceStatus](TerrainSurfaceStatus.md) | Whether a terrain surface describes the existing or the projected site. |
 | [ThermalPropertyKey](ThermalPropertyKey.md) | Canonical thermal-related keys derived from IFC PropertySets. |
 | [TransportMedium](TransportMedium.md) | Primary medium transported through or enabled by a physical connector. |
 | [ZoneType](ZoneType.md) | Classification of zone purpose and organizational intent. |

@@ -17,6 +17,10 @@ External target labels are not shipped in this repository; only codes and IRIs a
 | --- | --- | --- |
 | `ccp:CCP-GYPSUM-BOARD` | `closeMatch` | `kbobbm:05-021` |
 | `ccp:CCP-GYPSUM-BOARD` | `relatedMatch` | `kbobbm:03-008` |
+| `ccp:CCP-GYPSUM-DIRECT` | `closeMatch` | `kbobbm:05-021` |
+| `ccp:CCP-GYPSUM-DIRECT` | `relatedMatch` | `kbobbm:03-008` |
+| `ccp:CCP-GYPSUM-SUSPENDED` | `closeMatch` | `kbobbm:05-021` |
+| `ccp:CCP-GYPSUM-SUSPENDED` | `relatedMatch` | `kbobbm:03-008` |
 | `ccp:CCP-METAL-GRID` | `closeMatch` | `kbobbm:06-012` |
 | `ccp:CCP-METAL-GRID` | `relatedMatch` | `kbobbm:06-001` |
 | `ccp:CCP-METAL-GRID` | `relatedMatch` | `kbobbm:06-002` |
@@ -30,7 +34,11 @@ External target labels are not shipped in this repository; only codes and IRIs a
 | `ccp:CCP-MINERAL-FIBRE` | `relatedMatch` | `kbobbm:10-009` |
 | `ccp:CCP-OTH` | `closeMatch` | `kbobbm:05-021` |
 | `ccp:CCP-OTH` | `relatedMatch` | `kbobbm:06-002` |
+| `ccp:CCP-STRETCH-MEMBRANE` | `closeMatch` | `kbobbm:05-023` |
+| `ccp:CCP-STRETCH-MEMBRANE` | `relatedMatch` | `kbobbm:05-020` |
 | `ccp:CCP-SYNTHETIC` | `closeMatch` | `kbobbm:05-023` |
 | `ccp:CCP-SYNTHETIC` | `relatedMatch` | `kbobbm:05-020` |
+| `ccp:CCP-SYNTHETIC-PANEL` | `closeMatch` | `kbobbm:05-023` |
+| `ccp:CCP-SYNTHETIC-PANEL` | `relatedMatch` | `kbobbm:05-020` |
 | `ccp:CCP-WOOD` | `closeMatch` | `kbobbm:07-014` |
 | `ccp:CCP-WOOD` | `relatedMatch` | `kbobbm:07-016` |

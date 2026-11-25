@@ -114,6 +114,10 @@ click LocalizedText href "./LocalizedText.html" _blank
 | [SeparatorSlab](SeparatorSlab.md) | [localized_descriptions](localized_descriptions.md) | range | [LocalizedText](LocalizedText.md) |
 | [ConnectionPhysical](ConnectionPhysical.md) | [localized_names](localized_names.md) | range | [LocalizedText](LocalizedText.md) |
 | [ConnectionPhysical](ConnectionPhysical.md) | [localized_descriptions](localized_descriptions.md) | range | [LocalizedText](LocalizedText.md) |
+| [SafetyBarrier](SafetyBarrier.md) | [localized_names](localized_names.md) | range | [LocalizedText](LocalizedText.md) |
+| [SafetyBarrier](SafetyBarrier.md) | [localized_descriptions](localized_descriptions.md) | range | [LocalizedText](LocalizedText.md) |
+| [TerrainSurface](TerrainSurface.md) | [localized_names](localized_names.md) | range | [LocalizedText](LocalizedText.md) |
+| [TerrainSurface](TerrainSurface.md) | [localized_descriptions](localized_descriptions.md) | range | [LocalizedText](LocalizedText.md) |
 | [Boundary](Boundary.md) | [localized_names](localized_names.md) | range | [LocalizedText](LocalizedText.md) |
 | [Boundary](Boundary.md) | [localized_descriptions](localized_descriptions.md) | range | [LocalizedText](LocalizedText.md) |
 | [Equipment](Equipment.md) | [localized_names](localized_names.md) | range | [LocalizedText](LocalizedText.md) |
@@ -138,6 +142,8 @@ click LocalizedText href "./LocalizedText.html" _blank
 | [ZoneContext](ZoneContext.md) | [localized_descriptions](localized_descriptions.md) | range | [LocalizedText](LocalizedText.md) |
 | [Space](Space.md) | [localized_names](localized_names.md) | range | [LocalizedText](LocalizedText.md) |
 | [Space](Space.md) | [localized_descriptions](localized_descriptions.md) | range | [LocalizedText](LocalizedText.md) |
+| [ReservedVolume](ReservedVolume.md) | [localized_names](localized_names.md) | range | [LocalizedText](LocalizedText.md) |
+| [ReservedVolume](ReservedVolume.md) | [localized_descriptions](localized_descriptions.md) | range | [LocalizedText](LocalizedText.md) |
 | [System](System.md) | [localized_names](localized_names.md) | range | [LocalizedText](LocalizedText.md) |
 | [System](System.md) | [localized_descriptions](localized_descriptions.md) | range | [LocalizedText](LocalizedText.md) |
 | [ConnectionVirtual](ConnectionVirtual.md) | [localized_names](localized_names.md) | range | [LocalizedText](LocalizedText.md) |
@@ -148,6 +154,8 @@ click LocalizedText href "./LocalizedText.html" _blank
 | [CostRecord](CostRecord.md) | [localized_descriptions](localized_descriptions.md) | range | [LocalizedText](LocalizedText.md) |
 | [Material](Material.md) | [localized_names](localized_names.md) | range | [LocalizedText](LocalizedText.md) |
 | [Material](Material.md) | [localized_descriptions](localized_descriptions.md) | range | [LocalizedText](LocalizedText.md) |
+| [DerivedMeasurement](DerivedMeasurement.md) | [localized_names](localized_names.md) | range | [LocalizedText](LocalizedText.md) |
+| [DerivedMeasurement](DerivedMeasurement.md) | [localized_descriptions](localized_descriptions.md) | range | [LocalizedText](LocalizedText.md) |
 
 
 

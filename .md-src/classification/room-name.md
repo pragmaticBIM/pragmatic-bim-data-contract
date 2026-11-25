@@ -12,7 +12,7 @@ Source: [`building-space-name-classification.skos.ttl`](sources/room-name.ttl)
 
 ## Hierarchy
 
-Hierarchy diagram omitted (206 concepts; Mermaid render limit is 80 nodes). See the Concepts table below or the source TTL.
+Hierarchy diagram omitted (210 concepts; Mermaid render limit is 80 nodes). See the Concepts table below or the source TTL.
 
 ## Concepts
 
@@ -539,10 +539,10 @@ Hierarchy diagram omitted (206 concepts; Mermaid render limit is 80 nodes). See 
 <td>RN-04-10</td>
 <td>RN-04</td>
 <td class="pbs-lang-col" data-lang="de" data-field="label">Toiletten</td>
-<td class="pbs-lang-col" data-lang="de" data-field="definition">WC-Räume nach Barrierefreiheit und Geschlechterausstattung.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">WC-Räume nach Barrierefreiheit, Geschlecht und Nutzergruppe.</td>
 <td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
 <td class="pbs-lang-col" data-lang="en" data-field="label">Toilets</td>
-<td class="pbs-lang-col" data-lang="en" data-field="definition">Toilet rooms by accessibility and gender provision.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Toilet rooms by accessibility, gender, and user group.</td>
 <td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
 </tr>
 <tr>
@@ -583,6 +583,46 @@ Hierarchy diagram omitted (206 concepts; Mermaid render limit is 80 nodes). See 
 <td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
 <td class="pbs-lang-col" data-lang="en" data-field="label">Unisex Toilet</td>
 <td class="pbs-lang-col" data-lang="en" data-field="definition">Toilet room for mixed or all-gender use.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>RN-04-10-05</td>
+<td>RN-04-10</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Lehrpersonen-WC</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">WC für Lehrpersonen, getrennt von den Lernenden.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Teachers&#x27; toilet</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Toilet room for teachers, separate from pupils and students.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>RN-04-10-06</td>
+<td>RN-04-10</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Lernenden-WC</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">WC für Schülerinnen, Schüler und Studierende, getrennt von den Lehrpersonen.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Students&#x27; toilet</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Toilet room for pupils and students, separate from teachers.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>RN-04-10-07</td>
+<td>RN-04-10</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Besucher-WC</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">WC für Besuchende und Kundschaft, getrennt von den Mitarbeitenden.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Visitor toilet</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Toilet room for visitors and customers, separate from staff.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>RN-04-10-08</td>
+<td>RN-04-10</td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Mitarbeiter-WC</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">WC für Mitarbeitende, getrennt von der Kundschaft.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Staff toilet</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Toilet room for staff, separate from customers.</td>
 <td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
 </tr>
 <tr>
