@@ -18,6 +18,9 @@ External target labels are not shipped in this repository; only codes and IRIs a
 | `wicp:WICP-ALUMINIUM` | `relatedMatch` | `kbobbm:05-001` |
 | `wicp:WICP-ALUMINIUM` | `relatedMatch` | `kbobbm:05-004` |
 | `wicp:WICP-ALUMINIUM-FRAME` | `closeMatch` | `kbobbm:05-004` |
+| `wicp:WICP-ALUMINIUM-GLAZING-2P` | `closeMatch` | `kbobbm:05-001` |
+| `wicp:WICP-ALUMINIUM-GLAZING-2P` | `relatedMatch` | `kbobbm:05-003` |
+| `wicp:WICP-ALUMINIUM-GLAZING-2P` | `relatedMatch` | `kbobbm:05-012` |
 | `wicp:WICP-ALUMINIUM-GLZ-2P` | `closeMatch` | `kbobbm:05-001` |
 | `wicp:WICP-ALUMINIUM-GLZ-2P` | `relatedMatch` | `kbobbm:05-003` |
 | `wicp:WICP-ALUMINIUM-GLZ-2P` | `relatedMatch` | `kbobbm:05-012` |
@@ -27,6 +30,7 @@ External target labels are not shipped in this repository; only codes and IRIs a
 | `wicp:WICP-PVC` | `relatedMatch` | `kbobbm:05-001` |
 | `wicp:WICP-PVC` | `relatedMatch` | `kbobbm:05-007` |
 | `wicp:WICP-PVC-FRAME` | `closeMatch` | `kbobbm:05-007` |
+| `wicp:WICP-PVC-GLAZING-2P` | `closeMatch` | `kbobbm:05-001` |
 | `wicp:WICP-PVC-GLZ-2P` | `closeMatch` | `kbobbm:05-001` |
 | `wicp:WICP-ROOF-DOME` | `closeMatch` | `kbobbm:05-005` |
 | `wicp:WICP-ROOF-DOME` | `relatedMatch` | `kbobbm:05-012` |
@@ -43,12 +47,15 @@ External target labels are not shipped in this repository; only codes and IRIs a
 | `wicp:WICP-STEEL` | `relatedMatch` | `kbobbm:05-004` |
 | `wicp:WICP-STEEL-FRAME` | `closeMatch` | `kbobbm:05-004` |
 | `wicp:WICP-STEEL-FRAME` | `relatedMatch` | `kbobbm:06-012` |
+| `wicp:WICP-STEEL-GLAZING-2P` | `closeMatch` | `kbobbm:05-001` |
 | `wicp:WICP-STEEL-GLZ-2P` | `closeMatch` | `kbobbm:05-001` |
 | `wicp:WICP-WOOD` | `relatedMatch` | `kbobbm:05-001` |
 | `wicp:WICP-WOOD` | `relatedMatch` | `kbobbm:05-005` |
 | `wicp:WICP-WOOD-FRAME` | `closeMatch` | `kbobbm:05-005` |
+| `wicp:WICP-WOOD-GLAZING-2P` | `closeMatch` | `kbobbm:05-001` |
 | `wicp:WICP-WOOD-GLZ-2P` | `closeMatch` | `kbobbm:05-001` |
 | `wicp:WICP-WOOD-METAL` | `relatedMatch` | `kbobbm:05-001` |
 | `wicp:WICP-WOOD-METAL` | `relatedMatch` | `kbobbm:05-006` |
 | `wicp:WICP-WOOD-METAL-FRAME` | `closeMatch` | `kbobbm:05-006` |
+| `wicp:WICP-WOOD-METAL-GLAZING-2P` | `closeMatch` | `kbobbm:05-001` |
 | `wicp:WICP-WOOD-METAL-GLZ-2P` | `closeMatch` | `kbobbm:05-001` |

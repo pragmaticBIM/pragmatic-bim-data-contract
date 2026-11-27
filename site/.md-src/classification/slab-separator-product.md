@@ -24,12 +24,22 @@ class n_SSP_HOLZ_LEHM_WOD["SSP-HOLZ-LEHM-WOD: Timber–clay slab timber layer"]
 class n_SSP_STEEL_COMPOSITE["SSP-STEEL-COMPOSITE: Steel deck / composite slab"]
 class n_SSP_STEEL_COMPOSITE_CONC["SSP-STEEL-COMPOSITE-CONC: Composite slab concrete topping layer"]
 class n_SSP_STEEL_COMPOSITE_STL["SSP-STEEL-COMPOSITE-STL: Steel deck layer"]
+class n_SSP_TIMBER_CLAY["SSP-TIMBER-CLAY: Timber–clay slab / deck"]
+class n_SSP_TIMBER_CLAY_MSN["SSP-TIMBER-CLAY-MSN: Timber–clay slab clay infill layer"]
+class n_SSP_TIMBER_CLAY_WOD["SSP-TIMBER-CLAY-WOD: Timber–clay slab timber layer"]
+class n_SSP_TIMBER_CONCRETE["SSP-TIMBER-CONCRETE: Timber–concrete composite slab"]
+class n_SSP_TIMBER_CONCRETE_CONC["SSP-TIMBER-CONCRETE-CONC: Timber–concrete composite concrete topping layer"]
+class n_SSP_TIMBER_CONCRETE_WOD["SSP-TIMBER-CONCRETE-WOD: Timber–concrete composite timber base layer"]
 n_SSP_HBV <|-- n_SSP_HBV_CONC
 n_SSP_HBV <|-- n_SSP_HBV_WOD
 n_SSP_HOLZ_LEHM <|-- n_SSP_HOLZ_LEHM_MSN
 n_SSP_HOLZ_LEHM <|-- n_SSP_HOLZ_LEHM_WOD
 n_SSP_STEEL_COMPOSITE <|-- n_SSP_STEEL_COMPOSITE_CONC
 n_SSP_STEEL_COMPOSITE <|-- n_SSP_STEEL_COMPOSITE_STL
+n_SSP_TIMBER_CLAY <|-- n_SSP_TIMBER_CLAY_MSN
+n_SSP_TIMBER_CLAY <|-- n_SSP_TIMBER_CLAY_WOD
+n_SSP_TIMBER_CONCRETE <|-- n_SSP_TIMBER_CONCRETE_CONC
+n_SSP_TIMBER_CONCRETE <|-- n_SSP_TIMBER_CONCRETE_WOD
 ```
 
 ## Concepts
@@ -262,6 +272,94 @@ n_SSP_STEEL_COMPOSITE <|-- n_SSP_STEEL_COMPOSITE_STL
 <td class="pbs-lang-col" data-lang="en" data-field="label">Timber slab / deck</td>
 <td class="pbs-lang-col" data-lang="en" data-field="definition">Slab or deck with primary timber joists, panels, or rib-deck structure, excluding cross-laminated timber (CLT) plate slabs.</td>
 <td class="pbs-lang-col" data-lang="en" data-field="scope_note">For cross-laminated timber (CLT) plate slabs use SSP-CLT.</td>
+</tr>
+<tr>
+<td>SSP-TIMBER-CLAY</td>
+<td></td>
+<td><a href="https://github.com/pragmaticBIM/pragmaticbim-reference/blob/main/products/ssp-timber-clay.yaml">Reference</a></td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Holz-Lehm-Decke</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Decke mit Holztraegern oder -rahmen und Stampflehm-Ausfachung oder -auflage, einschliesslich vorgefertigter Holz-Lehm-Deckenelemente.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Timber–clay slab / deck</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Slab or deck with timber joists or frame and rammed-clay (Stampflehm) infill or topping, including prefabricated timber–clay panel systems.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>SSP-TIMBER-CLAY-MSN</td>
+<td>SSP-TIMBER-CLAY</td>
+<td></td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Holz-Lehm-Decke Lehmschicht</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Stampflehm-Ausfachungs- oder -auflage-Schicht einer Holz-Lehm-Decke.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note">LCA-Schichtkomponente von SSP-TIMBER-CLAY. Fuer Oekobilanz-Zerlegung und CO2-Berechnung; keine eigenstaendige Deckenprodukt-Klassifikation.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Timber–clay slab clay infill layer</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Rammed-clay (Stampflehm) infill or topping layer of a timber–clay slab.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note">LCA layer component of SSP-TIMBER-CLAY. Used for ecobilans decomposition and carbon calculation; not a standalone slab product classification.</td>
+</tr>
+<tr>
+<td>SSP-TIMBER-CLAY-WOD</td>
+<td>SSP-TIMBER-CLAY</td>
+<td></td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Holz-Lehm-Decke Holzschicht</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Holztraeger- oder -rahmen-Schicht einer Holz-Lehm-Decke.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note">LCA-Schichtkomponente von SSP-TIMBER-CLAY. Fuer Oekobilanz-Zerlegung und CO2-Berechnung; keine eigenstaendige Deckenprodukt-Klassifikation.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Timber–clay slab timber layer</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Timber joist or frame layer of a timber–clay slab.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note">LCA layer component of SSP-TIMBER-CLAY. Used for ecobilans decomposition and carbon calculation; not a standalone slab product classification.</td>
+</tr>
+<tr>
+<td>SSP-TIMBER-CONCRETE</td>
+<td></td>
+<td><a href="https://github.com/pragmaticBIM/pragmaticbim-reference/blob/main/products/ssp-timber-concrete.yaml">Reference</a></td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Holz-Beton-Verbunddecke</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Hybride Decke mit Holztragwerk (z. B. Blockholzplatte, Brettsperrholz oder Rippendecke) und schubfest verbundener Ortbeton- oder Fertigbetonauflage.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note">Fuer Bepreisung SSP-TIMBER-CONCRETE-INSITU oder SSP-TIMBER-CONCRETE-PRECAST bevorzugen. Dieses Elternkonzept traegt die LCA-Schicht-narrower.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Timber–concrete composite slab</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Hybrid slab with timber base (for example block timber, CLT, or rib deck) and a shear-connected concrete topping cast on site or prefabricated as a composite element.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note">For pricing prefer SSP-TIMBER-CONCRETE-INSITU or SSP-TIMBER-CONCRETE-PRECAST. This parent holds LCA layer narrowers.</td>
+</tr>
+<tr>
+<td>SSP-TIMBER-CONCRETE-CONC</td>
+<td>SSP-TIMBER-CONCRETE</td>
+<td></td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Holz-Beton-Verbund Betonauflage-Schicht</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Betonauflage-Schicht einer Holz-Beton-Verbunddecke, in Ortbeton oder als Fertigteil, schubfest mit dem Holztragwerk verbunden.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note">LCA-Schichtkomponente von SSP-TIMBER-CONCRETE. Fuer Oekobilanz-Zerlegung und CO2-Berechnung; keine eigenstaendige Deckenprodukt-Klassifikation.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Timber–concrete composite concrete topping layer</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Concrete topping layer of a timber–concrete composite slab, cast in situ or prefabricated, shear-connected to the timber base.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note">LCA layer component of SSP-TIMBER-CONCRETE. Used for ecobilans decomposition and carbon calculation; not a standalone slab product classification.</td>
+</tr>
+<tr>
+<td>SSP-TIMBER-CONCRETE-WOD</td>
+<td>SSP-TIMBER-CONCRETE</td>
+<td></td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Holz-Beton-Verbund Holztragwerk-Schicht</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Holztragwerk-Schicht einer Holz-Beton-Verbunddecke (Blockholz, Brettsperrholz, Rippendecke oder aehnliche Holzwerkstoff-Konstruktion).</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note">LCA-Schichtkomponente von SSP-TIMBER-CONCRETE. Fuer Oekobilanz-Zerlegung und CO2-Berechnung; keine eigenstaendige Deckenprodukt-Klassifikation.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Timber–concrete composite timber base layer</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Timber base layer of a timber–concrete composite slab (block timber, CLT, rib deck, or similar engineered-wood structure).</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note">LCA layer component of SSP-TIMBER-CONCRETE. Used for ecobilans decomposition and carbon calculation; not a standalone slab product classification.</td>
+</tr>
+<tr>
+<td>SSP-TIMBER-CONCRETE-INSITU</td>
+<td></td>
+<td><a href="https://github.com/pragmaticBIM/pragmaticbim-reference/blob/main/products/ssp-timber-concrete-insitu.yaml">Reference</a></td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Holz-Beton-Verbunddecke mit Ortbeton</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Holztragwerk, auf das die Betonschicht vor Ort schubfest aufbetoniert wird.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">In-situ timber-concrete composite slab</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Timber structure onto which the concrete layer is cast in place with shear connection.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>SSP-TIMBER-CONCRETE-PRECAST</td>
+<td></td>
+<td><a href="https://github.com/pragmaticBIM/pragmaticbim-reference/blob/main/products/ssp-timber-concrete-precast.yaml">Reference</a></td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Holz-Beton-Verbundelement</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Im Werk hergestelltes Deckenelement aus Holz und Beton im Verbund.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Precast timber-concrete composite element</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Floor element of timber and concrete in composite action, produced in the factory.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
 </tr>
 </tbody>
 </table>

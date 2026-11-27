@@ -43,7 +43,7 @@
   skos:prefLabel "Holzfenster"@de ;
   skos:definition "Window with primary wood frame and sash, including traditional timber windows."@en ;
   skos:definition "Fenster mit primaerem Holzrahmen und -fluegel, einschliesslich traditioneller Holzfenster."@de ;
-  skos:narrower :WICP-WOOD-FRAME, :WICP-WOOD-GLZ-2P ;
+  skos:narrower :WICP-WOOD-FRAME, :WICP-WOOD-GLAZING-2P ;
   dcterms:subject "IfcWindow" ;
   dcterms:identifier "wood-window" .
 
@@ -63,6 +63,23 @@
 :WICP-WOOD-GLZ-2P a skos:Concept ;
   skos:inScheme :scheme ;
   skos:notation "WICP-WOOD-GLZ-2P" ;
+  owl:deprecated true ;
+  dcterms:isReplacedBy :WICP-WOOD-GLAZING-2P ;
+  skos:historyNote "Deprecated: GLZ abbreviation replaced by English GLAZING."@en ;
+  skos:historyNote "Veraltet: Kuerzel GLZ durch englisches GLAZING ersetzt."@de ;
+  skos:prefLabel "Wood window 2-pane glazing layer"@en ;
+  skos:prefLabel "Holzfenster 2-fach Verglasung-Schicht"@de ;
+  skos:definition "Default double-pane insulating glazing layer of a wood window system."@en ;
+  skos:definition "Standard-Isolierverglasung (2-fach) eines Holzfensters."@de ;
+  skos:broader :WICP-WOOD ;
+  skos:scopeNote "LCA layer component of WICP-WOOD. Used for ecobilans decomposition and carbon calculation; not a standalone window product classification."@en ;
+  skos:scopeNote "LCA-Schichtkomponente von WICP-WOOD. Fuer Oekobilanz-Zerlegung und CO2-Berechnung; keine eigenstaendige Fensterprodukt-Klassifikation."@de ;
+  dcterms:subject "IfcWindow" ;
+  dcterms:identifier "wood-window-glazing-layer" .
+
+:WICP-WOOD-GLAZING-2P a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:notation "WICP-WOOD-GLAZING-2P" ;
   skos:prefLabel "Wood window 2-pane glazing layer"@en ;
   skos:prefLabel "Holzfenster 2-fach Verglasung-Schicht"@de ;
   skos:definition "Default double-pane insulating glazing layer of a wood window system."@en ;
@@ -81,7 +98,7 @@
   skos:prefLabel "Holz-Metall-Fenster"@de ;
   skos:definition "Window with wood interior and metal exterior frame or wood-aluminium composite system."@en ;
   skos:definition "Fenster mit Holzinnenseite und Metall-Aussenrahmen oder Holz-Aluminium-Verbundsystem."@de ;
-  skos:narrower :WICP-WOOD-METAL-FRAME, :WICP-WOOD-METAL-GLZ-2P ;
+  skos:narrower :WICP-WOOD-METAL-FRAME, :WICP-WOOD-METAL-GLAZING-2P ;
   dcterms:subject "IfcWindow" ;
   dcterms:identifier "wood-metal-window" .
 
@@ -101,6 +118,23 @@
 :WICP-WOOD-METAL-GLZ-2P a skos:Concept ;
   skos:inScheme :scheme ;
   skos:notation "WICP-WOOD-METAL-GLZ-2P" ;
+  owl:deprecated true ;
+  dcterms:isReplacedBy :WICP-WOOD-METAL-GLAZING-2P ;
+  skos:historyNote "Deprecated: GLZ abbreviation replaced by English GLAZING."@en ;
+  skos:historyNote "Veraltet: Kuerzel GLZ durch englisches GLAZING ersetzt."@de ;
+  skos:prefLabel "Wood–metal window 2-pane glazing layer"@en ;
+  skos:prefLabel "Holz-Metall-Fenster 2-fach Verglasung-Schicht"@de ;
+  skos:definition "Default double-pane insulating glazing layer of a wood–metal window system."@en ;
+  skos:definition "Standard-Isolierverglasung (2-fach) eines Holz-Metall-Fensters."@de ;
+  skos:broader :WICP-WOOD-METAL ;
+  skos:scopeNote "LCA layer component of WICP-WOOD-METAL. Used for ecobilans decomposition and carbon calculation; not a standalone window product classification."@en ;
+  skos:scopeNote "LCA-Schichtkomponente von WICP-WOOD-METAL. Fuer Oekobilanz-Zerlegung und CO2-Berechnung; keine eigenstaendige Fensterprodukt-Klassifikation."@de ;
+  dcterms:subject "IfcWindow" ;
+  dcterms:identifier "wood-metal-window-glazing-layer" .
+
+:WICP-WOOD-METAL-GLAZING-2P a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:notation "WICP-WOOD-METAL-GLAZING-2P" ;
   skos:prefLabel "Wood–metal window 2-pane glazing layer"@en ;
   skos:prefLabel "Holz-Metall-Fenster 2-fach Verglasung-Schicht"@de ;
   skos:definition "Default double-pane insulating glazing layer of a wood–metal window system."@en ;
@@ -119,7 +153,7 @@
   skos:prefLabel "Kunststoff- / PVC-Fenster"@de ;
   skos:definition "Window with primary PVC or uPVC frame and sash system."@en ;
   skos:definition "Fenster mit primaerem PVC- oder uPVC-Rahmen und -fluegelsystem."@de ;
-  skos:narrower :WICP-PVC-FRAME, :WICP-PVC-GLZ-2P ;
+  skos:narrower :WICP-PVC-FRAME, :WICP-PVC-GLAZING-2P ;
   dcterms:subject "IfcWindow" ;
   dcterms:identifier "pvc-window" .
 
@@ -139,6 +173,23 @@
 :WICP-PVC-GLZ-2P a skos:Concept ;
   skos:inScheme :scheme ;
   skos:notation "WICP-PVC-GLZ-2P" ;
+  owl:deprecated true ;
+  dcterms:isReplacedBy :WICP-PVC-GLAZING-2P ;
+  skos:historyNote "Deprecated: GLZ abbreviation replaced by English GLAZING."@en ;
+  skos:historyNote "Veraltet: Kuerzel GLZ durch englisches GLAZING ersetzt."@de ;
+  skos:prefLabel "PVC window 2-pane glazing layer"@en ;
+  skos:prefLabel "PVC-Fenster 2-fach Verglasung-Schicht"@de ;
+  skos:definition "Default double-pane insulating glazing layer of a PVC window system."@en ;
+  skos:definition "Standard-Isolierverglasung (2-fach) eines PVC-Fensters."@de ;
+  skos:broader :WICP-PVC ;
+  skos:scopeNote "LCA layer component of WICP-PVC. Used for ecobilans decomposition and carbon calculation; not a standalone window product classification."@en ;
+  skos:scopeNote "LCA-Schichtkomponente von WICP-PVC. Fuer Oekobilanz-Zerlegung und CO2-Berechnung; keine eigenstaendige Fensterprodukt-Klassifikation."@de ;
+  dcterms:subject "IfcWindow" ;
+  dcterms:identifier "pvc-window-glazing-layer" .
+
+:WICP-PVC-GLAZING-2P a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:notation "WICP-PVC-GLAZING-2P" ;
   skos:prefLabel "PVC window 2-pane glazing layer"@en ;
   skos:prefLabel "PVC-Fenster 2-fach Verglasung-Schicht"@de ;
   skos:definition "Default double-pane insulating glazing layer of a PVC window system."@en ;
@@ -157,7 +208,7 @@
   skos:prefLabel "Stahlfenster"@de ;
   skos:definition "Window with primary steel frame and sash, including historic and industrial steel windows."@en ;
   skos:definition "Fenster mit primaerem Stahlrahmen und -fluegel, einschliesslich historischer und industrieller Stahlfenster."@de ;
-  skos:narrower :WICP-STEEL-FRAME, :WICP-STEEL-GLZ-2P ;
+  skos:narrower :WICP-STEEL-FRAME, :WICP-STEEL-GLAZING-2P ;
   dcterms:subject "IfcWindow" ;
   dcterms:identifier "steel-window" .
 
@@ -177,6 +228,23 @@
 :WICP-STEEL-GLZ-2P a skos:Concept ;
   skos:inScheme :scheme ;
   skos:notation "WICP-STEEL-GLZ-2P" ;
+  owl:deprecated true ;
+  dcterms:isReplacedBy :WICP-STEEL-GLAZING-2P ;
+  skos:historyNote "Deprecated: GLZ abbreviation replaced by English GLAZING."@en ;
+  skos:historyNote "Veraltet: Kuerzel GLZ durch englisches GLAZING ersetzt."@de ;
+  skos:prefLabel "Steel window 2-pane glazing layer"@en ;
+  skos:prefLabel "Stahlfenster 2-fach Verglasung-Schicht"@de ;
+  skos:definition "Default double-pane insulating glazing layer of a steel window system."@en ;
+  skos:definition "Standard-Isolierverglasung (2-fach) eines Stahlfensters."@de ;
+  skos:broader :WICP-STEEL ;
+  skos:scopeNote "LCA layer component of WICP-STEEL. Used for ecobilans decomposition and carbon calculation; not a standalone window product classification."@en ;
+  skos:scopeNote "LCA-Schichtkomponente von WICP-STEEL. Fuer Oekobilanz-Zerlegung und CO2-Berechnung; keine eigenstaendige Fensterprodukt-Klassifikation."@de ;
+  dcterms:subject "IfcWindow" ;
+  dcterms:identifier "steel-window-glazing-layer" .
+
+:WICP-STEEL-GLAZING-2P a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:notation "WICP-STEEL-GLAZING-2P" ;
   skos:prefLabel "Steel window 2-pane glazing layer"@en ;
   skos:prefLabel "Stahlfenster 2-fach Verglasung-Schicht"@de ;
   skos:definition "Default double-pane insulating glazing layer of a steel window system."@en ;
@@ -195,7 +263,7 @@
   skos:prefLabel "Aluminiumfenster"@de ;
   skos:definition "Window with primary aluminium or light-metal frame and sash system."@en ;
   skos:definition "Fenster mit primaerem Aluminium- oder Leichtmetall-Rahmen und -fluegelsystem."@de ;
-  skos:narrower :WICP-ALUMINIUM-FRAME, :WICP-ALUMINIUM-GLZ-2P ;
+  skos:narrower :WICP-ALUMINIUM-FRAME, :WICP-ALUMINIUM-GLAZING-2P ;
   dcterms:subject "IfcWindow" ;
   dcterms:identifier "aluminium-window" .
 
@@ -215,6 +283,23 @@
 :WICP-ALUMINIUM-GLZ-2P a skos:Concept ;
   skos:inScheme :scheme ;
   skos:notation "WICP-ALUMINIUM-GLZ-2P" ;
+  owl:deprecated true ;
+  dcterms:isReplacedBy :WICP-ALUMINIUM-GLAZING-2P ;
+  skos:historyNote "Deprecated: GLZ abbreviation replaced by English GLAZING."@en ;
+  skos:historyNote "Veraltet: Kuerzel GLZ durch englisches GLAZING ersetzt."@de ;
+  skos:prefLabel "Aluminium window 2-pane glazing layer"@en ;
+  skos:prefLabel "Aluminiumfenster 2-fach Verglasung-Schicht"@de ;
+  skos:definition "Default double-pane insulating glazing layer of an aluminium window system."@en ;
+  skos:definition "Standard-Isolierverglasung (2-fach) eines Aluminiumfensters."@de ;
+  skos:broader :WICP-ALUMINIUM ;
+  skos:scopeNote "LCA layer component of WICP-ALUMINIUM. Used for ecobilans decomposition and carbon calculation; not a standalone window product classification."@en ;
+  skos:scopeNote "LCA-Schichtkomponente von WICP-ALUMINIUM. Fuer Oekobilanz-Zerlegung und CO2-Berechnung; keine eigenstaendige Fensterprodukt-Klassifikation."@de ;
+  dcterms:subject "IfcWindow" ;
+  dcterms:identifier "aluminium-window-glazing-layer" .
+
+:WICP-ALUMINIUM-GLAZING-2P a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:notation "WICP-ALUMINIUM-GLAZING-2P" ;
   skos:prefLabel "Aluminium window 2-pane glazing layer"@en ;
   skos:prefLabel "Aluminiumfenster 2-fach Verglasung-Schicht"@de ;
   skos:definition "Default double-pane insulating glazing layer of an aluminium window system."@en ;

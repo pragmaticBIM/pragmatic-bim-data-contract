@@ -1,0 +1,53 @@
+@prefix rcp: <https://example.org/abstract/roof-covering-product/> .
+@prefix onorm1801: <https://example.org/at/onorm-b1801/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix map: <https://example.org/mapping/> .
+
+map:abstractRoofCoveringProductsToOnormB1801Mapping a dcterms:Dataset ;
+  dcterms:title "Abstract roof covering products to ÖNORM B 1801 mapping"@en ;
+  dcterms:title "Mapping abstrakter Dachbekleidungsprodukte nach ÖNORM B 1801"@de ;
+  dcterms:references rcp:scheme, onorm1801:scheme ;
+  dcterms:issued "2026-11-27" ;
+  dcterms:description "Maps abstract roof covering product concepts to ÖNORM B 1801-1:2022 Leistungsgliederung Hochbau codes by reference only (e.g. 2.H09, 2.H10, 3.H51). IRI local names use underscore for the dot. Codes are referenced by notation; ÖNORM B 1801 is published by Austrian Standards and no titles or definitions are reproduced. Licence holders resolve the codes against their own copy. closeMatch is the leading Leistungsgruppe; relatedMatch marks a secondary or adjacent line. Disambiguation: the mapping is deliberately not bijective."@en ;
+  dcterms:description "Ordnet abstrakte Dachbekleidungsprodukte den Codes der Leistungsgliederung Hochbau nach ÖNORM B 1801-1:2022 nur per Referenz zu (z. B. 2.H09, 2.H10, 3.H51). IRI-Lokalnamen mit Unterstrich fuer den Punkt. Codes nur ueber Notation; ÖNORM B 1801 wird von Austrian Standards herausgegeben, es werden keine Bezeichnungen oder Definitionen wiedergegeben. Lizenznehmende loesen die Codes mit ihrer eigenen Ausgabe auf. closeMatch ist die Leit-Leistungsgruppe; relatedMatch eine sekundaere oder benachbarte Position. Disambiguierung: Das Mapping ist bewusst nicht eindeutig."@de .
+
+# --- Flat roofs: sealing membranes ---
+
+rcp:RCP-FLAT-BITUMEN skos:closeMatch onorm1801:2_H08 ;
+  skos:relatedMatch onorm1801:2_H09 .
+
+rcp:RCP-FLAT-SINGLE-PLY skos:closeMatch onorm1801:2_H08 ;
+  skos:relatedMatch onorm1801:2_H09 .
+
+rcp:RCP-FLAT-LIQUID skos:closeMatch onorm1801:2_H08 .
+
+# --- Pitched roofs: coverings ---
+
+rcp:RCP-TILE-CLAY skos:closeMatch onorm1801:2_H09 .
+
+rcp:RCP-TILE-CONCRETE skos:closeMatch onorm1801:2_H09 .
+
+rcp:RCP-SLATE skos:closeMatch onorm1801:2_H09 .
+
+rcp:RCP-WOOD-SHINGLE skos:closeMatch onorm1801:2_H09 ;
+  skos:relatedMatch onorm1801:2_H14 .
+
+rcp:RCP-METAL-SHEET skos:closeMatch onorm1801:2_H10 ;
+  skos:relatedMatch onorm1801:2_H09 .
+
+# --- Green roofs and roof-mounted systems ---
+
+rcp:RCP-GREEN-EXTENSIVE skos:closeMatch onorm1801:2_H08 ;
+  skos:relatedMatch onorm1801:6_H01 .
+
+rcp:RCP-GREEN-INTENSIVE skos:closeMatch onorm1801:2_H08 ;
+  skos:relatedMatch onorm1801:6_H01 .
+
+rcp:RCP-PV-ROOF skos:closeMatch onorm1801:3_H51 ;
+  skos:relatedMatch onorm1801:2_H08 .
+
+rcp:RCP-PV-MOUNTED skos:closeMatch onorm1801:3_H51 ;
+  skos:relatedMatch onorm1801:2_H08 .
+
+rcp:RCP-PV-INTEGRATED skos:closeMatch onorm1801:3_H51, onorm1801:2_H09 .

@@ -27,7 +27,7 @@ ssp:SSP-CLT skos:closeMatch kbobbm:07_023 ;
 ssp:SSP-LIGHTWEIGHT skos:closeMatch kbobbm:07_005 ;
   skos:relatedMatch kbobbm:10_008 .
 
-# --- HBV composite (layer decomposition) ---
+# --- Timber–concrete composite (layer decomposition; legacy HBV codes kept) ---
 
 ssp:SSP-HBV-WOD skos:closeMatch kbobbm:07_003 .
 
@@ -38,6 +38,16 @@ ssp:SSP-HBV skos:relatedMatch kbobbm:07_003, kbobbm:01_002 .
 ssp:SSP-HBV-INSITU skos:relatedMatch kbobbm:07_003, kbobbm:01_002 .
 
 ssp:SSP-HBV-PRECAST skos:relatedMatch kbobbm:07_003, kbobbm:01_002 .
+
+ssp:SSP-TIMBER-CONCRETE-WOD skos:closeMatch kbobbm:07_003 .
+
+ssp:SSP-TIMBER-CONCRETE-CONC skos:closeMatch kbobbm:01_002 .
+
+ssp:SSP-TIMBER-CONCRETE skos:relatedMatch kbobbm:07_003, kbobbm:01_002 .
+
+ssp:SSP-TIMBER-CONCRETE-INSITU skos:relatedMatch kbobbm:07_003, kbobbm:01_002 .
+
+ssp:SSP-TIMBER-CONCRETE-PRECAST skos:relatedMatch kbobbm:07_003, kbobbm:01_002 .
 
 # --- Steel composite (layer decomposition) ---
 
@@ -51,13 +61,19 @@ ssp:SSP-COMPOSITE-DECK skos:relatedMatch kbobbm:06_012, kbobbm:01_002 .
 
 ssp:SSP-COMPOSITE-BEAM skos:relatedMatch kbobbm:06_012, kbobbm:01_002 .
 
-# --- Timber–clay composite (layer decomposition) ---
+# --- Timber–clay composite (layer decomposition; legacy HOLZ-LEHM codes kept) ---
 
 ssp:SSP-HOLZ-LEHM-WOD skos:closeMatch kbobbm:07_003 .
 
 ssp:SSP-HOLZ-LEHM-MSN skos:closeMatch kbobbm:03_020 .
 
 ssp:SSP-HOLZ-LEHM skos:relatedMatch kbobbm:07_003, kbobbm:03_020 .
+
+ssp:SSP-TIMBER-CLAY-WOD skos:closeMatch kbobbm:07_003 .
+
+ssp:SSP-TIMBER-CLAY-MSN skos:closeMatch kbobbm:03_020 .
+
+ssp:SSP-TIMBER-CLAY skos:relatedMatch kbobbm:07_003, kbobbm:03_020 .
 
 # --- Fallback ---
 

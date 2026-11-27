@@ -42,6 +42,12 @@ External target labels are not shipped in this repository; only codes and IRIs a
 | `facp:FaCP-PREFAB-MODULAR-METAL` | `relatedMatch` | `kbobbm:06-012` |
 | `facp:FaCP-PREFAB-MODULAR-TIMBER` | `closeMatch` | `kbobbm:07-003` |
 | `facp:FaCP-PREFAB-MODULAR-TIMBER` | `relatedMatch` | `kbobbm:07-023` |
+| `facp:FaCP-RENDER-ETICS` | `relatedMatch` | `kbobbm:04-007` |
+| `facp:FaCP-RENDER-ETICS` | `relatedMatch` | `kbobbm:10-004` |
+| `facp:FaCP-RENDER-ETICS` | `relatedMatch` | `kbobbm:10-008` |
+| `facp:FaCP-RENDER-ETICS-INS` | `closeMatch` | `kbobbm:10-004` |
+| `facp:FaCP-RENDER-ETICS-INS` | `relatedMatch` | `kbobbm:10-008` |
+| `facp:FaCP-RENDER-ETICS-RENDER` | `closeMatch` | `kbobbm:04-007` |
 | `facp:FaCP-RENDER-ETICS-WDVS` | `relatedMatch` | `kbobbm:04-007` |
 | `facp:FaCP-RENDER-ETICS-WDVS` | `relatedMatch` | `kbobbm:10-004` |
 | `facp:FaCP-RENDER-ETICS-WDVS` | `relatedMatch` | `kbobbm:10-008` |

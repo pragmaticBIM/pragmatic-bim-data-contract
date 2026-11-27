@@ -32,7 +32,11 @@
     :SSP-HBV,
     :SSP-HBV-INSITU,
     :SSP-HBV-PRECAST,
+    :SSP-TIMBER-CONCRETE,
+    :SSP-TIMBER-CONCRETE-INSITU,
+    :SSP-TIMBER-CONCRETE-PRECAST,
     :SSP-HOLZ-LEHM,
+    :SSP-TIMBER-CLAY,
     :SSP-LIGHTWEIGHT,
     :SSP-OTH .
 
@@ -151,9 +155,9 @@
   skos:topConceptOf :scheme ;
   skos:notation "SSP-HBV" ;
   owl:deprecated true ;
-  dcterms:isReplacedBy :SSP-HBV-INSITU, :SSP-HBV-PRECAST ;
-  skos:historyNote "Deprecated: combined several construction systems with different price logic. Replaced by the classes in dcterms:isReplacedBy."@en ;
-  skos:historyNote "Veraltet: fasste mehrere Bausysteme mit unterschiedlicher Preisbildung zusammen. Ersetzt durch die Klassen unter dcterms:isReplacedBy."@de ;
+  dcterms:isReplacedBy :SSP-TIMBER-CONCRETE-INSITU, :SSP-TIMBER-CONCRETE-PRECAST ;
+  skos:historyNote "Deprecated: notation used a German acronym (HBV) and combined systems with different price logic. Replaced by English SSP-TIMBER-CONCRETE-*."@en ;
+  skos:historyNote "Veraltet: Notation verwendete das deutsche Kuerzel HBV und fasste Systeme mit unterschiedlicher Preisbildung zusammen. Ersetzt durch englisches SSP-TIMBER-CONCRETE-*."@de ;
   skos:prefLabel "Timber–concrete composite slab (HBV)"@en ;
   skos:prefLabel "Holz-Beton-Verbunddecke (HBV)"@de ;
   skos:altLabel "Holbetonverbund"@de ;
@@ -167,6 +171,10 @@
   skos:inScheme :scheme ;
   skos:topConceptOf :scheme ;
   skos:notation "SSP-HBV-INSITU" ;
+  owl:deprecated true ;
+  dcterms:isReplacedBy :SSP-TIMBER-CONCRETE-INSITU ;
+  skos:historyNote "Deprecated: notation used a German acronym (HBV). Replaced by English SSP-TIMBER-CONCRETE-INSITU."@en ;
+  skos:historyNote "Veraltet: Notation verwendete das deutsche Kuerzel HBV. Ersetzt durch englisches SSP-TIMBER-CONCRETE-INSITU."@de ;
   skos:prefLabel "In-situ timber-concrete composite slab"@en ;
   skos:prefLabel "Holz-Beton-Verbunddecke mit Ortbeton"@de ;
   skos:definition "Timber structure onto which the concrete layer is cast in place with shear connection."@en ;
@@ -178,6 +186,10 @@
   skos:inScheme :scheme ;
   skos:topConceptOf :scheme ;
   skos:notation "SSP-HBV-PRECAST" ;
+  owl:deprecated true ;
+  dcterms:isReplacedBy :SSP-TIMBER-CONCRETE-PRECAST ;
+  skos:historyNote "Deprecated: notation used a German acronym (HBV). Replaced by English SSP-TIMBER-CONCRETE-PRECAST."@en ;
+  skos:historyNote "Veraltet: Notation verwendete das deutsche Kuerzel HBV. Ersetzt durch englisches SSP-TIMBER-CONCRETE-PRECAST."@de ;
   skos:prefLabel "Precast timber-concrete composite element"@en ;
   skos:prefLabel "Holz-Beton-Verbundelement"@de ;
   skos:definition "Floor element of timber and concrete in composite action, produced in the factory."@en ;
@@ -188,6 +200,10 @@
 :SSP-HBV-WOD a skos:Concept ;
   skos:inScheme :scheme ;
   skos:notation "SSP-HBV-WOD" ;
+  owl:deprecated true ;
+  dcterms:isReplacedBy :SSP-TIMBER-CONCRETE-WOD ;
+  skos:historyNote "Deprecated: notation used a German acronym (HBV). Replaced by English SSP-TIMBER-CONCRETE-WOD."@en ;
+  skos:historyNote "Veraltet: Notation verwendete das deutsche Kuerzel HBV. Ersetzt durch englisches SSP-TIMBER-CONCRETE-WOD."@de ;
   skos:prefLabel "HBV timber base layer"@en ;
   skos:prefLabel "HBV Holztragwerk-Schicht"@de ;
   skos:definition "Timber base layer of an HBV slab (block timber, CLT, rib deck, or similar engineered-wood structure)."@en ;
@@ -201,6 +217,10 @@
 :SSP-HBV-CONC a skos:Concept ;
   skos:inScheme :scheme ;
   skos:notation "SSP-HBV-CONC" ;
+  owl:deprecated true ;
+  dcterms:isReplacedBy :SSP-TIMBER-CONCRETE-CONC ;
+  skos:historyNote "Deprecated: notation used a German acronym (HBV). Replaced by English SSP-TIMBER-CONCRETE-CONC."@en ;
+  skos:historyNote "Veraltet: Notation verwendete das deutsche Kuerzel HBV. Ersetzt durch englisches SSP-TIMBER-CONCRETE-CONC."@de ;
   skos:prefLabel "HBV concrete topping layer"@en ;
   skos:prefLabel "HBV Betonauflage-Schicht"@de ;
   skos:definition "Concrete topping layer of an HBV slab, cast in situ or prefabricated, shear-connected to the timber base."@en ;
@@ -211,10 +231,76 @@
   dcterms:subject "IfcSlab" ;
   dcterms:identifier "hbv-slab-concrete-layer" .
 
+:SSP-TIMBER-CONCRETE a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:topConceptOf :scheme ;
+  skos:notation "SSP-TIMBER-CONCRETE" ;
+  skos:prefLabel "Timber–concrete composite slab"@en ;
+  skos:prefLabel "Holz-Beton-Verbunddecke"@de ;
+  skos:definition "Hybrid slab with timber base (for example block timber, CLT, or rib deck) and a shear-connected concrete topping cast on site or prefabricated as a composite element."@en ;
+  skos:definition "Hybride Decke mit Holztragwerk (z. B. Blockholzplatte, Brettsperrholz oder Rippendecke) und schubfest verbundener Ortbeton- oder Fertigbetonauflage."@de ;
+  skos:scopeNote "For pricing prefer SSP-TIMBER-CONCRETE-INSITU or SSP-TIMBER-CONCRETE-PRECAST. This parent holds LCA layer narrowers."@en ;
+  skos:scopeNote "Fuer Bepreisung SSP-TIMBER-CONCRETE-INSITU oder SSP-TIMBER-CONCRETE-PRECAST bevorzugen. Dieses Elternkonzept traegt die LCA-Schicht-narrower."@de ;
+  skos:narrower :SSP-TIMBER-CONCRETE-WOD, :SSP-TIMBER-CONCRETE-CONC ;
+  dcterms:subject "IfcSlab" ;
+  dcterms:identifier "timber-concrete-slab" .
+
+:SSP-TIMBER-CONCRETE-INSITU a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:topConceptOf :scheme ;
+  skos:notation "SSP-TIMBER-CONCRETE-INSITU" ;
+  skos:prefLabel "In-situ timber-concrete composite slab"@en ;
+  skos:prefLabel "Holz-Beton-Verbunddecke mit Ortbeton"@de ;
+  skos:definition "Timber structure onto which the concrete layer is cast in place with shear connection."@en ;
+  skos:definition "Holztragwerk, auf das die Betonschicht vor Ort schubfest aufbetoniert wird."@de ;
+  dcterms:subject "IfcSlab" ;
+  dcterms:identifier "timber-concrete-insitu" .
+
+:SSP-TIMBER-CONCRETE-PRECAST a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:topConceptOf :scheme ;
+  skos:notation "SSP-TIMBER-CONCRETE-PRECAST" ;
+  skos:prefLabel "Precast timber-concrete composite element"@en ;
+  skos:prefLabel "Holz-Beton-Verbundelement"@de ;
+  skos:definition "Floor element of timber and concrete in composite action, produced in the factory."@en ;
+  skos:definition "Im Werk hergestelltes Deckenelement aus Holz und Beton im Verbund."@de ;
+  dcterms:subject "IfcSlab" ;
+  dcterms:identifier "timber-concrete-precast" .
+
+:SSP-TIMBER-CONCRETE-WOD a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:notation "SSP-TIMBER-CONCRETE-WOD" ;
+  skos:prefLabel "Timber–concrete composite timber base layer"@en ;
+  skos:prefLabel "Holz-Beton-Verbund Holztragwerk-Schicht"@de ;
+  skos:definition "Timber base layer of a timber–concrete composite slab (block timber, CLT, rib deck, or similar engineered-wood structure)."@en ;
+  skos:definition "Holztragwerk-Schicht einer Holz-Beton-Verbunddecke (Blockholz, Brettsperrholz, Rippendecke oder aehnliche Holzwerkstoff-Konstruktion)."@de ;
+  skos:broader :SSP-TIMBER-CONCRETE ;
+  skos:scopeNote "LCA layer component of SSP-TIMBER-CONCRETE. Used for ecobilans decomposition and carbon calculation; not a standalone slab product classification."@en ;
+  skos:scopeNote "LCA-Schichtkomponente von SSP-TIMBER-CONCRETE. Fuer Oekobilanz-Zerlegung und CO2-Berechnung; keine eigenstaendige Deckenprodukt-Klassifikation."@de ;
+  dcterms:subject "IfcSlab" ;
+  dcterms:identifier "timber-concrete-slab-timber-layer" .
+
+:SSP-TIMBER-CONCRETE-CONC a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:notation "SSP-TIMBER-CONCRETE-CONC" ;
+  skos:prefLabel "Timber–concrete composite concrete topping layer"@en ;
+  skos:prefLabel "Holz-Beton-Verbund Betonauflage-Schicht"@de ;
+  skos:definition "Concrete topping layer of a timber–concrete composite slab, cast in situ or prefabricated, shear-connected to the timber base."@en ;
+  skos:definition "Betonauflage-Schicht einer Holz-Beton-Verbunddecke, in Ortbeton oder als Fertigteil, schubfest mit dem Holztragwerk verbunden."@de ;
+  skos:broader :SSP-TIMBER-CONCRETE ;
+  skos:scopeNote "LCA layer component of SSP-TIMBER-CONCRETE. Used for ecobilans decomposition and carbon calculation; not a standalone slab product classification."@en ;
+  skos:scopeNote "LCA-Schichtkomponente von SSP-TIMBER-CONCRETE. Fuer Oekobilanz-Zerlegung und CO2-Berechnung; keine eigenstaendige Deckenprodukt-Klassifikation."@de ;
+  dcterms:subject "IfcSlab" ;
+  dcterms:identifier "timber-concrete-slab-concrete-layer" .
+
 :SSP-HOLZ-LEHM a skos:Concept ;
   skos:inScheme :scheme ;
   skos:topConceptOf :scheme ;
   skos:notation "SSP-HOLZ-LEHM" ;
+  owl:deprecated true ;
+  dcterms:isReplacedBy :SSP-TIMBER-CLAY ;
+  skos:historyNote "Deprecated: notation used German tokens. Replaced by English SSP-TIMBER-CLAY."@en ;
+  skos:historyNote "Veraltet: Notation verwendete deutsche Token. Ersetzt durch englisches SSP-TIMBER-CLAY."@de ;
   skos:prefLabel "Timber–clay slab / deck"@en ;
   skos:prefLabel "Holz-Lehm-Decke"@de ;
   skos:definition "Slab or deck with timber joists or frame and rammed-clay (Stampflehm) infill or topping, including prefabricated timber–clay panel systems."@en ;
@@ -226,6 +312,10 @@
 :SSP-HOLZ-LEHM-WOD a skos:Concept ;
   skos:inScheme :scheme ;
   skos:notation "SSP-HOLZ-LEHM-WOD" ;
+  owl:deprecated true ;
+  dcterms:isReplacedBy :SSP-TIMBER-CLAY-WOD ;
+  skos:historyNote "Deprecated: notation used German tokens. Replaced by English SSP-TIMBER-CLAY-WOD."@en ;
+  skos:historyNote "Veraltet: Notation verwendete deutsche Token. Ersetzt durch englisches SSP-TIMBER-CLAY-WOD."@de ;
   skos:prefLabel "Timber–clay slab timber layer"@en ;
   skos:prefLabel "Holz-Lehm-Decke Holzschicht"@de ;
   skos:definition "Timber joist or frame layer of a timber–clay slab."@en ;
@@ -239,6 +329,10 @@
 :SSP-HOLZ-LEHM-MSN a skos:Concept ;
   skos:inScheme :scheme ;
   skos:notation "SSP-HOLZ-LEHM-MSN" ;
+  owl:deprecated true ;
+  dcterms:isReplacedBy :SSP-TIMBER-CLAY-MSN ;
+  skos:historyNote "Deprecated: notation used German tokens. Replaced by English SSP-TIMBER-CLAY-MSN."@en ;
+  skos:historyNote "Veraltet: Notation verwendete deutsche Token. Ersetzt durch englisches SSP-TIMBER-CLAY-MSN."@de ;
   skos:prefLabel "Timber–clay slab clay infill layer"@en ;
   skos:prefLabel "Holz-Lehm-Decke Lehmschicht"@de ;
   skos:definition "Rammed-clay (Stampflehm) infill or topping layer of a timber–clay slab."@en ;
@@ -248,6 +342,44 @@
   skos:scopeNote "LCA-Schichtkomponente von SSP-HOLZ-LEHM. Fuer Oekobilanz-Zerlegung und CO2-Berechnung; keine eigenstaendige Deckenprodukt-Klassifikation."@de ;
   dcterms:subject "IfcSlab" ;
   dcterms:identifier "holz-lehm-slab-clay-layer" .
+
+:SSP-TIMBER-CLAY a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:topConceptOf :scheme ;
+  skos:notation "SSP-TIMBER-CLAY" ;
+  skos:prefLabel "Timber–clay slab / deck"@en ;
+  skos:prefLabel "Holz-Lehm-Decke"@de ;
+  skos:definition "Slab or deck with timber joists or frame and rammed-clay (Stampflehm) infill or topping, including prefabricated timber–clay panel systems."@en ;
+  skos:definition "Decke mit Holztraegern oder -rahmen und Stampflehm-Ausfachung oder -auflage, einschliesslich vorgefertigter Holz-Lehm-Deckenelemente."@de ;
+  skos:narrower :SSP-TIMBER-CLAY-WOD, :SSP-TIMBER-CLAY-MSN ;
+  dcterms:subject "IfcSlab" ;
+  dcterms:identifier "timber-clay-slab" .
+
+:SSP-TIMBER-CLAY-WOD a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:notation "SSP-TIMBER-CLAY-WOD" ;
+  skos:prefLabel "Timber–clay slab timber layer"@en ;
+  skos:prefLabel "Holz-Lehm-Decke Holzschicht"@de ;
+  skos:definition "Timber joist or frame layer of a timber–clay slab."@en ;
+  skos:definition "Holztraeger- oder -rahmen-Schicht einer Holz-Lehm-Decke."@de ;
+  skos:broader :SSP-TIMBER-CLAY ;
+  skos:scopeNote "LCA layer component of SSP-TIMBER-CLAY. Used for ecobilans decomposition and carbon calculation; not a standalone slab product classification."@en ;
+  skos:scopeNote "LCA-Schichtkomponente von SSP-TIMBER-CLAY. Fuer Oekobilanz-Zerlegung und CO2-Berechnung; keine eigenstaendige Deckenprodukt-Klassifikation."@de ;
+  dcterms:subject "IfcSlab" ;
+  dcterms:identifier "timber-clay-slab-timber-layer" .
+
+:SSP-TIMBER-CLAY-MSN a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:notation "SSP-TIMBER-CLAY-MSN" ;
+  skos:prefLabel "Timber–clay slab clay infill layer"@en ;
+  skos:prefLabel "Holz-Lehm-Decke Lehmschicht"@de ;
+  skos:definition "Rammed-clay (Stampflehm) infill or topping layer of a timber–clay slab."@en ;
+  skos:definition "Stampflehm-Ausfachungs- oder -auflage-Schicht einer Holz-Lehm-Decke."@de ;
+  skos:broader :SSP-TIMBER-CLAY ;
+  skos:scopeNote "LCA layer component of SSP-TIMBER-CLAY. Used for ecobilans decomposition and carbon calculation; not a standalone slab product classification."@en ;
+  skos:scopeNote "LCA-Schichtkomponente von SSP-TIMBER-CLAY. Fuer Oekobilanz-Zerlegung und CO2-Berechnung; keine eigenstaendige Deckenprodukt-Klassifikation."@de ;
+  dcterms:subject "IfcSlab" ;
+  dcterms:identifier "timber-clay-slab-clay-layer" .
 
 :SSP-LIGHTWEIGHT a skos:Concept ;
   skos:inScheme :scheme ;

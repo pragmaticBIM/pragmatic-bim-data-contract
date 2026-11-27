@@ -1,0 +1,163 @@
+@prefix fcp: <https://example.org/abstract/floor-covering-product/> .
+@prefix wcp: <https://example.org/abstract/wall-covering-product/> .
+@prefix ccp: <https://example.org/abstract/ceiling-covering-product/> .
+@prefix facp: <https://example.org/abstract/facade-covering-product/> .
+@prefix onorm1801: <https://example.org/at/onorm-b1801/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix map: <https://example.org/mapping/> .
+
+map:abstractCoveringProductsToOnormB1801Mapping a dcterms:Dataset ;
+  dcterms:title "Abstract covering products to ÖNORM B 1801 mapping"@en ;
+  dcterms:title "Mapping abstrakter Bekleidungsprodukte nach ÖNORM B 1801"@de ;
+  dcterms:references fcp:scheme, wcp:scheme, ccp:scheme, facp:scheme, onorm1801:scheme ;
+  dcterms:issued "2026-11-27" ;
+  dcterms:description "Maps abstract covering product concepts to ÖNORM B 1801-1:2022 Leistungsgliederung Hochbau codes by reference only (e.g. 4.H11, 4.H28, 4.H44). IRI local names use underscore for the dot (onorm1801:4_H11 = 4.H11). Codes are referenced by notation; ÖNORM B 1801 is published by Austrian Standards and no titles or definitions are reproduced. Licence holders resolve the codes against their own copy. closeMatch is the leading Leistungsgruppe; relatedMatch marks a secondary or adjacent line. Disambiguation: the mapping is deliberately not bijective."@en ;
+  dcterms:description "Ordnet abstrakte Bekleidungsprodukte den Codes der Leistungsgliederung Hochbau nach ÖNORM B 1801-1:2022 nur per Referenz zu (z. B. 4.H11, 4.H28, 4.H44). IRI-Lokalnamen mit Unterstrich fuer den Punkt. Codes nur ueber Notation; ÖNORM B 1801 wird von Austrian Standards herausgegeben, es werden keine Bezeichnungen oder Definitionen wiedergegeben. Lizenznehmende loesen die Codes mit ihrer eigenen Ausgabe auf. closeMatch ist die Leit-Leistungsgruppe; relatedMatch eine sekundaere oder benachbarte Position. Disambiguierung: Das Mapping ist bewusst nicht eindeutig."@de .
+
+# --- Floor covering products (Kostenbereich 4 Ausbau) ---
+
+fcp:FCP-SUBFLOOR skos:closeMatch onorm1801:4_H11 .
+
+fcp:FCP-SCREED-BONDED skos:closeMatch onorm1801:4_H11 .
+
+fcp:FCP-SCREED-FLOATING skos:closeMatch onorm1801:4_H11 .
+
+fcp:FCP-SCREED-HEATED skos:closeMatch onorm1801:4_H11 ;
+  skos:relatedMatch onorm1801:3_H41 .
+
+fcp:FCP-SEAMLESS-RESIN skos:closeMatch onorm1801:4_H22 .
+
+fcp:FCP-CARPET skos:closeMatch onorm1801:4_H29 .
+
+fcp:FCP-LVT skos:closeMatch onorm1801:4_H29 .
+
+fcp:FCP-LINOLIUM skos:closeMatch onorm1801:4_H29 .
+
+fcp:FCP-NATURAL-STONE skos:closeMatch onorm1801:4_H22 .
+
+fcp:FCP-ARTIFICIAL-STONE skos:closeMatch onorm1801:4_H22 .
+
+fcp:FCP-CERAMIC-TILE skos:closeMatch onorm1801:4_H22 .
+
+fcp:FCP-PARQUET skos:closeMatch onorm1801:4_H28 .
+
+fcp:FCP-LAMINATE skos:closeMatch onorm1801:4_H28 .
+
+fcp:FCP-RAISED-FLOOR skos:closeMatch onorm1801:4_H39 ;
+  skos:relatedMatch onorm1801:4_H11 .
+
+fcp:FCP-ACCESS-FLOOR skos:closeMatch onorm1801:4_H39 ;
+  skos:relatedMatch onorm1801:4_H11 .
+
+fcp:FCP-CAVITY-FLOOR skos:closeMatch onorm1801:4_H39 ;
+  skos:relatedMatch onorm1801:4_H11 .
+
+# --- Wall covering products ---
+
+wcp:WCP-SEAMLESS-COATING skos:closeMatch onorm1801:4_H10 .
+
+wcp:WCP-WALLPAPER skos:closeMatch onorm1801:4_H46 ;
+  skos:relatedMatch onorm1801:4_H10 .
+
+wcp:WCP-NATURAL-STONE skos:closeMatch onorm1801:4_H22 .
+
+wcp:WCP-NATURAL-STONE-BONDED skos:closeMatch onorm1801:4_H22 .
+
+wcp:WCP-NATURAL-STONE-ANCHORED skos:closeMatch onorm1801:4_H22 .
+
+wcp:WCP-ARTIFICIAL-STONE skos:closeMatch onorm1801:4_H22 .
+
+wcp:WCP-ARTIFICIAL-STONE-BONDED skos:closeMatch onorm1801:4_H22 .
+
+wcp:WCP-ARTIFICIAL-STONE-ANCHORED skos:closeMatch onorm1801:4_H22 .
+
+wcp:WCP-CERAMIC-TILE skos:closeMatch onorm1801:4_H22 .
+
+wcp:WCP-WOOD-PANEL skos:closeMatch onorm1801:4_H39 ;
+  skos:relatedMatch onorm1801:2_H14 .
+
+wcp:WCP-TEXTILE skos:closeMatch onorm1801:4_H46 .
+
+wcp:WCP-TEXTILE-BONDED skos:closeMatch onorm1801:4_H46 .
+
+wcp:WCP-FABRIC-STRETCHED skos:closeMatch onorm1801:4_H46 .
+
+wcp:WCP-SYNTHETIC-PANEL skos:closeMatch onorm1801:4_H39 .
+
+wcp:WCP-PAINT skos:closeMatch onorm1801:4_H46 .
+
+# --- Ceiling covering products ---
+
+ccp:CCP-METAL-SHEET skos:closeMatch onorm1801:4_H39 .
+
+ccp:CCP-GYPSUM-BOARD skos:closeMatch onorm1801:4_H39 .
+
+ccp:CCP-GYPSUM-DIRECT skos:closeMatch onorm1801:4_H39 .
+
+ccp:CCP-GYPSUM-SUSPENDED skos:closeMatch onorm1801:4_H39 .
+
+ccp:CCP-MINERAL-FIBRE skos:closeMatch onorm1801:4_H39 .
+
+ccp:CCP-WOOD skos:closeMatch onorm1801:4_H39 ;
+  skos:relatedMatch onorm1801:2_H14 .
+
+ccp:CCP-SYNTHETIC skos:closeMatch onorm1801:4_H39 .
+
+ccp:CCP-SYNTHETIC-PANEL skos:closeMatch onorm1801:4_H39 .
+
+ccp:CCP-STRETCH-MEMBRANE skos:closeMatch onorm1801:4_H39 .
+
+ccp:CCP-METAL-PANEL skos:closeMatch onorm1801:4_H39 .
+
+ccp:CCP-METAL-GRID skos:closeMatch onorm1801:4_H39 .
+
+# --- Facade covering products ---
+
+facp:FaCP-METAL-SHEET-STANDING-SEAM skos:closeMatch onorm1801:2_H10 ;
+  skos:relatedMatch onorm1801:2_H15 .
+
+facp:FaCP-METAL-COMPOSITE-PANEL skos:closeMatch onorm1801:2_H36 ;
+  skos:relatedMatch onorm1801:2_H15 .
+
+facp:FaCP-FIBER-CEMENT-BOARD skos:closeMatch onorm1801:2_H36 .
+
+facp:FaCP-NATURAL-STONE-VENTILATED skos:closeMatch onorm1801:2_H36 ;
+  skos:relatedMatch onorm1801:4_H22 .
+
+facp:FaCP-CERAMIC-VENTILATED skos:closeMatch onorm1801:2_H36 ;
+  skos:relatedMatch onorm1801:4_H22 .
+
+facp:FaCP-TIMBER-VENTILATED skos:closeMatch onorm1801:2_H14 ;
+  skos:relatedMatch onorm1801:2_H36 .
+
+facp:FaCP-SYNTHETIC-VENTILATED skos:closeMatch onorm1801:2_H36 .
+
+facp:FaCP-RENDER-ETICS-WDVS skos:closeMatch onorm1801:4_H44 .
+
+facp:FaCP-RENDER-ETICS skos:closeMatch onorm1801:4_H44 .
+
+facp:FaCP-EXTERIOR-PAINT-COATING skos:closeMatch onorm1801:4_H46 .
+
+facp:FaCP-PREFAB-MODULAR-METAL skos:closeMatch onorm1801:2_H36 ;
+  skos:relatedMatch onorm1801:2_H15 .
+
+facp:FaCP-PREFAB-MODULAR-TIMBER skos:closeMatch onorm1801:2_H14 ;
+  skos:relatedMatch onorm1801:2_H36 .
+
+facp:FaCP-RETROFIT-OVERCLADDING skos:closeMatch onorm1801:4_H44 ;
+  skos:relatedMatch onorm1801:2_H36 .
+
+facp:FaCP-BIPV-INTEGRATED skos:closeMatch onorm1801:2_H36 ;
+  skos:relatedMatch onorm1801:3_H51 .
+
+facp:FaCP-HPL-PANEL skos:closeMatch onorm1801:2_H36 .
+
+facp:FaCP-BRICK-SLIP skos:closeMatch onorm1801:2_H36 ;
+  skos:relatedMatch onorm1801:2_H05 .
+
+facp:FaCP-BRICK-SLIP-VENTILATED skos:closeMatch onorm1801:2_H36 ;
+  skos:relatedMatch onorm1801:2_H05 .
+
+facp:FaCP-BRICK-SLIP-BONDED skos:closeMatch onorm1801:2_H36 ;
+  skos:relatedMatch onorm1801:2_H05 .

@@ -1,0 +1,48 @@
+---
+description: Product classification notations (skos:notation) must use English tokens
+globs: classification/**/*product*.skos.ttl,classification/mapping/*product*.mapping.ttl,classification/README.md
+alwaysApply: false
+---
+
+# Product notation language
+
+## Rule
+
+`skos:notation` (and matching concept local names) for product classes use **English** tokens only.
+
+- Format: `{PREFIX}-{ENGLISH-TOKEN}[-{VARIANT}…]` in UPPER-KEBAB-CASE.
+- Human language stays bilingual: `skos:prefLabel` / `skos:definition` / `skos:scopeNote` in `@en` and `@de`.
+- `dcterms:identifier` (reference data-sheet slug) is English kebab-case aligned with the notation meaning.
+
+## Allowed non-word tokens
+
+These are English industry abbreviations or documented scheme codes, not local-language words:
+
+- Construction method: `INSITU`, `PRECAST`, `PREFAB`
+- Materials shorthand already used in English schemes: `RC`, `CLT`, `CONC` (prefer full `CONCRETE` for new codes), `EPS`, `PIR`, `HPL`, `BIPV`, `LVT`
+- Envelope LCA layer suffixes: `INS`, `SUB`, `FIN`, legacy `RENDER`, `MEM`, `FRAME`
+- MEP discipline codes documented in `classification/README.md`: `ELEC`, `DATA`, `VENT`, `HEAT`, `COOL`, `FW`, `WW`, `SM`, `FIRE`
+- Fallback: `OTH` / `OTHER`
+
+Do **not** encode German or DACH trade words in notation (`ORTBETON`, `LEICHTBAU`, `HOLZ`, `LEHM`, `WDVS`, `HBV`, `GLZ`, `BLT`, …). Put those in `@de` labels only.
+
+## Renames
+
+When replacing a non-English notation:
+
+1. Keep the old concept; set `owl:deprecated true` and `dcterms:isReplacedBy` to the new English concept(s).
+2. Add `skos:historyNote` explaining the English-notation rename.
+3. Add the new English concept as `skos:hasTopConcept` (unless it is an LCA-only narrower).
+4. Mirror mappings for the new notation; keep legacy mapping rows on the deprecated code.
+5. Run `python scripts/sync_site.py` (and rebuild `taxonomies.json` if that is a separate step in this repo).
+
+## Examples
+
+| Avoid | Prefer |
+|-------|--------|
+| `SWP-ORTBETON` | `SWP-INSITU-CONCRETE` |
+| `SWP-LEICHTBAU` | `SWP-LIGHTWEIGHT` |
+| `SSP-HOLZ-LEHM` | `SSP-TIMBER-CLAY` |
+| `SSP-HBV-INSITU` | `SSP-TIMBER-CONCRETE-INSITU` |
+| `FaCP-RENDER-ETICS-WDVS` | `FaCP-RENDER-ETICS` |
+| `WICP-WOOD-GLZ-2P` | `WICP-WOOD-GLAZING-2P` |

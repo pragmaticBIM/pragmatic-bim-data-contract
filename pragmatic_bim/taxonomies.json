@@ -7727,6 +7727,94 @@
           "de": "Holzdecke / -platte",
           "en": "Timber slab / deck"
         }
+      },
+      "SSP-TIMBER-CLAY": {
+        "broader": null,
+        "definition": {
+          "de": "Decke mit Holztraegern oder -rahmen und Stampflehm-Ausfachung oder -auflage, einschliesslich vorgefertigter Holz-Lehm-Deckenelemente.",
+          "en": "Slab or deck with timber joists or frame and rammed-clay (Stampflehm) infill or topping, including prefabricated timber\u2013clay panel systems."
+        },
+        "labels": {
+          "de": "Holz-Lehm-Decke",
+          "en": "Timber\u2013clay slab / deck"
+        }
+      },
+      "SSP-TIMBER-CLAY-MSN": {
+        "broader": "SSP-TIMBER-CLAY",
+        "definition": {
+          "de": "Stampflehm-Ausfachungs- oder -auflage-Schicht einer Holz-Lehm-Decke.",
+          "en": "Rammed-clay (Stampflehm) infill or topping layer of a timber\u2013clay slab."
+        },
+        "labels": {
+          "de": "Holz-Lehm-Decke Lehmschicht",
+          "en": "Timber\u2013clay slab clay infill layer"
+        }
+      },
+      "SSP-TIMBER-CLAY-WOD": {
+        "broader": "SSP-TIMBER-CLAY",
+        "definition": {
+          "de": "Holztraeger- oder -rahmen-Schicht einer Holz-Lehm-Decke.",
+          "en": "Timber joist or frame layer of a timber\u2013clay slab."
+        },
+        "labels": {
+          "de": "Holz-Lehm-Decke Holzschicht",
+          "en": "Timber\u2013clay slab timber layer"
+        }
+      },
+      "SSP-TIMBER-CONCRETE": {
+        "broader": null,
+        "definition": {
+          "de": "Hybride Decke mit Holztragwerk (z. B. Blockholzplatte, Brettsperrholz oder Rippendecke) und schubfest verbundener Ortbeton- oder Fertigbetonauflage.",
+          "en": "Hybrid slab with timber base (for example block timber, CLT, or rib deck) and a shear-connected concrete topping cast on site or prefabricated as a composite element."
+        },
+        "labels": {
+          "de": "Holz-Beton-Verbunddecke",
+          "en": "Timber\u2013concrete composite slab"
+        }
+      },
+      "SSP-TIMBER-CONCRETE-CONC": {
+        "broader": "SSP-TIMBER-CONCRETE",
+        "definition": {
+          "de": "Betonauflage-Schicht einer Holz-Beton-Verbunddecke, in Ortbeton oder als Fertigteil, schubfest mit dem Holztragwerk verbunden.",
+          "en": "Concrete topping layer of a timber\u2013concrete composite slab, cast in situ or prefabricated, shear-connected to the timber base."
+        },
+        "labels": {
+          "de": "Holz-Beton-Verbund Betonauflage-Schicht",
+          "en": "Timber\u2013concrete composite concrete topping layer"
+        }
+      },
+      "SSP-TIMBER-CONCRETE-INSITU": {
+        "broader": null,
+        "definition": {
+          "de": "Holztragwerk, auf das die Betonschicht vor Ort schubfest aufbetoniert wird.",
+          "en": "Timber structure onto which the concrete layer is cast in place with shear connection."
+        },
+        "labels": {
+          "de": "Holz-Beton-Verbunddecke mit Ortbeton",
+          "en": "In-situ timber-concrete composite slab"
+        }
+      },
+      "SSP-TIMBER-CONCRETE-PRECAST": {
+        "broader": null,
+        "definition": {
+          "de": "Im Werk hergestelltes Deckenelement aus Holz und Beton im Verbund.",
+          "en": "Floor element of timber and concrete in composite action, produced in the factory."
+        },
+        "labels": {
+          "de": "Holz-Beton-Verbundelement",
+          "en": "Precast timber-concrete composite element"
+        }
+      },
+      "SSP-TIMBER-CONCRETE-WOD": {
+        "broader": "SSP-TIMBER-CONCRETE",
+        "definition": {
+          "de": "Holztragwerk-Schicht einer Holz-Beton-Verbunddecke (Blockholz, Brettsperrholz, Rippendecke oder aehnliche Holzwerkstoff-Konstruktion).",
+          "en": "Timber base layer of a timber\u2013concrete composite slab (block timber, CLT, rib deck, or similar engineered-wood structure)."
+        },
+        "labels": {
+          "de": "Holz-Beton-Verbund Holztragwerk-Schicht",
+          "en": "Timber\u2013concrete composite timber base layer"
+        }
       }
     },
     "description": {},
@@ -8952,6 +9040,17 @@
           "en": "Drywall / element partition wall"
         }
       },
+      "SWP-INSITU-CONCRETE": {
+        "broader": null,
+        "definition": {
+          "de": "Wand in Ortbeton oder Stahlbeton vor Ort hergestellt.",
+          "en": "Wall cast in place from plain, reinforced, or structural concrete."
+        },
+        "labels": {
+          "de": "Ortbeton-Wand",
+          "en": "In-situ concrete wall"
+        }
+      },
       "SWP-LEICHTBAU": {
         "broader": null,
         "definition": {
@@ -8961,6 +9060,28 @@
         "labels": {
           "de": "Leichtbauwand",
           "en": "Lightweight construction wall"
+        }
+      },
+      "SWP-LIGHTWEIGHT": {
+        "broader": null,
+        "definition": {
+          "de": "Leichtbau-Wand mit gerahmter oder panelisierter nicht-monolithischer Konstruktion, ohne Vorhangfassaden- und uebliche Trockenbau-Elementtrennwaende.",
+          "en": "Lightweight wall with framed or panelised non-monolithic structure, excluding stick-built curtain wall and standard drywall element partitions."
+        },
+        "labels": {
+          "de": "Leichtbauwand",
+          "en": "Lightweight construction wall"
+        }
+      },
+      "SWP-LIGHTWEIGHT-CONCRETE-PANEL": {
+        "broader": null,
+        "definition": {
+          "de": "Wand aus geschosshohen Leichtbetonelementen, im Werk hergestellt.",
+          "en": "Wall of storey-height lightweight concrete panels produced in the factory."
+        },
+        "labels": {
+          "de": "Leichtbeton-Elementwand",
+          "en": "Lightweight concrete panel wall"
         }
       },
       "SWP-MASONRY": {
@@ -9105,6 +9226,17 @@
           "en": "Aluminium window frame layer"
         }
       },
+      "WICP-ALUMINIUM-GLAZING-2P": {
+        "broader": "WICP-ALUMINIUM",
+        "definition": {
+          "de": "Standard-Isolierverglasung (2-fach) eines Aluminiumfensters.",
+          "en": "Default double-pane insulating glazing layer of an aluminium window system."
+        },
+        "labels": {
+          "de": "Aluminiumfenster 2-fach Verglasung-Schicht",
+          "en": "Aluminium window 2-pane glazing layer"
+        }
+      },
       "WICP-ALUMINIUM-GLZ-2P": {
         "broader": "WICP-ALUMINIUM",
         "definition": {
@@ -9158,6 +9290,17 @@
         "labels": {
           "de": "PVC-Fenster Rahmen-Schicht",
           "en": "PVC window frame layer"
+        }
+      },
+      "WICP-PVC-GLAZING-2P": {
+        "broader": "WICP-PVC",
+        "definition": {
+          "de": "Standard-Isolierverglasung (2-fach) eines PVC-Fensters.",
+          "en": "Default double-pane insulating glazing layer of a PVC window system."
+        },
+        "labels": {
+          "de": "PVC-Fenster 2-fach Verglasung-Schicht",
+          "en": "PVC window 2-pane glazing layer"
         }
       },
       "WICP-PVC-GLZ-2P": {
@@ -9248,6 +9391,17 @@
           "en": "Steel window frame layer"
         }
       },
+      "WICP-STEEL-GLAZING-2P": {
+        "broader": "WICP-STEEL",
+        "definition": {
+          "de": "Standard-Isolierverglasung (2-fach) eines Stahlfensters.",
+          "en": "Default double-pane insulating glazing layer of a steel window system."
+        },
+        "labels": {
+          "de": "Stahlfenster 2-fach Verglasung-Schicht",
+          "en": "Steel window 2-pane glazing layer"
+        }
+      },
       "WICP-STEEL-GLZ-2P": {
         "broader": "WICP-STEEL",
         "definition": {
@@ -9281,6 +9435,17 @@
           "en": "Wood window frame layer"
         }
       },
+      "WICP-WOOD-GLAZING-2P": {
+        "broader": "WICP-WOOD",
+        "definition": {
+          "de": "Standard-Isolierverglasung (2-fach) eines Holzfensters.",
+          "en": "Default double-pane insulating glazing layer of a wood window system."
+        },
+        "labels": {
+          "de": "Holzfenster 2-fach Verglasung-Schicht",
+          "en": "Wood window 2-pane glazing layer"
+        }
+      },
       "WICP-WOOD-GLZ-2P": {
         "broader": "WICP-WOOD",
         "definition": {
@@ -9312,6 +9477,17 @@
         "labels": {
           "de": "Holz-Metall-Fenster Rahmen-Schicht",
           "en": "Wood\u2013metal window frame layer"
+        }
+      },
+      "WICP-WOOD-METAL-GLAZING-2P": {
+        "broader": "WICP-WOOD-METAL",
+        "definition": {
+          "de": "Standard-Isolierverglasung (2-fach) eines Holz-Metall-Fensters.",
+          "en": "Default double-pane insulating glazing layer of a wood\u2013metal window system."
+        },
+        "labels": {
+          "de": "Holz-Metall-Fenster 2-fach Verglasung-Schicht",
+          "en": "Wood\u2013metal window 2-pane glazing layer"
         }
       },
       "WICP-WOOD-METAL-GLZ-2P": {
@@ -13669,6 +13845,39 @@
         "labels": {
           "de": "Vorgefertigtes modulares Holzfassaden-System",
           "en": "Prefabricated modular timber facade system"
+        }
+      },
+      "FaCP-RENDER-ETICS": {
+        "broader": null,
+        "definition": {
+          "de": "Mineralputz, Aussenputz, Waermedaemmverbundsystem (WDVS/ETICS, EPS, Mineralwolle, PIR) oder Zement-/Kunstharzfassadenoberfl\u00e4che. Mit Klebstoff und mechanischer Verankerung am Untergrund befestigt.",
+          "en": "Mineral render, plaster, external thermal insulation composite system (ETICS / WDVS, EPS, mineral wool, PIR), or cement/acrylic facade finish. Bonded to substrate with adhesive and mechanical fixing."
+        },
+        "labels": {
+          "de": "Putzsystem / WDVS-Fassade",
+          "en": "Render / ETICS facade system"
+        }
+      },
+      "FaCP-RENDER-ETICS-INS": {
+        "broader": "FaCP-RENDER-ETICS",
+        "definition": {
+          "de": "Daemmplatten-Schicht eines WDVS/ETICS-Fassadensystems (EPS, Mineralwolle oder PIR).",
+          "en": "Insulation board layer of an ETICS / WDVS facade system (EPS, mineral wool, or PIR)."
+        },
+        "labels": {
+          "de": "WDVS Daemm-Schicht",
+          "en": "ETICS insulation layer"
+        }
+      },
+      "FaCP-RENDER-ETICS-RENDER": {
+        "broader": "FaCP-RENDER-ETICS",
+        "definition": {
+          "de": "Putz- oder Oberputz-Schicht eines WDVS/ETICS-Fassadensystems.",
+          "en": "Render or plaster finish layer of an ETICS / WDVS facade system."
+        },
+        "labels": {
+          "de": "WDVS Putz-Schicht",
+          "en": "ETICS render finish layer"
         }
       },
       "FaCP-RENDER-ETICS-WDVS": {

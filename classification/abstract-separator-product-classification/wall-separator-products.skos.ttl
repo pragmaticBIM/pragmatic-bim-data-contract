@@ -23,16 +23,19 @@
   skos:scopeNote "Innen- vs Aussenlage ist hier nicht kodiert; Building Separator Wall Role Classification (W-EXT, W-INT, W-PRT, …) am SeparatorWall-Entitaet verwenden."@de ;
   skos:hasTopConcept
     :SWP-ORTBETON,
+    :SWP-INSITU-CONCRETE,
     :SWP-MASONRY,
     :SWP-RAMMED-EARTH,
     :SWP-BLT,
     :SWP-BLT-PANEL,
+    :SWP-LIGHTWEIGHT-CONCRETE-PANEL,
     :SWP-PREFAB-CONC,
     :SWP-STEEL,
     :SWP-TIMBER,
     :SWP-TIMBER-FRAME,
     :SWP-TIMBER-SOLID,
     :SWP-LEICHTBAU,
+    :SWP-LIGHTWEIGHT,
     :SWP-CURTAIN-WALL,
     :SWP-CURTAIN-WALL-STICK,
     :SWP-CURTAIN-WALL-UNITISED,
@@ -45,12 +48,27 @@
   skos:inScheme :scheme ;
   skos:topConceptOf :scheme ;
   skos:notation "SWP-ORTBETON" ;
+  owl:deprecated true ;
+  dcterms:isReplacedBy :SWP-INSITU-CONCRETE ;
+  skos:historyNote "Deprecated: notation used a German token. Replaced by English SWP-INSITU-CONCRETE."@en ;
+  skos:historyNote "Veraltet: Notation verwendete ein deutsches Token. Ersetzt durch englisches SWP-INSITU-CONCRETE."@de ;
   skos:prefLabel "In-situ concrete wall"@en ;
   skos:prefLabel "Ortbeton-Wand"@de ;
   skos:definition "Wall cast in place from plain, reinforced, or structural concrete."@en ;
   skos:definition "Wand in Ortbeton oder Stahlbeton vor Ort hergestellt."@de ;
   dcterms:subject "IfcWall" ;
   dcterms:identifier "ortbeton-wall" .
+
+:SWP-INSITU-CONCRETE a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:topConceptOf :scheme ;
+  skos:notation "SWP-INSITU-CONCRETE" ;
+  skos:prefLabel "In-situ concrete wall"@en ;
+  skos:prefLabel "Ortbeton-Wand"@de ;
+  skos:definition "Wall cast in place from plain, reinforced, or structural concrete."@en ;
+  skos:definition "Wand in Ortbeton oder Stahlbeton vor Ort hergestellt."@de ;
+  dcterms:subject "IfcWall" ;
+  dcterms:identifier "insitu-concrete-wall" .
 
 :SWP-MASONRY a skos:Concept ;
   skos:inScheme :scheme ;
@@ -81,9 +99,9 @@
   skos:topConceptOf :scheme ;
   skos:notation "SWP-BLT" ;
   owl:deprecated true ;
-  dcterms:isReplacedBy :SWP-BLT-PANEL, :SWP-MASONRY ;
-  skos:historyNote "Deprecated: combined several construction systems with different price logic. Replaced by the classes in dcterms:isReplacedBy."@en ;
-  skos:historyNote "Veraltet: fasste mehrere Bausysteme mit unterschiedlicher Preisbildung zusammen. Ersetzt durch die Klassen unter dcterms:isReplacedBy."@de ;
+  dcterms:isReplacedBy :SWP-LIGHTWEIGHT-CONCRETE-PANEL, :SWP-MASONRY ;
+  skos:historyNote "Deprecated: combined several construction systems with different price logic, and used a regional acronym. Replaced by the classes in dcterms:isReplacedBy."@en ;
+  skos:historyNote "Veraltet: fasste mehrere Bausysteme mit unterschiedlicher Preisbildung zusammen und nutzte ein regionales Kuerzel. Ersetzt durch die Klassen unter dcterms:isReplacedBy."@de ;
   skos:prefLabel "Lightweight concrete panel (BLT) wall"@en ;
   skos:prefLabel "Leichtbeton-Tafel-Wand (BLT)"@de ;
   skos:definition "Wall from prefabricated lightweight-concrete block or panel (Tafel) systems, including storey-height wall panels assembled off site or in a factory."@en ;
@@ -95,12 +113,27 @@
   skos:inScheme :scheme ;
   skos:topConceptOf :scheme ;
   skos:notation "SWP-BLT-PANEL" ;
+  owl:deprecated true ;
+  dcterms:isReplacedBy :SWP-LIGHTWEIGHT-CONCRETE-PANEL ;
+  skos:historyNote "Deprecated: notation used a regional acronym. Replaced by English SWP-LIGHTWEIGHT-CONCRETE-PANEL."@en ;
+  skos:historyNote "Veraltet: Notation verwendete ein regionales Kuerzel. Ersetzt durch englisches SWP-LIGHTWEIGHT-CONCRETE-PANEL."@de ;
   skos:prefLabel "Lightweight concrete panel wall"@en ;
   skos:prefLabel "Leichtbeton-Elementwand"@de ;
   skos:definition "Wall of storey-height lightweight concrete panels produced in the factory."@en ;
   skos:definition "Wand aus geschosshohen Leichtbetonelementen, im Werk hergestellt."@de ;
   dcterms:subject "IfcWall" ;
   dcterms:identifier "blt-panel" .
+
+:SWP-LIGHTWEIGHT-CONCRETE-PANEL a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:topConceptOf :scheme ;
+  skos:notation "SWP-LIGHTWEIGHT-CONCRETE-PANEL" ;
+  skos:prefLabel "Lightweight concrete panel wall"@en ;
+  skos:prefLabel "Leichtbeton-Elementwand"@de ;
+  skos:definition "Wall of storey-height lightweight concrete panels produced in the factory."@en ;
+  skos:definition "Wand aus geschosshohen Leichtbetonelementen, im Werk hergestellt."@de ;
+  dcterms:subject "IfcWall" ;
+  dcterms:identifier "lightweight-concrete-panel-wall" .
 
 :SWP-PREFAB-CONC a skos:Concept ;
   skos:inScheme :scheme ;
@@ -165,12 +198,27 @@
   skos:inScheme :scheme ;
   skos:topConceptOf :scheme ;
   skos:notation "SWP-LEICHTBAU" ;
+  owl:deprecated true ;
+  dcterms:isReplacedBy :SWP-LIGHTWEIGHT ;
+  skos:historyNote "Deprecated: notation used a German token. Replaced by English SWP-LIGHTWEIGHT."@en ;
+  skos:historyNote "Veraltet: Notation verwendete ein deutsches Token. Ersetzt durch englisches SWP-LIGHTWEIGHT."@de ;
   skos:prefLabel "Lightweight construction wall"@en ;
   skos:prefLabel "Leichtbauwand"@de ;
   skos:definition "Lightweight wall with framed or panelised non-monolithic structure, excluding stick-built curtain wall and standard drywall element partitions."@en ;
   skos:definition "Leichtbau-Wand mit gerahmter oder panelisierter nicht-monolithischer Konstruktion, ohne Vorhangfassaden- und uebliche Trockenbau-Elementtrennwaende."@de ;
   dcterms:subject "IfcWall" ;
   dcterms:identifier "leichtbau-wall" .
+
+:SWP-LIGHTWEIGHT a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:topConceptOf :scheme ;
+  skos:notation "SWP-LIGHTWEIGHT" ;
+  skos:prefLabel "Lightweight construction wall"@en ;
+  skos:prefLabel "Leichtbauwand"@de ;
+  skos:definition "Lightweight wall with framed or panelised non-monolithic structure, excluding stick-built curtain wall and standard drywall element partitions."@en ;
+  skos:definition "Leichtbau-Wand mit gerahmter oder panelisierter nicht-monolithischer Konstruktion, ohne Vorhangfassaden- und uebliche Trockenbau-Elementtrennwaende."@de ;
+  dcterms:subject "IfcWall" ;
+  dcterms:identifier "lightweight-wall" .
 
 :SWP-CURTAIN-WALL a skos:Concept ;
   skos:inScheme :scheme ;

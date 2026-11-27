@@ -1,0 +1,155 @@
+@prefix mup: <https://example.org/abstract/mep-unit-product/> .
+@prefix mtp: <https://example.org/abstract/mep-terminal-product/> .
+@prefix din276: <https://example.org/de/din276/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix map: <https://example.org/mapping/> .
+
+map:abstractMepProductsToDin276Mapping a dcterms:Dataset ;
+  dcterms:title "Abstract MEP products to DIN 276 mapping"@en ;
+  dcterms:title "Mapping abstrakter Gebaeudetechnikprodukte nach DIN 276"@de ;
+  dcterms:references mup:scheme, mtp:scheme, din276:scheme ;
+  dcterms:issued "2026-11-27" ;
+  dcterms:description "Maps abstract MEP unit and terminal product concepts to DIN 276:2018 Kostengruppen by reference only (410 sanitary, 420 heat, 430 air, 440 electrical, 450 communications/security, 474 fire extinguishing, 480 automation). Codes are referenced by notation; DIN 276 is published by DIN and no DIN titles or definitions are reproduced. Licence holders resolve the codes against their own copy. closeMatch is the leading cost group; relatedMatch marks a secondary or adjacent group. Disambiguation: DIN 276 is deliberately not bijective."@en ;
+  dcterms:description "Ordnet abstrakte Gebaeudetechnikprodukte den Kostengruppen der DIN 276:2018 nur per Referenz zu (410 Sanitaer, 420 Waerme, 430 Luft, 440 Elektro, 450 Kommunikation/Sicherheit, 474 Feuerloesch, 480 Automation). Codes nur ueber Notation; DIN 276 wird vom DIN herausgegeben, es werden keine DIN-Bezeichnungen oder -Definitionen wiedergegeben. Lizenznehmende loesen die Codes mit ihrer eigenen Ausgabe auf. closeMatch ist die Leitgruppe; relatedMatch eine sekundaere oder benachbarte Gruppe. Disambiguierung: DIN 276 ist bewusst nicht eindeutig."@de .
+
+# --- MEP unit products: electrical and data ---
+
+mup:MUP-ELEC-TRANSFORMER skos:closeMatch din276:441 .
+
+mup:MUP-ELEC-MAIN-DIST-BOARD skos:closeMatch din276:443 ;
+  skos:relatedMatch din276:444 .
+
+mup:MUP-ELEC-SUB-DIST-BOARD skos:closeMatch din276:444 ;
+  skos:relatedMatch din276:443 .
+
+mup:MUP-ELEC-UPS skos:closeMatch din276:442 .
+
+mup:MUP-ELEC-GENERATOR skos:closeMatch din276:442 .
+
+mup:MUP-DATA-PATCH-PANEL skos:closeMatch din276:457 ;
+  skos:relatedMatch din276:451 .
+
+mup:MUP-DATA-NETWORK-SWITCH skos:closeMatch din276:457 ;
+  skos:relatedMatch din276:451 .
+
+mup:MUP-DATA-SERVER skos:closeMatch din276:457 ;
+  skos:relatedMatch din276:451 .
+
+# --- MEP unit products: heating, ventilation, cooling ---
+
+mup:MUP-HEAT-BOILER skos:closeMatch din276:421 .
+
+mup:MUP-HEAT-HEAT-PUMP skos:closeMatch din276:421 .
+
+mup:MUP-HEAT-HP-AIR skos:closeMatch din276:421 .
+
+mup:MUP-HEAT-HP-GROUND skos:closeMatch din276:421 .
+
+mup:MUP-HEAT-HP-WATER skos:closeMatch din276:421 .
+
+mup:MUP-HEAT-DISTRICT-HEAT-SUBSTATION skos:closeMatch din276:421 ;
+  skos:relatedMatch din276:422 .
+
+mup:MUP-VENT-AHU skos:closeMatch din276:431 ;
+  skos:relatedMatch din276:433 .
+
+mup:MUP-VENT-FAN skos:closeMatch din276:431 .
+
+mup:MUP-COOL-CHILLER skos:closeMatch din276:434 .
+
+mup:MUP-COOL-FREE-COOLER skos:closeMatch din276:434 .
+
+mup:MUP-SM-COMPRESSOR skos:closeMatch din276:473 ;
+  skos:relatedMatch din276:413 .
+
+# --- MEP unit products: sanitary and special media ---
+
+mup:MUP-FW-PRESSURE-BOOSTER skos:closeMatch din276:412 .
+
+mup:MUP-FW-WATER-HEATER skos:closeMatch din276:412 ;
+  skos:relatedMatch din276:421 .
+
+mup:MUP-WW-GREASE-SEPARATOR skos:closeMatch din276:411 .
+
+mup:MUP-WW-LIFTING-STATION skos:closeMatch din276:411 .
+
+mup:MUP-SM-FIRE-PUMP skos:closeMatch din276:474 ;
+  skos:relatedMatch din276:412 .
+
+mup:MUP-SM-GAS-REGULATOR skos:closeMatch din276:413 ;
+  skos:relatedMatch din276:412 .
+
+# --- MEP terminal products: electrical and data ---
+
+mtp:MTP-ELEC-LIGHT skos:closeMatch din276:445 ;
+  skos:relatedMatch din276:444 .
+
+mtp:MTP-ELEC-SOCKET skos:closeMatch din276:444 .
+
+mtp:MTP-ELEC-SWITCH skos:closeMatch din276:444 .
+
+mtp:MTP-DATA-DATA-OUTLET skos:closeMatch din276:457 .
+
+mtp:MTP-DATA-WIFI-AP skos:closeMatch din276:457 ;
+  skos:relatedMatch din276:451 .
+
+mtp:MTP-DATA-SENSOR-ACTUATOR skos:closeMatch din276:480 ;
+  skos:relatedMatch din276:457 .
+
+# --- MEP terminal products: heating, ventilation, cooling ---
+
+mtp:MTP-HEAT-RADIATOR skos:closeMatch din276:423 .
+
+mtp:MTP-HEAT-UFH-MANIFOLD skos:closeMatch din276:423 ;
+  skos:relatedMatch din276:422 .
+
+mtp:MTP-HEAT-FAN-COIL skos:closeMatch din276:423 ;
+  skos:relatedMatch din276:434 .
+
+mtp:MTP-VENT-AIR-VALVE skos:closeMatch din276:431 .
+
+mtp:MTP-VENT-GRILLE skos:closeMatch din276:431 .
+
+mtp:MTP-COOL-CHILLED-CEILING skos:closeMatch din276:434 ;
+  skos:relatedMatch din276:439 .
+
+mtp:MTP-COOL-CEILING-PANEL skos:closeMatch din276:434 ;
+  skos:relatedMatch din276:439 .
+
+mtp:MTP-COOL-CHILLED-BEAM skos:closeMatch din276:434 ;
+  skos:relatedMatch din276:439 .
+
+mtp:MTP-COOL-FAN-COIL skos:closeMatch din276:434 ;
+  skos:relatedMatch din276:423 .
+
+# --- MEP terminal products: sanitary and special media ---
+
+mtp:MTP-FW-TAP skos:closeMatch din276:412 .
+
+mtp:MTP-FW-SHOWER skos:closeMatch din276:412 .
+
+mtp:MTP-FW-WC-FLUSH skos:closeMatch din276:412 .
+
+mtp:MTP-WW-WC-OUTLET skos:closeMatch din276:411 ;
+  skos:relatedMatch din276:412 .
+
+mtp:MTP-WW-FLOOR-DRAIN skos:closeMatch din276:411 .
+
+mtp:MTP-WW-SINK-DRAIN skos:closeMatch din276:411 .
+
+mtp:MTP-SM-SPRINKLER-HEAD skos:closeMatch din276:474 .
+
+mtp:MTP-SM-HOSE-REEL skos:closeMatch din276:474 .
+
+mtp:MTP-SM-GAS-OUTLET skos:closeMatch din276:413 ;
+  skos:relatedMatch din276:412 .
+
+# --- MEP terminal products: fire safety ---
+
+mtp:MTP-FIRE-SMOKE-DETECTOR skos:closeMatch din276:456 .
+
+mtp:MTP-FIRE-FIRE-DAMPER skos:closeMatch din276:431 ;
+  skos:relatedMatch din276:456 .
+
+mtp:MTP-FIRE-FIRE-DAMPER-ACTUATOR skos:closeMatch din276:431, din276:480 .

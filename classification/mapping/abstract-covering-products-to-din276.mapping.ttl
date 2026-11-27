@@ -1,0 +1,152 @@
+@prefix fcp: <https://example.org/abstract/floor-covering-product/> .
+@prefix wcp: <https://example.org/abstract/wall-covering-product/> .
+@prefix ccp: <https://example.org/abstract/ceiling-covering-product/> .
+@prefix facp: <https://example.org/abstract/facade-covering-product/> .
+@prefix din276: <https://example.org/de/din276/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix map: <https://example.org/mapping/> .
+
+map:abstractCoveringProductsToDin276Mapping a dcterms:Dataset ;
+  dcterms:title "Abstract covering products to DIN 276 mapping"@en ;
+  dcterms:title "Mapping abstrakter Bekleidungsprodukte nach DIN 276"@de ;
+  dcterms:references fcp:scheme, wcp:scheme, ccp:scheme, facp:scheme, din276:scheme ;
+  dcterms:issued "2026-11-27" ;
+  dcterms:description "Maps abstract covering product concepts to DIN 276:2018 Kostengruppen by reference only: floor finishes 353, interior wall finishes 345, ceiling finishes 354, facade cladding 335. Codes are referenced by notation; DIN 276 is published by DIN and no DIN titles or definitions are reproduced. Licence holders resolve the codes against their own copy. closeMatch is the leading cost group; relatedMatch marks a secondary or adjacent group. Disambiguation: DIN 276 is deliberately not bijective."@en ;
+  dcterms:description "Ordnet abstrakte Bekleidungsprodukte den Kostengruppen der DIN 276:2018 nur per Referenz zu: Bodenbelaege 353, Innenwandbekleidungen 345, Deckenbekleidungen 354, Fassadenbekleidungen 335. Codes nur ueber Notation; DIN 276 wird vom DIN herausgegeben, es werden keine DIN-Bezeichnungen oder -Definitionen wiedergegeben. Lizenznehmende loesen die Codes mit ihrer eigenen Ausgabe auf. closeMatch ist die Leitgruppe; relatedMatch eine sekundaere oder benachbarte Gruppe. Disambiguierung: DIN 276 ist bewusst nicht eindeutig."@de .
+
+# --- Floor covering products (DIN 276 353) ---
+
+fcp:FCP-SUBFLOOR skos:closeMatch din276:353 .
+
+fcp:FCP-SCREED-BONDED skos:closeMatch din276:353 .
+
+fcp:FCP-SCREED-FLOATING skos:closeMatch din276:353 .
+
+fcp:FCP-SCREED-HEATED skos:closeMatch din276:353 ;
+  skos:relatedMatch din276:423 .
+
+fcp:FCP-SEAMLESS-RESIN skos:closeMatch din276:353 .
+
+fcp:FCP-CARPET skos:closeMatch din276:353 .
+
+fcp:FCP-LVT skos:closeMatch din276:353 .
+
+fcp:FCP-LINOLIUM skos:closeMatch din276:353 .
+
+fcp:FCP-NATURAL-STONE skos:closeMatch din276:353 .
+
+fcp:FCP-ARTIFICIAL-STONE skos:closeMatch din276:353 .
+
+fcp:FCP-CERAMIC-TILE skos:closeMatch din276:353 .
+
+fcp:FCP-PARQUET skos:closeMatch din276:353 .
+
+fcp:FCP-LAMINATE skos:closeMatch din276:353 .
+
+fcp:FCP-RAISED-FLOOR skos:closeMatch din276:353 ;
+  skos:relatedMatch din276:439 .
+
+fcp:FCP-ACCESS-FLOOR skos:closeMatch din276:353 ;
+  skos:relatedMatch din276:439 .
+
+fcp:FCP-CAVITY-FLOOR skos:closeMatch din276:353 ;
+  skos:relatedMatch din276:439 .
+
+# --- Wall covering products (DIN 276 345; exterior-facing finishes related 336) ---
+
+wcp:WCP-SEAMLESS-COATING skos:closeMatch din276:345 .
+
+wcp:WCP-WALLPAPER skos:closeMatch din276:345 .
+
+wcp:WCP-NATURAL-STONE skos:closeMatch din276:345 .
+
+wcp:WCP-NATURAL-STONE-BONDED skos:closeMatch din276:345 .
+
+wcp:WCP-NATURAL-STONE-ANCHORED skos:closeMatch din276:345 .
+
+wcp:WCP-ARTIFICIAL-STONE skos:closeMatch din276:345 .
+
+wcp:WCP-ARTIFICIAL-STONE-BONDED skos:closeMatch din276:345 .
+
+wcp:WCP-ARTIFICIAL-STONE-ANCHORED skos:closeMatch din276:345 .
+
+wcp:WCP-CERAMIC-TILE skos:closeMatch din276:345 .
+
+wcp:WCP-WOOD-PANEL skos:closeMatch din276:345 .
+
+wcp:WCP-TEXTILE skos:closeMatch din276:345 .
+
+wcp:WCP-TEXTILE-BONDED skos:closeMatch din276:345 .
+
+wcp:WCP-FABRIC-STRETCHED skos:closeMatch din276:345 .
+
+wcp:WCP-SYNTHETIC-PANEL skos:closeMatch din276:345 .
+
+wcp:WCP-PAINT skos:closeMatch din276:345 ;
+  skos:relatedMatch din276:336 .
+
+# --- Ceiling covering products (DIN 276 354) ---
+
+ccp:CCP-METAL-SHEET skos:closeMatch din276:354 .
+
+ccp:CCP-GYPSUM-BOARD skos:closeMatch din276:354 .
+
+ccp:CCP-GYPSUM-DIRECT skos:closeMatch din276:354 .
+
+ccp:CCP-GYPSUM-SUSPENDED skos:closeMatch din276:354 .
+
+ccp:CCP-MINERAL-FIBRE skos:closeMatch din276:354 .
+
+ccp:CCP-WOOD skos:closeMatch din276:354 .
+
+ccp:CCP-SYNTHETIC skos:closeMatch din276:354 .
+
+ccp:CCP-SYNTHETIC-PANEL skos:closeMatch din276:354 .
+
+ccp:CCP-STRETCH-MEMBRANE skos:closeMatch din276:354 .
+
+ccp:CCP-METAL-PANEL skos:closeMatch din276:354 .
+
+ccp:CCP-METAL-GRID skos:closeMatch din276:354 .
+
+# --- Facade covering products (DIN 276 335; ETICS 335; BIPV related 442) ---
+
+facp:FaCP-METAL-SHEET-STANDING-SEAM skos:closeMatch din276:335 .
+
+facp:FaCP-METAL-COMPOSITE-PANEL skos:closeMatch din276:335 .
+
+facp:FaCP-FIBER-CEMENT-BOARD skos:closeMatch din276:335 .
+
+facp:FaCP-NATURAL-STONE-VENTILATED skos:closeMatch din276:335 .
+
+facp:FaCP-CERAMIC-VENTILATED skos:closeMatch din276:335 .
+
+facp:FaCP-TIMBER-VENTILATED skos:closeMatch din276:335 .
+
+facp:FaCP-SYNTHETIC-VENTILATED skos:closeMatch din276:335 .
+
+facp:FaCP-RENDER-ETICS-WDVS skos:closeMatch din276:335 .
+
+facp:FaCP-RENDER-ETICS skos:closeMatch din276:335 .
+
+facp:FaCP-EXTERIOR-PAINT-COATING skos:closeMatch din276:335 ;
+  skos:relatedMatch din276:336 .
+
+facp:FaCP-PREFAB-MODULAR-METAL skos:closeMatch din276:337 ;
+  skos:relatedMatch din276:335 .
+
+facp:FaCP-PREFAB-MODULAR-TIMBER skos:closeMatch din276:337 ;
+  skos:relatedMatch din276:335 .
+
+facp:FaCP-RETROFIT-OVERCLADDING skos:closeMatch din276:335 .
+
+facp:FaCP-BIPV-INTEGRATED skos:closeMatch din276:335, din276:442 .
+
+facp:FaCP-HPL-PANEL skos:closeMatch din276:335 .
+
+facp:FaCP-BRICK-SLIP skos:closeMatch din276:335 .
+
+facp:FaCP-BRICK-SLIP-VENTILATED skos:closeMatch din276:335 .
+
+facp:FaCP-BRICK-SLIP-BONDED skos:closeMatch din276:335 .

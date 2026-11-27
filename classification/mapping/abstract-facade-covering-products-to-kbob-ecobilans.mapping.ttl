@@ -21,6 +21,13 @@ facp:FaCP-RENDER-ETICS-WDVS-RENDER skos:closeMatch kbobbm:04_007 .
 
 facp:FaCP-RENDER-ETICS-WDVS skos:relatedMatch kbobbm:10_004, kbobbm:04_007, kbobbm:10_008 .
 
+facp:FaCP-RENDER-ETICS-INS skos:closeMatch kbobbm:10_004 ;
+  skos:relatedMatch kbobbm:10_008 .
+
+facp:FaCP-RENDER-ETICS-RENDER skos:closeMatch kbobbm:04_007 .
+
+facp:FaCP-RENDER-ETICS skos:relatedMatch kbobbm:10_004, kbobbm:04_007, kbobbm:10_008 .
+
 # --- Direct facade product matches ---
 
 facp:FaCP-METAL-COMPOSITE-PANEL skos:closeMatch kbobbm:05_022 .

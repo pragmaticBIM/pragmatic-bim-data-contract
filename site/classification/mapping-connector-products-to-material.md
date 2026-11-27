@@ -69,6 +69,7 @@ External target labels are not shipped in this repository; only codes and IRIs a
 | `wicp:WICP-ALUMINIUM` | `closeMatch` | `mat:MAT-MET-ALU` |
 | `wicp:WICP-ALUMINIUM` | `relatedMatch` | `mat:MAT-GLS` |
 | `wicp:WICP-ALUMINIUM-FRAME` | `closeMatch` | `mat:MAT-MET-ALU` |
+| `wicp:WICP-ALUMINIUM-GLAZING-2P` | `closeMatch` | `mat:MAT-GLS` |
 | `wicp:WICP-ALUMINIUM-GLZ-2P` | `closeMatch` | `mat:MAT-GLS` |
 | `wicp:WICP-FACADE-UNIT` | `closeMatch` | `mat:MAT-GLS` |
 | `wicp:WICP-FACADE-UNIT` | `relatedMatch` | `mat:MAT-MET-ALU` |
@@ -77,6 +78,7 @@ External target labels are not shipped in this repository; only codes and IRIs a
 | `wicp:WICP-PVC` | `closeMatch` | `mat:MAT-PLA` |
 | `wicp:WICP-PVC` | `relatedMatch` | `mat:MAT-GLS` |
 | `wicp:WICP-PVC-FRAME` | `closeMatch` | `mat:MAT-PLA` |
+| `wicp:WICP-PVC-GLAZING-2P` | `closeMatch` | `mat:MAT-GLS` |
 | `wicp:WICP-PVC-GLZ-2P` | `closeMatch` | `mat:MAT-GLS` |
 | `wicp:WICP-ROOF-DOME` | `closeMatch` | `mat:MAT-GLS` |
 | `wicp:WICP-ROOF-DOME` | `relatedMatch` | `mat:MAT-MET-ALU` |
@@ -100,14 +102,17 @@ External target labels are not shipped in this repository; only codes and IRIs a
 | `wicp:WICP-STEEL` | `closeMatch` | `mat:MAT-MET-STL` |
 | `wicp:WICP-STEEL` | `relatedMatch` | `mat:MAT-GLS` |
 | `wicp:WICP-STEEL-FRAME` | `closeMatch` | `mat:MAT-MET-STL` |
+| `wicp:WICP-STEEL-GLAZING-2P` | `closeMatch` | `mat:MAT-GLS` |
 | `wicp:WICP-STEEL-GLZ-2P` | `closeMatch` | `mat:MAT-GLS` |
 | `wicp:WICP-WOOD` | `closeMatch` | `mat:MAT-WOD` |
 | `wicp:WICP-WOOD` | `relatedMatch` | `mat:MAT-GLS` |
 | `wicp:WICP-WOOD-FRAME` | `closeMatch` | `mat:MAT-WOD` |
+| `wicp:WICP-WOOD-GLAZING-2P` | `closeMatch` | `mat:MAT-GLS` |
 | `wicp:WICP-WOOD-GLZ-2P` | `closeMatch` | `mat:MAT-GLS` |
 | `wicp:WICP-WOOD-METAL` | `closeMatch` | `mat:MAT-WOD` |
 | `wicp:WICP-WOOD-METAL` | `relatedMatch` | `mat:MAT-GLS` |
 | `wicp:WICP-WOOD-METAL` | `relatedMatch` | `mat:MAT-MET-ALU` |
 | `wicp:WICP-WOOD-METAL-FRAME` | `closeMatch` | `mat:MAT-WOD` |
 | `wicp:WICP-WOOD-METAL-FRAME` | `relatedMatch` | `mat:MAT-MET-ALU` |
+| `wicp:WICP-WOOD-METAL-GLAZING-2P` | `closeMatch` | `mat:MAT-GLS` |
 | `wicp:WICP-WOOD-METAL-GLZ-2P` | `closeMatch` | `mat:MAT-GLS` |

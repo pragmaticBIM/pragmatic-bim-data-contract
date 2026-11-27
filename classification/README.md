@@ -76,6 +76,14 @@ classification/
 
 The product vocabularies identify each product class: notation, label, a short `skos:definition` of what it is, hierarchy, IFC class, and the mapping bridges to KBOB, BKP and materials. They carry no tender text. The data sheet of each top concept (name in four languages, tender text, application notes) lives in the [pragmaticBIM Reference](https://github.com/pragmaticBIM/pragmaticbim-reference/tree/main/products), one file per notation, and the classification docs link to it.
 
+### Notation language
+
+`skos:notation` (and matching concept local names) use **English** UPPER-KEBAB tokens only: `{PREFIX}-{ENGLISH}[-{VARIANT}…]`. Bilingual human text stays on `prefLabel` / `definition` / `scopeNote` (`@en` / `@de`). `dcterms:identifier` is English kebab-case for reference data sheets.
+
+Allowed non-word tokens: English industry abbreviations already used in these schemes (`INSITU`, `PRECAST`, `PREFAB`, `RC`, `CLT`, …), envelope LCA suffixes (`INS`, `SUB`, `FIN`, …), and documented MEP discipline codes (`ELEC`, `VENT`, `FW`, `WW`, …). Do not encode German/DACH trade words (`ORTBETON`, `LEICHTBAU`, `HOLZ`, `LEHM`, `WDVS`, `HBV`, `GLZ`, `BLT`, …) in notation — put those in `@de` labels only.
+
+Renames keep the old concept with `owl:deprecated` + `dcterms:isReplacedBy` pointing at the English replacement.
+
 ## Mapping bridges
 
 | File | Links |
@@ -113,13 +121,25 @@ The product vocabularies identify each product class: notation, label, a short `
 | `mapping/qto-buccaneer-to-abstract-metric.mapping.ttl` | qto_buccaneer metric keys → abstract metrics (guideline) |
 | `mapping/qto-buccaneer-to-abstract-ratio.mapping.ttl` | qto_buccaneer ratio keys → abstract ratios (guideline) |
 | `mapping/abstract-covering-products-to-bkp.mapping.ttl` | Abstract covering products → BKP 281/282/283 (Ausbau 2) and 215.5/226/227 (facade, Rohbau 2) |
+| `mapping/abstract-covering-products-to-din276.mapping.ttl` | Abstract covering products → DIN 276:2018 Kostengruppen (e.g. `353`, `345`, `335`) by reference |
+| `mapping/abstract-covering-products-to-onorm-b1801.mapping.ttl` | Abstract covering products → ÖNORM B 1801-1 Leistungsgliederung (e.g. `4.H11`, `4.H44`) by reference |
 | `mapping/abstract-foundation-products-to-bkp.mapping.ttl` | Abstract foundation products → BKP 211.5 / 17x (Fundation, Sicherung, Abdichtung) |
+| `mapping/abstract-foundation-products-to-din276.mapping.ttl` | Abstract foundation products → DIN 276:2018 Kostengruppen (e.g. `322`, `323`, `325`) by reference |
+| `mapping/abstract-foundation-products-to-onorm-b1801.mapping.ttl` | Abstract foundation products → ÖNORM B 1801-1 Leistungsgliederung (e.g. `2.H07`, `2.H04`) by reference |
 | `mapping/abstract-roof-covering-products-to-bkp.mapping.ttl` | Abstract roof covering products → BKP 224.0 / 224.1 / 222 (Rohbau 2) |
+| `mapping/abstract-roof-covering-products-to-din276.mapping.ttl` | Abstract roof covering products → DIN 276:2018 Kostengruppen (e.g. `363`, `442`) by reference |
+| `mapping/abstract-roof-covering-products-to-onorm-b1801.mapping.ttl` | Abstract roof covering products → ÖNORM B 1801-1 Leistungsgliederung (e.g. `2.H09`, `3.H51`) by reference |
 | `mapping/abstract-mep-products-to-bkp.mapping.ttl` | Abstract MEP unit and terminal products → BKP 23 / 24 / 25 building services cost lines |
+| `mapping/abstract-mep-products-to-din276.mapping.ttl` | Abstract MEP products → DIN 276:2018 Kostengruppen (e.g. `421`, `431`, `444`) by reference |
+| `mapping/abstract-mep-products-to-onorm-b1801.mapping.ttl` | Abstract MEP products → ÖNORM B 1801-1 Leistungsgliederung (e.g. `3.H41`, `3.H51`) by reference |
 | `mapping/abstract-separator-products-to-material.mapping.ttl` | Abstract separator products → dominant material classes |
 | `mapping/abstract-separator-products-to-bkp.mapping.ttl` | Abstract separator products → BKP 211–215 / 277 cost lines |
+| `mapping/abstract-separator-products-to-din276.mapping.ttl` | Abstract separator products → DIN 276:2018 Kostengruppen (e.g. `331`, `341`, `351`) by reference |
+| `mapping/abstract-separator-products-to-onorm-b1801.mapping.ttl` | Abstract separator products → ÖNORM B 1801-1 Leistungsgliederung (e.g. `2.H07`, `4.H39`) by reference |
 | `mapping/abstract-connector-products-to-material.mapping.ttl` | Abstract door and window connector products → dominant material classes |
 | `mapping/abstract-connector-products-to-bkp.mapping.ttl` | Abstract door and window connector products → BKP 221.x / 272 / 273 / 224 cost lines |
+| `mapping/abstract-connector-products-to-din276.mapping.ttl` | Abstract connector products → DIN 276:2018 Kostengruppen (e.g. `334`, `344`, `362`) by reference |
+| `mapping/abstract-connector-products-to-onorm-b1801.mapping.ttl` | Abstract connector products → ÖNORM B 1801-1 Leistungsgliederung (e.g. `2.H36`, `2.H37`) by reference |
 | `mapping/kbob-ecobilans-baumat.skos.ttl` | KBOB ecobilans Baumaterialien vocabulary (row notations and IRIs; generated from Excel) |
 | `mapping/kbob-ecobilans-layer-recipes.json` | Default layer quantity rules for composite product carbon decomposition |
 | `mapping/abstract-floor-covering-products-to-kbob-ecobilans.mapping.ttl` | Abstract floor covering products → KBOB ecobilans Baumaterialien rows |
@@ -142,6 +162,8 @@ Local authoring may use a gitignored JSON extract under `temp/` to validate mapp
 
 The same rule applies to cost standards. ICMS (copyright ICMS Coalition), eBKP-H and eBKP-T (CRB) are referenced by code only through `skos:exactMatch`, `skos:closeMatch`, `skos:broadMatch`, `skos:narrowMatch` and `skos:relatedMatch` from the open `CG-*` cost groups; no titles, definitions or reference quantities are redistributed. Licence holders resolve the codes against their own copy. Reference extracts used to verify notations live under the gitignored `temp/cost-standards/`. Edit [`scripts/cost_group_data.py`](../scripts/cost_group_data.py) and run `python scripts/generate_cost_group_vocabulary.py` instead of editing the generated TTL.
 
+Product-class bridges to **DIN 276:2018** (DIN) and **ÖNORM B 1801-1:2022** Leistungsgliederung (Austrian Standards) follow the same code-only rule: notations via `skos:closeMatch` / `skos:relatedMatch` only; no standard titles or definitions are redistributed. ÖNORM IRI local names encode the dot as underscore (e.g. `onorm1801:2_H07` = `2.H07`).
+
 ## Subsystem product classification
 
 Envelope products (facade `FaCP-*`, roof `RCP-*`, foundation `FDP-*`) follow a **subsystem model**: assign **one parent topConcept** per element. That code drives baseline cost as a bundled installation. Internal layer narrowers (`*-INS`, `*-SUB`, `*-FIN`, and legacy suffixes such as `*-RENDER`, `*-MEM`, `*-FRAME`) are **LCA decomposition only** — not user-assignable product classifications.
@@ -149,13 +171,13 @@ Envelope products (facade `FaCP-*`, roof `RCP-*`, foundation `FDP-*`) follow a *
 | Slot | Scheme | Required? | Drives cost? | Example |
 |------|--------|-----------|--------------|---------|
 | `classification_code` (primary) | Envelope product | Yes | Yes — whole subsystem | `FaCP-PREFAB-MODULAR-METAL` |
-| LCA layer narrowers | Same envelope scheme | No | No — carbon only | `FaCP-RENDER-ETICS-WDVS-INS` |
+| LCA layer narrowers | Same envelope scheme | No | No — carbon only | `FaCP-RENDER-ETICS-INS` |
 | `material_category` or 2nd `classifications[]` | `abstract-material-classification` | Optional | No alone | `MAT-INS-MWO` |
 
 **Carbon patterns:**
 
 - **Bundled** — single KBOB row on the parent (e.g. `FaCP-PREFAB-MODULAR-METAL`, pitched roof tiles).
-- **Layer recipe sum** — parent + `mapping/kbob-ecobilans-layer-recipes.json` decomposes into internal layers (e.g. `FaCP-RENDER-ETICS-WDVS`, `RCP-FLAT-BITUMEN`).
+- **Layer recipe sum** — parent + `mapping/kbob-ecobilans-layer-recipes.json` decomposes into internal layers (e.g. `FaCP-RENDER-ETICS`, `RCP-FLAT-BITUMEN`).
 
 **Generic internal layer roles** (new systems): `-INS` (insulation), `-SUB` (substructure/frame), `-FIN` (finish/cladding/membrane). Legacy suffixes remain unchanged.
 
@@ -164,7 +186,7 @@ Envelope products (facade `FaCP-*`, roof `RCP-*`, foundation `FDP-*`) follow a *
 **Assignment decision tree:**
 
 ```
-Known subsystem type (ETICS, prefab metal, bitumen flat roof, raft foundation)?
+Known subsystem type (ETICS / FaCP-RENDER-ETICS, prefab metal, bitumen flat roof, raft foundation)?
   YES → classification_code = parent FaCP-* / RCP-* / FDP-*
         cost = parent baseline entry
         carbon = direct (bundled) OR layer_recipe_sum (composite)

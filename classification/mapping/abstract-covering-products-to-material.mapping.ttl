@@ -152,6 +152,15 @@ facp:FaCP-RENDER-ETICS-WDVS-INS skos:closeMatch mat:MAT-PLA ;
 facp:FaCP-RENDER-ETICS-WDVS-RENDER skos:closeMatch mat:MAT-MSN ;
   skos:relatedMatch mat:MAT-PLA .
 
+facp:FaCP-RENDER-ETICS skos:closeMatch mat:MAT-CMP ;
+  skos:relatedMatch mat:MAT-INS, mat:MAT-MSN, mat:MAT-PLA .
+
+facp:FaCP-RENDER-ETICS-INS skos:closeMatch mat:MAT-PLA ;
+  skos:relatedMatch mat:MAT-INS-MWO .
+
+facp:FaCP-RENDER-ETICS-RENDER skos:closeMatch mat:MAT-MSN ;
+  skos:relatedMatch mat:MAT-PLA .
+
 facp:FaCP-SYNTHETIC-VENTILATED skos:closeMatch mat:MAT-PLA .
 
 facp:FaCP-EXTERIOR-PAINT-COATING skos:closeMatch mat:MAT-PLA ;

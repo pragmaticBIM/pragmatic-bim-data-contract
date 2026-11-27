@@ -58,7 +58,7 @@
     
     
   <meta name="panzoom-theme" content="material">
-<meta name="panzoom-data" content='{"selectors": [".mermaid", ".d2"], "initial_zoom_level": 1.0}'> </head>
+<meta name="panzoom-data" content='{"selectors": [".d2", ".mermaid"], "initial_zoom_level": 1.0}'> </head>
   
   
     
@@ -464,9 +464,14 @@
     </nav>
     <pre class="mermaid"><code>classDiagram
 direction TB
+class n_FaCP_RENDER_ETICS["FaCP-RENDER-ETICS: Render / ETICS facade system"]
+class n_FaCP_RENDER_ETICS_INS["FaCP-RENDER-ETICS-INS: ETICS insulation layer"]
+class n_FaCP_RENDER_ETICS_RENDER["FaCP-RENDER-ETICS-RENDER: ETICS render finish layer"]
 class n_FaCP_RENDER_ETICS_WDVS["FaCP-RENDER-ETICS-WDVS: Render / ETICS facade system"]
 class n_FaCP_RENDER_ETICS_WDVS_INS["FaCP-RENDER-ETICS-WDVS-INS: ETICS insulation layer"]
 class n_FaCP_RENDER_ETICS_WDVS_RENDER["FaCP-RENDER-ETICS-WDVS-RENDER: ETICS render finish layer"]
+n_FaCP_RENDER_ETICS &lt;|-- n_FaCP_RENDER_ETICS_INS
+n_FaCP_RENDER_ETICS &lt;|-- n_FaCP_RENDER_ETICS_RENDER
 n_FaCP_RENDER_ETICS_WDVS &lt;|-- n_FaCP_RENDER_ETICS_WDVS_INS
 n_FaCP_RENDER_ETICS_WDVS &lt;|-- n_FaCP_RENDER_ETICS_WDVS_RENDER</code></pre> 
     <div class="panzoom-info-box panzoom-info-box-bottom panzoom-hidden">
@@ -647,6 +652,39 @@ Hold "Alt" / "Option" to enable pan &amp; zoom
 <td class="pbs-lang-col" data-lang="en" data-field="label">Prefabricated modular timber facade system</td>
 <td class="pbs-lang-col" data-lang="en" data-field="definition">Factory-manufactured modular timber-based facade exoskeleton or wrapper system. Typically includes structural timber frame, integrated insulation, ventilated cavity, finishing layer (wood, plaster, or composite), and pre-integrated MEP rough-ins (windows, ventilation, solar fittings).</td>
 <td class="pbs-lang-col" data-lang="en" data-field="scope_note">Innovation focus: multifunctional facade integrating thermal, acoustic, and MEP functions off-site. Retrofit application (4RinEU, Energiesprong projects): rapid deployment on existing load-bearing structure; on-site assembly time 1-2 weeks for residential. Fire rating: A2-s1,d0 achievable with mineral wool integration. Assembly advantage: reduces on-site labor by 70%, improves precision, minimizes occupant disruption. Regional pilots: Netherlands, Norway, Spain, Italy (social housing retrofits). Regulatory support: CPR 2024 facilitates prefab module trading across EU borders. Cost: 10-15% premium amortized over energy savings and reduced labor. Supply chain: growing capacity (Blokable, prefabrication consortia).</td>
+</tr>
+<tr>
+<td>FaCP-RENDER-ETICS</td>
+<td></td>
+<td><a href="https://github.com/pragmaticBIM/pragmaticbim-reference/blob/main/products/facp-render-etics.yaml">Reference</a></td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Putzsystem / WDVS-Fassade</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Mineralputz, Aussenputz, Waermedaemmverbundsystem (WDVS/ETICS, EPS, Mineralwolle, PIR) oder Zement-/Kunstharzfassadenoberfläche. Mit Klebstoff und mechanischer Verankerung am Untergrund befestigt.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note">Brandschutz: hängt vom Isolierungskern ab. EPS (traditionell): typischerweise D-s2,d0 oder E (Hochhaus verboten). Mineralwolle/PIR-Kern: A2-s1,d0-konform. Wärmeleistung: ausgezeichnet (U-Werte 0,12-0,08 W/m²K erreichbar). Sanierungsdominanz: 60-70% der EU-Tiefenenergetischen Sanierungen verwenden ETICS (Fit-for-55-Treiber). Nachhaltigkeitsbedenken: EPS-Abfall; Mineralwollealternativen wachsen. Montage: gemässigte Fachkompetenz; wetterabhängig. Regional: universelle Anwendung über alle EU-Klimazonen. Lebenszyklus: 20-40 Jahre (Deckschicht-Erneuerung erforderlich).</td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Render / ETICS facade system</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Mineral render, plaster, external thermal insulation composite system (ETICS / WDVS, EPS, mineral wool, PIR), or cement/acrylic facade finish. Bonded to substrate with adhesive and mechanical fixing.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note">Fire rating: depends on insulation core. EPS (traditional): typically D-s2,d0 or E (banned high-rise). Mineral wool / PIR core: A2-s1,d0 compliant. Thermal performance: excellent (U-values 0.12-0.08 W/m²K achievable). Retrofit dominance: 60-70% of EU deep energy retrofits use ETICS (Fit-for-55 policy driver). Sustainability concern: EPS waste; mineral wool alternatives growing. Installation: moderate skill; weather-dependent. Regional: universal application across all EU climates. Lifecycle: 20-40 years (finishing coat renewal needed).</td>
+</tr>
+<tr>
+<td>FaCP-RENDER-ETICS-INS</td>
+<td>FaCP-RENDER-ETICS</td>
+<td></td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">WDVS Daemm-Schicht</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Daemmplatten-Schicht eines WDVS/ETICS-Fassadensystems (EPS, Mineralwolle oder PIR).</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note">LCA-Schichtkomponente von FaCP-RENDER-ETICS. Fuer Oekobilanz-Zerlegung und CO2-Berechnung; keine eigenstaendige Fassadenprodukt-Klassifikation.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">ETICS insulation layer</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Insulation board layer of an ETICS / WDVS facade system (EPS, mineral wool, or PIR).</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note">LCA layer component of FaCP-RENDER-ETICS. Used for ecobilans decomposition and carbon calculation; not a standalone facade product classification.</td>
+</tr>
+<tr>
+<td>FaCP-RENDER-ETICS-RENDER</td>
+<td>FaCP-RENDER-ETICS</td>
+<td></td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">WDVS Putz-Schicht</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Putz- oder Oberputz-Schicht eines WDVS/ETICS-Fassadensystems.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note">LCA-Schichtkomponente von FaCP-RENDER-ETICS. Fuer Oekobilanz-Zerlegung und CO2-Berechnung; keine eigenstaendige Fassadenprodukt-Klassifikation.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">ETICS render finish layer</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Render or plaster finish layer of an ETICS / WDVS facade system.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note">LCA layer component of FaCP-RENDER-ETICS. Used for ecobilans decomposition and carbon calculation; not a standalone facade product classification.</td>
 </tr>
 <tr>
 <td>FaCP-RENDER-ETICS-WDVS</td>

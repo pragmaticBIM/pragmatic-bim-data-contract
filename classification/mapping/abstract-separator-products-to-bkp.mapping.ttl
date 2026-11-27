@@ -17,6 +17,8 @@ map:abstractSeparatorProductsToBkpMapping a dcterms:Dataset ;
 
 swp:SWP-ORTBETON skos:closeMatch bkp:211 .
 
+swp:SWP-INSITU-CONCRETE skos:closeMatch bkp:211 .
+
 swp:SWP-MASONRY skos:closeMatch bkp:211 .
 
 swp:SWP-RAMMED-EARTH skos:closeMatch bkp:211 .
@@ -24,6 +26,8 @@ swp:SWP-RAMMED-EARTH skos:closeMatch bkp:211 .
 swp:SWP-BLT skos:closeMatch bkp:212 .
 
 swp:SWP-BLT-PANEL skos:closeMatch bkp:212 .
+
+swp:SWP-LIGHTWEIGHT-CONCRETE-PANEL skos:closeMatch bkp:212 .
 
 swp:SWP-PREFAB-CONC skos:closeMatch bkp:212 .
 
@@ -36,6 +40,8 @@ swp:SWP-TIMBER-FRAME skos:closeMatch bkp:214 .
 swp:SWP-TIMBER-SOLID skos:closeMatch bkp:214 .
 
 swp:SWP-LEICHTBAU skos:closeMatch bkp:215 .
+
+swp:SWP-LIGHTWEIGHT skos:closeMatch bkp:215 .
 
 swp:SWP-CURTAIN-WALL skos:closeMatch bkp:215 .
 
@@ -74,6 +80,17 @@ ssp:SSP-HBV-INSITU skos:closeMatch bkp:214 ;
 ssp:SSP-HBV-PRECAST skos:closeMatch bkp:214 ;
   skos:relatedMatch bkp:211 .
 
+ssp:SSP-TIMBER-CONCRETE skos:closeMatch bkp:214 ;
+  skos:relatedMatch bkp:211 .
+
+ssp:SSP-TIMBER-CONCRETE-INSITU skos:closeMatch bkp:214 ;
+  skos:relatedMatch bkp:211 .
+
+ssp:SSP-TIMBER-CONCRETE-PRECAST skos:closeMatch bkp:214 ;
+  skos:relatedMatch bkp:211 .
+
 ssp:SSP-HOLZ-LEHM skos:closeMatch bkp:214 .
+
+ssp:SSP-TIMBER-CLAY skos:closeMatch bkp:214 .
 
 ssp:SSP-LIGHTWEIGHT skos:closeMatch bkp:215 .

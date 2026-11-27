@@ -1,0 +1,106 @@
+@prefix swp: <https://example.org/abstract/wall-separator-product/> .
+@prefix ssp: <https://example.org/abstract/slab-separator-product/> .
+@prefix onorm1801: <https://example.org/at/onorm-b1801/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix map: <https://example.org/mapping/> .
+
+map:abstractSeparatorProductsToOnormB1801Mapping a dcterms:Dataset ;
+  dcterms:title "Abstract separator products to ÖNORM B 1801 mapping"@en ;
+  dcterms:title "Mapping abstrakter Trennelementprodukte nach ÖNORM B 1801"@de ;
+  dcterms:references swp:scheme, ssp:scheme, onorm1801:scheme ;
+  dcterms:issued "2026-11-27" ;
+  dcterms:description "Maps abstract separator product concepts to ÖNORM B 1801-1:2022 Leistungsgliederung Hochbau codes by reference only (e.g. 2.H07, 4.H39). IRI local names use underscore for the dot (onorm1801:2_H07 = 2.H07). Codes are referenced by notation; ÖNORM B 1801 is published by Austrian Standards and no titles or definitions are reproduced. Licence holders resolve the codes against their own copy. closeMatch is the leading Leistungsgruppe; relatedMatch marks a secondary or adjacent line. Disambiguation: the mapping is deliberately not bijective."@en ;
+  dcterms:description "Ordnet abstrakte Trennelementprodukte den Codes der Leistungsgliederung Hochbau nach ÖNORM B 1801-1:2022 nur per Referenz zu (z. B. 2.H07, 4.H39). IRI-Lokalnamen mit Unterstrich fuer den Punkt (onorm1801:2_H07 = 2.H07). Codes nur ueber Notation; ÖNORM B 1801 wird von Austrian Standards herausgegeben, es werden keine Bezeichnungen oder Definitionen wiedergegeben. Lizenznehmende loesen die Codes mit ihrer eigenen Ausgabe auf. closeMatch ist die Leit-Leistungsgruppe; relatedMatch eine sekundaere oder benachbarte Position. Disambiguierung: Das Mapping ist bewusst nicht eindeutig."@de .
+
+# --- Wall separator products (Kostenbereich 2 Rohbau / 4 Ausbau) ---
+
+swp:SWP-ORTBETON skos:closeMatch onorm1801:2_H07 .
+
+swp:SWP-INSITU-CONCRETE skos:closeMatch onorm1801:2_H07 .
+
+swp:SWP-MASONRY skos:closeMatch onorm1801:2_H05 .
+
+swp:SWP-RAMMED-EARTH skos:closeMatch onorm1801:2_H05 ;
+  skos:relatedMatch onorm1801:2_H07 .
+
+swp:SWP-BLT skos:closeMatch onorm1801:2_H07 .
+
+swp:SWP-BLT-PANEL skos:closeMatch onorm1801:2_H07 .
+
+swp:SWP-LIGHTWEIGHT-CONCRETE-PANEL skos:closeMatch onorm1801:2_H07 .
+
+swp:SWP-PREFAB-CONC skos:closeMatch onorm1801:2_H07 .
+
+swp:SWP-STEEL skos:closeMatch onorm1801:2_H15 .
+
+swp:SWP-TIMBER skos:closeMatch onorm1801:2_H14 .
+
+swp:SWP-TIMBER-FRAME skos:closeMatch onorm1801:2_H14 .
+
+swp:SWP-TIMBER-SOLID skos:closeMatch onorm1801:2_H14 .
+
+swp:SWP-LEICHTBAU skos:closeMatch onorm1801:4_H39 ;
+  skos:relatedMatch onorm1801:2_H14 .
+
+swp:SWP-LIGHTWEIGHT skos:closeMatch onorm1801:4_H39 ;
+  skos:relatedMatch onorm1801:2_H14 .
+
+swp:SWP-CURTAIN-WALL skos:closeMatch onorm1801:2_H36 ;
+  skos:relatedMatch onorm1801:4_H39 .
+
+swp:SWP-CURTAIN-WALL-STICK skos:closeMatch onorm1801:2_H36 ;
+  skos:relatedMatch onorm1801:4_H39 .
+
+swp:SWP-CURTAIN-WALL-UNITISED skos:closeMatch onorm1801:2_H36 ;
+  skos:relatedMatch onorm1801:4_H39 .
+
+swp:SWP-ELEMENT-WALL skos:closeMatch onorm1801:4_H39 .
+
+swp:SWP-DRYWALL skos:closeMatch onorm1801:4_H39 .
+
+swp:SWP-SYSTEM-PARTITION skos:closeMatch onorm1801:4_H39 .
+
+# --- Slab separator products ---
+
+ssp:SSP-INSITU skos:closeMatch onorm1801:2_H07 .
+
+ssp:SSP-PREFAB-CONC skos:closeMatch onorm1801:2_H07 .
+
+ssp:SSP-STEEL-COMPOSITE skos:closeMatch onorm1801:2_H15 ;
+  skos:relatedMatch onorm1801:2_H07 .
+
+ssp:SSP-COMPOSITE-DECK skos:closeMatch onorm1801:2_H15 ;
+  skos:relatedMatch onorm1801:2_H07 .
+
+ssp:SSP-COMPOSITE-BEAM skos:closeMatch onorm1801:2_H15 ;
+  skos:relatedMatch onorm1801:2_H07 .
+
+ssp:SSP-TIMBER skos:closeMatch onorm1801:2_H14 .
+
+ssp:SSP-CLT skos:closeMatch onorm1801:2_H14 .
+
+ssp:SSP-HBV skos:closeMatch onorm1801:2_H14 ;
+  skos:relatedMatch onorm1801:2_H07 .
+
+ssp:SSP-HBV-INSITU skos:closeMatch onorm1801:2_H14 ;
+  skos:relatedMatch onorm1801:2_H07 .
+
+ssp:SSP-HBV-PRECAST skos:closeMatch onorm1801:2_H14 ;
+  skos:relatedMatch onorm1801:2_H07 .
+
+ssp:SSP-TIMBER-CONCRETE skos:closeMatch onorm1801:2_H14 ;
+  skos:relatedMatch onorm1801:2_H07 .
+
+ssp:SSP-TIMBER-CONCRETE-INSITU skos:closeMatch onorm1801:2_H14 ;
+  skos:relatedMatch onorm1801:2_H07 .
+
+ssp:SSP-TIMBER-CONCRETE-PRECAST skos:closeMatch onorm1801:2_H14 ;
+  skos:relatedMatch onorm1801:2_H07 .
+
+ssp:SSP-HOLZ-LEHM skos:closeMatch onorm1801:2_H14 .
+
+ssp:SSP-TIMBER-CLAY skos:closeMatch onorm1801:2_H14 .
+
+ssp:SSP-LIGHTWEIGHT skos:closeMatch onorm1801:4_H39 ;
+  skos:relatedMatch onorm1801:2_H14 .

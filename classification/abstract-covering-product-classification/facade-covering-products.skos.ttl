@@ -37,6 +37,7 @@
     :FaCP-TIMBER-VENTILATED,
     :FaCP-FIBER-CEMENT-BOARD,
     :FaCP-RENDER-ETICS-WDVS,
+    :FaCP-RENDER-ETICS,
     :FaCP-SYNTHETIC-VENTILATED,
     :FaCP-BIPV-INTEGRATED,
     :FaCP-PREFAB-MODULAR-TIMBER,
@@ -178,6 +179,10 @@
   skos:inScheme :scheme ;
   skos:topConceptOf :scheme ;
   skos:notation "FaCP-RENDER-ETICS-WDVS" ;
+  owl:deprecated true ;
+  dcterms:isReplacedBy :FaCP-RENDER-ETICS ;
+  skos:historyNote "Deprecated: notation included German WDVS. Replaced by English FaCP-RENDER-ETICS."@en ;
+  skos:historyNote "Veraltet: Notation enthielt deutsches WDVS. Ersetzt durch englisches FaCP-RENDER-ETICS."@de ;
   skos:prefLabel "Render / ETICS facade system"@en ;
   skos:prefLabel "Putzsystem / WDVS-Fassade"@de ;
   skos:definition "Mineral render, plaster, external thermal insulation composite system (ETICS / WDVS, EPS, mineral wool, PIR), or cement/acrylic facade finish. Bonded to substrate with adhesive and mechanical fixing."@en ;
@@ -200,6 +205,10 @@
 :FaCP-RENDER-ETICS-WDVS-INS a skos:Concept ;
   skos:inScheme :scheme ;
   skos:notation "FaCP-RENDER-ETICS-WDVS-INS" ;
+  owl:deprecated true ;
+  dcterms:isReplacedBy :FaCP-RENDER-ETICS-INS ;
+  skos:historyNote "Deprecated: notation included German WDVS. Replaced by English FaCP-RENDER-ETICS-INS."@en ;
+  skos:historyNote "Veraltet: Notation enthielt deutsches WDVS. Ersetzt durch englisches FaCP-RENDER-ETICS-INS."@de ;
   skos:prefLabel "ETICS insulation layer"@en ;
   skos:prefLabel "WDVS Daemm-Schicht"@de ;
   skos:definition "Insulation board layer of an ETICS / WDVS facade system (EPS, mineral wool, or PIR)."@en ;
@@ -213,6 +222,10 @@
 :FaCP-RENDER-ETICS-WDVS-RENDER a skos:Concept ;
   skos:inScheme :scheme ;
   skos:notation "FaCP-RENDER-ETICS-WDVS-RENDER" ;
+  owl:deprecated true ;
+  dcterms:isReplacedBy :FaCP-RENDER-ETICS-RENDER ;
+  skos:historyNote "Deprecated: notation included German WDVS. Replaced by English FaCP-RENDER-ETICS-RENDER."@en ;
+  skos:historyNote "Veraltet: Notation enthielt deutsches WDVS. Ersetzt durch englisches FaCP-RENDER-ETICS-RENDER."@de ;
   skos:prefLabel "ETICS render finish layer"@en ;
   skos:prefLabel "WDVS Putz-Schicht"@de ;
   skos:definition "Render or plaster finish layer of an ETICS / WDVS facade system."@en ;
@@ -222,6 +235,55 @@
   skos:scopeNote "LCA-Schichtkomponente von FaCP-RENDER-ETICS-WDVS. Fuer Oekobilanz-Zerlegung und CO2-Berechnung; keine eigenstaendige Fassadenprodukt-Klassifikation."@de ;
   dcterms:subject "IfcCovering" ;
   dcterms:identifier "etics-wdvs-render-layer" .
+
+:FaCP-RENDER-ETICS a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:topConceptOf :scheme ;
+  skos:notation "FaCP-RENDER-ETICS" ;
+  skos:prefLabel "Render / ETICS facade system"@en ;
+  skos:prefLabel "Putzsystem / WDVS-Fassade"@de ;
+  skos:definition "Mineral render, plaster, external thermal insulation composite system (ETICS / WDVS, EPS, mineral wool, PIR), or cement/acrylic facade finish. Bonded to substrate with adhesive and mechanical fixing."@en ;
+  skos:definition "Mineralputz, Aussenputz, Waermedaemmverbundsystem (WDVS/ETICS, EPS, Mineralwolle, PIR) oder Zement-/Kunstharzfassadenoberfläche. Mit Klebstoff und mechanischer Verankerung am Untergrund befestigt."@de ;
+  skos:narrower :FaCP-RENDER-ETICS-INS, :FaCP-RENDER-ETICS-RENDER ;
+  skos:scopeNote "Fire rating: depends on insulation core. EPS (traditional): typically D-s2,d0 or E (banned high-rise). Mineral wool / PIR core: A2-s1,d0 compliant. Thermal performance: excellent (U-values 0.12-0.08 W/m²K achievable). Retrofit dominance: 60-70% of EU deep energy retrofits use ETICS (Fit-for-55 policy driver). Sustainability concern: EPS waste; mineral wool alternatives growing. Installation: moderate skill; weather-dependent. Regional: universal application across all EU climates. Lifecycle: 20-40 years (finishing coat renewal needed)."@en ;
+  dcterms:subject "IfcCovering" ;
+  dcterms:subject "EN 13501-1" ;
+  dcterms:subject "Thermal-Insulation" ;
+  dcterms:subject "Retrofit" ;
+  dcterms:identifier "etics-facade" ;
+  skos:scopeNote "Brandschutz: hängt vom Isolierungskern ab. EPS (traditionell): typischerweise D-s2,d0 oder E (Hochhaus verboten). Mineralwolle/PIR-Kern: A2-s1,d0-konform. Wärmeleistung: ausgezeichnet (U-Werte 0,12-0,08 W/m²K erreichbar). Sanierungsdominanz: 60-70% der EU-Tiefenenergetischen Sanierungen verwenden ETICS (Fit-for-55-Treiber). Nachhaltigkeitsbedenken: EPS-Abfall; Mineralwollealternativen wachsen. Montage: gemässigte Fachkompetenz; wetterabhängig. Regional: universelle Anwendung über alle EU-Klimazonen. Lebenszyklus: 20-40 Jahre (Deckschicht-Erneuerung erforderlich)."@de ;
+  :fireRating "A2-s1,d0 (mineral core) | D-s2,d0 / E (EPS - restricted)" ;
+  :thermalClass "Very High" ;
+  :systemType "Bonded Composite + Insulation" ;
+  :applicationContext "Deep energy retrofit (Fit-for-55)" ;
+  :retrofitMarketShare "60-70% of EU deep retrofits" ;
+  :thermalBridge "Good (when properly detailed)" .
+
+:FaCP-RENDER-ETICS-INS a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:notation "FaCP-RENDER-ETICS-INS" ;
+  skos:prefLabel "ETICS insulation layer"@en ;
+  skos:prefLabel "WDVS Daemm-Schicht"@de ;
+  skos:definition "Insulation board layer of an ETICS / WDVS facade system (EPS, mineral wool, or PIR)."@en ;
+  skos:definition "Daemmplatten-Schicht eines WDVS/ETICS-Fassadensystems (EPS, Mineralwolle oder PIR)."@de ;
+  skos:broader :FaCP-RENDER-ETICS ;
+  skos:scopeNote "LCA layer component of FaCP-RENDER-ETICS. Used for ecobilans decomposition and carbon calculation; not a standalone facade product classification."@en ;
+  skos:scopeNote "LCA-Schichtkomponente von FaCP-RENDER-ETICS. Fuer Oekobilanz-Zerlegung und CO2-Berechnung; keine eigenstaendige Fassadenprodukt-Klassifikation."@de ;
+  dcterms:subject "IfcCovering" ;
+  dcterms:identifier "etics-insulation-layer" .
+
+:FaCP-RENDER-ETICS-RENDER a skos:Concept ;
+  skos:inScheme :scheme ;
+  skos:notation "FaCP-RENDER-ETICS-RENDER" ;
+  skos:prefLabel "ETICS render finish layer"@en ;
+  skos:prefLabel "WDVS Putz-Schicht"@de ;
+  skos:definition "Render or plaster finish layer of an ETICS / WDVS facade system."@en ;
+  skos:definition "Putz- oder Oberputz-Schicht eines WDVS/ETICS-Fassadensystems."@de ;
+  skos:broader :FaCP-RENDER-ETICS ;
+  skos:scopeNote "LCA layer component of FaCP-RENDER-ETICS. Used for ecobilans decomposition and carbon calculation; not a standalone facade product classification."@en ;
+  skos:scopeNote "LCA-Schichtkomponente von FaCP-RENDER-ETICS. Fuer Oekobilanz-Zerlegung und CO2-Berechnung; keine eigenstaendige Fassadenprodukt-Klassifikation."@de ;
+  dcterms:subject "IfcCovering" ;
+  dcterms:identifier "etics-render-layer" .
 
 :FaCP-SYNTHETIC-VENTILATED a skos:Concept ;
   skos:inScheme :scheme ;
@@ -338,7 +400,7 @@
   skos:topConceptOf :scheme ;
   skos:notation "FaCP-RETROFIT-OVERCLADDING" ;
   owl:deprecated true ;
-  dcterms:isReplacedBy :FaCP-RENDER-ETICS-WDVS, :FaCP-FIBER-CEMENT-BOARD, :FaCP-TIMBER-VENTILATED, :FaCP-METAL-COMPOSITE-PANEL ;
+  dcterms:isReplacedBy :FaCP-RENDER-ETICS, :FaCP-FIBER-CEMENT-BOARD, :FaCP-TIMBER-VENTILATED, :FaCP-METAL-COMPOSITE-PANEL ;
   skos:historyNote "Deprecated: combined several construction systems with different price logic. Replaced by the classes in dcterms:isReplacedBy."@en ;
   skos:historyNote "Veraltet: fasste mehrere Bausysteme mit unterschiedlicher Preisbildung zusammen. Ersetzt durch die Klassen unter dcterms:isReplacedBy."@de ;
   skos:prefLabel "Retrofit overcladding system (composite)"@en ;
@@ -493,6 +555,7 @@
 :FaCP-CERAMIC-VENTILATED skos:related :FaCP-RETROFIT-OVERCLADDING .
 :FaCP-TIMBER-VENTILATED skos:related :FaCP-PREFAB-MODULAR-TIMBER .
 :FaCP-RENDER-ETICS-WDVS skos:related :FaCP-RETROFIT-OVERCLADDING .
+:FaCP-RENDER-ETICS skos:related :FaCP-RETROFIT-OVERCLADDING .
 :FaCP-PREFAB-MODULAR-TIMBER skos:related :FaCP-RETROFIT-OVERCLADDING .
 :FaCP-BIPV-INTEGRATED skos:related :FaCP-PREFAB-MODULAR-METAL .
 

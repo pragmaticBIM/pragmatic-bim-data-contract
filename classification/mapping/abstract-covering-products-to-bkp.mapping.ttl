@@ -126,6 +126,9 @@ facp:FaCP-SYNTHETIC-VENTILATED skos:closeMatch bkp:215_5 .
 facp:FaCP-RENDER-ETICS-WDVS skos:closeMatch bkp:226_2 ;
   skos:relatedMatch bkp:226_1 .
 
+facp:FaCP-RENDER-ETICS skos:closeMatch bkp:226_2 ;
+  skos:relatedMatch bkp:226_1 .
+
 facp:FaCP-EXTERIOR-PAINT-COATING skos:closeMatch bkp:227_1 .
 
 facp:FaCP-PREFAB-MODULAR-METAL skos:closeMatch bkp:215_5, bkp:213_5 ;

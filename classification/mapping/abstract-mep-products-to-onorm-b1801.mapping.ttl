@@ -1,0 +1,149 @@
+@prefix mup: <https://example.org/abstract/mep-unit-product/> .
+@prefix mtp: <https://example.org/abstract/mep-terminal-product/> .
+@prefix onorm1801: <https://example.org/at/onorm-b1801/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix map: <https://example.org/mapping/> .
+
+map:abstractMepProductsToOnormB1801Mapping a dcterms:Dataset ;
+  dcterms:title "Abstract MEP products to ÖNORM B 1801 mapping"@en ;
+  dcterms:title "Mapping abstrakter Gebaeudetechnikprodukte nach ÖNORM B 1801"@de ;
+  dcterms:references mup:scheme, mtp:scheme, onorm1801:scheme ;
+  dcterms:issued "2026-11-27" ;
+  dcterms:description "Maps abstract MEP unit and terminal product concepts to ÖNORM B 1801-1:2022 Leistungsgliederung Hochbau codes by reference only under Kostenbereich 3 Bauwerk-Technik (e.g. 3.H40 sanitary, 3.H41 heat, 3.H43 ventilation, 3.H51 electrical). IRI local names use underscore for the dot. Codes are referenced by notation; ÖNORM B 1801 is published by Austrian Standards and no titles or definitions are reproduced. Licence holders resolve the codes against their own copy. closeMatch is the leading Leistungsgruppe; relatedMatch marks a secondary or adjacent line. Disambiguation: the mapping is deliberately not bijective."@en ;
+  dcterms:description "Ordnet abstrakte Gebaeudetechnikprodukte den Codes der Leistungsgliederung Hochbau nach ÖNORM B 1801-1:2022 nur per Referenz zu unter Kostenbereich 3 Bauwerk-Technik (z. B. 3.H40 Sanitaer, 3.H41 Waerme, 3.H43 Lueftung, 3.H51 Elektro). IRI-Lokalnamen mit Unterstrich fuer den Punkt. Codes nur ueber Notation; ÖNORM B 1801 wird von Austrian Standards herausgegeben, es werden keine Bezeichnungen oder Definitionen wiedergegeben. Lizenznehmende loesen die Codes mit ihrer eigenen Ausgabe auf. closeMatch ist die Leit-Leistungsgruppe; relatedMatch eine sekundaere oder benachbarte Position. Disambiguierung: Das Mapping ist bewusst nicht eindeutig."@de .
+
+# --- MEP unit products: electrical and data ---
+
+mup:MUP-ELEC-TRANSFORMER skos:closeMatch onorm1801:3_H51 .
+
+mup:MUP-ELEC-MAIN-DIST-BOARD skos:closeMatch onorm1801:3_H51 .
+
+mup:MUP-ELEC-SUB-DIST-BOARD skos:closeMatch onorm1801:3_H51 .
+
+mup:MUP-ELEC-UPS skos:closeMatch onorm1801:3_H51 .
+
+mup:MUP-ELEC-GENERATOR skos:closeMatch onorm1801:3_H51 .
+
+mup:MUP-DATA-PATCH-PANEL skos:closeMatch onorm1801:3_H52 ;
+  skos:relatedMatch onorm1801:3_H51 .
+
+mup:MUP-DATA-NETWORK-SWITCH skos:closeMatch onorm1801:3_H52 ;
+  skos:relatedMatch onorm1801:3_H51 .
+
+mup:MUP-DATA-SERVER skos:closeMatch onorm1801:3_H52 ;
+  skos:relatedMatch onorm1801:3_H51 .
+
+# --- MEP unit products: heating, ventilation, cooling ---
+
+mup:MUP-HEAT-BOILER skos:closeMatch onorm1801:3_H41 .
+
+mup:MUP-HEAT-HEAT-PUMP skos:closeMatch onorm1801:3_H41 .
+
+mup:MUP-HEAT-HP-AIR skos:closeMatch onorm1801:3_H41 .
+
+mup:MUP-HEAT-HP-GROUND skos:closeMatch onorm1801:3_H41 .
+
+mup:MUP-HEAT-HP-WATER skos:closeMatch onorm1801:3_H41 .
+
+mup:MUP-HEAT-DISTRICT-HEAT-SUBSTATION skos:closeMatch onorm1801:3_H41 .
+
+mup:MUP-VENT-AHU skos:closeMatch onorm1801:3_H43 ;
+  skos:relatedMatch onorm1801:3_H44 .
+
+mup:MUP-VENT-FAN skos:closeMatch onorm1801:3_H43 .
+
+mup:MUP-COOL-CHILLER skos:closeMatch onorm1801:3_H44 ;
+  skos:relatedMatch onorm1801:3_H43 .
+
+mup:MUP-COOL-FREE-COOLER skos:closeMatch onorm1801:3_H44 .
+
+mup:MUP-SM-COMPRESSOR skos:closeMatch onorm1801:3_H40 ;
+  skos:relatedMatch onorm1801:3_H41 .
+
+# --- MEP unit products: sanitary and special media ---
+
+mup:MUP-FW-PRESSURE-BOOSTER skos:closeMatch onorm1801:3_H40 .
+
+mup:MUP-FW-WATER-HEATER skos:closeMatch onorm1801:3_H40 ;
+  skos:relatedMatch onorm1801:3_H41 .
+
+mup:MUP-WW-GREASE-SEPARATOR skos:closeMatch onorm1801:3_H40 .
+
+mup:MUP-WW-LIFTING-STATION skos:closeMatch onorm1801:3_H40 .
+
+mup:MUP-SM-FIRE-PUMP skos:closeMatch onorm1801:3_H45 ;
+  skos:relatedMatch onorm1801:3_H40 .
+
+mup:MUP-SM-GAS-REGULATOR skos:closeMatch onorm1801:3_H40 .
+
+# --- MEP terminal products: electrical and data ---
+
+mtp:MTP-ELEC-LIGHT skos:closeMatch onorm1801:3_H51 .
+
+mtp:MTP-ELEC-SOCKET skos:closeMatch onorm1801:3_H51 .
+
+mtp:MTP-ELEC-SWITCH skos:closeMatch onorm1801:3_H51 .
+
+mtp:MTP-DATA-DATA-OUTLET skos:closeMatch onorm1801:3_H52 .
+
+mtp:MTP-DATA-WIFI-AP skos:closeMatch onorm1801:3_H52 .
+
+mtp:MTP-DATA-SENSOR-ACTUATOR skos:closeMatch onorm1801:3_H52 ;
+  skos:relatedMatch onorm1801:3_H48 .
+
+# --- MEP terminal products: heating, ventilation, cooling ---
+
+mtp:MTP-HEAT-RADIATOR skos:closeMatch onorm1801:3_H41 .
+
+mtp:MTP-HEAT-UFH-MANIFOLD skos:closeMatch onorm1801:3_H41 .
+
+mtp:MTP-HEAT-FAN-COIL skos:closeMatch onorm1801:3_H41 ;
+  skos:relatedMatch onorm1801:3_H44 .
+
+mtp:MTP-VENT-AIR-VALVE skos:closeMatch onorm1801:3_H43 .
+
+mtp:MTP-VENT-GRILLE skos:closeMatch onorm1801:3_H43 .
+
+mtp:MTP-COOL-CHILLED-CEILING skos:closeMatch onorm1801:3_H44 ;
+  skos:relatedMatch onorm1801:4_H39 .
+
+mtp:MTP-COOL-CEILING-PANEL skos:closeMatch onorm1801:3_H44 ;
+  skos:relatedMatch onorm1801:4_H39 .
+
+mtp:MTP-COOL-CHILLED-BEAM skos:closeMatch onorm1801:3_H44 ;
+  skos:relatedMatch onorm1801:4_H39 .
+
+mtp:MTP-COOL-FAN-COIL skos:closeMatch onorm1801:3_H44 ;
+  skos:relatedMatch onorm1801:3_H41 .
+
+# --- MEP terminal products: sanitary and special media ---
+
+mtp:MTP-FW-TAP skos:closeMatch onorm1801:3_H40 .
+
+mtp:MTP-FW-SHOWER skos:closeMatch onorm1801:3_H40 .
+
+mtp:MTP-FW-WC-FLUSH skos:closeMatch onorm1801:3_H40 .
+
+mtp:MTP-WW-WC-OUTLET skos:closeMatch onorm1801:3_H40 .
+
+mtp:MTP-WW-FLOOR-DRAIN skos:closeMatch onorm1801:3_H40 .
+
+mtp:MTP-WW-SINK-DRAIN skos:closeMatch onorm1801:3_H40 .
+
+mtp:MTP-SM-SPRINKLER-HEAD skos:closeMatch onorm1801:3_H45 .
+
+mtp:MTP-SM-HOSE-REEL skos:closeMatch onorm1801:3_H45 .
+
+mtp:MTP-SM-GAS-OUTLET skos:closeMatch onorm1801:3_H40 .
+
+# --- MEP terminal products: fire safety ---
+
+mtp:MTP-FIRE-SMOKE-DETECTOR skos:closeMatch onorm1801:3_H52 ;
+  skos:relatedMatch onorm1801:3_H45 .
+
+mtp:MTP-FIRE-FIRE-DAMPER skos:closeMatch onorm1801:3_H43 ;
+  skos:relatedMatch onorm1801:3_H45 .
+
+mtp:MTP-FIRE-FIRE-DAMPER-ACTUATOR skos:closeMatch onorm1801:3_H43 ;
+  skos:relatedMatch onorm1801:3_H52 .

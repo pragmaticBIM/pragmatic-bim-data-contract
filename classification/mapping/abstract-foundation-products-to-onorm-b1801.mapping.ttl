@@ -1,0 +1,71 @@
+@prefix fdp: <https://example.org/abstract/foundation-product/> .
+@prefix onorm1801: <https://example.org/at/onorm-b1801/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix map: <https://example.org/mapping/> .
+
+map:abstractFoundationProductsToOnormB1801Mapping a dcterms:Dataset ;
+  dcterms:title "Abstract foundation products to ÖNORM B 1801 mapping"@en ;
+  dcterms:title "Mapping abstrakter Fundamentprodukte nach ÖNORM B 1801"@de ;
+  dcterms:references fdp:scheme, onorm1801:scheme ;
+  dcterms:issued "2026-11-27" ;
+  dcterms:description "Maps abstract foundation product concepts to ÖNORM B 1801-1:2022 Leistungsgliederung Hochbau codes by reference only (e.g. 2.H07, 2.H04, 2.H08). IRI local names use underscore for the dot. Codes are referenced by notation; ÖNORM B 1801 is published by Austrian Standards and no titles or definitions are reproduced. Licence holders resolve the codes against their own copy. closeMatch is the leading Leistungsgruppe; relatedMatch marks a secondary or adjacent line. Disambiguation: the mapping is deliberately not bijective."@en ;
+  dcterms:description "Ordnet abstrakte Fundamentprodukte den Codes der Leistungsgliederung Hochbau nach ÖNORM B 1801-1:2022 nur per Referenz zu (z. B. 2.H07, 2.H04, 2.H08). IRI-Lokalnamen mit Unterstrich fuer den Punkt. Codes nur ueber Notation; ÖNORM B 1801 wird von Austrian Standards herausgegeben, es werden keine Bezeichnungen oder Definitionen wiedergegeben. Lizenznehmende loesen die Codes mit ihrer eigenen Ausgabe auf. closeMatch ist die Leit-Leistungsgruppe; relatedMatch eine sekundaere oder benachbarte Position. Disambiguierung: Das Mapping ist bewusst nicht eindeutig."@de .
+
+# --- Cast concrete foundations ---
+
+fdp:FDP-RAFT skos:closeMatch onorm1801:2_H07 .
+
+fdp:FDP-STRIP skos:closeMatch onorm1801:2_H07 .
+
+fdp:FDP-PAD skos:closeMatch onorm1801:2_H07 .
+
+fdp:FDP-RETAINING skos:closeMatch onorm1801:2_H07 ;
+  skos:relatedMatch onorm1801:2_H04 .
+
+fdp:FDP-RETAINING-INSITU skos:closeMatch onorm1801:2_H07 ;
+  skos:relatedMatch onorm1801:2_H04 .
+
+fdp:FDP-RETAINING-PRECAST skos:closeMatch onorm1801:2_H07 ;
+  skos:relatedMatch onorm1801:2_H04 .
+
+fdp:FDP-RETAINING-SHORING skos:closeMatch onorm1801:2_H04 ;
+  skos:relatedMatch onorm1801:2_H07 .
+
+# --- Deep foundations and ground improvement ---
+
+fdp:FDP-PILE skos:closeMatch onorm1801:2_H04 ;
+  skos:relatedMatch onorm1801:2_H07 .
+
+fdp:FDP-PILE-DRIVEN skos:closeMatch onorm1801:2_H04 ;
+  skos:relatedMatch onorm1801:2_H07 .
+
+fdp:FDP-PILE-BORED skos:closeMatch onorm1801:2_H04 ;
+  skos:relatedMatch onorm1801:2_H07 .
+
+fdp:FDP-MICRO-PILE skos:closeMatch onorm1801:2_H04 .
+
+fdp:FDP-MICRO-PILE-GROUTED skos:closeMatch onorm1801:2_H04 .
+
+fdp:FDP-GROUND-INJECTION skos:closeMatch onorm1801:2_H04 .
+
+fdp:FDP-SOIL-REPLACEMENT skos:closeMatch onorm1801:2_H03 ;
+  skos:relatedMatch onorm1801:2_H04 .
+
+# --- Sealing, drainage and insulation layers ---
+
+fdp:FDP-WATERPROOF skos:closeMatch onorm1801:2_H08 .
+
+fdp:FDP-WATERPROOF-MEMBRANE skos:closeMatch onorm1801:2_H08 .
+
+fdp:FDP-WATERPROOF-CONCRETE skos:closeMatch onorm1801:2_H08 ;
+  skos:relatedMatch onorm1801:2_H07 .
+
+fdp:FDP-DRAINAGE skos:closeMatch onorm1801:2_H03 ;
+  skos:relatedMatch onorm1801:2_H08 .
+
+fdp:FDP-RAFT-INS skos:closeMatch onorm1801:2_H08 ;
+  skos:relatedMatch onorm1801:2_H07 .
+
+fdp:FDP-RETAINING-INS skos:closeMatch onorm1801:2_H08 ;
+  skos:relatedMatch onorm1801:2_H04 .

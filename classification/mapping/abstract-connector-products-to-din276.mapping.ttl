@@ -1,0 +1,105 @@
+@prefix dcp: <https://example.org/abstract/door-connector-product/> .
+@prefix wicp: <https://example.org/abstract/window-connector-product/> .
+@prefix din276: <https://example.org/de/din276/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix map: <https://example.org/mapping/> .
+
+map:abstractConnectorProductsToDin276Mapping a dcterms:Dataset ;
+  dcterms:title "Abstract connector products to DIN 276 mapping"@en ;
+  dcterms:title "Mapping abstrakter Verbindungsprodukte nach DIN 276"@de ;
+  dcterms:references dcp:scheme, wicp:scheme, din276:scheme ;
+  dcterms:issued "2026-11-27" ;
+  dcterms:description "Maps abstract door and window connector product concepts to DIN 276:2018 Kostengruppen by reference only: exterior openings 334, interior openings 344, roof openings 362. Codes are referenced by notation; DIN 276 is published by DIN and no DIN titles or definitions are reproduced. Licence holders resolve the codes against their own copy. closeMatch is the leading exterior cost group; relatedMatch marks the interior alternative where the product may be booked under either. Disambiguation: DIN 276 is deliberately not bijective."@en ;
+  dcterms:description "Ordnet abstrakte Tuer- und Fenster-Verbindungsprodukte den Kostengruppen der DIN 276:2018 nur per Referenz zu: Aussenwand oeffnungen 334, Innenwand oeffnungen 344, Dachoeffnungen 362. Codes nur ueber Notation; DIN 276 wird vom DIN herausgegeben, es werden keine DIN-Bezeichnungen oder -Definitionen wiedergegeben. Lizenznehmende loesen die Codes mit ihrer eigenen Ausgabe auf. closeMatch ist die Leitgruppe aussen; relatedMatch die Innen-Alternative. Disambiguierung: DIN 276 ist bewusst nicht eindeutig."@de .
+
+# --- Door connector products ---
+
+dcp:DCP-WOOD skos:closeMatch din276:334 ;
+  skos:relatedMatch din276:344 .
+
+dcp:DCP-WOOD-INTERIOR skos:closeMatch din276:344 ;
+  skos:relatedMatch din276:334 .
+
+dcp:DCP-WOOD-RATED skos:closeMatch din276:334 ;
+  skos:relatedMatch din276:344 .
+
+dcp:DCP-WOOD-ENTRANCE skos:closeMatch din276:334 ;
+  skos:relatedMatch din276:344 .
+
+dcp:DCP-METAL skos:closeMatch din276:334 ;
+  skos:relatedMatch din276:344 .
+
+dcp:DCP-WOOD-METAL skos:closeMatch din276:334 ;
+  skos:relatedMatch din276:344 .
+
+dcp:DCP-PVC skos:closeMatch din276:334 ;
+  skos:relatedMatch din276:344 .
+
+dcp:DCP-GLASS skos:closeMatch din276:334 ;
+  skos:relatedMatch din276:344 .
+
+dcp:DCP-GLASS-FRAMELESS skos:closeMatch din276:334 ;
+  skos:relatedMatch din276:344 .
+
+dcp:DCP-GLASS-FRAMED skos:closeMatch din276:334 ;
+  skos:relatedMatch din276:344 .
+
+dcp:DCP-GLASS-AUTOMATIC skos:closeMatch din276:334 ;
+  skos:relatedMatch din276:344 .
+
+dcp:DCP-GATE skos:closeMatch din276:334 ;
+  skos:relatedMatch din276:344 .
+
+dcp:DCP-GATE-SECTIONAL skos:closeMatch din276:334 ;
+  skos:relatedMatch din276:344 .
+
+dcp:DCP-GATE-ROLLING skos:closeMatch din276:334 ;
+  skos:relatedMatch din276:344 .
+
+dcp:DCP-GATE-SLIDING skos:closeMatch din276:334 ;
+  skos:relatedMatch din276:344 .
+
+dcp:DCP-GATE-FOLDING skos:closeMatch din276:334 ;
+  skos:relatedMatch din276:344 .
+
+dcp:DCP-GATE-UP-OVER skos:closeMatch din276:334 ;
+  skos:relatedMatch din276:344 .
+
+dcp:DCP-SPECIAL skos:closeMatch din276:334 ;
+  skos:relatedMatch din276:344 .
+
+# --- Window connector products ---
+
+wicp:WICP-WOOD skos:closeMatch din276:334 ;
+  skos:relatedMatch din276:344 .
+
+wicp:WICP-WOOD-METAL skos:closeMatch din276:334 ;
+  skos:relatedMatch din276:344 .
+
+wicp:WICP-PVC skos:closeMatch din276:334 ;
+  skos:relatedMatch din276:344 .
+
+wicp:WICP-STEEL skos:closeMatch din276:334 ;
+  skos:relatedMatch din276:344 .
+
+wicp:WICP-ALUMINIUM skos:closeMatch din276:334 ;
+  skos:relatedMatch din276:344 .
+
+wicp:WICP-SPECIAL skos:closeMatch din276:334 ;
+  skos:relatedMatch din276:344 .
+
+wicp:WICP-SKYLIGHT skos:closeMatch din276:362 ;
+  skos:relatedMatch din276:334 .
+
+wicp:WICP-ROOF-WINDOW skos:closeMatch din276:362 ;
+  skos:relatedMatch din276:334 .
+
+wicp:WICP-ROOF-DOME skos:closeMatch din276:362 ;
+  skos:relatedMatch din276:334 .
+
+wicp:WICP-ROOFLIGHT-BAND skos:closeMatch din276:362 ;
+  skos:relatedMatch din276:334 .
+
+wicp:WICP-FACADE-UNIT skos:closeMatch din276:334 ;
+  skos:relatedMatch din276:337 .

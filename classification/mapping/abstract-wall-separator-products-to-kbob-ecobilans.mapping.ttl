@@ -14,6 +14,8 @@ map:abstractWallSeparatorProductsToKbobEcobilansMapping a dcterms:Dataset ;
 
 swp:SWP-ORTBETON skos:closeMatch kbobbm:01_002 .
 
+swp:SWP-INSITU-CONCRETE skos:closeMatch kbobbm:01_002 .
+
 swp:SWP-MASONRY skos:closeMatch kbobbm:02_001 ;
   skos:relatedMatch kbobbm:02_002, kbobbm:02_006 .
 
@@ -24,6 +26,9 @@ swp:SWP-BLT skos:closeMatch kbobbm:02_006 ;
   skos:relatedMatch kbobbm:01_041 .
 
 swp:SWP-BLT-PANEL skos:closeMatch kbobbm:02_006 ;
+  skos:relatedMatch kbobbm:01_041 .
+
+swp:SWP-LIGHTWEIGHT-CONCRETE-PANEL skos:closeMatch kbobbm:02_006 ;
   skos:relatedMatch kbobbm:01_041 .
 
 swp:SWP-PREFAB-CONC skos:closeMatch kbobbm:01_042 ;
@@ -42,6 +47,9 @@ swp:SWP-TIMBER-SOLID skos:closeMatch kbobbm:07_003 ;
   skos:relatedMatch kbobbm:07_023 .
 
 swp:SWP-LEICHTBAU skos:closeMatch kbobbm:07_005 ;
+  skos:relatedMatch kbobbm:07_004 .
+
+swp:SWP-LIGHTWEIGHT skos:closeMatch kbobbm:07_005 ;
   skos:relatedMatch kbobbm:07_004 .
 
 swp:SWP-CURTAIN-WALL skos:closeMatch kbobbm:05_008 .

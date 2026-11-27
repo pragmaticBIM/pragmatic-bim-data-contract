@@ -68,6 +68,8 @@ External target labels are not shipped in this repository; only codes and IRIs a
 | `facp:FaCP-PREFAB-MODULAR-METAL` | `relatedMatch` | `bkp:215-2` |
 | `facp:FaCP-PREFAB-MODULAR-TIMBER` | `closeMatch` | `bkp:214-4` |
 | `facp:FaCP-PREFAB-MODULAR-TIMBER` | `closeMatch` | `bkp:215-5` |
+| `facp:FaCP-RENDER-ETICS` | `closeMatch` | `bkp:226-2` |
+| `facp:FaCP-RENDER-ETICS` | `relatedMatch` | `bkp:226-1` |
 | `facp:FaCP-RENDER-ETICS-WDVS` | `closeMatch` | `bkp:226-2` |
 | `facp:FaCP-RENDER-ETICS-WDVS` | `relatedMatch` | `bkp:226-1` |
 | `facp:FaCP-RETROFIT-OVERCLADDING` | `closeMatch` | `bkp:215-5` |

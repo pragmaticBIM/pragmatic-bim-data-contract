@@ -17,6 +17,8 @@ map:abstractSeparatorProductsToMaterialMapping a dcterms:Dataset ;
 
 swp:SWP-ORTBETON skos:closeMatch mat:MAT-CONC .
 
+swp:SWP-INSITU-CONCRETE skos:closeMatch mat:MAT-CONC .
+
 swp:SWP-MASONRY skos:closeMatch mat:MAT-MSN ;
   skos:relatedMatch mat:MAT-CONC .
 
@@ -27,6 +29,9 @@ swp:SWP-BLT skos:closeMatch mat:MAT-CONC ;
   skos:relatedMatch mat:MAT-CMP .
 
 swp:SWP-BLT-PANEL skos:closeMatch mat:MAT-CONC ;
+  skos:relatedMatch mat:MAT-CMP .
+
+swp:SWP-LIGHTWEIGHT-CONCRETE-PANEL skos:closeMatch mat:MAT-CONC ;
   skos:relatedMatch mat:MAT-CMP .
 
 swp:SWP-PREFAB-CONC skos:closeMatch mat:MAT-CONC ;
@@ -44,6 +49,9 @@ swp:SWP-TIMBER-SOLID skos:closeMatch mat:MAT-WOD ;
   skos:relatedMatch mat:MAT-CMP .
 
 swp:SWP-LEICHTBAU skos:closeMatch mat:MAT-CMP ;
+  skos:relatedMatch mat:MAT-GYP, mat:MAT-PLA .
+
+swp:SWP-LIGHTWEIGHT skos:closeMatch mat:MAT-CMP ;
   skos:relatedMatch mat:MAT-GYP, mat:MAT-PLA .
 
 swp:SWP-CURTAIN-WALL skos:closeMatch mat:MAT-MET-ALU ;
@@ -101,12 +109,32 @@ ssp:SSP-HBV-WOD skos:closeMatch mat:MAT-WOD .
 
 ssp:SSP-HBV-CONC skos:closeMatch mat:MAT-CONC .
 
+ssp:SSP-TIMBER-CONCRETE skos:closeMatch mat:MAT-CMP ;
+  skos:relatedMatch mat:MAT-WOD, mat:MAT-CONC .
+
+ssp:SSP-TIMBER-CONCRETE-INSITU skos:closeMatch mat:MAT-CMP ;
+  skos:relatedMatch mat:MAT-WOD, mat:MAT-CONC .
+
+ssp:SSP-TIMBER-CONCRETE-PRECAST skos:closeMatch mat:MAT-CMP ;
+  skos:relatedMatch mat:MAT-WOD, mat:MAT-CONC .
+
+ssp:SSP-TIMBER-CONCRETE-WOD skos:closeMatch mat:MAT-WOD .
+
+ssp:SSP-TIMBER-CONCRETE-CONC skos:closeMatch mat:MAT-CONC .
+
 ssp:SSP-HOLZ-LEHM skos:closeMatch mat:MAT-WOD ;
   skos:relatedMatch mat:MAT-MSN, mat:MAT-CMP .
 
 ssp:SSP-HOLZ-LEHM-WOD skos:closeMatch mat:MAT-WOD .
 
 ssp:SSP-HOLZ-LEHM-MSN skos:closeMatch mat:MAT-MSN .
+
+ssp:SSP-TIMBER-CLAY skos:closeMatch mat:MAT-WOD ;
+  skos:relatedMatch mat:MAT-MSN, mat:MAT-CMP .
+
+ssp:SSP-TIMBER-CLAY-WOD skos:closeMatch mat:MAT-WOD .
+
+ssp:SSP-TIMBER-CLAY-MSN skos:closeMatch mat:MAT-MSN .
 
 ssp:SSP-LIGHTWEIGHT skos:closeMatch mat:MAT-CMP ;
   skos:relatedMatch mat:MAT-INS .
