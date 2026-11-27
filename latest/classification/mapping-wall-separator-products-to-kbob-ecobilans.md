@@ -28,8 +28,13 @@ External target labels are not shipped in this repository; only codes and IRIs a
 | `swp:SWP-ELEMENT-WALL` | `closeMatch` | `kbobbm:05-021` |
 | `swp:SWP-ELEMENT-WALL` | `relatedMatch` | `kbobbm:03-008` |
 | `swp:SWP-ELEMENT-WALL` | `relatedMatch` | `kbobbm:07-014` |
+| `swp:SWP-INSITU-CONCRETE` | `closeMatch` | `kbobbm:01-002` |
 | `swp:SWP-LEICHTBAU` | `closeMatch` | `kbobbm:07-005` |
 | `swp:SWP-LEICHTBAU` | `relatedMatch` | `kbobbm:07-004` |
+| `swp:SWP-LIGHTWEIGHT` | `closeMatch` | `kbobbm:07-005` |
+| `swp:SWP-LIGHTWEIGHT` | `relatedMatch` | `kbobbm:07-004` |
+| `swp:SWP-LIGHTWEIGHT-CONCRETE-PANEL` | `closeMatch` | `kbobbm:02-006` |
+| `swp:SWP-LIGHTWEIGHT-CONCRETE-PANEL` | `relatedMatch` | `kbobbm:01-041` |
 | `swp:SWP-MASONRY` | `closeMatch` | `kbobbm:02-001` |
 | `swp:SWP-MASONRY` | `relatedMatch` | `kbobbm:02-002` |
 | `swp:SWP-MASONRY` | `relatedMatch` | `kbobbm:02-006` |

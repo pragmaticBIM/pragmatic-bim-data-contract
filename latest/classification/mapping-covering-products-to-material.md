@@ -114,6 +114,14 @@ External target labels are not shipped in this repository; only codes and IRIs a
 | `facp:FaCP-PREFAB-MODULAR-TIMBER` | `closeMatch` | `mat:MAT-WOD` |
 | `facp:FaCP-PREFAB-MODULAR-TIMBER` | `relatedMatch` | `mat:MAT-CMP` |
 | `facp:FaCP-PREFAB-MODULAR-TIMBER` | `relatedMatch` | `mat:MAT-INS` |
+| `facp:FaCP-RENDER-ETICS` | `closeMatch` | `mat:MAT-CMP` |
+| `facp:FaCP-RENDER-ETICS` | `relatedMatch` | `mat:MAT-INS` |
+| `facp:FaCP-RENDER-ETICS` | `relatedMatch` | `mat:MAT-MSN` |
+| `facp:FaCP-RENDER-ETICS` | `relatedMatch` | `mat:MAT-PLA` |
+| `facp:FaCP-RENDER-ETICS-INS` | `closeMatch` | `mat:MAT-PLA` |
+| `facp:FaCP-RENDER-ETICS-INS` | `relatedMatch` | `mat:MAT-INS-MWO` |
+| `facp:FaCP-RENDER-ETICS-RENDER` | `closeMatch` | `mat:MAT-MSN` |
+| `facp:FaCP-RENDER-ETICS-RENDER` | `relatedMatch` | `mat:MAT-PLA` |
 | `facp:FaCP-RENDER-ETICS-WDVS` | `closeMatch` | `mat:MAT-CMP` |
 | `facp:FaCP-RENDER-ETICS-WDVS` | `relatedMatch` | `mat:MAT-INS` |
 | `facp:FaCP-RENDER-ETICS-WDVS` | `relatedMatch` | `mat:MAT-MSN` |

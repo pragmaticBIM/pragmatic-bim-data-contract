@@ -30,6 +30,13 @@ External target labels are not shipped in this repository; only codes and IRIs a
 | `ssp:SSP-PREFAB-CONC` | `closeMatch` | `bkp:212` |
 | `ssp:SSP-STEEL-COMPOSITE` | `closeMatch` | `bkp:213` |
 | `ssp:SSP-TIMBER` | `closeMatch` | `bkp:214` |
+| `ssp:SSP-TIMBER-CLAY` | `closeMatch` | `bkp:214` |
+| `ssp:SSP-TIMBER-CONCRETE` | `closeMatch` | `bkp:214` |
+| `ssp:SSP-TIMBER-CONCRETE` | `relatedMatch` | `bkp:211` |
+| `ssp:SSP-TIMBER-CONCRETE-INSITU` | `closeMatch` | `bkp:214` |
+| `ssp:SSP-TIMBER-CONCRETE-INSITU` | `relatedMatch` | `bkp:211` |
+| `ssp:SSP-TIMBER-CONCRETE-PRECAST` | `closeMatch` | `bkp:214` |
+| `ssp:SSP-TIMBER-CONCRETE-PRECAST` | `relatedMatch` | `bkp:211` |
 | `swp:SWP-BLT` | `closeMatch` | `bkp:212` |
 | `swp:SWP-BLT-PANEL` | `closeMatch` | `bkp:212` |
 | `swp:SWP-CURTAIN-WALL` | `closeMatch` | `bkp:215` |
@@ -37,7 +44,10 @@ External target labels are not shipped in this repository; only codes and IRIs a
 | `swp:SWP-CURTAIN-WALL-UNITISED` | `closeMatch` | `bkp:215` |
 | `swp:SWP-DRYWALL` | `closeMatch` | `bkp:277` |
 | `swp:SWP-ELEMENT-WALL` | `closeMatch` | `bkp:277` |
+| `swp:SWP-INSITU-CONCRETE` | `closeMatch` | `bkp:211` |
 | `swp:SWP-LEICHTBAU` | `closeMatch` | `bkp:215` |
+| `swp:SWP-LIGHTWEIGHT` | `closeMatch` | `bkp:215` |
+| `swp:SWP-LIGHTWEIGHT-CONCRETE-PANEL` | `closeMatch` | `bkp:212` |
 | `swp:SWP-MASONRY` | `closeMatch` | `bkp:211` |
 | `swp:SWP-ORTBETON` | `closeMatch` | `bkp:211` |
 | `swp:SWP-PREFAB-CONC` | `closeMatch` | `bkp:212` |

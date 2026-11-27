@@ -1,0 +1,224 @@
+# Abstract floor covering products
+
+Source: [`floor-covering-products.skos.ttl`](sources/floor-covering-product.ttl)
+
+## Scheme
+
+- **definition (de):** Produkttyp-Klassifikation fuer eingebaute Bodenbelaege und zugehoerige Bodenaufbauten. Fuer Katalog-, Spezifikations- und Kostenworkflows; mit abstrakter Materialklassifikation fuer dominante Substanz kombinieren.
+- **definition (en):** Product-type classification for installed floor coverings and related floor finish systems. For catalog, specification, and cost workflows; pair with abstract material classification for dominant substance.
+- **prefLabel (de):** Abstrakte Bodenbelagsprodukte
+- **prefLabel (en):** Abstract floor covering products
+- **title (en):** Abstract floor covering products
+
+## Concepts
+
+<div class="pbs-vocab-concepts" data-default-lang="en" data-active-lang="en">
+<div class="pbs-lang-switcher" role="group" aria-label="Language">
+<button type="button" class="pbs-lang-btn" data-lang="de">DE</button>
+<button type="button" class="pbs-lang-btn" data-lang="en">EN</button>
+</div>
+<table>
+<thead>
+<tr>
+<th>Notation</th>
+<th>Broader</th>
+<th>Data sheet</th>
+<th class="pbs-lang-col" data-lang="de" data-field="label">Label</th>
+<th class="pbs-lang-col" data-lang="de" data-field="definition">Definition</th>
+<th class="pbs-lang-col" data-lang="de" data-field="scope_note">Scope note</th>
+<th class="pbs-lang-col" data-lang="en" data-field="label">Label</th>
+<th class="pbs-lang-col" data-lang="en" data-field="definition">Definition</th>
+<th class="pbs-lang-col" data-lang="en" data-field="scope_note">Scope note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FCP-ACCESS-FLOOR</td>
+<td></td>
+<td><a href="https://github.com/pragmaticBIM/pragmaticbim-reference/blob/main/products/fcp-access-floor.yaml">Reference</a></td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Doppelboden</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Systemboden aus herausnehmbaren Platten auf höhenverstellbaren Stützen.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Access floor</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Raised floor of removable panels on height-adjustable pedestals.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>FCP-ARTIFICIAL-STONE</td>
+<td></td>
+<td><a href="https://github.com/pragmaticBIM/pragmaticbim-reference/blob/main/products/fcp-artificial-stone.yaml">Reference</a></td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Kunststein-Bodenbelag</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Eingebauter Kunst- oder Agglomeratstein als Bodenbelag.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Artificial stone flooring</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Installed artificial or agglomerate stone floor finish.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>FCP-CARPET</td>
+<td></td>
+<td><a href="https://github.com/pragmaticBIM/pragmaticbim-reference/blob/main/products/fcp-carpet.yaml">Reference</a></td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Textiler Teppichbelag</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Eingebauter textiler Teppich, Teppichplatte oder Bahnenware als Bodenbelag.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Textile carpet</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Installed textile carpet, carpet tile, or broadloom floor covering.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>FCP-CAVITY-FLOOR</td>
+<td></td>
+<td><a href="https://github.com/pragmaticBIM/pragmaticbim-reference/blob/main/products/fcp-cavity-floor.yaml">Reference</a></td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Hohlboden</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Systemboden mit fugenloser Tragschicht über einem Hohlraum, nur über Revisionsöffnungen zugänglich.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Cavity floor</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Raised floor with a jointless load-bearing layer over a cavity, accessible only through access openings.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>FCP-CERAMIC-TILE</td>
+<td></td>
+<td><a href="https://github.com/pragmaticBIM/pragmaticbim-reference/blob/main/products/fcp-ceramic-tile.yaml">Reference</a></td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Keramik- / Feinsteinzeug-Bodenbelag</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Eingebauter Keramik-, Feinsteinzeug- oder Steingutfliesen-Bodenbelag.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Ceramic / porcelain tile floor</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Installed ceramic, porcelain, or stoneware tile floor finish.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>FCP-LAMINATE</td>
+<td></td>
+<td><a href="https://github.com/pragmaticBIM/pragmaticbim-reference/blob/main/products/fcp-laminate.yaml">Reference</a></td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Laminatboden</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Laminatboden mit dekorativer Deckschicht.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Laminate flooring</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Laminate floor board with decorative surface layer.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>FCP-LINOLIUM</td>
+<td></td>
+<td><a href="https://github.com/pragmaticBIM/pragmaticbim-reference/blob/main/products/fcp-linolium.yaml">Reference</a></td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Linoleum</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Linoleum oder Linoleum-Verbund als elastischer Bodenbelag.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Linoleum</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Linoleum or linoleum-composite resilient floor covering.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>FCP-LVT</td>
+<td></td>
+<td><a href="https://github.com/pragmaticBIM/pragmaticbim-reference/blob/main/products/fcp-lvt.yaml">Reference</a></td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Vinyl- / LVT-Bodenbelag</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Vinylbahnen, Luxury-Vinyl-Fliesen (LVT) oder PVC-basierter elastischer Bodenbelag.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Vinyl / LVT floor</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Vinyl sheet, luxury vinyl tile (LVT), or PVC-based resilient floor covering.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>FCP-NATURAL-STONE</td>
+<td></td>
+<td><a href="https://github.com/pragmaticBIM/pragmaticbim-reference/blob/main/products/fcp-natural-stone.yaml">Reference</a></td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Naturstein-Bodenbelag</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Eingebauter Naturstein als Platte, Fliese oder Plattenbelag.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Natural stone flooring</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Installed natural stone slab, tile, or flag floor finish.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>FCP-OTH</td>
+<td></td>
+<td><a href="https://github.com/pragmaticBIM/pragmaticbim-reference/blob/main/products/fcp-oth.yaml">Reference</a></td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Sonstiger / unbekannter Bodenbelag</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Bodenbelagsprodukt nicht klassifiziert oder noch unbekannt.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note">Fallback fuer fruehe Entwurfsstufen oder fehlende Daten.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Other / unknown floor covering</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Floor covering product not classified or not yet known.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note">Fallback for early design stages or missing data.</td>
+</tr>
+<tr>
+<td>FCP-PARQUET</td>
+<td></td>
+<td><a href="https://github.com/pragmaticBIM/pragmaticbim-reference/blob/main/products/fcp-parquet.yaml">Reference</a></td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Parkett / Mehrschicht-Holzboden</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Massivparkett, Mehrschicht-Holzboden oder Stabholz als Bodenbelag.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Parquet / engineered wood floor</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Solid parquet, engineered wood, or wood-strip floor finish.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>FCP-RAISED-FLOOR</td>
+<td></td>
+<td><a href="https://github.com/pragmaticBIM/pragmaticbim-reference/blob/main/products/fcp-raised-floor.yaml">Reference</a></td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Doppelboden / Hohlraumboden</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Hohlraumboden- oder Doppelbodensystem mit Stuetzen und abnehmbaren Paneelen.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Raised / access floor</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Raised access floor system with pedestals and removable panels.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>FCP-SCREED-BONDED</td>
+<td></td>
+<td><a href="https://github.com/pragmaticBIM/pragmaticbim-reference/blob/main/products/fcp-screed-bonded.yaml">Reference</a></td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Verbundener Unterlagsboden</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Unterlagsboden, der vollflächig mit der Rohdecke verbunden ist.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Bonded screed</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Screed bonded over its full area to the structural slab.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>FCP-SCREED-FLOATING</td>
+<td></td>
+<td><a href="https://github.com/pragmaticBIM/pragmaticbim-reference/blob/main/products/fcp-screed-floating.yaml">Reference</a></td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Schwimmender Unterlagsboden</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Unterlagsboden auf Trittschall- und Wärmedämmschicht, ohne Verbindung zur Rohdecke und zu den Wänden.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Floating screed</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Screed on impact-sound and thermal insulation, separated from the slab and the walls.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>FCP-SCREED-HEATED</td>
+<td></td>
+<td><a href="https://github.com/pragmaticBIM/pragmaticbim-reference/blob/main/products/fcp-screed-heated.yaml">Reference</a></td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Heizunterlagsboden</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Schwimmender Unterlagsboden mit eingebetteten Heiz- oder Kühlrohren.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Heated screed</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Floating screed with embedded heating or cooling pipes.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>FCP-SEAMLESS-RESIN</td>
+<td></td>
+<td><a href="https://github.com/pragmaticBIM/pragmaticbim-reference/blob/main/products/fcp-seamless-resin.yaml">Reference</a></td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Fugenloser Kunstharzboden</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Gegossener oder gezogener fugenloser Kunstharz-, Epoxid- oder Polyurethan-Bodenbelag.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Seamless resin floor</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Poured or troweled seamless resin, epoxy, or polyurethane floor finish.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+<tr>
+<td>FCP-SUBFLOOR</td>
+<td></td>
+<td><a href="https://github.com/pragmaticBIM/pragmaticbim-reference/blob/main/products/fcp-subfloor.yaml">Reference</a></td>
+<td class="pbs-lang-col" data-lang="de" data-field="label">Unterlagsboden / Ausgleichsschicht</td>
+<td class="pbs-lang-col" data-lang="de" data-field="definition">Unterlagsvorbereitung oder Ausgleichsestrich unter dem sichtbaren Bodenbelag.</td>
+<td class="pbs-lang-col" data-lang="de" data-field="scope_note"></td>
+<td class="pbs-lang-col" data-lang="en" data-field="label">Subfloor / leveling layer</td>
+<td class="pbs-lang-col" data-lang="en" data-field="definition">Subfloor preparation or leveling screed layer beneath the visible floor finish.</td>
+<td class="pbs-lang-col" data-lang="en" data-field="scope_note"></td>
+</tr>
+</tbody>
+</table>
+</div>

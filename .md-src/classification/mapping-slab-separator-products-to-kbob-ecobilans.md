@@ -45,3 +45,15 @@ External target labels are not shipped in this repository; only codes and IRIs a
 | `ssp:SSP-STEEL-COMPOSITE-STL` | `closeMatch` | `kbobbm:06-012` |
 | `ssp:SSP-TIMBER` | `closeMatch` | `kbobbm:07-023` |
 | `ssp:SSP-TIMBER` | `relatedMatch` | `kbobbm:07-003` |
+| `ssp:SSP-TIMBER-CLAY` | `relatedMatch` | `kbobbm:03-020` |
+| `ssp:SSP-TIMBER-CLAY` | `relatedMatch` | `kbobbm:07-003` |
+| `ssp:SSP-TIMBER-CLAY-MSN` | `closeMatch` | `kbobbm:03-020` |
+| `ssp:SSP-TIMBER-CLAY-WOD` | `closeMatch` | `kbobbm:07-003` |
+| `ssp:SSP-TIMBER-CONCRETE` | `relatedMatch` | `kbobbm:01-002` |
+| `ssp:SSP-TIMBER-CONCRETE` | `relatedMatch` | `kbobbm:07-003` |
+| `ssp:SSP-TIMBER-CONCRETE-CONC` | `closeMatch` | `kbobbm:01-002` |
+| `ssp:SSP-TIMBER-CONCRETE-INSITU` | `relatedMatch` | `kbobbm:01-002` |
+| `ssp:SSP-TIMBER-CONCRETE-INSITU` | `relatedMatch` | `kbobbm:07-003` |
+| `ssp:SSP-TIMBER-CONCRETE-PRECAST` | `relatedMatch` | `kbobbm:01-002` |
+| `ssp:SSP-TIMBER-CONCRETE-PRECAST` | `relatedMatch` | `kbobbm:07-003` |
+| `ssp:SSP-TIMBER-CONCRETE-WOD` | `closeMatch` | `kbobbm:07-003` |

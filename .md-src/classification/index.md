@@ -82,13 +82,25 @@ License: [CC-BY-4.0](https://creativecommons.org/licenses/by/4.0/) — sourced f
 | [qto_buccaneer to abstract building ratios mapping](mapping-qto-buccaneer-to-ratio.md) | `mapping/qto-buccaneer-to-abstract-ratio.mapping.ttl` |
 | [Abstract covering products to material mapping](mapping-covering-products-to-material.md) | `mapping/abstract-covering-products-to-material.mapping.ttl` |
 | [Abstract covering products to BKP mapping](mapping-covering-products-to-bkp.md) | `mapping/abstract-covering-products-to-bkp.mapping.ttl` |
+| [Abstract covering products to DIN 276 mapping](mapping-covering-products-to-din276.md) | `mapping/abstract-covering-products-to-din276.mapping.ttl` |
+| [Abstract covering products to ÖNORM B 1801 mapping](mapping-covering-products-to-onorm-b1801.md) | `mapping/abstract-covering-products-to-onorm-b1801.mapping.ttl` |
 | [Abstract foundation products to BKP mapping](mapping-foundation-products-to-bkp.md) | `mapping/abstract-foundation-products-to-bkp.mapping.ttl` |
+| [Abstract foundation products to DIN 276 mapping](mapping-foundation-products-to-din276.md) | `mapping/abstract-foundation-products-to-din276.mapping.ttl` |
+| [Abstract foundation products to ÖNORM B 1801 mapping](mapping-foundation-products-to-onorm-b1801.md) | `mapping/abstract-foundation-products-to-onorm-b1801.mapping.ttl` |
 | [Abstract roof covering products to BKP mapping](mapping-roof-covering-products-to-bkp.md) | `mapping/abstract-roof-covering-products-to-bkp.mapping.ttl` |
+| [Abstract roof covering products to DIN 276 mapping](mapping-roof-covering-products-to-din276.md) | `mapping/abstract-roof-covering-products-to-din276.mapping.ttl` |
+| [Abstract roof covering products to ÖNORM B 1801 mapping](mapping-roof-covering-products-to-onorm-b1801.md) | `mapping/abstract-roof-covering-products-to-onorm-b1801.mapping.ttl` |
 | [Abstract MEP products to BKP mapping](mapping-mep-products-to-bkp.md) | `mapping/abstract-mep-products-to-bkp.mapping.ttl` |
+| [Abstract MEP products to DIN 276 mapping](mapping-mep-products-to-din276.md) | `mapping/abstract-mep-products-to-din276.mapping.ttl` |
+| [Abstract MEP products to ÖNORM B 1801 mapping](mapping-mep-products-to-onorm-b1801.md) | `mapping/abstract-mep-products-to-onorm-b1801.mapping.ttl` |
 | [Abstract separator products to material mapping](mapping-separator-products-to-material.md) | `mapping/abstract-separator-products-to-material.mapping.ttl` |
 | [Abstract separator products to BKP mapping](mapping-separator-products-to-bkp.md) | `mapping/abstract-separator-products-to-bkp.mapping.ttl` |
+| [Abstract separator products to DIN 276 mapping](mapping-separator-products-to-din276.md) | `mapping/abstract-separator-products-to-din276.mapping.ttl` |
+| [Abstract separator products to ÖNORM B 1801 mapping](mapping-separator-products-to-onorm-b1801.md) | `mapping/abstract-separator-products-to-onorm-b1801.mapping.ttl` |
 | [Abstract connector products to material mapping](mapping-connector-products-to-material.md) | `mapping/abstract-connector-products-to-material.mapping.ttl` |
 | [Abstract connector products to BKP mapping](mapping-connector-products-to-bkp.md) | `mapping/abstract-connector-products-to-bkp.mapping.ttl` |
+| [Abstract connector products to DIN 276 mapping](mapping-connector-products-to-din276.md) | `mapping/abstract-connector-products-to-din276.mapping.ttl` |
+| [Abstract connector products to ÖNORM B 1801 mapping](mapping-connector-products-to-onorm-b1801.md) | `mapping/abstract-connector-products-to-onorm-b1801.mapping.ttl` |
 | [Abstract slab separator products to KBOB ecobilans mapping](mapping-slab-separator-products-to-kbob-ecobilans.md) | `mapping/abstract-slab-separator-products-to-kbob-ecobilans.mapping.ttl` |
 | [Abstract window connector products to KBOB ecobilans mapping](mapping-window-connector-products-to-kbob-ecobilans.md) | `mapping/abstract-window-connector-products-to-kbob-ecobilans.mapping.ttl` |
 | [Abstract facade covering products to KBOB ecobilans mapping](mapping-facade-covering-products-to-kbob-ecobilans.md) | `mapping/abstract-facade-covering-products-to-kbob-ecobilans.mapping.ttl` |
